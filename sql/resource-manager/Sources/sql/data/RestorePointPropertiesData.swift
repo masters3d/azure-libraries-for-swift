@@ -16,7 +16,7 @@ internal struct RestorePointPropertiesData : RestorePointPropertiesProtocol {
         case restorePointLabel = "restorePointLabel"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RestorePointPropertiesData : RestorePointPropertiesProtocol {
     if container.contains(.restorePointLabel) {
         self.restorePointLabel = try container.decode(String?.self, forKey: .restorePointLabel)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,14 +43,14 @@ internal struct RestorePointPropertiesData : RestorePointPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.restorePointType != nil {try container.encode(self.restorePointType, forKey: .restorePointType)}
+    if self.restorePointType != nil { try container.encode(self.restorePointType, forKey: .restorePointType) }
     if self.earliestRestoreDate != nil {
         try container.encode(DateConverter.toString(date: self.earliestRestoreDate!, format: .dateTime), forKey: .earliestRestoreDate)
     }
     if self.restorePointCreationDate != nil {
         try container.encode(DateConverter.toString(date: self.restorePointCreationDate!, format: .dateTime), forKey: .restorePointCreationDate)
     }
-    if self.restorePointLabel != nil {try container.encode(self.restorePointLabel, forKey: .restorePointLabel)}
+    if self.restorePointLabel != nil { try container.encode(self.restorePointLabel, forKey: .restorePointLabel) }
   }
 }
 

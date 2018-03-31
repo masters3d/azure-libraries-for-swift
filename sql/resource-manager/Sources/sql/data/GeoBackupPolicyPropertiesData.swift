@@ -12,7 +12,7 @@ internal struct GeoBackupPolicyPropertiesData : GeoBackupPolicyPropertiesProtoco
         case storageType = "storageType"
         }
 
-  public init(state: GeoBackupPolicyStateEnum)  {
+  public init(state: GeoBackupPolicyStateEnum) {
     self.state = state
   }
 
@@ -22,7 +22,7 @@ internal struct GeoBackupPolicyPropertiesData : GeoBackupPolicyPropertiesProtoco
     if container.contains(.storageType) {
         self.storageType = try container.decode(String?.self, forKey: .storageType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct GeoBackupPolicyPropertiesData : GeoBackupPolicyPropertiesProtoco
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
-    if self.storageType != nil {try container.encode(self.storageType, forKey: .storageType)}
+    if self.storageType != nil { try container.encode(self.storageType, forKey: .storageType) }
   }
 }
 

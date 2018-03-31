@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DisasterRecoveryConfigsListAuthorizationRules  {
+public protocol DisasterRecoveryConfigsListAuthorizationRules {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol DisasterRecoveryConfigsListAuthorizationRules  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SBAuthorizationRuleListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SBAuthorizationRuleListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.DisasterRecoveryConfigs {
@@ -40,7 +40,7 @@ extension Commands.DisasterRecoveryConfigs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{alias}"] = String(describing: self.alias)
@@ -61,15 +61,15 @@ extension Commands.DisasterRecoveryConfigs {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SBAuthorizationRuleListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SBAuthorizationRuleListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

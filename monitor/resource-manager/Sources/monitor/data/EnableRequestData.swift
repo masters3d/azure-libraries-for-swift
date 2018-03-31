@@ -10,14 +10,14 @@ internal struct EnableRequestData : EnableRequestProtocol {
         enum CodingKeys: String, CodingKey {case receiverName = "receiverName"
         }
 
-  public init(receiverName: String)  {
+  public init(receiverName: String) {
     self.receiverName = receiverName
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.receiverName = try container.decode(String.self, forKey: .receiverName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

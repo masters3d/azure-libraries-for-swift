@@ -22,7 +22,7 @@ internal struct MetadataDefinitionBaseData : MetadataDefinitionBaseProtocol {
         case largeImage = "largeImage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct MetadataDefinitionBaseData : MetadataDefinitionBaseProtocol {
     if container.contains(.largeImage) {
         self.largeImage = try container.decode(String?.self, forKey: .largeImage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct MetadataDefinitionBaseData : MetadataDefinitionBaseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.attributes != nil {try container.encode(self.attributes, forKey: .attributes)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.localizedAttributes != nil {try container.encode(self.localizedAttributes, forKey: .localizedAttributes)}
-    if self.smallImage != nil {try container.encode(self.smallImage, forKey: .smallImage)}
-    if self.mediumImage != nil {try container.encode(self.mediumImage, forKey: .mediumImage)}
-    if self.largeImage != nil {try container.encode(self.largeImage, forKey: .largeImage)}
+    if self.attributes != nil { try container.encode(self.attributes, forKey: .attributes) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.localizedAttributes != nil { try container.encode(self.localizedAttributes, forKey: .localizedAttributes) }
+    if self.smallImage != nil { try container.encode(self.smallImage, forKey: .smallImage) }
+    if self.mediumImage != nil { try container.encode(self.mediumImage, forKey: .mediumImage) }
+    if self.largeImage != nil { try container.encode(self.largeImage, forKey: .largeImage) }
   }
 }
 

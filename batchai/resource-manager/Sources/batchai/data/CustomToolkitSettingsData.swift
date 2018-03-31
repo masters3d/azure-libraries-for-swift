@@ -10,7 +10,7 @@ internal struct CustomToolkitSettingsData : CustomToolkitSettingsProtocol {
         enum CodingKeys: String, CodingKey {case commandLine = "commandLine"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct CustomToolkitSettingsData : CustomToolkitSettingsProtocol {
       if container.contains(.commandLine) {
         self.commandLine = try container.decode(String?.self, forKey: .commandLine)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct CustomToolkitSettingsData : CustomToolkitSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.commandLine != nil {try container.encode(self.commandLine, forKey: .commandLine)}
+    if self.commandLine != nil { try container.encode(self.commandLine, forKey: .commandLine) }
   }
 }
 

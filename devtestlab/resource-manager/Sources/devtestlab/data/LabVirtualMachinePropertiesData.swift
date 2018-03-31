@@ -70,7 +70,7 @@ internal struct LabVirtualMachinePropertiesData : LabVirtualMachinePropertiesPro
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -168,7 +168,7 @@ internal struct LabVirtualMachinePropertiesData : LabVirtualMachinePropertiesPro
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -178,41 +178,41 @@ internal struct LabVirtualMachinePropertiesData : LabVirtualMachinePropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.notes != nil {try container.encode(self.notes, forKey: .notes)}
-    if self.ownerObjectId != nil {try container.encode(self.ownerObjectId, forKey: .ownerObjectId)}
-    if self.ownerUserPrincipalName != nil {try container.encode(self.ownerUserPrincipalName, forKey: .ownerUserPrincipalName)}
-    if self.createdByUserId != nil {try container.encode(self.createdByUserId, forKey: .createdByUserId)}
-    if self.createdByUser != nil {try container.encode(self.createdByUser, forKey: .createdByUser)}
+    if self.notes != nil { try container.encode(self.notes, forKey: .notes) }
+    if self.ownerObjectId != nil { try container.encode(self.ownerObjectId, forKey: .ownerObjectId) }
+    if self.ownerUserPrincipalName != nil { try container.encode(self.ownerUserPrincipalName, forKey: .ownerUserPrincipalName) }
+    if self.createdByUserId != nil { try container.encode(self.createdByUserId, forKey: .createdByUserId) }
+    if self.createdByUser != nil { try container.encode(self.createdByUser, forKey: .createdByUser) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.computeId != nil {try container.encode(self.computeId, forKey: .computeId)}
-    if self.customImageId != nil {try container.encode(self.customImageId, forKey: .customImageId)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.size != nil {try container.encode(self.size, forKey: .size)}
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.sshKey != nil {try container.encode(self.sshKey, forKey: .sshKey)}
-    if self.isAuthenticationWithSshKey != nil {try container.encode(self.isAuthenticationWithSshKey, forKey: .isAuthenticationWithSshKey)}
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
-    if self.labSubnetName != nil {try container.encode(self.labSubnetName, forKey: .labSubnetName)}
-    if self.labVirtualNetworkId != nil {try container.encode(self.labVirtualNetworkId, forKey: .labVirtualNetworkId)}
-    if self.disallowPublicIpAddress != nil {try container.encode(self.disallowPublicIpAddress, forKey: .disallowPublicIpAddress)}
-    if self.artifacts != nil {try container.encode(self.artifacts as! [ArtifactInstallPropertiesData?]?, forKey: .artifacts)}
-    if self.artifactDeploymentStatus != nil {try container.encode(self.artifactDeploymentStatus as! ArtifactDeploymentStatusPropertiesData?, forKey: .artifactDeploymentStatus)}
-    if self.galleryImageReference != nil {try container.encode(self.galleryImageReference as! GalleryImageReferenceData?, forKey: .galleryImageReference)}
-    if self.computeVm != nil {try container.encode(self.computeVm as! ComputeVmPropertiesData?, forKey: .computeVm)}
-    if self.networkInterface != nil {try container.encode(self.networkInterface as! NetworkInterfacePropertiesData?, forKey: .networkInterface)}
-    if self.applicableSchedule != nil {try container.encode(self.applicableSchedule as! ApplicableScheduleData?, forKey: .applicableSchedule)}
+    if self.computeId != nil { try container.encode(self.computeId, forKey: .computeId) }
+    if self.customImageId != nil { try container.encode(self.customImageId, forKey: .customImageId) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.size != nil { try container.encode(self.size, forKey: .size) }
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.sshKey != nil { try container.encode(self.sshKey, forKey: .sshKey) }
+    if self.isAuthenticationWithSshKey != nil { try container.encode(self.isAuthenticationWithSshKey, forKey: .isAuthenticationWithSshKey) }
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
+    if self.labSubnetName != nil { try container.encode(self.labSubnetName, forKey: .labSubnetName) }
+    if self.labVirtualNetworkId != nil { try container.encode(self.labVirtualNetworkId, forKey: .labVirtualNetworkId) }
+    if self.disallowPublicIpAddress != nil { try container.encode(self.disallowPublicIpAddress, forKey: .disallowPublicIpAddress) }
+    if self.artifacts != nil { try container.encode(self.artifacts as! [ArtifactInstallPropertiesData?]?, forKey: .artifacts) }
+    if self.artifactDeploymentStatus != nil { try container.encode(self.artifactDeploymentStatus as! ArtifactDeploymentStatusPropertiesData?, forKey: .artifactDeploymentStatus) }
+    if self.galleryImageReference != nil { try container.encode(self.galleryImageReference as! GalleryImageReferenceData?, forKey: .galleryImageReference) }
+    if self.computeVm != nil { try container.encode(self.computeVm as! ComputeVmPropertiesData?, forKey: .computeVm) }
+    if self.networkInterface != nil { try container.encode(self.networkInterface as! NetworkInterfacePropertiesData?, forKey: .networkInterface) }
+    if self.applicableSchedule != nil { try container.encode(self.applicableSchedule as! ApplicableScheduleData?, forKey: .applicableSchedule) }
     if self.expirationDate != nil {
         try container.encode(DateConverter.toString(date: self.expirationDate!, format: .dateTime), forKey: .expirationDate)
     }
-    if self.allowClaim != nil {try container.encode(self.allowClaim, forKey: .allowClaim)}
-    if self.storageType != nil {try container.encode(self.storageType, forKey: .storageType)}
-    if self.virtualMachineCreationSource != nil {try container.encode(self.virtualMachineCreationSource, forKey: .virtualMachineCreationSource)}
-    if self.environmentId != nil {try container.encode(self.environmentId, forKey: .environmentId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.allowClaim != nil { try container.encode(self.allowClaim, forKey: .allowClaim) }
+    if self.storageType != nil { try container.encode(self.storageType, forKey: .storageType) }
+    if self.virtualMachineCreationSource != nil { try container.encode(self.virtualMachineCreationSource, forKey: .virtualMachineCreationSource) }
+    if self.environmentId != nil { try container.encode(self.environmentId, forKey: .environmentId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

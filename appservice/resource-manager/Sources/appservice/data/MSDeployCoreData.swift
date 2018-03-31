@@ -22,7 +22,7 @@ internal struct MSDeployCoreData : MSDeployCoreProtocol {
         case appOffline = "appOffline"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct MSDeployCoreData : MSDeployCoreProtocol {
     if container.contains(.appOffline) {
         self.appOffline = try container.decode(Bool?.self, forKey: .appOffline)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct MSDeployCoreData : MSDeployCoreProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.packageUri != nil {try container.encode(self.packageUri, forKey: .packageUri)}
-    if self.connectionString != nil {try container.encode(self.connectionString, forKey: .connectionString)}
-    if self.dbType != nil {try container.encode(self.dbType, forKey: .dbType)}
-    if self.setParametersXmlFileUri != nil {try container.encode(self.setParametersXmlFileUri, forKey: .setParametersXmlFileUri)}
-    if self.setParameters != nil {try container.encode(self.setParameters, forKey: .setParameters)}
-    if self.skipAppData != nil {try container.encode(self.skipAppData, forKey: .skipAppData)}
-    if self.appOffline != nil {try container.encode(self.appOffline, forKey: .appOffline)}
+    if self.packageUri != nil { try container.encode(self.packageUri, forKey: .packageUri) }
+    if self.connectionString != nil { try container.encode(self.connectionString, forKey: .connectionString) }
+    if self.dbType != nil { try container.encode(self.dbType, forKey: .dbType) }
+    if self.setParametersXmlFileUri != nil { try container.encode(self.setParametersXmlFileUri, forKey: .setParametersXmlFileUri) }
+    if self.setParameters != nil { try container.encode(self.setParameters, forKey: .setParameters) }
+    if self.skipAppData != nil { try container.encode(self.skipAppData, forKey: .skipAppData) }
+    if self.appOffline != nil { try container.encode(self.appOffline, forKey: .appOffline) }
   }
 }
 

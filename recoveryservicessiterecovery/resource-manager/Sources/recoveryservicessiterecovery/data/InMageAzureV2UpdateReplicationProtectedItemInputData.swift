@@ -14,7 +14,7 @@ internal struct InMageAzureV2UpdateReplicationProtectedItemInputData : InMageAzu
         case useManagedDisks = "useManagedDisks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct InMageAzureV2UpdateReplicationProtectedItemInputData : InMageAzu
     if container.contains(.useManagedDisks) {
         self.useManagedDisks = try container.decode(String?.self, forKey: .useManagedDisks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct InMageAzureV2UpdateReplicationProtectedItemInputData : InMageAzu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryAzureV1ResourceGroupId != nil {try container.encode(self.recoveryAzureV1ResourceGroupId, forKey: .recoveryAzureV1ResourceGroupId)}
-    if self.recoveryAzureV2ResourceGroupId != nil {try container.encode(self.recoveryAzureV2ResourceGroupId, forKey: .recoveryAzureV2ResourceGroupId)}
-    if self.useManagedDisks != nil {try container.encode(self.useManagedDisks, forKey: .useManagedDisks)}
+    if self.recoveryAzureV1ResourceGroupId != nil { try container.encode(self.recoveryAzureV1ResourceGroupId, forKey: .recoveryAzureV1ResourceGroupId) }
+    if self.recoveryAzureV2ResourceGroupId != nil { try container.encode(self.recoveryAzureV2ResourceGroupId, forKey: .recoveryAzureV2ResourceGroupId) }
+    if self.useManagedDisks != nil { try container.encode(self.useManagedDisks, forKey: .useManagedDisks) }
   }
 }
 

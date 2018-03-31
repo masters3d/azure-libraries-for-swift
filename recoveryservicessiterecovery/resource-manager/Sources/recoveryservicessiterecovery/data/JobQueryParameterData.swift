@@ -18,7 +18,7 @@ internal struct JobQueryParameterData : JobQueryParameterProtocol {
         case jobStatus = "jobStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobQueryParameterData : JobQueryParameterProtocol {
     if container.contains(.jobStatus) {
         self.jobStatus = try container.decode([String]?.self, forKey: .jobStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct JobQueryParameterData : JobQueryParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.startTime != nil {try container.encode(self.startTime, forKey: .startTime)}
-    if self.endTime != nil {try container.encode(self.endTime, forKey: .endTime)}
-    if self.fabricId != nil {try container.encode(self.fabricId, forKey: .fabricId)}
-    if self.affectedObjectTypes != nil {try container.encode(self.affectedObjectTypes as! [String]?, forKey: .affectedObjectTypes)}
-    if self.jobStatus != nil {try container.encode(self.jobStatus as! [String]?, forKey: .jobStatus)}
+    if self.startTime != nil { try container.encode(self.startTime, forKey: .startTime) }
+    if self.endTime != nil { try container.encode(self.endTime, forKey: .endTime) }
+    if self.fabricId != nil { try container.encode(self.fabricId, forKey: .fabricId) }
+    if self.affectedObjectTypes != nil { try container.encode(self.affectedObjectTypes as! [String]?, forKey: .affectedObjectTypes) }
+    if self.jobStatus != nil { try container.encode(self.jobStatus as! [String]?, forKey: .jobStatus) }
   }
 }
 

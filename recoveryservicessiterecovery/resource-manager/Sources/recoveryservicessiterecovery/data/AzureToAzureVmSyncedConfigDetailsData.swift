@@ -14,7 +14,7 @@ internal struct AzureToAzureVmSyncedConfigDetailsData : AzureToAzureVmSyncedConf
         case inputEndpoints = "inputEndpoints"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureToAzureVmSyncedConfigDetailsData : AzureToAzureVmSyncedConf
     if container.contains(.inputEndpoints) {
         self.inputEndpoints = try container.decode([InputEndpointData?]?.self, forKey: .inputEndpoints)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureToAzureVmSyncedConfigDetailsData : AzureToAzureVmSyncedConf
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.roleAssignments != nil {try container.encode(self.roleAssignments as! [RoleAssignmentData?]?, forKey: .roleAssignments)}
-    if self.inputEndpoints != nil {try container.encode(self.inputEndpoints as! [InputEndpointData?]?, forKey: .inputEndpoints)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.roleAssignments != nil { try container.encode(self.roleAssignments as! [RoleAssignmentData?]?, forKey: .roleAssignments) }
+    if self.inputEndpoints != nil { try container.encode(self.inputEndpoints as! [InputEndpointData?]?, forKey: .inputEndpoints) }
   }
 }
 

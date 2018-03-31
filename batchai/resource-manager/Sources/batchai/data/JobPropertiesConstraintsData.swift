@@ -10,7 +10,7 @@ internal struct JobPropertiesConstraintsData : JobPropertiesConstraintsProtocol 
         enum CodingKeys: String, CodingKey {case maxWallClockTime = "maxWallClockTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct JobPropertiesConstraintsData : JobPropertiesConstraintsProtocol 
       if container.contains(.maxWallClockTime) {
         self.maxWallClockTime = try container.decode(String?.self, forKey: .maxWallClockTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct JobPropertiesConstraintsData : JobPropertiesConstraintsProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxWallClockTime != nil {try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime)}
+    if self.maxWallClockTime != nil { try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime) }
   }
 }
 

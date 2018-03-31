@@ -14,7 +14,7 @@ internal struct VirtualMachineScaleSetSkuData : VirtualMachineScaleSetSkuProtoco
         case capacity = "capacity"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetSkuData : VirtualMachineScaleSetSkuProtoco
     if container.contains(.capacity) {
         self.capacity = try container.decode(VirtualMachineScaleSetSkuCapacityData?.self, forKey: .capacity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VirtualMachineScaleSetSkuData : VirtualMachineScaleSetSkuProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.capacity != nil {try container.encode(self.capacity as! VirtualMachineScaleSetSkuCapacityData?, forKey: .capacity)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.capacity != nil { try container.encode(self.capacity as! VirtualMachineScaleSetSkuCapacityData?, forKey: .capacity) }
   }
 }
 

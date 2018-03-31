@@ -22,7 +22,7 @@ internal struct AzureVMAppContainerProtectionContainerData : AzureVMAppContainer
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureVMAppContainerProtectionContainerData : AzureVMAppContainer
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureWorkloadContainerExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,15 +58,15 @@ internal struct AzureVMAppContainerProtectionContainerData : AzureVMAppContainer
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
     if self.lastUpdatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastUpdatedTime!, format: .dateTime), forKey: .lastUpdatedTime)
     }
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureWorkloadContainerExtendedInfoData?, forKey: .extendedInfo)}
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureWorkloadContainerExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

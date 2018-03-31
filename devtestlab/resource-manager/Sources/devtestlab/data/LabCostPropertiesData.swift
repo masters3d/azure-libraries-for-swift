@@ -28,7 +28,7 @@ internal struct LabCostPropertiesData : LabCostPropertiesProtocol {
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct LabCostPropertiesData : LabCostPropertiesProtocol {
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,11 +73,11 @@ internal struct LabCostPropertiesData : LabCostPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetCost != nil {try container.encode(self.targetCost as! TargetCostPropertiesData?, forKey: .targetCost)}
-    if self.labCostSummary != nil {try container.encode(self.labCostSummary as! LabCostSummaryPropertiesData?, forKey: .labCostSummary)}
-    if self.labCostDetails != nil {try container.encode(self.labCostDetails as! [LabCostDetailsPropertiesData?]?, forKey: .labCostDetails)}
-    if self.resourceCosts != nil {try container.encode(self.resourceCosts as! [LabResourceCostPropertiesData?]?, forKey: .resourceCosts)}
-    if self.currencyCode != nil {try container.encode(self.currencyCode, forKey: .currencyCode)}
+    if self.targetCost != nil { try container.encode(self.targetCost as! TargetCostPropertiesData?, forKey: .targetCost) }
+    if self.labCostSummary != nil { try container.encode(self.labCostSummary as! LabCostSummaryPropertiesData?, forKey: .labCostSummary) }
+    if self.labCostDetails != nil { try container.encode(self.labCostDetails as! [LabCostDetailsPropertiesData?]?, forKey: .labCostDetails) }
+    if self.resourceCosts != nil { try container.encode(self.resourceCosts as! [LabResourceCostPropertiesData?]?, forKey: .resourceCosts) }
+    if self.currencyCode != nil { try container.encode(self.currencyCode, forKey: .currencyCode) }
     if self.startDateTime != nil {
         try container.encode(DateConverter.toString(date: self.startDateTime!, format: .dateTime), forKey: .startDateTime)
     }
@@ -87,8 +87,8 @@ internal struct LabCostPropertiesData : LabCostPropertiesProtocol {
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

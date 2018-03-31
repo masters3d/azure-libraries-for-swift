@@ -18,7 +18,7 @@ internal struct JobSchedulePropertiesData : JobSchedulePropertiesProtocol {
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobSchedulePropertiesData : JobSchedulePropertiesProtocol {
     if container.contains(.parameters) {
         self.parameters = try container.decode([String:String]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct JobSchedulePropertiesData : JobSchedulePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobScheduleId != nil {try container.encode(self.jobScheduleId, forKey: .jobScheduleId)}
-    if self.schedule != nil {try container.encode(self.schedule as! ScheduleAssociationPropertyData?, forKey: .schedule)}
-    if self.runbook != nil {try container.encode(self.runbook as! RunbookAssociationPropertyData?, forKey: .runbook)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.jobScheduleId != nil { try container.encode(self.jobScheduleId, forKey: .jobScheduleId) }
+    if self.schedule != nil { try container.encode(self.schedule as! ScheduleAssociationPropertyData?, forKey: .schedule) }
+    if self.runbook != nil { try container.encode(self.runbook as! RunbookAssociationPropertyData?, forKey: .runbook) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
   }
 }
 

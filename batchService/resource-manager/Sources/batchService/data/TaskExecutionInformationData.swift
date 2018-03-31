@@ -28,7 +28,7 @@ internal struct TaskExecutionInformationData : TaskExecutionInformationProtocol 
         case result = "result"
         }
 
-  public init(retryCount: Int32, requeueCount: Int32)  {
+  public init(retryCount: Int32, requeueCount: Int32) {
     self.retryCount = retryCount
     self.requeueCount = requeueCount
   }
@@ -61,7 +61,7 @@ internal struct TaskExecutionInformationData : TaskExecutionInformationProtocol 
     if container.contains(.result) {
         self.result = try container.decode(TaskExecutionResultEnum?.self, forKey: .result)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -77,9 +77,9 @@ internal struct TaskExecutionInformationData : TaskExecutionInformationProtocol 
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
-    if self.containerInfo != nil {try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo)}
-    if self.failureInfo != nil {try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo)}
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
+    if self.containerInfo != nil { try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo) }
+    if self.failureInfo != nil { try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo) }
     try container.encode(self.retryCount, forKey: .retryCount)
     if self.lastRetryTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRetryTime!, format: .dateTime), forKey: .lastRetryTime)
@@ -88,7 +88,7 @@ internal struct TaskExecutionInformationData : TaskExecutionInformationProtocol 
     if self.lastRequeueTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRequeueTime!, format: .dateTime), forKey: .lastRequeueTime)
     }
-    if self.result != nil {try container.encode(self.result, forKey: .result)}
+    if self.result != nil { try container.encode(self.result, forKey: .result) }
   }
 }
 

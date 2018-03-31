@@ -18,7 +18,7 @@ internal struct ApplicationData : ApplicationProtocol {
         case defaultVersion = "defaultVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApplicationData : ApplicationProtocol {
     if container.contains(.defaultVersion) {
         self.defaultVersion = try container.decode(String?.self, forKey: .defaultVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApplicationData : ApplicationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.packages != nil {try container.encode(self.packages as! [ApplicationPackageData?]?, forKey: .packages)}
-    if self.allowUpdates != nil {try container.encode(self.allowUpdates, forKey: .allowUpdates)}
-    if self.defaultVersion != nil {try container.encode(self.defaultVersion, forKey: .defaultVersion)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.packages != nil { try container.encode(self.packages as! [ApplicationPackageData?]?, forKey: .packages) }
+    if self.allowUpdates != nil { try container.encode(self.allowUpdates, forKey: .allowUpdates) }
+    if self.defaultVersion != nil { try container.encode(self.defaultVersion, forKey: .defaultVersion) }
   }
 }
 

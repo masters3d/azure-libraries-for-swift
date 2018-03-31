@@ -12,7 +12,7 @@ internal struct TestJobCreateParametersData : TestJobCreateParametersProtocol {
         case runOn = "runOn"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TestJobCreateParametersData : TestJobCreateParametersProtocol {
     if container.contains(.runOn) {
         self.runOn = try container.decode(String?.self, forKey: .runOn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TestJobCreateParametersData : TestJobCreateParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct SiteLimitsData : SiteLimitsProtocol {
         case maxDiskSizeInMb = "maxDiskSizeInMb"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SiteLimitsData : SiteLimitsProtocol {
     if container.contains(.maxDiskSizeInMb) {
         self.maxDiskSizeInMb = try container.decode(Int64?.self, forKey: .maxDiskSizeInMb)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SiteLimitsData : SiteLimitsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxPercentageCpu != nil {try container.encode(self.maxPercentageCpu, forKey: .maxPercentageCpu)}
-    if self.maxMemoryInMb != nil {try container.encode(self.maxMemoryInMb, forKey: .maxMemoryInMb)}
-    if self.maxDiskSizeInMb != nil {try container.encode(self.maxDiskSizeInMb, forKey: .maxDiskSizeInMb)}
+    if self.maxPercentageCpu != nil { try container.encode(self.maxPercentageCpu, forKey: .maxPercentageCpu) }
+    if self.maxMemoryInMb != nil { try container.encode(self.maxMemoryInMb, forKey: .maxMemoryInMb) }
+    if self.maxDiskSizeInMb != nil { try container.encode(self.maxDiskSizeInMb, forKey: .maxDiskSizeInMb) }
   }
 }
 

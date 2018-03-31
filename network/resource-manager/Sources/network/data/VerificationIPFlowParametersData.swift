@@ -24,7 +24,7 @@ internal struct VerificationIPFlowParametersData : VerificationIPFlowParametersP
         case targetNicResourceId = "targetNicResourceId"
         }
 
-  public init(targetResourceId: String, direction: DirectionEnum, _protocol: ProtocolEnum, localPort: String, remotePort: String, localIPAddress: String, remoteIPAddress: String)  {
+  public init(targetResourceId: String, direction: DirectionEnum, _protocol: ProtocolEnum, localPort: String, remotePort: String, localIPAddress: String, remoteIPAddress: String) {
     self.targetResourceId = targetResourceId
     self.direction = direction
     self._protocol = _protocol
@@ -46,7 +46,7 @@ internal struct VerificationIPFlowParametersData : VerificationIPFlowParametersP
     if container.contains(.targetNicResourceId) {
         self.targetNicResourceId = try container.decode(String?.self, forKey: .targetNicResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,7 +63,7 @@ internal struct VerificationIPFlowParametersData : VerificationIPFlowParametersP
     try container.encode(self.remotePort, forKey: .remotePort)
     try container.encode(self.localIPAddress, forKey: .localIPAddress)
     try container.encode(self.remoteIPAddress, forKey: .remoteIPAddress)
-    if self.targetNicResourceId != nil {try container.encode(self.targetNicResourceId, forKey: .targetNicResourceId)}
+    if self.targetNicResourceId != nil { try container.encode(self.targetNicResourceId, forKey: .targetNicResourceId) }
   }
 }
 

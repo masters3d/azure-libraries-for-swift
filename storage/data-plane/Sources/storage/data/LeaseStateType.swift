@@ -1,7 +1,6 @@
 // LeaseStateType enumerates the values for lease state type.
 
-public enum LeaseStateType: String, Codable
-{
+public enum LeaseStateType: String, Codable {
 // Available specifies the available state for lease state type.
     case Available = "available"
 // Breaking specifies the breaking state for lease state type.

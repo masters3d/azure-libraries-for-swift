@@ -14,7 +14,7 @@ internal struct PredictionGradesItemData : PredictionGradesItemProtocol {
         case maxScoreThreshold = "maxScoreThreshold"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PredictionGradesItemData : PredictionGradesItemProtocol {
     if container.contains(.maxScoreThreshold) {
         self.maxScoreThreshold = try container.decode(Int32?.self, forKey: .maxScoreThreshold)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PredictionGradesItemData : PredictionGradesItemProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.gradeName != nil {try container.encode(self.gradeName, forKey: .gradeName)}
-    if self.minScoreThreshold != nil {try container.encode(self.minScoreThreshold, forKey: .minScoreThreshold)}
-    if self.maxScoreThreshold != nil {try container.encode(self.maxScoreThreshold, forKey: .maxScoreThreshold)}
+    if self.gradeName != nil { try container.encode(self.gradeName, forKey: .gradeName) }
+    if self.minScoreThreshold != nil { try container.encode(self.minScoreThreshold, forKey: .minScoreThreshold) }
+    if self.maxScoreThreshold != nil { try container.encode(self.maxScoreThreshold, forKey: .maxScoreThreshold) }
   }
 }
 

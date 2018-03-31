@@ -16,7 +16,7 @@ internal struct VMNicInputDetailsData : VMNicInputDetailsProtocol {
         case selectionType = "selectionType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VMNicInputDetailsData : VMNicInputDetailsProtocol {
     if container.contains(.selectionType) {
         self.selectionType = try container.decode(String?.self, forKey: .selectionType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VMNicInputDetailsData : VMNicInputDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nicId != nil {try container.encode(self.nicId, forKey: .nicId)}
-    if self.recoveryVMSubnetName != nil {try container.encode(self.recoveryVMSubnetName, forKey: .recoveryVMSubnetName)}
-    if self.replicaNicStaticIPAddress != nil {try container.encode(self.replicaNicStaticIPAddress, forKey: .replicaNicStaticIPAddress)}
-    if self.selectionType != nil {try container.encode(self.selectionType, forKey: .selectionType)}
+    if self.nicId != nil { try container.encode(self.nicId, forKey: .nicId) }
+    if self.recoveryVMSubnetName != nil { try container.encode(self.recoveryVMSubnetName, forKey: .recoveryVMSubnetName) }
+    if self.replicaNicStaticIPAddress != nil { try container.encode(self.replicaNicStaticIPAddress, forKey: .replicaNicStaticIPAddress) }
+    if self.selectionType != nil { try container.encode(self.selectionType, forKey: .selectionType) }
   }
 }
 

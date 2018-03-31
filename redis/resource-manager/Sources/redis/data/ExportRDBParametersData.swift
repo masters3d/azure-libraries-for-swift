@@ -14,7 +14,7 @@ internal struct ExportRDBParametersData : ExportRDBParametersProtocol {
         case container = "container"
         }
 
-  public init(_prefix: String, container: String)  {
+  public init(_prefix: String, container: String) {
     self._prefix = _prefix
     self.container = container
   }
@@ -26,7 +26,7 @@ internal struct ExportRDBParametersData : ExportRDBParametersProtocol {
     }
     self._prefix = try container.decode(String.self, forKey: ._prefix)
     self.container = try container.decode(String.self, forKey: .container)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct ExportRDBParametersData : ExportRDBParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
     try container.encode(self._prefix, forKey: ._prefix)
     try container.encode(self.container, forKey: .container)
   }

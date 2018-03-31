@@ -18,7 +18,7 @@ internal struct LocationData : LocationProtocol {
         case failoverPriority = "failoverPriority"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct LocationData : LocationProtocol {
     if container.contains(.failoverPriority) {
         self.failoverPriority = try container.decode(Int32?.self, forKey: .failoverPriority)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct LocationData : LocationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.locationName != nil {try container.encode(self.locationName, forKey: .locationName)}
-    if self.documentEndpoint != nil {try container.encode(self.documentEndpoint, forKey: .documentEndpoint)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.failoverPriority != nil {try container.encode(self.failoverPriority, forKey: .failoverPriority)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.locationName != nil { try container.encode(self.locationName, forKey: .locationName) }
+    if self.documentEndpoint != nil { try container.encode(self.documentEndpoint, forKey: .documentEndpoint) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.failoverPriority != nil { try container.encode(self.failoverPriority, forKey: .failoverPriority) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DiagnosticsExecuteSiteDetector  {
+public protocol DiagnosticsExecuteSiteDetector {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var siteName : String { get set }
@@ -12,7 +12,7 @@ public protocol DiagnosticsExecuteSiteDetector  {
     var timeGrain : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DiagnosticDetectorResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DiagnosticDetectorResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.Diagnostics {
@@ -41,7 +41,7 @@ extension Commands.Diagnostics {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{siteName}"] = String(describing: self.siteName)
             self.pathParameters["{detectorName}"] = String(describing: self.detectorName)
@@ -59,12 +59,12 @@ extension Commands.Diagnostics {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DiagnosticDetectorResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DiagnosticDetectorResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DiagnosticDetectorResponseProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DiagnosticDetectorResponseData?, error: Error?) in
                 completionHandler(result, error)

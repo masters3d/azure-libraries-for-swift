@@ -22,7 +22,7 @@ internal struct BlobEnumerationResultsData : BlobEnumerationResultsProtocol {
         case nextMarker = "NextMarker"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -55,14 +55,14 @@ internal struct BlobEnumerationResultsData : BlobEnumerationResultsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceEndpoint != nil {try container.encode(serviceEndpoint, forKey: .serviceEndpoint)}
-    if self.containerName != nil {try container.encode(containerName, forKey: .containerName)}
-    if self.prefix != nil {try container.encode(prefix, forKey: .prefix)}
-    if self.marker != nil {try container.encode(marker, forKey: .marker)}
-    if self.maxResults != nil {try container.encode(maxResults, forKey: .maxResults)}
-    if self.delimiter != nil {try container.encode(delimiter, forKey: .delimiter)}
-    if self.blobs != nil {try container.encode(blobs as! [BlobData?]?, forKey: .blobs)}
-    if self.nextMarker != nil {try container.encode(nextMarker, forKey: .nextMarker)}
+    if self.serviceEndpoint != nil { try container.encode(serviceEndpoint, forKey: .serviceEndpoint) }
+    if self.containerName != nil { try container.encode(containerName, forKey: .containerName) }
+    if self.prefix != nil { try container.encode(prefix, forKey: .prefix) }
+    if self.marker != nil { try container.encode(marker, forKey: .marker) }
+    if self.maxResults != nil { try container.encode(maxResults, forKey: .maxResults) }
+    if self.delimiter != nil { try container.encode(delimiter, forKey: .delimiter) }
+    if self.blobs != nil { try container.encode(blobs as! [BlobData?]?, forKey: .blobs) }
+    if self.nextMarker != nil { try container.encode(nextMarker, forKey: .nextMarker) }
   }
 }
 

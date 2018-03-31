@@ -34,7 +34,7 @@ internal struct WorkflowRunTriggerData : WorkflowRunTriggerProtocol {
         case trackedProperties = "trackedProperties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct WorkflowRunTriggerData : WorkflowRunTriggerProtocol {
     if container.contains(.trackedProperties) {
         self.trackedProperties = try container.decode([String: String?]?.self, forKey: .trackedProperties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,23 +88,23 @@ internal struct WorkflowRunTriggerData : WorkflowRunTriggerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.inputs != nil {try container.encode(self.inputs, forKey: .inputs)}
-    if self.inputsLink != nil {try container.encode(self.inputsLink as! ContentLinkData?, forKey: .inputsLink)}
-    if self.outputs != nil {try container.encode(self.outputs, forKey: .outputs)}
-    if self.outputsLink != nil {try container.encode(self.outputsLink as! ContentLinkData?, forKey: .outputsLink)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.inputs != nil { try container.encode(self.inputs, forKey: .inputs) }
+    if self.inputsLink != nil { try container.encode(self.inputsLink as! ContentLinkData?, forKey: .inputsLink) }
+    if self.outputs != nil { try container.encode(self.outputs, forKey: .outputs) }
+    if self.outputsLink != nil { try container.encode(self.outputsLink as! ContentLinkData?, forKey: .outputsLink) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.trackingId != nil {try container.encode(self.trackingId, forKey: .trackingId)}
-    if self.correlation != nil {try container.encode(self.correlation as! CorrelationData?, forKey: .correlation)}
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.error != nil {try container.encode(self.error, forKey: .error)}
-    if self.trackedProperties != nil {try container.encode(self.trackedProperties, forKey: .trackedProperties)}
+    if self.trackingId != nil { try container.encode(self.trackingId, forKey: .trackingId) }
+    if self.correlation != nil { try container.encode(self.correlation as! CorrelationData?, forKey: .correlation) }
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.error != nil { try container.encode(self.error, forKey: .error) }
+    if self.trackedProperties != nil { try container.encode(self.trackedProperties, forKey: .trackedProperties) }
   }
 }
 

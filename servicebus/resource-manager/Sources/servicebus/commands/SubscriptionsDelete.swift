@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SubscriptionsDelete  {
+public protocol SubscriptionsDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
@@ -9,7 +9,7 @@ public protocol SubscriptionsDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Subscriptions {
@@ -35,7 +35,7 @@ extension Commands.Subscriptions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{topicName}"] = String(describing: self.topicName)
@@ -46,7 +46,7 @@ extension Commands.Subscriptions {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

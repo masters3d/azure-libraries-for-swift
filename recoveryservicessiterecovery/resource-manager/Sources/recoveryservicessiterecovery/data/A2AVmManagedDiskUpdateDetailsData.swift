@@ -14,7 +14,7 @@ internal struct A2AVmManagedDiskUpdateDetailsData : A2AVmManagedDiskUpdateDetail
         case recoveryReplicaDiskAccountType = "recoveryReplicaDiskAccountType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct A2AVmManagedDiskUpdateDetailsData : A2AVmManagedDiskUpdateDetail
     if container.contains(.recoveryReplicaDiskAccountType) {
         self.recoveryReplicaDiskAccountType = try container.decode(String?.self, forKey: .recoveryReplicaDiskAccountType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct A2AVmManagedDiskUpdateDetailsData : A2AVmManagedDiskUpdateDetail
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskId != nil {try container.encode(self.diskId, forKey: .diskId)}
-    if self.recoveryTargetDiskAccountType != nil {try container.encode(self.recoveryTargetDiskAccountType, forKey: .recoveryTargetDiskAccountType)}
-    if self.recoveryReplicaDiskAccountType != nil {try container.encode(self.recoveryReplicaDiskAccountType, forKey: .recoveryReplicaDiskAccountType)}
+    if self.diskId != nil { try container.encode(self.diskId, forKey: .diskId) }
+    if self.recoveryTargetDiskAccountType != nil { try container.encode(self.recoveryTargetDiskAccountType, forKey: .recoveryTargetDiskAccountType) }
+    if self.recoveryReplicaDiskAccountType != nil { try container.encode(self.recoveryReplicaDiskAccountType, forKey: .recoveryReplicaDiskAccountType) }
   }
 }
 

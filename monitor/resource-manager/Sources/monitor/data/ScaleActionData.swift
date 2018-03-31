@@ -16,7 +16,7 @@ internal struct ScaleActionData : ScaleActionProtocol {
         case cooldown = "cooldown"
         }
 
-  public init(direction: ScaleDirectionEnum, type: ScaleTypeEnum, cooldown: String)  {
+  public init(direction: ScaleDirectionEnum, type: ScaleTypeEnum, cooldown: String) {
     self.direction = direction
     self.type = type
     self.cooldown = cooldown
@@ -30,7 +30,7 @@ internal struct ScaleActionData : ScaleActionProtocol {
         self.value = try container.decode(String?.self, forKey: .value)
     }
     self.cooldown = try container.decode(String.self, forKey: .cooldown)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,7 +42,7 @@ internal struct ScaleActionData : ScaleActionProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.direction, forKey: .direction)
     try container.encode(self.type, forKey: .type)
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
     try container.encode(self.cooldown, forKey: .cooldown)
   }
 }

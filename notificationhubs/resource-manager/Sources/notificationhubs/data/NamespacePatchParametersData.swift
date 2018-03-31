@@ -12,7 +12,7 @@ internal struct NamespacePatchParametersData : NamespacePatchParametersProtocol 
         case sku = "sku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct NamespacePatchParametersData : NamespacePatchParametersProtocol 
     if container.contains(.sku) {
         self.sku = try container.decode(SkuData?.self, forKey: .sku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct NamespacePatchParametersData : NamespacePatchParametersProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
   }
 }
 

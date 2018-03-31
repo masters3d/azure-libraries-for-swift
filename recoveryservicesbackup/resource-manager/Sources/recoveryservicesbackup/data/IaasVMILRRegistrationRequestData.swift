@@ -16,7 +16,7 @@ internal struct IaasVMILRRegistrationRequestData : IaasVMILRRegistrationRequestP
         case renewExistingRegistration = "renewExistingRegistration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct IaasVMILRRegistrationRequestData : IaasVMILRRegistrationRequestP
     if container.contains(.renewExistingRegistration) {
         self.renewExistingRegistration = try container.decode(Bool?.self, forKey: .renewExistingRegistration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct IaasVMILRRegistrationRequestData : IaasVMILRRegistrationRequestP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointId != nil {try container.encode(self.recoveryPointId, forKey: .recoveryPointId)}
-    if self.virtualMachineId != nil {try container.encode(self.virtualMachineId, forKey: .virtualMachineId)}
-    if self.initiatorName != nil {try container.encode(self.initiatorName, forKey: .initiatorName)}
-    if self.renewExistingRegistration != nil {try container.encode(self.renewExistingRegistration, forKey: .renewExistingRegistration)}
+    if self.recoveryPointId != nil { try container.encode(self.recoveryPointId, forKey: .recoveryPointId) }
+    if self.virtualMachineId != nil { try container.encode(self.virtualMachineId, forKey: .virtualMachineId) }
+    if self.initiatorName != nil { try container.encode(self.initiatorName, forKey: .initiatorName) }
+    if self.renewExistingRegistration != nil { try container.encode(self.renewExistingRegistration, forKey: .renewExistingRegistration) }
   }
 }
 

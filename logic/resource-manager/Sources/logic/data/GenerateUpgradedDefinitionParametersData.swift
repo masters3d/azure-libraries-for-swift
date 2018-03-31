@@ -10,7 +10,7 @@ internal struct GenerateUpgradedDefinitionParametersData : GenerateUpgradedDefin
         enum CodingKeys: String, CodingKey {case targetSchemaVersion = "targetSchemaVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GenerateUpgradedDefinitionParametersData : GenerateUpgradedDefin
       if container.contains(.targetSchemaVersion) {
         self.targetSchemaVersion = try container.decode(String?.self, forKey: .targetSchemaVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GenerateUpgradedDefinitionParametersData : GenerateUpgradedDefin
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetSchemaVersion != nil {try container.encode(self.targetSchemaVersion, forKey: .targetSchemaVersion)}
+    if self.targetSchemaVersion != nil { try container.encode(self.targetSchemaVersion, forKey: .targetSchemaVersion) }
   }
 }
 

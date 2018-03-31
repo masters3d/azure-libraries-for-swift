@@ -14,7 +14,7 @@ internal struct AutoscaleNotificationData : AutoscaleNotificationProtocol {
         case webhooks = "webhooks"
         }
 
-  public init(operation: String)  {
+  public init(operation: String) {
     self.operation = operation
   }
 
@@ -27,7 +27,7 @@ internal struct AutoscaleNotificationData : AutoscaleNotificationProtocol {
     if container.contains(.webhooks) {
         self.webhooks = try container.decode([WebhookNotificationData?]?.self, forKey: .webhooks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct AutoscaleNotificationData : AutoscaleNotificationProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.operation, forKey: .operation)
-    if self.email != nil {try container.encode(self.email as! EmailNotificationData?, forKey: .email)}
-    if self.webhooks != nil {try container.encode(self.webhooks as! [WebhookNotificationData?]?, forKey: .webhooks)}
+    if self.email != nil { try container.encode(self.email as! EmailNotificationData?, forKey: .email) }
+    if self.webhooks != nil { try container.encode(self.webhooks as! [WebhookNotificationData?]?, forKey: .webhooks) }
   }
 }
 

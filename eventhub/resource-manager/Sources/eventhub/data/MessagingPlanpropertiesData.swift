@@ -16,7 +16,7 @@ internal struct MessagingPlanpropertiesData : MessagingPlanpropertiesProtocol {
         case revision = "revision"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct MessagingPlanpropertiesData : MessagingPlanpropertiesProtocol {
     if container.contains(.revision) {
         self.revision = try container.decode(Int64?.self, forKey: .revision)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,12 +43,12 @@ internal struct MessagingPlanpropertiesData : MessagingPlanpropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku, forKey: .sku)}
-    if self.selectedEventHubUnit != nil {try container.encode(self.selectedEventHubUnit, forKey: .selectedEventHubUnit)}
+    if self.sku != nil { try container.encode(self.sku, forKey: .sku) }
+    if self.selectedEventHubUnit != nil { try container.encode(self.selectedEventHubUnit, forKey: .selectedEventHubUnit) }
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.revision != nil {try container.encode(self.revision, forKey: .revision)}
+    if self.revision != nil { try container.encode(self.revision, forKey: .revision) }
   }
 }
 

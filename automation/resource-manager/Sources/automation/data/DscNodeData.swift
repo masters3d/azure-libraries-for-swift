@@ -32,7 +32,7 @@ internal struct DscNodeData : DscNodeProtocol, ProxyResourceProtocol {
         case extensionHandler = "extensionHandler"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct DscNodeData : DscNodeProtocol, ProxyResourceProtocol {
     if container.contains(.extensionHandler) {
         self.extensionHandler = try container.decode([DscNodeExtensionHandlerAssociationPropertyData?]?.self, forKey: .extensionHandler)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,22 +83,22 @@ internal struct DscNodeData : DscNodeProtocol, ProxyResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     if self.lastSeen != nil {
         try container.encode(DateConverter.toString(date: self.lastSeen!, format: .dateTime), forKey: .lastSeen)
     }
     if self.registrationTime != nil {
         try container.encode(DateConverter.toString(date: self.registrationTime!, format: .dateTime), forKey: .registrationTime)
     }
-    if self.ip != nil {try container.encode(self.ip, forKey: .ip)}
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.nodeConfiguration != nil {try container.encode(self.nodeConfiguration as! DscNodeConfigurationAssociationPropertyData?, forKey: .nodeConfiguration)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.nodeId != nil {try container.encode(self.nodeId, forKey: .nodeId)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
-    if self.extensionHandler != nil {try container.encode(self.extensionHandler as! [DscNodeExtensionHandlerAssociationPropertyData?]?, forKey: .extensionHandler)}
+    if self.ip != nil { try container.encode(self.ip, forKey: .ip) }
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.nodeConfiguration != nil { try container.encode(self.nodeConfiguration as! DscNodeConfigurationAssociationPropertyData?, forKey: .nodeConfiguration) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.nodeId != nil { try container.encode(self.nodeId, forKey: .nodeId) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
+    if self.extensionHandler != nil { try container.encode(self.extensionHandler as! [DscNodeExtensionHandlerAssociationPropertyData?]?, forKey: .extensionHandler) }
   }
 }
 

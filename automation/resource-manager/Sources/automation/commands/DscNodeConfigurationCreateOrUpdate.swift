@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DscNodeConfigurationCreateOrUpdate  {
+public protocol DscNodeConfigurationCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var nodeConfigurationName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  DscNodeConfigurationCreateOrUpdateParametersProtocol?  { get set }
+    var parameters :  DscNodeConfigurationCreateOrUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DscNodeConfigurationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DscNodeConfigurationProtocol?, Error?) -> Void)
 }
 
 extension Commands.DscNodeConfiguration {
@@ -35,7 +35,7 @@ extension Commands.DscNodeConfiguration {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{nodeConfigurationName}"] = String(describing: self.nodeConfigurationName)
@@ -59,12 +59,12 @@ extension Commands.DscNodeConfiguration {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DscNodeConfigurationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DscNodeConfigurationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DscNodeConfigurationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DscNodeConfigurationData?, error: Error?) in
                 completionHandler(result, error)

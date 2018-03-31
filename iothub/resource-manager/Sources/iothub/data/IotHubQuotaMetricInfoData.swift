@@ -14,7 +14,7 @@ internal struct IotHubQuotaMetricInfoData : IotHubQuotaMetricInfoProtocol {
         case maxValue = "MaxValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct IotHubQuotaMetricInfoData : IotHubQuotaMetricInfoProtocol {
     if container.contains(.maxValue) {
         self.maxValue = try container.decode(Int64?.self, forKey: .maxValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct IotHubQuotaMetricInfoData : IotHubQuotaMetricInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.maxValue != nil {try container.encode(self.maxValue, forKey: .maxValue)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.maxValue != nil { try container.encode(self.maxValue, forKey: .maxValue) }
   }
 }
 

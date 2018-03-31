@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WorkflowsListBySubscription  {
+public protocol WorkflowsListBySubscription {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -9,7 +9,7 @@ public protocol WorkflowsListBySubscription  {
     var top : Int32? { get set }
     var filter : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (WorkflowListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (WorkflowListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Workflows {
@@ -35,7 +35,7 @@ extension Commands.Workflows {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.top != nil { queryParameters["$top"] = String(describing: self.top!) }
@@ -55,15 +55,15 @@ extension Commands.Workflows {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (WorkflowListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (WorkflowListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

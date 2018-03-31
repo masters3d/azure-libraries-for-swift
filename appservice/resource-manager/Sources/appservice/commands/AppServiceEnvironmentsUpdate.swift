@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AppServiceEnvironmentsUpdate  {
+public protocol AppServiceEnvironmentsUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var hostingEnvironmentEnvelope :  AppServiceEnvironmentPatchResourceProtocol?  { get set }
+    var hostingEnvironmentEnvelope :  AppServiceEnvironmentPatchResourceProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AppServiceEnvironmentResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AppServiceEnvironmentResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.AppServiceEnvironments {
@@ -32,7 +32,7 @@ extension Commands.AppServiceEnvironments {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -55,12 +55,12 @@ extension Commands.AppServiceEnvironments {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AppServiceEnvironmentResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AppServiceEnvironmentResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AppServiceEnvironmentResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AppServiceEnvironmentResourceData?, error: Error?) in
                 completionHandler(result, error)

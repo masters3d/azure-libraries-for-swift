@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol GlobalSchedulesListBySubscription  {
+public protocol GlobalSchedulesListBySubscription {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -11,7 +11,7 @@ public protocol GlobalSchedulesListBySubscription  {
     var orderby : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ResponseWithContinuationScheduleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ResponseWithContinuationScheduleProtocol?, Error?) -> Void)
 }
 
 extension Commands.GlobalSchedules {
@@ -39,7 +39,7 @@ extension Commands.GlobalSchedules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             if self.expand != nil { queryParameters["$expand"] = String(describing: self.expand!) }
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
@@ -61,15 +61,15 @@ extension Commands.GlobalSchedules {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ResponseWithContinuationScheduleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ResponseWithContinuationScheduleProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

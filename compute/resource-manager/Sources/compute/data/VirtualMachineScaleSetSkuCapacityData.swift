@@ -16,7 +16,7 @@ internal struct VirtualMachineScaleSetSkuCapacityData : VirtualMachineScaleSetSk
         case scaleType = "scaleType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VirtualMachineScaleSetSkuCapacityData : VirtualMachineScaleSetSk
     if container.contains(.scaleType) {
         self.scaleType = try container.decode(VirtualMachineScaleSetSkuScaleTypeEnum?.self, forKey: .scaleType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VirtualMachineScaleSetSkuCapacityData : VirtualMachineScaleSetSk
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.minimum != nil {try container.encode(self.minimum, forKey: .minimum)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
-    if self.defaultCapacity != nil {try container.encode(self.defaultCapacity, forKey: .defaultCapacity)}
-    if self.scaleType != nil {try container.encode(self.scaleType, forKey: .scaleType)}
+    if self.minimum != nil { try container.encode(self.minimum, forKey: .minimum) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
+    if self.defaultCapacity != nil { try container.encode(self.defaultCapacity, forKey: .defaultCapacity) }
+    if self.scaleType != nil { try container.encode(self.scaleType, forKey: .scaleType) }
   }
 }
 

@@ -32,7 +32,7 @@ internal struct InnerHealthErrorData : InnerHealthErrorProtocol {
         case entityId = "entityId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct InnerHealthErrorData : InnerHealthErrorProtocol {
     if container.contains(.entityId) {
         self.entityId = try container.decode(String?.self, forKey: .entityId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,20 +83,20 @@ internal struct InnerHealthErrorData : InnerHealthErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorSource != nil {try container.encode(self.errorSource, forKey: .errorSource)}
-    if self.errorType != nil {try container.encode(self.errorType, forKey: .errorType)}
-    if self.errorLevel != nil {try container.encode(self.errorLevel, forKey: .errorLevel)}
-    if self.errorCategory != nil {try container.encode(self.errorCategory, forKey: .errorCategory)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.summaryMessage != nil {try container.encode(self.summaryMessage, forKey: .summaryMessage)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.possibleCauses != nil {try container.encode(self.possibleCauses, forKey: .possibleCauses)}
-    if self.recommendedAction != nil {try container.encode(self.recommendedAction, forKey: .recommendedAction)}
+    if self.errorSource != nil { try container.encode(self.errorSource, forKey: .errorSource) }
+    if self.errorType != nil { try container.encode(self.errorType, forKey: .errorType) }
+    if self.errorLevel != nil { try container.encode(self.errorLevel, forKey: .errorLevel) }
+    if self.errorCategory != nil { try container.encode(self.errorCategory, forKey: .errorCategory) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.summaryMessage != nil { try container.encode(self.summaryMessage, forKey: .summaryMessage) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.possibleCauses != nil { try container.encode(self.possibleCauses, forKey: .possibleCauses) }
+    if self.recommendedAction != nil { try container.encode(self.recommendedAction, forKey: .recommendedAction) }
     if self.creationTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.creationTimeUtc!, format: .dateTime), forKey: .creationTimeUtc)
     }
-    if self.recoveryProviderErrorMessage != nil {try container.encode(self.recoveryProviderErrorMessage, forKey: .recoveryProviderErrorMessage)}
-    if self.entityId != nil {try container.encode(self.entityId, forKey: .entityId)}
+    if self.recoveryProviderErrorMessage != nil { try container.encode(self.recoveryProviderErrorMessage, forKey: .recoveryProviderErrorMessage) }
+    if self.entityId != nil { try container.encode(self.entityId, forKey: .entityId) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct CognitiveServicesAccountPropertiesData : CognitiveServicesAccoun
         case internalId = "internalId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CognitiveServicesAccountPropertiesData : CognitiveServicesAccoun
     if container.contains(.internalId) {
         self.internalId = try container.decode(String?.self, forKey: .internalId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CognitiveServicesAccountPropertiesData : CognitiveServicesAccoun
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
-    if self.internalId != nil {try container.encode(self.internalId, forKey: .internalId)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
+    if self.internalId != nil { try container.encode(self.internalId, forKey: .internalId) }
   }
 }
 

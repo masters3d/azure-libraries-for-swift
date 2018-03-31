@@ -12,7 +12,7 @@ internal struct VnetValidationTestFailurePropertiesData : VnetValidationTestFail
         case details = "details"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VnetValidationTestFailurePropertiesData : VnetValidationTestFail
     if container.contains(.details) {
         self.details = try container.decode(String?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VnetValidationTestFailurePropertiesData : VnetValidationTestFail
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.testName != nil {try container.encode(self.testName, forKey: .testName)}
-    if self.details != nil {try container.encode(self.details, forKey: .details)}
+    if self.testName != nil { try container.encode(self.testName, forKey: .testName) }
+    if self.details != nil { try container.encode(self.details, forKey: .details) }
   }
 }
 

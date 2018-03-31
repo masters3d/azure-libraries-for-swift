@@ -24,7 +24,7 @@ internal struct ReservationDetailsPropertiesData : ReservationDetailsPropertiesP
         case totalReservedQuantity = "totalReservedQuantity"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ReservationDetailsPropertiesData : ReservationDetailsPropertiesP
     if container.contains(.totalReservedQuantity) {
         self.totalReservedQuantity = try container.decode(Decimal?.self, forKey: .totalReservedQuantity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct ReservationDetailsPropertiesData : ReservationDetailsPropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.reservationOrderId != nil {try container.encode(self.reservationOrderId, forKey: .reservationOrderId)}
-    if self.reservationId != nil {try container.encode(self.reservationId, forKey: .reservationId)}
-    if self.skuName != nil {try container.encode(self.skuName, forKey: .skuName)}
-    if self.reservedHours != nil {try container.encode(self.reservedHours, forKey: .reservedHours)}
+    if self.reservationOrderId != nil { try container.encode(self.reservationOrderId, forKey: .reservationOrderId) }
+    if self.reservationId != nil { try container.encode(self.reservationId, forKey: .reservationId) }
+    if self.skuName != nil { try container.encode(self.skuName, forKey: .skuName) }
+    if self.reservedHours != nil { try container.encode(self.reservedHours, forKey: .reservedHours) }
     if self.usageDate != nil {
         try container.encode(DateConverter.toString(date: self.usageDate!, format: .dateTime), forKey: .usageDate)
     }
-    if self.usedHours != nil {try container.encode(self.usedHours, forKey: .usedHours)}
-    if self.instanceId != nil {try container.encode(self.instanceId, forKey: .instanceId)}
-    if self.totalReservedQuantity != nil {try container.encode(self.totalReservedQuantity, forKey: .totalReservedQuantity)}
+    if self.usedHours != nil { try container.encode(self.usedHours, forKey: .usedHours) }
+    if self.instanceId != nil { try container.encode(self.instanceId, forKey: .instanceId) }
+    if self.totalReservedQuantity != nil { try container.encode(self.totalReservedQuantity, forKey: .totalReservedQuantity) }
   }
 }
 

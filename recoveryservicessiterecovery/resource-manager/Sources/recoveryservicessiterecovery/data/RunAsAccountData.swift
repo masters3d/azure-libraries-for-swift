@@ -12,7 +12,7 @@ internal struct RunAsAccountData : RunAsAccountProtocol {
         case accountName = "accountName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RunAsAccountData : RunAsAccountProtocol {
     if container.contains(.accountName) {
         self.accountName = try container.decode(String?.self, forKey: .accountName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RunAsAccountData : RunAsAccountProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.accountName != nil {try container.encode(self.accountName, forKey: .accountName)}
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.accountName != nil { try container.encode(self.accountName, forKey: .accountName) }
   }
 }
 

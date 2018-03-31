@@ -18,7 +18,7 @@ internal struct EdifactProcessingSettingsData : EdifactProcessingSettingsProtoco
         case useDotAsDecimalSeparator = "useDotAsDecimalSeparator"
         }
 
-  public init(maskSecurityInfo: Bool, preserveInterchange: Bool, suspendInterchangeOnError: Bool, createEmptyXmlTagsForTrailingSeparators: Bool, useDotAsDecimalSeparator: Bool)  {
+  public init(maskSecurityInfo: Bool, preserveInterchange: Bool, suspendInterchangeOnError: Bool, createEmptyXmlTagsForTrailingSeparators: Bool, useDotAsDecimalSeparator: Bool) {
     self.maskSecurityInfo = maskSecurityInfo
     self.preserveInterchange = preserveInterchange
     self.suspendInterchangeOnError = suspendInterchangeOnError
@@ -33,7 +33,7 @@ internal struct EdifactProcessingSettingsData : EdifactProcessingSettingsProtoco
     self.suspendInterchangeOnError = try container.decode(Bool.self, forKey: .suspendInterchangeOnError)
     self.createEmptyXmlTagsForTrailingSeparators = try container.decode(Bool.self, forKey: .createEmptyXmlTagsForTrailingSeparators)
     self.useDotAsDecimalSeparator = try container.decode(Bool.self, forKey: .useDotAsDecimalSeparator)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

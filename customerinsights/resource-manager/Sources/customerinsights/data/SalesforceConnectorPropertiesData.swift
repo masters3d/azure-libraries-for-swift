@@ -12,7 +12,7 @@ internal struct SalesforceConnectorPropertiesData : SalesforceConnectorPropertie
         case salesforcetables = "salesforcetables"
         }
 
-  public init(usersetting: SalesforceDiscoverSettingProtocol, salesforcetables: [SalesforceTableProtocol])  {
+  public init(usersetting: SalesforceDiscoverSettingProtocol, salesforcetables: [SalesforceTableProtocol]) {
     self.usersetting = usersetting
     self.salesforcetables = salesforcetables
   }
@@ -21,7 +21,7 @@ internal struct SalesforceConnectorPropertiesData : SalesforceConnectorPropertie
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.usersetting = try container.decode(SalesforceDiscoverSettingData.self, forKey: .usersetting)
     self.salesforcetables = try container.decode([SalesforceTableData].self, forKey: .salesforcetables)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

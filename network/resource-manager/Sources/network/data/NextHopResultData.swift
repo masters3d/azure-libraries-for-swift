@@ -14,7 +14,7 @@ internal struct NextHopResultData : NextHopResultProtocol {
         case routeTableId = "routeTableId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct NextHopResultData : NextHopResultProtocol {
     if container.contains(.routeTableId) {
         self.routeTableId = try container.decode(String?.self, forKey: .routeTableId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct NextHopResultData : NextHopResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nextHopType != nil {try container.encode(self.nextHopType, forKey: .nextHopType)}
-    if self.nextHopIpAddress != nil {try container.encode(self.nextHopIpAddress, forKey: .nextHopIpAddress)}
-    if self.routeTableId != nil {try container.encode(self.routeTableId, forKey: .routeTableId)}
+    if self.nextHopType != nil { try container.encode(self.nextHopType, forKey: .nextHopType) }
+    if self.nextHopIpAddress != nil { try container.encode(self.nextHopIpAddress, forKey: .nextHopIpAddress) }
+    if self.routeTableId != nil { try container.encode(self.routeTableId, forKey: .routeTableId) }
   }
 }
 

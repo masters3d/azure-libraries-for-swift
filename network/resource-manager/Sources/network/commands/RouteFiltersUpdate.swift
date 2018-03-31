@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RouteFiltersUpdate  {
+public protocol RouteFiltersUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var routeFilterName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var routeFilterParameters :  PatchRouteFilterProtocol?  { get set }
+    var routeFilterParameters :  PatchRouteFilterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RouteFilterProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RouteFilterProtocol?, Error?) -> Void)
 }
 
 extension Commands.RouteFilters {
@@ -34,7 +34,7 @@ extension Commands.RouteFilters {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{routeFilterName}"] = String(describing: self.routeFilterName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.RouteFilters {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RouteFilterData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RouteFilterProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RouteFilterProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RouteFilterData?, error: Error?) in
                 completionHandler(result, error)

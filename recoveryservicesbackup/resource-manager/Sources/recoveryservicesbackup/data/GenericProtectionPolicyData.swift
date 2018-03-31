@@ -16,7 +16,7 @@ internal struct GenericProtectionPolicyData : GenericProtectionPolicyProtocol, P
         case fabricName = "fabricName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct GenericProtectionPolicyData : GenericProtectionPolicyProtocol, P
     if container.contains(.fabricName) {
         self.fabricName = try container.decode(String?.self, forKey: .fabricName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct GenericProtectionPolicyData : GenericProtectionPolicyProtocol, P
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectedItemsCount != nil {try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount)}
-    if self.subProtectionPolicy != nil {try container.encode(self.subProtectionPolicy as! [SubProtectionPolicyData?]?, forKey: .subProtectionPolicy)}
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
+    if self.protectedItemsCount != nil { try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount) }
+    if self.subProtectionPolicy != nil { try container.encode(self.subProtectionPolicy as! [SubProtectionPolicyData?]?, forKey: .subProtectionPolicy) }
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
   }
 }
 

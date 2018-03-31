@@ -10,7 +10,7 @@ internal struct PowerShellTabCompletionResultsData : PowerShellTabCompletionResu
         enum CodingKeys: String, CodingKey {case results = "results"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct PowerShellTabCompletionResultsData : PowerShellTabCompletionResu
       if container.contains(.results) {
         self.results = try container.decode([String]?.self, forKey: .results)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct PowerShellTabCompletionResultsData : PowerShellTabCompletionResu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.results != nil {try container.encode(self.results as! [String]?, forKey: .results)}
+    if self.results != nil { try container.encode(self.results as! [String]?, forKey: .results) }
   }
 }
 

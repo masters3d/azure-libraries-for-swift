@@ -22,7 +22,7 @@ internal struct AzureWorkloadSQLRestoreRequestData : AzureWorkloadSQLRestoreRequ
         case alternateDirectoryPaths = "alternateDirectoryPaths"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureWorkloadSQLRestoreRequestData : AzureWorkloadSQLRestoreRequ
     if container.contains(.alternateDirectoryPaths) {
         self.alternateDirectoryPaths = try container.decode([SQLDataDirectoryMappingData?]?.self, forKey: .alternateDirectoryPaths)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct AzureWorkloadSQLRestoreRequestData : AzureWorkloadSQLRestoreRequ
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryType != nil {try container.encode(self.recoveryType, forKey: .recoveryType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.propertyBag != nil {try container.encode(self.propertyBag, forKey: .propertyBag)}
-    if self.shouldUseAlternateTargetLocation != nil {try container.encode(self.shouldUseAlternateTargetLocation, forKey: .shouldUseAlternateTargetLocation)}
-    if self.isNonRecoverable != nil {try container.encode(self.isNonRecoverable, forKey: .isNonRecoverable)}
-    if self.targetInfo != nil {try container.encode(self.targetInfo as! TargetRestoreInfoData?, forKey: .targetInfo)}
-    if self.alternateDirectoryPaths != nil {try container.encode(self.alternateDirectoryPaths as! [SQLDataDirectoryMappingData?]?, forKey: .alternateDirectoryPaths)}
+    if self.recoveryType != nil { try container.encode(self.recoveryType, forKey: .recoveryType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.propertyBag != nil { try container.encode(self.propertyBag, forKey: .propertyBag) }
+    if self.shouldUseAlternateTargetLocation != nil { try container.encode(self.shouldUseAlternateTargetLocation, forKey: .shouldUseAlternateTargetLocation) }
+    if self.isNonRecoverable != nil { try container.encode(self.isNonRecoverable, forKey: .isNonRecoverable) }
+    if self.targetInfo != nil { try container.encode(self.targetInfo as! TargetRestoreInfoData?, forKey: .targetInfo) }
+    if self.alternateDirectoryPaths != nil { try container.encode(self.alternateDirectoryPaths as! [SQLDataDirectoryMappingData?]?, forKey: .alternateDirectoryPaths) }
   }
 }
 

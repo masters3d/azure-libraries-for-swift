@@ -16,7 +16,7 @@ internal struct HybridRunbookWorkerGroupData : HybridRunbookWorkerGroupProtocol 
         case credential = "credential"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct HybridRunbookWorkerGroupData : HybridRunbookWorkerGroupProtocol 
     if container.contains(.credential) {
         self.credential = try container.decode(RunAsCredentialAssociationPropertyData?.self, forKey: .credential)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct HybridRunbookWorkerGroupData : HybridRunbookWorkerGroupProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.hybridRunbookWorkers != nil {try container.encode(self.hybridRunbookWorkers as! [HybridRunbookWorkerData?]?, forKey: .hybridRunbookWorkers)}
-    if self.credential != nil {try container.encode(self.credential as! RunAsCredentialAssociationPropertyData?, forKey: .credential)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.hybridRunbookWorkers != nil { try container.encode(self.hybridRunbookWorkers as! [HybridRunbookWorkerData?]?, forKey: .hybridRunbookWorkers) }
+    if self.credential != nil { try container.encode(self.credential as! RunAsCredentialAssociationPropertyData?, forKey: .credential) }
   }
 }
 

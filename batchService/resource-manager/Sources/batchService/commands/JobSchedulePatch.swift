@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobSchedulePatch  {
+public protocol JobSchedulePatch {
     var headerParameters: [String: String] { get set }
     var jobScheduleId : String { get set }
     var timeout : Int32? { get set }
@@ -12,9 +12,9 @@ public protocol JobSchedulePatch  {
     var ifNoneMatch : String? { get set }
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
-    var jobSchedulePatchParameter :  JobSchedulePatchParameterProtocol?  { get set }
+    var jobSchedulePatchParameter :  JobSchedulePatchParameterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.JobSchedule {
@@ -45,7 +45,7 @@ extension Commands.JobSchedule {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobScheduleId}"] = String(describing: self.jobScheduleId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -70,7 +70,7 @@ extension Commands.JobSchedule {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

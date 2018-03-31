@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobListFromJobSchedule  {
+public protocol JobListFromJobSchedule {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -15,7 +15,7 @@ public protocol JobListFromJobSchedule  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CloudJobListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CloudJobListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Job {
@@ -47,7 +47,7 @@ extension Commands.Job {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobScheduleId}"] = String(describing: self.jobScheduleId)
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
@@ -73,15 +73,15 @@ extension Commands.Job {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CloudJobListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CloudJobListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

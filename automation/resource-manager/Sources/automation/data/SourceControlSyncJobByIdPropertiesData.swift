@@ -22,7 +22,7 @@ internal struct SourceControlSyncJobByIdPropertiesData : SourceControlSyncJobByI
         case errors = "errors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SourceControlSyncJobByIdPropertiesData : SourceControlSyncJobByI
     if container.contains(.errors) {
         self.errors = try container.decode(SourceControlSyncJobByIdErrorsData?.self, forKey: .errors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,19 +58,19 @@ internal struct SourceControlSyncJobByIdPropertiesData : SourceControlSyncJobByI
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sourceControlSyncJobId != nil {try container.encode(self.sourceControlSyncJobId, forKey: .sourceControlSyncJobId)}
+    if self.sourceControlSyncJobId != nil { try container.encode(self.sourceControlSyncJobId, forKey: .sourceControlSyncJobId) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.startedBy != nil {try container.encode(self.startedBy, forKey: .startedBy)}
-    if self.errors != nil {try container.encode(self.errors as! SourceControlSyncJobByIdErrorsData?, forKey: .errors)}
+    if self.startedBy != nil { try container.encode(self.startedBy, forKey: .startedBy) }
+    if self.errors != nil { try container.encode(self.errors as! SourceControlSyncJobByIdErrorsData?, forKey: .errors) }
   }
 }
 

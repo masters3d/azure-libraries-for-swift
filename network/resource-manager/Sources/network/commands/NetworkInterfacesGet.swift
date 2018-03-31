@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkInterfacesGet  {
+public protocol NetworkInterfacesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkInterfaceName : String { get set }
@@ -8,7 +8,7 @@ public protocol NetworkInterfacesGet  {
     var apiVersion : String { get set }
     var expand : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkInterfaces {
@@ -31,7 +31,7 @@ extension Commands.NetworkInterfaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkInterfaceName}"] = String(describing: self.networkInterfaceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -45,12 +45,12 @@ extension Commands.NetworkInterfaces {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NetworkInterfaceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: NetworkInterfaceData?, error: Error?) in
                 completionHandler(result, error)

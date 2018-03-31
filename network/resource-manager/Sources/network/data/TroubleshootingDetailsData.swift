@@ -18,7 +18,7 @@ internal struct TroubleshootingDetailsData : TroubleshootingDetailsProtocol {
         case recommendedActions = "recommendedActions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct TroubleshootingDetailsData : TroubleshootingDetailsProtocol {
     if container.contains(.recommendedActions) {
         self.recommendedActions = try container.decode([TroubleshootingRecommendedActionsData?]?.self, forKey: .recommendedActions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct TroubleshootingDetailsData : TroubleshootingDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.reasonType != nil {try container.encode(self.reasonType, forKey: .reasonType)}
-    if self.summary != nil {try container.encode(self.summary, forKey: .summary)}
-    if self.detail != nil {try container.encode(self.detail, forKey: .detail)}
-    if self.recommendedActions != nil {try container.encode(self.recommendedActions as! [TroubleshootingRecommendedActionsData?]?, forKey: .recommendedActions)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.reasonType != nil { try container.encode(self.reasonType, forKey: .reasonType) }
+    if self.summary != nil { try container.encode(self.summary, forKey: .summary) }
+    if self.detail != nil { try container.encode(self.detail, forKey: .detail) }
+    if self.recommendedActions != nil { try container.encode(self.recommendedActions as! [TroubleshootingRecommendedActionsData?]?, forKey: .recommendedActions) }
   }
 }
 

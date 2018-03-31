@@ -28,7 +28,7 @@ internal struct RuleManagementEventDataSourceData : RuleManagementEventDataSourc
         case claims = "claims"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct RuleManagementEventDataSourceData : RuleManagementEventDataSourc
     if container.contains(.claims) {
         self.claims = try container.decode(RuleManagementEventClaimsDataSourceData?.self, forKey: .claims)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct RuleManagementEventDataSourceData : RuleManagementEventDataSourc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceUri != nil {try container.encode(self.resourceUri, forKey: .resourceUri)}
-    if self.eventName != nil {try container.encode(self.eventName, forKey: .eventName)}
-    if self.eventSource != nil {try container.encode(self.eventSource, forKey: .eventSource)}
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
-    if self.operationName != nil {try container.encode(self.operationName, forKey: .operationName)}
-    if self.resourceGroupName != nil {try container.encode(self.resourceGroupName, forKey: .resourceGroupName)}
-    if self.resourceProviderName != nil {try container.encode(self.resourceProviderName, forKey: .resourceProviderName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.subStatus != nil {try container.encode(self.subStatus, forKey: .subStatus)}
-    if self.claims != nil {try container.encode(self.claims as! RuleManagementEventClaimsDataSourceData?, forKey: .claims)}
+    if self.resourceUri != nil { try container.encode(self.resourceUri, forKey: .resourceUri) }
+    if self.eventName != nil { try container.encode(self.eventName, forKey: .eventName) }
+    if self.eventSource != nil { try container.encode(self.eventSource, forKey: .eventSource) }
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
+    if self.operationName != nil { try container.encode(self.operationName, forKey: .operationName) }
+    if self.resourceGroupName != nil { try container.encode(self.resourceGroupName, forKey: .resourceGroupName) }
+    if self.resourceProviderName != nil { try container.encode(self.resourceProviderName, forKey: .resourceProviderName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.subStatus != nil { try container.encode(self.subStatus, forKey: .subStatus) }
+    if self.claims != nil { try container.encode(self.claims as! RuleManagementEventClaimsDataSourceData?, forKey: .claims) }
   }
 }
 

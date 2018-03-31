@@ -20,7 +20,7 @@ internal struct EffectiveRouteData : EffectiveRouteProtocol {
         case nextHopType = "nextHopType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct EffectiveRouteData : EffectiveRouteProtocol {
     if container.contains(.nextHopType) {
         self.nextHopType = try container.decode(RouteNextHopTypeEnum?.self, forKey: .nextHopType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct EffectiveRouteData : EffectiveRouteProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.source != nil {try container.encode(self.source, forKey: .source)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.addressPrefix != nil {try container.encode(self.addressPrefix as! [String]?, forKey: .addressPrefix)}
-    if self.nextHopIpAddress != nil {try container.encode(self.nextHopIpAddress as! [String]?, forKey: .nextHopIpAddress)}
-    if self.nextHopType != nil {try container.encode(self.nextHopType, forKey: .nextHopType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.source != nil { try container.encode(self.source, forKey: .source) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.addressPrefix != nil { try container.encode(self.addressPrefix as! [String]?, forKey: .addressPrefix) }
+    if self.nextHopIpAddress != nil { try container.encode(self.nextHopIpAddress as! [String]?, forKey: .nextHopIpAddress) }
+    if self.nextHopType != nil { try container.encode(self.nextHopType, forKey: .nextHopType) }
   }
 }
 

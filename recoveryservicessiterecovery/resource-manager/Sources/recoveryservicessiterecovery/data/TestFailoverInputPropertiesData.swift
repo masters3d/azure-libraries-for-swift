@@ -18,7 +18,7 @@ internal struct TestFailoverInputPropertiesData : TestFailoverInputPropertiesPro
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct TestFailoverInputPropertiesData : TestFailoverInputPropertiesPro
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(ProviderSpecificFailoverInputData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct TestFailoverInputPropertiesData : TestFailoverInputPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.failoverDirection != nil {try container.encode(self.failoverDirection, forKey: .failoverDirection)}
-    if self.networkType != nil {try container.encode(self.networkType, forKey: .networkType)}
-    if self.networkId != nil {try container.encode(self.networkId, forKey: .networkId)}
-    if self.skipTestFailoverCleanup != nil {try container.encode(self.skipTestFailoverCleanup, forKey: .skipTestFailoverCleanup)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! ProviderSpecificFailoverInputData?, forKey: .providerSpecificDetails)}
+    if self.failoverDirection != nil { try container.encode(self.failoverDirection, forKey: .failoverDirection) }
+    if self.networkType != nil { try container.encode(self.networkType, forKey: .networkType) }
+    if self.networkId != nil { try container.encode(self.networkId, forKey: .networkId) }
+    if self.skipTestFailoverCleanup != nil { try container.encode(self.skipTestFailoverCleanup, forKey: .skipTestFailoverCleanup) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! ProviderSpecificFailoverInputData?, forKey: .providerSpecificDetails) }
   }
 }
 

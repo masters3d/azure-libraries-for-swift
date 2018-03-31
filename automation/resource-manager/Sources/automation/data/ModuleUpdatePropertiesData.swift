@@ -10,7 +10,7 @@ internal struct ModuleUpdatePropertiesData : ModuleUpdatePropertiesProtocol {
         enum CodingKeys: String, CodingKey {case contentLink = "contentLink"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ModuleUpdatePropertiesData : ModuleUpdatePropertiesProtocol {
       if container.contains(.contentLink) {
         self.contentLink = try container.decode(ContentLinkData?.self, forKey: .contentLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ModuleUpdatePropertiesData : ModuleUpdatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.contentLink != nil {try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink)}
+    if self.contentLink != nil { try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink) }
   }
 }
 

@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BudgetsGetByResourceGroupName  {
+public protocol BudgetsGetByResourceGroupName {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var budgetName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (BudgetProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (BudgetProtocol?, Error?) -> Void)
 }
 
 extension Commands.Budgets {
@@ -29,7 +29,7 @@ extension Commands.Budgets {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{budgetName}"] = String(describing: self.budgetName)
@@ -42,12 +42,12 @@ extension Commands.Budgets {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(BudgetData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (BudgetProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (BudgetProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: BudgetData?, error: Error?) in
                 completionHandler(result, error)

@@ -22,7 +22,7 @@ internal struct DatabaseAccountCreateUpdateParametersData : DatabaseAccountCreat
         case properties = "properties"
         }
 
-  public init(location: String, properties: DatabaseAccountCreateUpdatePropertiesProtocol)  {
+  public init(location: String, properties: DatabaseAccountCreateUpdatePropertiesProtocol) {
     self.location = location
     self.properties = properties
   }
@@ -46,7 +46,7 @@ internal struct DatabaseAccountCreateUpdateParametersData : DatabaseAccountCreat
         self.kind = try container.decode(DatabaseAccountKindEnum?.self, forKey: .kind)
     }
     self.properties = try container.decode(DatabaseAccountCreateUpdatePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,12 +56,12 @@ internal struct DatabaseAccountCreateUpdateParametersData : DatabaseAccountCreat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
     try container.encode(self.properties as! DatabaseAccountCreateUpdatePropertiesData, forKey: .properties)
   }
 }

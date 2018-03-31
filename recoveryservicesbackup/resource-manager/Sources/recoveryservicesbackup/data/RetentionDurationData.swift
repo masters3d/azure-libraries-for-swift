@@ -12,7 +12,7 @@ internal struct RetentionDurationData : RetentionDurationProtocol {
         case durationType = "durationType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RetentionDurationData : RetentionDurationProtocol {
     if container.contains(.durationType) {
         self.durationType = try container.decode(RetentionDurationTypeEnum?.self, forKey: .durationType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RetentionDurationData : RetentionDurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.durationType != nil {try container.encode(self.durationType, forKey: .durationType)}
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.durationType != nil { try container.encode(self.durationType, forKey: .durationType) }
   }
 }
 

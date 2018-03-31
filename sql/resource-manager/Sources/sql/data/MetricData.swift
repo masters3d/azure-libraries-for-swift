@@ -20,7 +20,7 @@ internal struct MetricData : MetricProtocol {
         case metricValues = "metricValues"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct MetricData : MetricProtocol {
     if container.contains(.metricValues) {
         self.metricValues = try container.decode([MetricValueData?]?.self, forKey: .metricValues)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -59,10 +59,10 @@ internal struct MetricData : MetricProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.timeGrain != nil {try container.encode(self.timeGrain, forKey: .timeGrain)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.name != nil {try container.encode(self.name as! MetricNameData?, forKey: .name)}
-    if self.metricValues != nil {try container.encode(self.metricValues as! [MetricValueData?]?, forKey: .metricValues)}
+    if self.timeGrain != nil { try container.encode(self.timeGrain, forKey: .timeGrain) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.name != nil { try container.encode(self.name as! MetricNameData?, forKey: .name) }
+    if self.metricValues != nil { try container.encode(self.metricValues as! [MetricValueData?]?, forKey: .metricValues) }
   }
 }
 

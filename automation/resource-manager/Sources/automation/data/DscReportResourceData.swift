@@ -28,7 +28,7 @@ internal struct DscReportResourceData : DscReportResourceProtocol {
         case startDate = "startDate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct DscReportResourceData : DscReportResourceProtocol {
     if container.contains(.startDate) {
         self.startDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .startDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,15 +73,15 @@ internal struct DscReportResourceData : DscReportResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.sourceInfo != nil {try container.encode(self.sourceInfo, forKey: .sourceInfo)}
-    if self.dependsOn != nil {try container.encode(self.dependsOn as! [DscReportResourceNavigationData?]?, forKey: .dependsOn)}
-    if self.moduleName != nil {try container.encode(self.moduleName, forKey: .moduleName)}
-    if self.moduleVersion != nil {try container.encode(self.moduleVersion, forKey: .moduleVersion)}
-    if self.resourceName != nil {try container.encode(self.resourceName, forKey: .resourceName)}
-    if self.error != nil {try container.encode(self.error, forKey: .error)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.durationInSeconds != nil {try container.encode(self.durationInSeconds, forKey: .durationInSeconds)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.sourceInfo != nil { try container.encode(self.sourceInfo, forKey: .sourceInfo) }
+    if self.dependsOn != nil { try container.encode(self.dependsOn as! [DscReportResourceNavigationData?]?, forKey: .dependsOn) }
+    if self.moduleName != nil { try container.encode(self.moduleName, forKey: .moduleName) }
+    if self.moduleVersion != nil { try container.encode(self.moduleVersion, forKey: .moduleVersion) }
+    if self.resourceName != nil { try container.encode(self.resourceName, forKey: .resourceName) }
+    if self.error != nil { try container.encode(self.error, forKey: .error) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.durationInSeconds != nil { try container.encode(self.durationInSeconds, forKey: .durationInSeconds) }
     if self.startDate != nil {
         try container.encode(DateConverter.toString(date: self.startDate!, format: .dateTime), forKey: .startDate)
     }

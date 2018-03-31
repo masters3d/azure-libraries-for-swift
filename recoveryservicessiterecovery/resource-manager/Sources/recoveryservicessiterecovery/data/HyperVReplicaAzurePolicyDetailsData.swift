@@ -20,7 +20,7 @@ internal struct HyperVReplicaAzurePolicyDetailsData : HyperVReplicaAzurePolicyDe
         case activeStorageAccountId = "activeStorageAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct HyperVReplicaAzurePolicyDetailsData : HyperVReplicaAzurePolicyDe
     if container.contains(.activeStorageAccountId) {
         self.activeStorageAccountId = try container.decode(String?.self, forKey: .activeStorageAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct HyperVReplicaAzurePolicyDetailsData : HyperVReplicaAzurePolicyDe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointHistoryDurationInHours != nil {try container.encode(self.recoveryPointHistoryDurationInHours, forKey: .recoveryPointHistoryDurationInHours)}
-    if self.applicationConsistentSnapshotFrequencyInHours != nil {try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours)}
-    if self.replicationInterval != nil {try container.encode(self.replicationInterval, forKey: .replicationInterval)}
-    if self.onlineReplicationStartTime != nil {try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime)}
-    if self.encryption != nil {try container.encode(self.encryption, forKey: .encryption)}
-    if self.activeStorageAccountId != nil {try container.encode(self.activeStorageAccountId, forKey: .activeStorageAccountId)}
+    if self.recoveryPointHistoryDurationInHours != nil { try container.encode(self.recoveryPointHistoryDurationInHours, forKey: .recoveryPointHistoryDurationInHours) }
+    if self.applicationConsistentSnapshotFrequencyInHours != nil { try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours) }
+    if self.replicationInterval != nil { try container.encode(self.replicationInterval, forKey: .replicationInterval) }
+    if self.onlineReplicationStartTime != nil { try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime) }
+    if self.encryption != nil { try container.encode(self.encryption, forKey: .encryption) }
+    if self.activeStorageAccountId != nil { try container.encode(self.activeStorageAccountId, forKey: .activeStorageAccountId) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct ConnectionMonitorQueryResultData : ConnectionMonitorQueryResultP
         enum CodingKeys: String, CodingKey {case states = "states"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ConnectionMonitorQueryResultData : ConnectionMonitorQueryResultP
       if container.contains(.states) {
         self.states = try container.decode([ConnectionStateSnapshotData?]?.self, forKey: .states)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ConnectionMonitorQueryResultData : ConnectionMonitorQueryResultP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.states != nil {try container.encode(self.states as! [ConnectionStateSnapshotData?]?, forKey: .states)}
+    if self.states != nil { try container.encode(self.states as! [ConnectionStateSnapshotData?]?, forKey: .states) }
   }
 }
 

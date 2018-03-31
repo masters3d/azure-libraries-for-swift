@@ -22,7 +22,7 @@ internal struct ElasticPoolData : ElasticPoolProtocol, TrackedResourceProtocol, 
         case kind = "kind"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -47,7 +47,7 @@ internal struct ElasticPoolData : ElasticPoolProtocol, TrackedResourceProtocol, 
     if container.contains(.kind) {
         self.kind = try container.decode(String?.self, forKey: .kind)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,13 +57,13 @@ internal struct ElasticPoolData : ElasticPoolProtocol, TrackedResourceProtocol, 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.location, forKey: .location)
-    if self.properties != nil {try container.encode(self.properties as! ElasticPoolPropertiesData?, forKey: .properties)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
+    if self.properties != nil { try container.encode(self.properties as! ElasticPoolPropertiesData?, forKey: .properties) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
   }
 }
 

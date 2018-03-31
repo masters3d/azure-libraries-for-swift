@@ -14,7 +14,7 @@ internal struct ConnectionMonitorData : ConnectionMonitorProtocol {
         case properties = "properties"
         }
 
-  public init(properties: ConnectionMonitorParametersProtocol)  {
+  public init(properties: ConnectionMonitorParametersProtocol) {
     self.properties = properties
   }
 
@@ -27,7 +27,7 @@ internal struct ConnectionMonitorData : ConnectionMonitorProtocol {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
     self.properties = try container.decode(ConnectionMonitorParametersData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,8 +37,8 @@ internal struct ConnectionMonitorData : ConnectionMonitorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.properties as! ConnectionMonitorParametersData, forKey: .properties)
   }
 }

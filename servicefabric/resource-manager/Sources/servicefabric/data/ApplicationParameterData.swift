@@ -12,7 +12,7 @@ internal struct ApplicationParameterData : ApplicationParameterProtocol {
         case value = "Value"
         }
 
-  public init(key: String, value: String)  {
+  public init(key: String, value: String) {
     self.key = key
     self.value = value
   }
@@ -21,7 +21,7 @@ internal struct ApplicationParameterData : ApplicationParameterProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.key = try container.decode(String.self, forKey: .key)
     self.value = try container.decode(String.self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

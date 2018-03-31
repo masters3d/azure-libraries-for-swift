@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol StatisticsListByAutomationAccount  {
+public protocol StatisticsListByAutomationAccount {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol StatisticsListByAutomationAccount  {
     var filter : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (StatisticsListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (StatisticsListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Statistics {
@@ -39,7 +39,7 @@ extension Commands.Statistics {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -60,15 +60,15 @@ extension Commands.Statistics {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (StatisticsListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (StatisticsListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

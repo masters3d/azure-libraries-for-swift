@@ -18,7 +18,7 @@ internal struct NetworkInterfaceDnsSettingsData : NetworkInterfaceDnsSettingsPro
         case internalDomainNameSuffix = "internalDomainNameSuffix"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct NetworkInterfaceDnsSettingsData : NetworkInterfaceDnsSettingsPro
     if container.contains(.internalDomainNameSuffix) {
         self.internalDomainNameSuffix = try container.decode(String?.self, forKey: .internalDomainNameSuffix)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct NetworkInterfaceDnsSettingsData : NetworkInterfaceDnsSettingsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dnsServers != nil {try container.encode(self.dnsServers as! [String]?, forKey: .dnsServers)}
-    if self.appliedDnsServers != nil {try container.encode(self.appliedDnsServers as! [String]?, forKey: .appliedDnsServers)}
-    if self.internalDnsNameLabel != nil {try container.encode(self.internalDnsNameLabel, forKey: .internalDnsNameLabel)}
-    if self.internalFqdn != nil {try container.encode(self.internalFqdn, forKey: .internalFqdn)}
-    if self.internalDomainNameSuffix != nil {try container.encode(self.internalDomainNameSuffix, forKey: .internalDomainNameSuffix)}
+    if self.dnsServers != nil { try container.encode(self.dnsServers as! [String]?, forKey: .dnsServers) }
+    if self.appliedDnsServers != nil { try container.encode(self.appliedDnsServers as! [String]?, forKey: .appliedDnsServers) }
+    if self.internalDnsNameLabel != nil { try container.encode(self.internalDnsNameLabel, forKey: .internalDnsNameLabel) }
+    if self.internalFqdn != nil { try container.encode(self.internalFqdn, forKey: .internalFqdn) }
+    if self.internalDomainNameSuffix != nil { try container.encode(self.internalDomainNameSuffix, forKey: .internalDomainNameSuffix) }
   }
 }
 

@@ -10,14 +10,14 @@ internal struct OperationInputsData : OperationInputsProtocol {
         enum CodingKeys: String, CodingKey {case name = "Name"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

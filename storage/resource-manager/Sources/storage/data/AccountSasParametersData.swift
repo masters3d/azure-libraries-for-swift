@@ -24,7 +24,7 @@ internal struct AccountSasParametersData : AccountSasParametersProtocol {
         case keyToSign = "keyToSign"
         }
 
-  public init(services: ServicesEnum, resourceTypes: SignedResourceTypesEnum, permissions: PermissionsEnum, sharedAccessExpiryTime: Date)  {
+  public init(services: ServicesEnum, resourceTypes: SignedResourceTypesEnum, permissions: PermissionsEnum, sharedAccessExpiryTime: Date) {
     self.services = services
     self.resourceTypes = resourceTypes
     self.permissions = permissions
@@ -49,7 +49,7 @@ internal struct AccountSasParametersData : AccountSasParametersProtocol {
     if container.contains(.keyToSign) {
         self.keyToSign = try container.decode(String?.self, forKey: .keyToSign)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,13 +62,13 @@ internal struct AccountSasParametersData : AccountSasParametersProtocol {
     try container.encode(self.services, forKey: .services)
     try container.encode(self.resourceTypes, forKey: .resourceTypes)
     try container.encode(self.permissions, forKey: .permissions)
-    if self.iPAddressOrRange != nil {try container.encode(self.iPAddressOrRange, forKey: .iPAddressOrRange)}
-    if self.protocols != nil {try container.encode(self.protocols, forKey: .protocols)}
+    if self.iPAddressOrRange != nil { try container.encode(self.iPAddressOrRange, forKey: .iPAddressOrRange) }
+    if self.protocols != nil { try container.encode(self.protocols, forKey: .protocols) }
     if self.sharedAccessStartTime != nil {
         try container.encode(DateConverter.toString(date: self.sharedAccessStartTime!, format: .dateTime), forKey: .sharedAccessStartTime)
     }
     try container.encode(DateConverter.toString(date: self.sharedAccessExpiryTime, format: .dateTime), forKey: .sharedAccessExpiryTime)
-    if self.keyToSign != nil {try container.encode(self.keyToSign, forKey: .keyToSign)}
+    if self.keyToSign != nil { try container.encode(self.keyToSign, forKey: .keyToSign) }
   }
 }
 

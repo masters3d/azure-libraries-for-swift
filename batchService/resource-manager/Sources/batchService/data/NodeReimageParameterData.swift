@@ -10,7 +10,7 @@ internal struct NodeReimageParameterData : NodeReimageParameterProtocol {
         enum CodingKeys: String, CodingKey {case nodeReimageOption = "nodeReimageOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NodeReimageParameterData : NodeReimageParameterProtocol {
       if container.contains(.nodeReimageOption) {
         self.nodeReimageOption = try container.decode(ComputeNodeReimageOptionEnum?.self, forKey: .nodeReimageOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NodeReimageParameterData : NodeReimageParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nodeReimageOption != nil {try container.encode(self.nodeReimageOption, forKey: .nodeReimageOption)}
+    if self.nodeReimageOption != nil { try container.encode(self.nodeReimageOption, forKey: .nodeReimageOption) }
   }
 }
 

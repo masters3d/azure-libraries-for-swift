@@ -12,7 +12,7 @@ internal struct AzureMachineLearningWebServiceFunctionBindingRetrievalProperties
         case udfType = "udfType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureMachineLearningWebServiceFunctionBindingRetrievalProperties
     if container.contains(.udfType) {
         self.udfType = try container.decode(UdfTypeEnum?.self, forKey: .udfType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureMachineLearningWebServiceFunctionBindingRetrievalProperties
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.executeEndpoint != nil {try container.encode(self.executeEndpoint, forKey: .executeEndpoint)}
-    if self.udfType != nil {try container.encode(self.udfType, forKey: .udfType)}
+    if self.executeEndpoint != nil { try container.encode(self.executeEndpoint, forKey: .executeEndpoint) }
+    if self.udfType != nil { try container.encode(self.udfType, forKey: .udfType) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct DnsNameAvailabilityResultData : DnsNameAvailabilityResultProtoco
         enum CodingKeys: String, CodingKey {case available = "available"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DnsNameAvailabilityResultData : DnsNameAvailabilityResultProtoco
       if container.contains(.available) {
         self.available = try container.decode(Bool?.self, forKey: .available)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DnsNameAvailabilityResultData : DnsNameAvailabilityResultProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.available != nil {try container.encode(self.available, forKey: .available)}
+    if self.available != nil { try container.encode(self.available, forKey: .available) }
   }
 }
 

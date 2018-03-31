@@ -20,7 +20,7 @@ internal struct ValidatePropertiesData : ValidatePropertiesProtocol {
         case hostingEnvironment = "hostingEnvironment"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ValidatePropertiesData : ValidatePropertiesProtocol {
     if container.contains(.hostingEnvironment) {
         self.hostingEnvironment = try container.decode(String?.self, forKey: .hostingEnvironment)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ValidatePropertiesData : ValidatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serverFarmId != nil {try container.encode(self.serverFarmId, forKey: .serverFarmId)}
-    if self.skuName != nil {try container.encode(self.skuName, forKey: .skuName)}
-    if self.needLinuxWorkers != nil {try container.encode(self.needLinuxWorkers, forKey: .needLinuxWorkers)}
-    if self.isSpot != nil {try container.encode(self.isSpot, forKey: .isSpot)}
-    if self.capacity != nil {try container.encode(self.capacity, forKey: .capacity)}
-    if self.hostingEnvironment != nil {try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment)}
+    if self.serverFarmId != nil { try container.encode(self.serverFarmId, forKey: .serverFarmId) }
+    if self.skuName != nil { try container.encode(self.skuName, forKey: .skuName) }
+    if self.needLinuxWorkers != nil { try container.encode(self.needLinuxWorkers, forKey: .needLinuxWorkers) }
+    if self.isSpot != nil { try container.encode(self.isSpot, forKey: .isSpot) }
+    if self.capacity != nil { try container.encode(self.capacity, forKey: .capacity) }
+    if self.hostingEnvironment != nil { try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment) }
   }
 }
 

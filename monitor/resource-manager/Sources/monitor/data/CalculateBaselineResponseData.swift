@@ -14,7 +14,7 @@ internal struct CalculateBaselineResponseData : CalculateBaselineResponseProtoco
         case baseline = "baseline"
         }
 
-  public init(type: String, baseline: [BaselineProtocol])  {
+  public init(type: String, baseline: [BaselineProtocol]) {
     self.type = type
     self.baseline = baseline
   }
@@ -26,7 +26,7 @@ internal struct CalculateBaselineResponseData : CalculateBaselineResponseProtoco
         self.timestamps = try container.decode([Date]?.self, forKey: .timestamps)
     }
     self.baseline = try container.decode([BaselineData].self, forKey: .baseline)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,7 +37,7 @@ internal struct CalculateBaselineResponseData : CalculateBaselineResponseProtoco
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.type, forKey: .type)
-    if self.timestamps != nil {try container.encode(self.timestamps as! [Date]?, forKey: .timestamps)}
+    if self.timestamps != nil { try container.encode(self.timestamps as! [Date]?, forKey: .timestamps) }
     try container.encode(self.baseline as! [BaselineData], forKey: .baseline)
   }
 }

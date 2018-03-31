@@ -14,7 +14,7 @@ internal struct VariableCreateOrUpdatePropertiesData : VariableCreateOrUpdatePro
         case isEncrypted = "isEncrypted"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VariableCreateOrUpdatePropertiesData : VariableCreateOrUpdatePro
     if container.contains(.isEncrypted) {
         self.isEncrypted = try container.decode(Bool?.self, forKey: .isEncrypted)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VariableCreateOrUpdatePropertiesData : VariableCreateOrUpdatePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.isEncrypted != nil {try container.encode(self.isEncrypted, forKey: .isEncrypted)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.isEncrypted != nil { try container.encode(self.isEncrypted, forKey: .isEncrypted) }
   }
 }
 

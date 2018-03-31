@@ -16,7 +16,7 @@ internal struct FileServerReferenceData : FileServerReferenceProtocol {
         case mountOptions = "mountOptions"
         }
 
-  public init(fileServer: ResourceIdProtocol, relativeMountPath: String)  {
+  public init(fileServer: ResourceIdProtocol, relativeMountPath: String) {
     self.fileServer = fileServer
     self.relativeMountPath = relativeMountPath
   }
@@ -31,7 +31,7 @@ internal struct FileServerReferenceData : FileServerReferenceProtocol {
     if container.contains(.mountOptions) {
         self.mountOptions = try container.decode(String?.self, forKey: .mountOptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct FileServerReferenceData : FileServerReferenceProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fileServer as! ResourceIdData, forKey: .fileServer)
-    if self.sourceDirectory != nil {try container.encode(self.sourceDirectory, forKey: .sourceDirectory)}
+    if self.sourceDirectory != nil { try container.encode(self.sourceDirectory, forKey: .sourceDirectory) }
     try container.encode(self.relativeMountPath, forKey: .relativeMountPath)
-    if self.mountOptions != nil {try container.encode(self.mountOptions, forKey: .mountOptions)}
+    if self.mountOptions != nil { try container.encode(self.mountOptions, forKey: .mountOptions) }
   }
 }
 

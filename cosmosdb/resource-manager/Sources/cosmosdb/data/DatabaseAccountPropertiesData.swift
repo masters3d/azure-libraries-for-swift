@@ -28,7 +28,7 @@ internal struct DatabaseAccountPropertiesData : DatabaseAccountPropertiesProtoco
         case failoverPolicies = "failoverPolicies"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct DatabaseAccountPropertiesData : DatabaseAccountPropertiesProtoco
     if container.contains(.failoverPolicies) {
         self.failoverPolicies = try container.decode([FailoverPolicyData?]?.self, forKey: .failoverPolicies)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct DatabaseAccountPropertiesData : DatabaseAccountPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.documentEndpoint != nil {try container.encode(self.documentEndpoint, forKey: .documentEndpoint)}
-    if self.databaseAccountOfferType != nil {try container.encode(self.databaseAccountOfferType, forKey: .databaseAccountOfferType)}
-    if self.ipRangeFilter != nil {try container.encode(self.ipRangeFilter, forKey: .ipRangeFilter)}
-    if self.enableAutomaticFailover != nil {try container.encode(self.enableAutomaticFailover, forKey: .enableAutomaticFailover)}
-    if self.consistencyPolicy != nil {try container.encode(self.consistencyPolicy as! ConsistencyPolicyData?, forKey: .consistencyPolicy)}
-    if self.capabilities != nil {try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities)}
-    if self.writeLocations != nil {try container.encode(self.writeLocations as! [LocationData?]?, forKey: .writeLocations)}
-    if self.readLocations != nil {try container.encode(self.readLocations as! [LocationData?]?, forKey: .readLocations)}
-    if self.failoverPolicies != nil {try container.encode(self.failoverPolicies as! [FailoverPolicyData?]?, forKey: .failoverPolicies)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.documentEndpoint != nil { try container.encode(self.documentEndpoint, forKey: .documentEndpoint) }
+    if self.databaseAccountOfferType != nil { try container.encode(self.databaseAccountOfferType, forKey: .databaseAccountOfferType) }
+    if self.ipRangeFilter != nil { try container.encode(self.ipRangeFilter, forKey: .ipRangeFilter) }
+    if self.enableAutomaticFailover != nil { try container.encode(self.enableAutomaticFailover, forKey: .enableAutomaticFailover) }
+    if self.consistencyPolicy != nil { try container.encode(self.consistencyPolicy as! ConsistencyPolicyData?, forKey: .consistencyPolicy) }
+    if self.capabilities != nil { try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities) }
+    if self.writeLocations != nil { try container.encode(self.writeLocations as! [LocationData?]?, forKey: .writeLocations) }
+    if self.readLocations != nil { try container.encode(self.readLocations as! [LocationData?]?, forKey: .readLocations) }
+    if self.failoverPolicies != nil { try container.encode(self.failoverPolicies as! [FailoverPolicyData?]?, forKey: .failoverPolicies) }
   }
 }
 

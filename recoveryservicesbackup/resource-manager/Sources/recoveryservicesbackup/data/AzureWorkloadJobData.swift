@@ -30,7 +30,7 @@ internal struct AzureWorkloadJobData : AzureWorkloadJobProtocol, JobProtocol {
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct AzureWorkloadJobData : AzureWorkloadJobProtocol, JobProtocol {
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureWorkloadJobExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,21 +78,21 @@ internal struct AzureWorkloadJobData : AzureWorkloadJobProtocol, JobProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entityFriendlyName != nil {try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.entityFriendlyName != nil { try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.activityId != nil {try container.encode(self.activityId, forKey: .activityId)}
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.actionsInfo != nil {try container.encode(self.actionsInfo as! [JobSupportedActionEnum?]?, forKey: .actionsInfo)}
-    if self.errorDetails != nil {try container.encode(self.errorDetails as! [AzureWorkloadErrorInfoData?]?, forKey: .errorDetails)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureWorkloadJobExtendedInfoData?, forKey: .extendedInfo)}
+    if self.activityId != nil { try container.encode(self.activityId, forKey: .activityId) }
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.actionsInfo != nil { try container.encode(self.actionsInfo as! [JobSupportedActionEnum?]?, forKey: .actionsInfo) }
+    if self.errorDetails != nil { try container.encode(self.errorDetails as! [AzureWorkloadErrorInfoData?]?, forKey: .errorDetails) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureWorkloadJobExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

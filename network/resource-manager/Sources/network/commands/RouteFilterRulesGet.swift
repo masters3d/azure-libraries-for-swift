@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RouteFilterRulesGet  {
+public protocol RouteFilterRulesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var routeFilterName : String { get set }
@@ -8,7 +8,7 @@ public protocol RouteFilterRulesGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RouteFilterRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RouteFilterRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.RouteFilterRules {
@@ -32,7 +32,7 @@ extension Commands.RouteFilterRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{routeFilterName}"] = String(describing: self.routeFilterName)
             self.pathParameters["{ruleName}"] = String(describing: self.ruleName)
@@ -46,12 +46,12 @@ extension Commands.RouteFilterRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RouteFilterRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RouteFilterRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RouteFilterRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RouteFilterRuleData?, error: Error?) in
                 completionHandler(result, error)

@@ -10,7 +10,7 @@ internal struct ServerDnsAliasPropertiesData : ServerDnsAliasPropertiesProtocol 
         enum CodingKeys: String, CodingKey {case azureDnsRecord = "azureDnsRecord"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ServerDnsAliasPropertiesData : ServerDnsAliasPropertiesProtocol 
       if container.contains(.azureDnsRecord) {
         self.azureDnsRecord = try container.decode(String?.self, forKey: .azureDnsRecord)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ServerDnsAliasPropertiesData : ServerDnsAliasPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azureDnsRecord != nil {try container.encode(self.azureDnsRecord, forKey: .azureDnsRecord)}
+    if self.azureDnsRecord != nil { try container.encode(self.azureDnsRecord, forKey: .azureDnsRecord) }
   }
 }
 

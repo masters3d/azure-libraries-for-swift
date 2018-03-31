@@ -10,7 +10,7 @@ internal struct AsrJobDetailsData : AsrJobDetailsProtocol, JobDetailsProtocol {
         enum CodingKeys: String, CodingKey {case affectedObjectDetails = "affectedObjectDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AsrJobDetailsData : AsrJobDetailsProtocol, JobDetailsProtocol {
       if container.contains(.affectedObjectDetails) {
         self.affectedObjectDetails = try container.decode([String:String]?.self, forKey: .affectedObjectDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AsrJobDetailsData : AsrJobDetailsProtocol, JobDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.affectedObjectDetails != nil {try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails)}
+    if self.affectedObjectDetails != nil { try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct TopologyParametersData : TopologyParametersProtocol {
         case targetSubnet = "targetSubnet"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TopologyParametersData : TopologyParametersProtocol {
     if container.contains(.targetSubnet) {
         self.targetSubnet = try container.decode(SubResourceData?.self, forKey: .targetSubnet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TopologyParametersData : TopologyParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetResourceGroupName != nil {try container.encode(self.targetResourceGroupName, forKey: .targetResourceGroupName)}
-    if self.targetVirtualNetwork != nil {try container.encode(self.targetVirtualNetwork as! SubResourceData?, forKey: .targetVirtualNetwork)}
-    if self.targetSubnet != nil {try container.encode(self.targetSubnet as! SubResourceData?, forKey: .targetSubnet)}
+    if self.targetResourceGroupName != nil { try container.encode(self.targetResourceGroupName, forKey: .targetResourceGroupName) }
+    if self.targetVirtualNetwork != nil { try container.encode(self.targetVirtualNetwork as! SubResourceData?, forKey: .targetVirtualNetwork) }
+    if self.targetSubnet != nil { try container.encode(self.targetSubnet as! SubResourceData?, forKey: .targetSubnet) }
   }
 }
 

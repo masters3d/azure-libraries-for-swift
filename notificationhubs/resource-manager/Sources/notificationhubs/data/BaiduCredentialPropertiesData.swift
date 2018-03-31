@@ -14,7 +14,7 @@ internal struct BaiduCredentialPropertiesData : BaiduCredentialPropertiesProtoco
         case baiduSecretKey = "baiduSecretKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BaiduCredentialPropertiesData : BaiduCredentialPropertiesProtoco
     if container.contains(.baiduSecretKey) {
         self.baiduSecretKey = try container.decode(String?.self, forKey: .baiduSecretKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BaiduCredentialPropertiesData : BaiduCredentialPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.baiduApiKey != nil {try container.encode(self.baiduApiKey, forKey: .baiduApiKey)}
-    if self.baiduEndPoint != nil {try container.encode(self.baiduEndPoint, forKey: .baiduEndPoint)}
-    if self.baiduSecretKey != nil {try container.encode(self.baiduSecretKey, forKey: .baiduSecretKey)}
+    if self.baiduApiKey != nil { try container.encode(self.baiduApiKey, forKey: .baiduApiKey) }
+    if self.baiduEndPoint != nil { try container.encode(self.baiduEndPoint, forKey: .baiduEndPoint) }
+    if self.baiduSecretKey != nil { try container.encode(self.baiduSecretKey, forKey: .baiduSecretKey) }
   }
 }
 

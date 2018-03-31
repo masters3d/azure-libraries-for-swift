@@ -18,7 +18,7 @@ internal struct SyncFullSchemaTableData : SyncFullSchemaTableProtocol {
         case quotedName = "quotedName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct SyncFullSchemaTableData : SyncFullSchemaTableProtocol {
     if container.contains(.quotedName) {
         self.quotedName = try container.decode(String?.self, forKey: .quotedName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct SyncFullSchemaTableData : SyncFullSchemaTableProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.columns != nil {try container.encode(self.columns as! [SyncFullSchemaTableColumnData?]?, forKey: .columns)}
-    if self.errorId != nil {try container.encode(self.errorId, forKey: .errorId)}
-    if self.hasError != nil {try container.encode(self.hasError, forKey: .hasError)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.quotedName != nil {try container.encode(self.quotedName, forKey: .quotedName)}
+    if self.columns != nil { try container.encode(self.columns as! [SyncFullSchemaTableColumnData?]?, forKey: .columns) }
+    if self.errorId != nil { try container.encode(self.errorId, forKey: .errorId) }
+    if self.hasError != nil { try container.encode(self.hasError, forKey: .hasError) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.quotedName != nil { try container.encode(self.quotedName, forKey: .quotedName) }
   }
 }
 

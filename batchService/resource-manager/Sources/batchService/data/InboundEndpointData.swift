@@ -20,7 +20,7 @@ internal struct InboundEndpointData : InboundEndpointProtocol {
         case backendPort = "backendPort"
         }
 
-  public init(name: String, _protocol: InboundEndpointProtocolEnum, publicIPAddress: String, publicFQDN: String, frontendPort: Int32, backendPort: Int32)  {
+  public init(name: String, _protocol: InboundEndpointProtocolEnum, publicIPAddress: String, publicFQDN: String, frontendPort: Int32, backendPort: Int32) {
     self.name = name
     self._protocol = _protocol
     self.publicIPAddress = publicIPAddress
@@ -37,7 +37,7 @@ internal struct InboundEndpointData : InboundEndpointProtocol {
     self.publicFQDN = try container.decode(String.self, forKey: .publicFQDN)
     self.frontendPort = try container.decode(Int32.self, forKey: .frontendPort)
     self.backendPort = try container.decode(Int32.self, forKey: .backendPort)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

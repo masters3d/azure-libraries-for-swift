@@ -18,7 +18,7 @@ internal struct StorageAccountPropertiesUpdateParametersData : StorageAccountPro
         case networkRuleSet = "networkAcls"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct StorageAccountPropertiesUpdateParametersData : StorageAccountPro
     if container.contains(.networkRuleSet) {
         self.networkRuleSet = try container.decode(NetworkRuleSetData?.self, forKey: .networkRuleSet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct StorageAccountPropertiesUpdateParametersData : StorageAccountPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.customDomain != nil {try container.encode(self.customDomain as! CustomDomainData?, forKey: .customDomain)}
-    if self.encryption != nil {try container.encode(self.encryption as! EncryptionData?, forKey: .encryption)}
-    if self.accessTier != nil {try container.encode(self.accessTier, forKey: .accessTier)}
-    if self.enableHttpsTrafficOnly != nil {try container.encode(self.enableHttpsTrafficOnly, forKey: .enableHttpsTrafficOnly)}
-    if self.networkRuleSet != nil {try container.encode(self.networkRuleSet as! NetworkRuleSetData?, forKey: .networkRuleSet)}
+    if self.customDomain != nil { try container.encode(self.customDomain as! CustomDomainData?, forKey: .customDomain) }
+    if self.encryption != nil { try container.encode(self.encryption as! EncryptionData?, forKey: .encryption) }
+    if self.accessTier != nil { try container.encode(self.accessTier, forKey: .accessTier) }
+    if self.enableHttpsTrafficOnly != nil { try container.encode(self.enableHttpsTrafficOnly, forKey: .enableHttpsTrafficOnly) }
+    if self.networkRuleSet != nil { try container.encode(self.networkRuleSet as! NetworkRuleSetData?, forKey: .networkRuleSet) }
   }
 }
 

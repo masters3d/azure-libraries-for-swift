@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol TaskReactivate  {
+public protocol TaskReactivate {
     var headerParameters: [String: String] { get set }
     var jobId : String { get set }
     var taskId : String { get set }
@@ -14,7 +14,7 @@ public protocol TaskReactivate  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Task {
@@ -46,7 +46,7 @@ extension Commands.Task {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             self.pathParameters["{taskId}"] = String(describing: self.taskId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
@@ -62,7 +62,7 @@ extension Commands.Task {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

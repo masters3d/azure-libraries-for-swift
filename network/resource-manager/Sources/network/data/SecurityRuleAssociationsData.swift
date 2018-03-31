@@ -16,7 +16,7 @@ internal struct SecurityRuleAssociationsData : SecurityRuleAssociationsProtocol 
         case effectiveSecurityRules = "effectiveSecurityRules"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SecurityRuleAssociationsData : SecurityRuleAssociationsProtocol 
     if container.contains(.effectiveSecurityRules) {
         self.effectiveSecurityRules = try container.decode([EffectiveNetworkSecurityRuleData?]?.self, forKey: .effectiveSecurityRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SecurityRuleAssociationsData : SecurityRuleAssociationsProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.networkInterfaceAssociation != nil {try container.encode(self.networkInterfaceAssociation as! NetworkInterfaceAssociationData?, forKey: .networkInterfaceAssociation)}
-    if self.subnetAssociation != nil {try container.encode(self.subnetAssociation as! SubnetAssociationData?, forKey: .subnetAssociation)}
-    if self.defaultSecurityRules != nil {try container.encode(self.defaultSecurityRules as! [SecurityRuleData?]?, forKey: .defaultSecurityRules)}
-    if self.effectiveSecurityRules != nil {try container.encode(self.effectiveSecurityRules as! [EffectiveNetworkSecurityRuleData?]?, forKey: .effectiveSecurityRules)}
+    if self.networkInterfaceAssociation != nil { try container.encode(self.networkInterfaceAssociation as! NetworkInterfaceAssociationData?, forKey: .networkInterfaceAssociation) }
+    if self.subnetAssociation != nil { try container.encode(self.subnetAssociation as! SubnetAssociationData?, forKey: .subnetAssociation) }
+    if self.defaultSecurityRules != nil { try container.encode(self.defaultSecurityRules as! [SecurityRuleData?]?, forKey: .defaultSecurityRules) }
+    if self.effectiveSecurityRules != nil { try container.encode(self.effectiveSecurityRules as! [EffectiveNetworkSecurityRuleData?]?, forKey: .effectiveSecurityRules) }
   }
 }
 

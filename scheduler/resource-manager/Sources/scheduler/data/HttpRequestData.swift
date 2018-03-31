@@ -18,7 +18,7 @@ internal struct HttpRequestData : HttpRequestProtocol {
         case headers = "headers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct HttpRequestData : HttpRequestProtocol {
     if container.contains(.headers) {
         self.headers = try container.decode([String:String]?.self, forKey: .headers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct HttpRequestData : HttpRequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authentication != nil {try container.encode(self.authentication as! HttpAuthenticationData?, forKey: .authentication)}
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
-    if self.method != nil {try container.encode(self.method, forKey: .method)}
-    if self._body != nil {try container.encode(self._body, forKey: ._body)}
-    if self.headers != nil {try container.encode(self.headers, forKey: .headers)}
+    if self.authentication != nil { try container.encode(self.authentication as! HttpAuthenticationData?, forKey: .authentication) }
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
+    if self.method != nil { try container.encode(self.method, forKey: .method) }
+    if self._body != nil { try container.encode(self._body, forKey: ._body) }
+    if self.headers != nil { try container.encode(self.headers, forKey: .headers) }
   }
 }
 

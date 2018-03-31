@@ -16,7 +16,7 @@ internal struct DscNodeConfigurationCreateOrUpdateParametersData : DscNodeConfig
         case newNodeConfigurationBuildVersionRequired = "newNodeConfigurationBuildVersionRequired"
         }
 
-  public init(source: ContentSourceProtocol, name: String, configuration: DscConfigurationAssociationPropertyProtocol)  {
+  public init(source: ContentSourceProtocol, name: String, configuration: DscConfigurationAssociationPropertyProtocol) {
     self.source = source
     self.name = name
     self.configuration = configuration
@@ -30,7 +30,7 @@ internal struct DscNodeConfigurationCreateOrUpdateParametersData : DscNodeConfig
     if container.contains(.newNodeConfigurationBuildVersionRequired) {
         self.newNodeConfigurationBuildVersionRequired = try container.decode(Bool?.self, forKey: .newNodeConfigurationBuildVersionRequired)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct DscNodeConfigurationCreateOrUpdateParametersData : DscNodeConfig
     try container.encode(self.source as! ContentSourceData, forKey: .source)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.configuration as! DscConfigurationAssociationPropertyData, forKey: .configuration)
-    if self.newNodeConfigurationBuildVersionRequired != nil {try container.encode(self.newNodeConfigurationBuildVersionRequired, forKey: .newNodeConfigurationBuildVersionRequired)}
+    if self.newNodeConfigurationBuildVersionRequired != nil { try container.encode(self.newNodeConfigurationBuildVersionRequired, forKey: .newNodeConfigurationBuildVersionRequired) }
   }
 }
 

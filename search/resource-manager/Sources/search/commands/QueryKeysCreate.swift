@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol QueryKeysCreate  {
+public protocol QueryKeysCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var searchServiceName : String { get set }
@@ -9,7 +9,7 @@ public protocol QueryKeysCreate  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (QueryKeyProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (QueryKeyProtocol?, Error?) -> Void)
 }
 
 extension Commands.QueryKeys {
@@ -34,7 +34,7 @@ extension Commands.QueryKeys {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{name}"] = String(describing: self.name)
@@ -49,12 +49,12 @@ extension Commands.QueryKeys {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(QueryKeyData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (QueryKeyProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (QueryKeyProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: QueryKeyData?, error: Error?) in
                 completionHandler(result, error)

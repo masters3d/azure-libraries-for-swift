@@ -12,7 +12,7 @@ internal struct DataSourceData : DataSourceProtocol {
         case dataSourceUri = "dataSourceUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DataSourceData : DataSourceProtocol {
     if container.contains(.dataSourceUri) {
         self.dataSourceUri = try container.decode([NameValuePairData?]?.self, forKey: .dataSourceUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DataSourceData : DataSourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.instructions != nil {try container.encode(self.instructions as! [String]?, forKey: .instructions)}
-    if self.dataSourceUri != nil {try container.encode(self.dataSourceUri as! [NameValuePairData?]?, forKey: .dataSourceUri)}
+    if self.instructions != nil { try container.encode(self.instructions as! [String]?, forKey: .instructions) }
+    if self.dataSourceUri != nil { try container.encode(self.dataSourceUri as! [NameValuePairData?]?, forKey: .dataSourceUri) }
   }
 }
 

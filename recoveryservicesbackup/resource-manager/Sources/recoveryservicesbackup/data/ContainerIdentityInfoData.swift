@@ -16,7 +16,7 @@ internal struct ContainerIdentityInfoData : ContainerIdentityInfoProtocol {
         case audience = "audience"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ContainerIdentityInfoData : ContainerIdentityInfoProtocol {
     if container.contains(.audience) {
         self.audience = try container.decode(String?.self, forKey: .audience)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ContainerIdentityInfoData : ContainerIdentityInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.uniqueName != nil {try container.encode(self.uniqueName, forKey: .uniqueName)}
-    if self.aadTenantId != nil {try container.encode(self.aadTenantId, forKey: .aadTenantId)}
-    if self.servicePrincipalClientId != nil {try container.encode(self.servicePrincipalClientId, forKey: .servicePrincipalClientId)}
-    if self.audience != nil {try container.encode(self.audience, forKey: .audience)}
+    if self.uniqueName != nil { try container.encode(self.uniqueName, forKey: .uniqueName) }
+    if self.aadTenantId != nil { try container.encode(self.aadTenantId, forKey: .aadTenantId) }
+    if self.servicePrincipalClientId != nil { try container.encode(self.servicePrincipalClientId, forKey: .servicePrincipalClientId) }
+    if self.audience != nil { try container.encode(self.audience, forKey: .audience) }
   }
 }
 

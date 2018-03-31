@@ -10,7 +10,7 @@ internal struct ErrorData : ErrorProtocol {
         enum CodingKeys: String, CodingKey {case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ErrorData : ErrorProtocol {
       if container.contains(.error) {
         self.error = try container.decode(ErrorBodyData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ErrorData : ErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.error != nil {try container.encode(self.error as! ErrorBodyData?, forKey: .error)}
+    if self.error != nil { try container.encode(self.error as! ErrorBodyData?, forKey: .error) }
   }
 }
 

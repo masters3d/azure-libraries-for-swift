@@ -14,7 +14,7 @@ internal struct VersionPropertiesData : VersionPropertiesProtocol {
         case defaultParameterList = "defaultParameterList"
         }
 
-  public init(appPackageUrl: String)  {
+  public init(appPackageUrl: String) {
     self.appPackageUrl = appPackageUrl
   }
 
@@ -27,7 +27,7 @@ internal struct VersionPropertiesData : VersionPropertiesProtocol {
     if container.contains(.defaultParameterList) {
         self.defaultParameterList = try container.decode([ApplicationParameterData?]?.self, forKey: .defaultParameterList)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct VersionPropertiesData : VersionPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     try container.encode(self.appPackageUrl, forKey: .appPackageUrl)
-    if self.defaultParameterList != nil {try container.encode(self.defaultParameterList as! [ApplicationParameterData?]?, forKey: .defaultParameterList)}
+    if self.defaultParameterList != nil { try container.encode(self.defaultParameterList as! [ApplicationParameterData?]?, forKey: .defaultParameterList) }
   }
 }
 

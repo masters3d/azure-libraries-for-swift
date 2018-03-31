@@ -12,7 +12,7 @@ internal struct CheckNameAvailabilityRequestParametersData : CheckNameAvailabili
         case type = "Type"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -22,7 +22,7 @@ internal struct CheckNameAvailabilityRequestParametersData : CheckNameAvailabili
     if container.contains(.type) {
         self.type = try container.decode(String?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct CheckNameAvailabilityRequestParametersData : CheckNameAvailabili
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

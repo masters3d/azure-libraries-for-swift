@@ -14,7 +14,7 @@ internal struct DeepCreatedOriginPropertiesData : DeepCreatedOriginPropertiesPro
         case httpsPort = "httpsPort"
         }
 
-  public init(hostName: String)  {
+  public init(hostName: String) {
     self.hostName = hostName
   }
 
@@ -27,7 +27,7 @@ internal struct DeepCreatedOriginPropertiesData : DeepCreatedOriginPropertiesPro
     if container.contains(.httpsPort) {
         self.httpsPort = try container.decode(Int32?.self, forKey: .httpsPort)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct DeepCreatedOriginPropertiesData : DeepCreatedOriginPropertiesPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.hostName, forKey: .hostName)
-    if self.httpPort != nil {try container.encode(self.httpPort, forKey: .httpPort)}
-    if self.httpsPort != nil {try container.encode(self.httpsPort, forKey: .httpsPort)}
+    if self.httpPort != nil { try container.encode(self.httpPort, forKey: .httpPort) }
+    if self.httpsPort != nil { try container.encode(self.httpsPort, forKey: .httpsPort) }
   }
 }
 

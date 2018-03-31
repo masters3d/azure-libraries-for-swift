@@ -12,7 +12,7 @@ internal struct RedisRebootParametersData : RedisRebootParametersProtocol {
         case shardId = "shardId"
         }
 
-  public init(rebootType: RebootTypeEnum)  {
+  public init(rebootType: RebootTypeEnum) {
     self.rebootType = rebootType
   }
 
@@ -22,7 +22,7 @@ internal struct RedisRebootParametersData : RedisRebootParametersProtocol {
     if container.contains(.shardId) {
         self.shardId = try container.decode(Int32?.self, forKey: .shardId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct RedisRebootParametersData : RedisRebootParametersProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rebootType, forKey: .rebootType)
-    if self.shardId != nil {try container.encode(self.shardId, forKey: .shardId)}
+    if self.shardId != nil { try container.encode(self.shardId, forKey: .shardId) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct BackupManagementUsageData : BackupManagementUsageProtocol {
         case name = "name"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct BackupManagementUsageData : BackupManagementUsageProtocol {
     if container.contains(.name) {
         self.name = try container.decode(NameInfoData?.self, forKey: .name)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct BackupManagementUsageData : BackupManagementUsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.quotaPeriod != nil {try container.encode(self.quotaPeriod, forKey: .quotaPeriod)}
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.quotaPeriod != nil { try container.encode(self.quotaPeriod, forKey: .quotaPeriod) }
     if self.nextResetTime != nil {
         try container.encode(DateConverter.toString(date: self.nextResetTime!, format: .dateTime), forKey: .nextResetTime)
     }
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.name != nil {try container.encode(self.name as! NameInfoData?, forKey: .name)}
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.name != nil { try container.encode(self.name as! NameInfoData?, forKey: .name) }
   }
 }
 

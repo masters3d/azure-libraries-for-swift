@@ -12,7 +12,7 @@ internal struct TopLevelDomainPropertiesData : TopLevelDomainPropertiesProtocol 
         case privacy = "privacy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TopLevelDomainPropertiesData : TopLevelDomainPropertiesProtocol 
     if container.contains(.privacy) {
         self.privacy = try container.decode(Bool?.self, forKey: .privacy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TopLevelDomainPropertiesData : TopLevelDomainPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.domainName != nil {try container.encode(self.domainName, forKey: .domainName)}
-    if self.privacy != nil {try container.encode(self.privacy, forKey: .privacy)}
+    if self.domainName != nil { try container.encode(self.domainName, forKey: .domainName) }
+    if self.privacy != nil { try container.encode(self.privacy, forKey: .privacy) }
   }
 }
 

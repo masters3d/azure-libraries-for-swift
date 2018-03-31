@@ -22,7 +22,7 @@ internal struct HealthErrorSummaryData : HealthErrorSummaryProtocol {
         case affectedResourceCorrelationIds = "affectedResourceCorrelationIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct HealthErrorSummaryData : HealthErrorSummaryProtocol {
     if container.contains(.affectedResourceCorrelationIds) {
         self.affectedResourceCorrelationIds = try container.decode([String]?.self, forKey: .affectedResourceCorrelationIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct HealthErrorSummaryData : HealthErrorSummaryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.summaryCode != nil {try container.encode(self.summaryCode, forKey: .summaryCode)}
-    if self.category != nil {try container.encode(self.category, forKey: .category)}
-    if self.severity != nil {try container.encode(self.severity, forKey: .severity)}
-    if self.summaryMessage != nil {try container.encode(self.summaryMessage, forKey: .summaryMessage)}
-    if self.affectedResourceType != nil {try container.encode(self.affectedResourceType, forKey: .affectedResourceType)}
-    if self.affectedResourceSubtype != nil {try container.encode(self.affectedResourceSubtype, forKey: .affectedResourceSubtype)}
-    if self.affectedResourceCorrelationIds != nil {try container.encode(self.affectedResourceCorrelationIds as! [String]?, forKey: .affectedResourceCorrelationIds)}
+    if self.summaryCode != nil { try container.encode(self.summaryCode, forKey: .summaryCode) }
+    if self.category != nil { try container.encode(self.category, forKey: .category) }
+    if self.severity != nil { try container.encode(self.severity, forKey: .severity) }
+    if self.summaryMessage != nil { try container.encode(self.summaryMessage, forKey: .summaryMessage) }
+    if self.affectedResourceType != nil { try container.encode(self.affectedResourceType, forKey: .affectedResourceType) }
+    if self.affectedResourceSubtype != nil { try container.encode(self.affectedResourceSubtype, forKey: .affectedResourceSubtype) }
+    if self.affectedResourceCorrelationIds != nil { try container.encode(self.affectedResourceCorrelationIds as! [String]?, forKey: .affectedResourceCorrelationIds) }
   }
 }
 

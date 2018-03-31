@@ -10,14 +10,14 @@ internal struct RedisRegenerateKeyParametersData : RedisRegenerateKeyParametersP
         enum CodingKeys: String, CodingKey {case keyType = "keyType"
         }
 
-  public init(keyType: RedisKeyTypeEnum)  {
+  public init(keyType: RedisKeyTypeEnum) {
     self.keyType = keyType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyType = try container.decode(RedisKeyTypeEnum.self, forKey: .keyType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationUpdate  {
+public protocol ApplicationUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var applicationId : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ApplicationUpdateParametersProtocol?  { get set }
+    var parameters :  ApplicationUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Application {
@@ -35,7 +35,7 @@ extension Commands.Application {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{applicationId}"] = String(describing: self.applicationId)
@@ -55,7 +55,7 @@ extension Commands.Application {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

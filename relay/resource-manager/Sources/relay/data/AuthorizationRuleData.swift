@@ -16,7 +16,7 @@ internal struct AuthorizationRuleData : AuthorizationRuleProtocol, ResourceProto
         case properties = "properties"
         }
 
-  public init(properties: AuthorizationRulePropertiesProtocol)  {
+  public init(properties: AuthorizationRulePropertiesProtocol) {
     self.properties = properties
   }
 
@@ -32,7 +32,7 @@ internal struct AuthorizationRuleData : AuthorizationRuleProtocol, ResourceProto
         self.type = try container.decode(String?.self, forKey: .type)
     }
     self.properties = try container.decode(AuthorizationRulePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct AuthorizationRuleData : AuthorizationRuleProtocol, ResourceProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.properties as! AuthorizationRulePropertiesData, forKey: .properties)
   }
 }

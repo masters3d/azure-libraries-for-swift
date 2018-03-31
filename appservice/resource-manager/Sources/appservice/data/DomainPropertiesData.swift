@@ -48,7 +48,7 @@ internal struct DomainPropertiesData : DomainPropertiesProtocol {
         case authCode = "authCode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -113,7 +113,7 @@ internal struct DomainPropertiesData : DomainPropertiesProtocol {
     if container.contains(.authCode) {
         self.authCode = try container.decode(String?.self, forKey: .authCode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -123,14 +123,14 @@ internal struct DomainPropertiesData : DomainPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.contactAdmin != nil {try container.encode(self.contactAdmin as! ContactData?, forKey: .contactAdmin)}
-    if self.contactBilling != nil {try container.encode(self.contactBilling as! ContactData?, forKey: .contactBilling)}
-    if self.contactRegistrant != nil {try container.encode(self.contactRegistrant as! ContactData?, forKey: .contactRegistrant)}
-    if self.contactTech != nil {try container.encode(self.contactTech as! ContactData?, forKey: .contactTech)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.nameServers != nil {try container.encode(self.nameServers as! [String]?, forKey: .nameServers)}
-    if self.privacy != nil {try container.encode(self.privacy, forKey: .privacy)}
+    if self.contactAdmin != nil { try container.encode(self.contactAdmin as! ContactData?, forKey: .contactAdmin) }
+    if self.contactBilling != nil { try container.encode(self.contactBilling as! ContactData?, forKey: .contactBilling) }
+    if self.contactRegistrant != nil { try container.encode(self.contactRegistrant as! ContactData?, forKey: .contactRegistrant) }
+    if self.contactTech != nil { try container.encode(self.contactTech as! ContactData?, forKey: .contactTech) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.nameServers != nil { try container.encode(self.nameServers as! [String]?, forKey: .nameServers) }
+    if self.privacy != nil { try container.encode(self.privacy, forKey: .privacy) }
     if self.createdTime != nil {
         try container.encode(DateConverter.toString(date: self.createdTime!, format: .dateTime), forKey: .createdTime)
     }
@@ -140,15 +140,15 @@ internal struct DomainPropertiesData : DomainPropertiesProtocol {
     if self.lastRenewedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRenewedTime!, format: .dateTime), forKey: .lastRenewedTime)
     }
-    if self.autoRenew != nil {try container.encode(self.autoRenew, forKey: .autoRenew)}
-    if self.readyForDnsRecordManagement != nil {try container.encode(self.readyForDnsRecordManagement, forKey: .readyForDnsRecordManagement)}
-    if self.managedHostNames != nil {try container.encode(self.managedHostNames as! [HostNameData?]?, forKey: .managedHostNames)}
-    if self.consent != nil {try container.encode(self.consent as! DomainPurchaseConsentData?, forKey: .consent)}
-    if self.domainNotRenewableReasons != nil {try container.encode(self.domainNotRenewableReasons as! [String?]?, forKey: .domainNotRenewableReasons)}
-    if self.dnsType != nil {try container.encode(self.dnsType, forKey: .dnsType)}
-    if self.dnsZoneId != nil {try container.encode(self.dnsZoneId, forKey: .dnsZoneId)}
-    if self.targetDnsType != nil {try container.encode(self.targetDnsType, forKey: .targetDnsType)}
-    if self.authCode != nil {try container.encode(self.authCode, forKey: .authCode)}
+    if self.autoRenew != nil { try container.encode(self.autoRenew, forKey: .autoRenew) }
+    if self.readyForDnsRecordManagement != nil { try container.encode(self.readyForDnsRecordManagement, forKey: .readyForDnsRecordManagement) }
+    if self.managedHostNames != nil { try container.encode(self.managedHostNames as! [HostNameData?]?, forKey: .managedHostNames) }
+    if self.consent != nil { try container.encode(self.consent as! DomainPurchaseConsentData?, forKey: .consent) }
+    if self.domainNotRenewableReasons != nil { try container.encode(self.domainNotRenewableReasons as! [String?]?, forKey: .domainNotRenewableReasons) }
+    if self.dnsType != nil { try container.encode(self.dnsType, forKey: .dnsType) }
+    if self.dnsZoneId != nil { try container.encode(self.dnsZoneId, forKey: .dnsZoneId) }
+    if self.targetDnsType != nil { try container.encode(self.targetDnsType, forKey: .targetDnsType) }
+    if self.authCode != nil { try container.encode(self.authCode, forKey: .authCode) }
   }
 }
 

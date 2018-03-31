@@ -12,7 +12,7 @@ internal struct ResourceSetDescriptionData : ResourceSetDescriptionProtocol {
         case exceptions = "exceptions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ResourceSetDescriptionData : ResourceSetDescriptionProtocol {
     if container.contains(.exceptions) {
         self.exceptions = try container.decode([String]?.self, forKey: .exceptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ResourceSetDescriptionData : ResourceSetDescriptionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.elements != nil {try container.encode(self.elements as! [String]?, forKey: .elements)}
-    if self.exceptions != nil {try container.encode(self.exceptions as! [String]?, forKey: .exceptions)}
+    if self.elements != nil { try container.encode(self.elements as! [String]?, forKey: .elements) }
+    if self.exceptions != nil { try container.encode(self.exceptions as! [String]?, forKey: .exceptions) }
   }
 }
 

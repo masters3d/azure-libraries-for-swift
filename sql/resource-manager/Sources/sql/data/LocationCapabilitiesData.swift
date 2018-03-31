@@ -14,7 +14,7 @@ internal struct LocationCapabilitiesData : LocationCapabilitiesProtocol {
         case supportedServerVersions = "supportedServerVersions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct LocationCapabilitiesData : LocationCapabilitiesProtocol {
     if container.contains(.supportedServerVersions) {
         self.supportedServerVersions = try container.decode([ServerVersionCapabilityData?]?.self, forKey: .supportedServerVersions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct LocationCapabilitiesData : LocationCapabilitiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportedServerVersions != nil {try container.encode(self.supportedServerVersions as! [ServerVersionCapabilityData?]?, forKey: .supportedServerVersions)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportedServerVersions != nil { try container.encode(self.supportedServerVersions as! [ServerVersionCapabilityData?]?, forKey: .supportedServerVersions) }
   }
 }
 

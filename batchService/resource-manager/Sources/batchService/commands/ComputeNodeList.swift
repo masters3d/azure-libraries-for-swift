@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ComputeNodeList  {
+public protocol ComputeNodeList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -14,7 +14,7 @@ public protocol ComputeNodeList  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ComputeNodeListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ComputeNodeListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.ComputeNode {
@@ -45,7 +45,7 @@ extension Commands.ComputeNode {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{poolId}"] = String(describing: self.poolId)
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
@@ -70,15 +70,15 @@ extension Commands.ComputeNode {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ComputeNodeListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ComputeNodeListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

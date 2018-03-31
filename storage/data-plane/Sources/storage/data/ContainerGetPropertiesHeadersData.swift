@@ -26,7 +26,7 @@ internal struct ContainerGetPropertiesHeadersData : ContainerGetPropertiesHeader
         case blobPublicAccess = "x-ms-blob-public-access"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,16 +65,16 @@ internal struct ContainerGetPropertiesHeadersData : ContainerGetPropertiesHeader
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metadata != nil {try container.encode(metadata, forKey: .metadata)}
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.leaseDuration != nil {try container.encode(leaseDuration, forKey: .leaseDuration)}
-    if self.leaseState != nil {try container.encode(leaseState, forKey: .leaseState)}
-    if self.leaseStatus != nil {try container.encode(leaseStatus, forKey: .leaseStatus)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
-    if self.blobPublicAccess != nil {try container.encode(blobPublicAccess, forKey: .blobPublicAccess)}
+    if self.metadata != nil { try container.encode(metadata, forKey: .metadata) }
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.leaseDuration != nil { try container.encode(leaseDuration, forKey: .leaseDuration) }
+    if self.leaseState != nil { try container.encode(leaseState, forKey: .leaseState) }
+    if self.leaseStatus != nil { try container.encode(leaseStatus, forKey: .leaseStatus) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
+    if self.blobPublicAccess != nil { try container.encode(blobPublicAccess, forKey: .blobPublicAccess) }
   }
 }
 

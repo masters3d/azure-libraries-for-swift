@@ -22,7 +22,7 @@ internal struct InMageAzureV2ReprotectInputData : InMageAzureV2ReprotectInputPro
         case disksToInclude = "disksToInclude"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct InMageAzureV2ReprotectInputData : InMageAzureV2ReprotectInputPro
     if container.contains(.disksToInclude) {
         self.disksToInclude = try container.decode([String]?.self, forKey: .disksToInclude)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct InMageAzureV2ReprotectInputData : InMageAzureV2ReprotectInputPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.masterTargetId != nil {try container.encode(self.masterTargetId, forKey: .masterTargetId)}
-    if self.processServerId != nil {try container.encode(self.processServerId, forKey: .processServerId)}
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.logStorageAccountId != nil {try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId)}
-    if self.disksToInclude != nil {try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude)}
+    if self.masterTargetId != nil { try container.encode(self.masterTargetId, forKey: .masterTargetId) }
+    if self.processServerId != nil { try container.encode(self.processServerId, forKey: .processServerId) }
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.logStorageAccountId != nil { try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId) }
+    if self.disksToInclude != nil { try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude) }
   }
 }
 

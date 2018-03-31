@@ -14,7 +14,7 @@ internal struct InboundNatRuleData : InboundNatRuleProtocol {
         case backendPort = "backendPort"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct InboundNatRuleData : InboundNatRuleProtocol {
     if container.contains(.backendPort) {
         self.backendPort = try container.decode(Int32?.self, forKey: .backendPort)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct InboundNatRuleData : InboundNatRuleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.transportProtocol != nil {try container.encode(self.transportProtocol, forKey: .transportProtocol)}
-    if self.frontendPort != nil {try container.encode(self.frontendPort, forKey: .frontendPort)}
-    if self.backendPort != nil {try container.encode(self.backendPort, forKey: .backendPort)}
+    if self.transportProtocol != nil { try container.encode(self.transportProtocol, forKey: .transportProtocol) }
+    if self.frontendPort != nil { try container.encode(self.frontendPort, forKey: .frontendPort) }
+    if self.backendPort != nil { try container.encode(self.backendPort, forKey: .backendPort) }
   }
 }
 

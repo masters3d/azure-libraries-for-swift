@@ -18,7 +18,7 @@ internal struct AzureIaaSClassicComputeVMProtectableItemData : AzureIaaSClassicC
         case virtualMachineId = "virtualMachineId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AzureIaaSClassicComputeVMProtectableItemData : AzureIaaSClassicC
     if container.contains(.virtualMachineId) {
         self.virtualMachineId = try container.decode(String?.self, forKey: .virtualMachineId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AzureIaaSClassicComputeVMProtectableItemData : AzureIaaSClassicC
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.virtualMachineId != nil {try container.encode(self.virtualMachineId, forKey: .virtualMachineId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.virtualMachineId != nil { try container.encode(self.virtualMachineId, forKey: .virtualMachineId) }
   }
 }
 

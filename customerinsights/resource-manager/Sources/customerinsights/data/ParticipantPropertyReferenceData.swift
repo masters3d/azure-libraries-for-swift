@@ -12,7 +12,7 @@ internal struct ParticipantPropertyReferenceData : ParticipantPropertyReferenceP
         case targetPropertyName = "targetPropertyName"
         }
 
-  public init(sourcePropertyName: String, targetPropertyName: String)  {
+  public init(sourcePropertyName: String, targetPropertyName: String) {
     self.sourcePropertyName = sourcePropertyName
     self.targetPropertyName = targetPropertyName
   }
@@ -21,7 +21,7 @@ internal struct ParticipantPropertyReferenceData : ParticipantPropertyReferenceP
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.sourcePropertyName = try container.decode(String.self, forKey: .sourcePropertyName)
     self.targetPropertyName = try container.decode(String.self, forKey: .targetPropertyName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

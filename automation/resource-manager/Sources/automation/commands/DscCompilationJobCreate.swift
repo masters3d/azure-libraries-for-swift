@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DscCompilationJobCreate  {
+public protocol DscCompilationJobCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var compilationJobId : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  DscCompilationJobCreateParametersProtocol?  { get set }
+    var parameters :  DscCompilationJobCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DscCompilationJobProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DscCompilationJobProtocol?, Error?) -> Void)
 }
 
 extension Commands.DscCompilationJob {
@@ -35,7 +35,7 @@ extension Commands.DscCompilationJob {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{compilationJobId}"] = String(describing: self.compilationJobId)
@@ -59,12 +59,12 @@ extension Commands.DscCompilationJob {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DscCompilationJobData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DscCompilationJobProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DscCompilationJobProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DscCompilationJobData?, error: Error?) in
                 completionHandler(result, error)

@@ -16,7 +16,7 @@ internal struct TopologyData : TopologyProtocol {
         case resources = "resources"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct TopologyData : TopologyProtocol {
     if container.contains(.resources) {
         self.resources = try container.decode([TopologyResourceData?]?.self, forKey: .resources)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,14 +43,14 @@ internal struct TopologyData : TopologyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     if self.createdDateTime != nil {
         try container.encode(DateConverter.toString(date: self.createdDateTime!, format: .dateTime), forKey: .createdDateTime)
     }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
-    if self.resources != nil {try container.encode(self.resources as! [TopologyResourceData?]?, forKey: .resources)}
+    if self.resources != nil { try container.encode(self.resources as! [TopologyResourceData?]?, forKey: .resources) }
   }
 }
 

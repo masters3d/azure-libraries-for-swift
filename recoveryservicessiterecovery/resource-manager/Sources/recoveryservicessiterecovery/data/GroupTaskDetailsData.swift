@@ -10,7 +10,7 @@ internal struct GroupTaskDetailsData : GroupTaskDetailsProtocol {
         enum CodingKeys: String, CodingKey {case childTasks = "childTasks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GroupTaskDetailsData : GroupTaskDetailsProtocol {
       if container.contains(.childTasks) {
         self.childTasks = try container.decode([ASRTaskData?]?.self, forKey: .childTasks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GroupTaskDetailsData : GroupTaskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.childTasks != nil {try container.encode(self.childTasks as! [ASRTaskData?]?, forKey: .childTasks)}
+    if self.childTasks != nil { try container.encode(self.childTasks as! [ASRTaskData?]?, forKey: .childTasks) }
   }
 }
 

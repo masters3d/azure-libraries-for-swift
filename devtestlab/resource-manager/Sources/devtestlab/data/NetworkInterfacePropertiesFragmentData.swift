@@ -26,7 +26,7 @@ internal struct NetworkInterfacePropertiesFragmentData : NetworkInterfacePropert
         case sharedPublicIpAddressConfiguration = "sharedPublicIpAddressConfiguration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct NetworkInterfacePropertiesFragmentData : NetworkInterfacePropert
     if container.contains(.sharedPublicIpAddressConfiguration) {
         self.sharedPublicIpAddressConfiguration = try container.decode(SharedPublicIpAddressConfigurationFragmentData?.self, forKey: .sharedPublicIpAddressConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct NetworkInterfacePropertiesFragmentData : NetworkInterfacePropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualNetworkId != nil {try container.encode(self.virtualNetworkId, forKey: .virtualNetworkId)}
-    if self.subnetId != nil {try container.encode(self.subnetId, forKey: .subnetId)}
-    if self.publicIpAddressId != nil {try container.encode(self.publicIpAddressId, forKey: .publicIpAddressId)}
-    if self.publicIpAddress != nil {try container.encode(self.publicIpAddress, forKey: .publicIpAddress)}
-    if self.privateIpAddress != nil {try container.encode(self.privateIpAddress, forKey: .privateIpAddress)}
-    if self.dnsName != nil {try container.encode(self.dnsName, forKey: .dnsName)}
-    if self.rdpAuthority != nil {try container.encode(self.rdpAuthority, forKey: .rdpAuthority)}
-    if self.sshAuthority != nil {try container.encode(self.sshAuthority, forKey: .sshAuthority)}
-    if self.sharedPublicIpAddressConfiguration != nil {try container.encode(self.sharedPublicIpAddressConfiguration as! SharedPublicIpAddressConfigurationFragmentData?, forKey: .sharedPublicIpAddressConfiguration)}
+    if self.virtualNetworkId != nil { try container.encode(self.virtualNetworkId, forKey: .virtualNetworkId) }
+    if self.subnetId != nil { try container.encode(self.subnetId, forKey: .subnetId) }
+    if self.publicIpAddressId != nil { try container.encode(self.publicIpAddressId, forKey: .publicIpAddressId) }
+    if self.publicIpAddress != nil { try container.encode(self.publicIpAddress, forKey: .publicIpAddress) }
+    if self.privateIpAddress != nil { try container.encode(self.privateIpAddress, forKey: .privateIpAddress) }
+    if self.dnsName != nil { try container.encode(self.dnsName, forKey: .dnsName) }
+    if self.rdpAuthority != nil { try container.encode(self.rdpAuthority, forKey: .rdpAuthority) }
+    if self.sshAuthority != nil { try container.encode(self.sshAuthority, forKey: .sshAuthority) }
+    if self.sharedPublicIpAddressConfiguration != nil { try container.encode(self.sharedPublicIpAddressConfiguration as! SharedPublicIpAddressConfigurationFragmentData?, forKey: .sharedPublicIpAddressConfiguration) }
   }
 }
 

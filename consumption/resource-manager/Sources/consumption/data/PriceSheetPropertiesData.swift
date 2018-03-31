@@ -24,7 +24,7 @@ internal struct PriceSheetPropertiesData : PriceSheetPropertiesProtocol {
         case currencyCode = "currencyCode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct PriceSheetPropertiesData : PriceSheetPropertiesProtocol {
     if container.contains(.currencyCode) {
         self.currencyCode = try container.decode(String?.self, forKey: .currencyCode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct PriceSheetPropertiesData : PriceSheetPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.billingPeriodId != nil {try container.encode(self.billingPeriodId, forKey: .billingPeriodId)}
-    if self.meterId != nil {try container.encode(self.meterId, forKey: .meterId)}
-    if self.meterDetails != nil {try container.encode(self.meterDetails as! MeterDetailsData?, forKey: .meterDetails)}
-    if self.unitOfMeasure != nil {try container.encode(self.unitOfMeasure, forKey: .unitOfMeasure)}
-    if self.includedQuantity != nil {try container.encode(self.includedQuantity, forKey: .includedQuantity)}
-    if self.partNumber != nil {try container.encode(self.partNumber, forKey: .partNumber)}
-    if self.unitPrice != nil {try container.encode(self.unitPrice, forKey: .unitPrice)}
-    if self.currencyCode != nil {try container.encode(self.currencyCode, forKey: .currencyCode)}
+    if self.billingPeriodId != nil { try container.encode(self.billingPeriodId, forKey: .billingPeriodId) }
+    if self.meterId != nil { try container.encode(self.meterId, forKey: .meterId) }
+    if self.meterDetails != nil { try container.encode(self.meterDetails as! MeterDetailsData?, forKey: .meterDetails) }
+    if self.unitOfMeasure != nil { try container.encode(self.unitOfMeasure, forKey: .unitOfMeasure) }
+    if self.includedQuantity != nil { try container.encode(self.includedQuantity, forKey: .includedQuantity) }
+    if self.partNumber != nil { try container.encode(self.partNumber, forKey: .partNumber) }
+    if self.unitPrice != nil { try container.encode(self.unitPrice, forKey: .unitPrice) }
+    if self.currencyCode != nil { try container.encode(self.currencyCode, forKey: .currencyCode) }
   }
 }
 

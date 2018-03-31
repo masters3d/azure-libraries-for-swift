@@ -10,7 +10,7 @@ internal struct ReplicationProviderContainerUnmappingInputData : ReplicationProv
         enum CodingKeys: String, CodingKey {case instanceType = "instanceType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ReplicationProviderContainerUnmappingInputData : ReplicationProv
       if container.contains(.instanceType) {
         self.instanceType = try container.decode(String?.self, forKey: .instanceType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ReplicationProviderContainerUnmappingInputData : ReplicationProv
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.instanceType != nil {try container.encode(self.instanceType, forKey: .instanceType)}
+    if self.instanceType != nil { try container.encode(self.instanceType, forKey: .instanceType) }
   }
 }
 

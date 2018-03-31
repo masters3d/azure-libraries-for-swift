@@ -12,7 +12,7 @@ internal struct RegistryPropertiesUpdateParametersData : RegistryPropertiesUpdat
         case storageAccount = "storageAccount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RegistryPropertiesUpdateParametersData : RegistryPropertiesUpdat
     if container.contains(.storageAccount) {
         self.storageAccount = try container.decode(StorageAccountPropertiesData?.self, forKey: .storageAccount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RegistryPropertiesUpdateParametersData : RegistryPropertiesUpdat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.adminUserEnabled != nil {try container.encode(self.adminUserEnabled, forKey: .adminUserEnabled)}
-    if self.storageAccount != nil {try container.encode(self.storageAccount as! StorageAccountPropertiesData?, forKey: .storageAccount)}
+    if self.adminUserEnabled != nil { try container.encode(self.adminUserEnabled, forKey: .adminUserEnabled) }
+    if self.storageAccount != nil { try container.encode(self.storageAccount as! StorageAccountPropertiesData?, forKey: .storageAccount) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ResourceMetricAvailabilityData : ResourceMetricAvailabilityProto
         case retention = "retention"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ResourceMetricAvailabilityData : ResourceMetricAvailabilityProto
     if container.contains(.retention) {
         self.retention = try container.decode(String?.self, forKey: .retention)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ResourceMetricAvailabilityData : ResourceMetricAvailabilityProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timeGrain != nil {try container.encode(self.timeGrain, forKey: .timeGrain)}
-    if self.retention != nil {try container.encode(self.retention, forKey: .retention)}
+    if self.timeGrain != nil { try container.encode(self.timeGrain, forKey: .timeGrain) }
+    if self.retention != nil { try container.encode(self.retention, forKey: .retention) }
   }
 }
 

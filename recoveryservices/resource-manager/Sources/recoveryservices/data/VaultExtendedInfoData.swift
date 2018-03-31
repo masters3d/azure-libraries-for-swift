@@ -16,7 +16,7 @@ internal struct VaultExtendedInfoData : VaultExtendedInfoProtocol {
         case algorithm = "algorithm"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VaultExtendedInfoData : VaultExtendedInfoProtocol {
     if container.contains(.algorithm) {
         self.algorithm = try container.decode(String?.self, forKey: .algorithm)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VaultExtendedInfoData : VaultExtendedInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.integrityKey != nil {try container.encode(self.integrityKey, forKey: .integrityKey)}
-    if self.encryptionKey != nil {try container.encode(self.encryptionKey, forKey: .encryptionKey)}
-    if self.encryptionKeyThumbprint != nil {try container.encode(self.encryptionKeyThumbprint, forKey: .encryptionKeyThumbprint)}
-    if self.algorithm != nil {try container.encode(self.algorithm, forKey: .algorithm)}
+    if self.integrityKey != nil { try container.encode(self.integrityKey, forKey: .integrityKey) }
+    if self.encryptionKey != nil { try container.encode(self.encryptionKey, forKey: .encryptionKey) }
+    if self.encryptionKeyThumbprint != nil { try container.encode(self.encryptionKeyThumbprint, forKey: .encryptionKeyThumbprint) }
+    if self.algorithm != nil { try container.encode(self.algorithm, forKey: .algorithm) }
   }
 }
 

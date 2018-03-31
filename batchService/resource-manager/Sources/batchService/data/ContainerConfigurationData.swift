@@ -14,7 +14,7 @@ internal struct ContainerConfigurationData : ContainerConfigurationProtocol {
         case containerRegistries = "containerRegistries"
         }
 
-  public init(type: String)  {
+  public init(type: String) {
     self.type = type
   }
 
@@ -27,7 +27,7 @@ internal struct ContainerConfigurationData : ContainerConfigurationProtocol {
     if container.contains(.containerRegistries) {
         self.containerRegistries = try container.decode([ContainerRegistryData?]?.self, forKey: .containerRegistries)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct ContainerConfigurationData : ContainerConfigurationProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.type, forKey: .type)
-    if self.containerImageNames != nil {try container.encode(self.containerImageNames as! [String]?, forKey: .containerImageNames)}
-    if self.containerRegistries != nil {try container.encode(self.containerRegistries as! [ContainerRegistryData?]?, forKey: .containerRegistries)}
+    if self.containerImageNames != nil { try container.encode(self.containerImageNames as! [String]?, forKey: .containerImageNames) }
+    if self.containerRegistries != nil { try container.encode(self.containerRegistries as! [ContainerRegistryData?]?, forKey: .containerRegistries) }
   }
 }
 

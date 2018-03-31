@@ -26,7 +26,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol, Certi
         case deleteCertificateError = "deleteCertificateError"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol, Certi
     if container.contains(.deleteCertificateError) {
         self.deleteCertificateError = try container.decode(DeleteCertificateErrorData?.self, forKey: .deleteCertificateError)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,19 +68,19 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol, Certi
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thumbprintAlgorithm != nil {try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.thumbprintAlgorithm != nil { try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.provisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.provisioningStateTransitionTime!, format: .dateTime), forKey: .provisioningStateTransitionTime)
     }
-    if self.previousProvisioningState != nil {try container.encode(self.previousProvisioningState, forKey: .previousProvisioningState)}
+    if self.previousProvisioningState != nil { try container.encode(self.previousProvisioningState, forKey: .previousProvisioningState) }
     if self.previousProvisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.previousProvisioningStateTransitionTime!, format: .dateTime), forKey: .previousProvisioningStateTransitionTime)
     }
-    if self.publicData != nil {try container.encode(self.publicData, forKey: .publicData)}
-    if self.deleteCertificateError != nil {try container.encode(self.deleteCertificateError as! DeleteCertificateErrorData?, forKey: .deleteCertificateError)}
+    if self.publicData != nil { try container.encode(self.publicData, forKey: .publicData) }
+    if self.deleteCertificateError != nil { try container.encode(self.deleteCertificateError as! DeleteCertificateErrorData?, forKey: .deleteCertificateError) }
   }
 }
 

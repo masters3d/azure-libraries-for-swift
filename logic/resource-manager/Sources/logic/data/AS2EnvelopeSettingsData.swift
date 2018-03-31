@@ -18,7 +18,7 @@ internal struct AS2EnvelopeSettingsData : AS2EnvelopeSettingsProtocol {
         case autogenerateFileName = "autogenerateFileName"
         }
 
-  public init(messageContentType: String, transmitFileNameInMimeHeader: Bool, fileNameTemplate: String, suspendMessageOnFileNameGenerationError: Bool, autogenerateFileName: Bool)  {
+  public init(messageContentType: String, transmitFileNameInMimeHeader: Bool, fileNameTemplate: String, suspendMessageOnFileNameGenerationError: Bool, autogenerateFileName: Bool) {
     self.messageContentType = messageContentType
     self.transmitFileNameInMimeHeader = transmitFileNameInMimeHeader
     self.fileNameTemplate = fileNameTemplate
@@ -33,7 +33,7 @@ internal struct AS2EnvelopeSettingsData : AS2EnvelopeSettingsProtocol {
     self.fileNameTemplate = try container.decode(String.self, forKey: .fileNameTemplate)
     self.suspendMessageOnFileNameGenerationError = try container.decode(Bool.self, forKey: .suspendMessageOnFileNameGenerationError)
     self.autogenerateFileName = try container.decode(Bool.self, forKey: .autogenerateFileName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -22,7 +22,7 @@ internal struct ProtectionContainerPropertiesData : ProtectionContainerPropertie
         case fabricSpecificDetails = "fabricSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ProtectionContainerPropertiesData : ProtectionContainerPropertie
     if container.contains(.fabricSpecificDetails) {
         self.fabricSpecificDetails = try container.decode(ProtectionContainerFabricSpecificDetailsData?.self, forKey: .fabricSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ProtectionContainerPropertiesData : ProtectionContainerPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fabricFriendlyName != nil {try container.encode(self.fabricFriendlyName, forKey: .fabricFriendlyName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.fabricType != nil {try container.encode(self.fabricType, forKey: .fabricType)}
-    if self.protectedItemCount != nil {try container.encode(self.protectedItemCount, forKey: .protectedItemCount)}
-    if self.pairingStatus != nil {try container.encode(self.pairingStatus, forKey: .pairingStatus)}
-    if self.role != nil {try container.encode(self.role, forKey: .role)}
-    if self.fabricSpecificDetails != nil {try container.encode(self.fabricSpecificDetails as! ProtectionContainerFabricSpecificDetailsData?, forKey: .fabricSpecificDetails)}
+    if self.fabricFriendlyName != nil { try container.encode(self.fabricFriendlyName, forKey: .fabricFriendlyName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.fabricType != nil { try container.encode(self.fabricType, forKey: .fabricType) }
+    if self.protectedItemCount != nil { try container.encode(self.protectedItemCount, forKey: .protectedItemCount) }
+    if self.pairingStatus != nil { try container.encode(self.pairingStatus, forKey: .pairingStatus) }
+    if self.role != nil { try container.encode(self.role, forKey: .role) }
+    if self.fabricSpecificDetails != nil { try container.encode(self.fabricSpecificDetails as! ProtectionContainerFabricSpecificDetailsData?, forKey: .fabricSpecificDetails) }
   }
 }
 

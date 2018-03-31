@@ -22,7 +22,7 @@ internal struct GlobalCsmSkuDescriptionData : GlobalCsmSkuDescriptionProtocol {
         case capabilities = "capabilities"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct GlobalCsmSkuDescriptionData : GlobalCsmSkuDescriptionProtocol {
     if container.contains(.capabilities) {
         self.capabilities = try container.decode([CapabilityData?]?.self, forKey: .capabilities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct GlobalCsmSkuDescriptionData : GlobalCsmSkuDescriptionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
-    if self.size != nil {try container.encode(self.size, forKey: .size)}
-    if self.family != nil {try container.encode(self.family, forKey: .family)}
-    if self.capacity != nil {try container.encode(self.capacity as! SkuCapacityData?, forKey: .capacity)}
-    if self.locations != nil {try container.encode(self.locations as! [String]?, forKey: .locations)}
-    if self.capabilities != nil {try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
+    if self.size != nil { try container.encode(self.size, forKey: .size) }
+    if self.family != nil { try container.encode(self.family, forKey: .family) }
+    if self.capacity != nil { try container.encode(self.capacity as! SkuCapacityData?, forKey: .capacity) }
+    if self.locations != nil { try container.encode(self.locations as! [String]?, forKey: .locations) }
+    if self.capabilities != nil { try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities) }
   }
 }
 

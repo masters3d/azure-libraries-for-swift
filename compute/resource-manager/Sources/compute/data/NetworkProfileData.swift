@@ -10,7 +10,7 @@ internal struct NetworkProfileData : NetworkProfileProtocol {
         enum CodingKeys: String, CodingKey {case networkInterfaces = "networkInterfaces"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NetworkProfileData : NetworkProfileProtocol {
       if container.contains(.networkInterfaces) {
         self.networkInterfaces = try container.decode([NetworkInterfaceReferenceData?]?.self, forKey: .networkInterfaces)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NetworkProfileData : NetworkProfileProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.networkInterfaces != nil {try container.encode(self.networkInterfaces as! [NetworkInterfaceReferenceData?]?, forKey: .networkInterfaces)}
+    if self.networkInterfaces != nil { try container.encode(self.networkInterfaces as! [NetworkInterfaceReferenceData?]?, forKey: .networkInterfaces) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct VCenterPropertiesData : VCenterPropertiesProtocol {
         case healthErrors = "healthErrors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct VCenterPropertiesData : VCenterPropertiesProtocol {
     if container.contains(.healthErrors) {
         self.healthErrors = try container.decode([HealthErrorData?]?.self, forKey: .healthErrors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,19 +78,19 @@ internal struct VCenterPropertiesData : VCenterPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.internalId != nil {try container.encode(self.internalId, forKey: .internalId)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.internalId != nil { try container.encode(self.internalId, forKey: .internalId) }
     if self.lastHeartbeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartbeat!, format: .dateTime), forKey: .lastHeartbeat)
     }
-    if self.discoveryStatus != nil {try container.encode(self.discoveryStatus, forKey: .discoveryStatus)}
-    if self.processServerId != nil {try container.encode(self.processServerId, forKey: .processServerId)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.infrastructureId != nil {try container.encode(self.infrastructureId, forKey: .infrastructureId)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
-    if self.fabricArmResourceName != nil {try container.encode(self.fabricArmResourceName, forKey: .fabricArmResourceName)}
-    if self.healthErrors != nil {try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors)}
+    if self.discoveryStatus != nil { try container.encode(self.discoveryStatus, forKey: .discoveryStatus) }
+    if self.processServerId != nil { try container.encode(self.processServerId, forKey: .processServerId) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.infrastructureId != nil { try container.encode(self.infrastructureId, forKey: .infrastructureId) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
+    if self.fabricArmResourceName != nil { try container.encode(self.fabricArmResourceName, forKey: .fabricArmResourceName) }
+    if self.healthErrors != nil { try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors) }
   }
 }
 

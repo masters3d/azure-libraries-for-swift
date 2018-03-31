@@ -16,7 +16,7 @@ internal struct ChainerSettingsData : ChainerSettingsProtocol {
         case processCount = "processCount"
         }
 
-  public init(pythonScriptFilePath: String)  {
+  public init(pythonScriptFilePath: String) {
     self.pythonScriptFilePath = pythonScriptFilePath
   }
 
@@ -32,7 +32,7 @@ internal struct ChainerSettingsData : ChainerSettingsProtocol {
     if container.contains(.processCount) {
         self.processCount = try container.decode(Int32?.self, forKey: .processCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct ChainerSettingsData : ChainerSettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pythonScriptFilePath, forKey: .pythonScriptFilePath)
-    if self.pythonInterpreterPath != nil {try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath)}
-    if self.commandLineArgs != nil {try container.encode(self.commandLineArgs, forKey: .commandLineArgs)}
-    if self.processCount != nil {try container.encode(self.processCount, forKey: .processCount)}
+    if self.pythonInterpreterPath != nil { try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath) }
+    if self.commandLineArgs != nil { try container.encode(self.commandLineArgs, forKey: .commandLineArgs) }
+    if self.processCount != nil { try container.encode(self.processCount, forKey: .processCount) }
   }
 }
 

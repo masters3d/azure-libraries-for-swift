@@ -12,7 +12,7 @@ internal struct AzureAppPushReceiverData : AzureAppPushReceiverProtocol {
         case emailAddress = "emailAddress"
         }
 
-  public init(name: String, emailAddress: String)  {
+  public init(name: String, emailAddress: String) {
     self.name = name
     self.emailAddress = emailAddress
   }
@@ -21,7 +21,7 @@ internal struct AzureAppPushReceiverData : AzureAppPushReceiverProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
     self.emailAddress = try container.decode(String.self, forKey: .emailAddress)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

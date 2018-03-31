@@ -16,7 +16,7 @@ internal struct OAuthAuthenticationData : OAuthAuthenticationProtocol, HttpAuthe
         case clientId = "clientId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct OAuthAuthenticationData : OAuthAuthenticationProtocol, HttpAuthe
     if container.contains(.clientId) {
         self.clientId = try container.decode(String?.self, forKey: .clientId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct OAuthAuthenticationData : OAuthAuthenticationProtocol, HttpAuthe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.secret != nil {try container.encode(self.secret, forKey: .secret)}
-    if self.tenant != nil {try container.encode(self.tenant, forKey: .tenant)}
-    if self.audience != nil {try container.encode(self.audience, forKey: .audience)}
-    if self.clientId != nil {try container.encode(self.clientId, forKey: .clientId)}
+    if self.secret != nil { try container.encode(self.secret, forKey: .secret) }
+    if self.tenant != nil { try container.encode(self.tenant, forKey: .tenant) }
+    if self.audience != nil { try container.encode(self.audience, forKey: .audience) }
+    if self.clientId != nil { try container.encode(self.clientId, forKey: .clientId) }
   }
 }
 

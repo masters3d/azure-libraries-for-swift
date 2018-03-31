@@ -8,7 +8,7 @@ internal struct StorageServiceStatsData : StorageServiceStatsProtocol {
         case geoReplication = "GeoReplication"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -20,7 +20,7 @@ internal struct StorageServiceStatsData : StorageServiceStatsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.geoReplication != nil {try container.encode(geoReplication as! GeoReplicationData?, forKey: .geoReplication)}
+    if self.geoReplication != nil { try container.encode(geoReplication as! GeoReplicationData?, forKey: .geoReplication) }
   }
 }
 

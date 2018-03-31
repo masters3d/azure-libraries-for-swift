@@ -16,7 +16,7 @@ internal struct ProtectableContainerData : ProtectableContainerProtocol {
         case containerId = "containerId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ProtectableContainerData : ProtectableContainerProtocol {
     if container.contains(.containerId) {
         self.containerId = try container.decode(String?.self, forKey: .containerId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ProtectableContainerData : ProtectableContainerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.containerId != nil {try container.encode(self.containerId, forKey: .containerId)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.containerId != nil { try container.encode(self.containerId, forKey: .containerId) }
   }
 }
 

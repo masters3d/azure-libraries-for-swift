@@ -14,7 +14,7 @@ internal struct ApplicationSummaryData : ApplicationSummaryProtocol {
         case versions = "versions"
         }
 
-  public init(id: String, displayName: String, versions: [String])  {
+  public init(id: String, displayName: String, versions: [String]) {
     self.id = id
     self.displayName = displayName
     self.versions = versions
@@ -25,7 +25,7 @@ internal struct ApplicationSummaryData : ApplicationSummaryProtocol {
       self.id = try container.decode(String.self, forKey: .id)
     self.displayName = try container.decode(String.self, forKey: .displayName)
     self.versions = try container.decode([String].self, forKey: .versions)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

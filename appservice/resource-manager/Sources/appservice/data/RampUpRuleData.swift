@@ -24,7 +24,7 @@ internal struct RampUpRuleData : RampUpRuleProtocol {
         case name = "name"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct RampUpRuleData : RampUpRuleProtocol {
     if container.contains(.name) {
         self.name = try container.decode(String?.self, forKey: .name)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct RampUpRuleData : RampUpRuleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.actionHostName != nil {try container.encode(self.actionHostName, forKey: .actionHostName)}
-    if self.reroutePercentage != nil {try container.encode(self.reroutePercentage, forKey: .reroutePercentage)}
-    if self.changeStep != nil {try container.encode(self.changeStep, forKey: .changeStep)}
-    if self.changeIntervalInMinutes != nil {try container.encode(self.changeIntervalInMinutes, forKey: .changeIntervalInMinutes)}
-    if self.minReroutePercentage != nil {try container.encode(self.minReroutePercentage, forKey: .minReroutePercentage)}
-    if self.maxReroutePercentage != nil {try container.encode(self.maxReroutePercentage, forKey: .maxReroutePercentage)}
-    if self.changeDecisionCallbackUrl != nil {try container.encode(self.changeDecisionCallbackUrl, forKey: .changeDecisionCallbackUrl)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
+    if self.actionHostName != nil { try container.encode(self.actionHostName, forKey: .actionHostName) }
+    if self.reroutePercentage != nil { try container.encode(self.reroutePercentage, forKey: .reroutePercentage) }
+    if self.changeStep != nil { try container.encode(self.changeStep, forKey: .changeStep) }
+    if self.changeIntervalInMinutes != nil { try container.encode(self.changeIntervalInMinutes, forKey: .changeIntervalInMinutes) }
+    if self.minReroutePercentage != nil { try container.encode(self.minReroutePercentage, forKey: .minReroutePercentage) }
+    if self.maxReroutePercentage != nil { try container.encode(self.maxReroutePercentage, forKey: .maxReroutePercentage) }
+    if self.changeDecisionCallbackUrl != nil { try container.encode(self.changeDecisionCallbackUrl, forKey: .changeDecisionCallbackUrl) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
   }
 }
 

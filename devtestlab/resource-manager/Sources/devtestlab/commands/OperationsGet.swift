@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol OperationsGet  {
+public protocol OperationsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var locationName : String { get set }
     var name : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (OperationResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (OperationResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Operations {
@@ -29,7 +29,7 @@ extension Commands.Operations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{locationName}"] = String(describing: self.locationName)
             self.pathParameters["{name}"] = String(describing: self.name)
@@ -42,12 +42,12 @@ extension Commands.Operations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(OperationResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (OperationResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (OperationResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: OperationResultData?, error: Error?) in
                 completionHandler(result, error)

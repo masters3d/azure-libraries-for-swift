@@ -10,7 +10,7 @@ internal struct DatabaseAccountPatchPropertiesData : DatabaseAccountPatchPropert
         enum CodingKeys: String, CodingKey {case capabilities = "capabilities"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DatabaseAccountPatchPropertiesData : DatabaseAccountPatchPropert
       if container.contains(.capabilities) {
         self.capabilities = try container.decode([CapabilityData?]?.self, forKey: .capabilities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DatabaseAccountPatchPropertiesData : DatabaseAccountPatchPropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.capabilities != nil {try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities)}
+    if self.capabilities != nil { try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities) }
   }
 }
 

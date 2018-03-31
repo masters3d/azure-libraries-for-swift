@@ -18,7 +18,7 @@ internal struct PerfMonSetData : PerfMonSetProtocol {
         case values = "values"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct PerfMonSetData : PerfMonSetProtocol {
     if container.contains(.values) {
         self.values = try container.decode([PerfMonSampleData?]?.self, forKey: .values)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct PerfMonSetData : PerfMonSetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.timeGrain != nil {try container.encode(self.timeGrain, forKey: .timeGrain)}
-    if self.values != nil {try container.encode(self.values as! [PerfMonSampleData?]?, forKey: .values)}
+    if self.timeGrain != nil { try container.encode(self.timeGrain, forKey: .timeGrain) }
+    if self.values != nil { try container.encode(self.values as! [PerfMonSampleData?]?, forKey: .values) }
   }
 }
 

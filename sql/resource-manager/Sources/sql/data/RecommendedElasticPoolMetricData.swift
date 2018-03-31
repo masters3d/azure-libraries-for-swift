@@ -14,7 +14,7 @@ internal struct RecommendedElasticPoolMetricData : RecommendedElasticPoolMetricP
         case sizeGB = "sizeGB"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RecommendedElasticPoolMetricData : RecommendedElasticPoolMetricP
     if container.contains(.sizeGB) {
         self.sizeGB = try container.decode(Double?.self, forKey: .sizeGB)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct RecommendedElasticPoolMetricData : RecommendedElasticPoolMetricP
     if self.dateTime != nil {
         try container.encode(DateConverter.toString(date: self.dateTime!, format: .dateTime), forKey: .dateTime)
     }
-    if self.dtu != nil {try container.encode(self.dtu, forKey: .dtu)}
-    if self.sizeGB != nil {try container.encode(self.sizeGB, forKey: .sizeGB)}
+    if self.dtu != nil { try container.encode(self.dtu, forKey: .dtu) }
+    if self.sizeGB != nil { try container.encode(self.sizeGB, forKey: .sizeGB) }
   }
 }
 

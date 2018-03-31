@@ -12,7 +12,7 @@ internal struct TaskDependenciesData : TaskDependenciesProtocol {
         case taskIdRanges = "taskIdRanges"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TaskDependenciesData : TaskDependenciesProtocol {
     if container.contains(.taskIdRanges) {
         self.taskIdRanges = try container.decode([TaskIdRangeData?]?.self, forKey: .taskIdRanges)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TaskDependenciesData : TaskDependenciesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.taskIds != nil {try container.encode(self.taskIds as! [String]?, forKey: .taskIds)}
-    if self.taskIdRanges != nil {try container.encode(self.taskIdRanges as! [TaskIdRangeData?]?, forKey: .taskIdRanges)}
+    if self.taskIds != nil { try container.encode(self.taskIds as! [String]?, forKey: .taskIds) }
+    if self.taskIdRanges != nil { try container.encode(self.taskIdRanges as! [TaskIdRangeData?]?, forKey: .taskIdRanges) }
   }
 }
 

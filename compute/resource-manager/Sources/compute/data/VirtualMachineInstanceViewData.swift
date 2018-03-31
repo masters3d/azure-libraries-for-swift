@@ -32,7 +32,7 @@ internal struct VirtualMachineInstanceViewData : VirtualMachineInstanceViewProto
         case statuses = "statuses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct VirtualMachineInstanceViewData : VirtualMachineInstanceViewProto
     if container.contains(.statuses) {
         self.statuses = try container.decode([InstanceViewStatusData?]?.self, forKey: .statuses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,18 +83,18 @@ internal struct VirtualMachineInstanceViewData : VirtualMachineInstanceViewProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.platformUpdateDomain != nil {try container.encode(self.platformUpdateDomain, forKey: .platformUpdateDomain)}
-    if self.platformFaultDomain != nil {try container.encode(self.platformFaultDomain, forKey: .platformFaultDomain)}
-    if self.computerName != nil {try container.encode(self.computerName, forKey: .computerName)}
-    if self.osName != nil {try container.encode(self.osName, forKey: .osName)}
-    if self.osVersion != nil {try container.encode(self.osVersion, forKey: .osVersion)}
-    if self.rdpThumbPrint != nil {try container.encode(self.rdpThumbPrint, forKey: .rdpThumbPrint)}
-    if self.vmAgent != nil {try container.encode(self.vmAgent as! VirtualMachineAgentInstanceViewData?, forKey: .vmAgent)}
-    if self.maintenanceRedeployStatus != nil {try container.encode(self.maintenanceRedeployStatus as! MaintenanceRedeployStatusData?, forKey: .maintenanceRedeployStatus)}
-    if self.disks != nil {try container.encode(self.disks as! [DiskInstanceViewData?]?, forKey: .disks)}
-    if self.extensions != nil {try container.encode(self.extensions as! [VirtualMachineExtensionInstanceViewData?]?, forKey: .extensions)}
-    if self.bootDiagnostics != nil {try container.encode(self.bootDiagnostics as! BootDiagnosticsInstanceViewData?, forKey: .bootDiagnostics)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
+    if self.platformUpdateDomain != nil { try container.encode(self.platformUpdateDomain, forKey: .platformUpdateDomain) }
+    if self.platformFaultDomain != nil { try container.encode(self.platformFaultDomain, forKey: .platformFaultDomain) }
+    if self.computerName != nil { try container.encode(self.computerName, forKey: .computerName) }
+    if self.osName != nil { try container.encode(self.osName, forKey: .osName) }
+    if self.osVersion != nil { try container.encode(self.osVersion, forKey: .osVersion) }
+    if self.rdpThumbPrint != nil { try container.encode(self.rdpThumbPrint, forKey: .rdpThumbPrint) }
+    if self.vmAgent != nil { try container.encode(self.vmAgent as! VirtualMachineAgentInstanceViewData?, forKey: .vmAgent) }
+    if self.maintenanceRedeployStatus != nil { try container.encode(self.maintenanceRedeployStatus as! MaintenanceRedeployStatusData?, forKey: .maintenanceRedeployStatus) }
+    if self.disks != nil { try container.encode(self.disks as! [DiskInstanceViewData?]?, forKey: .disks) }
+    if self.extensions != nil { try container.encode(self.extensions as! [VirtualMachineExtensionInstanceViewData?]?, forKey: .extensions) }
+    if self.bootDiagnostics != nil { try container.encode(self.bootDiagnostics as! BootDiagnosticsInstanceViewData?, forKey: .bootDiagnostics) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ServerVersionCapabilityData : ServerVersionCapabilityProtocol {
         case supportedElasticPoolEditions = "supportedElasticPoolEditions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ServerVersionCapabilityData : ServerVersionCapabilityProtocol {
     if container.contains(.supportedElasticPoolEditions) {
         self.supportedElasticPoolEditions = try container.decode([ElasticPoolEditionCapabilityData?]?.self, forKey: .supportedElasticPoolEditions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ServerVersionCapabilityData : ServerVersionCapabilityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportedEditions != nil {try container.encode(self.supportedEditions as! [EditionCapabilityData?]?, forKey: .supportedEditions)}
-    if self.supportedElasticPoolEditions != nil {try container.encode(self.supportedElasticPoolEditions as! [ElasticPoolEditionCapabilityData?]?, forKey: .supportedElasticPoolEditions)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportedEditions != nil { try container.encode(self.supportedEditions as! [EditionCapabilityData?]?, forKey: .supportedEditions) }
+    if self.supportedElasticPoolEditions != nil { try container.encode(self.supportedElasticPoolEditions as! [ElasticPoolEditionCapabilityData?]?, forKey: .supportedElasticPoolEditions) }
   }
 }
 

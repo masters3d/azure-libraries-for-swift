@@ -16,7 +16,7 @@ internal struct InputEndpointData : InputEndpointProtocol {
         case _protocol = "protocol"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct InputEndpointData : InputEndpointProtocol {
     if container.contains(._protocol) {
         self._protocol = try container.decode(String?.self, forKey: ._protocol)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct InputEndpointData : InputEndpointProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.endpointName != nil {try container.encode(self.endpointName, forKey: .endpointName)}
-    if self.privatePort != nil {try container.encode(self.privatePort, forKey: .privatePort)}
-    if self.publicPort != nil {try container.encode(self.publicPort, forKey: .publicPort)}
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
+    if self.endpointName != nil { try container.encode(self.endpointName, forKey: .endpointName) }
+    if self.privatePort != nil { try container.encode(self.privatePort, forKey: .privatePort) }
+    if self.publicPort != nil { try container.encode(self.publicPort, forKey: .publicPort) }
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
   }
 }
 

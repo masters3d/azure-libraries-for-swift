@@ -16,7 +16,7 @@ internal struct SmsReceiverData : SmsReceiverProtocol {
         case status = "status"
         }
 
-  public init(name: String, countryCode: String, phoneNumber: String)  {
+  public init(name: String, countryCode: String, phoneNumber: String) {
     self.name = name
     self.countryCode = countryCode
     self.phoneNumber = phoneNumber
@@ -30,7 +30,7 @@ internal struct SmsReceiverData : SmsReceiverProtocol {
     if container.contains(.status) {
         self.status = try container.decode(ReceiverStatusEnum?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct SmsReceiverData : SmsReceiverProtocol {
     try container.encode(self.name, forKey: .name)
     try container.encode(self.countryCode, forKey: .countryCode)
     try container.encode(self.phoneNumber, forKey: .phoneNumber)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

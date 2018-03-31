@@ -24,7 +24,7 @@ internal struct A2ASwitchProtectionInputData : A2ASwitchProtectionInputProtocol,
         case recoveryBootDiagStorageAccountId = "recoveryBootDiagStorageAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct A2ASwitchProtectionInputData : A2ASwitchProtectionInputProtocol,
     if container.contains(.recoveryBootDiagStorageAccountId) {
         self.recoveryBootDiagStorageAccountId = try container.decode(String?.self, forKey: .recoveryBootDiagStorageAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct A2ASwitchProtectionInputData : A2ASwitchProtectionInputProtocol,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryContainerId != nil {try container.encode(self.recoveryContainerId, forKey: .recoveryContainerId)}
-    if self.vmDisks != nil {try container.encode(self.vmDisks as! [A2AVmDiskInputDetailsData?]?, forKey: .vmDisks)}
-    if self.vmManagedDisks != nil {try container.encode(self.vmManagedDisks as! [A2AVmManagedDiskInputDetailsData?]?, forKey: .vmManagedDisks)}
-    if self.recoveryResourceGroupId != nil {try container.encode(self.recoveryResourceGroupId, forKey: .recoveryResourceGroupId)}
-    if self.recoveryCloudServiceId != nil {try container.encode(self.recoveryCloudServiceId, forKey: .recoveryCloudServiceId)}
-    if self.recoveryAvailabilitySetId != nil {try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.recoveryBootDiagStorageAccountId != nil {try container.encode(self.recoveryBootDiagStorageAccountId, forKey: .recoveryBootDiagStorageAccountId)}
+    if self.recoveryContainerId != nil { try container.encode(self.recoveryContainerId, forKey: .recoveryContainerId) }
+    if self.vmDisks != nil { try container.encode(self.vmDisks as! [A2AVmDiskInputDetailsData?]?, forKey: .vmDisks) }
+    if self.vmManagedDisks != nil { try container.encode(self.vmManagedDisks as! [A2AVmManagedDiskInputDetailsData?]?, forKey: .vmManagedDisks) }
+    if self.recoveryResourceGroupId != nil { try container.encode(self.recoveryResourceGroupId, forKey: .recoveryResourceGroupId) }
+    if self.recoveryCloudServiceId != nil { try container.encode(self.recoveryCloudServiceId, forKey: .recoveryCloudServiceId) }
+    if self.recoveryAvailabilitySetId != nil { try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.recoveryBootDiagStorageAccountId != nil { try container.encode(self.recoveryBootDiagStorageAccountId, forKey: .recoveryBootDiagStorageAccountId) }
   }
 }
 

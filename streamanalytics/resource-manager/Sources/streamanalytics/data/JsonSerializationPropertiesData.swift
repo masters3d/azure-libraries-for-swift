@@ -12,7 +12,7 @@ internal struct JsonSerializationPropertiesData : JsonSerializationPropertiesPro
         case format = "format"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct JsonSerializationPropertiesData : JsonSerializationPropertiesPro
     if container.contains(.format) {
         self.format = try container.decode(JsonOutputSerializationFormatEnum?.self, forKey: .format)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct JsonSerializationPropertiesData : JsonSerializationPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.encoding != nil {try container.encode(self.encoding, forKey: .encoding)}
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.encoding != nil { try container.encode(self.encoding, forKey: .encoding) }
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
   }
 }
 

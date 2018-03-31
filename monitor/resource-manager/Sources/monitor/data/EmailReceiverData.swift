@@ -14,7 +14,7 @@ internal struct EmailReceiverData : EmailReceiverProtocol {
         case status = "status"
         }
 
-  public init(name: String, emailAddress: String)  {
+  public init(name: String, emailAddress: String) {
     self.name = name
     self.emailAddress = emailAddress
   }
@@ -26,7 +26,7 @@ internal struct EmailReceiverData : EmailReceiverProtocol {
     if container.contains(.status) {
         self.status = try container.decode(ReceiverStatusEnum?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct EmailReceiverData : EmailReceiverProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.emailAddress, forKey: .emailAddress)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

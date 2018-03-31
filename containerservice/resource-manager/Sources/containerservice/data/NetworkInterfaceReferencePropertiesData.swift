@@ -10,7 +10,7 @@ internal struct NetworkInterfaceReferencePropertiesData : NetworkInterfaceRefere
         enum CodingKeys: String, CodingKey {case primary = "primary"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NetworkInterfaceReferencePropertiesData : NetworkInterfaceRefere
       if container.contains(.primary) {
         self.primary = try container.decode(Bool?.self, forKey: .primary)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NetworkInterfaceReferencePropertiesData : NetworkInterfaceRefere
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
   }
 }
 

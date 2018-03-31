@@ -10,14 +10,14 @@ internal struct RecommendedElasticPoolListMetricsResultData : RecommendedElastic
         enum CodingKeys: String, CodingKey {case value = "value"
         }
 
-  public init(value: [RecommendedElasticPoolMetricProtocol])  {
+  public init(value: [RecommendedElasticPoolMetricProtocol]) {
     self.value = value
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.value = try container.decode([RecommendedElasticPoolMetricData].self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -18,7 +18,7 @@ internal struct NodeStateCountsData : NodeStateCountsProtocol {
         case leavingNodeCount = "leavingNodeCount"
         }
 
-  public init(idleNodeCount: Int32, runningNodeCount: Int32, preparingNodeCount: Int32, unusableNodeCount: Int32, leavingNodeCount: Int32)  {
+  public init(idleNodeCount: Int32, runningNodeCount: Int32, preparingNodeCount: Int32, unusableNodeCount: Int32, leavingNodeCount: Int32) {
     self.idleNodeCount = idleNodeCount
     self.runningNodeCount = runningNodeCount
     self.preparingNodeCount = preparingNodeCount
@@ -33,7 +33,7 @@ internal struct NodeStateCountsData : NodeStateCountsProtocol {
     self.preparingNodeCount = try container.decode(Int32.self, forKey: .preparingNodeCount)
     self.unusableNodeCount = try container.decode(Int32.self, forKey: .unusableNodeCount)
     self.leavingNodeCount = try container.decode(Int32.self, forKey: .leavingNodeCount)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

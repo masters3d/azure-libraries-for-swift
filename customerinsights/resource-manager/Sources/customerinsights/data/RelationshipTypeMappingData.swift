@@ -10,14 +10,14 @@ internal struct RelationshipTypeMappingData : RelationshipTypeMappingProtocol {
         enum CodingKeys: String, CodingKey {case fieldMappings = "fieldMappings"
         }
 
-  public init(fieldMappings: [RelationshipTypeFieldMappingProtocol])  {
+  public init(fieldMappings: [RelationshipTypeFieldMappingProtocol]) {
     self.fieldMappings = fieldMappings
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.fieldMappings = try container.decode([RelationshipTypeFieldMappingData].self, forKey: .fieldMappings)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

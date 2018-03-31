@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NamespacesCreateOrUpdateAuthorizationRule  {
+public protocol NamespacesCreateOrUpdateAuthorizationRule {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
     var authorizationRuleName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  SBAuthorizationRuleProtocol?  { get set }
+    var parameters :  SBAuthorizationRuleProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SBAuthorizationRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SBAuthorizationRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.Namespaces {
@@ -35,7 +35,7 @@ extension Commands.Namespaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{authorizationRuleName}"] = String(describing: self.authorizationRuleName)
@@ -59,12 +59,12 @@ extension Commands.Namespaces {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SBAuthorizationRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SBAuthorizationRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SBAuthorizationRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SBAuthorizationRuleData?, error: Error?) in
                 completionHandler(result, error)

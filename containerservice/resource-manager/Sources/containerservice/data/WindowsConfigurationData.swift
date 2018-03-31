@@ -18,7 +18,7 @@ internal struct WindowsConfigurationData : WindowsConfigurationProtocol {
         case winRM = "winRM"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct WindowsConfigurationData : WindowsConfigurationProtocol {
     if container.contains(.winRM) {
         self.winRM = try container.decode(WinRMConfigurationData?.self, forKey: .winRM)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct WindowsConfigurationData : WindowsConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisionVMAgent != nil {try container.encode(self.provisionVMAgent, forKey: .provisionVMAgent)}
-    if self.enableAutomaticUpdates != nil {try container.encode(self.enableAutomaticUpdates, forKey: .enableAutomaticUpdates)}
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.additionalUnattendContent != nil {try container.encode(self.additionalUnattendContent as! [AdditionalUnattendContentData?]?, forKey: .additionalUnattendContent)}
-    if self.winRM != nil {try container.encode(self.winRM as! WinRMConfigurationData?, forKey: .winRM)}
+    if self.provisionVMAgent != nil { try container.encode(self.provisionVMAgent, forKey: .provisionVMAgent) }
+    if self.enableAutomaticUpdates != nil { try container.encode(self.enableAutomaticUpdates, forKey: .enableAutomaticUpdates) }
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.additionalUnattendContent != nil { try container.encode(self.additionalUnattendContent as! [AdditionalUnattendContentData?]?, forKey: .additionalUnattendContent) }
+    if self.winRM != nil { try container.encode(self.winRM as! WinRMConfigurationData?, forKey: .winRM) }
   }
 }
 

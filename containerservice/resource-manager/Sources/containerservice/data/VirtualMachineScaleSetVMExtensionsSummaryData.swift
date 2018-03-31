@@ -12,7 +12,7 @@ internal struct VirtualMachineScaleSetVMExtensionsSummaryData : VirtualMachineSc
         case statusesSummary = "statusesSummary"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VirtualMachineScaleSetVMExtensionsSummaryData : VirtualMachineSc
     if container.contains(.statusesSummary) {
         self.statusesSummary = try container.decode([VirtualMachineStatusCodeCountData?]?.self, forKey: .statusesSummary)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VirtualMachineScaleSetVMExtensionsSummaryData : VirtualMachineSc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.statusesSummary != nil {try container.encode(self.statusesSummary as! [VirtualMachineStatusCodeCountData?]?, forKey: .statusesSummary)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.statusesSummary != nil { try container.encode(self.statusesSummary as! [VirtualMachineStatusCodeCountData?]?, forKey: .statusesSummary) }
   }
 }
 

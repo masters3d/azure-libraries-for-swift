@@ -10,7 +10,7 @@ internal struct AzureVMResourceFeatureSupportResponseData : AzureVMResourceFeatu
         enum CodingKeys: String, CodingKey {case supportStatus = "supportStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AzureVMResourceFeatureSupportResponseData : AzureVMResourceFeatu
       if container.contains(.supportStatus) {
         self.supportStatus = try container.decode(SupportStatusEnum?.self, forKey: .supportStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AzureVMResourceFeatureSupportResponseData : AzureVMResourceFeatu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.supportStatus != nil {try container.encode(self.supportStatus, forKey: .supportStatus)}
+    if self.supportStatus != nil { try container.encode(self.supportStatus, forKey: .supportStatus) }
   }
 }
 

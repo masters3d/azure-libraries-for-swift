@@ -18,7 +18,7 @@ internal struct IntegrationAccountCertificatePropertiesData : IntegrationAccount
         case publicCertificate = "publicCertificate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct IntegrationAccountCertificatePropertiesData : IntegrationAccount
     if container.contains(.publicCertificate) {
         self.publicCertificate = try container.decode(String?.self, forKey: .publicCertificate)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -54,9 +54,9 @@ internal struct IntegrationAccountCertificatePropertiesData : IntegrationAccount
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
-    if self.key != nil {try container.encode(self.key as! KeyVaultKeyReferenceData?, forKey: .key)}
-    if self.publicCertificate != nil {try container.encode(self.publicCertificate, forKey: .publicCertificate)}
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
+    if self.key != nil { try container.encode(self.key as! KeyVaultKeyReferenceData?, forKey: .key) }
+    if self.publicCertificate != nil { try container.encode(self.publicCertificate, forKey: .publicCertificate) }
   }
 }
 

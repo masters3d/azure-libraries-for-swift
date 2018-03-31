@@ -24,7 +24,7 @@ internal struct SiteData : SiteProtocol, ResourceProtocol {
         case identity = "identity"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -52,7 +52,7 @@ internal struct SiteData : SiteProtocol, ResourceProtocol {
     if container.contains(.identity) {
         self.identity = try container.decode(ManagedServiceIdentityData?.self, forKey: .identity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,14 +62,14 @@ internal struct SiteData : SiteProtocol, ResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
     try container.encode(self.location, forKey: .location)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.properties != nil {try container.encode(self.properties as! SitePropertiesData?, forKey: .properties)}
-    if self.identity != nil {try container.encode(self.identity as! ManagedServiceIdentityData?, forKey: .identity)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.properties != nil { try container.encode(self.properties as! SitePropertiesData?, forKey: .properties) }
+    if self.identity != nil { try container.encode(self.identity as! ManagedServiceIdentityData?, forKey: .identity) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct SnapshotRecoveryTargetData : SnapshotRecoveryTargetProtocol {
         case id = "id"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SnapshotRecoveryTargetData : SnapshotRecoveryTargetProtocol {
     if container.contains(.id) {
         self.id = try container.decode(String?.self, forKey: .id)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SnapshotRecoveryTargetData : SnapshotRecoveryTargetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
   }
 }
 

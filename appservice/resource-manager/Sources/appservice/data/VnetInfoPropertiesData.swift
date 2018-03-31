@@ -20,7 +20,7 @@ internal struct VnetInfoPropertiesData : VnetInfoPropertiesProtocol {
         case dnsServers = "dnsServers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct VnetInfoPropertiesData : VnetInfoPropertiesProtocol {
     if container.contains(.dnsServers) {
         self.dnsServers = try container.decode(String?.self, forKey: .dnsServers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct VnetInfoPropertiesData : VnetInfoPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vnetResourceId != nil {try container.encode(self.vnetResourceId, forKey: .vnetResourceId)}
-    if self.certThumbprint != nil {try container.encode(self.certThumbprint, forKey: .certThumbprint)}
-    if self.certBlob != nil {try container.encode(self.certBlob, forKey: .certBlob)}
-    if self.routes != nil {try container.encode(self.routes as! [VnetRouteData?]?, forKey: .routes)}
-    if self.resyncRequired != nil {try container.encode(self.resyncRequired, forKey: .resyncRequired)}
-    if self.dnsServers != nil {try container.encode(self.dnsServers, forKey: .dnsServers)}
+    if self.vnetResourceId != nil { try container.encode(self.vnetResourceId, forKey: .vnetResourceId) }
+    if self.certThumbprint != nil { try container.encode(self.certThumbprint, forKey: .certThumbprint) }
+    if self.certBlob != nil { try container.encode(self.certBlob, forKey: .certBlob) }
+    if self.routes != nil { try container.encode(self.routes as! [VnetRouteData?]?, forKey: .routes) }
+    if self.resyncRequired != nil { try container.encode(self.resyncRequired, forKey: .resyncRequired) }
+    if self.dnsServers != nil { try container.encode(self.dnsServers, forKey: .dnsServers) }
   }
 }
 

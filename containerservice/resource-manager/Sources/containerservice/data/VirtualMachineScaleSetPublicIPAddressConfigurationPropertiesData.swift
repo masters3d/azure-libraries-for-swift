@@ -12,7 +12,7 @@ internal struct VirtualMachineScaleSetPublicIPAddressConfigurationPropertiesData
         case dnsSettings = "dnsSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VirtualMachineScaleSetPublicIPAddressConfigurationPropertiesData
     if container.contains(.dnsSettings) {
         self.dnsSettings = try container.decode(VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettingsData?.self, forKey: .dnsSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VirtualMachineScaleSetPublicIPAddressConfigurationPropertiesData
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.idleTimeoutInMinutes != nil {try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes)}
-    if self.dnsSettings != nil {try container.encode(self.dnsSettings as! VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettingsData?, forKey: .dnsSettings)}
+    if self.idleTimeoutInMinutes != nil { try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes) }
+    if self.dnsSettings != nil { try container.encode(self.dnsSettings as! VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettingsData?, forKey: .dnsSettings) }
   }
 }
 

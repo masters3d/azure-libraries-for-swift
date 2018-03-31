@@ -18,7 +18,7 @@ internal struct SnapshotRecoveryRequestPropertiesData : SnapshotRecoveryRequestP
         case ignoreConflictingHostNames = "ignoreConflictingHostNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct SnapshotRecoveryRequestPropertiesData : SnapshotRecoveryRequestP
     if container.contains(.ignoreConflictingHostNames) {
         self.ignoreConflictingHostNames = try container.decode(Bool?.self, forKey: .ignoreConflictingHostNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct SnapshotRecoveryRequestPropertiesData : SnapshotRecoveryRequestP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.snapshotTime != nil {try container.encode(self.snapshotTime, forKey: .snapshotTime)}
-    if self.recoveryTarget != nil {try container.encode(self.recoveryTarget as! SnapshotRecoveryTargetData?, forKey: .recoveryTarget)}
-    if self.overwrite != nil {try container.encode(self.overwrite, forKey: .overwrite)}
-    if self.recoverConfiguration != nil {try container.encode(self.recoverConfiguration, forKey: .recoverConfiguration)}
-    if self.ignoreConflictingHostNames != nil {try container.encode(self.ignoreConflictingHostNames, forKey: .ignoreConflictingHostNames)}
+    if self.snapshotTime != nil { try container.encode(self.snapshotTime, forKey: .snapshotTime) }
+    if self.recoveryTarget != nil { try container.encode(self.recoveryTarget as! SnapshotRecoveryTargetData?, forKey: .recoveryTarget) }
+    if self.overwrite != nil { try container.encode(self.overwrite, forKey: .overwrite) }
+    if self.recoverConfiguration != nil { try container.encode(self.recoverConfiguration, forKey: .recoverConfiguration) }
+    if self.ignoreConflictingHostNames != nil { try container.encode(self.ignoreConflictingHostNames, forKey: .ignoreConflictingHostNames) }
   }
 }
 

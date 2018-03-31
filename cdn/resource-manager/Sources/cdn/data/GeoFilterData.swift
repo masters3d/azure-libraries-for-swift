@@ -14,7 +14,7 @@ internal struct GeoFilterData : GeoFilterProtocol {
         case countryCodes = "countryCodes"
         }
 
-  public init(relativePath: String, action: GeoFilterActionsEnum, countryCodes: [String])  {
+  public init(relativePath: String, action: GeoFilterActionsEnum, countryCodes: [String]) {
     self.relativePath = relativePath
     self.action = action
     self.countryCodes = countryCodes
@@ -25,7 +25,7 @@ internal struct GeoFilterData : GeoFilterProtocol {
       self.relativePath = try container.decode(String.self, forKey: .relativePath)
     self.action = try container.decode(GeoFilterActionsEnum.self, forKey: .action)
     self.countryCodes = try container.decode([String].self, forKey: .countryCodes)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

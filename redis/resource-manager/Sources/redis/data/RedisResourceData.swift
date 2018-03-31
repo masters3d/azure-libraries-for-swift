@@ -22,7 +22,7 @@ internal struct RedisResourceData : RedisResourceProtocol, TrackedResourceProtoc
         case zones = "zones"
         }
 
-  public init(location: String, properties: RedisPropertiesProtocol)  {
+  public init(location: String, properties: RedisPropertiesProtocol) {
     self.location = location
     self.properties = properties
   }
@@ -46,7 +46,7 @@ internal struct RedisResourceData : RedisResourceProtocol, TrackedResourceProtoc
     if container.contains(.zones) {
         self.zones = try container.decode([String]?.self, forKey: .zones)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,13 +56,13 @@ internal struct RedisResourceData : RedisResourceProtocol, TrackedResourceProtoc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.location, forKey: .location)
     try container.encode(self.properties as! RedisPropertiesData, forKey: .properties)
-    if self.zones != nil {try container.encode(self.zones as! [String]?, forKey: .zones)}
+    if self.zones != nil { try container.encode(self.zones as! [String]?, forKey: .zones) }
   }
 }
 

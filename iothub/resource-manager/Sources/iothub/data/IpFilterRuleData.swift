@@ -14,7 +14,7 @@ internal struct IpFilterRuleData : IpFilterRuleProtocol {
         case ipMask = "ipMask"
         }
 
-  public init(filterName: String, action: IpFilterActionTypeEnum, ipMask: String)  {
+  public init(filterName: String, action: IpFilterActionTypeEnum, ipMask: String) {
     self.filterName = filterName
     self.action = action
     self.ipMask = ipMask
@@ -25,7 +25,7 @@ internal struct IpFilterRuleData : IpFilterRuleProtocol {
       self.filterName = try container.decode(String.self, forKey: .filterName)
     self.action = try container.decode(IpFilterActionTypeEnum.self, forKey: .action)
     self.ipMask = try container.decode(String.self, forKey: .ipMask)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

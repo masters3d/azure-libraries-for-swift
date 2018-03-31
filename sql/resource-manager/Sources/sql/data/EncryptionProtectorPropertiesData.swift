@@ -18,7 +18,7 @@ internal struct EncryptionProtectorPropertiesData : EncryptionProtectorPropertie
         case thumbprint = "thumbprint"
         }
 
-  public init(serverKeyType: ServerKeyTypeEnum)  {
+  public init(serverKeyType: ServerKeyTypeEnum) {
     self.serverKeyType = serverKeyType
   }
 
@@ -37,7 +37,7 @@ internal struct EncryptionProtectorPropertiesData : EncryptionProtectorPropertie
     if container.contains(.thumbprint) {
         self.thumbprint = try container.decode(String?.self, forKey: .thumbprint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,11 +47,11 @@ internal struct EncryptionProtectorPropertiesData : EncryptionProtectorPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subregion != nil {try container.encode(self.subregion, forKey: .subregion)}
-    if self.serverKeyName != nil {try container.encode(self.serverKeyName, forKey: .serverKeyName)}
+    if self.subregion != nil { try container.encode(self.subregion, forKey: .subregion) }
+    if self.serverKeyName != nil { try container.encode(self.serverKeyName, forKey: .serverKeyName) }
     try container.encode(self.serverKeyType, forKey: .serverKeyType)
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
   }
 }
 

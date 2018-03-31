@@ -10,7 +10,7 @@ internal struct NetworkWatcherPropertiesFormatData : NetworkWatcherPropertiesFor
         enum CodingKeys: String, CodingKey {case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NetworkWatcherPropertiesFormatData : NetworkWatcherPropertiesFor
       if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(ProvisioningStateEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NetworkWatcherPropertiesFormatData : NetworkWatcherPropertiesFor
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct NextHopParametersData : NextHopParametersProtocol {
         case targetNicResourceId = "targetNicResourceId"
         }
 
-  public init(targetResourceId: String, sourceIPAddress: String, destinationIPAddress: String)  {
+  public init(targetResourceId: String, sourceIPAddress: String, destinationIPAddress: String) {
     self.targetResourceId = targetResourceId
     self.sourceIPAddress = sourceIPAddress
     self.destinationIPAddress = destinationIPAddress
@@ -30,7 +30,7 @@ internal struct NextHopParametersData : NextHopParametersProtocol {
     if container.contains(.targetNicResourceId) {
         self.targetNicResourceId = try container.decode(String?.self, forKey: .targetNicResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct NextHopParametersData : NextHopParametersProtocol {
     try container.encode(self.targetResourceId, forKey: .targetResourceId)
     try container.encode(self.sourceIPAddress, forKey: .sourceIPAddress)
     try container.encode(self.destinationIPAddress, forKey: .destinationIPAddress)
-    if self.targetNicResourceId != nil {try container.encode(self.targetNicResourceId, forKey: .targetNicResourceId)}
+    if self.targetNicResourceId != nil { try container.encode(self.targetNicResourceId, forKey: .targetNicResourceId) }
   }
 }
 

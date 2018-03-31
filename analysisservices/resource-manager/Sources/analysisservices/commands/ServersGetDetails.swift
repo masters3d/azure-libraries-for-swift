@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServersGetDetails  {
+public protocol ServersGetDetails {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var serverName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AnalysisServicesServerProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AnalysisServicesServerProtocol?, Error?) -> Void)
 }
 
 extension Commands.Servers {
@@ -29,7 +29,7 @@ extension Commands.Servers {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{serverName}"] = String(describing: self.serverName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -42,12 +42,12 @@ extension Commands.Servers {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AnalysisServicesServerData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AnalysisServicesServerProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AnalysisServicesServerProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AnalysisServicesServerData?, error: Error?) in
                 completionHandler(result, error)

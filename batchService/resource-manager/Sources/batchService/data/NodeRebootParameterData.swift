@@ -10,7 +10,7 @@ internal struct NodeRebootParameterData : NodeRebootParameterProtocol {
         enum CodingKeys: String, CodingKey {case nodeRebootOption = "nodeRebootOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NodeRebootParameterData : NodeRebootParameterProtocol {
       if container.contains(.nodeRebootOption) {
         self.nodeRebootOption = try container.decode(ComputeNodeRebootOptionEnum?.self, forKey: .nodeRebootOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NodeRebootParameterData : NodeRebootParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nodeRebootOption != nil {try container.encode(self.nodeRebootOption, forKey: .nodeRebootOption)}
+    if self.nodeRebootOption != nil { try container.encode(self.nodeRebootOption, forKey: .nodeRebootOption) }
   }
 }
 

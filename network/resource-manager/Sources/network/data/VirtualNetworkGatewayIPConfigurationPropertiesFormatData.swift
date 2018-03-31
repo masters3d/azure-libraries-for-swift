@@ -16,7 +16,7 @@ internal struct VirtualNetworkGatewayIPConfigurationPropertiesFormatData : Virtu
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VirtualNetworkGatewayIPConfigurationPropertiesFormatData : Virtu
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VirtualNetworkGatewayIPConfigurationPropertiesFormatData : Virtu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.privateIPAllocationMethod != nil {try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod)}
-    if self.subnet != nil {try container.encode(self.subnet as! SubResourceData?, forKey: .subnet)}
-    if self.publicIPAddress != nil {try container.encode(self.publicIPAddress as! SubResourceData?, forKey: .publicIPAddress)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.privateIPAllocationMethod != nil { try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod) }
+    if self.subnet != nil { try container.encode(self.subnet as! SubResourceData?, forKey: .subnet) }
+    if self.publicIPAddress != nil { try container.encode(self.publicIPAddress as! SubResourceData?, forKey: .publicIPAddress) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

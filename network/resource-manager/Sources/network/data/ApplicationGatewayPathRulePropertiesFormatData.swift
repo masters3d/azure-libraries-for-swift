@@ -18,7 +18,7 @@ internal struct ApplicationGatewayPathRulePropertiesFormatData : ApplicationGate
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApplicationGatewayPathRulePropertiesFormatData : ApplicationGate
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApplicationGatewayPathRulePropertiesFormatData : ApplicationGate
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.paths != nil {try container.encode(self.paths as! [String]?, forKey: .paths)}
-    if self.backendAddressPool != nil {try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool)}
-    if self.backendHttpSettings != nil {try container.encode(self.backendHttpSettings as! SubResourceData?, forKey: .backendHttpSettings)}
-    if self.redirectConfiguration != nil {try container.encode(self.redirectConfiguration as! SubResourceData?, forKey: .redirectConfiguration)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.paths != nil { try container.encode(self.paths as! [String]?, forKey: .paths) }
+    if self.backendAddressPool != nil { try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool) }
+    if self.backendHttpSettings != nil { try container.encode(self.backendHttpSettings as! SubResourceData?, forKey: .backendHttpSettings) }
+    if self.redirectConfiguration != nil { try container.encode(self.redirectConfiguration as! SubResourceData?, forKey: .redirectConfiguration) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddress  {
+public protocol PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddress {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualMachineScaleSetName : String { get set }
@@ -12,7 +12,7 @@ public protocol PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddress  {
     var apiVersion : String { get set }
     var expand : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void)
 }
 
 extension Commands.PublicIPAddresses {
@@ -43,7 +43,7 @@ extension Commands.PublicIPAddresses {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualMachineScaleSetName}"] = String(describing: self.virtualMachineScaleSetName)
             self.pathParameters["{virtualmachineIndex}"] = String(describing: self.virtualmachineIndex)
@@ -61,12 +61,12 @@ extension Commands.PublicIPAddresses {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PublicIPAddressData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: PublicIPAddressData?, error: Error?) in
                 completionHandler(result, error)

@@ -12,7 +12,7 @@ internal struct GcmCredentialPropertiesData : GcmCredentialPropertiesProtocol {
         case googleApiKey = "googleApiKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct GcmCredentialPropertiesData : GcmCredentialPropertiesProtocol {
     if container.contains(.googleApiKey) {
         self.googleApiKey = try container.decode(String?.self, forKey: .googleApiKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct GcmCredentialPropertiesData : GcmCredentialPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.gcmEndpoint != nil {try container.encode(self.gcmEndpoint, forKey: .gcmEndpoint)}
-    if self.googleApiKey != nil {try container.encode(self.googleApiKey, forKey: .googleApiKey)}
+    if self.gcmEndpoint != nil { try container.encode(self.gcmEndpoint, forKey: .gcmEndpoint) }
+    if self.googleApiKey != nil { try container.encode(self.googleApiKey, forKey: .googleApiKey) }
   }
 }
 

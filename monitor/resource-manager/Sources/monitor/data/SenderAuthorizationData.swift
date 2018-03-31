@@ -14,7 +14,7 @@ internal struct SenderAuthorizationData : SenderAuthorizationProtocol {
         case scope = "scope"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SenderAuthorizationData : SenderAuthorizationProtocol {
     if container.contains(.scope) {
         self.scope = try container.decode(String?.self, forKey: .scope)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SenderAuthorizationData : SenderAuthorizationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
-    if self.role != nil {try container.encode(self.role, forKey: .role)}
-    if self.scope != nil {try container.encode(self.scope, forKey: .scope)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
+    if self.role != nil { try container.encode(self.role, forKey: .role) }
+    if self.scope != nil { try container.encode(self.scope, forKey: .scope) }
   }
 }
 

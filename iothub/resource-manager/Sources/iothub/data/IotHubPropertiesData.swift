@@ -34,7 +34,7 @@ internal struct IotHubPropertiesData : IotHubPropertiesProtocol {
         case features = "features"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct IotHubPropertiesData : IotHubPropertiesProtocol {
     if container.contains(.features) {
         self.features = try container.decode(CapabilitiesEnum?.self, forKey: .features)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,19 +88,19 @@ internal struct IotHubPropertiesData : IotHubPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authorizationPolicies != nil {try container.encode(self.authorizationPolicies as! [SharedAccessSignatureAuthorizationRuleData?]?, forKey: .authorizationPolicies)}
-    if self.ipFilterRules != nil {try container.encode(self.ipFilterRules as! [IpFilterRuleData?]?, forKey: .ipFilterRules)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
-    if self.eventHubEndpoints != nil {try container.encode(self.eventHubEndpoints, forKey: .eventHubEndpoints)}
-    if self.routing != nil {try container.encode(self.routing as! RoutingPropertiesData?, forKey: .routing)}
-    if self.storageEndpoints != nil {try container.encode(self.storageEndpoints, forKey: .storageEndpoints)}
-    if self.messagingEndpoints != nil {try container.encode(self.messagingEndpoints, forKey: .messagingEndpoints)}
-    if self.enableFileUploadNotifications != nil {try container.encode(self.enableFileUploadNotifications, forKey: .enableFileUploadNotifications)}
-    if self.cloudToDevice != nil {try container.encode(self.cloudToDevice as! CloudToDevicePropertiesData?, forKey: .cloudToDevice)}
-    if self.comments != nil {try container.encode(self.comments, forKey: .comments)}
-    if self.operationsMonitoringProperties != nil {try container.encode(self.operationsMonitoringProperties as! OperationsMonitoringPropertiesData?, forKey: .operationsMonitoringProperties)}
-    if self.features != nil {try container.encode(self.features, forKey: .features)}
+    if self.authorizationPolicies != nil { try container.encode(self.authorizationPolicies as! [SharedAccessSignatureAuthorizationRuleData?]?, forKey: .authorizationPolicies) }
+    if self.ipFilterRules != nil { try container.encode(self.ipFilterRules as! [IpFilterRuleData?]?, forKey: .ipFilterRules) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
+    if self.eventHubEndpoints != nil { try container.encode(self.eventHubEndpoints, forKey: .eventHubEndpoints) }
+    if self.routing != nil { try container.encode(self.routing as! RoutingPropertiesData?, forKey: .routing) }
+    if self.storageEndpoints != nil { try container.encode(self.storageEndpoints, forKey: .storageEndpoints) }
+    if self.messagingEndpoints != nil { try container.encode(self.messagingEndpoints, forKey: .messagingEndpoints) }
+    if self.enableFileUploadNotifications != nil { try container.encode(self.enableFileUploadNotifications, forKey: .enableFileUploadNotifications) }
+    if self.cloudToDevice != nil { try container.encode(self.cloudToDevice as! CloudToDevicePropertiesData?, forKey: .cloudToDevice) }
+    if self.comments != nil { try container.encode(self.comments, forKey: .comments) }
+    if self.operationsMonitoringProperties != nil { try container.encode(self.operationsMonitoringProperties as! OperationsMonitoringPropertiesData?, forKey: .operationsMonitoringProperties) }
+    if self.features != nil { try container.encode(self.features, forKey: .features) }
   }
 }
 

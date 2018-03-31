@@ -14,7 +14,7 @@ internal struct UsageStatisticsData : UsageStatisticsProtocol {
         case dedicatedCoreTime = "dedicatedCoreTime"
         }
 
-  public init(startTime: Date, lastUpdateTime: Date, dedicatedCoreTime: String)  {
+  public init(startTime: Date, lastUpdateTime: Date, dedicatedCoreTime: String) {
     self.startTime = startTime
     self.lastUpdateTime = lastUpdateTime
     self.dedicatedCoreTime = dedicatedCoreTime
@@ -25,7 +25,7 @@ internal struct UsageStatisticsData : UsageStatisticsProtocol {
           self.startTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .startTime)), format: .dateTime)!
         self.lastUpdateTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastUpdateTime)), format: .dateTime)!
     self.dedicatedCoreTime = try container.decode(String.self, forKey: .dedicatedCoreTime)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

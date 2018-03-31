@@ -12,7 +12,7 @@ internal struct KpiExtractData : KpiExtractProtocol {
         case expression = "expression"
         }
 
-  public init(extractName: String, expression: String)  {
+  public init(extractName: String, expression: String) {
     self.extractName = extractName
     self.expression = expression
   }
@@ -21,7 +21,7 @@ internal struct KpiExtractData : KpiExtractProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.extractName = try container.decode(String.self, forKey: .extractName)
     self.expression = try container.decode(String.self, forKey: .expression)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

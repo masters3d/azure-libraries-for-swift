@@ -18,7 +18,7 @@ internal struct StorageAccountUpdateParametersData : StorageAccountUpdateParamet
         case kind = "kind"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct StorageAccountUpdateParametersData : StorageAccountUpdateParamet
     if container.contains(.kind) {
         self.kind = try container.decode(KindEnum?.self, forKey: .kind)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct StorageAccountUpdateParametersData : StorageAccountUpdateParamet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.identity != nil {try container.encode(self.identity as! IdentityData?, forKey: .identity)}
-    if self.properties != nil {try container.encode(self.properties as! StorageAccountPropertiesUpdateParametersData?, forKey: .properties)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.identity != nil { try container.encode(self.identity as! IdentityData?, forKey: .identity) }
+    if self.properties != nil { try container.encode(self.properties as! StorageAccountPropertiesUpdateParametersData?, forKey: .properties) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
   }
 }
 

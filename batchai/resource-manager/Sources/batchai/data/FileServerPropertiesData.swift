@@ -24,7 +24,7 @@ internal struct FileServerPropertiesData : FileServerPropertiesProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct FileServerPropertiesData : FileServerPropertiesProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(FileServerProvisioningStateEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,18 +63,18 @@ internal struct FileServerPropertiesData : FileServerPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.sshConfiguration != nil {try container.encode(self.sshConfiguration as! SshConfigurationData?, forKey: .sshConfiguration)}
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! DataDisksData?, forKey: .dataDisks)}
-    if self.subnet != nil {try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet)}
-    if self.mountSettings != nil {try container.encode(self.mountSettings as! MountSettingsData?, forKey: .mountSettings)}
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.sshConfiguration != nil { try container.encode(self.sshConfiguration as! SshConfigurationData?, forKey: .sshConfiguration) }
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! DataDisksData?, forKey: .dataDisks) }
+    if self.subnet != nil { try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet) }
+    if self.mountSettings != nil { try container.encode(self.mountSettings as! MountSettingsData?, forKey: .mountSettings) }
     if self.provisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.provisioningStateTransitionTime!, format: .dateTime), forKey: .provisioningStateTransitionTime)
     }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

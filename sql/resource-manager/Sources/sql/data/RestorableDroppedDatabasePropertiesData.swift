@@ -24,7 +24,7 @@ internal struct RestorableDroppedDatabasePropertiesData : RestorableDroppedDatab
         case earliestRestoreDate = "earliestRestoreDate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct RestorableDroppedDatabasePropertiesData : RestorableDroppedDatab
     if container.contains(.earliestRestoreDate) {
         self.earliestRestoreDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .earliestRestoreDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,11 +63,11 @@ internal struct RestorableDroppedDatabasePropertiesData : RestorableDroppedDatab
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.edition != nil {try container.encode(self.edition, forKey: .edition)}
-    if self.maxSizeBytes != nil {try container.encode(self.maxSizeBytes, forKey: .maxSizeBytes)}
-    if self.serviceLevelObjective != nil {try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective)}
-    if self.elasticPoolName != nil {try container.encode(self.elasticPoolName, forKey: .elasticPoolName)}
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.edition != nil { try container.encode(self.edition, forKey: .edition) }
+    if self.maxSizeBytes != nil { try container.encode(self.maxSizeBytes, forKey: .maxSizeBytes) }
+    if self.serviceLevelObjective != nil { try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective) }
+    if self.elasticPoolName != nil { try container.encode(self.elasticPoolName, forKey: .elasticPoolName) }
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }

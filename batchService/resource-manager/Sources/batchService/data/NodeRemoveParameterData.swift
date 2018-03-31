@@ -14,7 +14,7 @@ internal struct NodeRemoveParameterData : NodeRemoveParameterProtocol {
         case nodeDeallocationOption = "nodeDeallocationOption"
         }
 
-  public init(nodeList: [String])  {
+  public init(nodeList: [String]) {
     self.nodeList = nodeList
   }
 
@@ -27,7 +27,7 @@ internal struct NodeRemoveParameterData : NodeRemoveParameterProtocol {
     if container.contains(.nodeDeallocationOption) {
         self.nodeDeallocationOption = try container.decode(ComputeNodeDeallocationOptionEnum?.self, forKey: .nodeDeallocationOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct NodeRemoveParameterData : NodeRemoveParameterProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.nodeList as! [String], forKey: .nodeList)
-    if self.resizeTimeout != nil {try container.encode(self.resizeTimeout, forKey: .resizeTimeout)}
-    if self.nodeDeallocationOption != nil {try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption)}
+    if self.resizeTimeout != nil { try container.encode(self.resizeTimeout, forKey: .resizeTimeout) }
+    if self.nodeDeallocationOption != nil { try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption) }
   }
 }
 

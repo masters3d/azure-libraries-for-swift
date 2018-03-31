@@ -10,14 +10,14 @@ internal struct ContainerServiceCustomProfileData : ContainerServiceCustomProfil
         enum CodingKeys: String, CodingKey {case orchestrator = "orchestrator"
         }
 
-  public init(orchestrator: String)  {
+  public init(orchestrator: String) {
     self.orchestrator = orchestrator
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.orchestrator = try container.decode(String.self, forKey: .orchestrator)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

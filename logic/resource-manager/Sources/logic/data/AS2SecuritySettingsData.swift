@@ -28,7 +28,7 @@ internal struct AS2SecuritySettingsData : AS2SecuritySettingsProtocol {
         case sha2AlgorithmFormat = "sha2AlgorithmFormat"
         }
 
-  public init(overrideGroupSigningCertificate: Bool, enableNrrForInboundEncodedMessages: Bool, enableNrrForInboundDecodedMessages: Bool, enableNrrForOutboundMdn: Bool, enableNrrForOutboundEncodedMessages: Bool, enableNrrForOutboundDecodedMessages: Bool, enableNrrForInboundMdn: Bool)  {
+  public init(overrideGroupSigningCertificate: Bool, enableNrrForInboundEncodedMessages: Bool, enableNrrForInboundDecodedMessages: Bool, enableNrrForOutboundMdn: Bool, enableNrrForOutboundEncodedMessages: Bool, enableNrrForOutboundDecodedMessages: Bool, enableNrrForInboundMdn: Bool) {
     self.overrideGroupSigningCertificate = overrideGroupSigningCertificate
     self.enableNrrForInboundEncodedMessages = enableNrrForInboundEncodedMessages
     self.enableNrrForInboundDecodedMessages = enableNrrForInboundDecodedMessages
@@ -56,7 +56,7 @@ internal struct AS2SecuritySettingsData : AS2SecuritySettingsProtocol {
     if container.contains(.sha2AlgorithmFormat) {
         self.sha2AlgorithmFormat = try container.decode(String?.self, forKey: .sha2AlgorithmFormat)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -67,15 +67,15 @@ internal struct AS2SecuritySettingsData : AS2SecuritySettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.overrideGroupSigningCertificate, forKey: .overrideGroupSigningCertificate)
-    if self.signingCertificateName != nil {try container.encode(self.signingCertificateName, forKey: .signingCertificateName)}
-    if self.encryptionCertificateName != nil {try container.encode(self.encryptionCertificateName, forKey: .encryptionCertificateName)}
+    if self.signingCertificateName != nil { try container.encode(self.signingCertificateName, forKey: .signingCertificateName) }
+    if self.encryptionCertificateName != nil { try container.encode(self.encryptionCertificateName, forKey: .encryptionCertificateName) }
     try container.encode(self.enableNrrForInboundEncodedMessages, forKey: .enableNrrForInboundEncodedMessages)
     try container.encode(self.enableNrrForInboundDecodedMessages, forKey: .enableNrrForInboundDecodedMessages)
     try container.encode(self.enableNrrForOutboundMdn, forKey: .enableNrrForOutboundMdn)
     try container.encode(self.enableNrrForOutboundEncodedMessages, forKey: .enableNrrForOutboundEncodedMessages)
     try container.encode(self.enableNrrForOutboundDecodedMessages, forKey: .enableNrrForOutboundDecodedMessages)
     try container.encode(self.enableNrrForInboundMdn, forKey: .enableNrrForInboundMdn)
-    if self.sha2AlgorithmFormat != nil {try container.encode(self.sha2AlgorithmFormat, forKey: .sha2AlgorithmFormat)}
+    if self.sha2AlgorithmFormat != nil { try container.encode(self.sha2AlgorithmFormat, forKey: .sha2AlgorithmFormat) }
   }
 }
 

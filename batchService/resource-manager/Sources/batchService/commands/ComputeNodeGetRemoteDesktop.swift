@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ComputeNodeGetRemoteDesktop  {
+public protocol ComputeNodeGetRemoteDesktop {
     var headerParameters: [String: String] { get set }
     var poolId : String { get set }
     var nodeId : String { get set }
@@ -10,7 +10,7 @@ public protocol ComputeNodeGetRemoteDesktop  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Data?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (Data?, Error?) -> Void)
 }
 
 extension Commands.ComputeNode {
@@ -36,7 +36,7 @@ extension Commands.ComputeNode {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{poolId}"] = String(describing: self.poolId)
             self.pathParameters["{nodeId}"] = String(describing: self.nodeId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
@@ -48,10 +48,10 @@ extension Commands.ComputeNode {
         }
 
         public override func returnFunc(data: Data) throws -> Decodable? {
-            return DataWrapper(data: data);
+            return DataWrapper(data: data)
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Data?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (Data?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DataWrapper?, error: Error?) in
                 let data = result?.data as Data?

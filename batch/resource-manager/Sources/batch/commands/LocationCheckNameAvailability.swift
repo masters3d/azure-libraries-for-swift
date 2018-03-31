@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LocationCheckNameAvailability  {
+public protocol LocationCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var locationName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckNameAvailabilityParametersProtocol?  { get set }
+    var parameters :  CheckNameAvailabilityParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Location {
@@ -29,7 +29,7 @@ extension Commands.Location {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{locationName}"] = String(describing: self.locationName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -51,12 +51,12 @@ extension Commands.Location {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CheckNameAvailabilityResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CheckNameAvailabilityResultData?, error: Error?) in
                 completionHandler(result, error)

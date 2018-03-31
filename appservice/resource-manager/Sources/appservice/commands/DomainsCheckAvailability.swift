@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DomainsCheckAvailability  {
+public protocol DomainsCheckAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var identifier :  NameIdentifierProtocol?  { get set }
+    var identifier :  NameIdentifierProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DomainAvailablilityCheckResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DomainAvailablilityCheckResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Domains {
@@ -26,7 +26,7 @@ extension Commands.Domains {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = identifier
@@ -47,12 +47,12 @@ extension Commands.Domains {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DomainAvailablilityCheckResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DomainAvailablilityCheckResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DomainAvailablilityCheckResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DomainAvailablilityCheckResultData?, error: Error?) in
                 completionHandler(result, error)

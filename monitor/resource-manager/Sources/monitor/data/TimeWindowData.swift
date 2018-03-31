@@ -14,7 +14,7 @@ internal struct TimeWindowData : TimeWindowProtocol {
         case end = "end"
         }
 
-  public init(start: Date, end: Date)  {
+  public init(start: Date, end: Date) {
     self.start = start
     self.end = end
   }
@@ -26,7 +26,7 @@ internal struct TimeWindowData : TimeWindowProtocol {
     }
         self.start = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .start)), format: .dateTime)!
         self.end = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .end)), format: .dateTime)!
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct TimeWindowData : TimeWindowProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
     try container.encode(DateConverter.toString(date: self.start, format: .dateTime), forKey: .start)
     try container.encode(DateConverter.toString(date: self.end, format: .dateTime), forKey: .end)
   }

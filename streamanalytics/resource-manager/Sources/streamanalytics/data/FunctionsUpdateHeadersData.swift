@@ -10,7 +10,7 @@ internal struct FunctionsUpdateHeadersData : FunctionsUpdateHeadersProtocol {
         enum CodingKeys: String, CodingKey {case eTag = "ETag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FunctionsUpdateHeadersData : FunctionsUpdateHeadersProtocol {
       if container.contains(.eTag) {
         self.eTag = try container.decode(String?.self, forKey: .eTag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FunctionsUpdateHeadersData : FunctionsUpdateHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
   }
 }
 

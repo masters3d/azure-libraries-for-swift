@@ -14,7 +14,7 @@ internal struct ApiErrorBaseData : ApiErrorBaseProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApiErrorBaseData : ApiErrorBaseProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApiErrorBaseData : ApiErrorBaseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.target != nil {try container.encode(self.target, forKey: .target)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.target != nil { try container.encode(self.target, forKey: .target) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

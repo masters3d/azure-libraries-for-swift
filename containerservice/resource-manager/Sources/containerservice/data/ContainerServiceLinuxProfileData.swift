@@ -12,7 +12,7 @@ internal struct ContainerServiceLinuxProfileData : ContainerServiceLinuxProfileP
         case ssh = "ssh"
         }
 
-  public init(adminUsername: String, ssh: ContainerServiceSshConfigurationProtocol)  {
+  public init(adminUsername: String, ssh: ContainerServiceSshConfigurationProtocol) {
     self.adminUsername = adminUsername
     self.ssh = ssh
   }
@@ -21,7 +21,7 @@ internal struct ContainerServiceLinuxProfileData : ContainerServiceLinuxProfileP
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.adminUsername = try container.decode(String.self, forKey: .adminUsername)
     self.ssh = try container.decode(ContainerServiceSshConfigurationData.self, forKey: .ssh)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

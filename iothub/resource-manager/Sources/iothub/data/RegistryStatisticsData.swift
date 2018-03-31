@@ -14,7 +14,7 @@ internal struct RegistryStatisticsData : RegistryStatisticsProtocol {
         case disabledDeviceCount = "disabledDeviceCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RegistryStatisticsData : RegistryStatisticsProtocol {
     if container.contains(.disabledDeviceCount) {
         self.disabledDeviceCount = try container.decode(Int64?.self, forKey: .disabledDeviceCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RegistryStatisticsData : RegistryStatisticsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.totalDeviceCount != nil {try container.encode(self.totalDeviceCount, forKey: .totalDeviceCount)}
-    if self.enabledDeviceCount != nil {try container.encode(self.enabledDeviceCount, forKey: .enabledDeviceCount)}
-    if self.disabledDeviceCount != nil {try container.encode(self.disabledDeviceCount, forKey: .disabledDeviceCount)}
+    if self.totalDeviceCount != nil { try container.encode(self.totalDeviceCount, forKey: .totalDeviceCount) }
+    if self.enabledDeviceCount != nil { try container.encode(self.enabledDeviceCount, forKey: .enabledDeviceCount) }
+    if self.disabledDeviceCount != nil { try container.encode(self.disabledDeviceCount, forKey: .disabledDeviceCount) }
   }
 }
 

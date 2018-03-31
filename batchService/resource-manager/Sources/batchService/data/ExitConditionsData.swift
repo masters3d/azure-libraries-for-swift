@@ -18,7 +18,7 @@ internal struct ExitConditionsData : ExitConditionsProtocol {
         case _default = "default"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ExitConditionsData : ExitConditionsProtocol {
     if container.contains(._default) {
         self._default = try container.decode(ExitOptionsData?.self, forKey: ._default)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ExitConditionsData : ExitConditionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.exitCodes != nil {try container.encode(self.exitCodes as! [ExitCodeMappingData?]?, forKey: .exitCodes)}
-    if self.exitCodeRanges != nil {try container.encode(self.exitCodeRanges as! [ExitCodeRangeMappingData?]?, forKey: .exitCodeRanges)}
-    if self.preProcessingError != nil {try container.encode(self.preProcessingError as! ExitOptionsData?, forKey: .preProcessingError)}
-    if self.fileUploadError != nil {try container.encode(self.fileUploadError as! ExitOptionsData?, forKey: .fileUploadError)}
-    if self._default != nil {try container.encode(self._default as! ExitOptionsData?, forKey: ._default)}
+    if self.exitCodes != nil { try container.encode(self.exitCodes as! [ExitCodeMappingData?]?, forKey: .exitCodes) }
+    if self.exitCodeRanges != nil { try container.encode(self.exitCodeRanges as! [ExitCodeRangeMappingData?]?, forKey: .exitCodeRanges) }
+    if self.preProcessingError != nil { try container.encode(self.preProcessingError as! ExitOptionsData?, forKey: .preProcessingError) }
+    if self.fileUploadError != nil { try container.encode(self.fileUploadError as! ExitOptionsData?, forKey: .fileUploadError) }
+    if self._default != nil { try container.encode(self._default as! ExitOptionsData?, forKey: ._default) }
   }
 }
 

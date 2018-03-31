@@ -18,7 +18,7 @@ internal struct ClientScriptForConnectData : ClientScriptForConnectProtocol {
         case scriptNameSuffix = "scriptNameSuffix"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ClientScriptForConnectData : ClientScriptForConnectProtocol {
     if container.contains(.scriptNameSuffix) {
         self.scriptNameSuffix = try container.decode(String?.self, forKey: .scriptNameSuffix)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ClientScriptForConnectData : ClientScriptForConnectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.scriptContent != nil {try container.encode(self.scriptContent, forKey: .scriptContent)}
-    if self.scriptExtension != nil {try container.encode(self.scriptExtension, forKey: .scriptExtension)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.scriptNameSuffix != nil {try container.encode(self.scriptNameSuffix, forKey: .scriptNameSuffix)}
+    if self.scriptContent != nil { try container.encode(self.scriptContent, forKey: .scriptContent) }
+    if self.scriptExtension != nil { try container.encode(self.scriptExtension, forKey: .scriptExtension) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.scriptNameSuffix != nil { try container.encode(self.scriptNameSuffix, forKey: .scriptNameSuffix) }
   }
 }
 

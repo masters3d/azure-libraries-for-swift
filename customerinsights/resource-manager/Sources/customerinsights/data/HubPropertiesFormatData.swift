@@ -18,7 +18,7 @@ internal struct HubPropertiesFormatData : HubPropertiesFormatProtocol {
         case hubBillingInfo = "hubBillingInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct HubPropertiesFormatData : HubPropertiesFormatProtocol {
     if container.contains(.hubBillingInfo) {
         self.hubBillingInfo = try container.decode(HubBillingInfoFormatData?.self, forKey: .hubBillingInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct HubPropertiesFormatData : HubPropertiesFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.apiEndpoint != nil {try container.encode(self.apiEndpoint, forKey: .apiEndpoint)}
-    if self.webEndpoint != nil {try container.encode(self.webEndpoint, forKey: .webEndpoint)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.tenantFeatures != nil {try container.encode(self.tenantFeatures, forKey: .tenantFeatures)}
-    if self.hubBillingInfo != nil {try container.encode(self.hubBillingInfo as! HubBillingInfoFormatData?, forKey: .hubBillingInfo)}
+    if self.apiEndpoint != nil { try container.encode(self.apiEndpoint, forKey: .apiEndpoint) }
+    if self.webEndpoint != nil { try container.encode(self.webEndpoint, forKey: .webEndpoint) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.tenantFeatures != nil { try container.encode(self.tenantFeatures, forKey: .tenantFeatures) }
+    if self.hubBillingInfo != nil { try container.encode(self.hubBillingInfo as! HubBillingInfoFormatData?, forKey: .hubBillingInfo) }
   }
 }
 

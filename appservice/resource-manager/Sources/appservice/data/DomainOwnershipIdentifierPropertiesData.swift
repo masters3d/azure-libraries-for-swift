@@ -10,7 +10,7 @@ internal struct DomainOwnershipIdentifierPropertiesData : DomainOwnershipIdentif
         enum CodingKeys: String, CodingKey {case ownershipId = "ownershipId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DomainOwnershipIdentifierPropertiesData : DomainOwnershipIdentif
       if container.contains(.ownershipId) {
         self.ownershipId = try container.decode(String?.self, forKey: .ownershipId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DomainOwnershipIdentifierPropertiesData : DomainOwnershipIdentif
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ownershipId != nil {try container.encode(self.ownershipId, forKey: .ownershipId)}
+    if self.ownershipId != nil { try container.encode(self.ownershipId, forKey: .ownershipId) }
   }
 }
 

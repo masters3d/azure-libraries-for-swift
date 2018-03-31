@@ -10,7 +10,7 @@ internal struct ClusterUpdatePropertiesData : ClusterUpdatePropertiesProtocol {
         enum CodingKeys: String, CodingKey {case scaleSettings = "scaleSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ClusterUpdatePropertiesData : ClusterUpdatePropertiesProtocol {
       if container.contains(.scaleSettings) {
         self.scaleSettings = try container.decode(ScaleSettingsData?.self, forKey: .scaleSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ClusterUpdatePropertiesData : ClusterUpdatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.scaleSettings != nil {try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings)}
+    if self.scaleSettings != nil { try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings) }
   }
 }
 

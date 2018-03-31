@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RunbookDraftUndoEdit  {
+public protocol RunbookDraftUndoEdit {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol RunbookDraftUndoEdit  {
     var runbookName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RunbookDraftUndoEditResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RunbookDraftUndoEditResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.RunbookDraft {
@@ -32,7 +32,7 @@ extension Commands.RunbookDraft {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -46,12 +46,12 @@ extension Commands.RunbookDraft {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RunbookDraftUndoEditResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RunbookDraftUndoEditResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RunbookDraftUndoEditResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RunbookDraftUndoEditResultData?, error: Error?) in
                 completionHandler(result, error)

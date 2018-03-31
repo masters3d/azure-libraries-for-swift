@@ -14,7 +14,7 @@ internal struct RunCommandInputData : RunCommandInputProtocol {
         case parameters = "parameters"
         }
 
-  public init(commandId: String)  {
+  public init(commandId: String) {
     self.commandId = commandId
   }
 
@@ -27,7 +27,7 @@ internal struct RunCommandInputData : RunCommandInputProtocol {
     if container.contains(.parameters) {
         self.parameters = try container.decode([RunCommandInputParameterData?]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct RunCommandInputData : RunCommandInputProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.commandId, forKey: .commandId)
-    if self.script != nil {try container.encode(self.script as! [String]?, forKey: .script)}
-    if self.parameters != nil {try container.encode(self.parameters as! [RunCommandInputParameterData?]?, forKey: .parameters)}
+    if self.script != nil { try container.encode(self.script as! [String]?, forKey: .script) }
+    if self.parameters != nil { try container.encode(self.parameters as! [RunCommandInputParameterData?]?, forKey: .parameters) }
   }
 }
 

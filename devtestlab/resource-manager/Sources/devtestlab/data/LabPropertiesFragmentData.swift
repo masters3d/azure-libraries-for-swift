@@ -16,7 +16,7 @@ internal struct LabPropertiesFragmentData : LabPropertiesFragmentProtocol {
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct LabPropertiesFragmentData : LabPropertiesFragmentProtocol {
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct LabPropertiesFragmentData : LabPropertiesFragmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.labStorageType != nil {try container.encode(self.labStorageType, forKey: .labStorageType)}
-    if self.premiumDataDisks != nil {try container.encode(self.premiumDataDisks, forKey: .premiumDataDisks)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.labStorageType != nil { try container.encode(self.labStorageType, forKey: .labStorageType) }
+    if self.premiumDataDisks != nil { try container.encode(self.premiumDataDisks, forKey: .premiumDataDisks) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

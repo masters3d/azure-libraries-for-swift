@@ -12,7 +12,7 @@ internal struct JobMaxRecurrenceData : JobMaxRecurrenceProtocol {
         case interval = "interval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct JobMaxRecurrenceData : JobMaxRecurrenceProtocol {
     if container.contains(.interval) {
         self.interval = try container.decode(Int32?.self, forKey: .interval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct JobMaxRecurrenceData : JobMaxRecurrenceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
   }
 }
 

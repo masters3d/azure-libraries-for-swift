@@ -14,7 +14,7 @@ internal struct ServiceBusAuthenticationData : ServiceBusAuthenticationProtocol 
         case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ServiceBusAuthenticationData : ServiceBusAuthenticationProtocol 
     if container.contains(.type) {
         self.type = try container.decode(ServiceBusAuthenticationTypeEnum?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ServiceBusAuthenticationData : ServiceBusAuthenticationProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sasKey != nil {try container.encode(self.sasKey, forKey: .sasKey)}
-    if self.sasKeyName != nil {try container.encode(self.sasKeyName, forKey: .sasKeyName)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.sasKey != nil { try container.encode(self.sasKey, forKey: .sasKey) }
+    if self.sasKeyName != nil { try container.encode(self.sasKeyName, forKey: .sasKeyName) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

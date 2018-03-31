@@ -28,7 +28,7 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
         case requiredResourceAccess = "requiredResourceAccess"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
     if container.contains(.requiredResourceAccess) {
         self.requiredResourceAccess = try container.decode([RequiredResourceAccessData?]?.self, forKey: .requiredResourceAccess)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.availableToOtherTenants != nil {try container.encode(self.availableToOtherTenants, forKey: .availableToOtherTenants)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.homepage != nil {try container.encode(self.homepage, forKey: .homepage)}
-    if self.identifierUris != nil {try container.encode(self.identifierUris as! [String]?, forKey: .identifierUris)}
-    if self.replyUrls != nil {try container.encode(self.replyUrls as! [String]?, forKey: .replyUrls)}
-    if self.keyCredentials != nil {try container.encode(self.keyCredentials as! [KeyCredentialData?]?, forKey: .keyCredentials)}
-    if self.passwordCredentials != nil {try container.encode(self.passwordCredentials as! [PasswordCredentialData?]?, forKey: .passwordCredentials)}
-    if self.oauth2AllowImplicitFlow != nil {try container.encode(self.oauth2AllowImplicitFlow, forKey: .oauth2AllowImplicitFlow)}
-    if self.requiredResourceAccess != nil {try container.encode(self.requiredResourceAccess as! [RequiredResourceAccessData?]?, forKey: .requiredResourceAccess)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.availableToOtherTenants != nil { try container.encode(self.availableToOtherTenants, forKey: .availableToOtherTenants) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.homepage != nil { try container.encode(self.homepage, forKey: .homepage) }
+    if self.identifierUris != nil { try container.encode(self.identifierUris as! [String]?, forKey: .identifierUris) }
+    if self.replyUrls != nil { try container.encode(self.replyUrls as! [String]?, forKey: .replyUrls) }
+    if self.keyCredentials != nil { try container.encode(self.keyCredentials as! [KeyCredentialData?]?, forKey: .keyCredentials) }
+    if self.passwordCredentials != nil { try container.encode(self.passwordCredentials as! [PasswordCredentialData?]?, forKey: .passwordCredentials) }
+    if self.oauth2AllowImplicitFlow != nil { try container.encode(self.oauth2AllowImplicitFlow, forKey: .oauth2AllowImplicitFlow) }
+    if self.requiredResourceAccess != nil { try container.encode(self.requiredResourceAccess as! [RequiredResourceAccessData?]?, forKey: .requiredResourceAccess) }
   }
 }
 

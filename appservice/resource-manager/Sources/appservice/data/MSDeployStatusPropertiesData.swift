@@ -18,7 +18,7 @@ internal struct MSDeployStatusPropertiesData : MSDeployStatusPropertiesProtocol 
         case complete = "complete"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct MSDeployStatusPropertiesData : MSDeployStatusPropertiesProtocol 
     if container.contains(.complete) {
         self.complete = try container.decode(Bool?.self, forKey: .complete)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct MSDeployStatusPropertiesData : MSDeployStatusPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.deployer != nil {try container.encode(self.deployer, forKey: .deployer)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.deployer != nil { try container.encode(self.deployer, forKey: .deployer) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.complete != nil {try container.encode(self.complete, forKey: .complete)}
+    if self.complete != nil { try container.encode(self.complete, forKey: .complete) }
   }
 }
 

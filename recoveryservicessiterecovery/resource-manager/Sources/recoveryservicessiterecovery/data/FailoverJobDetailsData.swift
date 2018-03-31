@@ -12,7 +12,7 @@ internal struct FailoverJobDetailsData : FailoverJobDetailsProtocol, JobDetailsP
         case protectedItemDetails = "protectedItemDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct FailoverJobDetailsData : FailoverJobDetailsProtocol, JobDetailsP
     if container.contains(.protectedItemDetails) {
         self.protectedItemDetails = try container.decode([FailoverReplicationProtectedItemDetailsData?]?.self, forKey: .protectedItemDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct FailoverJobDetailsData : FailoverJobDetailsProtocol, JobDetailsP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.affectedObjectDetails != nil {try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails)}
-    if self.protectedItemDetails != nil {try container.encode(self.protectedItemDetails as! [FailoverReplicationProtectedItemDetailsData?]?, forKey: .protectedItemDetails)}
+    if self.affectedObjectDetails != nil { try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails) }
+    if self.protectedItemDetails != nil { try container.encode(self.protectedItemDetails as! [FailoverReplicationProtectedItemDetailsData?]?, forKey: .protectedItemDetails) }
   }
 }
 

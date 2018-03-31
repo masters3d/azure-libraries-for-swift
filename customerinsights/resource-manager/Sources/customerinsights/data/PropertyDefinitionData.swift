@@ -40,7 +40,7 @@ internal struct PropertyDefinitionData : PropertyDefinitionProtocol {
         case dataSourcePrecedenceRules = "dataSourcePrecedenceRules"
         }
 
-  public init(fieldName: String, fieldType: String)  {
+  public init(fieldName: String, fieldType: String) {
     self.fieldName = fieldName
     self.fieldType = fieldType
   }
@@ -91,7 +91,7 @@ internal struct PropertyDefinitionData : PropertyDefinitionProtocol {
     if container.contains(.dataSourcePrecedenceRules) {
         self.dataSourcePrecedenceRules = try container.decode([DataSourcePrecedenceData?]?.self, forKey: .dataSourcePrecedenceRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -101,22 +101,22 @@ internal struct PropertyDefinitionData : PropertyDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.arrayValueSeparator != nil {try container.encode(self.arrayValueSeparator, forKey: .arrayValueSeparator)}
-    if self.enumValidValues != nil {try container.encode(self.enumValidValues as! [ProfileEnumValidValuesFormatData?]?, forKey: .enumValidValues)}
+    if self.arrayValueSeparator != nil { try container.encode(self.arrayValueSeparator, forKey: .arrayValueSeparator) }
+    if self.enumValidValues != nil { try container.encode(self.enumValidValues as! [ProfileEnumValidValuesFormatData?]?, forKey: .enumValidValues) }
     try container.encode(self.fieldName, forKey: .fieldName)
     try container.encode(self.fieldType, forKey: .fieldType)
-    if self.isArray != nil {try container.encode(self.isArray, forKey: .isArray)}
-    if self.isEnum != nil {try container.encode(self.isEnum, forKey: .isEnum)}
-    if self.isFlagEnum != nil {try container.encode(self.isFlagEnum, forKey: .isFlagEnum)}
-    if self.isImage != nil {try container.encode(self.isImage, forKey: .isImage)}
-    if self.isLocalizedString != nil {try container.encode(self.isLocalizedString, forKey: .isLocalizedString)}
-    if self.isName != nil {try container.encode(self.isName, forKey: .isName)}
-    if self.isRequired != nil {try container.encode(self.isRequired, forKey: .isRequired)}
-    if self.propertyId != nil {try container.encode(self.propertyId, forKey: .propertyId)}
-    if self.schemaItemPropLink != nil {try container.encode(self.schemaItemPropLink, forKey: .schemaItemPropLink)}
-    if self.maxLength != nil {try container.encode(self.maxLength, forKey: .maxLength)}
-    if self.isAvailableInGraph != nil {try container.encode(self.isAvailableInGraph, forKey: .isAvailableInGraph)}
-    if self.dataSourcePrecedenceRules != nil {try container.encode(self.dataSourcePrecedenceRules as! [DataSourcePrecedenceData?]?, forKey: .dataSourcePrecedenceRules)}
+    if self.isArray != nil { try container.encode(self.isArray, forKey: .isArray) }
+    if self.isEnum != nil { try container.encode(self.isEnum, forKey: .isEnum) }
+    if self.isFlagEnum != nil { try container.encode(self.isFlagEnum, forKey: .isFlagEnum) }
+    if self.isImage != nil { try container.encode(self.isImage, forKey: .isImage) }
+    if self.isLocalizedString != nil { try container.encode(self.isLocalizedString, forKey: .isLocalizedString) }
+    if self.isName != nil { try container.encode(self.isName, forKey: .isName) }
+    if self.isRequired != nil { try container.encode(self.isRequired, forKey: .isRequired) }
+    if self.propertyId != nil { try container.encode(self.propertyId, forKey: .propertyId) }
+    if self.schemaItemPropLink != nil { try container.encode(self.schemaItemPropLink, forKey: .schemaItemPropLink) }
+    if self.maxLength != nil { try container.encode(self.maxLength, forKey: .maxLength) }
+    if self.isAvailableInGraph != nil { try container.encode(self.isAvailableInGraph, forKey: .isAvailableInGraph) }
+    if self.dataSourcePrecedenceRules != nil { try container.encode(self.dataSourcePrecedenceRules as! [DataSourcePrecedenceData?]?, forKey: .dataSourcePrecedenceRules) }
   }
 }
 

@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServicesCheckNameAvailability  {
+public protocol ServicesCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
-    var checkNameAvailabilityInput :  CheckNameAvailabilityInputProtocol?  { get set }
+    var checkNameAvailabilityInput :  CheckNameAvailabilityInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CheckNameAvailabilityOutputProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CheckNameAvailabilityOutputProtocol?, Error?) -> Void)
 }
 
 extension Commands.Services {
@@ -29,7 +29,7 @@ extension Commands.Services {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.clientRequestId != nil { headerParameters["x-ms-client-request-id"] = String(describing: self.clientRequestId!) }
@@ -51,12 +51,12 @@ extension Commands.Services {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CheckNameAvailabilityOutputData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CheckNameAvailabilityOutputProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CheckNameAvailabilityOutputProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CheckNameAvailabilityOutputData?, error: Error?) in
                 completionHandler(result, error)

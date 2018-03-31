@@ -12,7 +12,7 @@ internal struct AzureMachineLearningWebServiceInputsData : AzureMachineLearningW
         case columnNames = "columnNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureMachineLearningWebServiceInputsData : AzureMachineLearningW
     if container.contains(.columnNames) {
         self.columnNames = try container.decode([AzureMachineLearningWebServiceInputColumnData?]?.self, forKey: .columnNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureMachineLearningWebServiceInputsData : AzureMachineLearningW
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.columnNames != nil {try container.encode(self.columnNames as! [AzureMachineLearningWebServiceInputColumnData?]?, forKey: .columnNames)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.columnNames != nil { try container.encode(self.columnNames as! [AzureMachineLearningWebServiceInputColumnData?]?, forKey: .columnNames) }
   }
 }
 

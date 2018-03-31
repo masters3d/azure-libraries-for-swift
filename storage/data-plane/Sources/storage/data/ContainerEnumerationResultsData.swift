@@ -18,7 +18,7 @@ internal struct ContainerEnumerationResultsData : ContainerEnumerationResultsPro
         case nextMarker = "NextMarker"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -45,12 +45,12 @@ internal struct ContainerEnumerationResultsData : ContainerEnumerationResultsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceEndpoint != nil {try container.encode(serviceEndpoint, forKey: .serviceEndpoint)}
-    if self.prefix != nil {try container.encode(prefix, forKey: .prefix)}
-    if self.marker != nil {try container.encode(marker, forKey: .marker)}
-    if self.maxResults != nil {try container.encode(maxResults, forKey: .maxResults)}
-    if self.containers != nil {try container.encode(containers as! [ContainerData?]?, forKey: .containers)}
-    if self.nextMarker != nil {try container.encode(nextMarker, forKey: .nextMarker)}
+    if self.serviceEndpoint != nil { try container.encode(serviceEndpoint, forKey: .serviceEndpoint) }
+    if self.prefix != nil { try container.encode(prefix, forKey: .prefix) }
+    if self.marker != nil { try container.encode(marker, forKey: .marker) }
+    if self.maxResults != nil { try container.encode(maxResults, forKey: .maxResults) }
+    if self.containers != nil { try container.encode(containers as! [ContainerData?]?, forKey: .containers) }
+    if self.nextMarker != nil { try container.encode(nextMarker, forKey: .nextMarker) }
   }
 }
 

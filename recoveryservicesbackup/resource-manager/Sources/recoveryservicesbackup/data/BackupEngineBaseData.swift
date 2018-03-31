@@ -32,7 +32,7 @@ internal struct BackupEngineBaseData : BackupEngineBaseProtocol {
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct BackupEngineBaseData : BackupEngineBaseProtocol {
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(BackupEngineExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,18 +83,18 @@ internal struct BackupEngineBaseData : BackupEngineBaseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.backupEngineState != nil {try container.encode(self.backupEngineState, forKey: .backupEngineState)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.canReRegister != nil {try container.encode(self.canReRegister, forKey: .canReRegister)}
-    if self.backupEngineId != nil {try container.encode(self.backupEngineId, forKey: .backupEngineId)}
-    if self.dpmVersion != nil {try container.encode(self.dpmVersion, forKey: .dpmVersion)}
-    if self.azureBackupAgentVersion != nil {try container.encode(self.azureBackupAgentVersion, forKey: .azureBackupAgentVersion)}
-    if self.isAzureBackupAgentUpgradeAvailable != nil {try container.encode(self.isAzureBackupAgentUpgradeAvailable, forKey: .isAzureBackupAgentUpgradeAvailable)}
-    if self.isDpmUpgradeAvailable != nil {try container.encode(self.isDpmUpgradeAvailable, forKey: .isDpmUpgradeAvailable)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! BackupEngineExtendedInfoData?, forKey: .extendedInfo)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.backupEngineState != nil { try container.encode(self.backupEngineState, forKey: .backupEngineState) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.canReRegister != nil { try container.encode(self.canReRegister, forKey: .canReRegister) }
+    if self.backupEngineId != nil { try container.encode(self.backupEngineId, forKey: .backupEngineId) }
+    if self.dpmVersion != nil { try container.encode(self.dpmVersion, forKey: .dpmVersion) }
+    if self.azureBackupAgentVersion != nil { try container.encode(self.azureBackupAgentVersion, forKey: .azureBackupAgentVersion) }
+    if self.isAzureBackupAgentUpgradeAvailable != nil { try container.encode(self.isAzureBackupAgentUpgradeAvailable, forKey: .isAzureBackupAgentUpgradeAvailable) }
+    if self.isDpmUpgradeAvailable != nil { try container.encode(self.isDpmUpgradeAvailable, forKey: .isDpmUpgradeAvailable) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! BackupEngineExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

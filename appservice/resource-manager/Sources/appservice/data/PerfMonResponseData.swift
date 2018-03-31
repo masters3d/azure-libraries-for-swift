@@ -14,7 +14,7 @@ internal struct PerfMonResponseData : PerfMonResponseProtocol {
         case data = "data"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PerfMonResponseData : PerfMonResponseProtocol {
     if container.contains(.data) {
         self.data = try container.decode(PerfMonSetData?.self, forKey: .data)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PerfMonResponseData : PerfMonResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.data != nil {try container.encode(self.data as! PerfMonSetData?, forKey: .data)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.data != nil { try container.encode(self.data as! PerfMonSetData?, forKey: .data) }
   }
 }
 

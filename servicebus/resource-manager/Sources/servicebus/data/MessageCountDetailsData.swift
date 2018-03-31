@@ -18,7 +18,7 @@ internal struct MessageCountDetailsData : MessageCountDetailsProtocol {
         case transferDeadLetterMessageCount = "transferDeadLetterMessageCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct MessageCountDetailsData : MessageCountDetailsProtocol {
     if container.contains(.transferDeadLetterMessageCount) {
         self.transferDeadLetterMessageCount = try container.decode(Int64?.self, forKey: .transferDeadLetterMessageCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct MessageCountDetailsData : MessageCountDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.activeMessageCount != nil {try container.encode(self.activeMessageCount, forKey: .activeMessageCount)}
-    if self.deadLetterMessageCount != nil {try container.encode(self.deadLetterMessageCount, forKey: .deadLetterMessageCount)}
-    if self.scheduledMessageCount != nil {try container.encode(self.scheduledMessageCount, forKey: .scheduledMessageCount)}
-    if self.transferMessageCount != nil {try container.encode(self.transferMessageCount, forKey: .transferMessageCount)}
-    if self.transferDeadLetterMessageCount != nil {try container.encode(self.transferDeadLetterMessageCount, forKey: .transferDeadLetterMessageCount)}
+    if self.activeMessageCount != nil { try container.encode(self.activeMessageCount, forKey: .activeMessageCount) }
+    if self.deadLetterMessageCount != nil { try container.encode(self.deadLetterMessageCount, forKey: .deadLetterMessageCount) }
+    if self.scheduledMessageCount != nil { try container.encode(self.scheduledMessageCount, forKey: .scheduledMessageCount) }
+    if self.transferMessageCount != nil { try container.encode(self.transferMessageCount, forKey: .transferMessageCount) }
+    if self.transferDeadLetterMessageCount != nil { try container.encode(self.transferDeadLetterMessageCount, forKey: .transferDeadLetterMessageCount) }
   }
 }
 

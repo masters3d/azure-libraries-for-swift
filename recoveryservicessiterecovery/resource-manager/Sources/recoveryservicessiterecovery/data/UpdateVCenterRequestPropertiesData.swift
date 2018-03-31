@@ -18,7 +18,7 @@ internal struct UpdateVCenterRequestPropertiesData : UpdateVCenterRequestPropert
         case runAsAccountId = "runAsAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct UpdateVCenterRequestPropertiesData : UpdateVCenterRequestPropert
     if container.contains(.runAsAccountId) {
         self.runAsAccountId = try container.decode(String?.self, forKey: .runAsAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct UpdateVCenterRequestPropertiesData : UpdateVCenterRequestPropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.processServerId != nil {try container.encode(self.processServerId, forKey: .processServerId)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.processServerId != nil { try container.encode(self.processServerId, forKey: .processServerId) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
   }
 }
 

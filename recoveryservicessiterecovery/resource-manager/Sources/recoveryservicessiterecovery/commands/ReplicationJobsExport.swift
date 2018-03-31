@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationJobsExport  {
+public protocol ReplicationJobsExport {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var jobQueryParameter :  JobQueryParameterProtocol?  { get set }
+    var jobQueryParameter :  JobQueryParameterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationJobs {
@@ -34,7 +34,7 @@ extension Commands.ReplicationJobs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.ReplicationJobs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(JobData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: JobData?, error: Error?) in
                 completionHandler(result, error)

@@ -24,7 +24,7 @@ internal struct FormulaPropertiesData : FormulaPropertiesProtocol {
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct FormulaPropertiesData : FormulaPropertiesProtocol {
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct FormulaPropertiesData : FormulaPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.author != nil {try container.encode(self.author, forKey: .author)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.author != nil { try container.encode(self.author, forKey: .author) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }
-    if self.formulaContent != nil {try container.encode(self.formulaContent as! LabVirtualMachineCreationParameterData?, forKey: .formulaContent)}
-    if self.vm != nil {try container.encode(self.vm as! FormulaPropertiesFromVmData?, forKey: .vm)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.formulaContent != nil { try container.encode(self.formulaContent as! LabVirtualMachineCreationParameterData?, forKey: .formulaContent) }
+    if self.vm != nil { try container.encode(self.vm as! FormulaPropertiesFromVmData?, forKey: .vm) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

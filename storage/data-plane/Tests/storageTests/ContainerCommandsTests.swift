@@ -11,24 +11,24 @@ import azureSwiftRuntime
 import storage
 
 public class o3ContainerCommandsTests : StorageTestsBase {
-    
+
     func test1_ContainerGetProperties() {
         let e = expectation(description: "Wait for HTTP request to complete")
-        
+
         var command = Commands.Container.GetProperties (
             azureStorageKey: self.azureStorageKey,
             accountName: self.accountName,
             containerName: self.containerName)
-        
+
         command.execute(client: self.azureClient) {
             error in
             defer { e.fulfill() }
             self.checkError(error: error)
         }
-        
+
         waitForExpectations(timeout: timeout, handler: nil)
     }
-    
+
 //    func test3_ContainerSetAcl() {
 //        let e = expectation(description: "Wait for HTTP request to complete")
 //
@@ -50,15 +50,15 @@ public class o3ContainerCommandsTests : StorageTestsBase {
 //
 //        waitForExpectations(timeout: timeout, handler: nil)
 //    }
-    
+
     func test2_ContainerGetAcl() {
         let e = expectation(description: "Wait for HTTP request to complete")
-        
+
         var command = Commands.Container.GetAcl (
             azureStorageKey: self.azureStorageKey,
             accountName: self.accountName,
             containerName: self.containerName)
-        
+
         command.execute(client: self.azureClient) {
             res, error in
             defer { e.fulfill() }
@@ -70,31 +70,31 @@ public class o3ContainerCommandsTests : StorageTestsBase {
                     print("\t\tstart:", si?.accessPolicy.start ?? "-")
                     print("\t\texpiry:", si?.accessPolicy.expiry ?? "-")
                     print("\t\tpermission:", si?.accessPolicy.permission ?? "-")
-                    
+
                 }
-                
+
             } else {
                 print("=== No signed identifiers found.")
             }
         }
-        
+
         waitForExpectations(timeout: timeout, handler: nil)
     }
-    
+
     func test3_ContainerListBlobs() {
         let e = expectation(description: "Wait for HTTP request to complete")
-        
+
         var command = Commands.Container.ListBlobs(
             azureStorageKey: self.azureStorageKey,
             accountName: self.accountName,
             containerName: self.containerName)
-        
+
         command.execute(client: self.azureClient) {
             (res, error) in
             defer { e.fulfill() }
             self.checkError(error: error)
-            
-            XCTAssertNotNil(res)            
+
+            XCTAssertNotNil(res)
             if let list = res,
                 let blobs = list.blobs,
                 blobs.count > 0 {
@@ -108,12 +108,12 @@ public class o3ContainerCommandsTests : StorageTestsBase {
                         print("\t", "name: \(name), blobType: \(blobType), contentLength: \(contentLength), xMsBlobSequenceNumber: \(properties.xMsBlobSequenceNumber ?? "-")")
                     }
                 }
-                
+
             } else {
                 print("=== No blobs found in the container \(res?.containerName ?? "name not found")")
             }
         }
-        
+
         waitForExpectations(timeout: timeout, handler: nil)
     }
 }

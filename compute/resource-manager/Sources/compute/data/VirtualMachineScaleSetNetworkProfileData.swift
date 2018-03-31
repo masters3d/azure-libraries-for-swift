@@ -12,7 +12,7 @@ internal struct VirtualMachineScaleSetNetworkProfileData : VirtualMachineScaleSe
         case networkInterfaceConfigurations = "networkInterfaceConfigurations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VirtualMachineScaleSetNetworkProfileData : VirtualMachineScaleSe
     if container.contains(.networkInterfaceConfigurations) {
         self.networkInterfaceConfigurations = try container.decode([VirtualMachineScaleSetNetworkConfigurationData?]?.self, forKey: .networkInterfaceConfigurations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VirtualMachineScaleSetNetworkProfileData : VirtualMachineScaleSe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.healthProbe != nil {try container.encode(self.healthProbe as! ApiEntityReferenceData?, forKey: .healthProbe)}
-    if self.networkInterfaceConfigurations != nil {try container.encode(self.networkInterfaceConfigurations as! [VirtualMachineScaleSetNetworkConfigurationData?]?, forKey: .networkInterfaceConfigurations)}
+    if self.healthProbe != nil { try container.encode(self.healthProbe as! ApiEntityReferenceData?, forKey: .healthProbe) }
+    if self.networkInterfaceConfigurations != nil { try container.encode(self.networkInterfaceConfigurations as! [VirtualMachineScaleSetNetworkConfigurationData?]?, forKey: .networkInterfaceConfigurations) }
   }
 }
 

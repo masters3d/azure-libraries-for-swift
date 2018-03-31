@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol MapsGet  {
+public protocol MapsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol MapsGet  {
     var mapName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IntegrationAccountMapProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IntegrationAccountMapProtocol?, Error?) -> Void)
 }
 
 extension Commands.Maps {
@@ -32,7 +32,7 @@ extension Commands.Maps {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{integrationAccountName}"] = String(describing: self.integrationAccountName)
@@ -46,12 +46,12 @@ extension Commands.Maps {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(IntegrationAccountMapData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IntegrationAccountMapProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IntegrationAccountMapProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: IntegrationAccountMapData?, error: Error?) in
                 completionHandler(result, error)

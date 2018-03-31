@@ -16,7 +16,7 @@ internal struct RoutingEndpointsData : RoutingEndpointsProtocol {
         case storageContainers = "storageContainers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RoutingEndpointsData : RoutingEndpointsProtocol {
     if container.contains(.storageContainers) {
         self.storageContainers = try container.decode([RoutingStorageContainerPropertiesData?]?.self, forKey: .storageContainers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RoutingEndpointsData : RoutingEndpointsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusQueues != nil {try container.encode(self.serviceBusQueues as! [RoutingServiceBusQueueEndpointPropertiesData?]?, forKey: .serviceBusQueues)}
-    if self.serviceBusTopics != nil {try container.encode(self.serviceBusTopics as! [RoutingServiceBusTopicEndpointPropertiesData?]?, forKey: .serviceBusTopics)}
-    if self.eventHubs != nil {try container.encode(self.eventHubs as! [RoutingEventHubPropertiesData?]?, forKey: .eventHubs)}
-    if self.storageContainers != nil {try container.encode(self.storageContainers as! [RoutingStorageContainerPropertiesData?]?, forKey: .storageContainers)}
+    if self.serviceBusQueues != nil { try container.encode(self.serviceBusQueues as! [RoutingServiceBusQueueEndpointPropertiesData?]?, forKey: .serviceBusQueues) }
+    if self.serviceBusTopics != nil { try container.encode(self.serviceBusTopics as! [RoutingServiceBusTopicEndpointPropertiesData?]?, forKey: .serviceBusTopics) }
+    if self.eventHubs != nil { try container.encode(self.eventHubs as! [RoutingEventHubPropertiesData?]?, forKey: .eventHubs) }
+    if self.storageContainers != nil { try container.encode(self.storageContainers as! [RoutingStorageContainerPropertiesData?]?, forKey: .storageContainers) }
   }
 }
 

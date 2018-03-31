@@ -18,7 +18,7 @@ internal struct DataSourceData : DataSourceProtocol {
         case dataSourceReferenceId = "dataSourceReferenceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DataSourceData : DataSourceProtocol {
     if container.contains(.dataSourceReferenceId) {
         self.dataSourceReferenceId = try container.decode(String?.self, forKey: .dataSourceReferenceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct DataSourceData : DataSourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.dataSourceType != nil {try container.encode(self.dataSourceType, forKey: .dataSourceType)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.dataSourceReferenceId != nil {try container.encode(self.dataSourceReferenceId, forKey: .dataSourceReferenceId)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.dataSourceType != nil { try container.encode(self.dataSourceType, forKey: .dataSourceType) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.dataSourceReferenceId != nil { try container.encode(self.dataSourceReferenceId, forKey: .dataSourceReferenceId) }
   }
 }
 

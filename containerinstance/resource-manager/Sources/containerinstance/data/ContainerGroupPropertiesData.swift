@@ -24,7 +24,7 @@ internal struct ContainerGroupPropertiesData : ContainerGroupPropertiesProtocol 
         case instanceView = "instanceView"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ContainerGroupPropertiesData : ContainerGroupPropertiesProtocol 
     if container.contains(.instanceView) {
         self.instanceView = try container.decode(ContainerGroupPropertiesInstanceViewData?.self, forKey: .instanceView)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct ContainerGroupPropertiesData : ContainerGroupPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.containers != nil {try container.encode(self.containers as! [ContainerData?]?, forKey: .containers)}
-    if self.imageRegistryCredentials != nil {try container.encode(self.imageRegistryCredentials as! [ImageRegistryCredentialData?]?, forKey: .imageRegistryCredentials)}
-    if self.restartPolicy != nil {try container.encode(self.restartPolicy, forKey: .restartPolicy)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress as! IpAddressData?, forKey: .ipAddress)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.volumes != nil {try container.encode(self.volumes as! [VolumeData?]?, forKey: .volumes)}
-    if self.instanceView != nil {try container.encode(self.instanceView as! ContainerGroupPropertiesInstanceViewData?, forKey: .instanceView)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.containers != nil { try container.encode(self.containers as! [ContainerData?]?, forKey: .containers) }
+    if self.imageRegistryCredentials != nil { try container.encode(self.imageRegistryCredentials as! [ImageRegistryCredentialData?]?, forKey: .imageRegistryCredentials) }
+    if self.restartPolicy != nil { try container.encode(self.restartPolicy, forKey: .restartPolicy) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress as! IpAddressData?, forKey: .ipAddress) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.volumes != nil { try container.encode(self.volumes as! [VolumeData?]?, forKey: .volumes) }
+    if self.instanceView != nil { try container.encode(self.instanceView as! ContainerGroupPropertiesInstanceViewData?, forKey: .instanceView) }
   }
 }
 

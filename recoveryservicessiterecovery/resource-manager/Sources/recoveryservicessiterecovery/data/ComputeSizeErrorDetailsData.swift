@@ -12,7 +12,7 @@ internal struct ComputeSizeErrorDetailsData : ComputeSizeErrorDetailsProtocol {
         case severity = "severity"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ComputeSizeErrorDetailsData : ComputeSizeErrorDetailsProtocol {
     if container.contains(.severity) {
         self.severity = try container.decode(String?.self, forKey: .severity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ComputeSizeErrorDetailsData : ComputeSizeErrorDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.severity != nil {try container.encode(self.severity, forKey: .severity)}
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.severity != nil { try container.encode(self.severity, forKey: .severity) }
   }
 }
 

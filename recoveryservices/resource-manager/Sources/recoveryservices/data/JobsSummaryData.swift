@@ -14,7 +14,7 @@ internal struct JobsSummaryData : JobsSummaryProtocol {
         case inProgressJobs = "inProgressJobs"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct JobsSummaryData : JobsSummaryProtocol {
     if container.contains(.inProgressJobs) {
         self.inProgressJobs = try container.decode(Int32?.self, forKey: .inProgressJobs)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct JobsSummaryData : JobsSummaryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.failedJobs != nil {try container.encode(self.failedJobs, forKey: .failedJobs)}
-    if self.suspendedJobs != nil {try container.encode(self.suspendedJobs, forKey: .suspendedJobs)}
-    if self.inProgressJobs != nil {try container.encode(self.inProgressJobs, forKey: .inProgressJobs)}
+    if self.failedJobs != nil { try container.encode(self.failedJobs, forKey: .failedJobs) }
+    if self.suspendedJobs != nil { try container.encode(self.suspendedJobs, forKey: .suspendedJobs) }
+    if self.inProgressJobs != nil { try container.encode(self.inProgressJobs, forKey: .inProgressJobs) }
   }
 }
 

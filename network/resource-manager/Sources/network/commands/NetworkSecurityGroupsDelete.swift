@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkSecurityGroupsDelete  {
+public protocol NetworkSecurityGroupsDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkSecurityGroupName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.NetworkSecurityGroups {
@@ -30,7 +30,7 @@ extension Commands.NetworkSecurityGroups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkSecurityGroupName}"] = String(describing: self.networkSecurityGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -39,7 +39,7 @@ extension Commands.NetworkSecurityGroups {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

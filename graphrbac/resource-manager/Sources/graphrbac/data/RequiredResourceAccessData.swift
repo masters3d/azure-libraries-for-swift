@@ -14,7 +14,7 @@ internal struct RequiredResourceAccessData : RequiredResourceAccessProtocol {
         case resourceAppId = "resourceAppId"
         }
 
-  public init(resourceAccess: [ResourceAccessProtocol])  {
+  public init(resourceAccess: [ResourceAccessProtocol]) {
     self.resourceAccess = resourceAccess
   }
 
@@ -27,7 +27,7 @@ internal struct RequiredResourceAccessData : RequiredResourceAccessProtocol {
     if container.contains(.resourceAppId) {
         self.resourceAppId = try container.decode(String?.self, forKey: .resourceAppId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct RequiredResourceAccessData : RequiredResourceAccessProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.resourceAccess as! [ResourceAccessData], forKey: .resourceAccess)
-    if self.resourceAppId != nil {try container.encode(self.resourceAppId, forKey: .resourceAppId)}
+    if self.resourceAppId != nil { try container.encode(self.resourceAppId, forKey: .resourceAppId) }
   }
 }
 

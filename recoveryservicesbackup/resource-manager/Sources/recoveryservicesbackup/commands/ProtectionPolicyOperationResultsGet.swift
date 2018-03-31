@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ProtectionPolicyOperationResultsGet  {
+public protocol ProtectionPolicyOperationResultsGet {
     var headerParameters: [String: String] { get set }
     var vaultName : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol ProtectionPolicyOperationResultsGet  {
     var operationId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ProtectionPolicyResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ProtectionPolicyResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.ProtectionPolicyOperationResults {
@@ -35,7 +35,7 @@ extension Commands.ProtectionPolicyOperationResults {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{vaultName}"] = String(describing: self.vaultName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -50,12 +50,12 @@ extension Commands.ProtectionPolicyOperationResults {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ProtectionPolicyResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ProtectionPolicyResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ProtectionPolicyResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ProtectionPolicyResourceData?, error: Error?) in
                 completionHandler(result, error)

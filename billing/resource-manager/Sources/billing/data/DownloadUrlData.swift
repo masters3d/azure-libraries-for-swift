@@ -12,7 +12,7 @@ internal struct DownloadUrlData : DownloadUrlProtocol {
         case url = "url"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DownloadUrlData : DownloadUrlProtocol {
     if container.contains(.url) {
         self.url = try container.decode(String?.self, forKey: .url)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct DownloadUrlData : DownloadUrlProtocol {
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
   }
 }
 

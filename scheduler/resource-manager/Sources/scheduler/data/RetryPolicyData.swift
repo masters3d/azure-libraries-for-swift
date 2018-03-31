@@ -14,7 +14,7 @@ internal struct RetryPolicyData : RetryPolicyProtocol {
         case retryCount = "retryCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RetryPolicyData : RetryPolicyProtocol {
     if container.contains(.retryCount) {
         self.retryCount = try container.decode(Int32?.self, forKey: .retryCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RetryPolicyData : RetryPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.retryType != nil {try container.encode(self.retryType, forKey: .retryType)}
-    if self.retryInterval != nil {try container.encode(self.retryInterval, forKey: .retryInterval)}
-    if self.retryCount != nil {try container.encode(self.retryCount, forKey: .retryCount)}
+    if self.retryType != nil { try container.encode(self.retryType, forKey: .retryType) }
+    if self.retryInterval != nil { try container.encode(self.retryInterval, forKey: .retryInterval) }
+    if self.retryCount != nil { try container.encode(self.retryCount, forKey: .retryCount) }
   }
 }
 

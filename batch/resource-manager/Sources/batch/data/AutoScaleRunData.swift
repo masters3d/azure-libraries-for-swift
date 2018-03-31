@@ -14,7 +14,7 @@ internal struct AutoScaleRunData : AutoScaleRunProtocol {
         case error = "error"
         }
 
-  public init(evaluationTime: Date)  {
+  public init(evaluationTime: Date) {
     self.evaluationTime = evaluationTime
   }
 
@@ -27,7 +27,7 @@ internal struct AutoScaleRunData : AutoScaleRunProtocol {
     if container.contains(.error) {
         self.error = try container.decode(AutoScaleRunErrorData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct AutoScaleRunData : AutoScaleRunProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(DateConverter.toString(date: self.evaluationTime, format: .dateTime), forKey: .evaluationTime)
-    if self.results != nil {try container.encode(self.results, forKey: .results)}
-    if self.error != nil {try container.encode(self.error as! AutoScaleRunErrorData?, forKey: .error)}
+    if self.results != nil { try container.encode(self.results, forKey: .results) }
+    if self.error != nil { try container.encode(self.error as! AutoScaleRunErrorData?, forKey: .error) }
   }
 }
 

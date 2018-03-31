@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AppServicePlansList  {
+public protocol AppServicePlansList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol AppServicePlansList  {
     var detailed : Bool? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AppServicePlanCollectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AppServicePlanCollectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.AppServicePlans {
@@ -33,7 +33,7 @@ extension Commands.AppServicePlans {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             if self.detailed != nil { queryParameters["detailed"] = String(describing: self.detailed!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -52,15 +52,15 @@ extension Commands.AppServicePlans {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AppServicePlanCollectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AppServicePlanCollectionProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

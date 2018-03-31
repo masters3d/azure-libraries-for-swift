@@ -20,7 +20,7 @@ internal struct BackupRequestPropertiesData : BackupRequestPropertiesProtocol {
         case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct BackupRequestPropertiesData : BackupRequestPropertiesProtocol {
     if container.contains(.type) {
         self.type = try container.decode(BackupRestoreOperationTypeEnum?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct BackupRequestPropertiesData : BackupRequestPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupRequestName != nil {try container.encode(self.backupRequestName, forKey: .backupRequestName)}
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.storageAccountUrl != nil {try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl)}
-    if self.backupSchedule != nil {try container.encode(self.backupSchedule as! BackupScheduleData?, forKey: .backupSchedule)}
-    if self.databases != nil {try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.backupRequestName != nil { try container.encode(self.backupRequestName, forKey: .backupRequestName) }
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.storageAccountUrl != nil { try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl) }
+    if self.backupSchedule != nil { try container.encode(self.backupSchedule as! BackupScheduleData?, forKey: .backupSchedule) }
+    if self.databases != nil { try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

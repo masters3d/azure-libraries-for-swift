@@ -22,7 +22,7 @@ internal struct ResourceMetricDefinitionPropertiesData : ResourceMetricDefinitio
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ResourceMetricDefinitionPropertiesData : ResourceMetricDefinitio
     if container.contains(.properties) {
         self.properties = try container.decode([String:String]?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ResourceMetricDefinitionPropertiesData : ResourceMetricDefinitio
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name as! ResourceMetricNameData?, forKey: .name)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.primaryAggregationType != nil {try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType)}
-    if self.metricAvailabilities != nil {try container.encode(self.metricAvailabilities as! [ResourceMetricAvailabilityData?]?, forKey: .metricAvailabilities)}
-    if self.resourceUri != nil {try container.encode(self.resourceUri, forKey: .resourceUri)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.properties != nil {try container.encode(self.properties, forKey: .properties)}
+    if self.name != nil { try container.encode(self.name as! ResourceMetricNameData?, forKey: .name) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.primaryAggregationType != nil { try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType) }
+    if self.metricAvailabilities != nil { try container.encode(self.metricAvailabilities as! [ResourceMetricAvailabilityData?]?, forKey: .metricAvailabilities) }
+    if self.resourceUri != nil { try container.encode(self.resourceUri, forKey: .resourceUri) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.properties != nil { try container.encode(self.properties, forKey: .properties) }
   }
 }
 

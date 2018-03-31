@@ -22,7 +22,7 @@ internal struct ApplicationGatewayHttpListenerPropertiesFormatData : Application
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ApplicationGatewayHttpListenerPropertiesFormatData : Application
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ApplicationGatewayHttpListenerPropertiesFormatData : Application
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frontendIPConfiguration != nil {try container.encode(self.frontendIPConfiguration as! SubResourceData?, forKey: .frontendIPConfiguration)}
-    if self.frontendPort != nil {try container.encode(self.frontendPort as! SubResourceData?, forKey: .frontendPort)}
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
-    if self.sslCertificate != nil {try container.encode(self.sslCertificate as! SubResourceData?, forKey: .sslCertificate)}
-    if self.requireServerNameIndication != nil {try container.encode(self.requireServerNameIndication, forKey: .requireServerNameIndication)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.frontendIPConfiguration != nil { try container.encode(self.frontendIPConfiguration as! SubResourceData?, forKey: .frontendIPConfiguration) }
+    if self.frontendPort != nil { try container.encode(self.frontendPort as! SubResourceData?, forKey: .frontendPort) }
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
+    if self.sslCertificate != nil { try container.encode(self.sslCertificate as! SubResourceData?, forKey: .sslCertificate) }
+    if self.requireServerNameIndication != nil { try container.encode(self.requireServerNameIndication, forKey: .requireServerNameIndication) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

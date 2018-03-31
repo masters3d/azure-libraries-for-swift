@@ -16,7 +16,7 @@ internal struct DataDisksData : DataDisksProtocol {
         case storageAccountType = "storageAccountType"
         }
 
-  public init(diskSizeInGB: Int32, diskCount: Int32, storageAccountType: StorageAccountTypeEnum)  {
+  public init(diskSizeInGB: Int32, diskCount: Int32, storageAccountType: StorageAccountTypeEnum) {
     self.diskSizeInGB = diskSizeInGB
     self.diskCount = diskCount
     self.storageAccountType = storageAccountType
@@ -30,7 +30,7 @@ internal struct DataDisksData : DataDisksProtocol {
     }
     self.diskCount = try container.decode(Int32.self, forKey: .diskCount)
     self.storageAccountType = try container.decode(StorageAccountTypeEnum.self, forKey: .storageAccountType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,7 +41,7 @@ internal struct DataDisksData : DataDisksProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.diskSizeInGB, forKey: .diskSizeInGB)
-    if self.cachingType != nil {try container.encode(self.cachingType, forKey: .cachingType)}
+    if self.cachingType != nil { try container.encode(self.cachingType, forKey: .cachingType) }
     try container.encode(self.diskCount, forKey: .diskCount)
     try container.encode(self.storageAccountType, forKey: .storageAccountType)
   }

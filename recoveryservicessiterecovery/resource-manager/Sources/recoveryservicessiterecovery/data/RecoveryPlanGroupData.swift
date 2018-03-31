@@ -16,7 +16,7 @@ internal struct RecoveryPlanGroupData : RecoveryPlanGroupProtocol {
         case endGroupActions = "endGroupActions"
         }
 
-  public init(groupType: RecoveryPlanGroupTypeEnum)  {
+  public init(groupType: RecoveryPlanGroupTypeEnum) {
     self.groupType = groupType
   }
 
@@ -32,7 +32,7 @@ internal struct RecoveryPlanGroupData : RecoveryPlanGroupProtocol {
     if container.contains(.endGroupActions) {
         self.endGroupActions = try container.decode([RecoveryPlanActionData?]?.self, forKey: .endGroupActions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct RecoveryPlanGroupData : RecoveryPlanGroupProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.groupType, forKey: .groupType)
-    if self.replicationProtectedItems != nil {try container.encode(self.replicationProtectedItems as! [RecoveryPlanProtectedItemData?]?, forKey: .replicationProtectedItems)}
-    if self.startGroupActions != nil {try container.encode(self.startGroupActions as! [RecoveryPlanActionData?]?, forKey: .startGroupActions)}
-    if self.endGroupActions != nil {try container.encode(self.endGroupActions as! [RecoveryPlanActionData?]?, forKey: .endGroupActions)}
+    if self.replicationProtectedItems != nil { try container.encode(self.replicationProtectedItems as! [RecoveryPlanProtectedItemData?]?, forKey: .replicationProtectedItems) }
+    if self.startGroupActions != nil { try container.encode(self.startGroupActions as! [RecoveryPlanActionData?]?, forKey: .startGroupActions) }
+    if self.endGroupActions != nil { try container.encode(self.endGroupActions as! [RecoveryPlanActionData?]?, forKey: .endGroupActions) }
   }
 }
 

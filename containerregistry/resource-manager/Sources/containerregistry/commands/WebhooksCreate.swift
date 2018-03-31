@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WebhooksCreate  {
+public protocol WebhooksCreate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var registryName : String { get set }
     var webhookName : String { get set }
     var apiVersion : String { get set }
-    var webhookCreateParameters :  WebhookCreateParametersProtocol?  { get set }
+    var webhookCreateParameters :  WebhookCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (WebhookProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (WebhookProtocol?, Error?) -> Void)
 }
 
 extension Commands.Webhooks {
@@ -37,7 +37,7 @@ extension Commands.Webhooks {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{registryName}"] = String(describing: self.registryName)
@@ -61,12 +61,12 @@ extension Commands.Webhooks {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(WebhookData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (WebhookProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (WebhookProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: WebhookData?, error: Error?) in
                 completionHandler(result, error)

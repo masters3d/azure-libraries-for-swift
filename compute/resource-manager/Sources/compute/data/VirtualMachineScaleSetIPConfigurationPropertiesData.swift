@@ -22,7 +22,7 @@ internal struct VirtualMachineScaleSetIPConfigurationPropertiesData : VirtualMac
         case loadBalancerInboundNatPools = "loadBalancerInboundNatPools"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct VirtualMachineScaleSetIPConfigurationPropertiesData : VirtualMac
     if container.contains(.loadBalancerInboundNatPools) {
         self.loadBalancerInboundNatPools = try container.decode([SubResourceData?]?.self, forKey: .loadBalancerInboundNatPools)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct VirtualMachineScaleSetIPConfigurationPropertiesData : VirtualMac
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subnet != nil {try container.encode(self.subnet as! ApiEntityReferenceData?, forKey: .subnet)}
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
-    if self.publicIPAddressConfiguration != nil {try container.encode(self.publicIPAddressConfiguration as! VirtualMachineScaleSetPublicIPAddressConfigurationData?, forKey: .publicIPAddressConfiguration)}
-    if self.privateIPAddressVersion != nil {try container.encode(self.privateIPAddressVersion, forKey: .privateIPAddressVersion)}
-    if self.applicationGatewayBackendAddressPools != nil {try container.encode(self.applicationGatewayBackendAddressPools as! [SubResourceData?]?, forKey: .applicationGatewayBackendAddressPools)}
-    if self.loadBalancerBackendAddressPools != nil {try container.encode(self.loadBalancerBackendAddressPools as! [SubResourceData?]?, forKey: .loadBalancerBackendAddressPools)}
-    if self.loadBalancerInboundNatPools != nil {try container.encode(self.loadBalancerInboundNatPools as! [SubResourceData?]?, forKey: .loadBalancerInboundNatPools)}
+    if self.subnet != nil { try container.encode(self.subnet as! ApiEntityReferenceData?, forKey: .subnet) }
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
+    if self.publicIPAddressConfiguration != nil { try container.encode(self.publicIPAddressConfiguration as! VirtualMachineScaleSetPublicIPAddressConfigurationData?, forKey: .publicIPAddressConfiguration) }
+    if self.privateIPAddressVersion != nil { try container.encode(self.privateIPAddressVersion, forKey: .privateIPAddressVersion) }
+    if self.applicationGatewayBackendAddressPools != nil { try container.encode(self.applicationGatewayBackendAddressPools as! [SubResourceData?]?, forKey: .applicationGatewayBackendAddressPools) }
+    if self.loadBalancerBackendAddressPools != nil { try container.encode(self.loadBalancerBackendAddressPools as! [SubResourceData?]?, forKey: .loadBalancerBackendAddressPools) }
+    if self.loadBalancerInboundNatPools != nil { try container.encode(self.loadBalancerInboundNatPools as! [SubResourceData?]?, forKey: .loadBalancerInboundNatPools) }
   }
 }
 

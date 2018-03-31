@@ -22,7 +22,7 @@ internal struct EventhubPropertiesData : EventhubPropertiesProtocol {
         case captureDescription = "captureDescription"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct EventhubPropertiesData : EventhubPropertiesProtocol {
     if container.contains(.captureDescription) {
         self.captureDescription = try container.decode(CaptureDescriptionData?.self, forKey: .captureDescription)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,17 +58,17 @@ internal struct EventhubPropertiesData : EventhubPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.partitionIds != nil {try container.encode(self.partitionIds as! [String]?, forKey: .partitionIds)}
+    if self.partitionIds != nil { try container.encode(self.partitionIds as! [String]?, forKey: .partitionIds) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.messageRetentionInDays != nil {try container.encode(self.messageRetentionInDays, forKey: .messageRetentionInDays)}
-    if self.partitionCount != nil {try container.encode(self.partitionCount, forKey: .partitionCount)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.captureDescription != nil {try container.encode(self.captureDescription as! CaptureDescriptionData?, forKey: .captureDescription)}
+    if self.messageRetentionInDays != nil { try container.encode(self.messageRetentionInDays, forKey: .messageRetentionInDays) }
+    if self.partitionCount != nil { try container.encode(self.partitionCount, forKey: .partitionCount) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.captureDescription != nil { try container.encode(self.captureDescription as! CaptureDescriptionData?, forKey: .captureDescription) }
   }
 }
 

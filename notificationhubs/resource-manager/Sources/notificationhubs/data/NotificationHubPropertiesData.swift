@@ -26,7 +26,7 @@ internal struct NotificationHubPropertiesData : NotificationHubPropertiesProtoco
         case baiduCredential = "baiduCredential"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct NotificationHubPropertiesData : NotificationHubPropertiesProtoco
     if container.contains(.baiduCredential) {
         self.baiduCredential = try container.decode(BaiduCredentialData?.self, forKey: .baiduCredential)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct NotificationHubPropertiesData : NotificationHubPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.registrationTtl != nil {try container.encode(self.registrationTtl, forKey: .registrationTtl)}
-    if self.authorizationRules != nil {try container.encode(self.authorizationRules as! [SharedAccessAuthorizationRulePropertiesData?]?, forKey: .authorizationRules)}
-    if self.apnsCredential != nil {try container.encode(self.apnsCredential as! ApnsCredentialData?, forKey: .apnsCredential)}
-    if self.wnsCredential != nil {try container.encode(self.wnsCredential as! WnsCredentialData?, forKey: .wnsCredential)}
-    if self.gcmCredential != nil {try container.encode(self.gcmCredential as! GcmCredentialData?, forKey: .gcmCredential)}
-    if self.mpnsCredential != nil {try container.encode(self.mpnsCredential as! MpnsCredentialData?, forKey: .mpnsCredential)}
-    if self.admCredential != nil {try container.encode(self.admCredential as! AdmCredentialData?, forKey: .admCredential)}
-    if self.baiduCredential != nil {try container.encode(self.baiduCredential as! BaiduCredentialData?, forKey: .baiduCredential)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.registrationTtl != nil { try container.encode(self.registrationTtl, forKey: .registrationTtl) }
+    if self.authorizationRules != nil { try container.encode(self.authorizationRules as! [SharedAccessAuthorizationRulePropertiesData?]?, forKey: .authorizationRules) }
+    if self.apnsCredential != nil { try container.encode(self.apnsCredential as! ApnsCredentialData?, forKey: .apnsCredential) }
+    if self.wnsCredential != nil { try container.encode(self.wnsCredential as! WnsCredentialData?, forKey: .wnsCredential) }
+    if self.gcmCredential != nil { try container.encode(self.gcmCredential as! GcmCredentialData?, forKey: .gcmCredential) }
+    if self.mpnsCredential != nil { try container.encode(self.mpnsCredential as! MpnsCredentialData?, forKey: .mpnsCredential) }
+    if self.admCredential != nil { try container.encode(self.admCredential as! AdmCredentialData?, forKey: .admCredential) }
+    if self.baiduCredential != nil { try container.encode(self.baiduCredential as! BaiduCredentialData?, forKey: .baiduCredential) }
   }
 }
 

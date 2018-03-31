@@ -18,7 +18,7 @@ internal struct ProtectionIntentData : ProtectionIntentProtocol {
         case protectionState = "protectionState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ProtectionIntentData : ProtectionIntentProtocol {
     if container.contains(.protectionState) {
         self.protectionState = try container.decode(ProtectionStatusEnum?.self, forKey: .protectionState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ProtectionIntentData : ProtectionIntentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.itemId != nil {try container.encode(self.itemId, forKey: .itemId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.itemId != nil { try container.encode(self.itemId, forKey: .itemId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
   }
 }
 

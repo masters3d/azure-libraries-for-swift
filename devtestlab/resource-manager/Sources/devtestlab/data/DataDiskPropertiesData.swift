@@ -14,7 +14,7 @@ internal struct DataDiskPropertiesData : DataDiskPropertiesProtocol {
         case hostCaching = "hostCaching"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DataDiskPropertiesData : DataDiskPropertiesProtocol {
     if container.contains(.hostCaching) {
         self.hostCaching = try container.decode(HostCachingOptionsEnum?.self, forKey: .hostCaching)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DataDiskPropertiesData : DataDiskPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.attachNewDataDiskOptions != nil {try container.encode(self.attachNewDataDiskOptions as! AttachNewDataDiskOptionsData?, forKey: .attachNewDataDiskOptions)}
-    if self.existingLabDiskId != nil {try container.encode(self.existingLabDiskId, forKey: .existingLabDiskId)}
-    if self.hostCaching != nil {try container.encode(self.hostCaching, forKey: .hostCaching)}
+    if self.attachNewDataDiskOptions != nil { try container.encode(self.attachNewDataDiskOptions as! AttachNewDataDiskOptionsData?, forKey: .attachNewDataDiskOptions) }
+    if self.existingLabDiskId != nil { try container.encode(self.existingLabDiskId, forKey: .existingLabDiskId) }
+    if self.hostCaching != nil { try container.encode(self.hostCaching, forKey: .hostCaching) }
   }
 }
 

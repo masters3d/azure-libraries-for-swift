@@ -16,7 +16,7 @@ internal struct RouteFilterRulePropertiesFormatData : RouteFilterRulePropertiesF
         case provisioningState = "provisioningState"
         }
 
-  public init(access: AccessEnum, routeFilterRuleType: String, communities: [String])  {
+  public init(access: AccessEnum, routeFilterRuleType: String, communities: [String]) {
     self.access = access
     self.routeFilterRuleType = routeFilterRuleType
     self.communities = communities
@@ -30,7 +30,7 @@ internal struct RouteFilterRulePropertiesFormatData : RouteFilterRulePropertiesF
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct RouteFilterRulePropertiesFormatData : RouteFilterRulePropertiesF
     try container.encode(self.access, forKey: .access)
     try container.encode(self.routeFilterRuleType, forKey: .routeFilterRuleType)
     try container.encode(self.communities as! [String], forKey: .communities)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

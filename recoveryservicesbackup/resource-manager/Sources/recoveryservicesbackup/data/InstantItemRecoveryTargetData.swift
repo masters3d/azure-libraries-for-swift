@@ -10,7 +10,7 @@ internal struct InstantItemRecoveryTargetData : InstantItemRecoveryTargetProtoco
         enum CodingKeys: String, CodingKey {case clientScripts = "clientScripts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct InstantItemRecoveryTargetData : InstantItemRecoveryTargetProtoco
       if container.contains(.clientScripts) {
         self.clientScripts = try container.decode([ClientScriptForConnectData?]?.self, forKey: .clientScripts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct InstantItemRecoveryTargetData : InstantItemRecoveryTargetProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientScripts != nil {try container.encode(self.clientScripts as! [ClientScriptForConnectData?]?, forKey: .clientScripts)}
+    if self.clientScripts != nil { try container.encode(self.clientScripts as! [ClientScriptForConnectData?]?, forKey: .clientScripts) }
   }
 }
 

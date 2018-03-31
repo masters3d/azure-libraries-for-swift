@@ -18,7 +18,7 @@ internal struct ServicePrincipalCreateParametersData : ServicePrincipalCreatePar
         case passwordCredentials = "passwordCredentials"
         }
 
-  public init(appId: String, accountEnabled: Bool)  {
+  public init(appId: String, accountEnabled: Bool) {
     self.appId = appId
     self.accountEnabled = accountEnabled
   }
@@ -36,7 +36,7 @@ internal struct ServicePrincipalCreateParametersData : ServicePrincipalCreatePar
     if container.contains(.passwordCredentials) {
         self.passwordCredentials = try container.decode([PasswordCredentialData?]?.self, forKey: .passwordCredentials)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,11 +46,11 @@ internal struct ServicePrincipalCreateParametersData : ServicePrincipalCreatePar
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.appId, forKey: .appId)
     try container.encode(self.accountEnabled, forKey: .accountEnabled)
-    if self.keyCredentials != nil {try container.encode(self.keyCredentials as! [KeyCredentialData?]?, forKey: .keyCredentials)}
-    if self.passwordCredentials != nil {try container.encode(self.passwordCredentials as! [PasswordCredentialData?]?, forKey: .passwordCredentials)}
+    if self.keyCredentials != nil { try container.encode(self.keyCredentials as! [KeyCredentialData?]?, forKey: .keyCredentials) }
+    if self.passwordCredentials != nil { try container.encode(self.passwordCredentials as! [PasswordCredentialData?]?, forKey: .passwordCredentials) }
   }
 }
 

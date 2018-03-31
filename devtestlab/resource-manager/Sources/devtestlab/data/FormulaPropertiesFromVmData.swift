@@ -10,7 +10,7 @@ internal struct FormulaPropertiesFromVmData : FormulaPropertiesFromVmProtocol {
         enum CodingKeys: String, CodingKey {case labVmId = "labVmId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FormulaPropertiesFromVmData : FormulaPropertiesFromVmProtocol {
       if container.contains(.labVmId) {
         self.labVmId = try container.decode(String?.self, forKey: .labVmId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FormulaPropertiesFromVmData : FormulaPropertiesFromVmProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.labVmId != nil {try container.encode(self.labVmId, forKey: .labVmId)}
+    if self.labVmId != nil { try container.encode(self.labVmId, forKey: .labVmId) }
   }
 }
 

@@ -18,7 +18,7 @@ internal struct RedisUpdatePropertiesData : RedisUpdatePropertiesProtocol, Redis
         case sku = "sku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct RedisUpdatePropertiesData : RedisUpdatePropertiesProtocol, Redis
     if container.contains(.sku) {
         self.sku = try container.decode(SkuData?.self, forKey: .sku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct RedisUpdatePropertiesData : RedisUpdatePropertiesProtocol, Redis
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.redisConfiguration != nil {try container.encode(self.redisConfiguration, forKey: .redisConfiguration)}
-    if self.enableNonSslPort != nil {try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort)}
-    if self.tenantSettings != nil {try container.encode(self.tenantSettings, forKey: .tenantSettings)}
-    if self.shardCount != nil {try container.encode(self.shardCount, forKey: .shardCount)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
+    if self.redisConfiguration != nil { try container.encode(self.redisConfiguration, forKey: .redisConfiguration) }
+    if self.enableNonSslPort != nil { try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort) }
+    if self.tenantSettings != nil { try container.encode(self.tenantSettings, forKey: .tenantSettings) }
+    if self.shardCount != nil { try container.encode(self.shardCount, forKey: .shardCount) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
   }
 }
 

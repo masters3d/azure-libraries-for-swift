@@ -22,7 +22,7 @@ internal struct SolutionData : SolutionProtocol {
         case metadata = "metadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SolutionData : SolutionProtocol {
     if container.contains(.metadata) {
         self.metadata = try container.decode([[NameValuePairData?]?]?.self, forKey: .metadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct SolutionData : SolutionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.order != nil {try container.encode(self.order, forKey: .order)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.data != nil {try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data)}
-    if self.metadata != nil {try container.encode(self.metadata as! [[NameValuePairData?]?]?, forKey: .metadata)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.order != nil { try container.encode(self.order, forKey: .order) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.data != nil { try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data) }
+    if self.metadata != nil { try container.encode(self.metadata as! [[NameValuePairData?]?]?, forKey: .metadata) }
   }
 }
 

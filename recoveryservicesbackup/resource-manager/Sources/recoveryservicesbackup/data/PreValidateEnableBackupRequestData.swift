@@ -16,7 +16,7 @@ internal struct PreValidateEnableBackupRequestData : PreValidateEnableBackupRequ
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PreValidateEnableBackupRequestData : PreValidateEnableBackupRequ
     if container.contains(.properties) {
         self.properties = try container.decode(String?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PreValidateEnableBackupRequestData : PreValidateEnableBackupRequ
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.vaultId != nil {try container.encode(self.vaultId, forKey: .vaultId)}
-    if self.properties != nil {try container.encode(self.properties, forKey: .properties)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.vaultId != nil { try container.encode(self.vaultId, forKey: .vaultId) }
+    if self.properties != nil { try container.encode(self.properties, forKey: .properties) }
   }
 }
 

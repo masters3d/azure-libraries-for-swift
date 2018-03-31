@@ -26,7 +26,7 @@ internal struct CertificateDetailsData : CertificateDetailsProtocol {
         case rawData = "rawData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct CertificateDetailsData : CertificateDetailsProtocol {
     if container.contains(.rawData) {
         self.rawData = try container.decode(String?.self, forKey: .rawData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,19 +68,19 @@ internal struct CertificateDetailsData : CertificateDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.serialNumber != nil {try container.encode(self.serialNumber, forKey: .serialNumber)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.subject != nil {try container.encode(self.subject, forKey: .subject)}
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.serialNumber != nil { try container.encode(self.serialNumber, forKey: .serialNumber) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.subject != nil { try container.encode(self.subject, forKey: .subject) }
     if self.notBefore != nil {
         try container.encode(DateConverter.toString(date: self.notBefore!, format: .dateTime), forKey: .notBefore)
     }
     if self.notAfter != nil {
         try container.encode(DateConverter.toString(date: self.notAfter!, format: .dateTime), forKey: .notAfter)
     }
-    if self.signatureAlgorithm != nil {try container.encode(self.signatureAlgorithm, forKey: .signatureAlgorithm)}
-    if self.issuer != nil {try container.encode(self.issuer, forKey: .issuer)}
-    if self.rawData != nil {try container.encode(self.rawData, forKey: .rawData)}
+    if self.signatureAlgorithm != nil { try container.encode(self.signatureAlgorithm, forKey: .signatureAlgorithm) }
+    if self.issuer != nil { try container.encode(self.issuer, forKey: .issuer) }
+    if self.rawData != nil { try container.encode(self.rawData, forKey: .rawData) }
   }
 }
 

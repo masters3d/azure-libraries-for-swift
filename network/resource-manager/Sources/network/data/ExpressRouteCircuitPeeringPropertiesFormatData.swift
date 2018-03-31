@@ -42,7 +42,7 @@ internal struct ExpressRouteCircuitPeeringPropertiesFormatData : ExpressRouteCir
         case ipv6PeeringConfig = "ipv6PeeringConfig"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,7 +98,7 @@ internal struct ExpressRouteCircuitPeeringPropertiesFormatData : ExpressRouteCir
     if container.contains(.ipv6PeeringConfig) {
         self.ipv6PeeringConfig = try container.decode(Ipv6ExpressRouteCircuitPeeringConfigData?.self, forKey: .ipv6PeeringConfig)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -108,23 +108,23 @@ internal struct ExpressRouteCircuitPeeringPropertiesFormatData : ExpressRouteCir
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.peeringType != nil {try container.encode(self.peeringType, forKey: .peeringType)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.azureASN != nil {try container.encode(self.azureASN, forKey: .azureASN)}
-    if self.peerASN != nil {try container.encode(self.peerASN, forKey: .peerASN)}
-    if self.primaryPeerAddressPrefix != nil {try container.encode(self.primaryPeerAddressPrefix, forKey: .primaryPeerAddressPrefix)}
-    if self.secondaryPeerAddressPrefix != nil {try container.encode(self.secondaryPeerAddressPrefix, forKey: .secondaryPeerAddressPrefix)}
-    if self.primaryAzurePort != nil {try container.encode(self.primaryAzurePort, forKey: .primaryAzurePort)}
-    if self.secondaryAzurePort != nil {try container.encode(self.secondaryAzurePort, forKey: .secondaryAzurePort)}
-    if self.sharedKey != nil {try container.encode(self.sharedKey, forKey: .sharedKey)}
-    if self.vlanId != nil {try container.encode(self.vlanId, forKey: .vlanId)}
-    if self.microsoftPeeringConfig != nil {try container.encode(self.microsoftPeeringConfig as! ExpressRouteCircuitPeeringConfigData?, forKey: .microsoftPeeringConfig)}
-    if self.stats != nil {try container.encode(self.stats as! ExpressRouteCircuitStatsData?, forKey: .stats)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.gatewayManagerEtag != nil {try container.encode(self.gatewayManagerEtag, forKey: .gatewayManagerEtag)}
-    if self.lastModifiedBy != nil {try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy)}
-    if self.routeFilter != nil {try container.encode(self.routeFilter as! RouteFilterData?, forKey: .routeFilter)}
-    if self.ipv6PeeringConfig != nil {try container.encode(self.ipv6PeeringConfig as! Ipv6ExpressRouteCircuitPeeringConfigData?, forKey: .ipv6PeeringConfig)}
+    if self.peeringType != nil { try container.encode(self.peeringType, forKey: .peeringType) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.azureASN != nil { try container.encode(self.azureASN, forKey: .azureASN) }
+    if self.peerASN != nil { try container.encode(self.peerASN, forKey: .peerASN) }
+    if self.primaryPeerAddressPrefix != nil { try container.encode(self.primaryPeerAddressPrefix, forKey: .primaryPeerAddressPrefix) }
+    if self.secondaryPeerAddressPrefix != nil { try container.encode(self.secondaryPeerAddressPrefix, forKey: .secondaryPeerAddressPrefix) }
+    if self.primaryAzurePort != nil { try container.encode(self.primaryAzurePort, forKey: .primaryAzurePort) }
+    if self.secondaryAzurePort != nil { try container.encode(self.secondaryAzurePort, forKey: .secondaryAzurePort) }
+    if self.sharedKey != nil { try container.encode(self.sharedKey, forKey: .sharedKey) }
+    if self.vlanId != nil { try container.encode(self.vlanId, forKey: .vlanId) }
+    if self.microsoftPeeringConfig != nil { try container.encode(self.microsoftPeeringConfig as! ExpressRouteCircuitPeeringConfigData?, forKey: .microsoftPeeringConfig) }
+    if self.stats != nil { try container.encode(self.stats as! ExpressRouteCircuitStatsData?, forKey: .stats) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.gatewayManagerEtag != nil { try container.encode(self.gatewayManagerEtag, forKey: .gatewayManagerEtag) }
+    if self.lastModifiedBy != nil { try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy) }
+    if self.routeFilter != nil { try container.encode(self.routeFilter as! RouteFilterData?, forKey: .routeFilter) }
+    if self.ipv6PeeringConfig != nil { try container.encode(self.ipv6PeeringConfig as! Ipv6ExpressRouteCircuitPeeringConfigData?, forKey: .ipv6PeeringConfig) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,19 +78,19 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.taskType != nil {try container.encode(self.taskType, forKey: .taskType)}
-    if self.weeklyRecurrence != nil {try container.encode(self.weeklyRecurrence as! WeekDetailsData?, forKey: .weeklyRecurrence)}
-    if self.dailyRecurrence != nil {try container.encode(self.dailyRecurrence as! DayDetailsData?, forKey: .dailyRecurrence)}
-    if self.hourlyRecurrence != nil {try container.encode(self.hourlyRecurrence as! HourDetailsData?, forKey: .hourlyRecurrence)}
-    if self.timeZoneId != nil {try container.encode(self.timeZoneId, forKey: .timeZoneId)}
-    if self.notificationSettings != nil {try container.encode(self.notificationSettings as! NotificationSettingsData?, forKey: .notificationSettings)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.taskType != nil { try container.encode(self.taskType, forKey: .taskType) }
+    if self.weeklyRecurrence != nil { try container.encode(self.weeklyRecurrence as! WeekDetailsData?, forKey: .weeklyRecurrence) }
+    if self.dailyRecurrence != nil { try container.encode(self.dailyRecurrence as! DayDetailsData?, forKey: .dailyRecurrence) }
+    if self.hourlyRecurrence != nil { try container.encode(self.hourlyRecurrence as! HourDetailsData?, forKey: .hourlyRecurrence) }
+    if self.timeZoneId != nil { try container.encode(self.timeZoneId, forKey: .timeZoneId) }
+    if self.notificationSettings != nil { try container.encode(self.notificationSettings as! NotificationSettingsData?, forKey: .notificationSettings) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.targetResourceId != nil {try container.encode(self.targetResourceId, forKey: .targetResourceId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.targetResourceId != nil { try container.encode(self.targetResourceId, forKey: .targetResourceId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

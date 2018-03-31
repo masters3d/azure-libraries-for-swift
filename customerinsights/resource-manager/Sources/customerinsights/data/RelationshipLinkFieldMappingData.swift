@@ -14,7 +14,7 @@ internal struct RelationshipLinkFieldMappingData : RelationshipLinkFieldMappingP
         case relationshipFieldName = "relationshipFieldName"
         }
 
-  public init(interactionFieldName: String, relationshipFieldName: String)  {
+  public init(interactionFieldName: String, relationshipFieldName: String) {
     self.interactionFieldName = interactionFieldName
     self.relationshipFieldName = relationshipFieldName
   }
@@ -26,7 +26,7 @@ internal struct RelationshipLinkFieldMappingData : RelationshipLinkFieldMappingP
         self.linkType = try container.decode(LinkTypesEnum?.self, forKey: .linkType)
     }
     self.relationshipFieldName = try container.decode(String.self, forKey: .relationshipFieldName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,7 +37,7 @@ internal struct RelationshipLinkFieldMappingData : RelationshipLinkFieldMappingP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.interactionFieldName, forKey: .interactionFieldName)
-    if self.linkType != nil {try container.encode(self.linkType, forKey: .linkType)}
+    if self.linkType != nil { try container.encode(self.linkType, forKey: .linkType) }
     try container.encode(self.relationshipFieldName, forKey: .relationshipFieldName)
   }
 }

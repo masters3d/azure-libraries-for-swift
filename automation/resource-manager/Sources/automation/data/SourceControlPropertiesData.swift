@@ -26,7 +26,7 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
         case lastModifiedTime = "lastModifiedTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
     if container.contains(.lastModifiedTime) {
         self.lastModifiedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastModifiedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,13 +68,13 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.repoUrl != nil {try container.encode(self.repoUrl, forKey: .repoUrl)}
-    if self.branch != nil {try container.encode(self.branch, forKey: .branch)}
-    if self.folderPath != nil {try container.encode(self.folderPath, forKey: .folderPath)}
-    if self.autoSync != nil {try container.encode(self.autoSync, forKey: .autoSync)}
-    if self.publishRunbook != nil {try container.encode(self.publishRunbook, forKey: .publishRunbook)}
-    if self.sourceType != nil {try container.encode(self.sourceType, forKey: .sourceType)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.repoUrl != nil { try container.encode(self.repoUrl, forKey: .repoUrl) }
+    if self.branch != nil { try container.encode(self.branch, forKey: .branch) }
+    if self.folderPath != nil { try container.encode(self.folderPath, forKey: .folderPath) }
+    if self.autoSync != nil { try container.encode(self.autoSync, forKey: .autoSync) }
+    if self.publishRunbook != nil { try container.encode(self.publishRunbook, forKey: .publishRunbook) }
+    if self.sourceType != nil { try container.encode(self.sourceType, forKey: .sourceType) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }

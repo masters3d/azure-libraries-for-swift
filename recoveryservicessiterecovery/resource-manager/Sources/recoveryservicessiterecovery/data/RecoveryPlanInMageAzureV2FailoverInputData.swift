@@ -14,7 +14,7 @@ internal struct RecoveryPlanInMageAzureV2FailoverInputData : RecoveryPlanInMageA
         case useMultiVmSyncPoint = "useMultiVmSyncPoint"
         }
 
-  public init(vaultLocation: String, recoveryPointType: InMageV2RpRecoveryPointTypeEnum)  {
+  public init(vaultLocation: String, recoveryPointType: InMageV2RpRecoveryPointTypeEnum) {
     self.vaultLocation = vaultLocation
     self.recoveryPointType = recoveryPointType
   }
@@ -26,7 +26,7 @@ internal struct RecoveryPlanInMageAzureV2FailoverInputData : RecoveryPlanInMageA
     if container.contains(.useMultiVmSyncPoint) {
         self.useMultiVmSyncPoint = try container.decode(String?.self, forKey: .useMultiVmSyncPoint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct RecoveryPlanInMageAzureV2FailoverInputData : RecoveryPlanInMageA
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vaultLocation, forKey: .vaultLocation)
     try container.encode(self.recoveryPointType, forKey: .recoveryPointType)
-    if self.useMultiVmSyncPoint != nil {try container.encode(self.useMultiVmSyncPoint, forKey: .useMultiVmSyncPoint)}
+    if self.useMultiVmSyncPoint != nil { try container.encode(self.useMultiVmSyncPoint, forKey: .useMultiVmSyncPoint) }
   }
 }
 

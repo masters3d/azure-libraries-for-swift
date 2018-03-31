@@ -24,7 +24,7 @@ internal struct JobReleaseTaskData : JobReleaseTaskProtocol {
         case userIdentity = "userIdentity"
         }
 
-  public init(commandLine: String)  {
+  public init(commandLine: String) {
     self.commandLine = commandLine
   }
 
@@ -52,7 +52,7 @@ internal struct JobReleaseTaskData : JobReleaseTaskProtocol {
     if container.contains(.userIdentity) {
         self.userIdentity = try container.decode(UserIdentityData?.self, forKey: .userIdentity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,14 +62,14 @@ internal struct JobReleaseTaskData : JobReleaseTaskProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     try container.encode(self.commandLine, forKey: .commandLine)
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings)}
-    if self.resourceFiles != nil {try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles)}
-    if self.environmentSettings != nil {try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings)}
-    if self.maxWallClockTime != nil {try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime)}
-    if self.retentionTime != nil {try container.encode(self.retentionTime, forKey: .retentionTime)}
-    if self.userIdentity != nil {try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity)}
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings) }
+    if self.resourceFiles != nil { try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles) }
+    if self.environmentSettings != nil { try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings) }
+    if self.maxWallClockTime != nil { try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime) }
+    if self.retentionTime != nil { try container.encode(self.retentionTime, forKey: .retentionTime) }
+    if self.userIdentity != nil { try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity) }
   }
 }
 

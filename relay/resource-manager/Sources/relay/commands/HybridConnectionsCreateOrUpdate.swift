@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol HybridConnectionsCreateOrUpdate  {
+public protocol HybridConnectionsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
     var hybridConnectionName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  HybridConnectionProtocol?  { get set }
+    var parameters :  HybridConnectionProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (HybridConnectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (HybridConnectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.HybridConnections {
@@ -35,7 +35,7 @@ extension Commands.HybridConnections {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{hybridConnectionName}"] = String(describing: self.hybridConnectionName)
@@ -59,12 +59,12 @@ extension Commands.HybridConnections {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(HybridConnectionData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (HybridConnectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (HybridConnectionProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: HybridConnectionData?, error: Error?) in
                 completionHandler(result, error)

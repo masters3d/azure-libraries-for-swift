@@ -14,7 +14,7 @@ internal struct MabFileFolderProtectedItemExtendedInfoData : MabFileFolderProtec
         case recoveryPointCount = "recoveryPointCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct MabFileFolderProtectedItemExtendedInfoData : MabFileFolderProtec
     if container.contains(.recoveryPointCount) {
         self.recoveryPointCount = try container.decode(Int32?.self, forKey: .recoveryPointCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct MabFileFolderProtectedItemExtendedInfoData : MabFileFolderProtec
     if self.oldestRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.oldestRecoveryPoint!, format: .dateTime), forKey: .oldestRecoveryPoint)
     }
-    if self.recoveryPointCount != nil {try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount)}
+    if self.recoveryPointCount != nil { try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount) }
   }
 }
 

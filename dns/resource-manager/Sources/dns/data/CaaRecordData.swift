@@ -14,7 +14,7 @@ internal struct CaaRecordData : CaaRecordProtocol {
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CaaRecordData : CaaRecordProtocol {
     if container.contains(.value) {
         self.value = try container.decode(String?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CaaRecordData : CaaRecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.flags != nil {try container.encode(self.flags, forKey: .flags)}
-    if self.tag != nil {try container.encode(self.tag, forKey: .tag)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.flags != nil { try container.encode(self.flags, forKey: .flags) }
+    if self.tag != nil { try container.encode(self.tag, forKey: .tag) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct HyperVReplicaAzureApplyRecoveryPointInputData : HyperVReplicaAzu
         case secondaryKekCertificatePfx = "secondaryKekCertificatePfx"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HyperVReplicaAzureApplyRecoveryPointInputData : HyperVReplicaAzu
     if container.contains(.secondaryKekCertificatePfx) {
         self.secondaryKekCertificatePfx = try container.decode(String?.self, forKey: .secondaryKekCertificatePfx)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct HyperVReplicaAzureApplyRecoveryPointInputData : HyperVReplicaAzu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vaultLocation != nil {try container.encode(self.vaultLocation, forKey: .vaultLocation)}
-    if self.primaryKekCertificatePfx != nil {try container.encode(self.primaryKekCertificatePfx, forKey: .primaryKekCertificatePfx)}
-    if self.secondaryKekCertificatePfx != nil {try container.encode(self.secondaryKekCertificatePfx, forKey: .secondaryKekCertificatePfx)}
+    if self.vaultLocation != nil { try container.encode(self.vaultLocation, forKey: .vaultLocation) }
+    if self.primaryKekCertificatePfx != nil { try container.encode(self.primaryKekCertificatePfx, forKey: .primaryKekCertificatePfx) }
+    if self.secondaryKekCertificatePfx != nil { try container.encode(self.secondaryKekCertificatePfx, forKey: .secondaryKekCertificatePfx) }
   }
 }
 

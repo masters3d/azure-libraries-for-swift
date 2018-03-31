@@ -16,7 +16,7 @@ internal struct FileServerBasePropertiesData : FileServerBasePropertiesProtocol 
         case subnet = "subnet"
         }
 
-  public init(vmSize: String, sshConfiguration: SshConfigurationProtocol, dataDisks: DataDisksProtocol)  {
+  public init(vmSize: String, sshConfiguration: SshConfigurationProtocol, dataDisks: DataDisksProtocol) {
     self.vmSize = vmSize
     self.sshConfiguration = sshConfiguration
     self.dataDisks = dataDisks
@@ -30,7 +30,7 @@ internal struct FileServerBasePropertiesData : FileServerBasePropertiesProtocol 
     if container.contains(.subnet) {
         self.subnet = try container.decode(ResourceIdData?.self, forKey: .subnet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct FileServerBasePropertiesData : FileServerBasePropertiesProtocol 
     try container.encode(self.vmSize, forKey: .vmSize)
     try container.encode(self.sshConfiguration as! SshConfigurationData, forKey: .sshConfiguration)
     try container.encode(self.dataDisks as! DataDisksData, forKey: .dataDisks)
-    if self.subnet != nil {try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet)}
+    if self.subnet != nil { try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet) }
   }
 }
 

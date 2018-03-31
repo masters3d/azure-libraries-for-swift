@@ -22,7 +22,7 @@ internal struct ScheduleCreateOrUpdatePropertiesData : ScheduleCreateOrUpdatePro
         case advancedSchedule = "advancedSchedule"
         }
 
-  public init(startTime: Date, frequency: ScheduleFrequencyEnum)  {
+  public init(startTime: Date, frequency: ScheduleFrequencyEnum) {
     self.startTime = startTime
     self.frequency = frequency
   }
@@ -46,7 +46,7 @@ internal struct ScheduleCreateOrUpdatePropertiesData : ScheduleCreateOrUpdatePro
     if container.contains(.advancedSchedule) {
         self.advancedSchedule = try container.decode(AdvancedScheduleData?.self, forKey: .advancedSchedule)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,15 +56,15 @@ internal struct ScheduleCreateOrUpdatePropertiesData : ScheduleCreateOrUpdatePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(DateConverter.toString(date: self.startTime, format: .dateTime), forKey: .startTime)
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
     try container.encode(self.frequency, forKey: .frequency)
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.advancedSchedule != nil {try container.encode(self.advancedSchedule as! AdvancedScheduleData?, forKey: .advancedSchedule)}
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.advancedSchedule != nil { try container.encode(self.advancedSchedule as! AdvancedScheduleData?, forKey: .advancedSchedule) }
   }
 }
 

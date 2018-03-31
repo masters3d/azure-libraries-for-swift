@@ -18,7 +18,7 @@ internal struct DpmJobTaskDetailsData : DpmJobTaskDetailsProtocol {
         case status = "status"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DpmJobTaskDetailsData : DpmJobTaskDetailsProtocol {
     if container.contains(.status) {
         self.status = try container.decode(String?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct DpmJobTaskDetailsData : DpmJobTaskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.taskId != nil {try container.encode(self.taskId, forKey: .taskId)}
+    if self.taskId != nil { try container.encode(self.taskId, forKey: .taskId) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

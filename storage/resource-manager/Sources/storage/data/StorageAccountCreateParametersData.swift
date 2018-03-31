@@ -20,7 +20,7 @@ internal struct StorageAccountCreateParametersData : StorageAccountCreateParamet
         case properties = "properties"
         }
 
-  public init(sku: SkuProtocol, kind: KindEnum, location: String)  {
+  public init(sku: SkuProtocol, kind: KindEnum, location: String) {
     self.sku = sku
     self.kind = kind
     self.location = location
@@ -40,7 +40,7 @@ internal struct StorageAccountCreateParametersData : StorageAccountCreateParamet
     if container.contains(.properties) {
         self.properties = try container.decode(StorageAccountPropertiesCreateParametersData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,9 +53,9 @@ internal struct StorageAccountCreateParametersData : StorageAccountCreateParamet
     try container.encode(self.sku as! SkuData, forKey: .sku)
     try container.encode(self.kind, forKey: .kind)
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.identity != nil {try container.encode(self.identity as! IdentityData?, forKey: .identity)}
-    if self.properties != nil {try container.encode(self.properties as! StorageAccountPropertiesCreateParametersData?, forKey: .properties)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.identity != nil { try container.encode(self.identity as! IdentityData?, forKey: .identity) }
+    if self.properties != nil { try container.encode(self.properties as! StorageAccountPropertiesCreateParametersData?, forKey: .properties) }
   }
 }
 

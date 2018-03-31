@@ -10,14 +10,14 @@ internal struct VirtualMachineScaleSetVMInstanceRequiredIDsData : VirtualMachine
         enum CodingKeys: String, CodingKey {case instanceIds = "instanceIds"
         }
 
-  public init(instanceIds: [String])  {
+  public init(instanceIds: [String]) {
     self.instanceIds = instanceIds
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.instanceIds = try container.decode([String].self, forKey: .instanceIds)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

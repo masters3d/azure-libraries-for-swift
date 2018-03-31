@@ -12,7 +12,7 @@ internal struct ManagedDiskParametersData : ManagedDiskParametersProtocol, SubRe
         case storageAccountType = "storageAccountType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ManagedDiskParametersData : ManagedDiskParametersProtocol, SubRe
     if container.contains(.storageAccountType) {
         self.storageAccountType = try container.decode(StorageAccountTypesEnum?.self, forKey: .storageAccountType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ManagedDiskParametersData : ManagedDiskParametersProtocol, SubRe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.storageAccountType != nil {try container.encode(self.storageAccountType, forKey: .storageAccountType)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.storageAccountType != nil { try container.encode(self.storageAccountType, forKey: .storageAccountType) }
   }
 }
 

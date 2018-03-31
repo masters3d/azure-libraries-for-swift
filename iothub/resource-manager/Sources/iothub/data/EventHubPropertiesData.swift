@@ -18,7 +18,7 @@ internal struct EventHubPropertiesData : EventHubPropertiesProtocol {
         case endpoint = "endpoint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct EventHubPropertiesData : EventHubPropertiesProtocol {
     if container.contains(.endpoint) {
         self.endpoint = try container.decode(String?.self, forKey: .endpoint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct EventHubPropertiesData : EventHubPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.retentionTimeInDays != nil {try container.encode(self.retentionTimeInDays, forKey: .retentionTimeInDays)}
-    if self.partitionCount != nil {try container.encode(self.partitionCount, forKey: .partitionCount)}
-    if self.partitionIds != nil {try container.encode(self.partitionIds as! [String]?, forKey: .partitionIds)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
+    if self.retentionTimeInDays != nil { try container.encode(self.retentionTimeInDays, forKey: .retentionTimeInDays) }
+    if self.partitionCount != nil { try container.encode(self.partitionCount, forKey: .partitionCount) }
+    if self.partitionIds != nil { try container.encode(self.partitionIds as! [String]?, forKey: .partitionIds) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
   }
 }
 

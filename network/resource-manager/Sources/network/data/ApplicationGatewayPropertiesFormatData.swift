@@ -46,7 +46,7 @@ internal struct ApplicationGatewayPropertiesFormatData : ApplicationGatewayPrope
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct ApplicationGatewayPropertiesFormatData : ApplicationGatewayPrope
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -118,25 +118,25 @@ internal struct ApplicationGatewayPropertiesFormatData : ApplicationGatewayPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! ApplicationGatewaySkuData?, forKey: .sku)}
-    if self.sslPolicy != nil {try container.encode(self.sslPolicy as! ApplicationGatewaySslPolicyData?, forKey: .sslPolicy)}
-    if self.operationalState != nil {try container.encode(self.operationalState, forKey: .operationalState)}
-    if self.gatewayIPConfigurations != nil {try container.encode(self.gatewayIPConfigurations as! [ApplicationGatewayIPConfigurationData?]?, forKey: .gatewayIPConfigurations)}
-    if self.authenticationCertificates != nil {try container.encode(self.authenticationCertificates as! [ApplicationGatewayAuthenticationCertificateData?]?, forKey: .authenticationCertificates)}
-    if self.sslCertificates != nil {try container.encode(self.sslCertificates as! [ApplicationGatewaySslCertificateData?]?, forKey: .sslCertificates)}
-    if self.frontendIPConfigurations != nil {try container.encode(self.frontendIPConfigurations as! [ApplicationGatewayFrontendIPConfigurationData?]?, forKey: .frontendIPConfigurations)}
-    if self.frontendPorts != nil {try container.encode(self.frontendPorts as! [ApplicationGatewayFrontendPortData?]?, forKey: .frontendPorts)}
-    if self.probes != nil {try container.encode(self.probes as! [ApplicationGatewayProbeData?]?, forKey: .probes)}
-    if self.backendAddressPools != nil {try container.encode(self.backendAddressPools as! [ApplicationGatewayBackendAddressPoolData?]?, forKey: .backendAddressPools)}
-    if self.backendHttpSettingsCollection != nil {try container.encode(self.backendHttpSettingsCollection as! [ApplicationGatewayBackendHttpSettingsData?]?, forKey: .backendHttpSettingsCollection)}
-    if self.httpListeners != nil {try container.encode(self.httpListeners as! [ApplicationGatewayHttpListenerData?]?, forKey: .httpListeners)}
-    if self.urlPathMaps != nil {try container.encode(self.urlPathMaps as! [ApplicationGatewayUrlPathMapData?]?, forKey: .urlPathMaps)}
-    if self.requestRoutingRules != nil {try container.encode(self.requestRoutingRules as! [ApplicationGatewayRequestRoutingRuleData?]?, forKey: .requestRoutingRules)}
-    if self.redirectConfigurations != nil {try container.encode(self.redirectConfigurations as! [ApplicationGatewayRedirectConfigurationData?]?, forKey: .redirectConfigurations)}
-    if self.webApplicationFirewallConfiguration != nil {try container.encode(self.webApplicationFirewallConfiguration as! ApplicationGatewayWebApplicationFirewallConfigurationData?, forKey: .webApplicationFirewallConfiguration)}
-    if self.enableHttp2 != nil {try container.encode(self.enableHttp2, forKey: .enableHttp2)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.sku != nil { try container.encode(self.sku as! ApplicationGatewaySkuData?, forKey: .sku) }
+    if self.sslPolicy != nil { try container.encode(self.sslPolicy as! ApplicationGatewaySslPolicyData?, forKey: .sslPolicy) }
+    if self.operationalState != nil { try container.encode(self.operationalState, forKey: .operationalState) }
+    if self.gatewayIPConfigurations != nil { try container.encode(self.gatewayIPConfigurations as! [ApplicationGatewayIPConfigurationData?]?, forKey: .gatewayIPConfigurations) }
+    if self.authenticationCertificates != nil { try container.encode(self.authenticationCertificates as! [ApplicationGatewayAuthenticationCertificateData?]?, forKey: .authenticationCertificates) }
+    if self.sslCertificates != nil { try container.encode(self.sslCertificates as! [ApplicationGatewaySslCertificateData?]?, forKey: .sslCertificates) }
+    if self.frontendIPConfigurations != nil { try container.encode(self.frontendIPConfigurations as! [ApplicationGatewayFrontendIPConfigurationData?]?, forKey: .frontendIPConfigurations) }
+    if self.frontendPorts != nil { try container.encode(self.frontendPorts as! [ApplicationGatewayFrontendPortData?]?, forKey: .frontendPorts) }
+    if self.probes != nil { try container.encode(self.probes as! [ApplicationGatewayProbeData?]?, forKey: .probes) }
+    if self.backendAddressPools != nil { try container.encode(self.backendAddressPools as! [ApplicationGatewayBackendAddressPoolData?]?, forKey: .backendAddressPools) }
+    if self.backendHttpSettingsCollection != nil { try container.encode(self.backendHttpSettingsCollection as! [ApplicationGatewayBackendHttpSettingsData?]?, forKey: .backendHttpSettingsCollection) }
+    if self.httpListeners != nil { try container.encode(self.httpListeners as! [ApplicationGatewayHttpListenerData?]?, forKey: .httpListeners) }
+    if self.urlPathMaps != nil { try container.encode(self.urlPathMaps as! [ApplicationGatewayUrlPathMapData?]?, forKey: .urlPathMaps) }
+    if self.requestRoutingRules != nil { try container.encode(self.requestRoutingRules as! [ApplicationGatewayRequestRoutingRuleData?]?, forKey: .requestRoutingRules) }
+    if self.redirectConfigurations != nil { try container.encode(self.redirectConfigurations as! [ApplicationGatewayRedirectConfigurationData?]?, forKey: .redirectConfigurations) }
+    if self.webApplicationFirewallConfiguration != nil { try container.encode(self.webApplicationFirewallConfiguration as! ApplicationGatewayWebApplicationFirewallConfigurationData?, forKey: .webApplicationFirewallConfiguration) }
+    if self.enableHttp2 != nil { try container.encode(self.enableHttp2, forKey: .enableHttp2) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct FeedbackPropertiesData : FeedbackPropertiesProtocol {
         case maxDeliveryCount = "maxDeliveryCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct FeedbackPropertiesData : FeedbackPropertiesProtocol {
     if container.contains(.maxDeliveryCount) {
         self.maxDeliveryCount = try container.decode(Int32?.self, forKey: .maxDeliveryCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct FeedbackPropertiesData : FeedbackPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.lockDurationAsIso8601 != nil {try container.encode(self.lockDurationAsIso8601, forKey: .lockDurationAsIso8601)}
-    if self.ttlAsIso8601 != nil {try container.encode(self.ttlAsIso8601, forKey: .ttlAsIso8601)}
-    if self.maxDeliveryCount != nil {try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount)}
+    if self.lockDurationAsIso8601 != nil { try container.encode(self.lockDurationAsIso8601, forKey: .lockDurationAsIso8601) }
+    if self.ttlAsIso8601 != nil { try container.encode(self.ttlAsIso8601, forKey: .ttlAsIso8601) }
+    if self.maxDeliveryCount != nil { try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount) }
   }
 }
 

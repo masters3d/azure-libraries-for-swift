@@ -20,7 +20,7 @@ internal struct VpnClientConfigurationData : VpnClientConfigurationProtocol {
         case radiusServerSecret = "radiusServerSecret"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct VpnClientConfigurationData : VpnClientConfigurationProtocol {
     if container.contains(.radiusServerSecret) {
         self.radiusServerSecret = try container.decode(String?.self, forKey: .radiusServerSecret)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct VpnClientConfigurationData : VpnClientConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vpnClientAddressPool != nil {try container.encode(self.vpnClientAddressPool as! AddressSpaceData?, forKey: .vpnClientAddressPool)}
-    if self.vpnClientRootCertificates != nil {try container.encode(self.vpnClientRootCertificates as! [VpnClientRootCertificateData?]?, forKey: .vpnClientRootCertificates)}
-    if self.vpnClientRevokedCertificates != nil {try container.encode(self.vpnClientRevokedCertificates as! [VpnClientRevokedCertificateData?]?, forKey: .vpnClientRevokedCertificates)}
-    if self.vpnClientProtocols != nil {try container.encode(self.vpnClientProtocols as! [VpnClientProtocolEnum?]?, forKey: .vpnClientProtocols)}
-    if self.radiusServerAddress != nil {try container.encode(self.radiusServerAddress, forKey: .radiusServerAddress)}
-    if self.radiusServerSecret != nil {try container.encode(self.radiusServerSecret, forKey: .radiusServerSecret)}
+    if self.vpnClientAddressPool != nil { try container.encode(self.vpnClientAddressPool as! AddressSpaceData?, forKey: .vpnClientAddressPool) }
+    if self.vpnClientRootCertificates != nil { try container.encode(self.vpnClientRootCertificates as! [VpnClientRootCertificateData?]?, forKey: .vpnClientRootCertificates) }
+    if self.vpnClientRevokedCertificates != nil { try container.encode(self.vpnClientRevokedCertificates as! [VpnClientRevokedCertificateData?]?, forKey: .vpnClientRevokedCertificates) }
+    if self.vpnClientProtocols != nil { try container.encode(self.vpnClientProtocols as! [VpnClientProtocolEnum?]?, forKey: .vpnClientProtocols) }
+    if self.radiusServerAddress != nil { try container.encode(self.radiusServerAddress, forKey: .radiusServerAddress) }
+    if self.radiusServerSecret != nil { try container.encode(self.radiusServerSecret, forKey: .radiusServerSecret) }
   }
 }
 

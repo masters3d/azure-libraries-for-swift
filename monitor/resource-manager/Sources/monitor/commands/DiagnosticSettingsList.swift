@@ -1,11 +1,11 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DiagnosticSettingsList  {
+public protocol DiagnosticSettingsList {
     var headerParameters: [String: String] { get set }
     var resourceUri : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DiagnosticSettingsResourceCollectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DiagnosticSettingsResourceCollectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.DiagnosticSettings {
@@ -23,7 +23,7 @@ extension Commands.DiagnosticSettings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceUri}"] = String(describing: self.resourceUri)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
 
@@ -34,12 +34,12 @@ extension Commands.DiagnosticSettings {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DiagnosticSettingsResourceCollectionData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DiagnosticSettingsResourceCollectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DiagnosticSettingsResourceCollectionProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DiagnosticSettingsResourceCollectionData?, error: Error?) in
                 completionHandler(result, error)

@@ -14,7 +14,7 @@ internal struct DiscoverProtectableItemRequestPropertiesData : DiscoverProtectab
         case osType = "osType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DiscoverProtectableItemRequestPropertiesData : DiscoverProtectab
     if container.contains(.osType) {
         self.osType = try container.decode(String?.self, forKey: .osType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DiscoverProtectableItemRequestPropertiesData : DiscoverProtectab
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
   }
 }
 

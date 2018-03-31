@@ -22,7 +22,7 @@ internal struct MeterDetailsData : MeterDetailsProtocol {
         case pretaxStandardRate = "pretaxStandardRate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct MeterDetailsData : MeterDetailsProtocol {
     if container.contains(.pretaxStandardRate) {
         self.pretaxStandardRate = try container.decode(Decimal?.self, forKey: .pretaxStandardRate)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct MeterDetailsData : MeterDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.meterName != nil {try container.encode(self.meterName, forKey: .meterName)}
-    if self.meterCategory != nil {try container.encode(self.meterCategory, forKey: .meterCategory)}
-    if self.meterSubCategory != nil {try container.encode(self.meterSubCategory, forKey: .meterSubCategory)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.meterLocation != nil {try container.encode(self.meterLocation, forKey: .meterLocation)}
-    if self.totalIncludedQuantity != nil {try container.encode(self.totalIncludedQuantity, forKey: .totalIncludedQuantity)}
-    if self.pretaxStandardRate != nil {try container.encode(self.pretaxStandardRate, forKey: .pretaxStandardRate)}
+    if self.meterName != nil { try container.encode(self.meterName, forKey: .meterName) }
+    if self.meterCategory != nil { try container.encode(self.meterCategory, forKey: .meterCategory) }
+    if self.meterSubCategory != nil { try container.encode(self.meterSubCategory, forKey: .meterSubCategory) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.meterLocation != nil { try container.encode(self.meterLocation, forKey: .meterLocation) }
+    if self.totalIncludedQuantity != nil { try container.encode(self.totalIncludedQuantity, forKey: .totalIncludedQuantity) }
+    if self.pretaxStandardRate != nil { try container.encode(self.pretaxStandardRate, forKey: .pretaxStandardRate) }
   }
 }
 

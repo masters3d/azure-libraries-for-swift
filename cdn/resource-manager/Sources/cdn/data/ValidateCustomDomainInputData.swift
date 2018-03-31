@@ -10,14 +10,14 @@ internal struct ValidateCustomDomainInputData : ValidateCustomDomainInputProtoco
         enum CodingKeys: String, CodingKey {case hostName = "hostName"
         }
 
-  public init(hostName: String)  {
+  public init(hostName: String) {
     self.hostName = hostName
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hostName = try container.decode(String.self, forKey: .hostName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

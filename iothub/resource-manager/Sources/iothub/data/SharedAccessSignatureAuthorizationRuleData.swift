@@ -16,7 +16,7 @@ internal struct SharedAccessSignatureAuthorizationRuleData : SharedAccessSignatu
         case rights = "rights"
         }
 
-  public init(keyName: String, rights: AccessRightsEnum)  {
+  public init(keyName: String, rights: AccessRightsEnum) {
     self.keyName = keyName
     self.rights = rights
   }
@@ -31,7 +31,7 @@ internal struct SharedAccessSignatureAuthorizationRuleData : SharedAccessSignatu
         self.secondaryKey = try container.decode(String?.self, forKey: .secondaryKey)
     }
     self.rights = try container.decode(AccessRightsEnum.self, forKey: .rights)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,8 +42,8 @@ internal struct SharedAccessSignatureAuthorizationRuleData : SharedAccessSignatu
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.keyName, forKey: .keyName)
-    if self.primaryKey != nil {try container.encode(self.primaryKey, forKey: .primaryKey)}
-    if self.secondaryKey != nil {try container.encode(self.secondaryKey, forKey: .secondaryKey)}
+    if self.primaryKey != nil { try container.encode(self.primaryKey, forKey: .primaryKey) }
+    if self.secondaryKey != nil { try container.encode(self.secondaryKey, forKey: .secondaryKey) }
     try container.encode(self.rights, forKey: .rights)
   }
 }

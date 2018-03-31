@@ -10,14 +10,14 @@ internal struct SiteSealData : SiteSealProtocol {
         enum CodingKeys: String, CodingKey {case html = "html"
         }
 
-  public init(html: String)  {
+  public init(html: String) {
     self.html = html
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.html = try container.decode(String.self, forKey: .html)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

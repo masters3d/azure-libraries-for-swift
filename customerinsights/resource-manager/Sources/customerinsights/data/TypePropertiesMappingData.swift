@@ -14,7 +14,7 @@ internal struct TypePropertiesMappingData : TypePropertiesMappingProtocol {
         case linkType = "linkType"
         }
 
-  public init(sourcePropertyName: String, targetPropertyName: String)  {
+  public init(sourcePropertyName: String, targetPropertyName: String) {
     self.sourcePropertyName = sourcePropertyName
     self.targetPropertyName = targetPropertyName
   }
@@ -26,7 +26,7 @@ internal struct TypePropertiesMappingData : TypePropertiesMappingProtocol {
     if container.contains(.linkType) {
         self.linkType = try container.decode(LinkTypesEnum?.self, forKey: .linkType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct TypePropertiesMappingData : TypePropertiesMappingProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sourcePropertyName, forKey: .sourcePropertyName)
     try container.encode(self.targetPropertyName, forKey: .targetPropertyName)
-    if self.linkType != nil {try container.encode(self.linkType, forKey: .linkType)}
+    if self.linkType != nil { try container.encode(self.linkType, forKey: .linkType) }
   }
 }
 

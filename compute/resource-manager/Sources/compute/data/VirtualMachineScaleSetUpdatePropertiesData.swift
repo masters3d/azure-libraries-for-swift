@@ -16,7 +16,7 @@ internal struct VirtualMachineScaleSetUpdatePropertiesData : VirtualMachineScale
         case singlePlacementGroup = "singlePlacementGroup"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VirtualMachineScaleSetUpdatePropertiesData : VirtualMachineScale
     if container.contains(.singlePlacementGroup) {
         self.singlePlacementGroup = try container.decode(Bool?.self, forKey: .singlePlacementGroup)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VirtualMachineScaleSetUpdatePropertiesData : VirtualMachineScale
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.upgradePolicy != nil {try container.encode(self.upgradePolicy as! UpgradePolicyData?, forKey: .upgradePolicy)}
-    if self.virtualMachineProfile != nil {try container.encode(self.virtualMachineProfile as! VirtualMachineScaleSetUpdateVMProfileData?, forKey: .virtualMachineProfile)}
-    if self.overprovision != nil {try container.encode(self.overprovision, forKey: .overprovision)}
-    if self.singlePlacementGroup != nil {try container.encode(self.singlePlacementGroup, forKey: .singlePlacementGroup)}
+    if self.upgradePolicy != nil { try container.encode(self.upgradePolicy as! UpgradePolicyData?, forKey: .upgradePolicy) }
+    if self.virtualMachineProfile != nil { try container.encode(self.virtualMachineProfile as! VirtualMachineScaleSetUpdateVMProfileData?, forKey: .virtualMachineProfile) }
+    if self.overprovision != nil { try container.encode(self.overprovision, forKey: .overprovision) }
+    if self.singlePlacementGroup != nil { try container.encode(self.singlePlacementGroup, forKey: .singlePlacementGroup) }
   }
 }
 

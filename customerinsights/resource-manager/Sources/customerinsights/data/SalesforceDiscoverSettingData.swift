@@ -10,14 +10,14 @@ internal struct SalesforceDiscoverSettingData : SalesforceDiscoverSettingProtoco
         enum CodingKeys: String, CodingKey {case salesforceConnectionStringSecretUrl = "salesforceConnectionStringSecretUrl"
         }
 
-  public init(salesforceConnectionStringSecretUrl: String)  {
+  public init(salesforceConnectionStringSecretUrl: String) {
     self.salesforceConnectionStringSecretUrl = salesforceConnectionStringSecretUrl
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.salesforceConnectionStringSecretUrl = try container.decode(String.self, forKey: .salesforceConnectionStringSecretUrl)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

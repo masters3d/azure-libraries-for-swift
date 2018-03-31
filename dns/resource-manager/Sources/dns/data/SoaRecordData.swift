@@ -22,7 +22,7 @@ internal struct SoaRecordData : SoaRecordProtocol {
         case minimumTtl = "minimumTTL"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SoaRecordData : SoaRecordProtocol {
     if container.contains(.minimumTtl) {
         self.minimumTtl = try container.decode(Int64?.self, forKey: .minimumTtl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct SoaRecordData : SoaRecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.host != nil {try container.encode(self.host, forKey: .host)}
-    if self.email != nil {try container.encode(self.email, forKey: .email)}
-    if self.serialNumber != nil {try container.encode(self.serialNumber, forKey: .serialNumber)}
-    if self.refreshTime != nil {try container.encode(self.refreshTime, forKey: .refreshTime)}
-    if self.retryTime != nil {try container.encode(self.retryTime, forKey: .retryTime)}
-    if self.expireTime != nil {try container.encode(self.expireTime, forKey: .expireTime)}
-    if self.minimumTtl != nil {try container.encode(self.minimumTtl, forKey: .minimumTtl)}
+    if self.host != nil { try container.encode(self.host, forKey: .host) }
+    if self.email != nil { try container.encode(self.email, forKey: .email) }
+    if self.serialNumber != nil { try container.encode(self.serialNumber, forKey: .serialNumber) }
+    if self.refreshTime != nil { try container.encode(self.refreshTime, forKey: .refreshTime) }
+    if self.retryTime != nil { try container.encode(self.retryTime, forKey: .retryTime) }
+    if self.expireTime != nil { try container.encode(self.expireTime, forKey: .expireTime) }
+    if self.minimumTtl != nil { try container.encode(self.minimumTtl, forKey: .minimumTtl) }
   }
 }
 

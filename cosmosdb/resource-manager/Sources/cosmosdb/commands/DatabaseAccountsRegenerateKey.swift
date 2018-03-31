@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DatabaseAccountsRegenerateKey  {
+public protocol DatabaseAccountsRegenerateKey {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var apiVersion : String { get set }
-    var keyToRegenerate :  DatabaseAccountRegenerateKeyParametersProtocol?  { get set }
+    var keyToRegenerate :  DatabaseAccountRegenerateKeyParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.DatabaseAccounts {
@@ -34,7 +34,7 @@ extension Commands.DatabaseAccounts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
@@ -53,7 +53,7 @@ extension Commands.DatabaseAccounts {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

@@ -38,7 +38,7 @@ internal struct RecoveryPlanPropertiesData : RecoveryPlanPropertiesProtocol {
         case groups = "groups"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct RecoveryPlanPropertiesData : RecoveryPlanPropertiesProtocol {
     if container.contains(.groups) {
         self.groups = try container.decode([RecoveryPlanGroupData?]?.self, forKey: .groups)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,14 +98,14 @@ internal struct RecoveryPlanPropertiesData : RecoveryPlanPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.primaryFabricId != nil {try container.encode(self.primaryFabricId, forKey: .primaryFabricId)}
-    if self.primaryFabricFriendlyName != nil {try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName)}
-    if self.recoveryFabricId != nil {try container.encode(self.recoveryFabricId, forKey: .recoveryFabricId)}
-    if self.recoveryFabricFriendlyName != nil {try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName)}
-    if self.failoverDeploymentModel != nil {try container.encode(self.failoverDeploymentModel, forKey: .failoverDeploymentModel)}
-    if self.replicationProviders != nil {try container.encode(self.replicationProviders as! [String]?, forKey: .replicationProviders)}
-    if self.allowedOperations != nil {try container.encode(self.allowedOperations as! [String]?, forKey: .allowedOperations)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.primaryFabricId != nil { try container.encode(self.primaryFabricId, forKey: .primaryFabricId) }
+    if self.primaryFabricFriendlyName != nil { try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName) }
+    if self.recoveryFabricId != nil { try container.encode(self.recoveryFabricId, forKey: .recoveryFabricId) }
+    if self.recoveryFabricFriendlyName != nil { try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName) }
+    if self.failoverDeploymentModel != nil { try container.encode(self.failoverDeploymentModel, forKey: .failoverDeploymentModel) }
+    if self.replicationProviders != nil { try container.encode(self.replicationProviders as! [String]?, forKey: .replicationProviders) }
+    if self.allowedOperations != nil { try container.encode(self.allowedOperations as! [String]?, forKey: .allowedOperations) }
     if self.lastPlannedFailoverTime != nil {
         try container.encode(DateConverter.toString(date: self.lastPlannedFailoverTime!, format: .dateTime), forKey: .lastPlannedFailoverTime)
     }
@@ -115,10 +115,10 @@ internal struct RecoveryPlanPropertiesData : RecoveryPlanPropertiesProtocol {
     if self.lastTestFailoverTime != nil {
         try container.encode(DateConverter.toString(date: self.lastTestFailoverTime!, format: .dateTime), forKey: .lastTestFailoverTime)
     }
-    if self.currentScenario != nil {try container.encode(self.currentScenario as! CurrentScenarioDetailsData?, forKey: .currentScenario)}
-    if self.currentScenarioStatus != nil {try container.encode(self.currentScenarioStatus, forKey: .currentScenarioStatus)}
-    if self.currentScenarioStatusDescription != nil {try container.encode(self.currentScenarioStatusDescription, forKey: .currentScenarioStatusDescription)}
-    if self.groups != nil {try container.encode(self.groups as! [RecoveryPlanGroupData?]?, forKey: .groups)}
+    if self.currentScenario != nil { try container.encode(self.currentScenario as! CurrentScenarioDetailsData?, forKey: .currentScenario) }
+    if self.currentScenarioStatus != nil { try container.encode(self.currentScenarioStatus, forKey: .currentScenarioStatus) }
+    if self.currentScenarioStatusDescription != nil { try container.encode(self.currentScenarioStatusDescription, forKey: .currentScenarioStatusDescription) }
+    if self.groups != nil { try container.encode(self.groups as! [RecoveryPlanGroupData?]?, forKey: .groups) }
   }
 }
 

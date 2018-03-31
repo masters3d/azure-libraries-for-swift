@@ -10,7 +10,7 @@ internal struct StorageAccountListKeysResultData : StorageAccountListKeysResultP
         enum CodingKeys: String, CodingKey {case keys = "keys"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct StorageAccountListKeysResultData : StorageAccountListKeysResultP
       if container.contains(.keys) {
         self.keys = try container.decode([StorageAccountKeyData?]?.self, forKey: .keys)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct StorageAccountListKeysResultData : StorageAccountListKeysResultP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keys != nil {try container.encode(self.keys as! [StorageAccountKeyData?]?, forKey: .keys)}
+    if self.keys != nil { try container.encode(self.keys as! [StorageAccountKeyData?]?, forKey: .keys) }
   }
 }
 

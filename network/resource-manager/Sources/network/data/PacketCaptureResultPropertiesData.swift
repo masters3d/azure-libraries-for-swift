@@ -22,7 +22,7 @@ internal struct PacketCaptureResultPropertiesData : PacketCaptureResultPropertie
         case provisioningState = "provisioningState"
         }
 
-  public init(target: String, storageLocation: PacketCaptureStorageLocationProtocol)  {
+  public init(target: String, storageLocation: PacketCaptureStorageLocationProtocol) {
     self.target = target
     self.storageLocation = storageLocation
   }
@@ -46,7 +46,7 @@ internal struct PacketCaptureResultPropertiesData : PacketCaptureResultPropertie
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(ProvisioningStateEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,12 +57,12 @@ internal struct PacketCaptureResultPropertiesData : PacketCaptureResultPropertie
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.target, forKey: .target)
-    if self.bytesToCapturePerPacket != nil {try container.encode(self.bytesToCapturePerPacket, forKey: .bytesToCapturePerPacket)}
-    if self.totalBytesPerSession != nil {try container.encode(self.totalBytesPerSession, forKey: .totalBytesPerSession)}
-    if self.timeLimitInSeconds != nil {try container.encode(self.timeLimitInSeconds, forKey: .timeLimitInSeconds)}
+    if self.bytesToCapturePerPacket != nil { try container.encode(self.bytesToCapturePerPacket, forKey: .bytesToCapturePerPacket) }
+    if self.totalBytesPerSession != nil { try container.encode(self.totalBytesPerSession, forKey: .totalBytesPerSession) }
+    if self.timeLimitInSeconds != nil { try container.encode(self.timeLimitInSeconds, forKey: .timeLimitInSeconds) }
     try container.encode(self.storageLocation as! PacketCaptureStorageLocationData, forKey: .storageLocation)
-    if self.filters != nil {try container.encode(self.filters as! [PacketCaptureFilterData?]?, forKey: .filters)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.filters != nil { try container.encode(self.filters as! [PacketCaptureFilterData?]?, forKey: .filters) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

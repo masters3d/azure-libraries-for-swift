@@ -12,7 +12,7 @@ internal struct ClientCertificateThumbprintData : ClientCertificateThumbprintPro
         case certificateThumbprint = "certificateThumbprint"
         }
 
-  public init(isAdmin: Bool, certificateThumbprint: String)  {
+  public init(isAdmin: Bool, certificateThumbprint: String) {
     self.isAdmin = isAdmin
     self.certificateThumbprint = certificateThumbprint
   }
@@ -21,7 +21,7 @@ internal struct ClientCertificateThumbprintData : ClientCertificateThumbprintPro
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.isAdmin = try container.decode(Bool.self, forKey: .isAdmin)
     self.certificateThumbprint = try container.decode(String.self, forKey: .certificateThumbprint)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

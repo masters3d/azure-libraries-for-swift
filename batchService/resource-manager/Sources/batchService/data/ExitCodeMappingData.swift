@@ -12,7 +12,7 @@ internal struct ExitCodeMappingData : ExitCodeMappingProtocol {
         case exitOptions = "exitOptions"
         }
 
-  public init(code: Int32, exitOptions: ExitOptionsProtocol)  {
+  public init(code: Int32, exitOptions: ExitOptionsProtocol) {
     self.code = code
     self.exitOptions = exitOptions
   }
@@ -21,7 +21,7 @@ internal struct ExitCodeMappingData : ExitCodeMappingProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.code = try container.decode(Int32.self, forKey: .code)
     self.exitOptions = try container.decode(ExitOptionsData.self, forKey: .exitOptions)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

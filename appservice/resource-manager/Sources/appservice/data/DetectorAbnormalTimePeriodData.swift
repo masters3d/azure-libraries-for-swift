@@ -24,7 +24,7 @@ internal struct DetectorAbnormalTimePeriodData : DetectorAbnormalTimePeriodProto
         case solutions = "solutions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct DetectorAbnormalTimePeriodData : DetectorAbnormalTimePeriodProto
     if container.contains(.solutions) {
         self.solutions = try container.decode([SolutionData?]?.self, forKey: .solutions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,12 +69,12 @@ internal struct DetectorAbnormalTimePeriodData : DetectorAbnormalTimePeriodProto
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.source != nil {try container.encode(self.source, forKey: .source)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.metaData != nil {try container.encode(self.metaData as! [[NameValuePairData?]?]?, forKey: .metaData)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.solutions != nil {try container.encode(self.solutions as! [SolutionData?]?, forKey: .solutions)}
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.source != nil { try container.encode(self.source, forKey: .source) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.metaData != nil { try container.encode(self.metaData as! [[NameValuePairData?]?]?, forKey: .metaData) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.solutions != nil { try container.encode(self.solutions as! [SolutionData?]?, forKey: .solutions) }
   }
 }
 

@@ -10,14 +10,14 @@ internal struct DatabaseAccountRegenerateKeyParametersData : DatabaseAccountRege
         enum CodingKeys: String, CodingKey {case keyKind = "keyKind"
         }
 
-  public init(keyKind: KeyKindEnum)  {
+  public init(keyKind: KeyKindEnum) {
     self.keyKind = keyKind
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyKind = try container.decode(KeyKindEnum.self, forKey: .keyKind)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -10,7 +10,7 @@ internal struct GetProtectedItemQueryObjectData : GetProtectedItemQueryObjectPro
         enum CodingKeys: String, CodingKey {case expand = "expand"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GetProtectedItemQueryObjectData : GetProtectedItemQueryObjectPro
       if container.contains(.expand) {
         self.expand = try container.decode(String?.self, forKey: .expand)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GetProtectedItemQueryObjectData : GetProtectedItemQueryObjectPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.expand != nil {try container.encode(self.expand, forKey: .expand)}
+    if self.expand != nil { try container.encode(self.expand, forKey: .expand) }
   }
 }
 

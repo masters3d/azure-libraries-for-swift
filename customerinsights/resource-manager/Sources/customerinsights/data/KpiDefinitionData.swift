@@ -46,7 +46,7 @@ internal struct KpiDefinitionData : KpiDefinitionProtocol {
         case extracts = "extracts"
         }
 
-  public init(entityType: EntityTypesEnum, entityTypeName: String, calculationWindow: CalculationWindowTypesEnum, function: KpiFunctionsEnum, expression: String)  {
+  public init(entityType: EntityTypesEnum, entityTypeName: String, calculationWindow: CalculationWindowTypesEnum, function: KpiFunctionsEnum, expression: String) {
     self.entityType = entityType
     self.entityTypeName = entityTypeName
     self.calculationWindow = calculationWindow
@@ -103,7 +103,7 @@ internal struct KpiDefinitionData : KpiDefinitionProtocol {
     if container.contains(.extracts) {
         self.extracts = try container.decode([KpiExtractData?]?.self, forKey: .extracts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -115,23 +115,23 @@ internal struct KpiDefinitionData : KpiDefinitionProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entityType, forKey: .entityType)
     try container.encode(self.entityTypeName, forKey: .entityTypeName)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.kpiName != nil {try container.encode(self.kpiName, forKey: .kpiName)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.kpiName != nil { try container.encode(self.kpiName, forKey: .kpiName) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.calculationWindow, forKey: .calculationWindow)
-    if self.calculationWindowFieldName != nil {try container.encode(self.calculationWindowFieldName, forKey: .calculationWindowFieldName)}
+    if self.calculationWindowFieldName != nil { try container.encode(self.calculationWindowFieldName, forKey: .calculationWindowFieldName) }
     try container.encode(self.function, forKey: .function)
     try container.encode(self.expression, forKey: .expression)
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.filter != nil {try container.encode(self.filter, forKey: .filter)}
-    if self.groupBy != nil {try container.encode(self.groupBy as! [String]?, forKey: .groupBy)}
-    if self.groupByMetadata != nil {try container.encode(self.groupByMetadata as! [KpiGroupByMetadataData?]?, forKey: .groupByMetadata)}
-    if self.participantProfilesMetadata != nil {try container.encode(self.participantProfilesMetadata as! [KpiParticipantProfilesMetadataData?]?, forKey: .participantProfilesMetadata)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.thresHolds != nil {try container.encode(self.thresHolds as! KpiThresholdsData?, forKey: .thresHolds)}
-    if self.aliases != nil {try container.encode(self.aliases as! [KpiAliasData?]?, forKey: .aliases)}
-    if self.extracts != nil {try container.encode(self.extracts as! [KpiExtractData?]?, forKey: .extracts)}
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.filter != nil { try container.encode(self.filter, forKey: .filter) }
+    if self.groupBy != nil { try container.encode(self.groupBy as! [String]?, forKey: .groupBy) }
+    if self.groupByMetadata != nil { try container.encode(self.groupByMetadata as! [KpiGroupByMetadataData?]?, forKey: .groupByMetadata) }
+    if self.participantProfilesMetadata != nil { try container.encode(self.participantProfilesMetadata as! [KpiParticipantProfilesMetadataData?]?, forKey: .participantProfilesMetadata) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.thresHolds != nil { try container.encode(self.thresHolds as! KpiThresholdsData?, forKey: .thresHolds) }
+    if self.aliases != nil { try container.encode(self.aliases as! [KpiAliasData?]?, forKey: .aliases) }
+    if self.extracts != nil { try container.encode(self.extracts as! [KpiExtractData?]?, forKey: .extracts) }
   }
 }
 

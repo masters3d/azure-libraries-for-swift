@@ -12,7 +12,7 @@ internal struct ApplicationGatewayFirewallDisabledRuleGroupData : ApplicationGat
         case rules = "rules"
         }
 
-  public init(ruleGroupName: String)  {
+  public init(ruleGroupName: String) {
     self.ruleGroupName = ruleGroupName
   }
 
@@ -22,7 +22,7 @@ internal struct ApplicationGatewayFirewallDisabledRuleGroupData : ApplicationGat
     if container.contains(.rules) {
         self.rules = try container.decode([Int32]?.self, forKey: .rules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ApplicationGatewayFirewallDisabledRuleGroupData : ApplicationGat
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ruleGroupName, forKey: .ruleGroupName)
-    if self.rules != nil {try container.encode(self.rules as! [Int32]?, forKey: .rules)}
+    if self.rules != nil { try container.encode(self.rules as! [Int32]?, forKey: .rules) }
   }
 }
 

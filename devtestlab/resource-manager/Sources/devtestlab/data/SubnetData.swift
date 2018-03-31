@@ -14,7 +14,7 @@ internal struct SubnetData : SubnetProtocol {
         case allowPublicIp = "allowPublicIp"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SubnetData : SubnetProtocol {
     if container.contains(.allowPublicIp) {
         self.allowPublicIp = try container.decode(UsagePermissionTypeEnum?.self, forKey: .allowPublicIp)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SubnetData : SubnetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.labSubnetName != nil {try container.encode(self.labSubnetName, forKey: .labSubnetName)}
-    if self.allowPublicIp != nil {try container.encode(self.allowPublicIp, forKey: .allowPublicIp)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.labSubnetName != nil { try container.encode(self.labSubnetName, forKey: .labSubnetName) }
+    if self.allowPublicIp != nil { try container.encode(self.allowPublicIp, forKey: .allowPublicIp) }
   }
 }
 

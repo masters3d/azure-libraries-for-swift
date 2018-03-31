@@ -10,7 +10,7 @@ internal struct StorageClassificationPropertiesData : StorageClassificationPrope
         enum CodingKeys: String, CodingKey {case friendlyName = "friendlyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct StorageClassificationPropertiesData : StorageClassificationPrope
       if container.contains(.friendlyName) {
         self.friendlyName = try container.decode(String?.self, forKey: .friendlyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct StorageClassificationPropertiesData : StorageClassificationPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct RedisCreateParametersData : RedisCreateParametersProtocol {
         case tags = "tags"
         }
 
-  public init(properties: RedisCreatePropertiesProtocol, location: String)  {
+  public init(properties: RedisCreatePropertiesProtocol, location: String) {
     self.properties = properties
     self.location = location
   }
@@ -31,7 +31,7 @@ internal struct RedisCreateParametersData : RedisCreateParametersProtocol {
     if container.contains(.tags) {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct RedisCreateParametersData : RedisCreateParametersProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.properties as! RedisCreatePropertiesData, forKey: .properties)
-    if self.zones != nil {try container.encode(self.zones as! [String]?, forKey: .zones)}
+    if self.zones != nil { try container.encode(self.zones as! [String]?, forKey: .zones) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
   }
 }
 

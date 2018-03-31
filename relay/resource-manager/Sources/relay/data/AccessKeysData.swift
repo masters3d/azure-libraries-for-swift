@@ -18,7 +18,7 @@ internal struct AccessKeysData : AccessKeysProtocol {
         case keyName = "keyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AccessKeysData : AccessKeysProtocol {
     if container.contains(.keyName) {
         self.keyName = try container.decode(String?.self, forKey: .keyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AccessKeysData : AccessKeysProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primaryConnectionString != nil {try container.encode(self.primaryConnectionString, forKey: .primaryConnectionString)}
-    if self.secondaryConnectionString != nil {try container.encode(self.secondaryConnectionString, forKey: .secondaryConnectionString)}
-    if self.primaryKey != nil {try container.encode(self.primaryKey, forKey: .primaryKey)}
-    if self.secondaryKey != nil {try container.encode(self.secondaryKey, forKey: .secondaryKey)}
-    if self.keyName != nil {try container.encode(self.keyName, forKey: .keyName)}
+    if self.primaryConnectionString != nil { try container.encode(self.primaryConnectionString, forKey: .primaryConnectionString) }
+    if self.secondaryConnectionString != nil { try container.encode(self.secondaryConnectionString, forKey: .secondaryConnectionString) }
+    if self.primaryKey != nil { try container.encode(self.primaryKey, forKey: .primaryKey) }
+    if self.secondaryKey != nil { try container.encode(self.secondaryKey, forKey: .secondaryKey) }
+    if self.keyName != nil { try container.encode(self.keyName, forKey: .keyName) }
   }
 }
 

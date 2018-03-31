@@ -22,7 +22,7 @@ internal struct BlobsAppendBlockHeadersData : BlobsAppendBlockHeadersProtocol {
         case blobCommittedBlockCount = "x-ms-blob-committed-block-count"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -55,14 +55,14 @@ internal struct BlobsAppendBlockHeadersData : BlobsAppendBlockHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.contentMD5 != nil {try container.encode(contentMD5, forKey: .contentMD5)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
-    if self.blobAppendOffset != nil {try container.encode(blobAppendOffset, forKey: .blobAppendOffset)}
-    if self.blobCommittedBlockCount != nil {try container.encode(blobCommittedBlockCount, forKey: .blobCommittedBlockCount)}
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.contentMD5 != nil { try container.encode(contentMD5, forKey: .contentMD5) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
+    if self.blobAppendOffset != nil { try container.encode(blobAppendOffset, forKey: .blobAppendOffset) }
+    if self.blobCommittedBlockCount != nil { try container.encode(blobCommittedBlockCount, forKey: .blobCommittedBlockCount) }
   }
 }
 

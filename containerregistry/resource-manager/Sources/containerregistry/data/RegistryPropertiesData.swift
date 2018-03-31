@@ -20,7 +20,7 @@ internal struct RegistryPropertiesData : RegistryPropertiesProtocol {
         case storageAccount = "storageAccount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct RegistryPropertiesData : RegistryPropertiesProtocol {
     if container.contains(.storageAccount) {
         self.storageAccount = try container.decode(StorageAccountPropertiesData?.self, forKey: .storageAccount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct RegistryPropertiesData : RegistryPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.loginServer != nil {try container.encode(self.loginServer, forKey: .loginServer)}
+    if self.loginServer != nil { try container.encode(self.loginServer, forKey: .loginServer) }
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.status != nil {try container.encode(self.status as! StatusData?, forKey: .status)}
-    if self.adminUserEnabled != nil {try container.encode(self.adminUserEnabled, forKey: .adminUserEnabled)}
-    if self.storageAccount != nil {try container.encode(self.storageAccount as! StorageAccountPropertiesData?, forKey: .storageAccount)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.status != nil { try container.encode(self.status as! StatusData?, forKey: .status) }
+    if self.adminUserEnabled != nil { try container.encode(self.adminUserEnabled, forKey: .adminUserEnabled) }
+    if self.storageAccount != nil { try container.encode(self.storageAccount as! StorageAccountPropertiesData?, forKey: .storageAccount) }
   }
 }
 

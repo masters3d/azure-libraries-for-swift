@@ -12,7 +12,7 @@ internal struct IPRuleData : IPRuleProtocol {
         case action = "action"
         }
 
-  public init(iPAddressOrRange: String)  {
+  public init(iPAddressOrRange: String) {
     self.iPAddressOrRange = iPAddressOrRange
   }
 
@@ -22,7 +22,7 @@ internal struct IPRuleData : IPRuleProtocol {
     if container.contains(.action) {
         self.action = try container.decode(ActionEnum?.self, forKey: .action)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct IPRuleData : IPRuleProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.iPAddressOrRange, forKey: .iPAddressOrRange)
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
   }
 }
 

@@ -28,7 +28,7 @@ internal struct VMwareVirtualMachineDetailsData : VMwareVirtualMachineDetailsPro
         case validationErrors = "validationErrors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct VMwareVirtualMachineDetailsData : VMwareVirtualMachineDetailsPro
     if container.contains(.validationErrors) {
         self.validationErrors = try container.decode([HealthErrorData?]?.self, forKey: .validationErrors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct VMwareVirtualMachineDetailsData : VMwareVirtualMachineDetailsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.agentGeneratedId != nil {try container.encode(self.agentGeneratedId, forKey: .agentGeneratedId)}
-    if self.agentInstalled != nil {try container.encode(self.agentInstalled, forKey: .agentInstalled)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.agentVersion != nil {try container.encode(self.agentVersion, forKey: .agentVersion)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.poweredOn != nil {try container.encode(self.poweredOn, forKey: .poweredOn)}
-    if self.vCenterInfrastructureId != nil {try container.encode(self.vCenterInfrastructureId, forKey: .vCenterInfrastructureId)}
-    if self.discoveryType != nil {try container.encode(self.discoveryType, forKey: .discoveryType)}
-    if self.diskDetails != nil {try container.encode(self.diskDetails as! [InMageDiskDetailsData?]?, forKey: .diskDetails)}
-    if self.validationErrors != nil {try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors)}
+    if self.agentGeneratedId != nil { try container.encode(self.agentGeneratedId, forKey: .agentGeneratedId) }
+    if self.agentInstalled != nil { try container.encode(self.agentInstalled, forKey: .agentInstalled) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.agentVersion != nil { try container.encode(self.agentVersion, forKey: .agentVersion) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.poweredOn != nil { try container.encode(self.poweredOn, forKey: .poweredOn) }
+    if self.vCenterInfrastructureId != nil { try container.encode(self.vCenterInfrastructureId, forKey: .vCenterInfrastructureId) }
+    if self.discoveryType != nil { try container.encode(self.discoveryType, forKey: .discoveryType) }
+    if self.diskDetails != nil { try container.encode(self.diskDetails as! [InMageDiskDetailsData?]?, forKey: .diskDetails) }
+    if self.validationErrors != nil { try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors) }
   }
 }
 

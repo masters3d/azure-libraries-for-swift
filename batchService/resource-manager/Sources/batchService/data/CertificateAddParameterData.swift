@@ -18,7 +18,7 @@ internal struct CertificateAddParameterData : CertificateAddParameterProtocol {
         case password = "password"
         }
 
-  public init(thumbprint: String, thumbprintAlgorithm: String, data: String)  {
+  public init(thumbprint: String, thumbprintAlgorithm: String, data: String) {
     self.thumbprint = thumbprint
     self.thumbprintAlgorithm = thumbprintAlgorithm
     self.data = data
@@ -35,7 +35,7 @@ internal struct CertificateAddParameterData : CertificateAddParameterProtocol {
     if container.contains(.password) {
         self.password = try container.decode(String?.self, forKey: .password)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,8 +48,8 @@ internal struct CertificateAddParameterData : CertificateAddParameterProtocol {
     try container.encode(self.thumbprint, forKey: .thumbprint)
     try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)
     try container.encode(self.data, forKey: .data)
-    if self.certificateFormat != nil {try container.encode(self.certificateFormat, forKey: .certificateFormat)}
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
+    if self.certificateFormat != nil { try container.encode(self.certificateFormat, forKey: .certificateFormat) }
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
   }
 }
 

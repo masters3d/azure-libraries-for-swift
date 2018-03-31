@@ -14,7 +14,7 @@ internal struct KeyVaultKeyReferenceData : KeyVaultKeyReferenceProtocol {
         case keyVersion = "keyVersion"
         }
 
-  public init(keyVault: KeyVaultKeyReferenceKeyVaultProtocol, keyName: String)  {
+  public init(keyVault: KeyVaultKeyReferenceKeyVaultProtocol, keyName: String) {
     self.keyVault = keyVault
     self.keyName = keyName
   }
@@ -26,7 +26,7 @@ internal struct KeyVaultKeyReferenceData : KeyVaultKeyReferenceProtocol {
     if container.contains(.keyVersion) {
         self.keyVersion = try container.decode(String?.self, forKey: .keyVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct KeyVaultKeyReferenceData : KeyVaultKeyReferenceProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.keyVault as! KeyVaultKeyReferenceKeyVaultData, forKey: .keyVault)
     try container.encode(self.keyName, forKey: .keyName)
-    if self.keyVersion != nil {try container.encode(self.keyVersion, forKey: .keyVersion)}
+    if self.keyVersion != nil { try container.encode(self.keyVersion, forKey: .keyVersion) }
   }
 }
 

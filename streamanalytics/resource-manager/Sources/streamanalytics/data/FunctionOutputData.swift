@@ -10,7 +10,7 @@ internal struct FunctionOutputData : FunctionOutputProtocol {
         enum CodingKeys: String, CodingKey {case dataType = "dataType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FunctionOutputData : FunctionOutputProtocol {
       if container.contains(.dataType) {
         self.dataType = try container.decode(String?.self, forKey: .dataType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FunctionOutputData : FunctionOutputProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataType != nil {try container.encode(self.dataType, forKey: .dataType)}
+    if self.dataType != nil { try container.encode(self.dataType, forKey: .dataType) }
   }
 }
 

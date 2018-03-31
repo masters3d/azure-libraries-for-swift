@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationvCentersUpdate  {
+public protocol ReplicationvCentersUpdate {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
@@ -8,9 +8,9 @@ public protocol ReplicationvCentersUpdate  {
     var fabricName : String { get set }
     var vCenterName : String { get set }
     var apiVersion : String { get set }
-    var updateVCenterRequest :  UpdateVCenterRequestProtocol?  { get set }
+    var updateVCenterRequest :  UpdateVCenterRequestProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VCenterProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VCenterProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationvCenters {
@@ -39,7 +39,7 @@ extension Commands.ReplicationvCenters {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -64,12 +64,12 @@ extension Commands.ReplicationvCenters {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VCenterData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VCenterProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VCenterProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: VCenterData?, error: Error?) in
                 completionHandler(result, error)

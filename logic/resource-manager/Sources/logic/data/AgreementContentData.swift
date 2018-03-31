@@ -14,7 +14,7 @@ internal struct AgreementContentData : AgreementContentProtocol {
         case edifact = "edifact"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AgreementContentData : AgreementContentProtocol {
     if container.contains(.edifact) {
         self.edifact = try container.decode(EdifactAgreementContentData?.self, forKey: .edifact)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AgreementContentData : AgreementContentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.aS2 != nil {try container.encode(self.aS2 as! AS2AgreementContentData?, forKey: .aS2)}
-    if self.x12 != nil {try container.encode(self.x12 as! X12AgreementContentData?, forKey: .x12)}
-    if self.edifact != nil {try container.encode(self.edifact as! EdifactAgreementContentData?, forKey: .edifact)}
+    if self.aS2 != nil { try container.encode(self.aS2 as! AS2AgreementContentData?, forKey: .aS2) }
+    if self.x12 != nil { try container.encode(self.x12 as! X12AgreementContentData?, forKey: .x12) }
+    if self.edifact != nil { try container.encode(self.edifact as! EdifactAgreementContentData?, forKey: .edifact) }
   }
 }
 

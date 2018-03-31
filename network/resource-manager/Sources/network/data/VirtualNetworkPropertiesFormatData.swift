@@ -24,7 +24,7 @@ internal struct VirtualNetworkPropertiesFormatData : VirtualNetworkPropertiesFor
         case enableVmProtection = "enableVmProtection"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct VirtualNetworkPropertiesFormatData : VirtualNetworkPropertiesFor
     if container.contains(.enableVmProtection) {
         self.enableVmProtection = try container.decode(Bool?.self, forKey: .enableVmProtection)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct VirtualNetworkPropertiesFormatData : VirtualNetworkPropertiesFor
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.addressSpace != nil {try container.encode(self.addressSpace as! AddressSpaceData?, forKey: .addressSpace)}
-    if self.dhcpOptions != nil {try container.encode(self.dhcpOptions as! DhcpOptionsData?, forKey: .dhcpOptions)}
-    if self.subnets != nil {try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets)}
-    if self.virtualNetworkPeerings != nil {try container.encode(self.virtualNetworkPeerings as! [VirtualNetworkPeeringData?]?, forKey: .virtualNetworkPeerings)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.enableDdosProtection != nil {try container.encode(self.enableDdosProtection, forKey: .enableDdosProtection)}
-    if self.enableVmProtection != nil {try container.encode(self.enableVmProtection, forKey: .enableVmProtection)}
+    if self.addressSpace != nil { try container.encode(self.addressSpace as! AddressSpaceData?, forKey: .addressSpace) }
+    if self.dhcpOptions != nil { try container.encode(self.dhcpOptions as! DhcpOptionsData?, forKey: .dhcpOptions) }
+    if self.subnets != nil { try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets) }
+    if self.virtualNetworkPeerings != nil { try container.encode(self.virtualNetworkPeerings as! [VirtualNetworkPeeringData?]?, forKey: .virtualNetworkPeerings) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.enableDdosProtection != nil { try container.encode(self.enableDdosProtection, forKey: .enableDdosProtection) }
+    if self.enableVmProtection != nil { try container.encode(self.enableVmProtection, forKey: .enableVmProtection) }
   }
 }
 

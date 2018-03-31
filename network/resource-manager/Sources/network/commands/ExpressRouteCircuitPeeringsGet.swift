@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ExpressRouteCircuitPeeringsGet  {
+public protocol ExpressRouteCircuitPeeringsGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var circuitName : String { get set }
@@ -8,7 +8,7 @@ public protocol ExpressRouteCircuitPeeringsGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ExpressRouteCircuitPeeringProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ExpressRouteCircuitPeeringProtocol?, Error?) -> Void)
 }
 
 extension Commands.ExpressRouteCircuitPeerings {
@@ -32,7 +32,7 @@ extension Commands.ExpressRouteCircuitPeerings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{circuitName}"] = String(describing: self.circuitName)
             self.pathParameters["{peeringName}"] = String(describing: self.peeringName)
@@ -46,12 +46,12 @@ extension Commands.ExpressRouteCircuitPeerings {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ExpressRouteCircuitPeeringData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ExpressRouteCircuitPeeringProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ExpressRouteCircuitPeeringProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ExpressRouteCircuitPeeringData?, error: Error?) in
                 completionHandler(result, error)

@@ -12,7 +12,7 @@ internal struct IpSecurityRestrictionData : IpSecurityRestrictionProtocol {
         case subnetMask = "subnetMask"
         }
 
-  public init(ipAddress: String)  {
+  public init(ipAddress: String) {
     self.ipAddress = ipAddress
   }
 
@@ -22,7 +22,7 @@ internal struct IpSecurityRestrictionData : IpSecurityRestrictionProtocol {
     if container.contains(.subnetMask) {
         self.subnetMask = try container.decode(String?.self, forKey: .subnetMask)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct IpSecurityRestrictionData : IpSecurityRestrictionProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ipAddress, forKey: .ipAddress)
-    if self.subnetMask != nil {try container.encode(self.subnetMask, forKey: .subnetMask)}
+    if self.subnetMask != nil { try container.encode(self.subnetMask, forKey: .subnetMask) }
   }
 }
 

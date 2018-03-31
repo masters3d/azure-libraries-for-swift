@@ -18,7 +18,7 @@ internal struct RelationshipsLookupData : RelationshipsLookupProtocol {
         case existingRelationshipName = "existingRelationshipName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct RelationshipsLookupData : RelationshipsLookupProtocol {
     if container.contains(.existingRelationshipName) {
         self.existingRelationshipName = try container.decode(String?.self, forKey: .existingRelationshipName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct RelationshipsLookupData : RelationshipsLookupProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.profileName != nil {try container.encode(self.profileName, forKey: .profileName)}
-    if self.profilePropertyReferences != nil {try container.encode(self.profilePropertyReferences as! [ParticipantProfilePropertyReferenceData?]?, forKey: .profilePropertyReferences)}
-    if self.relatedProfileName != nil {try container.encode(self.relatedProfileName, forKey: .relatedProfileName)}
-    if self.relatedProfilePropertyReferences != nil {try container.encode(self.relatedProfilePropertyReferences as! [ParticipantProfilePropertyReferenceData?]?, forKey: .relatedProfilePropertyReferences)}
-    if self.existingRelationshipName != nil {try container.encode(self.existingRelationshipName, forKey: .existingRelationshipName)}
+    if self.profileName != nil { try container.encode(self.profileName, forKey: .profileName) }
+    if self.profilePropertyReferences != nil { try container.encode(self.profilePropertyReferences as! [ParticipantProfilePropertyReferenceData?]?, forKey: .profilePropertyReferences) }
+    if self.relatedProfileName != nil { try container.encode(self.relatedProfileName, forKey: .relatedProfileName) }
+    if self.relatedProfilePropertyReferences != nil { try container.encode(self.relatedProfilePropertyReferences as! [ParticipantProfilePropertyReferenceData?]?, forKey: .relatedProfilePropertyReferences) }
+    if self.existingRelationshipName != nil { try container.encode(self.existingRelationshipName, forKey: .existingRelationshipName) }
   }
 }
 

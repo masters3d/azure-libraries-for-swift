@@ -16,7 +16,7 @@ internal struct AutomaticTuningOptionsData : AutomaticTuningOptionsProtocol {
         case reasonDesc = "reasonDesc"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AutomaticTuningOptionsData : AutomaticTuningOptionsProtocol {
     if container.contains(.reasonDesc) {
         self.reasonDesc = try container.decode(AutomaticTuningDisabledReasonEnum?.self, forKey: .reasonDesc)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AutomaticTuningOptionsData : AutomaticTuningOptionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.desiredState != nil {try container.encode(self.desiredState, forKey: .desiredState)}
-    if self.actualState != nil {try container.encode(self.actualState, forKey: .actualState)}
-    if self.reasonCode != nil {try container.encode(self.reasonCode, forKey: .reasonCode)}
-    if self.reasonDesc != nil {try container.encode(self.reasonDesc, forKey: .reasonDesc)}
+    if self.desiredState != nil { try container.encode(self.desiredState, forKey: .desiredState) }
+    if self.actualState != nil { try container.encode(self.actualState, forKey: .actualState) }
+    if self.reasonCode != nil { try container.encode(self.reasonCode, forKey: .reasonCode) }
+    if self.reasonDesc != nil { try container.encode(self.reasonDesc, forKey: .reasonDesc) }
   }
 }
 

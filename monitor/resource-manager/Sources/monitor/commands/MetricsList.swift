@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol MetricsList  {
+public protocol MetricsList {
     var headerParameters: [String: String] { get set }
     var resourceUri : String { get set }
     var timespan : String? { get set }
@@ -14,7 +14,7 @@ public protocol MetricsList  {
     var apiVersion : String { get set }
     var metricnamespace : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.Metrics {
@@ -41,7 +41,7 @@ extension Commands.Metrics {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceUri}"] = String(describing: self.resourceUri)
             if self.timespan != nil { queryParameters["timespan"] = String(describing: self.timespan!) }
             if self.interval != nil { queryParameters["interval"] = String(describing: self.interval!) }
@@ -61,12 +61,12 @@ extension Commands.Metrics {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ResponseProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ResponseData?, error: Error?) in
                 completionHandler(result, error)

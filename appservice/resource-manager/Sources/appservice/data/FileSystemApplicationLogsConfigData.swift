@@ -10,7 +10,7 @@ internal struct FileSystemApplicationLogsConfigData : FileSystemApplicationLogsC
         enum CodingKeys: String, CodingKey {case level = "level"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FileSystemApplicationLogsConfigData : FileSystemApplicationLogsC
       if container.contains(.level) {
         self.level = try container.decode(LogLevelEnum?.self, forKey: .level)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FileSystemApplicationLogsConfigData : FileSystemApplicationLogsC
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
   }
 }
 

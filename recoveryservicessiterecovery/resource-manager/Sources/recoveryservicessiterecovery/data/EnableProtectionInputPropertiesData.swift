@@ -14,7 +14,7 @@ internal struct EnableProtectionInputPropertiesData : EnableProtectionInputPrope
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct EnableProtectionInputPropertiesData : EnableProtectionInputPrope
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(EnableProtectionProviderSpecificInputData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct EnableProtectionInputPropertiesData : EnableProtectionInputPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.protectableItemId != nil {try container.encode(self.protectableItemId, forKey: .protectableItemId)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! EnableProtectionProviderSpecificInputData?, forKey: .providerSpecificDetails)}
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.protectableItemId != nil { try container.encode(self.protectableItemId, forKey: .protectableItemId) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! EnableProtectionProviderSpecificInputData?, forKey: .providerSpecificDetails) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct EncryptionJwkResourceData : EncryptionJwkResourceProtocol {
         case N = "n"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EncryptionJwkResourceData : EncryptionJwkResourceProtocol {
     if container.contains(.N) {
         self.N = try container.decode(String?.self, forKey: .N)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EncryptionJwkResourceData : EncryptionJwkResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.kty != nil {try container.encode(self.kty, forKey: .kty)}
-    if self.alg != nil {try container.encode(self.alg, forKey: .alg)}
-    if self.E != nil {try container.encode(self.E, forKey: .E)}
-    if self.N != nil {try container.encode(self.N, forKey: .N)}
+    if self.kty != nil { try container.encode(self.kty, forKey: .kty) }
+    if self.alg != nil { try container.encode(self.alg, forKey: .alg) }
+    if self.E != nil { try container.encode(self.E, forKey: .E) }
+    if self.N != nil { try container.encode(self.N, forKey: .N) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct DatabaseAccountListKeysResultData : DatabaseAccountListKeysResul
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DatabaseAccountListKeysResultData : DatabaseAccountListKeysResul
     if container.contains(.properties) {
         self.properties = try container.decode(DatabaseAccountListReadOnlyKeysResultData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DatabaseAccountListKeysResultData : DatabaseAccountListKeysResul
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primaryMasterKey != nil {try container.encode(self.primaryMasterKey, forKey: .primaryMasterKey)}
-    if self.secondaryMasterKey != nil {try container.encode(self.secondaryMasterKey, forKey: .secondaryMasterKey)}
-    if self.properties != nil {try container.encode(self.properties as! DatabaseAccountListReadOnlyKeysResultData?, forKey: .properties)}
+    if self.primaryMasterKey != nil { try container.encode(self.primaryMasterKey, forKey: .primaryMasterKey) }
+    if self.secondaryMasterKey != nil { try container.encode(self.secondaryMasterKey, forKey: .secondaryMasterKey) }
+    if self.properties != nil { try container.encode(self.properties as! DatabaseAccountListReadOnlyKeysResultData?, forKey: .properties) }
   }
 }
 

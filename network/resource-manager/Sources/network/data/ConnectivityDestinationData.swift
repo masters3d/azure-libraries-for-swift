@@ -14,7 +14,7 @@ internal struct ConnectivityDestinationData : ConnectivityDestinationProtocol {
         case port = "port"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ConnectivityDestinationData : ConnectivityDestinationProtocol {
     if container.contains(.port) {
         self.port = try container.decode(Int32?.self, forKey: .port)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ConnectivityDestinationData : ConnectivityDestinationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.address != nil {try container.encode(self.address, forKey: .address)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.address != nil { try container.encode(self.address, forKey: .address) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
   }
 }
 

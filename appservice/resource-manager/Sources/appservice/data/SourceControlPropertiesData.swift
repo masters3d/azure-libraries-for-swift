@@ -18,7 +18,7 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
         case expirationTime = "expirationTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
     if container.contains(.expirationTime) {
         self.expirationTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .expirationTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct SourceControlPropertiesData : SourceControlPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.token != nil {try container.encode(self.token, forKey: .token)}
-    if self.tokenSecret != nil {try container.encode(self.tokenSecret, forKey: .tokenSecret)}
-    if self.refreshToken != nil {try container.encode(self.refreshToken, forKey: .refreshToken)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.token != nil { try container.encode(self.token, forKey: .token) }
+    if self.tokenSecret != nil { try container.encode(self.tokenSecret, forKey: .tokenSecret) }
+    if self.refreshToken != nil { try container.encode(self.refreshToken, forKey: .refreshToken) }
     if self.expirationTime != nil {
         try container.encode(DateConverter.toString(date: self.expirationTime!, format: .dateTime), forKey: .expirationTime)
     }

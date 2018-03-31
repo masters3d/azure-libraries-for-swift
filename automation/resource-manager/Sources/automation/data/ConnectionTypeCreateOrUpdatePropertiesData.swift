@@ -12,7 +12,7 @@ internal struct ConnectionTypeCreateOrUpdatePropertiesData : ConnectionTypeCreat
         case fieldDefinitions = "fieldDefinitions"
         }
 
-  public init(fieldDefinitions: [String:FieldDefinitionProtocol])  {
+  public init(fieldDefinitions: [String:FieldDefinitionProtocol]) {
     self.fieldDefinitions = fieldDefinitions
   }
 
@@ -22,7 +22,7 @@ internal struct ConnectionTypeCreateOrUpdatePropertiesData : ConnectionTypeCreat
         self.isGlobal = try container.decode(Bool?.self, forKey: .isGlobal)
     }
     self.fieldDefinitions = try container.decode([String:FieldDefinitionData].self, forKey: .fieldDefinitions)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ConnectionTypeCreateOrUpdatePropertiesData : ConnectionTypeCreat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isGlobal != nil {try container.encode(self.isGlobal, forKey: .isGlobal)}
+    if self.isGlobal != nil { try container.encode(self.isGlobal, forKey: .isGlobal) }
     try container.encode(self.fieldDefinitions, forKey: .fieldDefinitions)
   }
 }

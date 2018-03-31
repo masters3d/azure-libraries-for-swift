@@ -12,7 +12,7 @@ internal struct RedisFirewallRulePropertiesData : RedisFirewallRulePropertiesPro
         case endIP = "endIP"
         }
 
-  public init(startIP: String, endIP: String)  {
+  public init(startIP: String, endIP: String) {
     self.startIP = startIP
     self.endIP = endIP
   }
@@ -21,7 +21,7 @@ internal struct RedisFirewallRulePropertiesData : RedisFirewallRulePropertiesPro
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startIP = try container.decode(String.self, forKey: .startIP)
     self.endIP = try container.decode(String.self, forKey: .endIP)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

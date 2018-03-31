@@ -28,7 +28,7 @@ internal struct AS2ValidationSettingsData : AS2ValidationSettingsProtocol {
         case signingAlgorithm = "signingAlgorithm"
         }
 
-  public init(overrideMessageProperties: Bool, encryptMessage: Bool, signMessage: Bool, compressMessage: Bool, checkDuplicateMessage: Bool, interchangeDuplicatesValidityDays: Int32, checkCertificateRevocationListOnSend: Bool, checkCertificateRevocationListOnReceive: Bool, encryptionAlgorithm: EncryptionAlgorithmEnum)  {
+  public init(overrideMessageProperties: Bool, encryptMessage: Bool, signMessage: Bool, compressMessage: Bool, checkDuplicateMessage: Bool, interchangeDuplicatesValidityDays: Int32, checkCertificateRevocationListOnSend: Bool, checkCertificateRevocationListOnReceive: Bool, encryptionAlgorithm: EncryptionAlgorithmEnum) {
     self.overrideMessageProperties = overrideMessageProperties
     self.encryptMessage = encryptMessage
     self.signMessage = signMessage
@@ -54,7 +54,7 @@ internal struct AS2ValidationSettingsData : AS2ValidationSettingsProtocol {
     if container.contains(.signingAlgorithm) {
         self.signingAlgorithm = try container.decode(SigningAlgorithmEnum?.self, forKey: .signingAlgorithm)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,7 +73,7 @@ internal struct AS2ValidationSettingsData : AS2ValidationSettingsProtocol {
     try container.encode(self.checkCertificateRevocationListOnSend, forKey: .checkCertificateRevocationListOnSend)
     try container.encode(self.checkCertificateRevocationListOnReceive, forKey: .checkCertificateRevocationListOnReceive)
     try container.encode(self.encryptionAlgorithm, forKey: .encryptionAlgorithm)
-    if self.signingAlgorithm != nil {try container.encode(self.signingAlgorithm, forKey: .signingAlgorithm)}
+    if self.signingAlgorithm != nil { try container.encode(self.signingAlgorithm, forKey: .signingAlgorithm) }
   }
 }
 

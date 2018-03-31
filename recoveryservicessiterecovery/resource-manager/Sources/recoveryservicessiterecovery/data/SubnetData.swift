@@ -14,7 +14,7 @@ internal struct SubnetData : SubnetProtocol {
         case addressList = "addressList"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SubnetData : SubnetProtocol {
     if container.contains(.addressList) {
         self.addressList = try container.decode([String]?.self, forKey: .addressList)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SubnetData : SubnetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.addressList != nil {try container.encode(self.addressList as! [String]?, forKey: .addressList)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.addressList != nil { try container.encode(self.addressList as! [String]?, forKey: .addressList) }
   }
 }
 

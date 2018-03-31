@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkInterfaceLoadBalancersList  {
+public protocol NetworkInterfaceLoadBalancersList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -9,7 +9,7 @@ public protocol NetworkInterfaceLoadBalancersList  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkInterfaceLoadBalancerListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkInterfaceLoadBalancerListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkInterfaceLoadBalancers {
@@ -37,7 +37,7 @@ extension Commands.NetworkInterfaceLoadBalancers {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkInterfaceName}"] = String(describing: self.networkInterfaceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,15 +57,15 @@ extension Commands.NetworkInterfaceLoadBalancers {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkInterfaceLoadBalancerListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkInterfaceLoadBalancerListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

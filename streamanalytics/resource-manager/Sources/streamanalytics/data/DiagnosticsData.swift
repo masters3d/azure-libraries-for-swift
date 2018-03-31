@@ -10,7 +10,7 @@ internal struct DiagnosticsData : DiagnosticsProtocol {
         enum CodingKeys: String, CodingKey {case conditions = "conditions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DiagnosticsData : DiagnosticsProtocol {
       if container.contains(.conditions) {
         self.conditions = try container.decode([DiagnosticConditionData?]?.self, forKey: .conditions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DiagnosticsData : DiagnosticsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.conditions != nil {try container.encode(self.conditions as! [DiagnosticConditionData?]?, forKey: .conditions)}
+    if self.conditions != nil { try container.encode(self.conditions as! [DiagnosticConditionData?]?, forKey: .conditions) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ImportRDBParametersData : ImportRDBParametersProtocol {
         case files = "files"
         }
 
-  public init(files: [String])  {
+  public init(files: [String]) {
     self.files = files
   }
 
@@ -22,7 +22,7 @@ internal struct ImportRDBParametersData : ImportRDBParametersProtocol {
         self.format = try container.decode(String?.self, forKey: .format)
     }
     self.files = try container.decode([String].self, forKey: .files)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ImportRDBParametersData : ImportRDBParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
     try container.encode(self.files as! [String], forKey: .files)
   }
 }

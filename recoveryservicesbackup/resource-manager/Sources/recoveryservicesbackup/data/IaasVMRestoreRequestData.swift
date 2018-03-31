@@ -36,7 +36,7 @@ internal struct IaasVMRestoreRequestData : IaasVMRestoreRequestProtocol, Restore
         case encryptionDetails = "encryptionDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct IaasVMRestoreRequestData : IaasVMRestoreRequestProtocol, Restore
     if container.contains(.encryptionDetails) {
         self.encryptionDetails = try container.decode(EncryptionDetailsData?.self, forKey: .encryptionDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,20 +93,20 @@ internal struct IaasVMRestoreRequestData : IaasVMRestoreRequestProtocol, Restore
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointId != nil {try container.encode(self.recoveryPointId, forKey: .recoveryPointId)}
-    if self.recoveryType != nil {try container.encode(self.recoveryType, forKey: .recoveryType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.targetVirtualMachineId != nil {try container.encode(self.targetVirtualMachineId, forKey: .targetVirtualMachineId)}
-    if self.targetResourceGroupId != nil {try container.encode(self.targetResourceGroupId, forKey: .targetResourceGroupId)}
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.virtualNetworkId != nil {try container.encode(self.virtualNetworkId, forKey: .virtualNetworkId)}
-    if self.subnetId != nil {try container.encode(self.subnetId, forKey: .subnetId)}
-    if self.targetDomainNameId != nil {try container.encode(self.targetDomainNameId, forKey: .targetDomainNameId)}
-    if self.region != nil {try container.encode(self.region, forKey: .region)}
-    if self.affinityGroup != nil {try container.encode(self.affinityGroup, forKey: .affinityGroup)}
-    if self.createNewCloudService != nil {try container.encode(self.createNewCloudService, forKey: .createNewCloudService)}
-    if self.originalStorageAccountOption != nil {try container.encode(self.originalStorageAccountOption, forKey: .originalStorageAccountOption)}
-    if self.encryptionDetails != nil {try container.encode(self.encryptionDetails as! EncryptionDetailsData?, forKey: .encryptionDetails)}
+    if self.recoveryPointId != nil { try container.encode(self.recoveryPointId, forKey: .recoveryPointId) }
+    if self.recoveryType != nil { try container.encode(self.recoveryType, forKey: .recoveryType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.targetVirtualMachineId != nil { try container.encode(self.targetVirtualMachineId, forKey: .targetVirtualMachineId) }
+    if self.targetResourceGroupId != nil { try container.encode(self.targetResourceGroupId, forKey: .targetResourceGroupId) }
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.virtualNetworkId != nil { try container.encode(self.virtualNetworkId, forKey: .virtualNetworkId) }
+    if self.subnetId != nil { try container.encode(self.subnetId, forKey: .subnetId) }
+    if self.targetDomainNameId != nil { try container.encode(self.targetDomainNameId, forKey: .targetDomainNameId) }
+    if self.region != nil { try container.encode(self.region, forKey: .region) }
+    if self.affinityGroup != nil { try container.encode(self.affinityGroup, forKey: .affinityGroup) }
+    if self.createNewCloudService != nil { try container.encode(self.createNewCloudService, forKey: .createNewCloudService) }
+    if self.originalStorageAccountOption != nil { try container.encode(self.originalStorageAccountOption, forKey: .originalStorageAccountOption) }
+    if self.encryptionDetails != nil { try container.encode(self.encryptionDetails as! EncryptionDetailsData?, forKey: .encryptionDetails) }
   }
 }
 

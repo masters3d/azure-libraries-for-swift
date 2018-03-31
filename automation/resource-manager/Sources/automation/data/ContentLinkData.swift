@@ -14,7 +14,7 @@ internal struct ContentLinkData : ContentLinkProtocol {
         case version = "version"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ContentLinkData : ContentLinkProtocol {
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ContentLinkData : ContentLinkProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
-    if self.contentHash != nil {try container.encode(self.contentHash as! ContentHashData?, forKey: .contentHash)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
+    if self.contentHash != nil { try container.encode(self.contentHash as! ContentHashData?, forKey: .contentHash) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

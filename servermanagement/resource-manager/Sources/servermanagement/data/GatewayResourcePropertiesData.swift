@@ -28,7 +28,7 @@ internal struct GatewayResourcePropertiesData : GatewayResourcePropertiesProtoco
         case minimumVersion = "minimumVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct GatewayResourcePropertiesData : GatewayResourcePropertiesProtoco
     if container.contains(.minimumVersion) {
         self.minimumVersion = try container.decode(String?.self, forKey: .minimumVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -79,16 +79,16 @@ internal struct GatewayResourcePropertiesData : GatewayResourcePropertiesProtoco
     if self.updated != nil {
         try container.encode(DateConverter.toString(date: self.updated!, format: .dateTime), forKey: .updated)
     }
-    if self.upgradeMode != nil {try container.encode(self.upgradeMode, forKey: .upgradeMode)}
-    if self.desiredVersion != nil {try container.encode(self.desiredVersion, forKey: .desiredVersion)}
-    if self.instances != nil {try container.encode(self.instances as! [GatewayStatusData?]?, forKey: .instances)}
-    if self.activeMessageCount != nil {try container.encode(self.activeMessageCount, forKey: .activeMessageCount)}
-    if self.latestPublishedMsiVersion != nil {try container.encode(self.latestPublishedMsiVersion, forKey: .latestPublishedMsiVersion)}
+    if self.upgradeMode != nil { try container.encode(self.upgradeMode, forKey: .upgradeMode) }
+    if self.desiredVersion != nil { try container.encode(self.desiredVersion, forKey: .desiredVersion) }
+    if self.instances != nil { try container.encode(self.instances as! [GatewayStatusData?]?, forKey: .instances) }
+    if self.activeMessageCount != nil { try container.encode(self.activeMessageCount, forKey: .activeMessageCount) }
+    if self.latestPublishedMsiVersion != nil { try container.encode(self.latestPublishedMsiVersion, forKey: .latestPublishedMsiVersion) }
     if self.publishedTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.publishedTimeUtc!, format: .dateTime), forKey: .publishedTimeUtc)
     }
-    if self.installerDownload != nil {try container.encode(self.installerDownload, forKey: .installerDownload)}
-    if self.minimumVersion != nil {try container.encode(self.minimumVersion, forKey: .minimumVersion)}
+    if self.installerDownload != nil { try container.encode(self.installerDownload, forKey: .installerDownload) }
+    if self.minimumVersion != nil { try container.encode(self.minimumVersion, forKey: .minimumVersion) }
   }
 }
 

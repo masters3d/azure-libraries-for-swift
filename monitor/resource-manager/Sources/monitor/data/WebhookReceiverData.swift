@@ -12,7 +12,7 @@ internal struct WebhookReceiverData : WebhookReceiverProtocol {
         case serviceUri = "serviceUri"
         }
 
-  public init(name: String, serviceUri: String)  {
+  public init(name: String, serviceUri: String) {
     self.name = name
     self.serviceUri = serviceUri
   }
@@ -21,7 +21,7 @@ internal struct WebhookReceiverData : WebhookReceiverProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
     self.serviceUri = try container.decode(String.self, forKey: .serviceUri)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -80,7 +80,7 @@ internal struct AppServiceEnvironmentData : AppServiceEnvironmentProtocol {
         case userWhitelistedIpRanges = "userWhitelistedIpRanges"
         }
 
-  public init(name: String, location: String, virtualNetwork: VirtualNetworkProfileProtocol, workerPools: [WorkerPoolProtocol])  {
+  public init(name: String, location: String, virtualNetwork: VirtualNetworkProfileProtocol, workerPools: [WorkerPoolProtocol]) {
     self.name = name
     self.location = location
     self.virtualNetwork = virtualNetwork
@@ -189,7 +189,7 @@ internal struct AppServiceEnvironmentData : AppServiceEnvironmentProtocol {
     if container.contains(.userWhitelistedIpRanges) {
         self.userWhitelistedIpRanges = try container.decode([String]?.self, forKey: .userWhitelistedIpRanges)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -201,40 +201,40 @@ internal struct AppServiceEnvironmentData : AppServiceEnvironmentProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.location, forKey: .location)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.vnetName != nil {try container.encode(self.vnetName, forKey: .vnetName)}
-    if self.vnetResourceGroupName != nil {try container.encode(self.vnetResourceGroupName, forKey: .vnetResourceGroupName)}
-    if self.vnetSubnetName != nil {try container.encode(self.vnetSubnetName, forKey: .vnetSubnetName)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.vnetName != nil { try container.encode(self.vnetName, forKey: .vnetName) }
+    if self.vnetResourceGroupName != nil { try container.encode(self.vnetResourceGroupName, forKey: .vnetResourceGroupName) }
+    if self.vnetSubnetName != nil { try container.encode(self.vnetSubnetName, forKey: .vnetSubnetName) }
     try container.encode(self.virtualNetwork as! VirtualNetworkProfileData, forKey: .virtualNetwork)
-    if self.internalLoadBalancingMode != nil {try container.encode(self.internalLoadBalancingMode, forKey: .internalLoadBalancingMode)}
-    if self.multiSize != nil {try container.encode(self.multiSize, forKey: .multiSize)}
-    if self.multiRoleCount != nil {try container.encode(self.multiRoleCount, forKey: .multiRoleCount)}
+    if self.internalLoadBalancingMode != nil { try container.encode(self.internalLoadBalancingMode, forKey: .internalLoadBalancingMode) }
+    if self.multiSize != nil { try container.encode(self.multiSize, forKey: .multiSize) }
+    if self.multiRoleCount != nil { try container.encode(self.multiRoleCount, forKey: .multiRoleCount) }
     try container.encode(self.workerPools as! [WorkerPoolData], forKey: .workerPools)
-    if self.ipsslAddressCount != nil {try container.encode(self.ipsslAddressCount, forKey: .ipsslAddressCount)}
-    if self.databaseEdition != nil {try container.encode(self.databaseEdition, forKey: .databaseEdition)}
-    if self.databaseServiceObjective != nil {try container.encode(self.databaseServiceObjective, forKey: .databaseServiceObjective)}
-    if self.upgradeDomains != nil {try container.encode(self.upgradeDomains, forKey: .upgradeDomains)}
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.dnsSuffix != nil {try container.encode(self.dnsSuffix, forKey: .dnsSuffix)}
-    if self.lastAction != nil {try container.encode(self.lastAction, forKey: .lastAction)}
-    if self.lastActionResult != nil {try container.encode(self.lastActionResult, forKey: .lastActionResult)}
-    if self.allowedMultiSizes != nil {try container.encode(self.allowedMultiSizes, forKey: .allowedMultiSizes)}
-    if self.allowedWorkerSizes != nil {try container.encode(self.allowedWorkerSizes, forKey: .allowedWorkerSizes)}
-    if self.maximumNumberOfMachines != nil {try container.encode(self.maximumNumberOfMachines, forKey: .maximumNumberOfMachines)}
-    if self.vipMappings != nil {try container.encode(self.vipMappings as! [VirtualIPMappingData?]?, forKey: .vipMappings)}
-    if self.environmentCapacities != nil {try container.encode(self.environmentCapacities as! [StampCapacityData?]?, forKey: .environmentCapacities)}
-    if self.networkAccessControlList != nil {try container.encode(self.networkAccessControlList as! [NetworkAccessControlEntryData?]?, forKey: .networkAccessControlList)}
-    if self.environmentIsHealthy != nil {try container.encode(self.environmentIsHealthy, forKey: .environmentIsHealthy)}
-    if self.environmentStatus != nil {try container.encode(self.environmentStatus, forKey: .environmentStatus)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
-    if self.frontEndScaleFactor != nil {try container.encode(self.frontEndScaleFactor, forKey: .frontEndScaleFactor)}
-    if self.defaultFrontEndScaleFactor != nil {try container.encode(self.defaultFrontEndScaleFactor, forKey: .defaultFrontEndScaleFactor)}
-    if self.apiManagementAccountId != nil {try container.encode(self.apiManagementAccountId, forKey: .apiManagementAccountId)}
-    if self.suspended != nil {try container.encode(self.suspended, forKey: .suspended)}
-    if self.dynamicCacheEnabled != nil {try container.encode(self.dynamicCacheEnabled, forKey: .dynamicCacheEnabled)}
-    if self.clusterSettings != nil {try container.encode(self.clusterSettings as! [NameValuePairData?]?, forKey: .clusterSettings)}
-    if self.userWhitelistedIpRanges != nil {try container.encode(self.userWhitelistedIpRanges as! [String]?, forKey: .userWhitelistedIpRanges)}
+    if self.ipsslAddressCount != nil { try container.encode(self.ipsslAddressCount, forKey: .ipsslAddressCount) }
+    if self.databaseEdition != nil { try container.encode(self.databaseEdition, forKey: .databaseEdition) }
+    if self.databaseServiceObjective != nil { try container.encode(self.databaseServiceObjective, forKey: .databaseServiceObjective) }
+    if self.upgradeDomains != nil { try container.encode(self.upgradeDomains, forKey: .upgradeDomains) }
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.dnsSuffix != nil { try container.encode(self.dnsSuffix, forKey: .dnsSuffix) }
+    if self.lastAction != nil { try container.encode(self.lastAction, forKey: .lastAction) }
+    if self.lastActionResult != nil { try container.encode(self.lastActionResult, forKey: .lastActionResult) }
+    if self.allowedMultiSizes != nil { try container.encode(self.allowedMultiSizes, forKey: .allowedMultiSizes) }
+    if self.allowedWorkerSizes != nil { try container.encode(self.allowedWorkerSizes, forKey: .allowedWorkerSizes) }
+    if self.maximumNumberOfMachines != nil { try container.encode(self.maximumNumberOfMachines, forKey: .maximumNumberOfMachines) }
+    if self.vipMappings != nil { try container.encode(self.vipMappings as! [VirtualIPMappingData?]?, forKey: .vipMappings) }
+    if self.environmentCapacities != nil { try container.encode(self.environmentCapacities as! [StampCapacityData?]?, forKey: .environmentCapacities) }
+    if self.networkAccessControlList != nil { try container.encode(self.networkAccessControlList as! [NetworkAccessControlEntryData?]?, forKey: .networkAccessControlList) }
+    if self.environmentIsHealthy != nil { try container.encode(self.environmentIsHealthy, forKey: .environmentIsHealthy) }
+    if self.environmentStatus != nil { try container.encode(self.environmentStatus, forKey: .environmentStatus) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
+    if self.frontEndScaleFactor != nil { try container.encode(self.frontEndScaleFactor, forKey: .frontEndScaleFactor) }
+    if self.defaultFrontEndScaleFactor != nil { try container.encode(self.defaultFrontEndScaleFactor, forKey: .defaultFrontEndScaleFactor) }
+    if self.apiManagementAccountId != nil { try container.encode(self.apiManagementAccountId, forKey: .apiManagementAccountId) }
+    if self.suspended != nil { try container.encode(self.suspended, forKey: .suspended) }
+    if self.dynamicCacheEnabled != nil { try container.encode(self.dynamicCacheEnabled, forKey: .dynamicCacheEnabled) }
+    if self.clusterSettings != nil { try container.encode(self.clusterSettings as! [NameValuePairData?]?, forKey: .clusterSettings) }
+    if self.userWhitelistedIpRanges != nil { try container.encode(self.userWhitelistedIpRanges as! [String]?, forKey: .userWhitelistedIpRanges) }
   }
 }
 

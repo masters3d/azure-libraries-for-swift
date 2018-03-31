@@ -10,7 +10,7 @@ internal struct PacketCaptureListResultData : PacketCaptureListResultProtocol {
         enum CodingKeys: String, CodingKey {case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct PacketCaptureListResultData : PacketCaptureListResultProtocol {
       if container.contains(.value) {
         self.value = try container.decode([PacketCaptureResultData?]?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct PacketCaptureListResultData : PacketCaptureListResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value as! [PacketCaptureResultData?]?, forKey: .value)}
+    if self.value != nil { try container.encode(self.value as! [PacketCaptureResultData?]?, forKey: .value) }
   }
 }
 

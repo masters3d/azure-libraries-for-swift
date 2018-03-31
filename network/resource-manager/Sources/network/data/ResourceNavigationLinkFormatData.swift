@@ -14,7 +14,7 @@ internal struct ResourceNavigationLinkFormatData : ResourceNavigationLinkFormatP
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ResourceNavigationLinkFormatData : ResourceNavigationLinkFormatP
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ResourceNavigationLinkFormatData : ResourceNavigationLinkFormatP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.linkedResourceType != nil {try container.encode(self.linkedResourceType, forKey: .linkedResourceType)}
-    if self.link != nil {try container.encode(self.link, forKey: .link)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.linkedResourceType != nil { try container.encode(self.linkedResourceType, forKey: .linkedResourceType) }
+    if self.link != nil { try container.encode(self.link, forKey: .link) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

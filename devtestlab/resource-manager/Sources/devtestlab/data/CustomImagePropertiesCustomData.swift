@@ -14,7 +14,7 @@ internal struct CustomImagePropertiesCustomData : CustomImagePropertiesCustomPro
         case osType = "osType"
         }
 
-  public init(osType: CustomImageOsTypeEnum)  {
+  public init(osType: CustomImageOsTypeEnum) {
     self.osType = osType
   }
 
@@ -27,7 +27,7 @@ internal struct CustomImagePropertiesCustomData : CustomImagePropertiesCustomPro
         self.sysPrep = try container.decode(Bool?.self, forKey: .sysPrep)
     }
     self.osType = try container.decode(CustomImageOsTypeEnum.self, forKey: .osType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,8 +37,8 @@ internal struct CustomImagePropertiesCustomData : CustomImagePropertiesCustomPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.imageName != nil {try container.encode(self.imageName, forKey: .imageName)}
-    if self.sysPrep != nil {try container.encode(self.sysPrep, forKey: .sysPrep)}
+    if self.imageName != nil { try container.encode(self.imageName, forKey: .imageName) }
+    if self.sysPrep != nil { try container.encode(self.sysPrep, forKey: .sysPrep) }
     try container.encode(self.osType, forKey: .osType)
   }
 }

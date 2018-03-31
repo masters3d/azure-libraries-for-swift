@@ -10,14 +10,14 @@ internal struct ConnectionResetSharedKeyData : ConnectionResetSharedKeyProtocol 
         enum CodingKeys: String, CodingKey {case keyLength = "keyLength"
         }
 
-  public init(keyLength: Int32)  {
+  public init(keyLength: Int32) {
     self.keyLength = keyLength
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyLength = try container.decode(Int32.self, forKey: .keyLength)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

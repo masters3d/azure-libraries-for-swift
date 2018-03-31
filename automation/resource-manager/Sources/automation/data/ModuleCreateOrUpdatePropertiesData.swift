@@ -10,14 +10,14 @@ internal struct ModuleCreateOrUpdatePropertiesData : ModuleCreateOrUpdatePropert
         enum CodingKeys: String, CodingKey {case contentLink = "contentLink"
         }
 
-  public init(contentLink: ContentLinkProtocol)  {
+  public init(contentLink: ContentLinkProtocol) {
     self.contentLink = contentLink
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.contentLink = try container.decode(ContentLinkData.self, forKey: .contentLink)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

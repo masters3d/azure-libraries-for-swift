@@ -20,7 +20,7 @@ internal struct HostNameData : HostNameProtocol {
         case hostNameType = "hostNameType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct HostNameData : HostNameProtocol {
     if container.contains(.hostNameType) {
         self.hostNameType = try container.decode(HostNameTypeEnum?.self, forKey: .hostNameType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct HostNameData : HostNameProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.siteNames != nil {try container.encode(self.siteNames as! [String]?, forKey: .siteNames)}
-    if self.azureResourceName != nil {try container.encode(self.azureResourceName, forKey: .azureResourceName)}
-    if self.azureResourceType != nil {try container.encode(self.azureResourceType, forKey: .azureResourceType)}
-    if self.customHostNameDnsRecordType != nil {try container.encode(self.customHostNameDnsRecordType, forKey: .customHostNameDnsRecordType)}
-    if self.hostNameType != nil {try container.encode(self.hostNameType, forKey: .hostNameType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.siteNames != nil { try container.encode(self.siteNames as! [String]?, forKey: .siteNames) }
+    if self.azureResourceName != nil { try container.encode(self.azureResourceName, forKey: .azureResourceName) }
+    if self.azureResourceType != nil { try container.encode(self.azureResourceType, forKey: .azureResourceType) }
+    if self.customHostNameDnsRecordType != nil { try container.encode(self.customHostNameDnsRecordType, forKey: .customHostNameDnsRecordType) }
+    if self.hostNameType != nil { try container.encode(self.hostNameType, forKey: .hostNameType) }
   }
 }
 

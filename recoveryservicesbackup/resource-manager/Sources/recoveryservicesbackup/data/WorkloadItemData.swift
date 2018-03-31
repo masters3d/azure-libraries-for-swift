@@ -16,7 +16,7 @@ internal struct WorkloadItemData : WorkloadItemProtocol {
         case protectionState = "protectionState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct WorkloadItemData : WorkloadItemProtocol {
     if container.contains(.protectionState) {
         self.protectionState = try container.decode(ProtectionStatusEnum?.self, forKey: .protectionState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct WorkloadItemData : WorkloadItemProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
   }
 }
 

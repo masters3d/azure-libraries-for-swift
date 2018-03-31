@@ -54,7 +54,7 @@ internal struct SiteAuthSettingsPropertiesData : SiteAuthSettingsPropertiesProto
         case microsoftAccountOAuthScopes = "microsoftAccountOAuthScopes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -128,7 +128,7 @@ internal struct SiteAuthSettingsPropertiesData : SiteAuthSettingsPropertiesProto
     if container.contains(.microsoftAccountOAuthScopes) {
         self.microsoftAccountOAuthScopes = try container.decode([String]?.self, forKey: .microsoftAccountOAuthScopes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -138,29 +138,29 @@ internal struct SiteAuthSettingsPropertiesData : SiteAuthSettingsPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.runtimeVersion != nil {try container.encode(self.runtimeVersion, forKey: .runtimeVersion)}
-    if self.unauthenticatedClientAction != nil {try container.encode(self.unauthenticatedClientAction, forKey: .unauthenticatedClientAction)}
-    if self.tokenStoreEnabled != nil {try container.encode(self.tokenStoreEnabled, forKey: .tokenStoreEnabled)}
-    if self.allowedExternalRedirectUrls != nil {try container.encode(self.allowedExternalRedirectUrls as! [String]?, forKey: .allowedExternalRedirectUrls)}
-    if self.defaultProvider != nil {try container.encode(self.defaultProvider, forKey: .defaultProvider)}
-    if self.tokenRefreshExtensionHours != nil {try container.encode(self.tokenRefreshExtensionHours, forKey: .tokenRefreshExtensionHours)}
-    if self.clientId != nil {try container.encode(self.clientId, forKey: .clientId)}
-    if self.clientSecret != nil {try container.encode(self.clientSecret, forKey: .clientSecret)}
-    if self.issuer != nil {try container.encode(self.issuer, forKey: .issuer)}
-    if self.allowedAudiences != nil {try container.encode(self.allowedAudiences as! [String]?, forKey: .allowedAudiences)}
-    if self.additionalLoginParams != nil {try container.encode(self.additionalLoginParams as! [String]?, forKey: .additionalLoginParams)}
-    if self.googleClientId != nil {try container.encode(self.googleClientId, forKey: .googleClientId)}
-    if self.googleClientSecret != nil {try container.encode(self.googleClientSecret, forKey: .googleClientSecret)}
-    if self.googleOAuthScopes != nil {try container.encode(self.googleOAuthScopes as! [String]?, forKey: .googleOAuthScopes)}
-    if self.facebookAppId != nil {try container.encode(self.facebookAppId, forKey: .facebookAppId)}
-    if self.facebookAppSecret != nil {try container.encode(self.facebookAppSecret, forKey: .facebookAppSecret)}
-    if self.facebookOAuthScopes != nil {try container.encode(self.facebookOAuthScopes as! [String]?, forKey: .facebookOAuthScopes)}
-    if self.twitterConsumerKey != nil {try container.encode(self.twitterConsumerKey, forKey: .twitterConsumerKey)}
-    if self.twitterConsumerSecret != nil {try container.encode(self.twitterConsumerSecret, forKey: .twitterConsumerSecret)}
-    if self.microsoftAccountClientId != nil {try container.encode(self.microsoftAccountClientId, forKey: .microsoftAccountClientId)}
-    if self.microsoftAccountClientSecret != nil {try container.encode(self.microsoftAccountClientSecret, forKey: .microsoftAccountClientSecret)}
-    if self.microsoftAccountOAuthScopes != nil {try container.encode(self.microsoftAccountOAuthScopes as! [String]?, forKey: .microsoftAccountOAuthScopes)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.runtimeVersion != nil { try container.encode(self.runtimeVersion, forKey: .runtimeVersion) }
+    if self.unauthenticatedClientAction != nil { try container.encode(self.unauthenticatedClientAction, forKey: .unauthenticatedClientAction) }
+    if self.tokenStoreEnabled != nil { try container.encode(self.tokenStoreEnabled, forKey: .tokenStoreEnabled) }
+    if self.allowedExternalRedirectUrls != nil { try container.encode(self.allowedExternalRedirectUrls as! [String]?, forKey: .allowedExternalRedirectUrls) }
+    if self.defaultProvider != nil { try container.encode(self.defaultProvider, forKey: .defaultProvider) }
+    if self.tokenRefreshExtensionHours != nil { try container.encode(self.tokenRefreshExtensionHours, forKey: .tokenRefreshExtensionHours) }
+    if self.clientId != nil { try container.encode(self.clientId, forKey: .clientId) }
+    if self.clientSecret != nil { try container.encode(self.clientSecret, forKey: .clientSecret) }
+    if self.issuer != nil { try container.encode(self.issuer, forKey: .issuer) }
+    if self.allowedAudiences != nil { try container.encode(self.allowedAudiences as! [String]?, forKey: .allowedAudiences) }
+    if self.additionalLoginParams != nil { try container.encode(self.additionalLoginParams as! [String]?, forKey: .additionalLoginParams) }
+    if self.googleClientId != nil { try container.encode(self.googleClientId, forKey: .googleClientId) }
+    if self.googleClientSecret != nil { try container.encode(self.googleClientSecret, forKey: .googleClientSecret) }
+    if self.googleOAuthScopes != nil { try container.encode(self.googleOAuthScopes as! [String]?, forKey: .googleOAuthScopes) }
+    if self.facebookAppId != nil { try container.encode(self.facebookAppId, forKey: .facebookAppId) }
+    if self.facebookAppSecret != nil { try container.encode(self.facebookAppSecret, forKey: .facebookAppSecret) }
+    if self.facebookOAuthScopes != nil { try container.encode(self.facebookOAuthScopes as! [String]?, forKey: .facebookOAuthScopes) }
+    if self.twitterConsumerKey != nil { try container.encode(self.twitterConsumerKey, forKey: .twitterConsumerKey) }
+    if self.twitterConsumerSecret != nil { try container.encode(self.twitterConsumerSecret, forKey: .twitterConsumerSecret) }
+    if self.microsoftAccountClientId != nil { try container.encode(self.microsoftAccountClientId, forKey: .microsoftAccountClientId) }
+    if self.microsoftAccountClientSecret != nil { try container.encode(self.microsoftAccountClientSecret, forKey: .microsoftAccountClientSecret) }
+    if self.microsoftAccountOAuthScopes != nil { try container.encode(self.microsoftAccountOAuthScopes as! [String]?, forKey: .microsoftAccountOAuthScopes) }
   }
 }
 

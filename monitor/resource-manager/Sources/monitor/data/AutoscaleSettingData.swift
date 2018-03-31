@@ -18,7 +18,7 @@ internal struct AutoscaleSettingData : AutoscaleSettingProtocol {
         case targetResourceUri = "targetResourceUri"
         }
 
-  public init(profiles: [AutoscaleProfileProtocol])  {
+  public init(profiles: [AutoscaleProfileProtocol]) {
     self.profiles = profiles
   }
 
@@ -37,7 +37,7 @@ internal struct AutoscaleSettingData : AutoscaleSettingProtocol {
     if container.contains(.targetResourceUri) {
         self.targetResourceUri = try container.decode(String?.self, forKey: .targetResourceUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct AutoscaleSettingData : AutoscaleSettingProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.profiles as! [AutoscaleProfileData], forKey: .profiles)
-    if self.notifications != nil {try container.encode(self.notifications as! [AutoscaleNotificationData?]?, forKey: .notifications)}
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.targetResourceUri != nil {try container.encode(self.targetResourceUri, forKey: .targetResourceUri)}
+    if self.notifications != nil { try container.encode(self.notifications as! [AutoscaleNotificationData?]?, forKey: .notifications) }
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.targetResourceUri != nil { try container.encode(self.targetResourceUri, forKey: .targetResourceUri) }
   }
 }
 

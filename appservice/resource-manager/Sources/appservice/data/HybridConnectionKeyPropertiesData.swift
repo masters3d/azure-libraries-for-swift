@@ -12,7 +12,7 @@ internal struct HybridConnectionKeyPropertiesData : HybridConnectionKeyPropertie
         case sendKeyValue = "sendKeyValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct HybridConnectionKeyPropertiesData : HybridConnectionKeyPropertie
     if container.contains(.sendKeyValue) {
         self.sendKeyValue = try container.decode(String?.self, forKey: .sendKeyValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct HybridConnectionKeyPropertiesData : HybridConnectionKeyPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sendKeyName != nil {try container.encode(self.sendKeyName, forKey: .sendKeyName)}
-    if self.sendKeyValue != nil {try container.encode(self.sendKeyValue, forKey: .sendKeyValue)}
+    if self.sendKeyName != nil { try container.encode(self.sendKeyName, forKey: .sendKeyName) }
+    if self.sendKeyValue != nil { try container.encode(self.sendKeyValue, forKey: .sendKeyValue) }
   }
 }
 

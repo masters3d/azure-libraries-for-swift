@@ -14,7 +14,7 @@ internal struct AzureReachabilityReportItemData : AzureReachabilityReportItemPro
         case latencies = "latencies"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureReachabilityReportItemData : AzureReachabilityReportItemPro
     if container.contains(.latencies) {
         self.latencies = try container.decode([AzureReachabilityReportLatencyInfoData?]?.self, forKey: .latencies)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureReachabilityReportItemData : AzureReachabilityReportItemPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provider != nil {try container.encode(self.provider, forKey: .provider)}
-    if self.azureLocation != nil {try container.encode(self.azureLocation, forKey: .azureLocation)}
-    if self.latencies != nil {try container.encode(self.latencies as! [AzureReachabilityReportLatencyInfoData?]?, forKey: .latencies)}
+    if self.provider != nil { try container.encode(self.provider, forKey: .provider) }
+    if self.azureLocation != nil { try container.encode(self.azureLocation, forKey: .azureLocation) }
+    if self.latencies != nil { try container.encode(self.latencies as! [AzureReachabilityReportLatencyInfoData?]?, forKey: .latencies) }
   }
 }
 

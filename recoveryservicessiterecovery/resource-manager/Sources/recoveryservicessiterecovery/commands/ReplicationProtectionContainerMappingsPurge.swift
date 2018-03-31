@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationProtectionContainerMappingsPurge  {
+public protocol ReplicationProtectionContainerMappingsPurge {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
@@ -10,7 +10,7 @@ public protocol ReplicationProtectionContainerMappingsPurge  {
     var mappingName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.ReplicationProtectionContainerMappings {
@@ -40,7 +40,7 @@ extension Commands.ReplicationProtectionContainerMappings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -52,7 +52,7 @@ extension Commands.ReplicationProtectionContainerMappings {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

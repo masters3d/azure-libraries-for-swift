@@ -20,7 +20,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
         case licenseType = "licenseType"
         }
 
-  public init(imageReference: ImageReferenceProtocol, nodeAgentSkuId: String)  {
+  public init(imageReference: ImageReferenceProtocol, nodeAgentSkuId: String) {
     self.imageReference = imageReference
     self.nodeAgentSkuId = nodeAgentSkuId
   }
@@ -41,7 +41,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
     if container.contains(.licenseType) {
         self.licenseType = try container.decode(String?.self, forKey: .licenseType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,11 +52,11 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.imageReference as! ImageReferenceData, forKey: .imageReference)
-    if self.osDisk != nil {try container.encode(self.osDisk as! OSDiskData?, forKey: .osDisk)}
+    if self.osDisk != nil { try container.encode(self.osDisk as! OSDiskData?, forKey: .osDisk) }
     try container.encode(self.nodeAgentSkuId, forKey: .nodeAgentSkuId)
-    if self.windowsConfiguration != nil {try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration)}
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! [DataDiskData?]?, forKey: .dataDisks)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
+    if self.windowsConfiguration != nil { try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration) }
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! [DataDiskData?]?, forKey: .dataDisks) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
   }
 }
 

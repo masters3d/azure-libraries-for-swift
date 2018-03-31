@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetExtensionProfileData : VirtualMachineScale
         enum CodingKeys: String, CodingKey {case extensions = "extensions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetExtensionProfileData : VirtualMachineScale
       if container.contains(.extensions) {
         self.extensions = try container.decode([VirtualMachineScaleSetExtensionData?]?.self, forKey: .extensions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetExtensionProfileData : VirtualMachineScale
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.extensions != nil {try container.encode(self.extensions as! [VirtualMachineScaleSetExtensionData?]?, forKey: .extensions)}
+    if self.extensions != nil { try container.encode(self.extensions as! [VirtualMachineScaleSetExtensionData?]?, forKey: .extensions) }
   }
 }
 

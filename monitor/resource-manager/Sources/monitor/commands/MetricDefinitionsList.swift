@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol MetricDefinitionsList  {
+public protocol MetricDefinitionsList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol MetricDefinitionsList  {
     var apiVersion : String { get set }
     var metricnamespace : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (MetricDefinitionCollectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (MetricDefinitionCollectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.MetricDefinitions {
@@ -33,7 +33,7 @@ extension Commands.MetricDefinitions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceUri}"] = String(describing: self.resourceUri)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.metricnamespace != nil { queryParameters["metricnamespace"] = String(describing: self.metricnamespace!) }
@@ -52,15 +52,15 @@ extension Commands.MetricDefinitions {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (MetricDefinitionCollectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (MetricDefinitionCollectionProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

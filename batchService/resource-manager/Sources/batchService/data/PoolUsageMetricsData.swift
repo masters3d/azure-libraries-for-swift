@@ -22,7 +22,7 @@ internal struct PoolUsageMetricsData : PoolUsageMetricsProtocol {
         case dataEgressGiB = "dataEgressGiB"
         }
 
-  public init(poolId: String, startTime: Date, endTime: Date, vmSize: String, totalCoreHours: Double, dataIngressGiB: Double, dataEgressGiB: Double)  {
+  public init(poolId: String, startTime: Date, endTime: Date, vmSize: String, totalCoreHours: Double, dataIngressGiB: Double, dataEgressGiB: Double) {
     self.poolId = poolId
     self.startTime = startTime
     self.endTime = endTime
@@ -41,7 +41,7 @@ internal struct PoolUsageMetricsData : PoolUsageMetricsProtocol {
     self.totalCoreHours = try container.decode(Double.self, forKey: .totalCoreHours)
     self.dataIngressGiB = try container.decode(Double.self, forKey: .dataIngressGiB)
     self.dataEgressGiB = try container.decode(Double.self, forKey: .dataEgressGiB)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -12,7 +12,7 @@ internal struct ServiceCorrelationDescriptionData : ServiceCorrelationDescriptio
         case serviceName = "ServiceName"
         }
 
-  public init(scheme: SchemeEnum, serviceName: String)  {
+  public init(scheme: SchemeEnum, serviceName: String) {
     self.scheme = scheme
     self.serviceName = serviceName
   }
@@ -21,7 +21,7 @@ internal struct ServiceCorrelationDescriptionData : ServiceCorrelationDescriptio
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.scheme = try container.decode(SchemeEnum.self, forKey: .scheme)
     self.serviceName = try container.decode(String.self, forKey: .serviceName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

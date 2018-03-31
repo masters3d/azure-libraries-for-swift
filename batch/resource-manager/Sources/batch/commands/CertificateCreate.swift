@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CertificateCreate  {
+public protocol CertificateCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
@@ -9,9 +9,9 @@ public protocol CertificateCreate  {
     var apiVersion : String { get set }
     var ifMatch : String? { get set }
     var ifNoneMatch : String? { get set }
-    var parameters :  CertificateCreateOrUpdateParametersProtocol?  { get set }
+    var parameters :  CertificateCreateOrUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void)
 }
 
 extension Commands.Certificate {
@@ -41,7 +41,7 @@ extension Commands.Certificate {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{certificateName}"] = String(describing: self.certificateName)
@@ -67,12 +67,12 @@ extension Commands.Certificate {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CertificateData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: CertificateData?, error: Error?) in
                 completionHandler(result, error)

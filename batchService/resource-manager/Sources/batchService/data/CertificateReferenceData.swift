@@ -18,7 +18,7 @@ internal struct CertificateReferenceData : CertificateReferenceProtocol {
         case visibility = "visibility"
         }
 
-  public init(thumbprint: String, thumbprintAlgorithm: String)  {
+  public init(thumbprint: String, thumbprintAlgorithm: String) {
     self.thumbprint = thumbprint
     self.thumbprintAlgorithm = thumbprintAlgorithm
   }
@@ -36,7 +36,7 @@ internal struct CertificateReferenceData : CertificateReferenceProtocol {
     if container.contains(.visibility) {
         self.visibility = try container.decode([CertificateVisibilityEnum?]?.self, forKey: .visibility)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,9 +48,9 @@ internal struct CertificateReferenceData : CertificateReferenceProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.thumbprint, forKey: .thumbprint)
     try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)
-    if self.storeLocation != nil {try container.encode(self.storeLocation, forKey: .storeLocation)}
-    if self.storeName != nil {try container.encode(self.storeName, forKey: .storeName)}
-    if self.visibility != nil {try container.encode(self.visibility as! [CertificateVisibilityEnum?]?, forKey: .visibility)}
+    if self.storeLocation != nil { try container.encode(self.storeLocation, forKey: .storeLocation) }
+    if self.storeName != nil { try container.encode(self.storeName, forKey: .storeName) }
+    if self.visibility != nil { try container.encode(self.visibility as! [CertificateVisibilityEnum?]?, forKey: .visibility) }
   }
 }
 

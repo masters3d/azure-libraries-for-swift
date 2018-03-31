@@ -14,7 +14,7 @@ internal struct AutomaticTuningServerPropertiesData : AutomaticTuningServerPrope
         case options = "options"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AutomaticTuningServerPropertiesData : AutomaticTuningServerPrope
     if container.contains(.options) {
         self.options = try container.decode([String:AutomaticTuningServerOptionsData?]?.self, forKey: .options)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AutomaticTuningServerPropertiesData : AutomaticTuningServerPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.desiredState != nil {try container.encode(self.desiredState, forKey: .desiredState)}
-    if self.actualState != nil {try container.encode(self.actualState, forKey: .actualState)}
-    if self.options != nil {try container.encode(self.options, forKey: .options)}
+    if self.desiredState != nil { try container.encode(self.desiredState, forKey: .desiredState) }
+    if self.actualState != nil { try container.encode(self.actualState, forKey: .actualState) }
+    if self.options != nil { try container.encode(self.options, forKey: .options) }
   }
 }
 

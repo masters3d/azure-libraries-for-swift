@@ -22,7 +22,7 @@ internal struct IntegrationAccountData : IntegrationAccountProtocol, ResourcePro
         case sku = "sku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct IntegrationAccountData : IntegrationAccountProtocol, ResourcePro
     if container.contains(.sku) {
         self.sku = try container.decode(IntegrationAccountSkuData?.self, forKey: .sku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct IntegrationAccountData : IntegrationAccountProtocol, ResourcePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.properties != nil {try container.encode(self.properties, forKey: .properties)}
-    if self.sku != nil {try container.encode(self.sku as! IntegrationAccountSkuData?, forKey: .sku)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.properties != nil { try container.encode(self.properties, forKey: .properties) }
+    if self.sku != nil { try container.encode(self.sku as! IntegrationAccountSkuData?, forKey: .sku) }
   }
 }
 

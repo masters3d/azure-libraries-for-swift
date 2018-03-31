@@ -10,7 +10,7 @@ internal struct HybridRunbookWorkerGroupUpdateParametersData : HybridRunbookWork
         enum CodingKeys: String, CodingKey {case credential = "credential"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct HybridRunbookWorkerGroupUpdateParametersData : HybridRunbookWork
       if container.contains(.credential) {
         self.credential = try container.decode(RunAsCredentialAssociationPropertyData?.self, forKey: .credential)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct HybridRunbookWorkerGroupUpdateParametersData : HybridRunbookWork
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.credential != nil {try container.encode(self.credential as! RunAsCredentialAssociationPropertyData?, forKey: .credential)}
+    if self.credential != nil { try container.encode(self.credential as! RunAsCredentialAssociationPropertyData?, forKey: .credential) }
   }
 }
 

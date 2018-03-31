@@ -10,7 +10,7 @@ internal struct DPMContainerExtendedInfoData : DPMContainerExtendedInfoProtocol 
         enum CodingKeys: String, CodingKey {case lastRefreshedAt = "lastRefreshedAt"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DPMContainerExtendedInfoData : DPMContainerExtendedInfoProtocol 
       if container.contains(.lastRefreshedAt) {
         self.lastRefreshedAt = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastRefreshedAt)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

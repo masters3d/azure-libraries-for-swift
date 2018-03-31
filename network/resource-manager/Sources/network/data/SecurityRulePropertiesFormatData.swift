@@ -40,7 +40,7 @@ internal struct SecurityRulePropertiesFormatData : SecurityRulePropertiesFormatP
         case provisioningState = "provisioningState"
         }
 
-  public init(_protocol: SecurityRuleProtocolEnum, access: SecurityRuleAccessEnum, direction: SecurityRuleDirectionEnum)  {
+  public init(_protocol: SecurityRuleProtocolEnum, access: SecurityRuleAccessEnum, direction: SecurityRuleDirectionEnum) {
     self._protocol = _protocol
     self.access = access
     self.direction = direction
@@ -90,7 +90,7 @@ internal struct SecurityRulePropertiesFormatData : SecurityRulePropertiesFormatP
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -100,22 +100,22 @@ internal struct SecurityRulePropertiesFormatData : SecurityRulePropertiesFormatP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self._protocol, forKey: ._protocol)
-    if self.sourcePortRange != nil {try container.encode(self.sourcePortRange, forKey: .sourcePortRange)}
-    if self.destinationPortRange != nil {try container.encode(self.destinationPortRange, forKey: .destinationPortRange)}
-    if self.sourceAddressPrefix != nil {try container.encode(self.sourceAddressPrefix, forKey: .sourceAddressPrefix)}
-    if self.sourceAddressPrefixes != nil {try container.encode(self.sourceAddressPrefixes as! [String]?, forKey: .sourceAddressPrefixes)}
-    if self.sourceApplicationSecurityGroups != nil {try container.encode(self.sourceApplicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .sourceApplicationSecurityGroups)}
-    if self.destinationAddressPrefix != nil {try container.encode(self.destinationAddressPrefix, forKey: .destinationAddressPrefix)}
-    if self.destinationAddressPrefixes != nil {try container.encode(self.destinationAddressPrefixes as! [String]?, forKey: .destinationAddressPrefixes)}
-    if self.destinationApplicationSecurityGroups != nil {try container.encode(self.destinationApplicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .destinationApplicationSecurityGroups)}
-    if self.sourcePortRanges != nil {try container.encode(self.sourcePortRanges as! [String]?, forKey: .sourcePortRanges)}
-    if self.destinationPortRanges != nil {try container.encode(self.destinationPortRanges as! [String]?, forKey: .destinationPortRanges)}
+    if self.sourcePortRange != nil { try container.encode(self.sourcePortRange, forKey: .sourcePortRange) }
+    if self.destinationPortRange != nil { try container.encode(self.destinationPortRange, forKey: .destinationPortRange) }
+    if self.sourceAddressPrefix != nil { try container.encode(self.sourceAddressPrefix, forKey: .sourceAddressPrefix) }
+    if self.sourceAddressPrefixes != nil { try container.encode(self.sourceAddressPrefixes as! [String]?, forKey: .sourceAddressPrefixes) }
+    if self.sourceApplicationSecurityGroups != nil { try container.encode(self.sourceApplicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .sourceApplicationSecurityGroups) }
+    if self.destinationAddressPrefix != nil { try container.encode(self.destinationAddressPrefix, forKey: .destinationAddressPrefix) }
+    if self.destinationAddressPrefixes != nil { try container.encode(self.destinationAddressPrefixes as! [String]?, forKey: .destinationAddressPrefixes) }
+    if self.destinationApplicationSecurityGroups != nil { try container.encode(self.destinationApplicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .destinationApplicationSecurityGroups) }
+    if self.sourcePortRanges != nil { try container.encode(self.sourcePortRanges as! [String]?, forKey: .sourcePortRanges) }
+    if self.destinationPortRanges != nil { try container.encode(self.destinationPortRanges as! [String]?, forKey: .destinationPortRanges) }
     try container.encode(self.access, forKey: .access)
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
     try container.encode(self.direction, forKey: .direction)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

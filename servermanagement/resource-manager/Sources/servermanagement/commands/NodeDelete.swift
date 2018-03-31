@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NodeDelete  {
+public protocol NodeDelete {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var nodeName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Node {
@@ -29,7 +29,7 @@ extension Commands.Node {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{nodeName}"] = String(describing: self.nodeName)
@@ -38,7 +38,7 @@ extension Commands.Node {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

@@ -14,7 +14,7 @@ internal struct AutoScaleRunErrorData : AutoScaleRunErrorProtocol {
         case details = "details"
         }
 
-  public init(code: String, message: String)  {
+  public init(code: String, message: String) {
     self.code = code
     self.message = message
   }
@@ -26,7 +26,7 @@ internal struct AutoScaleRunErrorData : AutoScaleRunErrorProtocol {
     if container.contains(.details) {
         self.details = try container.decode([AutoScaleRunErrorData?]?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct AutoScaleRunErrorData : AutoScaleRunErrorProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.code, forKey: .code)
     try container.encode(self.message, forKey: .message)
-    if self.details != nil {try container.encode(self.details as! [AutoScaleRunErrorData?]?, forKey: .details)}
+    if self.details != nil { try container.encode(self.details as! [AutoScaleRunErrorData?]?, forKey: .details) }
   }
 }
 

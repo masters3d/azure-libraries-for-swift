@@ -18,7 +18,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
         case status = "status"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
     if container.contains(.status) {
         self.status = try container.decode(JobStatusData?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,10 +51,10 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.action != nil {try container.encode(self.action as! JobActionData?, forKey: .action)}
-    if self.recurrence != nil {try container.encode(self.recurrence as! JobRecurrenceData?, forKey: .recurrence)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.status != nil {try container.encode(self.status as! JobStatusData?, forKey: .status)}
+    if self.action != nil { try container.encode(self.action as! JobActionData?, forKey: .action) }
+    if self.recurrence != nil { try container.encode(self.recurrence as! JobRecurrenceData?, forKey: .recurrence) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.status != nil { try container.encode(self.status as! JobStatusData?, forKey: .status) }
   }
 }
 

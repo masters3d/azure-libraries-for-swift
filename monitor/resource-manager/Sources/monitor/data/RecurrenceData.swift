@@ -12,7 +12,7 @@ internal struct RecurrenceData : RecurrenceProtocol {
         case schedule = "schedule"
         }
 
-  public init(frequency: RecurrenceFrequencyEnum, schedule: RecurrentScheduleProtocol)  {
+  public init(frequency: RecurrenceFrequencyEnum, schedule: RecurrentScheduleProtocol) {
     self.frequency = frequency
     self.schedule = schedule
   }
@@ -21,7 +21,7 @@ internal struct RecurrenceData : RecurrenceProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.frequency = try container.decode(RecurrenceFrequencyEnum.self, forKey: .frequency)
     self.schedule = try container.decode(RecurrentScheduleData.self, forKey: .schedule)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

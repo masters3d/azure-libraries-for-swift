@@ -14,7 +14,7 @@ internal struct RecoveryPointPropertiesData : RecoveryPointPropertiesProtocol {
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RecoveryPointPropertiesData : RecoveryPointPropertiesProtocol {
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(ProviderSpecificRecoveryPointDetailsData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct RecoveryPointPropertiesData : RecoveryPointPropertiesProtocol {
     if self.recoveryPointTime != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTime!, format: .dateTime), forKey: .recoveryPointTime)
     }
-    if self.recoveryPointType != nil {try container.encode(self.recoveryPointType, forKey: .recoveryPointType)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! ProviderSpecificRecoveryPointDetailsData?, forKey: .providerSpecificDetails)}
+    if self.recoveryPointType != nil { try container.encode(self.recoveryPointType, forKey: .recoveryPointType) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! ProviderSpecificRecoveryPointDetailsData?, forKey: .providerSpecificDetails) }
   }
 }
 

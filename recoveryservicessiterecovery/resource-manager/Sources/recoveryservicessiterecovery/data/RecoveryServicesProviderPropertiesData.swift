@@ -38,7 +38,7 @@ internal struct RecoveryServicesProviderPropertiesData : RecoveryServicesProvide
         case providerVersionDetails = "providerVersionDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct RecoveryServicesProviderPropertiesData : RecoveryServicesProvide
     if container.contains(.providerVersionDetails) {
         self.providerVersionDetails = try container.decode(VersionDetailsData?.self, forKey: .providerVersionDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,25 +98,25 @@ internal struct RecoveryServicesProviderPropertiesData : RecoveryServicesProvide
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fabricType != nil {try container.encode(self.fabricType, forKey: .fabricType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.providerVersion != nil {try container.encode(self.providerVersion, forKey: .providerVersion)}
-    if self.serverVersion != nil {try container.encode(self.serverVersion, forKey: .serverVersion)}
-    if self.providerVersionState != nil {try container.encode(self.providerVersionState, forKey: .providerVersionState)}
+    if self.fabricType != nil { try container.encode(self.fabricType, forKey: .fabricType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.providerVersion != nil { try container.encode(self.providerVersion, forKey: .providerVersion) }
+    if self.serverVersion != nil { try container.encode(self.serverVersion, forKey: .serverVersion) }
+    if self.providerVersionState != nil { try container.encode(self.providerVersionState, forKey: .providerVersionState) }
     if self.providerVersionExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.providerVersionExpiryDate!, format: .dateTime), forKey: .providerVersionExpiryDate)
     }
-    if self.fabricFriendlyName != nil {try container.encode(self.fabricFriendlyName, forKey: .fabricFriendlyName)}
+    if self.fabricFriendlyName != nil { try container.encode(self.fabricFriendlyName, forKey: .fabricFriendlyName) }
     if self.lastHeartBeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartBeat!, format: .dateTime), forKey: .lastHeartBeat)
     }
-    if self.connectionStatus != nil {try container.encode(self.connectionStatus, forKey: .connectionStatus)}
-    if self.protectedItemCount != nil {try container.encode(self.protectedItemCount, forKey: .protectedItemCount)}
-    if self.allowedScenarios != nil {try container.encode(self.allowedScenarios as! [String]?, forKey: .allowedScenarios)}
-    if self.healthErrorDetails != nil {try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails)}
-    if self.draIdentifier != nil {try container.encode(self.draIdentifier, forKey: .draIdentifier)}
-    if self.identityDetails != nil {try container.encode(self.identityDetails as! IdentityInformationData?, forKey: .identityDetails)}
-    if self.providerVersionDetails != nil {try container.encode(self.providerVersionDetails as! VersionDetailsData?, forKey: .providerVersionDetails)}
+    if self.connectionStatus != nil { try container.encode(self.connectionStatus, forKey: .connectionStatus) }
+    if self.protectedItemCount != nil { try container.encode(self.protectedItemCount, forKey: .protectedItemCount) }
+    if self.allowedScenarios != nil { try container.encode(self.allowedScenarios as! [String]?, forKey: .allowedScenarios) }
+    if self.healthErrorDetails != nil { try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails) }
+    if self.draIdentifier != nil { try container.encode(self.draIdentifier, forKey: .draIdentifier) }
+    if self.identityDetails != nil { try container.encode(self.identityDetails as! IdentityInformationData?, forKey: .identityDetails) }
+    if self.providerVersionDetails != nil { try container.encode(self.providerVersionDetails as! VersionDetailsData?, forKey: .providerVersionDetails) }
   }
 }
 

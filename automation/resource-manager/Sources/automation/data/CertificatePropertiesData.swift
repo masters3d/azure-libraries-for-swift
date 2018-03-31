@@ -20,7 +20,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,18 +53,18 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.isExportable != nil {try container.encode(self.isExportable, forKey: .isExportable)}
+    if self.isExportable != nil { try container.encode(self.isExportable, forKey: .isExportable) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

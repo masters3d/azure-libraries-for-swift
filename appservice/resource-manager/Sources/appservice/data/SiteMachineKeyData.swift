@@ -16,7 +16,7 @@ internal struct SiteMachineKeyData : SiteMachineKeyProtocol {
         case decryptionKey = "decryptionKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SiteMachineKeyData : SiteMachineKeyProtocol {
     if container.contains(.decryptionKey) {
         self.decryptionKey = try container.decode(String?.self, forKey: .decryptionKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SiteMachineKeyData : SiteMachineKeyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.validation != nil {try container.encode(self.validation, forKey: .validation)}
-    if self.validationKey != nil {try container.encode(self.validationKey, forKey: .validationKey)}
-    if self.decryption != nil {try container.encode(self.decryption, forKey: .decryption)}
-    if self.decryptionKey != nil {try container.encode(self.decryptionKey, forKey: .decryptionKey)}
+    if self.validation != nil { try container.encode(self.validation, forKey: .validation) }
+    if self.validationKey != nil { try container.encode(self.validationKey, forKey: .validationKey) }
+    if self.decryption != nil { try container.encode(self.decryption, forKey: .decryption) }
+    if self.decryptionKey != nil { try container.encode(self.decryptionKey, forKey: .decryptionKey) }
   }
 }
 

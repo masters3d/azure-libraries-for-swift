@@ -12,7 +12,7 @@ internal struct NamedPartitionSchemeDescriptionData : NamedPartitionSchemeDescri
         case names = "Names"
         }
 
-  public init(count: Int32, names: [String])  {
+  public init(count: Int32, names: [String]) {
     self.count = count
     self.names = names
   }
@@ -21,7 +21,7 @@ internal struct NamedPartitionSchemeDescriptionData : NamedPartitionSchemeDescri
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.count = try container.decode(Int32.self, forKey: .count)
     self.names = try container.decode([String].self, forKey: .names)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

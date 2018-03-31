@@ -16,7 +16,7 @@ internal struct TrafficManagerUserMetricsKeyModelData : TrafficManagerUserMetric
         case key = "key"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct TrafficManagerUserMetricsKeyModelData : TrafficManagerUserMetric
     if container.contains(.key) {
         self.key = try container.decode(String?.self, forKey: .key)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct TrafficManagerUserMetricsKeyModelData : TrafficManagerUserMetric
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.key != nil {try container.encode(self.key, forKey: .key)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.key != nil { try container.encode(self.key, forKey: .key) }
   }
 }
 

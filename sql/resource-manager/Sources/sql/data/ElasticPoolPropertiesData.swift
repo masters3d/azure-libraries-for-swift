@@ -24,7 +24,7 @@ internal struct ElasticPoolPropertiesData : ElasticPoolPropertiesProtocol {
         case zoneRedundant = "zoneRedundant"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ElasticPoolPropertiesData : ElasticPoolPropertiesProtocol {
     if container.contains(.zoneRedundant) {
         self.zoneRedundant = try container.decode(Bool?.self, forKey: .zoneRedundant)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -66,13 +66,13 @@ internal struct ElasticPoolPropertiesData : ElasticPoolPropertiesProtocol {
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.edition != nil {try container.encode(self.edition, forKey: .edition)}
-    if self.dtu != nil {try container.encode(self.dtu, forKey: .dtu)}
-    if self.databaseDtuMax != nil {try container.encode(self.databaseDtuMax, forKey: .databaseDtuMax)}
-    if self.databaseDtuMin != nil {try container.encode(self.databaseDtuMin, forKey: .databaseDtuMin)}
-    if self.storageMB != nil {try container.encode(self.storageMB, forKey: .storageMB)}
-    if self.zoneRedundant != nil {try container.encode(self.zoneRedundant, forKey: .zoneRedundant)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.edition != nil { try container.encode(self.edition, forKey: .edition) }
+    if self.dtu != nil { try container.encode(self.dtu, forKey: .dtu) }
+    if self.databaseDtuMax != nil { try container.encode(self.databaseDtuMax, forKey: .databaseDtuMax) }
+    if self.databaseDtuMin != nil { try container.encode(self.databaseDtuMin, forKey: .databaseDtuMin) }
+    if self.storageMB != nil { try container.encode(self.storageMB, forKey: .storageMB) }
+    if self.zoneRedundant != nil { try container.encode(self.zoneRedundant, forKey: .zoneRedundant) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct DiagnosticMetricSampleData : DiagnosticMetricSampleProtocol {
         case isAggregated = "isAggregated"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DiagnosticMetricSampleData : DiagnosticMetricSampleProtocol {
     if container.contains(.isAggregated) {
         self.isAggregated = try container.decode(Bool?.self, forKey: .isAggregated)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,11 +56,11 @@ internal struct DiagnosticMetricSampleData : DiagnosticMetricSampleProtocol {
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.roleInstance != nil {try container.encode(self.roleInstance, forKey: .roleInstance)}
-    if self.total != nil {try container.encode(self.total, forKey: .total)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
-    if self.minimum != nil {try container.encode(self.minimum, forKey: .minimum)}
-    if self.isAggregated != nil {try container.encode(self.isAggregated, forKey: .isAggregated)}
+    if self.roleInstance != nil { try container.encode(self.roleInstance, forKey: .roleInstance) }
+    if self.total != nil { try container.encode(self.total, forKey: .total) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
+    if self.minimum != nil { try container.encode(self.minimum, forKey: .minimum) }
+    if self.isAggregated != nil { try container.encode(self.isAggregated, forKey: .isAggregated) }
   }
 }
 

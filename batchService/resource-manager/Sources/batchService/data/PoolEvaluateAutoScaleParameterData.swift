@@ -10,14 +10,14 @@ internal struct PoolEvaluateAutoScaleParameterData : PoolEvaluateAutoScaleParame
         enum CodingKeys: String, CodingKey {case autoScaleFormula = "autoScaleFormula"
         }
 
-  public init(autoScaleFormula: String)  {
+  public init(autoScaleFormula: String) {
     self.autoScaleFormula = autoScaleFormula
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.autoScaleFormula = try container.decode(String.self, forKey: .autoScaleFormula)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

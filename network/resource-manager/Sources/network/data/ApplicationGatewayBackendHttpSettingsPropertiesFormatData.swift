@@ -34,7 +34,7 @@ internal struct ApplicationGatewayBackendHttpSettingsPropertiesFormatData : Appl
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct ApplicationGatewayBackendHttpSettingsPropertiesFormatData : Appl
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,19 +88,19 @@ internal struct ApplicationGatewayBackendHttpSettingsPropertiesFormatData : Appl
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.cookieBasedAffinity != nil {try container.encode(self.cookieBasedAffinity, forKey: .cookieBasedAffinity)}
-    if self.requestTimeout != nil {try container.encode(self.requestTimeout, forKey: .requestTimeout)}
-    if self.probe != nil {try container.encode(self.probe as! SubResourceData?, forKey: .probe)}
-    if self.authenticationCertificates != nil {try container.encode(self.authenticationCertificates as! [SubResourceData?]?, forKey: .authenticationCertificates)}
-    if self.connectionDraining != nil {try container.encode(self.connectionDraining as! ApplicationGatewayConnectionDrainingData?, forKey: .connectionDraining)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
-    if self.pickHostNameFromBackendAddress != nil {try container.encode(self.pickHostNameFromBackendAddress, forKey: .pickHostNameFromBackendAddress)}
-    if self.affinityCookieName != nil {try container.encode(self.affinityCookieName, forKey: .affinityCookieName)}
-    if self.probeEnabled != nil {try container.encode(self.probeEnabled, forKey: .probeEnabled)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.cookieBasedAffinity != nil { try container.encode(self.cookieBasedAffinity, forKey: .cookieBasedAffinity) }
+    if self.requestTimeout != nil { try container.encode(self.requestTimeout, forKey: .requestTimeout) }
+    if self.probe != nil { try container.encode(self.probe as! SubResourceData?, forKey: .probe) }
+    if self.authenticationCertificates != nil { try container.encode(self.authenticationCertificates as! [SubResourceData?]?, forKey: .authenticationCertificates) }
+    if self.connectionDraining != nil { try container.encode(self.connectionDraining as! ApplicationGatewayConnectionDrainingData?, forKey: .connectionDraining) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
+    if self.pickHostNameFromBackendAddress != nil { try container.encode(self.pickHostNameFromBackendAddress, forKey: .pickHostNameFromBackendAddress) }
+    if self.affinityCookieName != nil { try container.encode(self.affinityCookieName, forKey: .affinityCookieName) }
+    if self.probeEnabled != nil { try container.encode(self.probeEnabled, forKey: .probeEnabled) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

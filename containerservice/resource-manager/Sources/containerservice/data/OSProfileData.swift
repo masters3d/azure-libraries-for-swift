@@ -22,7 +22,7 @@ internal struct OSProfileData : OSProfileProtocol {
         case secrets = "secrets"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct OSProfileData : OSProfileProtocol {
     if container.contains(.secrets) {
         self.secrets = try container.decode([VaultSecretGroupData?]?.self, forKey: .secrets)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct OSProfileData : OSProfileProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.computerName != nil {try container.encode(self.computerName, forKey: .computerName)}
-    if self.adminUsername != nil {try container.encode(self.adminUsername, forKey: .adminUsername)}
-    if self.adminPassword != nil {try container.encode(self.adminPassword, forKey: .adminPassword)}
-    if self.customData != nil {try container.encode(self.customData, forKey: .customData)}
-    if self.windowsConfiguration != nil {try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration)}
-    if self.linuxConfiguration != nil {try container.encode(self.linuxConfiguration as! LinuxConfigurationData?, forKey: .linuxConfiguration)}
-    if self.secrets != nil {try container.encode(self.secrets as! [VaultSecretGroupData?]?, forKey: .secrets)}
+    if self.computerName != nil { try container.encode(self.computerName, forKey: .computerName) }
+    if self.adminUsername != nil { try container.encode(self.adminUsername, forKey: .adminUsername) }
+    if self.adminPassword != nil { try container.encode(self.adminPassword, forKey: .adminPassword) }
+    if self.customData != nil { try container.encode(self.customData, forKey: .customData) }
+    if self.windowsConfiguration != nil { try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration) }
+    if self.linuxConfiguration != nil { try container.encode(self.linuxConfiguration as! LinuxConfigurationData?, forKey: .linuxConfiguration) }
+    if self.secrets != nil { try container.encode(self.secrets as! [VaultSecretGroupData?]?, forKey: .secrets) }
   }
 }
 

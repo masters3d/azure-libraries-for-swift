@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkInterfacesGetVirtualMachineScaleSetNetworkInterface  {
+public protocol NetworkInterfacesGetVirtualMachineScaleSetNetworkInterface {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualMachineScaleSetName : String { get set }
@@ -10,7 +10,7 @@ public protocol NetworkInterfacesGetVirtualMachineScaleSetNetworkInterface  {
     var apiVersion : String { get set }
     var expand : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkInterfaces {
@@ -37,7 +37,7 @@ extension Commands.NetworkInterfaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualMachineScaleSetName}"] = String(describing: self.virtualMachineScaleSetName)
             self.pathParameters["{virtualmachineIndex}"] = String(describing: self.virtualmachineIndex)
@@ -53,12 +53,12 @@ extension Commands.NetworkInterfaces {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NetworkInterfaceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: NetworkInterfaceData?, error: Error?) in
                 completionHandler(result, error)

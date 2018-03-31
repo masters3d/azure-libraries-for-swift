@@ -16,7 +16,7 @@ internal struct RecoveryPlanShutdownGroupTaskDetailsData : RecoveryPlanShutdownG
         case rpGroupType = "rpGroupType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RecoveryPlanShutdownGroupTaskDetailsData : RecoveryPlanShutdownG
     if container.contains(.rpGroupType) {
         self.rpGroupType = try container.decode(String?.self, forKey: .rpGroupType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RecoveryPlanShutdownGroupTaskDetailsData : RecoveryPlanShutdownG
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.childTasks != nil {try container.encode(self.childTasks as! [ASRTaskData?]?, forKey: .childTasks)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.groupId != nil {try container.encode(self.groupId, forKey: .groupId)}
-    if self.rpGroupType != nil {try container.encode(self.rpGroupType, forKey: .rpGroupType)}
+    if self.childTasks != nil { try container.encode(self.childTasks as! [ASRTaskData?]?, forKey: .childTasks) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.groupId != nil { try container.encode(self.groupId, forKey: .groupId) }
+    if self.rpGroupType != nil { try container.encode(self.rpGroupType, forKey: .rpGroupType) }
   }
 }
 

@@ -22,7 +22,7 @@ internal struct AzureFileShareProtectableItemData : AzureFileShareProtectableIte
         case azureFileShareType = "azureFileShareType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureFileShareProtectableItemData : AzureFileShareProtectableIte
     if container.contains(.azureFileShareType) {
         self.azureFileShareType = try container.decode(AzureFileShareTypeEnum?.self, forKey: .azureFileShareType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct AzureFileShareProtectableItemData : AzureFileShareProtectableIte
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.parentContainerFabricId != nil {try container.encode(self.parentContainerFabricId, forKey: .parentContainerFabricId)}
-    if self.parentContainerFriendlyName != nil {try container.encode(self.parentContainerFriendlyName, forKey: .parentContainerFriendlyName)}
-    if self.azureFileShareType != nil {try container.encode(self.azureFileShareType, forKey: .azureFileShareType)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.parentContainerFabricId != nil { try container.encode(self.parentContainerFabricId, forKey: .parentContainerFabricId) }
+    if self.parentContainerFriendlyName != nil { try container.encode(self.parentContainerFriendlyName, forKey: .parentContainerFriendlyName) }
+    if self.azureFileShareType != nil { try container.encode(self.azureFileShareType, forKey: .azureFileShareType) }
   }
 }
 

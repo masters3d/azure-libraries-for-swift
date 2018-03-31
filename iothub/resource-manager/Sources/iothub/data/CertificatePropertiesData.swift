@@ -20,7 +20,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
         case updated = "updated"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
     if container.contains(.updated) {
         self.updated = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .updated)), format: .dateTimeRfc1123)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct CertificatePropertiesData : CertificatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subject != nil {try container.encode(self.subject, forKey: .subject)}
+    if self.subject != nil { try container.encode(self.subject, forKey: .subject) }
     if self.expiry != nil {
         try container.encode(DateConverter.toString(date: self.expiry!, format: .dateTimeRfc1123), forKey: .expiry)
     }
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.isVerified != nil {try container.encode(self.isVerified, forKey: .isVerified)}
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.isVerified != nil { try container.encode(self.isVerified, forKey: .isVerified) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTimeRfc1123), forKey: .created)
     }

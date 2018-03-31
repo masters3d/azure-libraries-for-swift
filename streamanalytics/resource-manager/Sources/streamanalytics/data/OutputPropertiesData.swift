@@ -16,7 +16,7 @@ internal struct OutputPropertiesData : OutputPropertiesProtocol {
         case etag = "etag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct OutputPropertiesData : OutputPropertiesProtocol {
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct OutputPropertiesData : OutputPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.datasource != nil {try container.encode(self.datasource as! OutputDataSourceData?, forKey: .datasource)}
-    if self.serialization != nil {try container.encode(self.serialization as! SerializationData?, forKey: .serialization)}
-    if self.diagnostics != nil {try container.encode(self.diagnostics as! DiagnosticsData?, forKey: .diagnostics)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.datasource != nil { try container.encode(self.datasource as! OutputDataSourceData?, forKey: .datasource) }
+    if self.serialization != nil { try container.encode(self.serialization as! SerializationData?, forKey: .serialization) }
+    if self.diagnostics != nil { try container.encode(self.diagnostics as! DiagnosticsData?, forKey: .diagnostics) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

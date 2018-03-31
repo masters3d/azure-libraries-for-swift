@@ -12,7 +12,7 @@ internal struct EncryptionConfigData : EncryptionConfigProtocol {
         case keyVaultMetaInfo = "keyVaultMetaInfo"
         }
 
-  public init(type: EncryptionConfigTypeEnum)  {
+  public init(type: EncryptionConfigTypeEnum) {
     self.type = type
   }
 
@@ -22,7 +22,7 @@ internal struct EncryptionConfigData : EncryptionConfigProtocol {
     if container.contains(.keyVaultMetaInfo) {
         self.keyVaultMetaInfo = try container.decode(KeyVaultMetaInfoData?.self, forKey: .keyVaultMetaInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct EncryptionConfigData : EncryptionConfigProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.type, forKey: .type)
-    if self.keyVaultMetaInfo != nil {try container.encode(self.keyVaultMetaInfo as! KeyVaultMetaInfoData?, forKey: .keyVaultMetaInfo)}
+    if self.keyVaultMetaInfo != nil { try container.encode(self.keyVaultMetaInfo as! KeyVaultMetaInfoData?, forKey: .keyVaultMetaInfo) }
   }
 }
 

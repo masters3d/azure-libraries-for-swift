@@ -44,7 +44,7 @@ internal struct ServiceSasParametersData : ServiceSasParametersProtocol {
         case contentType = "rsct"
         }
 
-  public init(canonicalizedResource: String, resource: SignedResourceEnum)  {
+  public init(canonicalizedResource: String, resource: SignedResourceEnum) {
     self.canonicalizedResource = canonicalizedResource
     self.resource = resource
   }
@@ -101,7 +101,7 @@ internal struct ServiceSasParametersData : ServiceSasParametersProtocol {
     if container.contains(.contentType) {
         self.contentType = try container.decode(String?.self, forKey: .contentType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -113,26 +113,26 @@ internal struct ServiceSasParametersData : ServiceSasParametersProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.canonicalizedResource, forKey: .canonicalizedResource)
     try container.encode(self.resource, forKey: .resource)
-    if self.permissions != nil {try container.encode(self.permissions, forKey: .permissions)}
-    if self.iPAddressOrRange != nil {try container.encode(self.iPAddressOrRange, forKey: .iPAddressOrRange)}
-    if self.protocols != nil {try container.encode(self.protocols, forKey: .protocols)}
+    if self.permissions != nil { try container.encode(self.permissions, forKey: .permissions) }
+    if self.iPAddressOrRange != nil { try container.encode(self.iPAddressOrRange, forKey: .iPAddressOrRange) }
+    if self.protocols != nil { try container.encode(self.protocols, forKey: .protocols) }
     if self.sharedAccessStartTime != nil {
         try container.encode(DateConverter.toString(date: self.sharedAccessStartTime!, format: .dateTime), forKey: .sharedAccessStartTime)
     }
     if self.sharedAccessExpiryTime != nil {
         try container.encode(DateConverter.toString(date: self.sharedAccessExpiryTime!, format: .dateTime), forKey: .sharedAccessExpiryTime)
     }
-    if self.identifier != nil {try container.encode(self.identifier, forKey: .identifier)}
-    if self.partitionKeyStart != nil {try container.encode(self.partitionKeyStart, forKey: .partitionKeyStart)}
-    if self.partitionKeyEnd != nil {try container.encode(self.partitionKeyEnd, forKey: .partitionKeyEnd)}
-    if self.rowKeyStart != nil {try container.encode(self.rowKeyStart, forKey: .rowKeyStart)}
-    if self.rowKeyEnd != nil {try container.encode(self.rowKeyEnd, forKey: .rowKeyEnd)}
-    if self.keyToSign != nil {try container.encode(self.keyToSign, forKey: .keyToSign)}
-    if self.cacheControl != nil {try container.encode(self.cacheControl, forKey: .cacheControl)}
-    if self.contentDisposition != nil {try container.encode(self.contentDisposition, forKey: .contentDisposition)}
-    if self.contentEncoding != nil {try container.encode(self.contentEncoding, forKey: .contentEncoding)}
-    if self.contentLanguage != nil {try container.encode(self.contentLanguage, forKey: .contentLanguage)}
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
+    if self.identifier != nil { try container.encode(self.identifier, forKey: .identifier) }
+    if self.partitionKeyStart != nil { try container.encode(self.partitionKeyStart, forKey: .partitionKeyStart) }
+    if self.partitionKeyEnd != nil { try container.encode(self.partitionKeyEnd, forKey: .partitionKeyEnd) }
+    if self.rowKeyStart != nil { try container.encode(self.rowKeyStart, forKey: .rowKeyStart) }
+    if self.rowKeyEnd != nil { try container.encode(self.rowKeyEnd, forKey: .rowKeyEnd) }
+    if self.keyToSign != nil { try container.encode(self.keyToSign, forKey: .keyToSign) }
+    if self.cacheControl != nil { try container.encode(self.cacheControl, forKey: .cacheControl) }
+    if self.contentDisposition != nil { try container.encode(self.contentDisposition, forKey: .contentDisposition) }
+    if self.contentEncoding != nil { try container.encode(self.contentEncoding, forKey: .contentEncoding) }
+    if self.contentLanguage != nil { try container.encode(self.contentLanguage, forKey: .contentLanguage) }
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
   }
 }
 

@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RedisCreate  {
+public protocol RedisCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RedisCreateParametersProtocol?  { get set }
+    var parameters :  RedisCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RedisResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RedisResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.Redis {
@@ -34,7 +34,7 @@ extension Commands.Redis {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.Redis {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RedisResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RedisResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RedisResourceProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RedisResourceData?, error: Error?) in
                 completionHandler(result, error)

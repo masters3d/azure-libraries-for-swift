@@ -30,7 +30,7 @@ internal struct PremierAddOnOfferPropertiesData : PremierAddOnOfferPropertiesPro
         case marketplaceOffer = "marketplaceOffer"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct PremierAddOnOfferPropertiesData : PremierAddOnOfferPropertiesPro
     if container.contains(.marketplaceOffer) {
         self.marketplaceOffer = try container.decode(String?.self, forKey: .marketplaceOffer)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct PremierAddOnOfferPropertiesData : PremierAddOnOfferPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku, forKey: .sku)}
-    if self.product != nil {try container.encode(self.product, forKey: .product)}
-    if self.vendor != nil {try container.encode(self.vendor, forKey: .vendor)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.promoCodeRequired != nil {try container.encode(self.promoCodeRequired, forKey: .promoCodeRequired)}
-    if self.quota != nil {try container.encode(self.quota, forKey: .quota)}
-    if self.webHostingPlanRestrictions != nil {try container.encode(self.webHostingPlanRestrictions, forKey: .webHostingPlanRestrictions)}
-    if self.privacyPolicyUrl != nil {try container.encode(self.privacyPolicyUrl, forKey: .privacyPolicyUrl)}
-    if self.legalTermsUrl != nil {try container.encode(self.legalTermsUrl, forKey: .legalTermsUrl)}
-    if self.marketplacePublisher != nil {try container.encode(self.marketplacePublisher, forKey: .marketplacePublisher)}
-    if self.marketplaceOffer != nil {try container.encode(self.marketplaceOffer, forKey: .marketplaceOffer)}
+    if self.sku != nil { try container.encode(self.sku, forKey: .sku) }
+    if self.product != nil { try container.encode(self.product, forKey: .product) }
+    if self.vendor != nil { try container.encode(self.vendor, forKey: .vendor) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.promoCodeRequired != nil { try container.encode(self.promoCodeRequired, forKey: .promoCodeRequired) }
+    if self.quota != nil { try container.encode(self.quota, forKey: .quota) }
+    if self.webHostingPlanRestrictions != nil { try container.encode(self.webHostingPlanRestrictions, forKey: .webHostingPlanRestrictions) }
+    if self.privacyPolicyUrl != nil { try container.encode(self.privacyPolicyUrl, forKey: .privacyPolicyUrl) }
+    if self.legalTermsUrl != nil { try container.encode(self.legalTermsUrl, forKey: .legalTermsUrl) }
+    if self.marketplacePublisher != nil { try container.encode(self.marketplacePublisher, forKey: .marketplacePublisher) }
+    if self.marketplaceOffer != nil { try container.encode(self.marketplaceOffer, forKey: .marketplaceOffer) }
   }
 }
 

@@ -18,7 +18,7 @@ internal struct IncidentData : IncidentProtocol {
         case resolvedTime = "resolvedTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct IncidentData : IncidentProtocol {
     if container.contains(.resolvedTime) {
         self.resolvedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .resolvedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,9 +48,9 @@ internal struct IncidentData : IncidentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.ruleName != nil {try container.encode(self.ruleName, forKey: .ruleName)}
-    if self.isActive != nil {try container.encode(self.isActive, forKey: .isActive)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.ruleName != nil { try container.encode(self.ruleName, forKey: .ruleName) }
+    if self.isActive != nil { try container.encode(self.isActive, forKey: .isActive) }
     if self.activatedTime != nil {
         try container.encode(DateConverter.toString(date: self.activatedTime!, format: .dateTime), forKey: .activatedTime)
     }

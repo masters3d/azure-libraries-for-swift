@@ -14,7 +14,7 @@ internal struct RecoveryPlanA2AFailoverInputData : RecoveryPlanA2AFailoverInputP
         case multiVmSyncPointOption = "multiVmSyncPointOption"
         }
 
-  public init(recoveryPointType: A2ARpRecoveryPointTypeEnum)  {
+  public init(recoveryPointType: A2ARpRecoveryPointTypeEnum) {
     self.recoveryPointType = recoveryPointType
   }
 
@@ -27,7 +27,7 @@ internal struct RecoveryPlanA2AFailoverInputData : RecoveryPlanA2AFailoverInputP
     if container.contains(.multiVmSyncPointOption) {
         self.multiVmSyncPointOption = try container.decode(MultiVmSyncPointOptionEnum?.self, forKey: .multiVmSyncPointOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct RecoveryPlanA2AFailoverInputData : RecoveryPlanA2AFailoverInputP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.recoveryPointType, forKey: .recoveryPointType)
-    if self.cloudServiceCreationOption != nil {try container.encode(self.cloudServiceCreationOption, forKey: .cloudServiceCreationOption)}
-    if self.multiVmSyncPointOption != nil {try container.encode(self.multiVmSyncPointOption, forKey: .multiVmSyncPointOption)}
+    if self.cloudServiceCreationOption != nil { try container.encode(self.cloudServiceCreationOption, forKey: .cloudServiceCreationOption) }
+    if self.multiVmSyncPointOption != nil { try container.encode(self.multiVmSyncPointOption, forKey: .multiVmSyncPointOption) }
   }
 }
 

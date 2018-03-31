@@ -18,7 +18,7 @@ internal struct VirtualMachineExtensionInstanceViewData : VirtualMachineExtensio
         case statuses = "statuses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct VirtualMachineExtensionInstanceViewData : VirtualMachineExtensio
     if container.contains(.statuses) {
         self.statuses = try container.decode([InstanceViewStatusData?]?.self, forKey: .statuses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct VirtualMachineExtensionInstanceViewData : VirtualMachineExtensio
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.typeHandlerVersion != nil {try container.encode(self.typeHandlerVersion, forKey: .typeHandlerVersion)}
-    if self.substatuses != nil {try container.encode(self.substatuses as! [InstanceViewStatusData?]?, forKey: .substatuses)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.typeHandlerVersion != nil { try container.encode(self.typeHandlerVersion, forKey: .typeHandlerVersion) }
+    if self.substatuses != nil { try container.encode(self.substatuses as! [InstanceViewStatusData?]?, forKey: .substatuses) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
   }
 }
 

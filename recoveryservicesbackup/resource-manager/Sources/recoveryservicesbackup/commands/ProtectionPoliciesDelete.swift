@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ProtectionPoliciesDelete  {
+public protocol ProtectionPoliciesDelete {
     var headerParameters: [String: String] { get set }
     var vaultName : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol ProtectionPoliciesDelete  {
     var policyName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.ProtectionPolicies {
@@ -33,7 +33,7 @@ extension Commands.ProtectionPolicies {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{vaultName}"] = String(describing: self.vaultName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -43,7 +43,7 @@ extension Commands.ProtectionPolicies {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

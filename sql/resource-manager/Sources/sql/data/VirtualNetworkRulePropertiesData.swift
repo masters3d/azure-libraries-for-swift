@@ -14,7 +14,7 @@ internal struct VirtualNetworkRulePropertiesData : VirtualNetworkRulePropertiesP
         case state = "state"
         }
 
-  public init(virtualNetworkSubnetId: String)  {
+  public init(virtualNetworkSubnetId: String) {
     self.virtualNetworkSubnetId = virtualNetworkSubnetId
   }
 
@@ -27,7 +27,7 @@ internal struct VirtualNetworkRulePropertiesData : VirtualNetworkRulePropertiesP
     if container.contains(.state) {
         self.state = try container.decode(VirtualNetworkRuleStateEnum?.self, forKey: .state)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct VirtualNetworkRulePropertiesData : VirtualNetworkRulePropertiesP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.virtualNetworkSubnetId, forKey: .virtualNetworkSubnetId)
-    if self.ignoreMissingVnetServiceEndpoint != nil {try container.encode(self.ignoreMissingVnetServiceEndpoint, forKey: .ignoreMissingVnetServiceEndpoint)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.ignoreMissingVnetServiceEndpoint != nil { try container.encode(self.ignoreMissingVnetServiceEndpoint, forKey: .ignoreMissingVnetServiceEndpoint) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
   }
 }
 

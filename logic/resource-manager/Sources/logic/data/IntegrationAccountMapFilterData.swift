@@ -10,14 +10,14 @@ internal struct IntegrationAccountMapFilterData : IntegrationAccountMapFilterPro
         enum CodingKeys: String, CodingKey {case mapType = "mapType"
         }
 
-  public init(mapType: MapTypeEnum)  {
+  public init(mapType: MapTypeEnum) {
     self.mapType = mapType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.mapType = try container.decode(MapTypeEnum.self, forKey: .mapType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

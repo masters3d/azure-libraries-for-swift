@@ -10,7 +10,7 @@ internal struct ErrorExceptionDetailsData : ErrorExceptionDetailsProtocol {
         case stackTrace = "StackTrace"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -25,8 +25,8 @@ internal struct ErrorExceptionDetailsData : ErrorExceptionDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.exceptionMessage != nil {try container.encode(exceptionMessage, forKey: .exceptionMessage)}
-    if self.stackTrace != nil {try container.encode(stackTrace, forKey: .stackTrace)}
+    if self.exceptionMessage != nil { try container.encode(exceptionMessage, forKey: .exceptionMessage) }
+    if self.stackTrace != nil { try container.encode(stackTrace, forKey: .stackTrace) }
   }
 }
 

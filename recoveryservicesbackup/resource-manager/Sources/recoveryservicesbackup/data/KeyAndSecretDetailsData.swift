@@ -12,7 +12,7 @@ internal struct KeyAndSecretDetailsData : KeyAndSecretDetailsProtocol {
         case bekDetails = "bekDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct KeyAndSecretDetailsData : KeyAndSecretDetailsProtocol {
     if container.contains(.bekDetails) {
         self.bekDetails = try container.decode(BEKDetailsData?.self, forKey: .bekDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct KeyAndSecretDetailsData : KeyAndSecretDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.kekDetails != nil {try container.encode(self.kekDetails as! KEKDetailsData?, forKey: .kekDetails)}
-    if self.bekDetails != nil {try container.encode(self.bekDetails as! BEKDetailsData?, forKey: .bekDetails)}
+    if self.kekDetails != nil { try container.encode(self.kekDetails as! KEKDetailsData?, forKey: .kekDetails) }
+    if self.bekDetails != nil { try container.encode(self.bekDetails as! BEKDetailsData?, forKey: .bekDetails) }
   }
 }
 

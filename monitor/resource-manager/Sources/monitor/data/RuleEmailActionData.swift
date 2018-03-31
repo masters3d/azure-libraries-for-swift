@@ -12,7 +12,7 @@ internal struct RuleEmailActionData : RuleEmailActionProtocol, RuleActionProtoco
         case customEmails = "customEmails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RuleEmailActionData : RuleEmailActionProtocol, RuleActionProtoco
     if container.contains(.customEmails) {
         self.customEmails = try container.decode([String]?.self, forKey: .customEmails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RuleEmailActionData : RuleEmailActionProtocol, RuleActionProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sendToServiceOwners != nil {try container.encode(self.sendToServiceOwners, forKey: .sendToServiceOwners)}
-    if self.customEmails != nil {try container.encode(self.customEmails as! [String]?, forKey: .customEmails)}
+    if self.sendToServiceOwners != nil { try container.encode(self.sendToServiceOwners, forKey: .sendToServiceOwners) }
+    if self.customEmails != nil { try container.encode(self.customEmails as! [String]?, forKey: .customEmails) }
   }
 }
 

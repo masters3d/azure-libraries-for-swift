@@ -16,7 +16,7 @@ internal struct NetworkPropertiesData : NetworkPropertiesProtocol {
         case networkType = "networkType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct NetworkPropertiesData : NetworkPropertiesProtocol {
     if container.contains(.networkType) {
         self.networkType = try container.decode(String?.self, forKey: .networkType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct NetworkPropertiesData : NetworkPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fabricType != nil {try container.encode(self.fabricType, forKey: .fabricType)}
-    if self.subnets != nil {try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.networkType != nil {try container.encode(self.networkType, forKey: .networkType)}
+    if self.fabricType != nil { try container.encode(self.fabricType, forKey: .fabricType) }
+    if self.subnets != nil { try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.networkType != nil { try container.encode(self.networkType, forKey: .networkType) }
   }
 }
 

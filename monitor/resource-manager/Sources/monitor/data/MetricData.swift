@@ -18,7 +18,7 @@ internal struct MetricData : MetricProtocol {
         case timeseries = "timeseries"
         }
 
-  public init(id: String, type: String, name: LocalizableStringProtocol, unit: UnitEnum, timeseries: [TimeSeriesElementProtocol])  {
+  public init(id: String, type: String, name: LocalizableStringProtocol, unit: UnitEnum, timeseries: [TimeSeriesElementProtocol]) {
     self.id = id
     self.type = type
     self.name = name
@@ -33,7 +33,7 @@ internal struct MetricData : MetricProtocol {
     self.name = try container.decode(LocalizableStringData.self, forKey: .name)
     self.unit = try container.decode(UnitEnum.self, forKey: .unit)
     self.timeseries = try container.decode([TimeSeriesElementData].self, forKey: .timeseries)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

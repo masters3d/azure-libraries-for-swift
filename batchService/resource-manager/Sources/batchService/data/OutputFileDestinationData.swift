@@ -10,7 +10,7 @@ internal struct OutputFileDestinationData : OutputFileDestinationProtocol {
         enum CodingKeys: String, CodingKey {case container = "container"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct OutputFileDestinationData : OutputFileDestinationProtocol {
       if container.contains(.container) {
         self.container = try container.decode(OutputFileBlobContainerDestinationData?.self, forKey: .container)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct OutputFileDestinationData : OutputFileDestinationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.container != nil {try container.encode(self.container as! OutputFileBlobContainerDestinationData?, forKey: .container)}
+    if self.container != nil { try container.encode(self.container as! OutputFileBlobContainerDestinationData?, forKey: .container) }
   }
 }
 

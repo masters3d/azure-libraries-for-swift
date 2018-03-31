@@ -12,7 +12,7 @@ internal struct ServiceTypeHealthPolicyMapItemData : ServiceTypeHealthPolicyMapI
         case value = "Value"
         }
 
-  public init(key: String, value: ServiceTypeHealthPolicyProtocol)  {
+  public init(key: String, value: ServiceTypeHealthPolicyProtocol) {
     self.key = key
     self.value = value
   }
@@ -21,7 +21,7 @@ internal struct ServiceTypeHealthPolicyMapItemData : ServiceTypeHealthPolicyMapI
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.key = try container.decode(String.self, forKey: .key)
     self.value = try container.decode(ServiceTypeHealthPolicyData.self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -12,7 +12,7 @@ internal struct DpmErrorInfoData : DpmErrorInfoProtocol {
         case recommendations = "recommendations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DpmErrorInfoData : DpmErrorInfoProtocol {
     if container.contains(.recommendations) {
         self.recommendations = try container.decode([String]?.self, forKey: .recommendations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DpmErrorInfoData : DpmErrorInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorString != nil {try container.encode(self.errorString, forKey: .errorString)}
-    if self.recommendations != nil {try container.encode(self.recommendations as! [String]?, forKey: .recommendations)}
+    if self.errorString != nil { try container.encode(self.errorString, forKey: .errorString) }
+    if self.recommendations != nil { try container.encode(self.recommendations as! [String]?, forKey: .recommendations) }
   }
 }
 

@@ -34,7 +34,7 @@ internal struct ResourceStatisticsData : ResourceStatisticsProtocol {
         case networkWriteGiB = "networkWriteGiB"
         }
 
-  public init(startTime: Date, lastUpdateTime: Date, avgCPUPercentage: Double, avgMemoryGiB: Double, peakMemoryGiB: Double, avgDiskGiB: Double, peakDiskGiB: Double, diskReadIOps: Int64, diskWriteIOps: Int64, diskReadGiB: Double, diskWriteGiB: Double, networkReadGiB: Double, networkWriteGiB: Double)  {
+  public init(startTime: Date, lastUpdateTime: Date, avgCPUPercentage: Double, avgMemoryGiB: Double, peakMemoryGiB: Double, avgDiskGiB: Double, peakDiskGiB: Double, diskReadIOps: Int64, diskWriteIOps: Int64, diskReadGiB: Double, diskWriteGiB: Double, networkReadGiB: Double, networkWriteGiB: Double) {
     self.startTime = startTime
     self.lastUpdateTime = lastUpdateTime
     self.avgCPUPercentage = avgCPUPercentage
@@ -65,7 +65,7 @@ internal struct ResourceStatisticsData : ResourceStatisticsProtocol {
     self.diskWriteGiB = try container.decode(Double.self, forKey: .diskWriteGiB)
     self.networkReadGiB = try container.decode(Double.self, forKey: .networkReadGiB)
     self.networkWriteGiB = try container.decode(Double.self, forKey: .networkWriteGiB)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

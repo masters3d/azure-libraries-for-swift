@@ -16,7 +16,7 @@ internal struct RollingUpgradeProgressInfoData : RollingUpgradeProgressInfoProto
         case pendingInstanceCount = "pendingInstanceCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RollingUpgradeProgressInfoData : RollingUpgradeProgressInfoProto
     if container.contains(.pendingInstanceCount) {
         self.pendingInstanceCount = try container.decode(Int32?.self, forKey: .pendingInstanceCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RollingUpgradeProgressInfoData : RollingUpgradeProgressInfoProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.successfulInstanceCount != nil {try container.encode(self.successfulInstanceCount, forKey: .successfulInstanceCount)}
-    if self.failedInstanceCount != nil {try container.encode(self.failedInstanceCount, forKey: .failedInstanceCount)}
-    if self.inProgressInstanceCount != nil {try container.encode(self.inProgressInstanceCount, forKey: .inProgressInstanceCount)}
-    if self.pendingInstanceCount != nil {try container.encode(self.pendingInstanceCount, forKey: .pendingInstanceCount)}
+    if self.successfulInstanceCount != nil { try container.encode(self.successfulInstanceCount, forKey: .successfulInstanceCount) }
+    if self.failedInstanceCount != nil { try container.encode(self.failedInstanceCount, forKey: .failedInstanceCount) }
+    if self.inProgressInstanceCount != nil { try container.encode(self.inProgressInstanceCount, forKey: .inProgressInstanceCount) }
+    if self.pendingInstanceCount != nil { try container.encode(self.pendingInstanceCount, forKey: .pendingInstanceCount) }
   }
 }
 

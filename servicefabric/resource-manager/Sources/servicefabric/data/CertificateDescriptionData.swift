@@ -14,7 +14,7 @@ internal struct CertificateDescriptionData : CertificateDescriptionProtocol {
         case x509StoreName = "x509StoreName"
         }
 
-  public init(thumbprint: String)  {
+  public init(thumbprint: String) {
     self.thumbprint = thumbprint
   }
 
@@ -27,7 +27,7 @@ internal struct CertificateDescriptionData : CertificateDescriptionProtocol {
     if container.contains(.x509StoreName) {
         self.x509StoreName = try container.decode(X509StoreNameEnum?.self, forKey: .x509StoreName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct CertificateDescriptionData : CertificateDescriptionProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.thumbprint, forKey: .thumbprint)
-    if self.thumbprintSecondary != nil {try container.encode(self.thumbprintSecondary, forKey: .thumbprintSecondary)}
-    if self.x509StoreName != nil {try container.encode(self.x509StoreName, forKey: .x509StoreName)}
+    if self.thumbprintSecondary != nil { try container.encode(self.thumbprintSecondary, forKey: .thumbprintSecondary) }
+    if self.x509StoreName != nil { try container.encode(self.x509StoreName, forKey: .x509StoreName) }
   }
 }
 

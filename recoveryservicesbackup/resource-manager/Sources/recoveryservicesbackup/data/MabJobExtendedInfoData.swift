@@ -14,7 +14,7 @@ internal struct MabJobExtendedInfoData : MabJobExtendedInfoProtocol {
         case dynamicErrorMessage = "dynamicErrorMessage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct MabJobExtendedInfoData : MabJobExtendedInfoProtocol {
     if container.contains(.dynamicErrorMessage) {
         self.dynamicErrorMessage = try container.decode(String?.self, forKey: .dynamicErrorMessage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct MabJobExtendedInfoData : MabJobExtendedInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tasksList != nil {try container.encode(self.tasksList as! [MabJobTaskDetailsData?]?, forKey: .tasksList)}
-    if self.propertyBag != nil {try container.encode(self.propertyBag, forKey: .propertyBag)}
-    if self.dynamicErrorMessage != nil {try container.encode(self.dynamicErrorMessage, forKey: .dynamicErrorMessage)}
+    if self.tasksList != nil { try container.encode(self.tasksList as! [MabJobTaskDetailsData?]?, forKey: .tasksList) }
+    if self.propertyBag != nil { try container.encode(self.propertyBag, forKey: .propertyBag) }
+    if self.dynamicErrorMessage != nil { try container.encode(self.dynamicErrorMessage, forKey: .dynamicErrorMessage) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct RoutePropertiesFormatData : RoutePropertiesFormatProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(nextHopType: RouteNextHopTypeEnum)  {
+  public init(nextHopType: RouteNextHopTypeEnum) {
     self.nextHopType = nextHopType
   }
 
@@ -32,7 +32,7 @@ internal struct RoutePropertiesFormatData : RoutePropertiesFormatProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct RoutePropertiesFormatData : RoutePropertiesFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.addressPrefix != nil {try container.encode(self.addressPrefix, forKey: .addressPrefix)}
+    if self.addressPrefix != nil { try container.encode(self.addressPrefix, forKey: .addressPrefix) }
     try container.encode(self.nextHopType, forKey: .nextHopType)
-    if self.nextHopIpAddress != nil {try container.encode(self.nextHopIpAddress, forKey: .nextHopIpAddress)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.nextHopIpAddress != nil { try container.encode(self.nextHopIpAddress, forKey: .nextHopIpAddress) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

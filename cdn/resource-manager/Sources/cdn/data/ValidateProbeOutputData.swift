@@ -14,7 +14,7 @@ internal struct ValidateProbeOutputData : ValidateProbeOutputProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ValidateProbeOutputData : ValidateProbeOutputProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ValidateProbeOutputData : ValidateProbeOutputProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isValid != nil {try container.encode(self.isValid, forKey: .isValid)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.isValid != nil { try container.encode(self.isValid, forKey: .isValid) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

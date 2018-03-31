@@ -16,7 +16,7 @@ internal struct OperationImpactData : OperationImpactProtocol {
         case changeValueRelative = "changeValueRelative"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct OperationImpactData : OperationImpactProtocol {
     if container.contains(.changeValueRelative) {
         self.changeValueRelative = try container.decode(Double?.self, forKey: .changeValueRelative)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct OperationImpactData : OperationImpactProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.changeValueAbsolute != nil {try container.encode(self.changeValueAbsolute, forKey: .changeValueAbsolute)}
-    if self.changeValueRelative != nil {try container.encode(self.changeValueRelative, forKey: .changeValueRelative)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.changeValueAbsolute != nil { try container.encode(self.changeValueAbsolute, forKey: .changeValueAbsolute) }
+    if self.changeValueRelative != nil { try container.encode(self.changeValueRelative, forKey: .changeValueRelative) }
   }
 }
 

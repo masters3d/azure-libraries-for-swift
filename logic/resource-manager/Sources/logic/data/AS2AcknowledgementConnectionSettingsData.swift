@@ -16,7 +16,7 @@ internal struct AS2AcknowledgementConnectionSettingsData : AS2AcknowledgementCon
         case unfoldHttpHeaders = "unfoldHttpHeaders"
         }
 
-  public init(ignoreCertificateNameMismatch: Bool, supportHttpStatusCodeContinue: Bool, keepHttpConnectionAlive: Bool, unfoldHttpHeaders: Bool)  {
+  public init(ignoreCertificateNameMismatch: Bool, supportHttpStatusCodeContinue: Bool, keepHttpConnectionAlive: Bool, unfoldHttpHeaders: Bool) {
     self.ignoreCertificateNameMismatch = ignoreCertificateNameMismatch
     self.supportHttpStatusCodeContinue = supportHttpStatusCodeContinue
     self.keepHttpConnectionAlive = keepHttpConnectionAlive
@@ -29,7 +29,7 @@ internal struct AS2AcknowledgementConnectionSettingsData : AS2AcknowledgementCon
     self.supportHttpStatusCodeContinue = try container.decode(Bool.self, forKey: .supportHttpStatusCodeContinue)
     self.keepHttpConnectionAlive = try container.decode(Bool.self, forKey: .keepHttpConnectionAlive)
     self.unfoldHttpHeaders = try container.decode(Bool.self, forKey: .unfoldHttpHeaders)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

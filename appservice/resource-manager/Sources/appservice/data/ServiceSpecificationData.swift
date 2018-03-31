@@ -10,7 +10,7 @@ internal struct ServiceSpecificationData : ServiceSpecificationProtocol {
         enum CodingKeys: String, CodingKey {case metricSpecifications = "metricSpecifications"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ServiceSpecificationData : ServiceSpecificationProtocol {
       if container.contains(.metricSpecifications) {
         self.metricSpecifications = try container.decode([MetricSpecificationData?]?.self, forKey: .metricSpecifications)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ServiceSpecificationData : ServiceSpecificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metricSpecifications != nil {try container.encode(self.metricSpecifications as! [MetricSpecificationData?]?, forKey: .metricSpecifications)}
+    if self.metricSpecifications != nil { try container.encode(self.metricSpecifications as! [MetricSpecificationData?]?, forKey: .metricSpecifications) }
   }
 }
 

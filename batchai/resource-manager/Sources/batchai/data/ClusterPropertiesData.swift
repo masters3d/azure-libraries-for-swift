@@ -38,7 +38,7 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
         case nodeStateCounts = "nodeStateCounts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
     if container.contains(.nodeStateCounts) {
         self.nodeStateCounts = try container.decode(NodeStateCountsData?.self, forKey: .nodeStateCounts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,27 +98,27 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.vmPriority != nil {try container.encode(self.vmPriority, forKey: .vmPriority)}
-    if self.scaleSettings != nil {try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings)}
-    if self.virtualMachineConfiguration != nil {try container.encode(self.virtualMachineConfiguration as! VirtualMachineConfigurationData?, forKey: .virtualMachineConfiguration)}
-    if self.nodeSetup != nil {try container.encode(self.nodeSetup as! NodeSetupData?, forKey: .nodeSetup)}
-    if self.userAccountSettings != nil {try container.encode(self.userAccountSettings as! UserAccountSettingsData?, forKey: .userAccountSettings)}
-    if self.subnet != nil {try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet)}
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.vmPriority != nil { try container.encode(self.vmPriority, forKey: .vmPriority) }
+    if self.scaleSettings != nil { try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings) }
+    if self.virtualMachineConfiguration != nil { try container.encode(self.virtualMachineConfiguration as! VirtualMachineConfigurationData?, forKey: .virtualMachineConfiguration) }
+    if self.nodeSetup != nil { try container.encode(self.nodeSetup as! NodeSetupData?, forKey: .nodeSetup) }
+    if self.userAccountSettings != nil { try container.encode(self.userAccountSettings as! UserAccountSettingsData?, forKey: .userAccountSettings) }
+    if self.subnet != nil { try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.provisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.provisioningStateTransitionTime!, format: .dateTime), forKey: .provisioningStateTransitionTime)
     }
-    if self.allocationState != nil {try container.encode(self.allocationState, forKey: .allocationState)}
+    if self.allocationState != nil { try container.encode(self.allocationState, forKey: .allocationState) }
     if self.allocationStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.allocationStateTransitionTime!, format: .dateTime), forKey: .allocationStateTransitionTime)
     }
-    if self.errors != nil {try container.encode(self.errors as! [BatchAIErrorData?]?, forKey: .errors)}
-    if self.currentNodeCount != nil {try container.encode(self.currentNodeCount, forKey: .currentNodeCount)}
-    if self.nodeStateCounts != nil {try container.encode(self.nodeStateCounts as! NodeStateCountsData?, forKey: .nodeStateCounts)}
+    if self.errors != nil { try container.encode(self.errors as! [BatchAIErrorData?]?, forKey: .errors) }
+    if self.currentNodeCount != nil { try container.encode(self.currentNodeCount, forKey: .currentNodeCount) }
+    if self.nodeStateCounts != nil { try container.encode(self.nodeStateCounts as! NodeStateCountsData?, forKey: .nodeStateCounts) }
   }
 }
 

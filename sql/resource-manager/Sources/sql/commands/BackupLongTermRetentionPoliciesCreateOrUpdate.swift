@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BackupLongTermRetentionPoliciesCreateOrUpdate  {
+public protocol BackupLongTermRetentionPoliciesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,9 +8,9 @@ public protocol BackupLongTermRetentionPoliciesCreateOrUpdate  {
     var databaseName : String { get set }
     var backupLongTermRetentionPolicyName : String { get set }
     var apiVersion : String { get set }
-    var parameters :  BackupLongTermRetentionPolicyProtocol?  { get set }
+    var parameters :  BackupLongTermRetentionPolicyProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (BackupLongTermRetentionPolicyProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (BackupLongTermRetentionPolicyProtocol?, Error?) -> Void)
 }
 
 extension Commands.BackupLongTermRetentionPolicies {
@@ -40,7 +40,7 @@ extension Commands.BackupLongTermRetentionPolicies {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{serverName}"] = String(describing: self.serverName)
@@ -65,12 +65,12 @@ extension Commands.BackupLongTermRetentionPolicies {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(BackupLongTermRetentionPolicyData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (BackupLongTermRetentionPolicyProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (BackupLongTermRetentionPolicyProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: BackupLongTermRetentionPolicyData?, error: Error?) in
                 completionHandler(result, error)

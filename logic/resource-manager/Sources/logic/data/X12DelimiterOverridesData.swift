@@ -26,7 +26,7 @@ internal struct X12DelimiterOverridesData : X12DelimiterOverridesProtocol {
         case targetNamespace = "targetNamespace"
         }
 
-  public init(dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum, replaceCharacter: Int32, replaceSeparatorsInPayload: Bool)  {
+  public init(dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum, replaceCharacter: Int32, replaceSeparatorsInPayload: Bool) {
     self.dataElementSeparator = dataElementSeparator
     self.componentSeparator = componentSeparator
     self.segmentTerminator = segmentTerminator
@@ -52,7 +52,7 @@ internal struct X12DelimiterOverridesData : X12DelimiterOverridesProtocol {
     if container.contains(.targetNamespace) {
         self.targetNamespace = try container.decode(String?.self, forKey: .targetNamespace)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,15 +62,15 @@ internal struct X12DelimiterOverridesData : X12DelimiterOverridesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protocolVersion != nil {try container.encode(self.protocolVersion, forKey: .protocolVersion)}
-    if self.messageId != nil {try container.encode(self.messageId, forKey: .messageId)}
+    if self.protocolVersion != nil { try container.encode(self.protocolVersion, forKey: .protocolVersion) }
+    if self.messageId != nil { try container.encode(self.messageId, forKey: .messageId) }
     try container.encode(self.dataElementSeparator, forKey: .dataElementSeparator)
     try container.encode(self.componentSeparator, forKey: .componentSeparator)
     try container.encode(self.segmentTerminator, forKey: .segmentTerminator)
     try container.encode(self.segmentTerminatorSuffix, forKey: .segmentTerminatorSuffix)
     try container.encode(self.replaceCharacter, forKey: .replaceCharacter)
     try container.encode(self.replaceSeparatorsInPayload, forKey: .replaceSeparatorsInPayload)
-    if self.targetNamespace != nil {try container.encode(self.targetNamespace, forKey: .targetNamespace)}
+    if self.targetNamespace != nil { try container.encode(self.targetNamespace, forKey: .targetNamespace) }
   }
 }
 

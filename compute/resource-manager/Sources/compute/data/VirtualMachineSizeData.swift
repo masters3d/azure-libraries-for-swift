@@ -20,7 +20,7 @@ internal struct VirtualMachineSizeData : VirtualMachineSizeProtocol {
         case maxDataDiskCount = "maxDataDiskCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct VirtualMachineSizeData : VirtualMachineSizeProtocol {
     if container.contains(.maxDataDiskCount) {
         self.maxDataDiskCount = try container.decode(Int32?.self, forKey: .maxDataDiskCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct VirtualMachineSizeData : VirtualMachineSizeProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.numberOfCores != nil {try container.encode(self.numberOfCores, forKey: .numberOfCores)}
-    if self.osDiskSizeInMB != nil {try container.encode(self.osDiskSizeInMB, forKey: .osDiskSizeInMB)}
-    if self.resourceDiskSizeInMB != nil {try container.encode(self.resourceDiskSizeInMB, forKey: .resourceDiskSizeInMB)}
-    if self.memoryInMB != nil {try container.encode(self.memoryInMB, forKey: .memoryInMB)}
-    if self.maxDataDiskCount != nil {try container.encode(self.maxDataDiskCount, forKey: .maxDataDiskCount)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.numberOfCores != nil { try container.encode(self.numberOfCores, forKey: .numberOfCores) }
+    if self.osDiskSizeInMB != nil { try container.encode(self.osDiskSizeInMB, forKey: .osDiskSizeInMB) }
+    if self.resourceDiskSizeInMB != nil { try container.encode(self.resourceDiskSizeInMB, forKey: .resourceDiskSizeInMB) }
+    if self.memoryInMB != nil { try container.encode(self.memoryInMB, forKey: .memoryInMB) }
+    if self.maxDataDiskCount != nil { try container.encode(self.maxDataDiskCount, forKey: .maxDataDiskCount) }
   }
 }
 

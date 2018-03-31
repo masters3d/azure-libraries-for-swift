@@ -18,7 +18,7 @@ internal struct PromptFieldDescriptionData : PromptFieldDescriptionProtocol {
         case promptFieldType = "promptFieldType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct PromptFieldDescriptionData : PromptFieldDescriptionProtocol {
     if container.contains(.promptFieldType) {
         self.promptFieldType = try container.decode(PromptFieldTypeEnum?.self, forKey: .promptFieldType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct PromptFieldDescriptionData : PromptFieldDescriptionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.label != nil {try container.encode(self.label, forKey: .label)}
-    if self.helpMessage != nil {try container.encode(self.helpMessage, forKey: .helpMessage)}
-    if self.promptFieldTypeIsList != nil {try container.encode(self.promptFieldTypeIsList, forKey: .promptFieldTypeIsList)}
-    if self.promptFieldType != nil {try container.encode(self.promptFieldType, forKey: .promptFieldType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.label != nil { try container.encode(self.label, forKey: .label) }
+    if self.helpMessage != nil { try container.encode(self.helpMessage, forKey: .helpMessage) }
+    if self.promptFieldTypeIsList != nil { try container.encode(self.promptFieldTypeIsList, forKey: .promptFieldTypeIsList) }
+    if self.promptFieldType != nil { try container.encode(self.promptFieldType, forKey: .promptFieldType) }
   }
 }
 

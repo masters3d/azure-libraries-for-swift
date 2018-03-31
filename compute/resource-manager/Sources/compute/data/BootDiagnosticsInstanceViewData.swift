@@ -12,7 +12,7 @@ internal struct BootDiagnosticsInstanceViewData : BootDiagnosticsInstanceViewPro
         case serialConsoleLogBlobUri = "serialConsoleLogBlobUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct BootDiagnosticsInstanceViewData : BootDiagnosticsInstanceViewPro
     if container.contains(.serialConsoleLogBlobUri) {
         self.serialConsoleLogBlobUri = try container.decode(String?.self, forKey: .serialConsoleLogBlobUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct BootDiagnosticsInstanceViewData : BootDiagnosticsInstanceViewPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.consoleScreenshotBlobUri != nil {try container.encode(self.consoleScreenshotBlobUri, forKey: .consoleScreenshotBlobUri)}
-    if self.serialConsoleLogBlobUri != nil {try container.encode(self.serialConsoleLogBlobUri, forKey: .serialConsoleLogBlobUri)}
+    if self.consoleScreenshotBlobUri != nil { try container.encode(self.consoleScreenshotBlobUri, forKey: .consoleScreenshotBlobUri) }
+    if self.serialConsoleLogBlobUri != nil { try container.encode(self.serialConsoleLogBlobUri, forKey: .serialConsoleLogBlobUri) }
   }
 }
 

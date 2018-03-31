@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetInstanceViewStatusesSummaryData : VirtualM
         enum CodingKeys: String, CodingKey {case statusesSummary = "statusesSummary"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetInstanceViewStatusesSummaryData : VirtualM
       if container.contains(.statusesSummary) {
         self.statusesSummary = try container.decode([VirtualMachineStatusCodeCountData?]?.self, forKey: .statusesSummary)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetInstanceViewStatusesSummaryData : VirtualM
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.statusesSummary != nil {try container.encode(self.statusesSummary as! [VirtualMachineStatusCodeCountData?]?, forKey: .statusesSummary)}
+    if self.statusesSummary != nil { try container.encode(self.statusesSummary as! [VirtualMachineStatusCodeCountData?]?, forKey: .statusesSummary) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct X12ProcessingSettingsData : X12ProcessingSettingsProtocol {
         case useDotAsDecimalSeparator = "useDotAsDecimalSeparator"
         }
 
-  public init(maskSecurityInfo: Bool, convertImpliedDecimal: Bool, preserveInterchange: Bool, suspendInterchangeOnError: Bool, createEmptyXmlTagsForTrailingSeparators: Bool, useDotAsDecimalSeparator: Bool)  {
+  public init(maskSecurityInfo: Bool, convertImpliedDecimal: Bool, preserveInterchange: Bool, suspendInterchangeOnError: Bool, createEmptyXmlTagsForTrailingSeparators: Bool, useDotAsDecimalSeparator: Bool) {
     self.maskSecurityInfo = maskSecurityInfo
     self.convertImpliedDecimal = convertImpliedDecimal
     self.preserveInterchange = preserveInterchange
@@ -37,7 +37,7 @@ internal struct X12ProcessingSettingsData : X12ProcessingSettingsProtocol {
     self.suspendInterchangeOnError = try container.decode(Bool.self, forKey: .suspendInterchangeOnError)
     self.createEmptyXmlTagsForTrailingSeparators = try container.decode(Bool.self, forKey: .createEmptyXmlTagsForTrailingSeparators)
     self.useDotAsDecimalSeparator = try container.decode(Bool.self, forKey: .useDotAsDecimalSeparator)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

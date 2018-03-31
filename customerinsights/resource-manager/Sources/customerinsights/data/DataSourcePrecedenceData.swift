@@ -12,7 +12,7 @@ internal struct DataSourcePrecedenceData : DataSourcePrecedenceProtocol {
         case _precedence = "precedence"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DataSourcePrecedenceData : DataSourcePrecedenceProtocol {
     if container.contains(._precedence) {
         self._precedence = try container.decode(Int32?.self, forKey: ._precedence)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DataSourcePrecedenceData : DataSourcePrecedenceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSource != nil {try container.encode(self.dataSource as! DataSourceData?, forKey: .dataSource)}
-    if self._precedence != nil {try container.encode(self._precedence, forKey: ._precedence)}
+    if self.dataSource != nil { try container.encode(self.dataSource as! DataSourceData?, forKey: .dataSource) }
+    if self._precedence != nil { try container.encode(self._precedence, forKey: ._precedence) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ApplicationHealthPolicyData : ApplicationHealthPolicyProtocol {
         case serviceTypeHealthPolicyMap = "ServiceTypeHealthPolicyMap"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ApplicationHealthPolicyData : ApplicationHealthPolicyProtocol {
     if container.contains(.serviceTypeHealthPolicyMap) {
         self.serviceTypeHealthPolicyMap = try container.decode([ServiceTypeHealthPolicyMapItemData?]?.self, forKey: .serviceTypeHealthPolicyMap)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ApplicationHealthPolicyData : ApplicationHealthPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.considerWarningAsError != nil {try container.encode(self.considerWarningAsError, forKey: .considerWarningAsError)}
-    if self.maxPercentUnhealthyDeployedApplications != nil {try container.encode(self.maxPercentUnhealthyDeployedApplications, forKey: .maxPercentUnhealthyDeployedApplications)}
-    if self.defaultServiceTypeHealthPolicy != nil {try container.encode(self.defaultServiceTypeHealthPolicy as! ServiceTypeHealthPolicyData?, forKey: .defaultServiceTypeHealthPolicy)}
-    if self.serviceTypeHealthPolicyMap != nil {try container.encode(self.serviceTypeHealthPolicyMap as! [ServiceTypeHealthPolicyMapItemData?]?, forKey: .serviceTypeHealthPolicyMap)}
+    if self.considerWarningAsError != nil { try container.encode(self.considerWarningAsError, forKey: .considerWarningAsError) }
+    if self.maxPercentUnhealthyDeployedApplications != nil { try container.encode(self.maxPercentUnhealthyDeployedApplications, forKey: .maxPercentUnhealthyDeployedApplications) }
+    if self.defaultServiceTypeHealthPolicy != nil { try container.encode(self.defaultServiceTypeHealthPolicy as! ServiceTypeHealthPolicyData?, forKey: .defaultServiceTypeHealthPolicy) }
+    if self.serviceTypeHealthPolicyMap != nil { try container.encode(self.serviceTypeHealthPolicyMap as! [ServiceTypeHealthPolicyMapItemData?]?, forKey: .serviceTypeHealthPolicyMap) }
   }
 }
 

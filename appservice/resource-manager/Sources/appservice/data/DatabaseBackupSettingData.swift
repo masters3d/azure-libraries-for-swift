@@ -16,7 +16,7 @@ internal struct DatabaseBackupSettingData : DatabaseBackupSettingProtocol {
         case connectionString = "connectionString"
         }
 
-  public init(databaseType: DatabaseTypeEnum)  {
+  public init(databaseType: DatabaseTypeEnum) {
     self.databaseType = databaseType
   }
 
@@ -32,7 +32,7 @@ internal struct DatabaseBackupSettingData : DatabaseBackupSettingProtocol {
     if container.contains(.connectionString) {
         self.connectionString = try container.decode(String?.self, forKey: .connectionString)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct DatabaseBackupSettingData : DatabaseBackupSettingProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.databaseType, forKey: .databaseType)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.connectionStringName != nil {try container.encode(self.connectionStringName, forKey: .connectionStringName)}
-    if self.connectionString != nil {try container.encode(self.connectionString, forKey: .connectionString)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.connectionStringName != nil { try container.encode(self.connectionStringName, forKey: .connectionStringName) }
+    if self.connectionString != nil { try container.encode(self.connectionString, forKey: .connectionString) }
   }
 }
 

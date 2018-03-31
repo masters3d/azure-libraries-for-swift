@@ -14,7 +14,7 @@ internal struct Caffe2SettingsData : Caffe2SettingsProtocol {
         case commandLineArgs = "commandLineArgs"
         }
 
-  public init(pythonScriptFilePath: String)  {
+  public init(pythonScriptFilePath: String) {
     self.pythonScriptFilePath = pythonScriptFilePath
   }
 
@@ -27,7 +27,7 @@ internal struct Caffe2SettingsData : Caffe2SettingsProtocol {
     if container.contains(.commandLineArgs) {
         self.commandLineArgs = try container.decode(String?.self, forKey: .commandLineArgs)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct Caffe2SettingsData : Caffe2SettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pythonScriptFilePath, forKey: .pythonScriptFilePath)
-    if self.pythonInterpreterPath != nil {try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath)}
-    if self.commandLineArgs != nil {try container.encode(self.commandLineArgs, forKey: .commandLineArgs)}
+    if self.pythonInterpreterPath != nil { try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath) }
+    if self.commandLineArgs != nil { try container.encode(self.commandLineArgs, forKey: .commandLineArgs) }
   }
 }
 

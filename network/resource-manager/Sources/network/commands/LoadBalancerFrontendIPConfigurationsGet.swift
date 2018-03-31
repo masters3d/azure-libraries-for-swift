@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LoadBalancerFrontendIPConfigurationsGet  {
+public protocol LoadBalancerFrontendIPConfigurationsGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var loadBalancerName : String { get set }
@@ -8,7 +8,7 @@ public protocol LoadBalancerFrontendIPConfigurationsGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (FrontendIPConfigurationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (FrontendIPConfigurationProtocol?, Error?) -> Void)
 }
 
 extension Commands.LoadBalancerFrontendIPConfigurations {
@@ -32,7 +32,7 @@ extension Commands.LoadBalancerFrontendIPConfigurations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{loadBalancerName}"] = String(describing: self.loadBalancerName)
             self.pathParameters["{frontendIPConfigurationName}"] = String(describing: self.frontendIPConfigurationName)
@@ -46,12 +46,12 @@ extension Commands.LoadBalancerFrontendIPConfigurations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(FrontendIPConfigurationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (FrontendIPConfigurationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (FrontendIPConfigurationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: FrontendIPConfigurationData?, error: Error?) in
                 completionHandler(result, error)

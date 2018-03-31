@@ -10,7 +10,7 @@ internal struct FabricCreationInputPropertiesData : FabricCreationInputPropertie
         enum CodingKeys: String, CodingKey {case customDetails = "customDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FabricCreationInputPropertiesData : FabricCreationInputPropertie
       if container.contains(.customDetails) {
         self.customDetails = try container.decode(FabricSpecificCreationInputData?.self, forKey: .customDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FabricCreationInputPropertiesData : FabricCreationInputPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.customDetails != nil {try container.encode(self.customDetails as! FabricSpecificCreationInputData?, forKey: .customDetails)}
+    if self.customDetails != nil { try container.encode(self.customDetails as! FabricSpecificCreationInputData?, forKey: .customDetails) }
   }
 }
 

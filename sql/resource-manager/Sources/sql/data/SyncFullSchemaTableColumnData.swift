@@ -22,7 +22,7 @@ internal struct SyncFullSchemaTableColumnData : SyncFullSchemaTableColumnProtoco
         case quotedName = "quotedName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SyncFullSchemaTableColumnData : SyncFullSchemaTableColumnProtoco
     if container.contains(.quotedName) {
         self.quotedName = try container.decode(String?.self, forKey: .quotedName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct SyncFullSchemaTableColumnData : SyncFullSchemaTableColumnProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSize != nil {try container.encode(self.dataSize, forKey: .dataSize)}
-    if self.dataType != nil {try container.encode(self.dataType, forKey: .dataType)}
-    if self.errorId != nil {try container.encode(self.errorId, forKey: .errorId)}
-    if self.hasError != nil {try container.encode(self.hasError, forKey: .hasError)}
-    if self.isPrimaryKey != nil {try container.encode(self.isPrimaryKey, forKey: .isPrimaryKey)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.quotedName != nil {try container.encode(self.quotedName, forKey: .quotedName)}
+    if self.dataSize != nil { try container.encode(self.dataSize, forKey: .dataSize) }
+    if self.dataType != nil { try container.encode(self.dataType, forKey: .dataType) }
+    if self.errorId != nil { try container.encode(self.errorId, forKey: .errorId) }
+    if self.hasError != nil { try container.encode(self.hasError, forKey: .hasError) }
+    if self.isPrimaryKey != nil { try container.encode(self.isPrimaryKey, forKey: .isPrimaryKey) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.quotedName != nil { try container.encode(self.quotedName, forKey: .quotedName) }
   }
 }
 

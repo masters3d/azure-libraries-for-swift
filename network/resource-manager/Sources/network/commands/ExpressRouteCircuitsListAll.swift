@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ExpressRouteCircuitsListAll  {
+public protocol ExpressRouteCircuitsListAll {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ExpressRouteCircuitListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ExpressRouteCircuitListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.ExpressRouteCircuits {
@@ -31,7 +31,7 @@ extension Commands.ExpressRouteCircuits {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
 
@@ -49,15 +49,15 @@ extension Commands.ExpressRouteCircuits {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ExpressRouteCircuitListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ExpressRouteCircuitListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

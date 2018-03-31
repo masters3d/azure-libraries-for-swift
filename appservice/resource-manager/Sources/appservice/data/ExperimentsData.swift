@@ -10,7 +10,7 @@ internal struct ExperimentsData : ExperimentsProtocol {
         enum CodingKeys: String, CodingKey {case rampUpRules = "rampUpRules"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ExperimentsData : ExperimentsProtocol {
       if container.contains(.rampUpRules) {
         self.rampUpRules = try container.decode([RampUpRuleData?]?.self, forKey: .rampUpRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ExperimentsData : ExperimentsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.rampUpRules != nil {try container.encode(self.rampUpRules as! [RampUpRuleData?]?, forKey: .rampUpRules)}
+    if self.rampUpRules != nil { try container.encode(self.rampUpRules as! [RampUpRuleData?]?, forKey: .rampUpRules) }
   }
 }
 

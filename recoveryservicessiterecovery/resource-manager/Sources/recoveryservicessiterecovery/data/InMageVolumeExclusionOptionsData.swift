@@ -12,7 +12,7 @@ internal struct InMageVolumeExclusionOptionsData : InMageVolumeExclusionOptionsP
         case onlyExcludeIfSingleVolume = "onlyExcludeIfSingleVolume"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InMageVolumeExclusionOptionsData : InMageVolumeExclusionOptionsP
     if container.contains(.onlyExcludeIfSingleVolume) {
         self.onlyExcludeIfSingleVolume = try container.decode(String?.self, forKey: .onlyExcludeIfSingleVolume)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InMageVolumeExclusionOptionsData : InMageVolumeExclusionOptionsP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.volumeLabel != nil {try container.encode(self.volumeLabel, forKey: .volumeLabel)}
-    if self.onlyExcludeIfSingleVolume != nil {try container.encode(self.onlyExcludeIfSingleVolume, forKey: .onlyExcludeIfSingleVolume)}
+    if self.volumeLabel != nil { try container.encode(self.volumeLabel, forKey: .volumeLabel) }
+    if self.onlyExcludeIfSingleVolume != nil { try container.encode(self.onlyExcludeIfSingleVolume, forKey: .onlyExcludeIfSingleVolume) }
   }
 }
 

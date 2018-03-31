@@ -14,7 +14,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationData : VirtualMachineS
         case properties = "properties"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -27,7 +27,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationData : VirtualMachineS
     if container.contains(.properties) {
         self.properties = try container.decode(VirtualMachineScaleSetNetworkConfigurationPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct VirtualMachineScaleSetNetworkConfigurationData : VirtualMachineS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     try container.encode(self.name, forKey: .name)
-    if self.properties != nil {try container.encode(self.properties as! VirtualMachineScaleSetNetworkConfigurationPropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! VirtualMachineScaleSetNetworkConfigurationPropertiesData?, forKey: .properties) }
   }
 }
 

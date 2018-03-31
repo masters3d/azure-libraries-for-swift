@@ -18,7 +18,7 @@ internal struct AzureFileShareProtectionPolicyData : AzureFileShareProtectionPol
         case timeZone = "timeZone"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AzureFileShareProtectionPolicyData : AzureFileShareProtectionPol
     if container.contains(.timeZone) {
         self.timeZone = try container.decode(String?.self, forKey: .timeZone)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AzureFileShareProtectionPolicyData : AzureFileShareProtectionPol
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectedItemsCount != nil {try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount)}
-    if self.workLoadType != nil {try container.encode(self.workLoadType, forKey: .workLoadType)}
-    if self.schedulePolicy != nil {try container.encode(self.schedulePolicy as! SchedulePolicyData?, forKey: .schedulePolicy)}
-    if self.retentionPolicy != nil {try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy)}
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
+    if self.protectedItemsCount != nil { try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount) }
+    if self.workLoadType != nil { try container.encode(self.workLoadType, forKey: .workLoadType) }
+    if self.schedulePolicy != nil { try container.encode(self.schedulePolicy as! SchedulePolicyData?, forKey: .schedulePolicy) }
+    if self.retentionPolicy != nil { try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy) }
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
   }
 }
 

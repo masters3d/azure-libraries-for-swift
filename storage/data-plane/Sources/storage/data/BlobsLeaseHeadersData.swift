@@ -20,7 +20,7 @@ internal struct BlobsLeaseHeadersData : BlobsLeaseHeadersProtocol {
         case date = "Date"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -50,13 +50,13 @@ internal struct BlobsLeaseHeadersData : BlobsLeaseHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.leaseId != nil {try container.encode(leaseId, forKey: .leaseId)}
-    if self.leaseTime != nil {try container.encode(leaseTime, forKey: .leaseTime)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.leaseId != nil { try container.encode(leaseId, forKey: .leaseId) }
+    if self.leaseTime != nil { try container.encode(leaseTime, forKey: .leaseTime) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
   }
 }
 

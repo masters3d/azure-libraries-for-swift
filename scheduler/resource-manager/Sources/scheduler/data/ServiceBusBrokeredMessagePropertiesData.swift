@@ -34,7 +34,7 @@ internal struct ServiceBusBrokeredMessagePropertiesData : ServiceBusBrokeredMess
         case viaPartitionKey = "viaPartitionKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct ServiceBusBrokeredMessagePropertiesData : ServiceBusBrokeredMess
     if container.contains(.viaPartitionKey) {
         self.viaPartitionKey = try container.decode(String?.self, forKey: .viaPartitionKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,21 +88,21 @@ internal struct ServiceBusBrokeredMessagePropertiesData : ServiceBusBrokeredMess
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.forcePersistence != nil {try container.encode(self.forcePersistence, forKey: .forcePersistence)}
-    if self.label != nil {try container.encode(self.label, forKey: .label)}
-    if self.messageId != nil {try container.encode(self.messageId, forKey: .messageId)}
-    if self.partitionKey != nil {try container.encode(self.partitionKey, forKey: .partitionKey)}
-    if self.replyTo != nil {try container.encode(self.replyTo, forKey: .replyTo)}
-    if self.replyToSessionId != nil {try container.encode(self.replyToSessionId, forKey: .replyToSessionId)}
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.forcePersistence != nil { try container.encode(self.forcePersistence, forKey: .forcePersistence) }
+    if self.label != nil { try container.encode(self.label, forKey: .label) }
+    if self.messageId != nil { try container.encode(self.messageId, forKey: .messageId) }
+    if self.partitionKey != nil { try container.encode(self.partitionKey, forKey: .partitionKey) }
+    if self.replyTo != nil { try container.encode(self.replyTo, forKey: .replyTo) }
+    if self.replyToSessionId != nil { try container.encode(self.replyToSessionId, forKey: .replyToSessionId) }
     if self.scheduledEnqueueTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.scheduledEnqueueTimeUtc!, format: .dateTime), forKey: .scheduledEnqueueTimeUtc)
     }
-    if self.sessionId != nil {try container.encode(self.sessionId, forKey: .sessionId)}
-    if self.timeToLive != nil {try container.encode(self.timeToLive, forKey: .timeToLive)}
-    if self.to != nil {try container.encode(self.to, forKey: .to)}
-    if self.viaPartitionKey != nil {try container.encode(self.viaPartitionKey, forKey: .viaPartitionKey)}
+    if self.sessionId != nil { try container.encode(self.sessionId, forKey: .sessionId) }
+    if self.timeToLive != nil { try container.encode(self.timeToLive, forKey: .timeToLive) }
+    if self.to != nil { try container.encode(self.to, forKey: .to) }
+    if self.viaPartitionKey != nil { try container.encode(self.viaPartitionKey, forKey: .viaPartitionKey) }
   }
 }
 

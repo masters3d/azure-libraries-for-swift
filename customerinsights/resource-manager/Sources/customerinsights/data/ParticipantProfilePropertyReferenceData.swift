@@ -12,7 +12,7 @@ internal struct ParticipantProfilePropertyReferenceData : ParticipantProfileProp
         case profilePropertyName = "profilePropertyName"
         }
 
-  public init(interactionPropertyName: String, profilePropertyName: String)  {
+  public init(interactionPropertyName: String, profilePropertyName: String) {
     self.interactionPropertyName = interactionPropertyName
     self.profilePropertyName = profilePropertyName
   }
@@ -21,7 +21,7 @@ internal struct ParticipantProfilePropertyReferenceData : ParticipantProfileProp
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.interactionPropertyName = try container.decode(String.self, forKey: .interactionPropertyName)
     self.profilePropertyName = try container.decode(String.self, forKey: .profilePropertyName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

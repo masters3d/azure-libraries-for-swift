@@ -16,7 +16,7 @@ internal struct SitePhpErrorLogFlagPropertiesData : SitePhpErrorLogFlagPropertie
         case masterLogErrorsMaxLength = "masterLogErrorsMaxLength"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SitePhpErrorLogFlagPropertiesData : SitePhpErrorLogFlagPropertie
     if container.contains(.masterLogErrorsMaxLength) {
         self.masterLogErrorsMaxLength = try container.decode(String?.self, forKey: .masterLogErrorsMaxLength)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SitePhpErrorLogFlagPropertiesData : SitePhpErrorLogFlagPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.localLogErrors != nil {try container.encode(self.localLogErrors, forKey: .localLogErrors)}
-    if self.masterLogErrors != nil {try container.encode(self.masterLogErrors, forKey: .masterLogErrors)}
-    if self.localLogErrorsMaxLength != nil {try container.encode(self.localLogErrorsMaxLength, forKey: .localLogErrorsMaxLength)}
-    if self.masterLogErrorsMaxLength != nil {try container.encode(self.masterLogErrorsMaxLength, forKey: .masterLogErrorsMaxLength)}
+    if self.localLogErrors != nil { try container.encode(self.localLogErrors, forKey: .localLogErrors) }
+    if self.masterLogErrors != nil { try container.encode(self.masterLogErrors, forKey: .masterLogErrors) }
+    if self.localLogErrorsMaxLength != nil { try container.encode(self.localLogErrorsMaxLength, forKey: .localLogErrorsMaxLength) }
+    if self.masterLogErrorsMaxLength != nil { try container.encode(self.masterLogErrorsMaxLength, forKey: .masterLogErrorsMaxLength) }
   }
 }
 

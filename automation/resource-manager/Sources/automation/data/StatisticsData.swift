@@ -18,7 +18,7 @@ internal struct StatisticsData : StatisticsProtocol {
         case id = "id"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct StatisticsData : StatisticsProtocol {
     if container.contains(.id) {
         self.id = try container.decode(String?.self, forKey: .id)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct StatisticsData : StatisticsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.counterProperty != nil {try container.encode(self.counterProperty, forKey: .counterProperty)}
-    if self.counterValue != nil {try container.encode(self.counterValue, forKey: .counterValue)}
+    if self.counterProperty != nil { try container.encode(self.counterProperty, forKey: .counterProperty) }
+    if self.counterValue != nil { try container.encode(self.counterValue, forKey: .counterValue) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
   }
 }
 

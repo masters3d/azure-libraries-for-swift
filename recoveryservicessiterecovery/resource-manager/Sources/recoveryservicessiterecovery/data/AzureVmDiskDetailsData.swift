@@ -22,7 +22,7 @@ internal struct AzureVmDiskDetailsData : AzureVmDiskDetailsProtocol {
         case lunId = "lunId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureVmDiskDetailsData : AzureVmDiskDetailsProtocol {
     if container.contains(.lunId) {
         self.lunId = try container.decode(String?.self, forKey: .lunId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct AzureVmDiskDetailsData : AzureVmDiskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vhdType != nil {try container.encode(self.vhdType, forKey: .vhdType)}
-    if self.vhdId != nil {try container.encode(self.vhdId, forKey: .vhdId)}
-    if self.vhdName != nil {try container.encode(self.vhdName, forKey: .vhdName)}
-    if self.maxSizeMB != nil {try container.encode(self.maxSizeMB, forKey: .maxSizeMB)}
-    if self.targetDiskLocation != nil {try container.encode(self.targetDiskLocation, forKey: .targetDiskLocation)}
-    if self.targetDiskName != nil {try container.encode(self.targetDiskName, forKey: .targetDiskName)}
-    if self.lunId != nil {try container.encode(self.lunId, forKey: .lunId)}
+    if self.vhdType != nil { try container.encode(self.vhdType, forKey: .vhdType) }
+    if self.vhdId != nil { try container.encode(self.vhdId, forKey: .vhdId) }
+    if self.vhdName != nil { try container.encode(self.vhdName, forKey: .vhdName) }
+    if self.maxSizeMB != nil { try container.encode(self.maxSizeMB, forKey: .maxSizeMB) }
+    if self.targetDiskLocation != nil { try container.encode(self.targetDiskLocation, forKey: .targetDiskLocation) }
+    if self.targetDiskName != nil { try container.encode(self.targetDiskName, forKey: .targetDiskName) }
+    if self.lunId != nil { try container.encode(self.lunId, forKey: .lunId) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct ManualActionTaskDetailsData : ManualActionTaskDetailsProtocol, T
         case observation = "observation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ManualActionTaskDetailsData : ManualActionTaskDetailsProtocol, T
     if container.contains(.observation) {
         self.observation = try container.decode(String?.self, forKey: .observation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ManualActionTaskDetailsData : ManualActionTaskDetailsProtocol, T
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.instructions != nil {try container.encode(self.instructions, forKey: .instructions)}
-    if self.observation != nil {try container.encode(self.observation, forKey: .observation)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.instructions != nil { try container.encode(self.instructions, forKey: .instructions) }
+    if self.observation != nil { try container.encode(self.observation, forKey: .observation) }
   }
 }
 

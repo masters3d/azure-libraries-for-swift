@@ -14,7 +14,7 @@ internal struct CloudServiceConfigurationData : CloudServiceConfigurationProtoco
         case currentOSVersion = "currentOSVersion"
         }
 
-  public init(osFamily: String)  {
+  public init(osFamily: String) {
     self.osFamily = osFamily
   }
 
@@ -27,7 +27,7 @@ internal struct CloudServiceConfigurationData : CloudServiceConfigurationProtoco
     if container.contains(.currentOSVersion) {
         self.currentOSVersion = try container.decode(String?.self, forKey: .currentOSVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct CloudServiceConfigurationData : CloudServiceConfigurationProtoco
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osFamily, forKey: .osFamily)
-    if self.targetOSVersion != nil {try container.encode(self.targetOSVersion, forKey: .targetOSVersion)}
-    if self.currentOSVersion != nil {try container.encode(self.currentOSVersion, forKey: .currentOSVersion)}
+    if self.targetOSVersion != nil { try container.encode(self.targetOSVersion, forKey: .targetOSVersion) }
+    if self.currentOSVersion != nil { try container.encode(self.currentOSVersion, forKey: .currentOSVersion) }
   }
 }
 

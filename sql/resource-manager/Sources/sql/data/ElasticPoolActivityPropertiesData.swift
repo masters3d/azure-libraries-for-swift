@@ -48,7 +48,7 @@ internal struct ElasticPoolActivityPropertiesData : ElasticPoolActivityPropertie
         case requestedDtuGuarantee = "requestedDtuGuarantee"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -113,7 +113,7 @@ internal struct ElasticPoolActivityPropertiesData : ElasticPoolActivityPropertie
     if container.contains(.requestedDtuGuarantee) {
         self.requestedDtuGuarantee = try container.decode(Int32?.self, forKey: .requestedDtuGuarantee)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -126,27 +126,27 @@ internal struct ElasticPoolActivityPropertiesData : ElasticPoolActivityPropertie
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.errorSeverity != nil {try container.encode(self.errorSeverity, forKey: .errorSeverity)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
-    if self.percentComplete != nil {try container.encode(self.percentComplete, forKey: .percentComplete)}
-    if self.requestedDatabaseDtuMax != nil {try container.encode(self.requestedDatabaseDtuMax, forKey: .requestedDatabaseDtuMax)}
-    if self.requestedDatabaseDtuMin != nil {try container.encode(self.requestedDatabaseDtuMin, forKey: .requestedDatabaseDtuMin)}
-    if self.requestedDtu != nil {try container.encode(self.requestedDtu, forKey: .requestedDtu)}
-    if self.requestedElasticPoolName != nil {try container.encode(self.requestedElasticPoolName, forKey: .requestedElasticPoolName)}
-    if self.requestedStorageLimitInGB != nil {try container.encode(self.requestedStorageLimitInGB, forKey: .requestedStorageLimitInGB)}
-    if self.elasticPoolName != nil {try container.encode(self.elasticPoolName, forKey: .elasticPoolName)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.errorSeverity != nil { try container.encode(self.errorSeverity, forKey: .errorSeverity) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
+    if self.percentComplete != nil { try container.encode(self.percentComplete, forKey: .percentComplete) }
+    if self.requestedDatabaseDtuMax != nil { try container.encode(self.requestedDatabaseDtuMax, forKey: .requestedDatabaseDtuMax) }
+    if self.requestedDatabaseDtuMin != nil { try container.encode(self.requestedDatabaseDtuMin, forKey: .requestedDatabaseDtuMin) }
+    if self.requestedDtu != nil { try container.encode(self.requestedDtu, forKey: .requestedDtu) }
+    if self.requestedElasticPoolName != nil { try container.encode(self.requestedElasticPoolName, forKey: .requestedElasticPoolName) }
+    if self.requestedStorageLimitInGB != nil { try container.encode(self.requestedStorageLimitInGB, forKey: .requestedStorageLimitInGB) }
+    if self.elasticPoolName != nil { try container.encode(self.elasticPoolName, forKey: .elasticPoolName) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.requestedStorageLimitInMB != nil {try container.encode(self.requestedStorageLimitInMB, forKey: .requestedStorageLimitInMB)}
-    if self.requestedDatabaseDtuGuarantee != nil {try container.encode(self.requestedDatabaseDtuGuarantee, forKey: .requestedDatabaseDtuGuarantee)}
-    if self.requestedDatabaseDtuCap != nil {try container.encode(self.requestedDatabaseDtuCap, forKey: .requestedDatabaseDtuCap)}
-    if self.requestedDtuGuarantee != nil {try container.encode(self.requestedDtuGuarantee, forKey: .requestedDtuGuarantee)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.requestedStorageLimitInMB != nil { try container.encode(self.requestedStorageLimitInMB, forKey: .requestedStorageLimitInMB) }
+    if self.requestedDatabaseDtuGuarantee != nil { try container.encode(self.requestedDatabaseDtuGuarantee, forKey: .requestedDatabaseDtuGuarantee) }
+    if self.requestedDatabaseDtuCap != nil { try container.encode(self.requestedDatabaseDtuCap, forKey: .requestedDatabaseDtuCap) }
+    if self.requestedDtuGuarantee != nil { try container.encode(self.requestedDtuGuarantee, forKey: .requestedDtuGuarantee) }
   }
 }
 

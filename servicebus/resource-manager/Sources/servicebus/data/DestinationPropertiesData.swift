@@ -14,7 +14,7 @@ internal struct DestinationPropertiesData : DestinationPropertiesProtocol {
         case archiveNameFormat = "archiveNameFormat"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DestinationPropertiesData : DestinationPropertiesProtocol {
     if container.contains(.archiveNameFormat) {
         self.archiveNameFormat = try container.decode(String?.self, forKey: .archiveNameFormat)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DestinationPropertiesData : DestinationPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccountResourceId != nil {try container.encode(self.storageAccountResourceId, forKey: .storageAccountResourceId)}
-    if self.blobContainer != nil {try container.encode(self.blobContainer, forKey: .blobContainer)}
-    if self.archiveNameFormat != nil {try container.encode(self.archiveNameFormat, forKey: .archiveNameFormat)}
+    if self.storageAccountResourceId != nil { try container.encode(self.storageAccountResourceId, forKey: .storageAccountResourceId) }
+    if self.blobContainer != nil { try container.encode(self.blobContainer, forKey: .blobContainer) }
+    if self.archiveNameFormat != nil { try container.encode(self.archiveNameFormat, forKey: .archiveNameFormat) }
   }
 }
 

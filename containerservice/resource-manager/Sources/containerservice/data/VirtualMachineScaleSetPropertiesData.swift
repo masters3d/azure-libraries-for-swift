@@ -24,7 +24,7 @@ internal struct VirtualMachineScaleSetPropertiesData : VirtualMachineScaleSetPro
         case platformFaultDomainCount = "platformFaultDomainCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct VirtualMachineScaleSetPropertiesData : VirtualMachineScaleSetPro
     if container.contains(.platformFaultDomainCount) {
         self.platformFaultDomainCount = try container.decode(Int32?.self, forKey: .platformFaultDomainCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct VirtualMachineScaleSetPropertiesData : VirtualMachineScaleSetPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.upgradePolicy != nil {try container.encode(self.upgradePolicy as! UpgradePolicyData?, forKey: .upgradePolicy)}
-    if self.virtualMachineProfile != nil {try container.encode(self.virtualMachineProfile as! VirtualMachineScaleSetVMProfileData?, forKey: .virtualMachineProfile)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.overprovision != nil {try container.encode(self.overprovision, forKey: .overprovision)}
-    if self.uniqueId != nil {try container.encode(self.uniqueId, forKey: .uniqueId)}
-    if self.singlePlacementGroup != nil {try container.encode(self.singlePlacementGroup, forKey: .singlePlacementGroup)}
-    if self.zoneBalance != nil {try container.encode(self.zoneBalance, forKey: .zoneBalance)}
-    if self.platformFaultDomainCount != nil {try container.encode(self.platformFaultDomainCount, forKey: .platformFaultDomainCount)}
+    if self.upgradePolicy != nil { try container.encode(self.upgradePolicy as! UpgradePolicyData?, forKey: .upgradePolicy) }
+    if self.virtualMachineProfile != nil { try container.encode(self.virtualMachineProfile as! VirtualMachineScaleSetVMProfileData?, forKey: .virtualMachineProfile) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.overprovision != nil { try container.encode(self.overprovision, forKey: .overprovision) }
+    if self.uniqueId != nil { try container.encode(self.uniqueId, forKey: .uniqueId) }
+    if self.singlePlacementGroup != nil { try container.encode(self.singlePlacementGroup, forKey: .singlePlacementGroup) }
+    if self.zoneBalance != nil { try container.encode(self.zoneBalance, forKey: .zoneBalance) }
+    if self.platformFaultDomainCount != nil { try container.encode(self.platformFaultDomainCount, forKey: .platformFaultDomainCount) }
   }
 }
 

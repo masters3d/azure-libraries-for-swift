@@ -14,7 +14,7 @@ internal struct AlertPropertiesData : AlertPropertiesProtocol {
         case locale = "locale"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AlertPropertiesData : AlertPropertiesProtocol {
     if container.contains(.locale) {
         self.locale = try container.decode(String?.self, forKey: .locale)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AlertPropertiesData : AlertPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sendToOwners != nil {try container.encode(self.sendToOwners, forKey: .sendToOwners)}
-    if self.customEmailAddresses != nil {try container.encode(self.customEmailAddresses as! [String]?, forKey: .customEmailAddresses)}
-    if self.locale != nil {try container.encode(self.locale, forKey: .locale)}
+    if self.sendToOwners != nil { try container.encode(self.sendToOwners, forKey: .sendToOwners) }
+    if self.customEmailAddresses != nil { try container.encode(self.customEmailAddresses as! [String]?, forKey: .customEmailAddresses) }
+    if self.locale != nil { try container.encode(self.locale, forKey: .locale) }
   }
 }
 

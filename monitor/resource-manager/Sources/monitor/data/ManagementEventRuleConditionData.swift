@@ -12,7 +12,7 @@ internal struct ManagementEventRuleConditionData : ManagementEventRuleConditionP
         case aggregation = "aggregation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ManagementEventRuleConditionData : ManagementEventRuleConditionP
     if container.contains(.aggregation) {
         self.aggregation = try container.decode(ManagementEventAggregationConditionData?.self, forKey: .aggregation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ManagementEventRuleConditionData : ManagementEventRuleConditionP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSource != nil {try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource)}
-    if self.aggregation != nil {try container.encode(self.aggregation as! ManagementEventAggregationConditionData?, forKey: .aggregation)}
+    if self.dataSource != nil { try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource) }
+    if self.aggregation != nil { try container.encode(self.aggregation as! ManagementEventAggregationConditionData?, forKey: .aggregation) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ConnectionMonitorsQuery  {
+public protocol ConnectionMonitorsQuery {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkWatcherName : String { get set }
@@ -8,7 +8,7 @@ public protocol ConnectionMonitorsQuery  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ConnectionMonitorQueryResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ConnectionMonitorQueryResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.ConnectionMonitors {
@@ -34,7 +34,7 @@ extension Commands.ConnectionMonitors {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkWatcherName}"] = String(describing: self.networkWatcherName)
             self.pathParameters["{connectionMonitorName}"] = String(describing: self.connectionMonitorName)
@@ -48,12 +48,12 @@ extension Commands.ConnectionMonitors {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ConnectionMonitorQueryResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ConnectionMonitorQueryResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ConnectionMonitorQueryResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: ConnectionMonitorQueryResultData?, error: Error?) in
                 completionHandler(result, error)

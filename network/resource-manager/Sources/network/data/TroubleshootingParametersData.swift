@@ -12,7 +12,7 @@ internal struct TroubleshootingParametersData : TroubleshootingParametersProtoco
         case properties = "properties"
         }
 
-  public init(targetResourceId: String, properties: TroubleshootingPropertiesProtocol)  {
+  public init(targetResourceId: String, properties: TroubleshootingPropertiesProtocol) {
     self.targetResourceId = targetResourceId
     self.properties = properties
   }
@@ -21,7 +21,7 @@ internal struct TroubleshootingParametersData : TroubleshootingParametersProtoco
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.targetResourceId = try container.decode(String.self, forKey: .targetResourceId)
     self.properties = try container.decode(TroubleshootingPropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

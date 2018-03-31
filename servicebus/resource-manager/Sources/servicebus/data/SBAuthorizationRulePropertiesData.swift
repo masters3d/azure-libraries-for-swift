@@ -10,7 +10,7 @@ internal struct SBAuthorizationRulePropertiesData : SBAuthorizationRulePropertie
         enum CodingKeys: String, CodingKey {case rights = "rights"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SBAuthorizationRulePropertiesData : SBAuthorizationRulePropertie
       if container.contains(.rights) {
         self.rights = try container.decode([AccessRightsEnum?]?.self, forKey: .rights)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SBAuthorizationRulePropertiesData : SBAuthorizationRulePropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.rights != nil {try container.encode(self.rights as! [AccessRightsEnum?]?, forKey: .rights)}
+    if self.rights != nil { try container.encode(self.rights as! [AccessRightsEnum?]?, forKey: .rights) }
   }
 }
 

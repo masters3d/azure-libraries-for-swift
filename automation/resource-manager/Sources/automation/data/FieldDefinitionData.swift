@@ -14,7 +14,7 @@ internal struct FieldDefinitionData : FieldDefinitionProtocol {
         case type = "type"
         }
 
-  public init(type: String)  {
+  public init(type: String) {
     self.type = type
   }
 
@@ -27,7 +27,7 @@ internal struct FieldDefinitionData : FieldDefinitionProtocol {
         self.isOptional = try container.decode(Bool?.self, forKey: .isOptional)
     }
     self.type = try container.decode(String.self, forKey: .type)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,8 +37,8 @@ internal struct FieldDefinitionData : FieldDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isEncrypted != nil {try container.encode(self.isEncrypted, forKey: .isEncrypted)}
-    if self.isOptional != nil {try container.encode(self.isOptional, forKey: .isOptional)}
+    if self.isEncrypted != nil { try container.encode(self.isEncrypted, forKey: .isEncrypted) }
+    if self.isOptional != nil { try container.encode(self.isOptional, forKey: .isOptional) }
     try container.encode(self.type, forKey: .type)
   }
 }

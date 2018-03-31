@@ -20,7 +20,7 @@ internal struct AutomationRunbookReceiverData : AutomationRunbookReceiverProtoco
         case serviceUri = "serviceUri"
         }
 
-  public init(automationAccountId: String, runbookName: String, webhookResourceId: String, isGlobalRunbook: Bool)  {
+  public init(automationAccountId: String, runbookName: String, webhookResourceId: String, isGlobalRunbook: Bool) {
     self.automationAccountId = automationAccountId
     self.runbookName = runbookName
     self.webhookResourceId = webhookResourceId
@@ -39,7 +39,7 @@ internal struct AutomationRunbookReceiverData : AutomationRunbookReceiverProtoco
     if container.contains(.serviceUri) {
         self.serviceUri = try container.decode(String?.self, forKey: .serviceUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,8 +53,8 @@ internal struct AutomationRunbookReceiverData : AutomationRunbookReceiverProtoco
     try container.encode(self.runbookName, forKey: .runbookName)
     try container.encode(self.webhookResourceId, forKey: .webhookResourceId)
     try container.encode(self.isGlobalRunbook, forKey: .isGlobalRunbook)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.serviceUri != nil {try container.encode(self.serviceUri, forKey: .serviceUri)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.serviceUri != nil { try container.encode(self.serviceUri, forKey: .serviceUri) }
   }
 }
 

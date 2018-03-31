@@ -18,7 +18,7 @@ internal struct AzureBlobFileSystemReferenceData : AzureBlobFileSystemReferenceP
         case mountOptions = "mountOptions"
         }
 
-  public init(accountName: String, containerName: String, credentials: AzureStorageCredentialsInfoProtocol, relativeMountPath: String)  {
+  public init(accountName: String, containerName: String, credentials: AzureStorageCredentialsInfoProtocol, relativeMountPath: String) {
     self.accountName = accountName
     self.containerName = containerName
     self.credentials = credentials
@@ -34,7 +34,7 @@ internal struct AzureBlobFileSystemReferenceData : AzureBlobFileSystemReferenceP
     if container.contains(.mountOptions) {
         self.mountOptions = try container.decode(String?.self, forKey: .mountOptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,7 +48,7 @@ internal struct AzureBlobFileSystemReferenceData : AzureBlobFileSystemReferenceP
     try container.encode(self.containerName, forKey: .containerName)
     try container.encode(self.credentials as! AzureStorageCredentialsInfoData, forKey: .credentials)
     try container.encode(self.relativeMountPath, forKey: .relativeMountPath)
-    if self.mountOptions != nil {try container.encode(self.mountOptions, forKey: .mountOptions)}
+    if self.mountOptions != nil { try container.encode(self.mountOptions, forKey: .mountOptions) }
   }
 }
 

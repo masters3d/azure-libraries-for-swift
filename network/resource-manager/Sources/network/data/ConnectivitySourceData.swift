@@ -12,7 +12,7 @@ internal struct ConnectivitySourceData : ConnectivitySourceProtocol {
         case port = "port"
         }
 
-  public init(resourceId: String)  {
+  public init(resourceId: String) {
     self.resourceId = resourceId
   }
 
@@ -22,7 +22,7 @@ internal struct ConnectivitySourceData : ConnectivitySourceProtocol {
     if container.contains(.port) {
         self.port = try container.decode(Int32?.self, forKey: .port)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ConnectivitySourceData : ConnectivitySourceProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.resourceId, forKey: .resourceId)
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
   }
 }
 

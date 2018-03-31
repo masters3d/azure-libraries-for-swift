@@ -14,7 +14,7 @@ internal struct KeyVaultMetaInfoData : KeyVaultMetaInfoProtocol {
         case encryptionKeyVersion = "encryptionKeyVersion"
         }
 
-  public init(keyVaultResourceId: String, encryptionKeyName: String, encryptionKeyVersion: String)  {
+  public init(keyVaultResourceId: String, encryptionKeyName: String, encryptionKeyVersion: String) {
     self.keyVaultResourceId = keyVaultResourceId
     self.encryptionKeyName = encryptionKeyName
     self.encryptionKeyVersion = encryptionKeyVersion
@@ -25,7 +25,7 @@ internal struct KeyVaultMetaInfoData : KeyVaultMetaInfoProtocol {
       self.keyVaultResourceId = try container.decode(String.self, forKey: .keyVaultResourceId)
     self.encryptionKeyName = try container.decode(String.self, forKey: .encryptionKeyName)
     self.encryptionKeyVersion = try container.decode(String.self, forKey: .encryptionKeyVersion)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -28,7 +28,7 @@ internal struct ArtifactSourcePropertiesFragmentData : ArtifactSourcePropertiesF
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ArtifactSourcePropertiesFragmentData : ArtifactSourcePropertiesF
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct ArtifactSourcePropertiesFragmentData : ArtifactSourcePropertiesF
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
-    if self.sourceType != nil {try container.encode(self.sourceType, forKey: .sourceType)}
-    if self.folderPath != nil {try container.encode(self.folderPath, forKey: .folderPath)}
-    if self.armTemplateFolderPath != nil {try container.encode(self.armTemplateFolderPath, forKey: .armTemplateFolderPath)}
-    if self.branchRef != nil {try container.encode(self.branchRef, forKey: .branchRef)}
-    if self.securityToken != nil {try container.encode(self.securityToken, forKey: .securityToken)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
+    if self.sourceType != nil { try container.encode(self.sourceType, forKey: .sourceType) }
+    if self.folderPath != nil { try container.encode(self.folderPath, forKey: .folderPath) }
+    if self.armTemplateFolderPath != nil { try container.encode(self.armTemplateFolderPath, forKey: .armTemplateFolderPath) }
+    if self.branchRef != nil { try container.encode(self.branchRef, forKey: .branchRef) }
+    if self.securityToken != nil { try container.encode(self.securityToken, forKey: .securityToken) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

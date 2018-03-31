@@ -20,7 +20,7 @@ internal struct PageBlobsIncrementalCopyHeadersData : PageBlobsIncrementalCopyHe
         case copyStatus = "x-ms-copy-status"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -50,13 +50,13 @@ internal struct PageBlobsIncrementalCopyHeadersData : PageBlobsIncrementalCopyHe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
-    if self.copyId != nil {try container.encode(copyId, forKey: .copyId)}
-    if self.copyStatus != nil {try container.encode(copyStatus, forKey: .copyStatus)}
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
+    if self.copyId != nil { try container.encode(copyId, forKey: .copyId) }
+    if self.copyStatus != nil { try container.encode(copyStatus, forKey: .copyStatus) }
   }
 }
 

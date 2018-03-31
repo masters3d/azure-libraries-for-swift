@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol QueryKeysDelete  {
+public protocol QueryKeysDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var searchServiceName : String { get set }
@@ -9,7 +9,7 @@ public protocol QueryKeysDelete  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.QueryKeys {
@@ -35,7 +35,7 @@ extension Commands.QueryKeys {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{key}"] = String(describing: self.key)
@@ -46,7 +46,7 @@ extension Commands.QueryKeys {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

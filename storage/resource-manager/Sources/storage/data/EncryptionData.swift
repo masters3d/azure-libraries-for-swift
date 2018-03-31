@@ -14,7 +14,7 @@ internal struct EncryptionData : EncryptionProtocol {
         case keyVaultProperties = "keyvaultproperties"
         }
 
-  public init(keySource: KeySourceEnum)  {
+  public init(keySource: KeySourceEnum) {
     self.keySource = keySource
   }
 
@@ -27,7 +27,7 @@ internal struct EncryptionData : EncryptionProtocol {
     if container.contains(.keyVaultProperties) {
         self.keyVaultProperties = try container.decode(KeyVaultPropertiesData?.self, forKey: .keyVaultProperties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct EncryptionData : EncryptionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.services != nil {try container.encode(self.services as! EncryptionServicesData?, forKey: .services)}
+    if self.services != nil { try container.encode(self.services as! EncryptionServicesData?, forKey: .services) }
     try container.encode(self.keySource, forKey: .keySource)
-    if self.keyVaultProperties != nil {try container.encode(self.keyVaultProperties as! KeyVaultPropertiesData?, forKey: .keyVaultProperties)}
+    if self.keyVaultProperties != nil { try container.encode(self.keyVaultProperties as! KeyVaultPropertiesData?, forKey: .keyVaultProperties) }
   }
 }
 

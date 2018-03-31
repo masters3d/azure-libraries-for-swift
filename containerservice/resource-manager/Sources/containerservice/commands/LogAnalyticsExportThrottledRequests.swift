@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LogAnalyticsExportThrottledRequests  {
+public protocol LogAnalyticsExportThrottledRequests {
     var headerParameters: [String: String] { get set }
     var location : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ThrottledRequestsInputProtocol?  { get set }
+    var parameters :  ThrottledRequestsInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LogAnalyticsOperationResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LogAnalyticsOperationResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.LogAnalytics {
@@ -31,7 +31,7 @@ extension Commands.LogAnalytics {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{location}"] = String(describing: self.location)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -53,12 +53,12 @@ extension Commands.LogAnalytics {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LogAnalyticsOperationResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LogAnalyticsOperationResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LogAnalyticsOperationResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: LogAnalyticsOperationResultData?, error: Error?) in
                 completionHandler(result, error)

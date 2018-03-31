@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LinkedServerCreate  {
+public protocol LinkedServerCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
     var linkedServerName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RedisLinkedServerCreateParametersProtocol?  { get set }
+    var parameters :  RedisLinkedServerCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RedisLinkedServerWithPropertiesProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RedisLinkedServerWithPropertiesProtocol?, Error?) -> Void)
 }
 
 extension Commands.LinkedServer {
@@ -37,7 +37,7 @@ extension Commands.LinkedServer {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{linkedServerName}"] = String(describing: self.linkedServerName)
@@ -61,12 +61,12 @@ extension Commands.LinkedServer {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RedisLinkedServerWithPropertiesData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RedisLinkedServerWithPropertiesProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RedisLinkedServerWithPropertiesProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RedisLinkedServerWithPropertiesData?, error: Error?) in
                 completionHandler(result, error)

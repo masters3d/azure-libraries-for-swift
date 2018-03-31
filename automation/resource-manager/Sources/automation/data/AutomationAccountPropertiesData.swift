@@ -20,7 +20,7 @@ internal struct AutomationAccountPropertiesData : AutomationAccountPropertiesPro
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct AutomationAccountPropertiesData : AutomationAccountPropertiesPro
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct AutomationAccountPropertiesData : AutomationAccountPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.lastModifiedBy != nil {try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.lastModifiedBy != nil { try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

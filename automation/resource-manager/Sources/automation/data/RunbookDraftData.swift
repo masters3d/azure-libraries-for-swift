@@ -20,7 +20,7 @@ internal struct RunbookDraftData : RunbookDraftProtocol {
         case outputTypes = "outputTypes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct RunbookDraftData : RunbookDraftProtocol {
     if container.contains(.outputTypes) {
         self.outputTypes = try container.decode([String]?.self, forKey: .outputTypes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct RunbookDraftData : RunbookDraftProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.inEdit != nil {try container.encode(self.inEdit, forKey: .inEdit)}
-    if self.draftContentLink != nil {try container.encode(self.draftContentLink as! ContentLinkData?, forKey: .draftContentLink)}
+    if self.inEdit != nil { try container.encode(self.inEdit, forKey: .inEdit) }
+    if self.draftContentLink != nil { try container.encode(self.draftContentLink as! ContentLinkData?, forKey: .draftContentLink) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.outputTypes != nil {try container.encode(self.outputTypes as! [String]?, forKey: .outputTypes)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.outputTypes != nil { try container.encode(self.outputTypes as! [String]?, forKey: .outputTypes) }
   }
 }
 

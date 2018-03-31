@@ -12,7 +12,7 @@ internal struct AzureWorkloadRecoveryPointData : AzureWorkloadRecoveryPointProto
         case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureWorkloadRecoveryPointData : AzureWorkloadRecoveryPointProto
     if container.contains(.type) {
         self.type = try container.decode(RestorePointTypeEnum?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct AzureWorkloadRecoveryPointData : AzureWorkloadRecoveryPointProto
     if self.recoveryPointTimeInUTC != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTimeInUTC!, format: .dateTime), forKey: .recoveryPointTimeInUTC)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

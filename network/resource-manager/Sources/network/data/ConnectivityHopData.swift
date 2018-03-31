@@ -20,7 +20,7 @@ internal struct ConnectivityHopData : ConnectivityHopProtocol {
         case issues = "issues"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ConnectivityHopData : ConnectivityHopProtocol {
     if container.contains(.issues) {
         self.issues = try container.decode([ConnectivityIssueData?]?.self, forKey: .issues)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ConnectivityHopData : ConnectivityHopProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.address != nil {try container.encode(self.address, forKey: .address)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.nextHopIds != nil {try container.encode(self.nextHopIds as! [String]?, forKey: .nextHopIds)}
-    if self.issues != nil {try container.encode(self.issues as! [ConnectivityIssueData?]?, forKey: .issues)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.address != nil { try container.encode(self.address, forKey: .address) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.nextHopIds != nil { try container.encode(self.nextHopIds as! [String]?, forKey: .nextHopIds) }
+    if self.issues != nil { try container.encode(self.issues as! [ConnectivityIssueData?]?, forKey: .issues) }
   }
 }
 

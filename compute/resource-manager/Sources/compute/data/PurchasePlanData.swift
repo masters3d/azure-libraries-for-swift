@@ -14,7 +14,7 @@ internal struct PurchasePlanData : PurchasePlanProtocol {
         case product = "product"
         }
 
-  public init(publisher: String, name: String, product: String)  {
+  public init(publisher: String, name: String, product: String) {
     self.publisher = publisher
     self.name = name
     self.product = product
@@ -25,7 +25,7 @@ internal struct PurchasePlanData : PurchasePlanProtocol {
       self.publisher = try container.decode(String.self, forKey: .publisher)
     self.name = try container.decode(String.self, forKey: .name)
     self.product = try container.decode(String.self, forKey: .product)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

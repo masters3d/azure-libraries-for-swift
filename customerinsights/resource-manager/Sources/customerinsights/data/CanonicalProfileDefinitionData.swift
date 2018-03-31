@@ -12,7 +12,7 @@ internal struct CanonicalProfileDefinitionData : CanonicalProfileDefinitionProto
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CanonicalProfileDefinitionData : CanonicalProfileDefinitionProto
     if container.contains(.properties) {
         self.properties = try container.decode([CanonicalProfileDefinitionPropertiesItemData?]?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CanonicalProfileDefinitionData : CanonicalProfileDefinitionProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.canonicalProfileId != nil {try container.encode(self.canonicalProfileId, forKey: .canonicalProfileId)}
-    if self.properties != nil {try container.encode(self.properties as! [CanonicalProfileDefinitionPropertiesItemData?]?, forKey: .properties)}
+    if self.canonicalProfileId != nil { try container.encode(self.canonicalProfileId, forKey: .canonicalProfileId) }
+    if self.properties != nil { try container.encode(self.properties as! [CanonicalProfileDefinitionPropertiesItemData?]?, forKey: .properties) }
   }
 }
 

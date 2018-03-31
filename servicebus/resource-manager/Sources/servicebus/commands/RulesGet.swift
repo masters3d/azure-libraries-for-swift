@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RulesGet  {
+public protocol RulesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
@@ -10,7 +10,7 @@ public protocol RulesGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.Rules {
@@ -38,7 +38,7 @@ extension Commands.Rules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{topicName}"] = String(describing: self.topicName)
@@ -54,12 +54,12 @@ extension Commands.Rules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RuleData?, error: Error?) in
                 completionHandler(result, error)

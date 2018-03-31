@@ -12,7 +12,7 @@ internal struct ParametersValueFileInfoData : ParametersValueFileInfoProtocol {
         case parametersValueInfo = "parametersValueInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ParametersValueFileInfoData : ParametersValueFileInfoProtocol {
     if container.contains(.parametersValueInfo) {
         self.parametersValueInfo = try container.decode([String: String?]?.self, forKey: .parametersValueInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ParametersValueFileInfoData : ParametersValueFileInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fileName != nil {try container.encode(self.fileName, forKey: .fileName)}
-    if self.parametersValueInfo != nil {try container.encode(self.parametersValueInfo, forKey: .parametersValueInfo)}
+    if self.fileName != nil { try container.encode(self.fileName, forKey: .fileName) }
+    if self.parametersValueInfo != nil { try container.encode(self.parametersValueInfo, forKey: .parametersValueInfo) }
   }
 }
 

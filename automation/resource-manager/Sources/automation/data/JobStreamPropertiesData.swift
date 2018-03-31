@@ -20,7 +20,7 @@ internal struct JobStreamPropertiesData : JobStreamPropertiesProtocol {
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct JobStreamPropertiesData : JobStreamPropertiesProtocol {
     if container.contains(.value) {
         self.value = try container.decode([String:[String: String?]]?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct JobStreamPropertiesData : JobStreamPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobStreamId != nil {try container.encode(self.jobStreamId, forKey: .jobStreamId)}
+    if self.jobStreamId != nil { try container.encode(self.jobStreamId, forKey: .jobStreamId) }
     if self.time != nil {
         try container.encode(DateConverter.toString(date: self.time!, format: .dateTime), forKey: .time)
     }
-    if self.streamType != nil {try container.encode(self.streamType, forKey: .streamType)}
-    if self.streamText != nil {try container.encode(self.streamText, forKey: .streamText)}
-    if self.summary != nil {try container.encode(self.summary, forKey: .summary)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.streamType != nil { try container.encode(self.streamType, forKey: .streamType) }
+    if self.streamText != nil { try container.encode(self.streamText, forKey: .streamText) }
+    if self.summary != nil { try container.encode(self.summary, forKey: .summary) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
   }
 }
 

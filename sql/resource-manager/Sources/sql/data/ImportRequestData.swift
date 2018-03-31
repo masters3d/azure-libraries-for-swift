@@ -28,7 +28,7 @@ internal struct ImportRequestData : ImportRequestProtocol, ExportRequestProtocol
         case maxSizeBytes = "maxSizeBytes"
         }
 
-  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String, databaseName: String, edition: DatabaseEditionEnum, serviceObjectiveName: ServiceObjectiveNameEnum, maxSizeBytes: String)  {
+  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String, databaseName: String, edition: DatabaseEditionEnum, serviceObjectiveName: ServiceObjectiveNameEnum, maxSizeBytes: String) {
     self.storageKeyType = storageKeyType
     self.storageKey = storageKey
     self.storageUri = storageUri
@@ -54,7 +54,7 @@ internal struct ImportRequestData : ImportRequestProtocol, ExportRequestProtocol
     self.edition = try container.decode(DatabaseEditionEnum.self, forKey: .edition)
     self.serviceObjectiveName = try container.decode(ServiceObjectiveNameEnum.self, forKey: .serviceObjectiveName)
     self.maxSizeBytes = try container.decode(String.self, forKey: .maxSizeBytes)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,7 +69,7 @@ internal struct ImportRequestData : ImportRequestProtocol, ExportRequestProtocol
     try container.encode(self.storageUri, forKey: .storageUri)
     try container.encode(self.administratorLogin, forKey: .administratorLogin)
     try container.encode(self.administratorLoginPassword, forKey: .administratorLoginPassword)
-    if self.authenticationType != nil {try container.encode(self.authenticationType, forKey: .authenticationType)}
+    if self.authenticationType != nil { try container.encode(self.authenticationType, forKey: .authenticationType) }
     try container.encode(self.databaseName, forKey: .databaseName)
     try container.encode(self.edition, forKey: .edition)
     try container.encode(self.serviceObjectiveName, forKey: .serviceObjectiveName)

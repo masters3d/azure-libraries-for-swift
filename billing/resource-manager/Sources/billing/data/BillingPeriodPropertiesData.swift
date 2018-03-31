@@ -14,7 +14,7 @@ internal struct BillingPeriodPropertiesData : BillingPeriodPropertiesProtocol {
         case invoiceIds = "invoiceIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BillingPeriodPropertiesData : BillingPeriodPropertiesProtocol {
     if container.contains(.invoiceIds) {
         self.invoiceIds = try container.decode([String]?.self, forKey: .invoiceIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct BillingPeriodPropertiesData : BillingPeriodPropertiesProtocol {
     if self.billingPeriodEndDate != nil {
         try container.encode(DateConverter.toString(date: self.billingPeriodEndDate!, format: .date), forKey: .billingPeriodEndDate)
     }
-    if self.invoiceIds != nil {try container.encode(self.invoiceIds as! [String]?, forKey: .invoiceIds)}
+    if self.invoiceIds != nil { try container.encode(self.invoiceIds as! [String]?, forKey: .invoiceIds) }
   }
 }
 

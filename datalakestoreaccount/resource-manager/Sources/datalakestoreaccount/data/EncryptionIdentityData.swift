@@ -14,7 +14,7 @@ internal struct EncryptionIdentityData : EncryptionIdentityProtocol {
         case tenantId = "tenantId"
         }
 
-  public init(type: String)  {
+  public init(type: String) {
     self.type = type
   }
 
@@ -27,7 +27,7 @@ internal struct EncryptionIdentityData : EncryptionIdentityProtocol {
     if container.contains(.tenantId) {
         self.tenantId = try container.decode(String?.self, forKey: .tenantId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct EncryptionIdentityData : EncryptionIdentityProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.type, forKey: .type)
-    if self.principalId != nil {try container.encode(self.principalId, forKey: .principalId)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.principalId != nil { try container.encode(self.principalId, forKey: .principalId) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
   }
 }
 

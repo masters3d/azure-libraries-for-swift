@@ -16,7 +16,7 @@ internal struct PermissionsData : PermissionsProtocol {
         case storage = "storage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PermissionsData : PermissionsProtocol {
     if container.contains(.storage) {
         self.storage = try container.decode([StoragePermissionsEnum?]?.self, forKey: .storage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PermissionsData : PermissionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keys != nil {try container.encode(self.keys as! [KeyPermissionsEnum?]?, forKey: .keys)}
-    if self.secrets != nil {try container.encode(self.secrets as! [SecretPermissionsEnum?]?, forKey: .secrets)}
-    if self.certificates != nil {try container.encode(self.certificates as! [CertificatePermissionsEnum?]?, forKey: .certificates)}
-    if self.storage != nil {try container.encode(self.storage as! [StoragePermissionsEnum?]?, forKey: .storage)}
+    if self.keys != nil { try container.encode(self.keys as! [KeyPermissionsEnum?]?, forKey: .keys) }
+    if self.secrets != nil { try container.encode(self.secrets as! [SecretPermissionsEnum?]?, forKey: .secrets) }
+    if self.certificates != nil { try container.encode(self.certificates as! [CertificatePermissionsEnum?]?, forKey: .certificates) }
+    if self.storage != nil { try container.encode(self.storage as! [StoragePermissionsEnum?]?, forKey: .storage) }
   }
 }
 

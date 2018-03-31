@@ -18,7 +18,7 @@ internal struct CostThresholdPropertiesData : CostThresholdPropertiesProtocol {
         case notificationSent = "notificationSent"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct CostThresholdPropertiesData : CostThresholdPropertiesProtocol {
     if container.contains(.notificationSent) {
         self.notificationSent = try container.decode(String?.self, forKey: .notificationSent)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct CostThresholdPropertiesData : CostThresholdPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thresholdId != nil {try container.encode(self.thresholdId, forKey: .thresholdId)}
-    if self.percentageThreshold != nil {try container.encode(self.percentageThreshold as! PercentageCostThresholdPropertiesData?, forKey: .percentageThreshold)}
-    if self.displayOnChart != nil {try container.encode(self.displayOnChart, forKey: .displayOnChart)}
-    if self.sendNotificationWhenExceeded != nil {try container.encode(self.sendNotificationWhenExceeded, forKey: .sendNotificationWhenExceeded)}
-    if self.notificationSent != nil {try container.encode(self.notificationSent, forKey: .notificationSent)}
+    if self.thresholdId != nil { try container.encode(self.thresholdId, forKey: .thresholdId) }
+    if self.percentageThreshold != nil { try container.encode(self.percentageThreshold as! PercentageCostThresholdPropertiesData?, forKey: .percentageThreshold) }
+    if self.displayOnChart != nil { try container.encode(self.displayOnChart, forKey: .displayOnChart) }
+    if self.sendNotificationWhenExceeded != nil { try container.encode(self.sendNotificationWhenExceeded, forKey: .sendNotificationWhenExceeded) }
+    if self.notificationSent != nil { try container.encode(self.notificationSent, forKey: .notificationSent) }
   }
 }
 

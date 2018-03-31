@@ -16,7 +16,7 @@ internal struct SiteCloneabilityData : SiteCloneabilityProtocol {
         case blockingCharacteristics = "blockingCharacteristics"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SiteCloneabilityData : SiteCloneabilityProtocol {
     if container.contains(.blockingCharacteristics) {
         self.blockingCharacteristics = try container.decode([SiteCloneabilityCriterionData?]?.self, forKey: .blockingCharacteristics)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SiteCloneabilityData : SiteCloneabilityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.result != nil {try container.encode(self.result, forKey: .result)}
-    if self.blockingFeatures != nil {try container.encode(self.blockingFeatures as! [SiteCloneabilityCriterionData?]?, forKey: .blockingFeatures)}
-    if self.unsupportedFeatures != nil {try container.encode(self.unsupportedFeatures as! [SiteCloneabilityCriterionData?]?, forKey: .unsupportedFeatures)}
-    if self.blockingCharacteristics != nil {try container.encode(self.blockingCharacteristics as! [SiteCloneabilityCriterionData?]?, forKey: .blockingCharacteristics)}
+    if self.result != nil { try container.encode(self.result, forKey: .result) }
+    if self.blockingFeatures != nil { try container.encode(self.blockingFeatures as! [SiteCloneabilityCriterionData?]?, forKey: .blockingFeatures) }
+    if self.unsupportedFeatures != nil { try container.encode(self.unsupportedFeatures as! [SiteCloneabilityCriterionData?]?, forKey: .unsupportedFeatures) }
+    if self.blockingCharacteristics != nil { try container.encode(self.blockingCharacteristics as! [SiteCloneabilityCriterionData?]?, forKey: .blockingCharacteristics) }
   }
 }
 

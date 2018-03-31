@@ -14,7 +14,7 @@ internal struct CloudToDevicePropertiesData : CloudToDevicePropertiesProtocol {
         case feedback = "feedback"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CloudToDevicePropertiesData : CloudToDevicePropertiesProtocol {
     if container.contains(.feedback) {
         self.feedback = try container.decode(FeedbackPropertiesData?.self, forKey: .feedback)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CloudToDevicePropertiesData : CloudToDevicePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxDeliveryCount != nil {try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount)}
-    if self.defaultTtlAsIso8601 != nil {try container.encode(self.defaultTtlAsIso8601, forKey: .defaultTtlAsIso8601)}
-    if self.feedback != nil {try container.encode(self.feedback as! FeedbackPropertiesData?, forKey: .feedback)}
+    if self.maxDeliveryCount != nil { try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount) }
+    if self.defaultTtlAsIso8601 != nil { try container.encode(self.defaultTtlAsIso8601, forKey: .defaultTtlAsIso8601) }
+    if self.feedback != nil { try container.encode(self.feedback as! FeedbackPropertiesData?, forKey: .feedback) }
   }
 }
 

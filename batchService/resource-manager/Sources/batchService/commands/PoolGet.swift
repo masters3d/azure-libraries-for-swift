@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PoolGet  {
+public protocol PoolGet {
     var headerParameters: [String: String] { get set }
     var poolId : String { get set }
     var select : String? { get set }
@@ -15,7 +15,7 @@ public protocol PoolGet  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CloudPoolProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CloudPoolProtocol?, Error?) -> Void)
 }
 
 extension Commands.Pool {
@@ -43,7 +43,7 @@ extension Commands.Pool {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{poolId}"] = String(describing: self.poolId)
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
             if self.expand != nil { queryParameters["$expand"] = String(describing: self.expand!) }
@@ -64,12 +64,12 @@ extension Commands.Pool {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CloudPoolData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CloudPoolProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CloudPoolProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CloudPoolData?, error: Error?) in
                 completionHandler(result, error)

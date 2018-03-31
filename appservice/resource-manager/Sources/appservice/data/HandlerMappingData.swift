@@ -14,7 +14,7 @@ internal struct HandlerMappingData : HandlerMappingProtocol {
         case arguments = "arguments"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HandlerMappingData : HandlerMappingProtocol {
     if container.contains(.arguments) {
         self.arguments = try container.decode(String?.self, forKey: .arguments)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct HandlerMappingData : HandlerMappingProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._extension != nil {try container.encode(self._extension, forKey: ._extension)}
-    if self.scriptProcessor != nil {try container.encode(self.scriptProcessor, forKey: .scriptProcessor)}
-    if self.arguments != nil {try container.encode(self.arguments, forKey: .arguments)}
+    if self._extension != nil { try container.encode(self._extension, forKey: ._extension) }
+    if self.scriptProcessor != nil { try container.encode(self.scriptProcessor, forKey: .scriptProcessor) }
+    if self.arguments != nil { try container.encode(self.arguments, forKey: .arguments) }
   }
 }
 

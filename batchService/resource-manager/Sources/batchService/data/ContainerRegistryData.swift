@@ -14,7 +14,7 @@ internal struct ContainerRegistryData : ContainerRegistryProtocol {
         case password = "password"
         }
 
-  public init(userName: String, password: String)  {
+  public init(userName: String, password: String) {
     self.userName = userName
     self.password = password
   }
@@ -26,7 +26,7 @@ internal struct ContainerRegistryData : ContainerRegistryProtocol {
     }
     self.userName = try container.decode(String.self, forKey: .userName)
     self.password = try container.decode(String.self, forKey: .password)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct ContainerRegistryData : ContainerRegistryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.registryServer != nil {try container.encode(self.registryServer, forKey: .registryServer)}
+    if self.registryServer != nil { try container.encode(self.registryServer, forKey: .registryServer) }
     try container.encode(self.userName, forKey: .userName)
     try container.encode(self.password, forKey: .password)
   }

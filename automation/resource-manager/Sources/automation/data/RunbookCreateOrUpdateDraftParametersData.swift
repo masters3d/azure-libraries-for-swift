@@ -10,14 +10,14 @@ internal struct RunbookCreateOrUpdateDraftParametersData : RunbookCreateOrUpdate
         enum CodingKeys: String, CodingKey {case runbookContent = "runbookContent"
         }
 
-  public init(runbookContent: String)  {
+  public init(runbookContent: String) {
     self.runbookContent = runbookContent
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.runbookContent = try container.decode(String.self, forKey: .runbookContent)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

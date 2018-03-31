@@ -16,7 +16,7 @@ internal struct ImportExportResponseData : ImportExportResponseProtocol, ProxyRe
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ImportExportResponseData : ImportExportResponseProtocol, ProxyRe
     if container.contains(.properties) {
         self.properties = try container.decode(ImportExportResponsePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ImportExportResponseData : ImportExportResponseProtocol, ProxyRe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.properties != nil {try container.encode(self.properties as! ImportExportResponsePropertiesData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.properties != nil { try container.encode(self.properties as! ImportExportResponsePropertiesData?, forKey: .properties) }
   }
 }
 

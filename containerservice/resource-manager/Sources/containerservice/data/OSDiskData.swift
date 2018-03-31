@@ -28,7 +28,7 @@ internal struct OSDiskData : OSDiskProtocol {
         case managedDisk = "managedDisk"
         }
 
-  public init(createOption: DiskCreateOptionTypesEnum)  {
+  public init(createOption: DiskCreateOptionTypesEnum) {
     self.createOption = createOption
   }
 
@@ -62,7 +62,7 @@ internal struct OSDiskData : OSDiskProtocol {
     if container.contains(.managedDisk) {
         self.managedDisk = try container.decode(ManagedDiskParametersData?.self, forKey: .managedDisk)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -72,16 +72,16 @@ internal struct OSDiskData : OSDiskProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.encryptionSettings != nil {try container.encode(self.encryptionSettings as! DiskEncryptionSettingsData?, forKey: .encryptionSettings)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.vhd != nil {try container.encode(self.vhd as! VirtualHardDiskData?, forKey: .vhd)}
-    if self.image != nil {try container.encode(self.image as! VirtualHardDiskData?, forKey: .image)}
-    if self.caching != nil {try container.encode(self.caching, forKey: .caching)}
-    if self.writeAcceleratorEnabled != nil {try container.encode(self.writeAcceleratorEnabled, forKey: .writeAcceleratorEnabled)}
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.encryptionSettings != nil { try container.encode(self.encryptionSettings as! DiskEncryptionSettingsData?, forKey: .encryptionSettings) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.vhd != nil { try container.encode(self.vhd as! VirtualHardDiskData?, forKey: .vhd) }
+    if self.image != nil { try container.encode(self.image as! VirtualHardDiskData?, forKey: .image) }
+    if self.caching != nil { try container.encode(self.caching, forKey: .caching) }
+    if self.writeAcceleratorEnabled != nil { try container.encode(self.writeAcceleratorEnabled, forKey: .writeAcceleratorEnabled) }
     try container.encode(self.createOption, forKey: .createOption)
-    if self.diskSizeGB != nil {try container.encode(self.diskSizeGB, forKey: .diskSizeGB)}
-    if self.managedDisk != nil {try container.encode(self.managedDisk as! ManagedDiskParametersData?, forKey: .managedDisk)}
+    if self.diskSizeGB != nil { try container.encode(self.diskSizeGB, forKey: .diskSizeGB) }
+    if self.managedDisk != nil { try container.encode(self.managedDisk as! ManagedDiskParametersData?, forKey: .managedDisk) }
   }
 }
 

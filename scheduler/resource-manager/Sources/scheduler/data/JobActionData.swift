@@ -22,7 +22,7 @@ internal struct JobActionData : JobActionProtocol {
         case errorAction = "errorAction"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct JobActionData : JobActionProtocol {
     if container.contains(.errorAction) {
         self.errorAction = try container.decode(JobErrorActionData?.self, forKey: .errorAction)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct JobActionData : JobActionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.request != nil {try container.encode(self.request as! HttpRequestData?, forKey: .request)}
-    if self.queueMessage != nil {try container.encode(self.queueMessage as! StorageQueueMessageData?, forKey: .queueMessage)}
-    if self.serviceBusQueueMessage != nil {try container.encode(self.serviceBusQueueMessage as! ServiceBusQueueMessageData?, forKey: .serviceBusQueueMessage)}
-    if self.serviceBusTopicMessage != nil {try container.encode(self.serviceBusTopicMessage as! ServiceBusTopicMessageData?, forKey: .serviceBusTopicMessage)}
-    if self.retryPolicy != nil {try container.encode(self.retryPolicy as! RetryPolicyData?, forKey: .retryPolicy)}
-    if self.errorAction != nil {try container.encode(self.errorAction as! JobErrorActionData?, forKey: .errorAction)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.request != nil { try container.encode(self.request as! HttpRequestData?, forKey: .request) }
+    if self.queueMessage != nil { try container.encode(self.queueMessage as! StorageQueueMessageData?, forKey: .queueMessage) }
+    if self.serviceBusQueueMessage != nil { try container.encode(self.serviceBusQueueMessage as! ServiceBusQueueMessageData?, forKey: .serviceBusQueueMessage) }
+    if self.serviceBusTopicMessage != nil { try container.encode(self.serviceBusTopicMessage as! ServiceBusTopicMessageData?, forKey: .serviceBusTopicMessage) }
+    if self.retryPolicy != nil { try container.encode(self.retryPolicy as! RetryPolicyData?, forKey: .retryPolicy) }
+    if self.errorAction != nil { try container.encode(self.errorAction as! JobErrorActionData?, forKey: .errorAction) }
   }
 }
 

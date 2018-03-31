@@ -12,7 +12,7 @@ internal struct ContainerServiceServicePrincipalProfileData : ContainerServiceSe
         case secret = "secret"
         }
 
-  public init(clientId: String, secret: String)  {
+  public init(clientId: String, secret: String) {
     self.clientId = clientId
     self.secret = secret
   }
@@ -21,7 +21,7 @@ internal struct ContainerServiceServicePrincipalProfileData : ContainerServiceSe
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientId = try container.decode(String.self, forKey: .clientId)
     self.secret = try container.decode(String.self, forKey: .secret)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

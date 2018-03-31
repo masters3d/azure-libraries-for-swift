@@ -18,7 +18,7 @@ internal struct JobRecurrenceScheduleData : JobRecurrenceScheduleProtocol {
         case monthlyOccurrences = "monthlyOccurrences"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobRecurrenceScheduleData : JobRecurrenceScheduleProtocol {
     if container.contains(.monthlyOccurrences) {
         self.monthlyOccurrences = try container.decode([JobRecurrenceScheduleMonthlyOccurrenceData?]?.self, forKey: .monthlyOccurrences)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct JobRecurrenceScheduleData : JobRecurrenceScheduleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.weekDays != nil {try container.encode(self.weekDays as! [DayOfWeekEnum?]?, forKey: .weekDays)}
-    if self.hours != nil {try container.encode(self.hours as! [Int32]?, forKey: .hours)}
-    if self.minutes != nil {try container.encode(self.minutes as! [Int32]?, forKey: .minutes)}
-    if self.monthDays != nil {try container.encode(self.monthDays as! [Int32]?, forKey: .monthDays)}
-    if self.monthlyOccurrences != nil {try container.encode(self.monthlyOccurrences as! [JobRecurrenceScheduleMonthlyOccurrenceData?]?, forKey: .monthlyOccurrences)}
+    if self.weekDays != nil { try container.encode(self.weekDays as! [DayOfWeekEnum?]?, forKey: .weekDays) }
+    if self.hours != nil { try container.encode(self.hours as! [Int32]?, forKey: .hours) }
+    if self.minutes != nil { try container.encode(self.minutes as! [Int32]?, forKey: .minutes) }
+    if self.monthDays != nil { try container.encode(self.monthDays as! [Int32]?, forKey: .monthDays) }
+    if self.monthlyOccurrences != nil { try container.encode(self.monthlyOccurrences as! [JobRecurrenceScheduleMonthlyOccurrenceData?]?, forKey: .monthlyOccurrences) }
   }
 }
 

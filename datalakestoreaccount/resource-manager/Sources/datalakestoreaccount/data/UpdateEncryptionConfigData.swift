@@ -10,7 +10,7 @@ internal struct UpdateEncryptionConfigData : UpdateEncryptionConfigProtocol {
         enum CodingKeys: String, CodingKey {case keyVaultMetaInfo = "keyVaultMetaInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdateEncryptionConfigData : UpdateEncryptionConfigProtocol {
       if container.contains(.keyVaultMetaInfo) {
         self.keyVaultMetaInfo = try container.decode(UpdateKeyVaultMetaInfoData?.self, forKey: .keyVaultMetaInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdateEncryptionConfigData : UpdateEncryptionConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyVaultMetaInfo != nil {try container.encode(self.keyVaultMetaInfo as! UpdateKeyVaultMetaInfoData?, forKey: .keyVaultMetaInfo)}
+    if self.keyVaultMetaInfo != nil { try container.encode(self.keyVaultMetaInfo as! UpdateKeyVaultMetaInfoData?, forKey: .keyVaultMetaInfo) }
   }
 }
 

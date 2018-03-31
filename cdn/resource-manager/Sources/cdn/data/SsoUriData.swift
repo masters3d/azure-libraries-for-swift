@@ -10,7 +10,7 @@ internal struct SsoUriData : SsoUriProtocol {
         enum CodingKeys: String, CodingKey {case ssoUriValue = "ssoUriValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SsoUriData : SsoUriProtocol {
       if container.contains(.ssoUriValue) {
         self.ssoUriValue = try container.decode(String?.self, forKey: .ssoUriValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SsoUriData : SsoUriProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ssoUriValue != nil {try container.encode(self.ssoUriValue, forKey: .ssoUriValue)}
+    if self.ssoUriValue != nil { try container.encode(self.ssoUriValue, forKey: .ssoUriValue) }
   }
 }
 

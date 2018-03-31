@@ -12,7 +12,7 @@ internal struct BusinessIdentityData : BusinessIdentityProtocol {
         case value = "value"
         }
 
-  public init(qualifier: String, value: String)  {
+  public init(qualifier: String, value: String) {
     self.qualifier = qualifier
     self.value = value
   }
@@ -21,7 +21,7 @@ internal struct BusinessIdentityData : BusinessIdentityProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.qualifier = try container.decode(String.self, forKey: .qualifier)
     self.value = try container.decode(String.self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

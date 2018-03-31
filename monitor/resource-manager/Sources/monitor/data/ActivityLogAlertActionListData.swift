@@ -10,7 +10,7 @@ internal struct ActivityLogAlertActionListData : ActivityLogAlertActionListProto
         enum CodingKeys: String, CodingKey {case actionGroups = "actionGroups"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ActivityLogAlertActionListData : ActivityLogAlertActionListProto
       if container.contains(.actionGroups) {
         self.actionGroups = try container.decode([ActivityLogAlertActionGroupData?]?.self, forKey: .actionGroups)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ActivityLogAlertActionListData : ActivityLogAlertActionListProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.actionGroups != nil {try container.encode(self.actionGroups as! [ActivityLogAlertActionGroupData?]?, forKey: .actionGroups)}
+    if self.actionGroups != nil { try container.encode(self.actionGroups as! [ActivityLogAlertActionGroupData?]?, forKey: .actionGroups) }
   }
 }
 

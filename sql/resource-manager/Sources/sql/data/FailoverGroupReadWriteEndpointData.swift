@@ -12,7 +12,7 @@ internal struct FailoverGroupReadWriteEndpointData : FailoverGroupReadWriteEndpo
         case failoverWithDataLossGracePeriodMinutes = "failoverWithDataLossGracePeriodMinutes"
         }
 
-  public init(failoverPolicy: ReadWriteEndpointFailoverPolicyEnum)  {
+  public init(failoverPolicy: ReadWriteEndpointFailoverPolicyEnum) {
     self.failoverPolicy = failoverPolicy
   }
 
@@ -22,7 +22,7 @@ internal struct FailoverGroupReadWriteEndpointData : FailoverGroupReadWriteEndpo
     if container.contains(.failoverWithDataLossGracePeriodMinutes) {
         self.failoverWithDataLossGracePeriodMinutes = try container.decode(Int32?.self, forKey: .failoverWithDataLossGracePeriodMinutes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct FailoverGroupReadWriteEndpointData : FailoverGroupReadWriteEndpo
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.failoverPolicy, forKey: .failoverPolicy)
-    if self.failoverWithDataLossGracePeriodMinutes != nil {try container.encode(self.failoverWithDataLossGracePeriodMinutes, forKey: .failoverWithDataLossGracePeriodMinutes)}
+    if self.failoverWithDataLossGracePeriodMinutes != nil { try container.encode(self.failoverWithDataLossGracePeriodMinutes, forKey: .failoverWithDataLossGracePeriodMinutes) }
   }
 }
 

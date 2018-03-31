@@ -16,7 +16,7 @@ internal struct DscConfigurationParameterData : DscConfigurationParameterProtoco
         case defaultValue = "defaultValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct DscConfigurationParameterData : DscConfigurationParameterProtoco
     if container.contains(.defaultValue) {
         self.defaultValue = try container.decode(String?.self, forKey: .defaultValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct DscConfigurationParameterData : DscConfigurationParameterProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.isMandatory != nil {try container.encode(self.isMandatory, forKey: .isMandatory)}
-    if self.position != nil {try container.encode(self.position, forKey: .position)}
-    if self.defaultValue != nil {try container.encode(self.defaultValue, forKey: .defaultValue)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.isMandatory != nil { try container.encode(self.isMandatory, forKey: .isMandatory) }
+    if self.position != nil { try container.encode(self.position, forKey: .position) }
+    if self.defaultValue != nil { try container.encode(self.defaultValue, forKey: .defaultValue) }
   }
 }
 

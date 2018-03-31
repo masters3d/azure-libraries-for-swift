@@ -20,7 +20,7 @@ internal struct BMSContainerQueryObjectData : BMSContainerQueryObjectProtocol {
         case friendlyName = "friendlyName"
         }
 
-  public init(backupManagementType: BackupManagementTypeEnum)  {
+  public init(backupManagementType: BackupManagementTypeEnum) {
     self.backupManagementType = backupManagementType
   }
 
@@ -42,7 +42,7 @@ internal struct BMSContainerQueryObjectData : BMSContainerQueryObjectProtocol {
     if container.contains(.friendlyName) {
         self.friendlyName = try container.decode(String?.self, forKey: .friendlyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,11 +53,11 @@ internal struct BMSContainerQueryObjectData : BMSContainerQueryObjectProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.backupManagementType, forKey: .backupManagementType)
-    if self.containerType != nil {try container.encode(self.containerType, forKey: .containerType)}
-    if self.backupEngineName != nil {try container.encode(self.backupEngineName, forKey: .backupEngineName)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
+    if self.containerType != nil { try container.encode(self.containerType, forKey: .containerType) }
+    if self.backupEngineName != nil { try container.encode(self.backupEngineName, forKey: .backupEngineName) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
   }
 }
 

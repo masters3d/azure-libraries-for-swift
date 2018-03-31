@@ -20,7 +20,7 @@ internal struct AzureResourceProtectionIntentData : AzureResourceProtectionInten
         case friendlyName = "friendlyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct AzureResourceProtectionIntentData : AzureResourceProtectionInten
     if container.contains(.friendlyName) {
         self.friendlyName = try container.decode(String?.self, forKey: .friendlyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct AzureResourceProtectionIntentData : AzureResourceProtectionInten
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.itemId != nil {try container.encode(self.itemId, forKey: .itemId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.itemId != nil { try container.encode(self.itemId, forKey: .itemId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
   }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachineScaleSetExtensionsCreateOrUpdate  {
+public protocol VirtualMachineScaleSetExtensionsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var vmScaleSetName : String { get set }
     var vmssExtensionName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var extensionParameters :  VirtualMachineScaleSetExtensionProtocol?  { get set }
+    var extensionParameters :  VirtualMachineScaleSetExtensionProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualMachineScaleSetExtensionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualMachineScaleSetExtensionProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachineScaleSetExtensions {
@@ -37,7 +37,7 @@ extension Commands.VirtualMachineScaleSetExtensions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{vmScaleSetName}"] = String(describing: self.vmScaleSetName)
             self.pathParameters["{vmssExtensionName}"] = String(describing: self.vmssExtensionName)
@@ -61,12 +61,12 @@ extension Commands.VirtualMachineScaleSetExtensions {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualMachineScaleSetExtensionData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualMachineScaleSetExtensionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualMachineScaleSetExtensionProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: VirtualMachineScaleSetExtensionData?, error: Error?) in
                 completionHandler(result, error)

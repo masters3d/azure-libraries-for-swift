@@ -18,7 +18,7 @@ internal struct DiagnosticsStorageAccountConfigData : DiagnosticsStorageAccountC
         case tableEndpoint = "tableEndpoint"
         }
 
-  public init(storageAccountName: String, protectedAccountKeyName: String, blobEndpoint: String, queueEndpoint: String, tableEndpoint: String)  {
+  public init(storageAccountName: String, protectedAccountKeyName: String, blobEndpoint: String, queueEndpoint: String, tableEndpoint: String) {
     self.storageAccountName = storageAccountName
     self.protectedAccountKeyName = protectedAccountKeyName
     self.blobEndpoint = blobEndpoint
@@ -33,7 +33,7 @@ internal struct DiagnosticsStorageAccountConfigData : DiagnosticsStorageAccountC
     self.blobEndpoint = try container.decode(String.self, forKey: .blobEndpoint)
     self.queueEndpoint = try container.decode(String.self, forKey: .queueEndpoint)
     self.tableEndpoint = try container.decode(String.self, forKey: .tableEndpoint)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol InputsUpdate  {
+public protocol InputsUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,9 +8,9 @@ public protocol InputsUpdate  {
     var inputName : String { get set }
     var apiVersion : String { get set }
     var ifMatch : String? { get set }
-    var input :  InputProtocol?  { get set }
+    var input :  InputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (InputProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (InputProtocol?, Error?) -> Void)
 }
 
 extension Commands.Inputs {
@@ -38,7 +38,7 @@ extension Commands.Inputs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{jobName}"] = String(describing: self.jobName)
@@ -63,12 +63,12 @@ extension Commands.Inputs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(InputData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (InputProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (InputProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: InputData?, error: Error?) in
                 completionHandler(result, error)

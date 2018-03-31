@@ -28,7 +28,7 @@ internal struct VirtualMachinePropertiesData : VirtualMachinePropertiesProtocol 
         case vmId = "vmId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct VirtualMachinePropertiesData : VirtualMachinePropertiesProtocol 
     if container.contains(.vmId) {
         self.vmId = try container.decode(String?.self, forKey: .vmId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct VirtualMachinePropertiesData : VirtualMachinePropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hardwareProfile != nil {try container.encode(self.hardwareProfile as! HardwareProfileData?, forKey: .hardwareProfile)}
-    if self.storageProfile != nil {try container.encode(self.storageProfile as! StorageProfileData?, forKey: .storageProfile)}
-    if self.osProfile != nil {try container.encode(self.osProfile as! OSProfileData?, forKey: .osProfile)}
-    if self.networkProfile != nil {try container.encode(self.networkProfile as! NetworkProfileData?, forKey: .networkProfile)}
-    if self.diagnosticsProfile != nil {try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile)}
-    if self.availabilitySet != nil {try container.encode(self.availabilitySet as! SubResourceData?, forKey: .availabilitySet)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.instanceView != nil {try container.encode(self.instanceView as! VirtualMachineInstanceViewData?, forKey: .instanceView)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
-    if self.vmId != nil {try container.encode(self.vmId, forKey: .vmId)}
+    if self.hardwareProfile != nil { try container.encode(self.hardwareProfile as! HardwareProfileData?, forKey: .hardwareProfile) }
+    if self.storageProfile != nil { try container.encode(self.storageProfile as! StorageProfileData?, forKey: .storageProfile) }
+    if self.osProfile != nil { try container.encode(self.osProfile as! OSProfileData?, forKey: .osProfile) }
+    if self.networkProfile != nil { try container.encode(self.networkProfile as! NetworkProfileData?, forKey: .networkProfile) }
+    if self.diagnosticsProfile != nil { try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile) }
+    if self.availabilitySet != nil { try container.encode(self.availabilitySet as! SubResourceData?, forKey: .availabilitySet) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.instanceView != nil { try container.encode(self.instanceView as! VirtualMachineInstanceViewData?, forKey: .instanceView) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
+    if self.vmId != nil { try container.encode(self.vmId, forKey: .vmId) }
   }
 }
 

@@ -38,7 +38,7 @@ internal struct EdifactEnvelopeOverrideData : EdifactEnvelopeOverrideProtocol {
         case applicationPassword = "applicationPassword"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct EdifactEnvelopeOverrideData : EdifactEnvelopeOverrideProtocol {
     if container.contains(.applicationPassword) {
         self.applicationPassword = try container.decode(String?.self, forKey: .applicationPassword)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,21 +98,21 @@ internal struct EdifactEnvelopeOverrideData : EdifactEnvelopeOverrideProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.messageId != nil {try container.encode(self.messageId, forKey: .messageId)}
-    if self.messageVersion != nil {try container.encode(self.messageVersion, forKey: .messageVersion)}
-    if self.messageRelease != nil {try container.encode(self.messageRelease, forKey: .messageRelease)}
-    if self.messageAssociationAssignedCode != nil {try container.encode(self.messageAssociationAssignedCode, forKey: .messageAssociationAssignedCode)}
-    if self.targetNamespace != nil {try container.encode(self.targetNamespace, forKey: .targetNamespace)}
-    if self.functionalGroupId != nil {try container.encode(self.functionalGroupId, forKey: .functionalGroupId)}
-    if self.senderApplicationQualifier != nil {try container.encode(self.senderApplicationQualifier, forKey: .senderApplicationQualifier)}
-    if self.senderApplicationId != nil {try container.encode(self.senderApplicationId, forKey: .senderApplicationId)}
-    if self.receiverApplicationQualifier != nil {try container.encode(self.receiverApplicationQualifier, forKey: .receiverApplicationQualifier)}
-    if self.receiverApplicationId != nil {try container.encode(self.receiverApplicationId, forKey: .receiverApplicationId)}
-    if self.controllingAgencyCode != nil {try container.encode(self.controllingAgencyCode, forKey: .controllingAgencyCode)}
-    if self.groupHeaderMessageVersion != nil {try container.encode(self.groupHeaderMessageVersion, forKey: .groupHeaderMessageVersion)}
-    if self.groupHeaderMessageRelease != nil {try container.encode(self.groupHeaderMessageRelease, forKey: .groupHeaderMessageRelease)}
-    if self.associationAssignedCode != nil {try container.encode(self.associationAssignedCode, forKey: .associationAssignedCode)}
-    if self.applicationPassword != nil {try container.encode(self.applicationPassword, forKey: .applicationPassword)}
+    if self.messageId != nil { try container.encode(self.messageId, forKey: .messageId) }
+    if self.messageVersion != nil { try container.encode(self.messageVersion, forKey: .messageVersion) }
+    if self.messageRelease != nil { try container.encode(self.messageRelease, forKey: .messageRelease) }
+    if self.messageAssociationAssignedCode != nil { try container.encode(self.messageAssociationAssignedCode, forKey: .messageAssociationAssignedCode) }
+    if self.targetNamespace != nil { try container.encode(self.targetNamespace, forKey: .targetNamespace) }
+    if self.functionalGroupId != nil { try container.encode(self.functionalGroupId, forKey: .functionalGroupId) }
+    if self.senderApplicationQualifier != nil { try container.encode(self.senderApplicationQualifier, forKey: .senderApplicationQualifier) }
+    if self.senderApplicationId != nil { try container.encode(self.senderApplicationId, forKey: .senderApplicationId) }
+    if self.receiverApplicationQualifier != nil { try container.encode(self.receiverApplicationQualifier, forKey: .receiverApplicationQualifier) }
+    if self.receiverApplicationId != nil { try container.encode(self.receiverApplicationId, forKey: .receiverApplicationId) }
+    if self.controllingAgencyCode != nil { try container.encode(self.controllingAgencyCode, forKey: .controllingAgencyCode) }
+    if self.groupHeaderMessageVersion != nil { try container.encode(self.groupHeaderMessageVersion, forKey: .groupHeaderMessageVersion) }
+    if self.groupHeaderMessageRelease != nil { try container.encode(self.groupHeaderMessageRelease, forKey: .groupHeaderMessageRelease) }
+    if self.associationAssignedCode != nil { try container.encode(self.associationAssignedCode, forKey: .associationAssignedCode) }
+    if self.applicationPassword != nil { try container.encode(self.applicationPassword, forKey: .applicationPassword) }
   }
 }
 

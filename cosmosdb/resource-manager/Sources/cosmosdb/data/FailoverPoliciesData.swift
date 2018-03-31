@@ -10,14 +10,14 @@ internal struct FailoverPoliciesData : FailoverPoliciesProtocol {
         enum CodingKeys: String, CodingKey {case failoverPolicies = "failoverPolicies"
         }
 
-  public init(failoverPolicies: [FailoverPolicyProtocol])  {
+  public init(failoverPolicies: [FailoverPolicyProtocol]) {
     self.failoverPolicies = failoverPolicies
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.failoverPolicies = try container.decode([FailoverPolicyData].self, forKey: .failoverPolicies)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationDnsSettingsData : Virt
         enum CodingKeys: String, CodingKey {case dnsServers = "dnsServers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationDnsSettingsData : Virt
       if container.contains(.dnsServers) {
         self.dnsServers = try container.decode([String]?.self, forKey: .dnsServers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationDnsSettingsData : Virt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dnsServers != nil {try container.encode(self.dnsServers as! [String]?, forKey: .dnsServers)}
+    if self.dnsServers != nil { try container.encode(self.dnsServers as! [String]?, forKey: .dnsServers) }
   }
 }
 

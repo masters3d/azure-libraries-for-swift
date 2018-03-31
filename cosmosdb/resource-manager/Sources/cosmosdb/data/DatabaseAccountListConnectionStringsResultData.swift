@@ -10,7 +10,7 @@ internal struct DatabaseAccountListConnectionStringsResultData : DatabaseAccount
         enum CodingKeys: String, CodingKey {case connectionStrings = "connectionStrings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DatabaseAccountListConnectionStringsResultData : DatabaseAccount
       if container.contains(.connectionStrings) {
         self.connectionStrings = try container.decode([DatabaseAccountConnectionStringData?]?.self, forKey: .connectionStrings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DatabaseAccountListConnectionStringsResultData : DatabaseAccount
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectionStrings != nil {try container.encode(self.connectionStrings as! [DatabaseAccountConnectionStringData?]?, forKey: .connectionStrings)}
+    if self.connectionStrings != nil { try container.encode(self.connectionStrings as! [DatabaseAccountConnectionStringData?]?, forKey: .connectionStrings) }
   }
 }
 

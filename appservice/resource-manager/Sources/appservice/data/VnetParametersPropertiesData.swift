@@ -14,7 +14,7 @@ internal struct VnetParametersPropertiesData : VnetParametersPropertiesProtocol 
         case vnetSubnetName = "vnetSubnetName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VnetParametersPropertiesData : VnetParametersPropertiesProtocol 
     if container.contains(.vnetSubnetName) {
         self.vnetSubnetName = try container.decode(String?.self, forKey: .vnetSubnetName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VnetParametersPropertiesData : VnetParametersPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vnetResourceGroup != nil {try container.encode(self.vnetResourceGroup, forKey: .vnetResourceGroup)}
-    if self.vnetName != nil {try container.encode(self.vnetName, forKey: .vnetName)}
-    if self.vnetSubnetName != nil {try container.encode(self.vnetSubnetName, forKey: .vnetSubnetName)}
+    if self.vnetResourceGroup != nil { try container.encode(self.vnetResourceGroup, forKey: .vnetResourceGroup) }
+    if self.vnetName != nil { try container.encode(self.vnetName, forKey: .vnetName) }
+    if self.vnetSubnetName != nil { try container.encode(self.vnetSubnetName, forKey: .vnetSubnetName) }
   }
 }
 

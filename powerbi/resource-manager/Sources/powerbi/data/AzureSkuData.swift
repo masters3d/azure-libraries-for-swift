@@ -12,7 +12,7 @@ internal struct AzureSkuData : AzureSkuProtocol {
         case tier = "tier"
         }
 
-  public init(name: String, tier: String)  {
+  public init(name: String, tier: String) {
     self.name = name
     self.tier = tier
   }
@@ -21,7 +21,7 @@ internal struct AzureSkuData : AzureSkuProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
     self.tier = try container.decode(String.self, forKey: .tier)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

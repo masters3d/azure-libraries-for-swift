@@ -12,7 +12,7 @@ internal struct ApplicationPackageReferenceData : ApplicationPackageReferencePro
         case version = "version"
         }
 
-  public init(id: String)  {
+  public init(id: String) {
     self.id = id
   }
 
@@ -22,7 +22,7 @@ internal struct ApplicationPackageReferenceData : ApplicationPackageReferencePro
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ApplicationPackageReferenceData : ApplicationPackageReferencePro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ContainerCreateHeadersData : ContainerCreateHeadersProtocol {
         case date = "Date"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -40,11 +40,11 @@ internal struct ContainerCreateHeadersData : ContainerCreateHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
   }
 }
 

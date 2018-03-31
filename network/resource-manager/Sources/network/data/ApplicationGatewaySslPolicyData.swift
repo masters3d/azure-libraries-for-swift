@@ -18,7 +18,7 @@ internal struct ApplicationGatewaySslPolicyData : ApplicationGatewaySslPolicyPro
         case minProtocolVersion = "minProtocolVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApplicationGatewaySslPolicyData : ApplicationGatewaySslPolicyPro
     if container.contains(.minProtocolVersion) {
         self.minProtocolVersion = try container.decode(ApplicationGatewaySslProtocolEnum?.self, forKey: .minProtocolVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApplicationGatewaySslPolicyData : ApplicationGatewaySslPolicyPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.disabledSslProtocols != nil {try container.encode(self.disabledSslProtocols as! [ApplicationGatewaySslProtocolEnum?]?, forKey: .disabledSslProtocols)}
-    if self.policyType != nil {try container.encode(self.policyType, forKey: .policyType)}
-    if self.policyName != nil {try container.encode(self.policyName, forKey: .policyName)}
-    if self.cipherSuites != nil {try container.encode(self.cipherSuites as! [ApplicationGatewaySslCipherSuiteEnum?]?, forKey: .cipherSuites)}
-    if self.minProtocolVersion != nil {try container.encode(self.minProtocolVersion, forKey: .minProtocolVersion)}
+    if self.disabledSslProtocols != nil { try container.encode(self.disabledSslProtocols as! [ApplicationGatewaySslProtocolEnum?]?, forKey: .disabledSslProtocols) }
+    if self.policyType != nil { try container.encode(self.policyType, forKey: .policyType) }
+    if self.policyName != nil { try container.encode(self.policyName, forKey: .policyName) }
+    if self.cipherSuites != nil { try container.encode(self.cipherSuites as! [ApplicationGatewaySslCipherSuiteEnum?]?, forKey: .cipherSuites) }
+    if self.minProtocolVersion != nil { try container.encode(self.minProtocolVersion, forKey: .minProtocolVersion) }
   }
 }
 

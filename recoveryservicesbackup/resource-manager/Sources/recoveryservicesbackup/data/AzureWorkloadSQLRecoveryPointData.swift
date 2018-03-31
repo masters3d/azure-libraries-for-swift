@@ -14,7 +14,7 @@ internal struct AzureWorkloadSQLRecoveryPointData : AzureWorkloadSQLRecoveryPoin
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureWorkloadSQLRecoveryPointData : AzureWorkloadSQLRecoveryPoin
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureWorkloadSQLRecoveryPointExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct AzureWorkloadSQLRecoveryPointData : AzureWorkloadSQLRecoveryPoin
     if self.recoveryPointTimeInUTC != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTimeInUTC!, format: .dateTime), forKey: .recoveryPointTimeInUTC)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureWorkloadSQLRecoveryPointExtendedInfoData?, forKey: .extendedInfo)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureWorkloadSQLRecoveryPointExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

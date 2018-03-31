@@ -28,7 +28,7 @@ internal struct IotHubDescriptionData : IotHubDescriptionProtocol, ResourceProto
         case sku = "sku"
         }
 
-  public init(location: String, subscriptionid: String, resourcegroup: String, sku: IotHubSkuInfoProtocol)  {
+  public init(location: String, subscriptionid: String, resourcegroup: String, sku: IotHubSkuInfoProtocol) {
     self.location = location
     self.subscriptionid = subscriptionid
     self.resourcegroup = resourcegroup
@@ -59,7 +59,7 @@ internal struct IotHubDescriptionData : IotHubDescriptionProtocol, ResourceProto
         self.properties = try container.decode(IotHubPropertiesData?.self, forKey: .properties)
     }
     self.sku = try container.decode(IotHubSkuInfoData.self, forKey: .sku)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,15 +69,15 @@ internal struct IotHubDescriptionData : IotHubDescriptionProtocol, ResourceProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.subscriptionid, forKey: .subscriptionid)
     try container.encode(self.resourcegroup, forKey: .resourcegroup)
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
-    if self.properties != nil {try container.encode(self.properties as! IotHubPropertiesData?, forKey: .properties)}
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
+    if self.properties != nil { try container.encode(self.properties as! IotHubPropertiesData?, forKey: .properties) }
     try container.encode(self.sku as! IotHubSkuInfoData, forKey: .sku)
   }
 }

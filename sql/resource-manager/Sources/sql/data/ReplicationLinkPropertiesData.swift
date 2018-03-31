@@ -28,7 +28,7 @@ internal struct ReplicationLinkPropertiesData : ReplicationLinkPropertiesProtoco
         case replicationState = "replicationState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ReplicationLinkPropertiesData : ReplicationLinkPropertiesProtoco
     if container.contains(.replicationState) {
         self.replicationState = try container.decode(ReplicationStateEnum?.self, forKey: .replicationState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,18 +73,18 @@ internal struct ReplicationLinkPropertiesData : ReplicationLinkPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isTerminationAllowed != nil {try container.encode(self.isTerminationAllowed, forKey: .isTerminationAllowed)}
-    if self.replicationMode != nil {try container.encode(self.replicationMode, forKey: .replicationMode)}
-    if self.partnerServer != nil {try container.encode(self.partnerServer, forKey: .partnerServer)}
-    if self.partnerDatabase != nil {try container.encode(self.partnerDatabase, forKey: .partnerDatabase)}
-    if self.partnerLocation != nil {try container.encode(self.partnerLocation, forKey: .partnerLocation)}
-    if self.role != nil {try container.encode(self.role, forKey: .role)}
-    if self.partnerRole != nil {try container.encode(self.partnerRole, forKey: .partnerRole)}
+    if self.isTerminationAllowed != nil { try container.encode(self.isTerminationAllowed, forKey: .isTerminationAllowed) }
+    if self.replicationMode != nil { try container.encode(self.replicationMode, forKey: .replicationMode) }
+    if self.partnerServer != nil { try container.encode(self.partnerServer, forKey: .partnerServer) }
+    if self.partnerDatabase != nil { try container.encode(self.partnerDatabase, forKey: .partnerDatabase) }
+    if self.partnerLocation != nil { try container.encode(self.partnerLocation, forKey: .partnerLocation) }
+    if self.role != nil { try container.encode(self.role, forKey: .role) }
+    if self.partnerRole != nil { try container.encode(self.partnerRole, forKey: .partnerRole) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.percentComplete != nil {try container.encode(self.percentComplete, forKey: .percentComplete)}
-    if self.replicationState != nil {try container.encode(self.replicationState, forKey: .replicationState)}
+    if self.percentComplete != nil { try container.encode(self.percentComplete, forKey: .percentComplete) }
+    if self.replicationState != nil { try container.encode(self.replicationState, forKey: .replicationState) }
   }
 }
 

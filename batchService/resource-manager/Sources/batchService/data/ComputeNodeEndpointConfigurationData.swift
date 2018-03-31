@@ -10,14 +10,14 @@ internal struct ComputeNodeEndpointConfigurationData : ComputeNodeEndpointConfig
         enum CodingKeys: String, CodingKey {case inboundEndpoints = "inboundEndpoints"
         }
 
-  public init(inboundEndpoints: [InboundEndpointProtocol])  {
+  public init(inboundEndpoints: [InboundEndpointProtocol]) {
     self.inboundEndpoints = inboundEndpoints
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inboundEndpoints = try container.decode([InboundEndpointData].self, forKey: .inboundEndpoints)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

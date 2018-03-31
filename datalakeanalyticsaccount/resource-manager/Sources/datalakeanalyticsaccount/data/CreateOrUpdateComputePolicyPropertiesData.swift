@@ -16,7 +16,7 @@ internal struct CreateOrUpdateComputePolicyPropertiesData : CreateOrUpdateComput
         case minPriorityPerJob = "minPriorityPerJob"
         }
 
-  public init(objectId: String, objectType: AADObjectTypeEnum)  {
+  public init(objectId: String, objectType: AADObjectTypeEnum) {
     self.objectId = objectId
     self.objectType = objectType
   }
@@ -31,7 +31,7 @@ internal struct CreateOrUpdateComputePolicyPropertiesData : CreateOrUpdateComput
     if container.contains(.minPriorityPerJob) {
         self.minPriorityPerJob = try container.decode(Int32?.self, forKey: .minPriorityPerJob)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct CreateOrUpdateComputePolicyPropertiesData : CreateOrUpdateComput
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.objectId, forKey: .objectId)
     try container.encode(self.objectType, forKey: .objectType)
-    if self.maxDegreeOfParallelismPerJob != nil {try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob)}
-    if self.minPriorityPerJob != nil {try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob)}
+    if self.maxDegreeOfParallelismPerJob != nil { try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob) }
+    if self.minPriorityPerJob != nil { try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob) }
   }
 }
 

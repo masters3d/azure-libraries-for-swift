@@ -14,7 +14,7 @@ internal struct GatewayDetailsData : GatewayDetailsProtocol {
         case dmtsClusterUri = "dmtsClusterUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct GatewayDetailsData : GatewayDetailsProtocol {
     if container.contains(.dmtsClusterUri) {
         self.dmtsClusterUri = try container.decode(String?.self, forKey: .dmtsClusterUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct GatewayDetailsData : GatewayDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.gatewayResourceId != nil {try container.encode(self.gatewayResourceId, forKey: .gatewayResourceId)}
-    if self.gatewayObjectId != nil {try container.encode(self.gatewayObjectId, forKey: .gatewayObjectId)}
-    if self.dmtsClusterUri != nil {try container.encode(self.dmtsClusterUri, forKey: .dmtsClusterUri)}
+    if self.gatewayResourceId != nil { try container.encode(self.gatewayResourceId, forKey: .gatewayResourceId) }
+    if self.gatewayObjectId != nil { try container.encode(self.gatewayObjectId, forKey: .gatewayObjectId) }
+    if self.dmtsClusterUri != nil { try container.encode(self.dmtsClusterUri, forKey: .dmtsClusterUri) }
   }
 }
 

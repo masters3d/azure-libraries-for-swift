@@ -16,7 +16,7 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
         case version = "version"
         }
 
-  public init(publisher: String, offer: String, sku: String)  {
+  public init(publisher: String, offer: String, sku: String) {
     self.publisher = publisher
     self.offer = offer
     self.sku = sku
@@ -30,7 +30,7 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
     try container.encode(self.publisher, forKey: .publisher)
     try container.encode(self.offer, forKey: .offer)
     try container.encode(self.sku, forKey: .sku)
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct RecoveryPlanHyperVReplicaAzureFailbackInputData : RecoveryPlanHy
         case recoveryVmCreationOption = "recoveryVmCreationOption"
         }
 
-  public init(dataSyncOption: DataSyncStatusEnum, recoveryVmCreationOption: AlternateLocationRecoveryOptionEnum)  {
+  public init(dataSyncOption: DataSyncStatusEnum, recoveryVmCreationOption: AlternateLocationRecoveryOptionEnum) {
     self.dataSyncOption = dataSyncOption
     self.recoveryVmCreationOption = recoveryVmCreationOption
   }
@@ -21,7 +21,7 @@ internal struct RecoveryPlanHyperVReplicaAzureFailbackInputData : RecoveryPlanHy
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.dataSyncOption = try container.decode(DataSyncStatusEnum.self, forKey: .dataSyncOption)
     self.recoveryVmCreationOption = try container.decode(AlternateLocationRecoveryOptionEnum.self, forKey: .recoveryVmCreationOption)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

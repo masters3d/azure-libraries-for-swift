@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetVMInstanceViewData : VirtualMachineScaleSe
         case placementGroupId = "placementGroupId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct VirtualMachineScaleSetVMInstanceViewData : VirtualMachineScaleSe
     if container.contains(.placementGroupId) {
         self.placementGroupId = try container.decode(String?.self, forKey: .placementGroupId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct VirtualMachineScaleSetVMInstanceViewData : VirtualMachineScaleSe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.platformUpdateDomain != nil {try container.encode(self.platformUpdateDomain, forKey: .platformUpdateDomain)}
-    if self.platformFaultDomain != nil {try container.encode(self.platformFaultDomain, forKey: .platformFaultDomain)}
-    if self.rdpThumbPrint != nil {try container.encode(self.rdpThumbPrint, forKey: .rdpThumbPrint)}
-    if self.vmAgent != nil {try container.encode(self.vmAgent as! VirtualMachineAgentInstanceViewData?, forKey: .vmAgent)}
-    if self.disks != nil {try container.encode(self.disks as! [DiskInstanceViewData?]?, forKey: .disks)}
-    if self.extensions != nil {try container.encode(self.extensions as! [VirtualMachineExtensionInstanceViewData?]?, forKey: .extensions)}
-    if self.vmHealth != nil {try container.encode(self.vmHealth as! VirtualMachineHealthStatusData?, forKey: .vmHealth)}
-    if self.bootDiagnostics != nil {try container.encode(self.bootDiagnostics as! BootDiagnosticsInstanceViewData?, forKey: .bootDiagnostics)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
-    if self.placementGroupId != nil {try container.encode(self.placementGroupId, forKey: .placementGroupId)}
+    if self.platformUpdateDomain != nil { try container.encode(self.platformUpdateDomain, forKey: .platformUpdateDomain) }
+    if self.platformFaultDomain != nil { try container.encode(self.platformFaultDomain, forKey: .platformFaultDomain) }
+    if self.rdpThumbPrint != nil { try container.encode(self.rdpThumbPrint, forKey: .rdpThumbPrint) }
+    if self.vmAgent != nil { try container.encode(self.vmAgent as! VirtualMachineAgentInstanceViewData?, forKey: .vmAgent) }
+    if self.disks != nil { try container.encode(self.disks as! [DiskInstanceViewData?]?, forKey: .disks) }
+    if self.extensions != nil { try container.encode(self.extensions as! [VirtualMachineExtensionInstanceViewData?]?, forKey: .extensions) }
+    if self.vmHealth != nil { try container.encode(self.vmHealth as! VirtualMachineHealthStatusData?, forKey: .vmHealth) }
+    if self.bootDiagnostics != nil { try container.encode(self.bootDiagnostics as! BootDiagnosticsInstanceViewData?, forKey: .bootDiagnostics) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
+    if self.placementGroupId != nil { try container.encode(self.placementGroupId, forKey: .placementGroupId) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RecommendationsGetRuleDetailsByWebApp  {
+public protocol RecommendationsGetRuleDetailsByWebApp {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var siteName : String { get set }
@@ -10,7 +10,7 @@ public protocol RecommendationsGetRuleDetailsByWebApp  {
     var recommendationId : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RecommendationRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RecommendationRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.Recommendations {
@@ -36,7 +36,7 @@ extension Commands.Recommendations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{siteName}"] = String(describing: self.siteName)
             self.pathParameters["{name}"] = String(describing: self.name)
@@ -52,12 +52,12 @@ extension Commands.Recommendations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RecommendationRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RecommendationRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RecommendationRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RecommendationRuleData?, error: Error?) in
                 completionHandler(result, error)

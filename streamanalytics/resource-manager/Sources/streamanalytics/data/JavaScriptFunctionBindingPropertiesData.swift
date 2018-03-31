@@ -10,7 +10,7 @@ internal struct JavaScriptFunctionBindingPropertiesData : JavaScriptFunctionBind
         enum CodingKeys: String, CodingKey {case script = "script"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct JavaScriptFunctionBindingPropertiesData : JavaScriptFunctionBind
       if container.contains(.script) {
         self.script = try container.decode(String?.self, forKey: .script)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct JavaScriptFunctionBindingPropertiesData : JavaScriptFunctionBind
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.script != nil {try container.encode(self.script, forKey: .script)}
+    if self.script != nil { try container.encode(self.script, forKey: .script) }
   }
 }
 

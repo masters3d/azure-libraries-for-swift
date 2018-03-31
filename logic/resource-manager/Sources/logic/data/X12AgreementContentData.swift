@@ -12,7 +12,7 @@ internal struct X12AgreementContentData : X12AgreementContentProtocol {
         case sendAgreement = "sendAgreement"
         }
 
-  public init(receiveAgreement: X12OneWayAgreementProtocol, sendAgreement: X12OneWayAgreementProtocol)  {
+  public init(receiveAgreement: X12OneWayAgreementProtocol, sendAgreement: X12OneWayAgreementProtocol) {
     self.receiveAgreement = receiveAgreement
     self.sendAgreement = sendAgreement
   }
@@ -21,7 +21,7 @@ internal struct X12AgreementContentData : X12AgreementContentProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.receiveAgreement = try container.decode(X12OneWayAgreementData.self, forKey: .receiveAgreement)
     self.sendAgreement = try container.decode(X12OneWayAgreementData.self, forKey: .sendAgreement)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

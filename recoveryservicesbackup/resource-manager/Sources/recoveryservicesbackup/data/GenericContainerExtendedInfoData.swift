@@ -14,7 +14,7 @@ internal struct GenericContainerExtendedInfoData : GenericContainerExtendedInfoP
         case serviceEndpoints = "serviceEndpoints"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct GenericContainerExtendedInfoData : GenericContainerExtendedInfoP
     if container.contains(.serviceEndpoints) {
         self.serviceEndpoints = try container.decode([String:String]?.self, forKey: .serviceEndpoints)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct GenericContainerExtendedInfoData : GenericContainerExtendedInfoP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.rawCertData != nil {try container.encode(self.rawCertData, forKey: .rawCertData)}
-    if self.containerIdentityInfo != nil {try container.encode(self.containerIdentityInfo as! ContainerIdentityInfoData?, forKey: .containerIdentityInfo)}
-    if self.serviceEndpoints != nil {try container.encode(self.serviceEndpoints, forKey: .serviceEndpoints)}
+    if self.rawCertData != nil { try container.encode(self.rawCertData, forKey: .rawCertData) }
+    if self.containerIdentityInfo != nil { try container.encode(self.containerIdentityInfo as! ContainerIdentityInfoData?, forKey: .containerIdentityInfo) }
+    if self.serviceEndpoints != nil { try container.encode(self.serviceEndpoints, forKey: .serviceEndpoints) }
   }
 }
 

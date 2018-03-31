@@ -30,7 +30,7 @@ internal struct TaskStatisticsData : TaskStatisticsProtocol {
         case waitTime = "waitTime"
         }
 
-  public init(url: String, startTime: Date, lastUpdateTime: Date, userCPUTime: String, kernelCPUTime: String, wallClockTime: String, readIOps: Int64, writeIOps: Int64, readIOGiB: Double, writeIOGiB: Double, waitTime: String)  {
+  public init(url: String, startTime: Date, lastUpdateTime: Date, userCPUTime: String, kernelCPUTime: String, wallClockTime: String, readIOps: Int64, writeIOps: Int64, readIOGiB: Double, writeIOGiB: Double, waitTime: String) {
     self.url = url
     self.startTime = startTime
     self.lastUpdateTime = lastUpdateTime
@@ -57,7 +57,7 @@ internal struct TaskStatisticsData : TaskStatisticsProtocol {
     self.readIOGiB = try container.decode(Double.self, forKey: .readIOGiB)
     self.writeIOGiB = try container.decode(Double.self, forKey: .writeIOGiB)
     self.waitTime = try container.decode(String.self, forKey: .waitTime)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

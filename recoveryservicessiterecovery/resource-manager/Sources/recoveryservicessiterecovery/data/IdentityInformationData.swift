@@ -22,7 +22,7 @@ internal struct IdentityInformationData : IdentityInformationProtocol {
         case certificateThumbprint = "certificateThumbprint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct IdentityInformationData : IdentityInformationProtocol {
     if container.contains(.certificateThumbprint) {
         self.certificateThumbprint = try container.decode(String?.self, forKey: .certificateThumbprint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct IdentityInformationData : IdentityInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.identityProviderType != nil {try container.encode(self.identityProviderType, forKey: .identityProviderType)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.applicationId != nil {try container.encode(self.applicationId, forKey: .applicationId)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
-    if self.audience != nil {try container.encode(self.audience, forKey: .audience)}
-    if self.aadAuthority != nil {try container.encode(self.aadAuthority, forKey: .aadAuthority)}
-    if self.certificateThumbprint != nil {try container.encode(self.certificateThumbprint, forKey: .certificateThumbprint)}
+    if self.identityProviderType != nil { try container.encode(self.identityProviderType, forKey: .identityProviderType) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.applicationId != nil { try container.encode(self.applicationId, forKey: .applicationId) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
+    if self.audience != nil { try container.encode(self.audience, forKey: .audience) }
+    if self.aadAuthority != nil { try container.encode(self.aadAuthority, forKey: .aadAuthority) }
+    if self.certificateThumbprint != nil { try container.encode(self.certificateThumbprint, forKey: .certificateThumbprint) }
   }
 }
 

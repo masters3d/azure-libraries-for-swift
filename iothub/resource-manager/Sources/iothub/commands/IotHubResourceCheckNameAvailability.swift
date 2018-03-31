@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol IotHubResourceCheckNameAvailability  {
+public protocol IotHubResourceCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var operationInputs :  OperationInputsProtocol?  { get set }
+    var operationInputs :  OperationInputsProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IotHubNameAvailabilityInfoProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IotHubNameAvailabilityInfoProtocol?, Error?) -> Void)
 }
 
 extension Commands.IotHubResource {
@@ -26,7 +26,7 @@ extension Commands.IotHubResource {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = operationInputs
@@ -47,12 +47,12 @@ extension Commands.IotHubResource {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(IotHubNameAvailabilityInfoData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IotHubNameAvailabilityInfoProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IotHubNameAvailabilityInfoProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: IotHubNameAvailabilityInfoData?, error: Error?) in
                 completionHandler(result, error)

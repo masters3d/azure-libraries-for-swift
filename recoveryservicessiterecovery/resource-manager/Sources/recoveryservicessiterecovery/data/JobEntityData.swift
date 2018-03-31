@@ -20,7 +20,7 @@ internal struct JobEntityData : JobEntityProtocol {
         case jobScenarioName = "jobScenarioName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct JobEntityData : JobEntityProtocol {
     if container.contains(.jobScenarioName) {
         self.jobScenarioName = try container.decode(String?.self, forKey: .jobScenarioName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct JobEntityData : JobEntityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
-    if self.jobFriendlyName != nil {try container.encode(self.jobFriendlyName, forKey: .jobFriendlyName)}
-    if self.targetObjectId != nil {try container.encode(self.targetObjectId, forKey: .targetObjectId)}
-    if self.targetObjectName != nil {try container.encode(self.targetObjectName, forKey: .targetObjectName)}
-    if self.targetInstanceType != nil {try container.encode(self.targetInstanceType, forKey: .targetInstanceType)}
-    if self.jobScenarioName != nil {try container.encode(self.jobScenarioName, forKey: .jobScenarioName)}
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
+    if self.jobFriendlyName != nil { try container.encode(self.jobFriendlyName, forKey: .jobFriendlyName) }
+    if self.targetObjectId != nil { try container.encode(self.targetObjectId, forKey: .targetObjectId) }
+    if self.targetObjectName != nil { try container.encode(self.targetObjectName, forKey: .targetObjectName) }
+    if self.targetInstanceType != nil { try container.encode(self.targetInstanceType, forKey: .targetInstanceType) }
+    if self.jobScenarioName != nil { try container.encode(self.jobScenarioName, forKey: .jobScenarioName) }
   }
 }
 

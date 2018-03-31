@@ -10,14 +10,14 @@ internal struct OSDiskImageData : OSDiskImageProtocol {
         enum CodingKeys: String, CodingKey {case operatingSystem = "operatingSystem"
         }
 
-  public init(operatingSystem: OperatingSystemTypesEnum)  {
+  public init(operatingSystem: OperatingSystemTypesEnum) {
     self.operatingSystem = operatingSystem
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.operatingSystem = try container.decode(OperatingSystemTypesEnum.self, forKey: .operatingSystem)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

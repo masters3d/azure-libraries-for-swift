@@ -12,7 +12,7 @@ internal struct IPAddressAvailabilityResultData : IPAddressAvailabilityResultPro
         case availableIPAddresses = "availableIPAddresses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct IPAddressAvailabilityResultData : IPAddressAvailabilityResultPro
     if container.contains(.availableIPAddresses) {
         self.availableIPAddresses = try container.decode([String]?.self, forKey: .availableIPAddresses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct IPAddressAvailabilityResultData : IPAddressAvailabilityResultPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.available != nil {try container.encode(self.available, forKey: .available)}
-    if self.availableIPAddresses != nil {try container.encode(self.availableIPAddresses as! [String]?, forKey: .availableIPAddresses)}
+    if self.available != nil { try container.encode(self.available, forKey: .available) }
+    if self.availableIPAddresses != nil { try container.encode(self.availableIPAddresses as! [String]?, forKey: .availableIPAddresses) }
   }
 }
 

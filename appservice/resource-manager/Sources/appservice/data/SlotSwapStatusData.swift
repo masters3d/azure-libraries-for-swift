@@ -14,7 +14,7 @@ internal struct SlotSwapStatusData : SlotSwapStatusProtocol {
         case destinationSlotName = "destinationSlotName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SlotSwapStatusData : SlotSwapStatusProtocol {
     if container.contains(.destinationSlotName) {
         self.destinationSlotName = try container.decode(String?.self, forKey: .destinationSlotName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct SlotSwapStatusData : SlotSwapStatusProtocol {
     if self.timestampUtc != nil {
         try container.encode(DateConverter.toString(date: self.timestampUtc!, format: .dateTime), forKey: .timestampUtc)
     }
-    if self.sourceSlotName != nil {try container.encode(self.sourceSlotName, forKey: .sourceSlotName)}
-    if self.destinationSlotName != nil {try container.encode(self.destinationSlotName, forKey: .destinationSlotName)}
+    if self.sourceSlotName != nil { try container.encode(self.sourceSlotName, forKey: .sourceSlotName) }
+    if self.destinationSlotName != nil { try container.encode(self.destinationSlotName, forKey: .destinationSlotName) }
   }
 }
 

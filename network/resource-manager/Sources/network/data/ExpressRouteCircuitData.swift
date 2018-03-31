@@ -24,7 +24,7 @@ internal struct ExpressRouteCircuitData : ExpressRouteCircuitProtocol, ResourceP
         case etag = "etag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ExpressRouteCircuitData : ExpressRouteCircuitProtocol, ResourceP
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct ExpressRouteCircuitData : ExpressRouteCircuitProtocol, ResourceP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.sku != nil {try container.encode(self.sku as! ExpressRouteCircuitSkuData?, forKey: .sku)}
-    if self.properties != nil {try container.encode(self.properties as! ExpressRouteCircuitPropertiesFormatData?, forKey: .properties)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.sku != nil { try container.encode(self.sku as! ExpressRouteCircuitSkuData?, forKey: .sku) }
+    if self.properties != nil { try container.encode(self.properties as! ExpressRouteCircuitPropertiesFormatData?, forKey: .properties) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

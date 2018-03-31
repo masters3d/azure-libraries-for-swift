@@ -18,7 +18,7 @@ internal struct CognitiveServicesAccountCreateParametersData : CognitiveServices
         case properties = "properties"
         }
 
-  public init(sku: SkuProtocol, kind: KindEnum, location: String, properties: [String: String?])  {
+  public init(sku: SkuProtocol, kind: KindEnum, location: String, properties: [String: String?]) {
     self.sku = sku
     self.kind = kind
     self.location = location
@@ -34,7 +34,7 @@ internal struct CognitiveServicesAccountCreateParametersData : CognitiveServices
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
     self.properties = try container.decode([String: String?].self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,7 +47,7 @@ internal struct CognitiveServicesAccountCreateParametersData : CognitiveServices
     try container.encode(self.sku as! SkuData, forKey: .sku)
     try container.encode(self.kind, forKey: .kind)
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.properties, forKey: .properties)
   }
 }

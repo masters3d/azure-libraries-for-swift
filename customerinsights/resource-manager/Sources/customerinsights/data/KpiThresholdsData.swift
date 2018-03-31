@@ -14,7 +14,7 @@ internal struct KpiThresholdsData : KpiThresholdsProtocol {
         case increasingKpi = "increasingKpi"
         }
 
-  public init(lowerLimit: Decimal, upperLimit: Decimal, increasingKpi: Bool)  {
+  public init(lowerLimit: Decimal, upperLimit: Decimal, increasingKpi: Bool) {
     self.lowerLimit = lowerLimit
     self.upperLimit = upperLimit
     self.increasingKpi = increasingKpi
@@ -25,7 +25,7 @@ internal struct KpiThresholdsData : KpiThresholdsProtocol {
       self.lowerLimit = try container.decode(Decimal.self, forKey: .lowerLimit)
     self.upperLimit = try container.decode(Decimal.self, forKey: .upperLimit)
     self.increasingKpi = try container.decode(Bool.self, forKey: .increasingKpi)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

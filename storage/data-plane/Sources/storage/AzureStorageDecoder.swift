@@ -14,7 +14,7 @@ public class AzureStorageDecoder {
             let azureError = AzureErrorDecoder<ErrorData>(mimeType: .xml).decode(data: data)
             return azureError
         }
-        
+
         return nil
     }
 }

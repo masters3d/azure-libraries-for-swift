@@ -12,7 +12,7 @@ internal struct ApplicationGatewayProbeHealthResponseMatchData : ApplicationGate
         case statusCodes = "statusCodes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ApplicationGatewayProbeHealthResponseMatchData : ApplicationGate
     if container.contains(.statusCodes) {
         self.statusCodes = try container.decode([String]?.self, forKey: .statusCodes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ApplicationGatewayProbeHealthResponseMatchData : ApplicationGate
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._body != nil {try container.encode(self._body, forKey: ._body)}
-    if self.statusCodes != nil {try container.encode(self.statusCodes as! [String]?, forKey: .statusCodes)}
+    if self._body != nil { try container.encode(self._body, forKey: ._body) }
+    if self.statusCodes != nil { try container.encode(self.statusCodes as! [String]?, forKey: .statusCodes) }
   }
 }
 

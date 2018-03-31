@@ -14,7 +14,7 @@ internal struct ResourceNameAvailabilityRequestData : ResourceNameAvailabilityRe
         case isFqdn = "isFqdn"
         }
 
-  public init(name: String, type: CheckNameResourceTypesEnum)  {
+  public init(name: String, type: CheckNameResourceTypesEnum) {
     self.name = name
     self.type = type
   }
@@ -26,7 +26,7 @@ internal struct ResourceNameAvailabilityRequestData : ResourceNameAvailabilityRe
     if container.contains(.isFqdn) {
         self.isFqdn = try container.decode(Bool?.self, forKey: .isFqdn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct ResourceNameAvailabilityRequestData : ResourceNameAvailabilityRe
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
-    if self.isFqdn != nil {try container.encode(self.isFqdn, forKey: .isFqdn)}
+    if self.isFqdn != nil { try container.encode(self.isFqdn, forKey: .isFqdn) }
   }
 }
 

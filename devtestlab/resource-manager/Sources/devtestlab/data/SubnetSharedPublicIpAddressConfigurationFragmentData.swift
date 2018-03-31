@@ -10,7 +10,7 @@ internal struct SubnetSharedPublicIpAddressConfigurationFragmentData : SubnetSha
         enum CodingKeys: String, CodingKey {case allowedPorts = "allowedPorts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SubnetSharedPublicIpAddressConfigurationFragmentData : SubnetSha
       if container.contains(.allowedPorts) {
         self.allowedPorts = try container.decode([PortFragmentData?]?.self, forKey: .allowedPorts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SubnetSharedPublicIpAddressConfigurationFragmentData : SubnetSha
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allowedPorts != nil {try container.encode(self.allowedPorts as! [PortFragmentData?]?, forKey: .allowedPorts)}
+    if self.allowedPorts != nil { try container.encode(self.allowedPorts as! [PortFragmentData?]?, forKey: .allowedPorts) }
   }
 }
 

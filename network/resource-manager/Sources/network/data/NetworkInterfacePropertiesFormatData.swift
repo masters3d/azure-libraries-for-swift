@@ -28,7 +28,7 @@ internal struct NetworkInterfacePropertiesFormatData : NetworkInterfacePropertie
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct NetworkInterfacePropertiesFormatData : NetworkInterfacePropertie
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct NetworkInterfacePropertiesFormatData : NetworkInterfacePropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualMachine != nil {try container.encode(self.virtualMachine as! SubResourceData?, forKey: .virtualMachine)}
-    if self.networkSecurityGroup != nil {try container.encode(self.networkSecurityGroup as! NetworkSecurityGroupData?, forKey: .networkSecurityGroup)}
-    if self.ipConfigurations != nil {try container.encode(self.ipConfigurations as! [NetworkInterfaceIPConfigurationData?]?, forKey: .ipConfigurations)}
-    if self.dnsSettings != nil {try container.encode(self.dnsSettings as! NetworkInterfaceDnsSettingsData?, forKey: .dnsSettings)}
-    if self.macAddress != nil {try container.encode(self.macAddress, forKey: .macAddress)}
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
-    if self.enableAcceleratedNetworking != nil {try container.encode(self.enableAcceleratedNetworking, forKey: .enableAcceleratedNetworking)}
-    if self.enableIPForwarding != nil {try container.encode(self.enableIPForwarding, forKey: .enableIPForwarding)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.virtualMachine != nil { try container.encode(self.virtualMachine as! SubResourceData?, forKey: .virtualMachine) }
+    if self.networkSecurityGroup != nil { try container.encode(self.networkSecurityGroup as! NetworkSecurityGroupData?, forKey: .networkSecurityGroup) }
+    if self.ipConfigurations != nil { try container.encode(self.ipConfigurations as! [NetworkInterfaceIPConfigurationData?]?, forKey: .ipConfigurations) }
+    if self.dnsSettings != nil { try container.encode(self.dnsSettings as! NetworkInterfaceDnsSettingsData?, forKey: .dnsSettings) }
+    if self.macAddress != nil { try container.encode(self.macAddress, forKey: .macAddress) }
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
+    if self.enableAcceleratedNetworking != nil { try container.encode(self.enableAcceleratedNetworking, forKey: .enableAcceleratedNetworking) }
+    if self.enableIPForwarding != nil { try container.encode(self.enableIPForwarding, forKey: .enableIPForwarding) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

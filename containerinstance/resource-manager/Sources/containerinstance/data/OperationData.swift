@@ -14,7 +14,7 @@ internal struct OperationData : OperationProtocol {
         case origin = "origin"
         }
 
-  public init(name: String, display: OperationDisplayProtocol)  {
+  public init(name: String, display: OperationDisplayProtocol) {
     self.name = name
     self.display = display
   }
@@ -26,7 +26,7 @@ internal struct OperationData : OperationProtocol {
     if container.contains(.origin) {
         self.origin = try container.decode(ContainerInstanceOperationsOriginEnum?.self, forKey: .origin)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct OperationData : OperationProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.display as! OperationDisplayData, forKey: .display)
-    if self.origin != nil {try container.encode(self.origin, forKey: .origin)}
+    if self.origin != nil { try container.encode(self.origin, forKey: .origin) }
   }
 }
 

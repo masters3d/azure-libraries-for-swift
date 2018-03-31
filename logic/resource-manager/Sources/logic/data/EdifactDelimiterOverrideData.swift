@@ -32,7 +32,7 @@ internal struct EdifactDelimiterOverrideData : EdifactDelimiterOverrideProtocol 
         case targetNamespace = "targetNamespace"
         }
 
-  public init(dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, repetitionSeparator: Int32, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum, decimalPointIndicator: EdifactDecimalIndicatorEnum, releaseIndicator: Int32)  {
+  public init(dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, repetitionSeparator: Int32, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum, decimalPointIndicator: EdifactDecimalIndicatorEnum, releaseIndicator: Int32) {
     self.dataElementSeparator = dataElementSeparator
     self.componentSeparator = componentSeparator
     self.segmentTerminator = segmentTerminator
@@ -66,7 +66,7 @@ internal struct EdifactDelimiterOverrideData : EdifactDelimiterOverrideProtocol 
     if container.contains(.targetNamespace) {
         self.targetNamespace = try container.decode(String?.self, forKey: .targetNamespace)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -76,9 +76,9 @@ internal struct EdifactDelimiterOverrideData : EdifactDelimiterOverrideProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.messageId != nil {try container.encode(self.messageId, forKey: .messageId)}
-    if self.messageVersion != nil {try container.encode(self.messageVersion, forKey: .messageVersion)}
-    if self.messageRelease != nil {try container.encode(self.messageRelease, forKey: .messageRelease)}
+    if self.messageId != nil { try container.encode(self.messageId, forKey: .messageId) }
+    if self.messageVersion != nil { try container.encode(self.messageVersion, forKey: .messageVersion) }
+    if self.messageRelease != nil { try container.encode(self.messageRelease, forKey: .messageRelease) }
     try container.encode(self.dataElementSeparator, forKey: .dataElementSeparator)
     try container.encode(self.componentSeparator, forKey: .componentSeparator)
     try container.encode(self.segmentTerminator, forKey: .segmentTerminator)
@@ -86,8 +86,8 @@ internal struct EdifactDelimiterOverrideData : EdifactDelimiterOverrideProtocol 
     try container.encode(self.segmentTerminatorSuffix, forKey: .segmentTerminatorSuffix)
     try container.encode(self.decimalPointIndicator, forKey: .decimalPointIndicator)
     try container.encode(self.releaseIndicator, forKey: .releaseIndicator)
-    if self.messageAssociationAssignedCode != nil {try container.encode(self.messageAssociationAssignedCode, forKey: .messageAssociationAssignedCode)}
-    if self.targetNamespace != nil {try container.encode(self.targetNamespace, forKey: .targetNamespace)}
+    if self.messageAssociationAssignedCode != nil { try container.encode(self.messageAssociationAssignedCode, forKey: .messageAssociationAssignedCode) }
+    if self.targetNamespace != nil { try container.encode(self.targetNamespace, forKey: .targetNamespace) }
   }
 }
 

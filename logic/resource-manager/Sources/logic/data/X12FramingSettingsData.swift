@@ -22,7 +22,7 @@ internal struct X12FramingSettingsData : X12FramingSettingsProtocol {
         case segmentTerminatorSuffix = "segmentTerminatorSuffix"
         }
 
-  public init(dataElementSeparator: Int32, componentSeparator: Int32, replaceSeparatorsInPayload: Bool, replaceCharacter: Int32, segmentTerminator: Int32, characterSet: X12CharacterSetEnum, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum)  {
+  public init(dataElementSeparator: Int32, componentSeparator: Int32, replaceSeparatorsInPayload: Bool, replaceCharacter: Int32, segmentTerminator: Int32, characterSet: X12CharacterSetEnum, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum) {
     self.dataElementSeparator = dataElementSeparator
     self.componentSeparator = componentSeparator
     self.replaceSeparatorsInPayload = replaceSeparatorsInPayload
@@ -41,7 +41,7 @@ internal struct X12FramingSettingsData : X12FramingSettingsProtocol {
     self.segmentTerminator = try container.decode(Int32.self, forKey: .segmentTerminator)
     self.characterSet = try container.decode(X12CharacterSetEnum.self, forKey: .characterSet)
     self.segmentTerminatorSuffix = try container.decode(SegmentTerminatorSuffixEnum.self, forKey: .segmentTerminatorSuffix)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

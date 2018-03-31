@@ -10,7 +10,7 @@ internal struct OperationsMonitoringPropertiesData : OperationsMonitoringPropert
         enum CodingKeys: String, CodingKey {case events = "events"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct OperationsMonitoringPropertiesData : OperationsMonitoringPropert
       if container.contains(.events) {
         self.events = try container.decode([String:OperationMonitoringLevelEnum?]?.self, forKey: .events)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct OperationsMonitoringPropertiesData : OperationsMonitoringPropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.events != nil {try container.encode(self.events, forKey: .events)}
+    if self.events != nil { try container.encode(self.events, forKey: .events) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct LoadBalancingRulePropertiesFormatData : LoadBalancingRulePropert
         case provisioningState = "provisioningState"
         }
 
-  public init(_protocol: TransportProtocolEnum, frontendPort: Int32)  {
+  public init(_protocol: TransportProtocolEnum, frontendPort: Int32) {
     self._protocol = _protocol
     self.frontendPort = frontendPort
   }
@@ -66,7 +66,7 @@ internal struct LoadBalancingRulePropertiesFormatData : LoadBalancingRulePropert
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -76,17 +76,17 @@ internal struct LoadBalancingRulePropertiesFormatData : LoadBalancingRulePropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frontendIPConfiguration != nil {try container.encode(self.frontendIPConfiguration as! SubResourceData?, forKey: .frontendIPConfiguration)}
-    if self.backendAddressPool != nil {try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool)}
-    if self.probe != nil {try container.encode(self.probe as! SubResourceData?, forKey: .probe)}
+    if self.frontendIPConfiguration != nil { try container.encode(self.frontendIPConfiguration as! SubResourceData?, forKey: .frontendIPConfiguration) }
+    if self.backendAddressPool != nil { try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool) }
+    if self.probe != nil { try container.encode(self.probe as! SubResourceData?, forKey: .probe) }
     try container.encode(self._protocol, forKey: ._protocol)
-    if self.loadDistribution != nil {try container.encode(self.loadDistribution, forKey: .loadDistribution)}
+    if self.loadDistribution != nil { try container.encode(self.loadDistribution, forKey: .loadDistribution) }
     try container.encode(self.frontendPort, forKey: .frontendPort)
-    if self.backendPort != nil {try container.encode(self.backendPort, forKey: .backendPort)}
-    if self.idleTimeoutInMinutes != nil {try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes)}
-    if self.enableFloatingIP != nil {try container.encode(self.enableFloatingIP, forKey: .enableFloatingIP)}
-    if self.disableOutboundSnat != nil {try container.encode(self.disableOutboundSnat, forKey: .disableOutboundSnat)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.backendPort != nil { try container.encode(self.backendPort, forKey: .backendPort) }
+    if self.idleTimeoutInMinutes != nil { try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes) }
+    if self.enableFloatingIP != nil { try container.encode(self.enableFloatingIP, forKey: .enableFloatingIP) }
+    if self.disableOutboundSnat != nil { try container.encode(self.disableOutboundSnat, forKey: .disableOutboundSnat) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

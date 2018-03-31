@@ -16,7 +16,7 @@ internal struct ConnectionMonitorParametersData : ConnectionMonitorParametersPro
         case monitoringIntervalInSeconds = "monitoringIntervalInSeconds"
         }
 
-  public init(source: ConnectionMonitorSourceProtocol, destination: ConnectionMonitorDestinationProtocol)  {
+  public init(source: ConnectionMonitorSourceProtocol, destination: ConnectionMonitorDestinationProtocol) {
     self.source = source
     self.destination = destination
   }
@@ -31,7 +31,7 @@ internal struct ConnectionMonitorParametersData : ConnectionMonitorParametersPro
     if container.contains(.monitoringIntervalInSeconds) {
         self.monitoringIntervalInSeconds = try container.decode(Int32?.self, forKey: .monitoringIntervalInSeconds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct ConnectionMonitorParametersData : ConnectionMonitorParametersPro
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.source as! ConnectionMonitorSourceData, forKey: .source)
     try container.encode(self.destination as! ConnectionMonitorDestinationData, forKey: .destination)
-    if self.autoStart != nil {try container.encode(self.autoStart, forKey: .autoStart)}
-    if self.monitoringIntervalInSeconds != nil {try container.encode(self.monitoringIntervalInSeconds, forKey: .monitoringIntervalInSeconds)}
+    if self.autoStart != nil { try container.encode(self.autoStart, forKey: .autoStart) }
+    if self.monitoringIntervalInSeconds != nil { try container.encode(self.monitoringIntervalInSeconds, forKey: .monitoringIntervalInSeconds) }
   }
 }
 

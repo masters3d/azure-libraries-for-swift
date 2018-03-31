@@ -20,7 +20,7 @@ internal struct InMageDiskDetailsData : InMageDiskDetailsProtocol {
         case volumeList = "volumeList"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct InMageDiskDetailsData : InMageDiskDetailsProtocol {
     if container.contains(.volumeList) {
         self.volumeList = try container.decode([DiskVolumeDetailsData?]?.self, forKey: .volumeList)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct InMageDiskDetailsData : InMageDiskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskId != nil {try container.encode(self.diskId, forKey: .diskId)}
-    if self.diskName != nil {try container.encode(self.diskName, forKey: .diskName)}
-    if self.diskSizeInMB != nil {try container.encode(self.diskSizeInMB, forKey: .diskSizeInMB)}
-    if self.diskType != nil {try container.encode(self.diskType, forKey: .diskType)}
-    if self.diskConfiguration != nil {try container.encode(self.diskConfiguration, forKey: .diskConfiguration)}
-    if self.volumeList != nil {try container.encode(self.volumeList as! [DiskVolumeDetailsData?]?, forKey: .volumeList)}
+    if self.diskId != nil { try container.encode(self.diskId, forKey: .diskId) }
+    if self.diskName != nil { try container.encode(self.diskName, forKey: .diskName) }
+    if self.diskSizeInMB != nil { try container.encode(self.diskSizeInMB, forKey: .diskSizeInMB) }
+    if self.diskType != nil { try container.encode(self.diskType, forKey: .diskType) }
+    if self.diskConfiguration != nil { try container.encode(self.diskConfiguration, forKey: .diskConfiguration) }
+    if self.volumeList != nil { try container.encode(self.volumeList as! [DiskVolumeDetailsData?]?, forKey: .volumeList) }
   }
 }
 

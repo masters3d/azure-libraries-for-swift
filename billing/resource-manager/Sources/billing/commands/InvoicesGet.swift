@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol InvoicesGet  {
+public protocol InvoicesGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var invoiceName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (InvoiceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (InvoiceProtocol?, Error?) -> Void)
 }
 
 extension Commands.Invoices {
@@ -28,7 +28,7 @@ extension Commands.Invoices {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{invoiceName}"] = String(describing: self.invoiceName)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -40,12 +40,12 @@ extension Commands.Invoices {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(InvoiceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (InvoiceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (InvoiceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: InvoiceData?, error: Error?) in
                 completionHandler(result, error)

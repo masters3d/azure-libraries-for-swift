@@ -10,7 +10,7 @@ internal struct GenerateUploadUriResponseData : GenerateUploadUriResponseProtoco
         enum CodingKeys: String, CodingKey {case uploadUri = "uploadUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GenerateUploadUriResponseData : GenerateUploadUriResponseProtoco
       if container.contains(.uploadUri) {
         self.uploadUri = try container.decode(String?.self, forKey: .uploadUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GenerateUploadUriResponseData : GenerateUploadUriResponseProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.uploadUri != nil {try container.encode(self.uploadUri, forKey: .uploadUri)}
+    if self.uploadUri != nil { try container.encode(self.uploadUri, forKey: .uploadUri) }
   }
 }
 

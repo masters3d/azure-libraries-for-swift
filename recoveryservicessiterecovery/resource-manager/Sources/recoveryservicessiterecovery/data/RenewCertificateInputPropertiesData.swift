@@ -10,7 +10,7 @@ internal struct RenewCertificateInputPropertiesData : RenewCertificateInputPrope
         enum CodingKeys: String, CodingKey {case renewCertificateType = "renewCertificateType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RenewCertificateInputPropertiesData : RenewCertificateInputPrope
       if container.contains(.renewCertificateType) {
         self.renewCertificateType = try container.decode(String?.self, forKey: .renewCertificateType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RenewCertificateInputPropertiesData : RenewCertificateInputPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.renewCertificateType != nil {try container.encode(self.renewCertificateType, forKey: .renewCertificateType)}
+    if self.renewCertificateType != nil { try container.encode(self.renewCertificateType, forKey: .renewCertificateType) }
   }
 }
 

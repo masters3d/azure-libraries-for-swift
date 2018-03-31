@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationProtectionContainerMappingsCreate  {
+public protocol ReplicationProtectionContainerMappingsCreate {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
@@ -9,9 +9,9 @@ public protocol ReplicationProtectionContainerMappingsCreate  {
     var protectionContainerName : String { get set }
     var mappingName : String { get set }
     var apiVersion : String { get set }
-    var creationInput :  CreateProtectionContainerMappingInputProtocol?  { get set }
+    var creationInput :  CreateProtectionContainerMappingInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ProtectionContainerMappingProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ProtectionContainerMappingProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationProtectionContainerMappings {
@@ -43,7 +43,7 @@ extension Commands.ReplicationProtectionContainerMappings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -69,12 +69,12 @@ extension Commands.ReplicationProtectionContainerMappings {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ProtectionContainerMappingData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ProtectionContainerMappingProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ProtectionContainerMappingProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: ProtectionContainerMappingData?, error: Error?) in
                 completionHandler(result, error)

@@ -18,7 +18,7 @@ internal struct FailoverProcessServerRequestPropertiesData : FailoverProcessServ
         case updateType = "updateType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct FailoverProcessServerRequestPropertiesData : FailoverProcessServ
     if container.contains(.updateType) {
         self.updateType = try container.decode(String?.self, forKey: .updateType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct FailoverProcessServerRequestPropertiesData : FailoverProcessServ
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceProcessServerId != nil {try container.encode(self.sourceProcessServerId, forKey: .sourceProcessServerId)}
-    if self.targetProcessServerId != nil {try container.encode(self.targetProcessServerId, forKey: .targetProcessServerId)}
-    if self.vmsToMigrate != nil {try container.encode(self.vmsToMigrate as! [String]?, forKey: .vmsToMigrate)}
-    if self.updateType != nil {try container.encode(self.updateType, forKey: .updateType)}
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceProcessServerId != nil { try container.encode(self.sourceProcessServerId, forKey: .sourceProcessServerId) }
+    if self.targetProcessServerId != nil { try container.encode(self.targetProcessServerId, forKey: .targetProcessServerId) }
+    if self.vmsToMigrate != nil { try container.encode(self.vmsToMigrate as! [String]?, forKey: .vmsToMigrate) }
+    if self.updateType != nil { try container.encode(self.updateType, forKey: .updateType) }
   }
 }
 

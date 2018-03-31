@@ -12,7 +12,7 @@ internal struct InMageFailoverProviderInputData : InMageFailoverProviderInputPro
         case recoveryPointId = "recoveryPointId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InMageFailoverProviderInputData : InMageFailoverProviderInputPro
     if container.contains(.recoveryPointId) {
         self.recoveryPointId = try container.decode(String?.self, forKey: .recoveryPointId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InMageFailoverProviderInputData : InMageFailoverProviderInputPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointType != nil {try container.encode(self.recoveryPointType, forKey: .recoveryPointType)}
-    if self.recoveryPointId != nil {try container.encode(self.recoveryPointId, forKey: .recoveryPointId)}
+    if self.recoveryPointType != nil { try container.encode(self.recoveryPointType, forKey: .recoveryPointType) }
+    if self.recoveryPointId != nil { try container.encode(self.recoveryPointId, forKey: .recoveryPointId) }
   }
 }
 

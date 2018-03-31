@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol FileGetFromTask  {
+public protocol FileGetFromTask {
     var headerParameters: [String: String] { get set }
     var jobId : String { get set }
     var taskId : String { get set }
@@ -14,7 +14,7 @@ public protocol FileGetFromTask  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Data?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (Data?, Error?) -> Void)
 }
 
 extension Commands.File {
@@ -43,7 +43,7 @@ extension Commands.File {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             self.pathParameters["{taskId}"] = String(describing: self.taskId)
             self.pathParameters["{filePath}"] = String(describing: self.filePath)
@@ -59,10 +59,10 @@ extension Commands.File {
         }
 
         public override func returnFunc(data: Data) throws -> Decodable? {
-            return DataWrapper(data: data);
+            return DataWrapper(data: data)
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Data?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (Data?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DataWrapper?, error: Error?) in
                 let data = result?.data as Data?

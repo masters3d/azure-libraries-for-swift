@@ -22,7 +22,7 @@ internal struct HyperVReplicaBlueReplicationDetailsData : HyperVReplicaBlueRepli
         case vMDiskDetails = "vMDiskDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct HyperVReplicaBlueReplicationDetailsData : HyperVReplicaBlueRepli
     if container.contains(.vMDiskDetails) {
         self.vMDiskDetails = try container.decode([DiskDetailsData?]?.self, forKey: .vMDiskDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -61,12 +61,12 @@ internal struct HyperVReplicaBlueReplicationDetailsData : HyperVReplicaBlueRepli
     if self.lastReplicatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastReplicatedTime!, format: .dateTime), forKey: .lastReplicatedTime)
     }
-    if self.vmNics != nil {try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics)}
-    if self.vmId != nil {try container.encode(self.vmId, forKey: .vmId)}
-    if self.vmProtectionState != nil {try container.encode(self.vmProtectionState, forKey: .vmProtectionState)}
-    if self.vmProtectionStateDescription != nil {try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription)}
-    if self.initialReplicationDetails != nil {try container.encode(self.initialReplicationDetails as! InitialReplicationDetailsData?, forKey: .initialReplicationDetails)}
-    if self.vMDiskDetails != nil {try container.encode(self.vMDiskDetails as! [DiskDetailsData?]?, forKey: .vMDiskDetails)}
+    if self.vmNics != nil { try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics) }
+    if self.vmId != nil { try container.encode(self.vmId, forKey: .vmId) }
+    if self.vmProtectionState != nil { try container.encode(self.vmProtectionState, forKey: .vmProtectionState) }
+    if self.vmProtectionStateDescription != nil { try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription) }
+    if self.initialReplicationDetails != nil { try container.encode(self.initialReplicationDetails as! InitialReplicationDetailsData?, forKey: .initialReplicationDetails) }
+    if self.vMDiskDetails != nil { try container.encode(self.vMDiskDetails as! [DiskDetailsData?]?, forKey: .vMDiskDetails) }
   }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PredictionsModelStatus  {
+public protocol PredictionsModelStatus {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var hubName : String { get set }
     var predictionName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  PredictionModelStatusProtocol?  { get set }
+    var parameters :  PredictionModelStatusProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Predictions {
@@ -35,7 +35,7 @@ extension Commands.Predictions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{hubName}"] = String(describing: self.hubName)
             self.pathParameters["{predictionName}"] = String(describing: self.predictionName)
@@ -55,7 +55,7 @@ extension Commands.Predictions {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

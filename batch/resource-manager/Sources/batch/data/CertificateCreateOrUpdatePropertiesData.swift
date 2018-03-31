@@ -18,7 +18,7 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
         case password = "password"
         }
 
-  public init(data: String)  {
+  public init(data: String) {
     self.data = data
   }
 
@@ -37,7 +37,7 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
     if container.contains(.password) {
         self.password = try container.decode(String?.self, forKey: .password)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,11 +47,11 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thumbprintAlgorithm != nil {try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.thumbprintAlgorithm != nil { try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
     try container.encode(self.data, forKey: .data)
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
   }
 }
 

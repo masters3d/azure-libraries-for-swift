@@ -10,14 +10,14 @@ internal struct VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettingsDat
         enum CodingKeys: String, CodingKey {case domainNameLabel = "domainNameLabel"
         }
 
-  public init(domainNameLabel: String)  {
+  public init(domainNameLabel: String) {
     self.domainNameLabel = domainNameLabel
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.domainNameLabel = try container.decode(String.self, forKey: .domainNameLabel)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

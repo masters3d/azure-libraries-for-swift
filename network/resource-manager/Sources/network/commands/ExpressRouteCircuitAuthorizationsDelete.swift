@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ExpressRouteCircuitAuthorizationsDelete  {
+public protocol ExpressRouteCircuitAuthorizationsDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var circuitName : String { get set }
@@ -8,7 +8,7 @@ public protocol ExpressRouteCircuitAuthorizationsDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.ExpressRouteCircuitAuthorizations {
@@ -34,7 +34,7 @@ extension Commands.ExpressRouteCircuitAuthorizations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{circuitName}"] = String(describing: self.circuitName)
             self.pathParameters["{authorizationName}"] = String(describing: self.authorizationName)
@@ -44,7 +44,7 @@ extension Commands.ExpressRouteCircuitAuthorizations {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkRulesGet  {
+public protocol VirtualNetworkRulesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var serverName : String { get set }
@@ -8,7 +8,7 @@ public protocol VirtualNetworkRulesGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualNetworkRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualNetworkRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkRules {
@@ -32,7 +32,7 @@ extension Commands.VirtualNetworkRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{serverName}"] = String(describing: self.serverName)
             self.pathParameters["{virtualNetworkRuleName}"] = String(describing: self.virtualNetworkRuleName)
@@ -46,12 +46,12 @@ extension Commands.VirtualNetworkRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualNetworkRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualNetworkRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualNetworkRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: VirtualNetworkRuleData?, error: Error?) in
                 completionHandler(result, error)

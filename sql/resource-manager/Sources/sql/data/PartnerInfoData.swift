@@ -14,7 +14,7 @@ internal struct PartnerInfoData : PartnerInfoProtocol {
         case replicationRole = "replicationRole"
         }
 
-  public init(id: String)  {
+  public init(id: String) {
     self.id = id
   }
 
@@ -27,7 +27,7 @@ internal struct PartnerInfoData : PartnerInfoProtocol {
     if container.contains(.replicationRole) {
         self.replicationRole = try container.decode(FailoverGroupReplicationRoleEnum?.self, forKey: .replicationRole)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct PartnerInfoData : PartnerInfoProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.replicationRole != nil {try container.encode(self.replicationRole, forKey: .replicationRole)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.replicationRole != nil { try container.encode(self.replicationRole, forKey: .replicationRole) }
   }
 }
 

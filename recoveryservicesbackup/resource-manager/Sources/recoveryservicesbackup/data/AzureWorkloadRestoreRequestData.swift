@@ -14,7 +14,7 @@ internal struct AzureWorkloadRestoreRequestData : AzureWorkloadRestoreRequestPro
         case propertyBag = "propertyBag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureWorkloadRestoreRequestData : AzureWorkloadRestoreRequestPro
     if container.contains(.propertyBag) {
         self.propertyBag = try container.decode([String:String]?.self, forKey: .propertyBag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureWorkloadRestoreRequestData : AzureWorkloadRestoreRequestPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryType != nil {try container.encode(self.recoveryType, forKey: .recoveryType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.propertyBag != nil {try container.encode(self.propertyBag, forKey: .propertyBag)}
+    if self.recoveryType != nil { try container.encode(self.recoveryType, forKey: .recoveryType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.propertyBag != nil { try container.encode(self.propertyBag, forKey: .propertyBag) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct ShutdownNotificationContentData : ShutdownNotificationContentPro
         case labName = "labName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct ShutdownNotificationContentData : ShutdownNotificationContentPro
     if container.contains(.labName) {
         self.labName = try container.decode(String?.self, forKey: .labName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct ShutdownNotificationContentData : ShutdownNotificationContentPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.skipUrl != nil {try container.encode(self.skipUrl, forKey: .skipUrl)}
-    if self.delayUrl60 != nil {try container.encode(self.delayUrl60, forKey: .delayUrl60)}
-    if self.delayUrl120 != nil {try container.encode(self.delayUrl120, forKey: .delayUrl120)}
-    if self.vmName != nil {try container.encode(self.vmName, forKey: .vmName)}
-    if self.guid != nil {try container.encode(self.guid, forKey: .guid)}
-    if self.owner != nil {try container.encode(self.owner, forKey: .owner)}
-    if self.eventType != nil {try container.encode(self.eventType, forKey: .eventType)}
-    if self.text != nil {try container.encode(self.text, forKey: .text)}
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.resourceGroupName != nil {try container.encode(self.resourceGroupName, forKey: .resourceGroupName)}
-    if self.labName != nil {try container.encode(self.labName, forKey: .labName)}
+    if self.skipUrl != nil { try container.encode(self.skipUrl, forKey: .skipUrl) }
+    if self.delayUrl60 != nil { try container.encode(self.delayUrl60, forKey: .delayUrl60) }
+    if self.delayUrl120 != nil { try container.encode(self.delayUrl120, forKey: .delayUrl120) }
+    if self.vmName != nil { try container.encode(self.vmName, forKey: .vmName) }
+    if self.guid != nil { try container.encode(self.guid, forKey: .guid) }
+    if self.owner != nil { try container.encode(self.owner, forKey: .owner) }
+    if self.eventType != nil { try container.encode(self.eventType, forKey: .eventType) }
+    if self.text != nil { try container.encode(self.text, forKey: .text) }
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.resourceGroupName != nil { try container.encode(self.resourceGroupName, forKey: .resourceGroupName) }
+    if self.labName != nil { try container.encode(self.labName, forKey: .labName) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct JobScheduleUpdateParameterData : JobScheduleUpdateParameterProto
         case metadata = "metadata"
         }
 
-  public init(schedule: ScheduleProtocol, jobSpecification: JobSpecificationProtocol)  {
+  public init(schedule: ScheduleProtocol, jobSpecification: JobSpecificationProtocol) {
     self.schedule = schedule
     self.jobSpecification = jobSpecification
   }
@@ -26,7 +26,7 @@ internal struct JobScheduleUpdateParameterData : JobScheduleUpdateParameterProto
     if container.contains(.metadata) {
         self.metadata = try container.decode([MetadataItemData?]?.self, forKey: .metadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct JobScheduleUpdateParameterData : JobScheduleUpdateParameterProto
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.schedule as! ScheduleData, forKey: .schedule)
     try container.encode(self.jobSpecification as! JobSpecificationData, forKey: .jobSpecification)
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
   }
 }
 

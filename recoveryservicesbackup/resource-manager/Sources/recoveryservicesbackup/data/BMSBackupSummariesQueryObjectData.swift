@@ -10,7 +10,7 @@ internal struct BMSBackupSummariesQueryObjectData : BMSBackupSummariesQueryObjec
         enum CodingKeys: String, CodingKey {case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct BMSBackupSummariesQueryObjectData : BMSBackupSummariesQueryObjec
       if container.contains(.type) {
         self.type = try container.decode(TypeEnumEnum?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct BMSBackupSummariesQueryObjectData : BMSBackupSummariesQueryObjec
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

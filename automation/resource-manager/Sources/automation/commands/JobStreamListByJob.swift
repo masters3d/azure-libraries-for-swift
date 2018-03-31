@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobStreamListByJob  {
+public protocol JobStreamListByJob {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -12,7 +12,7 @@ public protocol JobStreamListByJob  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobStreamListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobStreamListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.JobStream {
@@ -44,7 +44,7 @@ extension Commands.JobStream {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{jobName}"] = String(describing: self.jobName)
@@ -67,15 +67,15 @@ extension Commands.JobStream {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobStreamListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobStreamListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

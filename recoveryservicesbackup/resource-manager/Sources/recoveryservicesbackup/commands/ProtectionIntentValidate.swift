@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ProtectionIntentValidate  {
+public protocol ProtectionIntentValidate {
     var headerParameters: [String: String] { get set }
     var azureRegion : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  PreValidateEnableBackupRequestProtocol?  { get set }
+    var parameters :  PreValidateEnableBackupRequestProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PreValidateEnableBackupResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PreValidateEnableBackupResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.ProtectionIntent {
@@ -29,7 +29,7 @@ extension Commands.ProtectionIntent {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{azureRegion}"] = String(describing: self.azureRegion)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -51,12 +51,12 @@ extension Commands.ProtectionIntent {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PreValidateEnableBackupResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PreValidateEnableBackupResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PreValidateEnableBackupResponseProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: PreValidateEnableBackupResponseData?, error: Error?) in
                 completionHandler(result, error)

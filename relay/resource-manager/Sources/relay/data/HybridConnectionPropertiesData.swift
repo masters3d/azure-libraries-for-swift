@@ -18,7 +18,7 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
         case userMetadata = "userMetadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
     if container.contains(.userMetadata) {
         self.userMetadata = try container.decode(String?.self, forKey: .userMetadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -54,9 +54,9 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.listenerCount != nil {try container.encode(self.listenerCount, forKey: .listenerCount)}
-    if self.requiresClientAuthorization != nil {try container.encode(self.requiresClientAuthorization, forKey: .requiresClientAuthorization)}
-    if self.userMetadata != nil {try container.encode(self.userMetadata, forKey: .userMetadata)}
+    if self.listenerCount != nil { try container.encode(self.listenerCount, forKey: .listenerCount) }
+    if self.requiresClientAuthorization != nil { try container.encode(self.requiresClientAuthorization, forKey: .requiresClientAuthorization) }
+    if self.userMetadata != nil { try container.encode(self.userMetadata, forKey: .userMetadata) }
   }
 }
 

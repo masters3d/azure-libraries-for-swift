@@ -12,7 +12,7 @@ internal struct InquiryValidationData : InquiryValidationProtocol {
         case errorDetail = "errorDetail"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InquiryValidationData : InquiryValidationProtocol {
     if container.contains(.errorDetail) {
         self.errorDetail = try container.decode(ErrorDetailData?.self, forKey: .errorDetail)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InquiryValidationData : InquiryValidationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.errorDetail != nil {try container.encode(self.errorDetail as! ErrorDetailData?, forKey: .errorDetail)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.errorDetail != nil { try container.encode(self.errorDetail as! ErrorDetailData?, forKey: .errorDetail) }
   }
 }
 

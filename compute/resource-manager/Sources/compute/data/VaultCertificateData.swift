@@ -12,7 +12,7 @@ internal struct VaultCertificateData : VaultCertificateProtocol {
         case certificateStore = "certificateStore"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VaultCertificateData : VaultCertificateProtocol {
     if container.contains(.certificateStore) {
         self.certificateStore = try container.decode(String?.self, forKey: .certificateStore)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VaultCertificateData : VaultCertificateProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.certificateUrl != nil {try container.encode(self.certificateUrl, forKey: .certificateUrl)}
-    if self.certificateStore != nil {try container.encode(self.certificateStore, forKey: .certificateStore)}
+    if self.certificateUrl != nil { try container.encode(self.certificateUrl, forKey: .certificateUrl) }
+    if self.certificateStore != nil { try container.encode(self.certificateStore, forKey: .certificateStore) }
   }
 }
 

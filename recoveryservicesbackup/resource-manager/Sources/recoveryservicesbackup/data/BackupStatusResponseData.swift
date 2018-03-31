@@ -26,7 +26,7 @@ internal struct BackupStatusResponseData : BackupStatusResponseProtocol {
         case registrationStatus = "registrationStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct BackupStatusResponseData : BackupStatusResponseProtocol {
     if container.contains(.registrationStatus) {
         self.registrationStatus = try container.decode(String?.self, forKey: .registrationStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct BackupStatusResponseData : BackupStatusResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
-    if self.vaultId != nil {try container.encode(self.vaultId, forKey: .vaultId)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.protectedItemName != nil {try container.encode(self.protectedItemName, forKey: .protectedItemName)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.policyName != nil {try container.encode(self.policyName, forKey: .policyName)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
+    if self.vaultId != nil { try container.encode(self.vaultId, forKey: .vaultId) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.protectedItemName != nil { try container.encode(self.protectedItemName, forKey: .protectedItemName) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.policyName != nil { try container.encode(self.policyName, forKey: .policyName) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
   }
 }
 

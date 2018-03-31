@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CertificateGet  {
+public protocol CertificateGet {
     var headerParameters: [String: String] { get set }
     var thumbprintAlgorithm : String { get set }
     var thumbprint : String { get set }
@@ -11,7 +11,7 @@ public protocol CertificateGet  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void)
 }
 
 extension Commands.Certificate {
@@ -36,7 +36,7 @@ extension Commands.Certificate {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{thumbprintAlgorithm}"] = String(describing: self.thumbprintAlgorithm)
             self.pathParameters["{thumbprint}"] = String(describing: self.thumbprint)
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
@@ -53,12 +53,12 @@ extension Commands.Certificate {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CertificateData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CertificateData?, error: Error?) in
                 completionHandler(result, error)

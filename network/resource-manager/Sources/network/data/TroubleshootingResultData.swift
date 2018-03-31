@@ -16,7 +16,7 @@ internal struct TroubleshootingResultData : TroubleshootingResultProtocol {
         case results = "results"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct TroubleshootingResultData : TroubleshootingResultProtocol {
     if container.contains(.results) {
         self.results = try container.decode([TroubleshootingDetailsData?]?.self, forKey: .results)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct TroubleshootingResultData : TroubleshootingResultProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.results != nil {try container.encode(self.results as! [TroubleshootingDetailsData?]?, forKey: .results)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.results != nil { try container.encode(self.results as! [TroubleshootingDetailsData?]?, forKey: .results) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct AzureWorkloadSQLPointInTimeRecoveryPointData : AzureWorkloadSQLP
         case timeRanges = "timeRanges"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AzureWorkloadSQLPointInTimeRecoveryPointData : AzureWorkloadSQLP
     if container.contains(.timeRanges) {
         self.timeRanges = try container.decode([PointInTimeRangeData?]?.self, forKey: .timeRanges)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,9 +46,9 @@ internal struct AzureWorkloadSQLPointInTimeRecoveryPointData : AzureWorkloadSQLP
     if self.recoveryPointTimeInUTC != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTimeInUTC!, format: .dateTime), forKey: .recoveryPointTimeInUTC)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureWorkloadSQLRecoveryPointExtendedInfoData?, forKey: .extendedInfo)}
-    if self.timeRanges != nil {try container.encode(self.timeRanges as! [PointInTimeRangeData?]?, forKey: .timeRanges)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureWorkloadSQLRecoveryPointExtendedInfoData?, forKey: .extendedInfo) }
+    if self.timeRanges != nil { try container.encode(self.timeRanges as! [PointInTimeRangeData?]?, forKey: .timeRanges) }
   }
 }
 

@@ -46,7 +46,7 @@ internal struct StreamingJobPropertiesData : StreamingJobPropertiesProtocol {
         case etag = "etag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct StreamingJobPropertiesData : StreamingJobPropertiesProtocol {
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -118,31 +118,31 @@ internal struct StreamingJobPropertiesData : StreamingJobPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.jobState != nil {try container.encode(self.jobState, forKey: .jobState)}
-    if self.outputStartMode != nil {try container.encode(self.outputStartMode, forKey: .outputStartMode)}
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.jobState != nil { try container.encode(self.jobState, forKey: .jobState) }
+    if self.outputStartMode != nil { try container.encode(self.outputStartMode, forKey: .outputStartMode) }
     if self.outputStartTime != nil {
         try container.encode(DateConverter.toString(date: self.outputStartTime!, format: .dateTime), forKey: .outputStartTime)
     }
     if self.lastOutputEventTime != nil {
         try container.encode(DateConverter.toString(date: self.lastOutputEventTime!, format: .dateTime), forKey: .lastOutputEventTime)
     }
-    if self.eventsOutOfOrderPolicy != nil {try container.encode(self.eventsOutOfOrderPolicy, forKey: .eventsOutOfOrderPolicy)}
-    if self.outputErrorPolicy != nil {try container.encode(self.outputErrorPolicy, forKey: .outputErrorPolicy)}
-    if self.eventsOutOfOrderMaxDelayInSeconds != nil {try container.encode(self.eventsOutOfOrderMaxDelayInSeconds, forKey: .eventsOutOfOrderMaxDelayInSeconds)}
-    if self.eventsLateArrivalMaxDelayInSeconds != nil {try container.encode(self.eventsLateArrivalMaxDelayInSeconds, forKey: .eventsLateArrivalMaxDelayInSeconds)}
-    if self.dataLocale != nil {try container.encode(self.dataLocale, forKey: .dataLocale)}
-    if self.compatibilityLevel != nil {try container.encode(self.compatibilityLevel, forKey: .compatibilityLevel)}
+    if self.eventsOutOfOrderPolicy != nil { try container.encode(self.eventsOutOfOrderPolicy, forKey: .eventsOutOfOrderPolicy) }
+    if self.outputErrorPolicy != nil { try container.encode(self.outputErrorPolicy, forKey: .outputErrorPolicy) }
+    if self.eventsOutOfOrderMaxDelayInSeconds != nil { try container.encode(self.eventsOutOfOrderMaxDelayInSeconds, forKey: .eventsOutOfOrderMaxDelayInSeconds) }
+    if self.eventsLateArrivalMaxDelayInSeconds != nil { try container.encode(self.eventsLateArrivalMaxDelayInSeconds, forKey: .eventsLateArrivalMaxDelayInSeconds) }
+    if self.dataLocale != nil { try container.encode(self.dataLocale, forKey: .dataLocale) }
+    if self.compatibilityLevel != nil { try container.encode(self.compatibilityLevel, forKey: .compatibilityLevel) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.inputs != nil {try container.encode(self.inputs as! [InputData?]?, forKey: .inputs)}
-    if self.transformation != nil {try container.encode(self.transformation as! TransformationData?, forKey: .transformation)}
-    if self.outputs != nil {try container.encode(self.outputs as! [OutputData?]?, forKey: .outputs)}
-    if self.functions != nil {try container.encode(self.functions as! [FunctionData?]?, forKey: .functions)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.inputs != nil { try container.encode(self.inputs as! [InputData?]?, forKey: .inputs) }
+    if self.transformation != nil { try container.encode(self.transformation as! TransformationData?, forKey: .transformation) }
+    if self.outputs != nil { try container.encode(self.outputs as! [OutputData?]?, forKey: .outputs) }
+    if self.functions != nil { try container.encode(self.functions as! [FunctionData?]?, forKey: .functions) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

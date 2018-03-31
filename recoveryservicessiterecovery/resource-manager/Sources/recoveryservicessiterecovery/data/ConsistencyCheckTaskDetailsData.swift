@@ -10,7 +10,7 @@ internal struct ConsistencyCheckTaskDetailsData : ConsistencyCheckTaskDetailsPro
         enum CodingKeys: String, CodingKey {case vmDetails = "vmDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ConsistencyCheckTaskDetailsData : ConsistencyCheckTaskDetailsPro
       if container.contains(.vmDetails) {
         self.vmDetails = try container.decode([InconsistentVmDetailsData?]?.self, forKey: .vmDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ConsistencyCheckTaskDetailsData : ConsistencyCheckTaskDetailsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmDetails != nil {try container.encode(self.vmDetails as! [InconsistentVmDetailsData?]?, forKey: .vmDetails)}
+    if self.vmDetails != nil { try container.encode(self.vmDetails as! [InconsistentVmDetailsData?]?, forKey: .vmDetails) }
   }
 }
 

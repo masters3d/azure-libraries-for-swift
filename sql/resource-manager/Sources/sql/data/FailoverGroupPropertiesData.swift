@@ -20,7 +20,7 @@ internal struct FailoverGroupPropertiesData : FailoverGroupPropertiesProtocol {
         case databases = "databases"
         }
 
-  public init(readWriteEndpoint: FailoverGroupReadWriteEndpointProtocol, partnerServers: [PartnerInfoProtocol])  {
+  public init(readWriteEndpoint: FailoverGroupReadWriteEndpointProtocol, partnerServers: [PartnerInfoProtocol]) {
     self.readWriteEndpoint = readWriteEndpoint
     self.partnerServers = partnerServers
   }
@@ -41,7 +41,7 @@ internal struct FailoverGroupPropertiesData : FailoverGroupPropertiesProtocol {
     if container.contains(.databases) {
         self.databases = try container.decode([String]?.self, forKey: .databases)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,11 +52,11 @@ internal struct FailoverGroupPropertiesData : FailoverGroupPropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.readWriteEndpoint as! FailoverGroupReadWriteEndpointData, forKey: .readWriteEndpoint)
-    if self.readOnlyEndpoint != nil {try container.encode(self.readOnlyEndpoint as! FailoverGroupReadOnlyEndpointData?, forKey: .readOnlyEndpoint)}
-    if self.replicationRole != nil {try container.encode(self.replicationRole, forKey: .replicationRole)}
-    if self.replicationState != nil {try container.encode(self.replicationState, forKey: .replicationState)}
+    if self.readOnlyEndpoint != nil { try container.encode(self.readOnlyEndpoint as! FailoverGroupReadOnlyEndpointData?, forKey: .readOnlyEndpoint) }
+    if self.replicationRole != nil { try container.encode(self.replicationRole, forKey: .replicationRole) }
+    if self.replicationState != nil { try container.encode(self.replicationState, forKey: .replicationState) }
     try container.encode(self.partnerServers as! [PartnerInfoData], forKey: .partnerServers)
-    if self.databases != nil {try container.encode(self.databases as! [String]?, forKey: .databases)}
+    if self.databases != nil { try container.encode(self.databases as! [String]?, forKey: .databases) }
   }
 }
 

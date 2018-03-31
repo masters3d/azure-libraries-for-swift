@@ -12,7 +12,7 @@ internal struct KpiAliasData : KpiAliasProtocol {
         case expression = "expression"
         }
 
-  public init(aliasName: String, expression: String)  {
+  public init(aliasName: String, expression: String) {
     self.aliasName = aliasName
     self.expression = expression
   }
@@ -21,7 +21,7 @@ internal struct KpiAliasData : KpiAliasProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.aliasName = try container.decode(String.self, forKey: .aliasName)
     self.expression = try container.decode(String.self, forKey: .expression)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

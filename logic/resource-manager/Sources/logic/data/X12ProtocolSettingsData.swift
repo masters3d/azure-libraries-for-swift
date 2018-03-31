@@ -32,7 +32,7 @@ internal struct X12ProtocolSettingsData : X12ProtocolSettingsProtocol {
         case x12DelimiterOverrides = "x12DelimiterOverrides"
         }
 
-  public init(validationSettings: X12ValidationSettingsProtocol, framingSettings: X12FramingSettingsProtocol, envelopeSettings: X12EnvelopeSettingsProtocol, acknowledgementSettings: X12AcknowledgementSettingsProtocol, messageFilter: X12MessageFilterProtocol, securitySettings: X12SecuritySettingsProtocol, processingSettings: X12ProcessingSettingsProtocol, schemaReferences: [X12SchemaReferenceProtocol])  {
+  public init(validationSettings: X12ValidationSettingsProtocol, framingSettings: X12FramingSettingsProtocol, envelopeSettings: X12EnvelopeSettingsProtocol, acknowledgementSettings: X12AcknowledgementSettingsProtocol, messageFilter: X12MessageFilterProtocol, securitySettings: X12SecuritySettingsProtocol, processingSettings: X12ProcessingSettingsProtocol, schemaReferences: [X12SchemaReferenceProtocol]) {
     self.validationSettings = validationSettings
     self.framingSettings = framingSettings
     self.envelopeSettings = envelopeSettings
@@ -65,7 +65,7 @@ internal struct X12ProtocolSettingsData : X12ProtocolSettingsProtocol {
     if container.contains(.x12DelimiterOverrides) {
         self.x12DelimiterOverrides = try container.decode([X12DelimiterOverridesData?]?.self, forKey: .x12DelimiterOverrides)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -82,11 +82,11 @@ internal struct X12ProtocolSettingsData : X12ProtocolSettingsProtocol {
     try container.encode(self.messageFilter as! X12MessageFilterData, forKey: .messageFilter)
     try container.encode(self.securitySettings as! X12SecuritySettingsData, forKey: .securitySettings)
     try container.encode(self.processingSettings as! X12ProcessingSettingsData, forKey: .processingSettings)
-    if self.envelopeOverrides != nil {try container.encode(self.envelopeOverrides as! [X12EnvelopeOverrideData?]?, forKey: .envelopeOverrides)}
-    if self.validationOverrides != nil {try container.encode(self.validationOverrides as! [X12ValidationOverrideData?]?, forKey: .validationOverrides)}
-    if self.messageFilterList != nil {try container.encode(self.messageFilterList as! [X12MessageIdentifierData?]?, forKey: .messageFilterList)}
+    if self.envelopeOverrides != nil { try container.encode(self.envelopeOverrides as! [X12EnvelopeOverrideData?]?, forKey: .envelopeOverrides) }
+    if self.validationOverrides != nil { try container.encode(self.validationOverrides as! [X12ValidationOverrideData?]?, forKey: .validationOverrides) }
+    if self.messageFilterList != nil { try container.encode(self.messageFilterList as! [X12MessageIdentifierData?]?, forKey: .messageFilterList) }
     try container.encode(self.schemaReferences as! [X12SchemaReferenceData], forKey: .schemaReferences)
-    if self.x12DelimiterOverrides != nil {try container.encode(self.x12DelimiterOverrides as! [X12DelimiterOverridesData?]?, forKey: .x12DelimiterOverrides)}
+    if self.x12DelimiterOverrides != nil { try container.encode(self.x12DelimiterOverrides as! [X12DelimiterOverridesData?]?, forKey: .x12DelimiterOverrides) }
   }
 }
 

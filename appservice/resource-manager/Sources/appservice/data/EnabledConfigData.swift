@@ -10,7 +10,7 @@ internal struct EnabledConfigData : EnabledConfigProtocol {
         enum CodingKeys: String, CodingKey {case enabled = "enabled"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct EnabledConfigData : EnabledConfigProtocol {
       if container.contains(.enabled) {
         self.enabled = try container.decode(Bool?.self, forKey: .enabled)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct EnabledConfigData : EnabledConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
   }
 }
 

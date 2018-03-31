@@ -12,7 +12,7 @@ internal struct BudgetTimePeriodData : BudgetTimePeriodProtocol {
         case endDate = "endDate"
         }
 
-  public init(startDate: Date)  {
+  public init(startDate: Date) {
     self.startDate = startDate
   }
 
@@ -22,7 +22,7 @@ internal struct BudgetTimePeriodData : BudgetTimePeriodProtocol {
     if container.contains(.endDate) {
         self.endDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .endDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

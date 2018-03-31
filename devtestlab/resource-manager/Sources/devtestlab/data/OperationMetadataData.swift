@@ -12,7 +12,7 @@ internal struct OperationMetadataData : OperationMetadataProtocol {
         case display = "display"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct OperationMetadataData : OperationMetadataProtocol {
     if container.contains(.display) {
         self.display = try container.decode(OperationMetadataDisplayData?.self, forKey: .display)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct OperationMetadataData : OperationMetadataProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.display != nil {try container.encode(self.display as! OperationMetadataDisplayData?, forKey: .display)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.display != nil { try container.encode(self.display as! OperationMetadataDisplayData?, forKey: .display) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct DocumentDbOutputDataSourcePropertiesData : DocumentDbOutputDataS
         case documentId = "documentId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DocumentDbOutputDataSourcePropertiesData : DocumentDbOutputDataS
     if container.contains(.documentId) {
         self.documentId = try container.decode(String?.self, forKey: .documentId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct DocumentDbOutputDataSourcePropertiesData : DocumentDbOutputDataS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.accountKey != nil {try container.encode(self.accountKey, forKey: .accountKey)}
-    if self.database != nil {try container.encode(self.database, forKey: .database)}
-    if self.collectionNamePattern != nil {try container.encode(self.collectionNamePattern, forKey: .collectionNamePattern)}
-    if self.partitionKey != nil {try container.encode(self.partitionKey, forKey: .partitionKey)}
-    if self.documentId != nil {try container.encode(self.documentId, forKey: .documentId)}
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.accountKey != nil { try container.encode(self.accountKey, forKey: .accountKey) }
+    if self.database != nil { try container.encode(self.database, forKey: .database) }
+    if self.collectionNamePattern != nil { try container.encode(self.collectionNamePattern, forKey: .collectionNamePattern) }
+    if self.partitionKey != nil { try container.encode(self.partitionKey, forKey: .partitionKey) }
+    if self.documentId != nil { try container.encode(self.documentId, forKey: .documentId) }
   }
 }
 

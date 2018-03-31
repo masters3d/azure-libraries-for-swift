@@ -18,7 +18,7 @@ internal struct VolumeData : VolumeProtocol {
         case gitRepo = "gitRepo"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -37,7 +37,7 @@ internal struct VolumeData : VolumeProtocol {
     if container.contains(.gitRepo) {
         self.gitRepo = try container.decode(GitRepoVolumeData?.self, forKey: .gitRepo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct VolumeData : VolumeProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.azureFile != nil {try container.encode(self.azureFile as! AzureFileVolumeData?, forKey: .azureFile)}
-    if self.emptyDir != nil {try container.encode(self.emptyDir, forKey: .emptyDir)}
-    if self.secret != nil {try container.encode(self.secret, forKey: .secret)}
-    if self.gitRepo != nil {try container.encode(self.gitRepo as! GitRepoVolumeData?, forKey: .gitRepo)}
+    if self.azureFile != nil { try container.encode(self.azureFile as! AzureFileVolumeData?, forKey: .azureFile) }
+    if self.emptyDir != nil { try container.encode(self.emptyDir, forKey: .emptyDir) }
+    if self.secret != nil { try container.encode(self.secret, forKey: .secret) }
+    if self.gitRepo != nil { try container.encode(self.gitRepo as! GitRepoVolumeData?, forKey: .gitRepo) }
   }
 }
 

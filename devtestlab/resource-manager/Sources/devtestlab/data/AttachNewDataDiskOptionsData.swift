@@ -14,7 +14,7 @@ internal struct AttachNewDataDiskOptionsData : AttachNewDataDiskOptionsProtocol 
         case diskType = "diskType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AttachNewDataDiskOptionsData : AttachNewDataDiskOptionsProtocol 
     if container.contains(.diskType) {
         self.diskType = try container.decode(StorageTypeEnum?.self, forKey: .diskType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AttachNewDataDiskOptionsData : AttachNewDataDiskOptionsProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskSizeGiB != nil {try container.encode(self.diskSizeGiB, forKey: .diskSizeGiB)}
-    if self.diskName != nil {try container.encode(self.diskName, forKey: .diskName)}
-    if self.diskType != nil {try container.encode(self.diskType, forKey: .diskType)}
+    if self.diskSizeGiB != nil { try container.encode(self.diskSizeGiB, forKey: .diskSizeGiB) }
+    if self.diskName != nil { try container.encode(self.diskName, forKey: .diskName) }
+    if self.diskType != nil { try container.encode(self.diskType, forKey: .diskType) }
   }
 }
 

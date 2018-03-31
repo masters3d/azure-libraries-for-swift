@@ -30,7 +30,7 @@ internal struct ConnectorData : ConnectorProtocol {
         case isInternal = "isInternal"
         }
 
-  public init(connectorType: ConnectorTypesEnum, connectorProperties: [String:[String: String?]])  {
+  public init(connectorType: ConnectorTypesEnum, connectorProperties: [String:[String: String?]]) {
     self.connectorType = connectorType
     self.connectorProperties = connectorProperties
   }
@@ -66,7 +66,7 @@ internal struct ConnectorData : ConnectorProtocol {
     if container.contains(.isInternal) {
         self.isInternal = try container.decode(Bool?.self, forKey: .isInternal)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -76,11 +76,11 @@ internal struct ConnectorData : ConnectorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectorId != nil {try container.encode(self.connectorId, forKey: .connectorId)}
-    if self.connectorName != nil {try container.encode(self.connectorName, forKey: .connectorName)}
+    if self.connectorId != nil { try container.encode(self.connectorId, forKey: .connectorId) }
+    if self.connectorName != nil { try container.encode(self.connectorName, forKey: .connectorName) }
     try container.encode(self.connectorType, forKey: .connectorType)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.connectorProperties, forKey: .connectorProperties)
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTime), forKey: .created)
@@ -88,9 +88,9 @@ internal struct ConnectorData : ConnectorProtocol {
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.isInternal != nil {try container.encode(self.isInternal, forKey: .isInternal)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.isInternal != nil { try container.encode(self.isInternal, forKey: .isInternal) }
   }
 }
 

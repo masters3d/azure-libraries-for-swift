@@ -56,7 +56,7 @@ internal struct X12EnvelopeSettingsData : X12EnvelopeSettingsProtocol {
         case usageIndicator = "usageIndicator"
         }
 
-  public init(controlStandardsId: Int32, useControlStandardsIdAsRepetitionCharacter: Bool, senderApplicationId: String, receiverApplicationId: String, controlVersionNumber: String, interchangeControlNumberLowerBound: Int32, interchangeControlNumberUpperBound: Int32, rolloverInterchangeControlNumber: Bool, enableDefaultGroupHeaders: Bool, groupControlNumberLowerBound: Int32, groupControlNumberUpperBound: Int32, rolloverGroupControlNumber: Bool, groupHeaderAgencyCode: String, groupHeaderVersion: String, transactionSetControlNumberLowerBound: Int32, transactionSetControlNumberUpperBound: Int32, rolloverTransactionSetControlNumber: Bool, overwriteExistingTransactionSetControlNumber: Bool, groupHeaderDateFormat: X12DateFormatEnum, groupHeaderTimeFormat: X12TimeFormatEnum, usageIndicator: UsageIndicatorEnum)  {
+  public init(controlStandardsId: Int32, useControlStandardsIdAsRepetitionCharacter: Bool, senderApplicationId: String, receiverApplicationId: String, controlVersionNumber: String, interchangeControlNumberLowerBound: Int32, interchangeControlNumberUpperBound: Int32, rolloverInterchangeControlNumber: Bool, enableDefaultGroupHeaders: Bool, groupControlNumberLowerBound: Int32, groupControlNumberUpperBound: Int32, rolloverGroupControlNumber: Bool, groupHeaderAgencyCode: String, groupHeaderVersion: String, transactionSetControlNumberLowerBound: Int32, transactionSetControlNumberUpperBound: Int32, rolloverTransactionSetControlNumber: Bool, overwriteExistingTransactionSetControlNumber: Bool, groupHeaderDateFormat: X12DateFormatEnum, groupHeaderTimeFormat: X12TimeFormatEnum, usageIndicator: UsageIndicatorEnum) {
     self.controlStandardsId = controlStandardsId
     self.useControlStandardsIdAsRepetitionCharacter = useControlStandardsIdAsRepetitionCharacter
     self.senderApplicationId = senderApplicationId
@@ -112,7 +112,7 @@ internal struct X12EnvelopeSettingsData : X12EnvelopeSettingsProtocol {
     self.groupHeaderDateFormat = try container.decode(X12DateFormatEnum.self, forKey: .groupHeaderDateFormat)
     self.groupHeaderTimeFormat = try container.decode(X12TimeFormatEnum.self, forKey: .groupHeaderTimeFormat)
     self.usageIndicator = try container.decode(UsageIndicatorEnum.self, forKey: .usageIndicator)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -131,7 +131,7 @@ internal struct X12EnvelopeSettingsData : X12EnvelopeSettingsProtocol {
     try container.encode(self.interchangeControlNumberUpperBound, forKey: .interchangeControlNumberUpperBound)
     try container.encode(self.rolloverInterchangeControlNumber, forKey: .rolloverInterchangeControlNumber)
     try container.encode(self.enableDefaultGroupHeaders, forKey: .enableDefaultGroupHeaders)
-    if self.functionalGroupId != nil {try container.encode(self.functionalGroupId, forKey: .functionalGroupId)}
+    if self.functionalGroupId != nil { try container.encode(self.functionalGroupId, forKey: .functionalGroupId) }
     try container.encode(self.groupControlNumberLowerBound, forKey: .groupControlNumberLowerBound)
     try container.encode(self.groupControlNumberUpperBound, forKey: .groupControlNumberUpperBound)
     try container.encode(self.rolloverGroupControlNumber, forKey: .rolloverGroupControlNumber)
@@ -140,8 +140,8 @@ internal struct X12EnvelopeSettingsData : X12EnvelopeSettingsProtocol {
     try container.encode(self.transactionSetControlNumberLowerBound, forKey: .transactionSetControlNumberLowerBound)
     try container.encode(self.transactionSetControlNumberUpperBound, forKey: .transactionSetControlNumberUpperBound)
     try container.encode(self.rolloverTransactionSetControlNumber, forKey: .rolloverTransactionSetControlNumber)
-    if self.transactionSetControlNumberPrefix != nil {try container.encode(self.transactionSetControlNumberPrefix, forKey: .transactionSetControlNumberPrefix)}
-    if self.transactionSetControlNumberSuffix != nil {try container.encode(self.transactionSetControlNumberSuffix, forKey: .transactionSetControlNumberSuffix)}
+    if self.transactionSetControlNumberPrefix != nil { try container.encode(self.transactionSetControlNumberPrefix, forKey: .transactionSetControlNumberPrefix) }
+    if self.transactionSetControlNumberSuffix != nil { try container.encode(self.transactionSetControlNumberSuffix, forKey: .transactionSetControlNumberSuffix) }
     try container.encode(self.overwriteExistingTransactionSetControlNumber, forKey: .overwriteExistingTransactionSetControlNumber)
     try container.encode(self.groupHeaderDateFormat, forKey: .groupHeaderDateFormat)
     try container.encode(self.groupHeaderTimeFormat, forKey: .groupHeaderTimeFormat)

@@ -16,7 +16,7 @@ internal struct DetectorDefinitionPropertiesData : DetectorDefinitionPropertiesP
         case isEnabled = "isEnabled"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct DetectorDefinitionPropertiesData : DetectorDefinitionPropertiesP
     if container.contains(.isEnabled) {
         self.isEnabled = try container.decode(Bool?.self, forKey: .isEnabled)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct DetectorDefinitionPropertiesData : DetectorDefinitionPropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.rank != nil {try container.encode(self.rank, forKey: .rank)}
-    if self.isEnabled != nil {try container.encode(self.isEnabled, forKey: .isEnabled)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.rank != nil { try container.encode(self.rank, forKey: .rank) }
+    if self.isEnabled != nil { try container.encode(self.isEnabled, forKey: .isEnabled) }
   }
 }
 

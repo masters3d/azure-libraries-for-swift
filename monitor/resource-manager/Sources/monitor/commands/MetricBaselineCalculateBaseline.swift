@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol MetricBaselineCalculateBaseline  {
+public protocol MetricBaselineCalculateBaseline {
     var headerParameters: [String: String] { get set }
     var resourceUri : String { get set }
     var apiVersion : String { get set }
-    var timeSeriesInformation :  TimeSeriesInformationProtocol?  { get set }
+    var timeSeriesInformation :  TimeSeriesInformationProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CalculateBaselineResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CalculateBaselineResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.MetricBaseline {
@@ -26,7 +26,7 @@ extension Commands.MetricBaseline {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceUri}"] = String(describing: self.resourceUri)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = timeSeriesInformation
@@ -47,12 +47,12 @@ extension Commands.MetricBaseline {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CalculateBaselineResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CalculateBaselineResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CalculateBaselineResponseProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CalculateBaselineResponseData?, error: Error?) in
                 completionHandler(result, error)

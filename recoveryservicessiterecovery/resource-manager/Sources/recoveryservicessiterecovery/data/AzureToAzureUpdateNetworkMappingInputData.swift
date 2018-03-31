@@ -10,7 +10,7 @@ internal struct AzureToAzureUpdateNetworkMappingInputData : AzureToAzureUpdateNe
         enum CodingKeys: String, CodingKey {case primaryNetworkId = "primaryNetworkId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AzureToAzureUpdateNetworkMappingInputData : AzureToAzureUpdateNe
       if container.contains(.primaryNetworkId) {
         self.primaryNetworkId = try container.decode(String?.self, forKey: .primaryNetworkId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AzureToAzureUpdateNetworkMappingInputData : AzureToAzureUpdateNe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primaryNetworkId != nil {try container.encode(self.primaryNetworkId, forKey: .primaryNetworkId)}
+    if self.primaryNetworkId != nil { try container.encode(self.primaryNetworkId, forKey: .primaryNetworkId) }
   }
 }
 

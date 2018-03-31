@@ -20,7 +20,7 @@ internal struct ParticipantData : ParticipantProtocol {
         case role = "role"
         }
 
-  public init(profileTypeName: String, participantPropertyReferences: [ParticipantPropertyReferenceProtocol], participantName: String)  {
+  public init(profileTypeName: String, participantPropertyReferences: [ParticipantPropertyReferenceProtocol], participantName: String) {
     self.profileTypeName = profileTypeName
     self.participantPropertyReferences = participantPropertyReferences
     self.participantName = participantName
@@ -40,7 +40,7 @@ internal struct ParticipantData : ParticipantProtocol {
     if container.contains(.role) {
         self.role = try container.decode(String?.self, forKey: .role)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,9 +53,9 @@ internal struct ParticipantData : ParticipantProtocol {
     try container.encode(self.profileTypeName, forKey: .profileTypeName)
     try container.encode(self.participantPropertyReferences as! [ParticipantPropertyReferenceData], forKey: .participantPropertyReferences)
     try container.encode(self.participantName, forKey: .participantName)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.role != nil {try container.encode(self.role, forKey: .role)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.role != nil { try container.encode(self.role, forKey: .role) }
   }
 }
 

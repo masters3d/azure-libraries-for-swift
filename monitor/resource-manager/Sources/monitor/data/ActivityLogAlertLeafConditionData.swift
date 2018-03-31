@@ -12,7 +12,7 @@ internal struct ActivityLogAlertLeafConditionData : ActivityLogAlertLeafConditio
         case equals = "equals"
         }
 
-  public init(field: String, equals: String)  {
+  public init(field: String, equals: String) {
     self.field = field
     self.equals = equals
   }
@@ -21,7 +21,7 @@ internal struct ActivityLogAlertLeafConditionData : ActivityLogAlertLeafConditio
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decode(String.self, forKey: .field)
     self.equals = try container.decode(String.self, forKey: .equals)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

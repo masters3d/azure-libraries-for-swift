@@ -36,7 +36,7 @@ internal struct DPMProtectedItemExtendedInfoData : DPMProtectedItemExtendedInfoP
         case totalDiskStorageSizeInBytes = "totalDiskStorageSizeInBytes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct DPMProtectedItemExtendedInfoData : DPMProtectedItemExtendedInfoP
     if container.contains(.totalDiskStorageSizeInBytes) {
         self.totalDiskStorageSizeInBytes = try container.decode(String?.self, forKey: .totalDiskStorageSizeInBytes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,28 +93,28 @@ internal struct DPMProtectedItemExtendedInfoData : DPMProtectedItemExtendedInfoP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectableObjectLoadPath != nil {try container.encode(self.protectableObjectLoadPath, forKey: .protectableObjectLoadPath)}
-    if self.protected != nil {try container.encode(self.protected, forKey: .protected)}
-    if self.isPresentOnCloud != nil {try container.encode(self.isPresentOnCloud, forKey: .isPresentOnCloud)}
-    if self.lastBackupStatus != nil {try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus)}
+    if self.protectableObjectLoadPath != nil { try container.encode(self.protectableObjectLoadPath, forKey: .protectableObjectLoadPath) }
+    if self.protected != nil { try container.encode(self.protected, forKey: .protected) }
+    if self.isPresentOnCloud != nil { try container.encode(self.isPresentOnCloud, forKey: .isPresentOnCloud) }
+    if self.lastBackupStatus != nil { try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus) }
     if self.lastRefreshedAt != nil {
         try container.encode(DateConverter.toString(date: self.lastRefreshedAt!, format: .dateTime), forKey: .lastRefreshedAt)
     }
     if self.oldestRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.oldestRecoveryPoint!, format: .dateTime), forKey: .oldestRecoveryPoint)
     }
-    if self.recoveryPointCount != nil {try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount)}
+    if self.recoveryPointCount != nil { try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount) }
     if self.onPremiseOldestRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.onPremiseOldestRecoveryPoint!, format: .dateTime), forKey: .onPremiseOldestRecoveryPoint)
     }
     if self.onPremiseLatestRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.onPremiseLatestRecoveryPoint!, format: .dateTime), forKey: .onPremiseLatestRecoveryPoint)
     }
-    if self.onPremiseRecoveryPointCount != nil {try container.encode(self.onPremiseRecoveryPointCount, forKey: .onPremiseRecoveryPointCount)}
-    if self.isCollocated != nil {try container.encode(self.isCollocated, forKey: .isCollocated)}
-    if self.protectionGroupName != nil {try container.encode(self.protectionGroupName, forKey: .protectionGroupName)}
-    if self.diskStorageUsedInBytes != nil {try container.encode(self.diskStorageUsedInBytes, forKey: .diskStorageUsedInBytes)}
-    if self.totalDiskStorageSizeInBytes != nil {try container.encode(self.totalDiskStorageSizeInBytes, forKey: .totalDiskStorageSizeInBytes)}
+    if self.onPremiseRecoveryPointCount != nil { try container.encode(self.onPremiseRecoveryPointCount, forKey: .onPremiseRecoveryPointCount) }
+    if self.isCollocated != nil { try container.encode(self.isCollocated, forKey: .isCollocated) }
+    if self.protectionGroupName != nil { try container.encode(self.protectionGroupName, forKey: .protectionGroupName) }
+    if self.diskStorageUsedInBytes != nil { try container.encode(self.diskStorageUsedInBytes, forKey: .diskStorageUsedInBytes) }
+    if self.totalDiskStorageSizeInBytes != nil { try container.encode(self.totalDiskStorageSizeInBytes, forKey: .totalDiskStorageSizeInBytes) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct SettingsData : SettingsProtocol {
         case issqlcompression = "issqlcompression"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SettingsData : SettingsProtocol {
     if container.contains(.issqlcompression) {
         self.issqlcompression = try container.decode(Bool?.self, forKey: .issqlcompression)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SettingsData : SettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.issqlcompression != nil {try container.encode(self.issqlcompression, forKey: .issqlcompression)}
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.issqlcompression != nil { try container.encode(self.issqlcompression, forKey: .issqlcompression) }
   }
 }
 

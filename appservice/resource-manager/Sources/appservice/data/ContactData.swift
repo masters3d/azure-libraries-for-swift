@@ -26,7 +26,7 @@ internal struct ContactData : ContactProtocol {
         case phone = "phone"
         }
 
-  public init(email: String, nameFirst: String, nameLast: String, phone: String)  {
+  public init(email: String, nameFirst: String, nameLast: String, phone: String) {
     self.email = email
     self.nameFirst = nameFirst
     self.nameLast = nameLast
@@ -54,7 +54,7 @@ internal struct ContactData : ContactProtocol {
         self.organization = try container.decode(String?.self, forKey: .organization)
     }
     self.phone = try container.decode(String.self, forKey: .phone)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -64,14 +64,14 @@ internal struct ContactData : ContactProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.addressMailing != nil {try container.encode(self.addressMailing as! AddressData?, forKey: .addressMailing)}
+    if self.addressMailing != nil { try container.encode(self.addressMailing as! AddressData?, forKey: .addressMailing) }
     try container.encode(self.email, forKey: .email)
-    if self.fax != nil {try container.encode(self.fax, forKey: .fax)}
-    if self.jobTitle != nil {try container.encode(self.jobTitle, forKey: .jobTitle)}
+    if self.fax != nil { try container.encode(self.fax, forKey: .fax) }
+    if self.jobTitle != nil { try container.encode(self.jobTitle, forKey: .jobTitle) }
     try container.encode(self.nameFirst, forKey: .nameFirst)
     try container.encode(self.nameLast, forKey: .nameLast)
-    if self.nameMiddle != nil {try container.encode(self.nameMiddle, forKey: .nameMiddle)}
-    if self.organization != nil {try container.encode(self.organization, forKey: .organization)}
+    if self.nameMiddle != nil { try container.encode(self.nameMiddle, forKey: .nameMiddle) }
+    if self.organization != nil { try container.encode(self.organization, forKey: .organization) }
     try container.encode(self.phone, forKey: .phone)
   }
 }

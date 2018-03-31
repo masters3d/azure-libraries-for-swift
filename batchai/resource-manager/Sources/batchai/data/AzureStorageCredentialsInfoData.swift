@@ -12,7 +12,7 @@ internal struct AzureStorageCredentialsInfoData : AzureStorageCredentialsInfoPro
         case accountKeySecretReference = "accountKeySecretReference"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureStorageCredentialsInfoData : AzureStorageCredentialsInfoPro
     if container.contains(.accountKeySecretReference) {
         self.accountKeySecretReference = try container.decode(KeyVaultSecretReferenceData?.self, forKey: .accountKeySecretReference)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureStorageCredentialsInfoData : AzureStorageCredentialsInfoPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountKey != nil {try container.encode(self.accountKey, forKey: .accountKey)}
-    if self.accountKeySecretReference != nil {try container.encode(self.accountKeySecretReference as! KeyVaultSecretReferenceData?, forKey: .accountKeySecretReference)}
+    if self.accountKey != nil { try container.encode(self.accountKey, forKey: .accountKey) }
+    if self.accountKeySecretReference != nil { try container.encode(self.accountKeySecretReference as! KeyVaultSecretReferenceData?, forKey: .accountKeySecretReference) }
   }
 }
 

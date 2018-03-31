@@ -12,7 +12,7 @@ internal struct NodeSetupData : NodeSetupProtocol {
         case mountVolumes = "mountVolumes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct NodeSetupData : NodeSetupProtocol {
     if container.contains(.mountVolumes) {
         self.mountVolumes = try container.decode(MountVolumesData?.self, forKey: .mountVolumes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct NodeSetupData : NodeSetupProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.setupTask != nil {try container.encode(self.setupTask as! SetupTaskData?, forKey: .setupTask)}
-    if self.mountVolumes != nil {try container.encode(self.mountVolumes as! MountVolumesData?, forKey: .mountVolumes)}
+    if self.setupTask != nil { try container.encode(self.setupTask as! SetupTaskData?, forKey: .setupTask) }
+    if self.mountVolumes != nil { try container.encode(self.mountVolumes as! MountVolumesData?, forKey: .mountVolumes) }
   }
 }
 

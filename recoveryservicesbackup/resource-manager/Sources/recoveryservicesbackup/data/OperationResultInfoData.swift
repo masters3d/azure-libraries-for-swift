@@ -10,7 +10,7 @@ internal struct OperationResultInfoData : OperationResultInfoProtocol, Operation
         enum CodingKeys: String, CodingKey {case jobList = "jobList"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct OperationResultInfoData : OperationResultInfoProtocol, Operation
       if container.contains(.jobList) {
         self.jobList = try container.decode([String]?.self, forKey: .jobList)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct OperationResultInfoData : OperationResultInfoProtocol, Operation
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobList != nil {try container.encode(self.jobList as! [String]?, forKey: .jobList)}
+    if self.jobList != nil { try container.encode(self.jobList as! [String]?, forKey: .jobList) }
   }
 }
 

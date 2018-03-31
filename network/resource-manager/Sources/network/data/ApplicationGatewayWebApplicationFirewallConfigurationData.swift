@@ -22,7 +22,7 @@ internal struct ApplicationGatewayWebApplicationFirewallConfigurationData : Appl
         case maxRequestBodySize = "maxRequestBodySize"
         }
 
-  public init(enabled: Bool, firewallMode: ApplicationGatewayFirewallModeEnum, ruleSetType: String, ruleSetVersion: String)  {
+  public init(enabled: Bool, firewallMode: ApplicationGatewayFirewallModeEnum, ruleSetType: String, ruleSetVersion: String) {
     self.enabled = enabled
     self.firewallMode = firewallMode
     self.ruleSetType = ruleSetType
@@ -44,7 +44,7 @@ internal struct ApplicationGatewayWebApplicationFirewallConfigurationData : Appl
     if container.contains(.maxRequestBodySize) {
         self.maxRequestBodySize = try container.decode(Int32?.self, forKey: .maxRequestBodySize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,9 +58,9 @@ internal struct ApplicationGatewayWebApplicationFirewallConfigurationData : Appl
     try container.encode(self.firewallMode, forKey: .firewallMode)
     try container.encode(self.ruleSetType, forKey: .ruleSetType)
     try container.encode(self.ruleSetVersion, forKey: .ruleSetVersion)
-    if self.disabledRuleGroups != nil {try container.encode(self.disabledRuleGroups as! [ApplicationGatewayFirewallDisabledRuleGroupData?]?, forKey: .disabledRuleGroups)}
-    if self.requestBodyCheck != nil {try container.encode(self.requestBodyCheck, forKey: .requestBodyCheck)}
-    if self.maxRequestBodySize != nil {try container.encode(self.maxRequestBodySize, forKey: .maxRequestBodySize)}
+    if self.disabledRuleGroups != nil { try container.encode(self.disabledRuleGroups as! [ApplicationGatewayFirewallDisabledRuleGroupData?]?, forKey: .disabledRuleGroups) }
+    if self.requestBodyCheck != nil { try container.encode(self.requestBodyCheck, forKey: .requestBodyCheck) }
+    if self.maxRequestBodySize != nil { try container.encode(self.maxRequestBodySize, forKey: .maxRequestBodySize) }
   }
 }
 

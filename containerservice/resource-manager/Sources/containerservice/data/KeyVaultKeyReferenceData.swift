@@ -12,7 +12,7 @@ internal struct KeyVaultKeyReferenceData : KeyVaultKeyReferenceProtocol {
         case sourceVault = "sourceVault"
         }
 
-  public init(keyUrl: String, sourceVault: SubResourceProtocol)  {
+  public init(keyUrl: String, sourceVault: SubResourceProtocol) {
     self.keyUrl = keyUrl
     self.sourceVault = sourceVault
   }
@@ -21,7 +21,7 @@ internal struct KeyVaultKeyReferenceData : KeyVaultKeyReferenceProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyUrl = try container.decode(String.self, forKey: .keyUrl)
     self.sourceVault = try container.decode(SubResourceData.self, forKey: .sourceVault)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

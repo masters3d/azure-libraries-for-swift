@@ -1,20 +1,20 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ContainerDelete  {
+public protocol ContainerDelete {
     var headerParameters: [String: String] { get set }
     var accountName : String { get set }
     var container : String { get set }
     var timeout : Int32? { get set }
     var restype : String { get set }
-    var leaseId : String?  { get set }
-    var ifModifiedSince : String?  { get set }
-    var ifUnmodifiedSince : String?  { get set }
-    var ifMatches : String?  { get set }
-    var ifNoneMatch : String?  { get set }
-    var version : String?  { get set }
-    var requestId : String?  { get set }
+    var leaseId : String? { get set }
+    var ifModifiedSince : String? { get set }
+    var ifUnmodifiedSince : String? { get set }
+    var ifMatches : String? { get set }
+    var ifNoneMatch : String? { get set }
+    var version : String? { get set }
+    var requestId : String? { get set }
     func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void;
+        completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Container {
@@ -30,14 +30,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["x-ms-lease-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-lease-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-lease-id" }) {
                 return headerParameters["x-ms-lease-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -47,14 +47,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["If-Modified-Since"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Modified-Since"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Modified-Since" }) {
                 return headerParameters["If-Modified-Since"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -64,14 +64,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["If-Unmodified-Since"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Unmodified-Since"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Unmodified-Since" }) {
                 return headerParameters["If-Unmodified-Since"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -81,14 +81,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["If-Match"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Match"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Match" }) {
                 return headerParameters["If-Match"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -98,14 +98,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["If-None-Match"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-None-Match"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-None-Match" }) {
                 return headerParameters["If-None-Match"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -115,14 +115,14 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["x-ms-version"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-version"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-version" }) {
                 return headerParameters["x-ms-version"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -132,19 +132,19 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         set {
             if newValue != nil {
                 headerParameters["x-ms-client-request-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-client-request-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-client-request-id" }) {
                 return headerParameters["x-ms-client-request-id"]
-            }else {
+            } else {
                 return nil
             }
         }
     }
-    
+
     let azureStorageKey: String
 
     public init(azureStorageKey: String, accountName: String, container: String, restype: String) {
@@ -160,7 +160,7 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
         self.headerParameters = ["Content-Type":"application/xml; charset=utf-8"]
     }
 
-    public override func preCall()  {
+    public override func preCall() {
         self.pathParameters["{accountName}"] = String(describing: self.accountName)
         self.pathParameters["{container}"] = String(describing: self.container)
         if self.timeout != nil { queryParameters["{timeout}"] = String(describing: self.timeout!) }
@@ -169,7 +169,7 @@ internal class DeleteCommand : BaseCommand, ContainerDelete {
     }
 
     public func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void {
+        completionHandler: @escaping (Error?) -> Void) {
         client.executeAsync(command: self) {
             (error) in
             completionHandler(error)

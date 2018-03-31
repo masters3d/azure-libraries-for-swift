@@ -20,7 +20,7 @@ internal struct ComputeNodeInformationData : ComputeNodeInformationProtocol {
         case taskRootDirectoryUrl = "taskRootDirectoryUrl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ComputeNodeInformationData : ComputeNodeInformationProtocol {
     if container.contains(.taskRootDirectoryUrl) {
         self.taskRootDirectoryUrl = try container.decode(String?.self, forKey: .taskRootDirectoryUrl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ComputeNodeInformationData : ComputeNodeInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.affinityId != nil {try container.encode(self.affinityId, forKey: .affinityId)}
-    if self.nodeUrl != nil {try container.encode(self.nodeUrl, forKey: .nodeUrl)}
-    if self.poolId != nil {try container.encode(self.poolId, forKey: .poolId)}
-    if self.nodeId != nil {try container.encode(self.nodeId, forKey: .nodeId)}
-    if self.taskRootDirectory != nil {try container.encode(self.taskRootDirectory, forKey: .taskRootDirectory)}
-    if self.taskRootDirectoryUrl != nil {try container.encode(self.taskRootDirectoryUrl, forKey: .taskRootDirectoryUrl)}
+    if self.affinityId != nil { try container.encode(self.affinityId, forKey: .affinityId) }
+    if self.nodeUrl != nil { try container.encode(self.nodeUrl, forKey: .nodeUrl) }
+    if self.poolId != nil { try container.encode(self.poolId, forKey: .poolId) }
+    if self.nodeId != nil { try container.encode(self.nodeId, forKey: .nodeId) }
+    if self.taskRootDirectory != nil { try container.encode(self.taskRootDirectory, forKey: .taskRootDirectory) }
+    if self.taskRootDirectoryUrl != nil { try container.encode(self.taskRootDirectoryUrl, forKey: .taskRootDirectoryUrl) }
   }
 }
 

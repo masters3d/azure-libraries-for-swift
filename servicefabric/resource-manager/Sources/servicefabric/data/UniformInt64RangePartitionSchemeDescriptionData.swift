@@ -14,7 +14,7 @@ internal struct UniformInt64RangePartitionSchemeDescriptionData : UniformInt64Ra
         case highKey = "HighKey"
         }
 
-  public init(count: Int32, lowKey: String, highKey: String)  {
+  public init(count: Int32, lowKey: String, highKey: String) {
     self.count = count
     self.lowKey = lowKey
     self.highKey = highKey
@@ -25,7 +25,7 @@ internal struct UniformInt64RangePartitionSchemeDescriptionData : UniformInt64Ra
       self.count = try container.decode(Int32.self, forKey: .count)
     self.lowKey = try container.decode(String.self, forKey: .lowKey)
     self.highKey = try container.decode(String.self, forKey: .highKey)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -28,7 +28,7 @@ internal struct FunctionEnvelopePropertiesData : FunctionEnvelopePropertiesProto
         case testData = "testData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct FunctionEnvelopePropertiesData : FunctionEnvelopePropertiesProto
     if container.contains(.testData) {
         self.testData = try container.decode(String?.self, forKey: .testData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct FunctionEnvelopePropertiesData : FunctionEnvelopePropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.functionAppId != nil {try container.encode(self.functionAppId, forKey: .functionAppId)}
-    if self.scriptRootPathHref != nil {try container.encode(self.scriptRootPathHref, forKey: .scriptRootPathHref)}
-    if self.scriptHref != nil {try container.encode(self.scriptHref, forKey: .scriptHref)}
-    if self.configHref != nil {try container.encode(self.configHref, forKey: .configHref)}
-    if self.secretsFileHref != nil {try container.encode(self.secretsFileHref, forKey: .secretsFileHref)}
-    if self.href != nil {try container.encode(self.href, forKey: .href)}
-    if self.config != nil {try container.encode(self.config, forKey: .config)}
-    if self.files != nil {try container.encode(self.files, forKey: .files)}
-    if self.testData != nil {try container.encode(self.testData, forKey: .testData)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.functionAppId != nil { try container.encode(self.functionAppId, forKey: .functionAppId) }
+    if self.scriptRootPathHref != nil { try container.encode(self.scriptRootPathHref, forKey: .scriptRootPathHref) }
+    if self.scriptHref != nil { try container.encode(self.scriptHref, forKey: .scriptHref) }
+    if self.configHref != nil { try container.encode(self.configHref, forKey: .configHref) }
+    if self.secretsFileHref != nil { try container.encode(self.secretsFileHref, forKey: .secretsFileHref) }
+    if self.href != nil { try container.encode(self.href, forKey: .href) }
+    if self.config != nil { try container.encode(self.config, forKey: .config) }
+    if self.files != nil { try container.encode(self.files, forKey: .files) }
+    if self.testData != nil { try container.encode(self.testData, forKey: .testData) }
   }
 }
 

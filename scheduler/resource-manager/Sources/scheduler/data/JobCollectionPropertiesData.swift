@@ -14,7 +14,7 @@ internal struct JobCollectionPropertiesData : JobCollectionPropertiesProtocol {
         case quota = "quota"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct JobCollectionPropertiesData : JobCollectionPropertiesProtocol {
     if container.contains(.quota) {
         self.quota = try container.decode(JobCollectionQuotaData?.self, forKey: .quota)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct JobCollectionPropertiesData : JobCollectionPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.quota != nil {try container.encode(self.quota as! JobCollectionQuotaData?, forKey: .quota)}
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.quota != nil { try container.encode(self.quota as! JobCollectionQuotaData?, forKey: .quota) }
   }
 }
 

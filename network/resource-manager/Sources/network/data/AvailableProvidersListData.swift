@@ -10,14 +10,14 @@ internal struct AvailableProvidersListData : AvailableProvidersListProtocol {
         enum CodingKeys: String, CodingKey {case countries = "countries"
         }
 
-  public init(countries: [AvailableProvidersListCountryProtocol])  {
+  public init(countries: [AvailableProvidersListCountryProtocol]) {
     self.countries = countries
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.countries = try container.decode([AvailableProvidersListCountryData].self, forKey: .countries)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

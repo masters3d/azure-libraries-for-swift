@@ -26,7 +26,7 @@ internal struct ApplicationPropertiesData : ApplicationPropertiesProtocol, Appli
         case typeName = "typeName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct ApplicationPropertiesData : ApplicationPropertiesProtocol, Appli
     if container.contains(.typeName) {
         self.typeName = try container.decode(String?.self, forKey: .typeName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct ApplicationPropertiesData : ApplicationPropertiesProtocol, Appli
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.typeVersion != nil {try container.encode(self.typeVersion, forKey: .typeVersion)}
-    if self.parameters != nil {try container.encode(self.parameters as! [ApplicationParameterData?]?, forKey: .parameters)}
-    if self.upgradePolicy != nil {try container.encode(self.upgradePolicy as! ApplicationUpgradePolicyData?, forKey: .upgradePolicy)}
-    if self.minimumNodes != nil {try container.encode(self.minimumNodes, forKey: .minimumNodes)}
-    if self.maximumNodes != nil {try container.encode(self.maximumNodes, forKey: .maximumNodes)}
-    if self.removeApplicationCapacity != nil {try container.encode(self.removeApplicationCapacity, forKey: .removeApplicationCapacity)}
-    if self.metrics != nil {try container.encode(self.metrics as! [ApplicationMetricDescriptionData?]?, forKey: .metrics)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.typeName != nil {try container.encode(self.typeName, forKey: .typeName)}
+    if self.typeVersion != nil { try container.encode(self.typeVersion, forKey: .typeVersion) }
+    if self.parameters != nil { try container.encode(self.parameters as! [ApplicationParameterData?]?, forKey: .parameters) }
+    if self.upgradePolicy != nil { try container.encode(self.upgradePolicy as! ApplicationUpgradePolicyData?, forKey: .upgradePolicy) }
+    if self.minimumNodes != nil { try container.encode(self.minimumNodes, forKey: .minimumNodes) }
+    if self.maximumNodes != nil { try container.encode(self.maximumNodes, forKey: .maximumNodes) }
+    if self.removeApplicationCapacity != nil { try container.encode(self.removeApplicationCapacity, forKey: .removeApplicationCapacity) }
+    if self.metrics != nil { try container.encode(self.metrics as! [ApplicationMetricDescriptionData?]?, forKey: .metrics) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.typeName != nil { try container.encode(self.typeName, forKey: .typeName) }
   }
 }
 

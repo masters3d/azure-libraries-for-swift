@@ -14,7 +14,7 @@ internal struct OperationResultData : OperationResultProtocol {
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct OperationResultData : OperationResultProtocol {
     if container.contains(.error) {
         self.error = try container.decode(OperationErrorData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct OperationResultData : OperationResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.statusCode != nil {try container.encode(self.statusCode, forKey: .statusCode)}
-    if self.error != nil {try container.encode(self.error as! OperationErrorData?, forKey: .error)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.statusCode != nil { try container.encode(self.statusCode, forKey: .statusCode) }
+    if self.error != nil { try container.encode(self.error as! OperationErrorData?, forKey: .error) }
   }
 }
 

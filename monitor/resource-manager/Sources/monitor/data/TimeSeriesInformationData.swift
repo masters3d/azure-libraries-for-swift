@@ -14,7 +14,7 @@ internal struct TimeSeriesInformationData : TimeSeriesInformationProtocol {
         case timestamps = "timestamps"
         }
 
-  public init(sensitivities: [String], values: [Double])  {
+  public init(sensitivities: [String], values: [Double]) {
     self.sensitivities = sensitivities
     self.values = values
   }
@@ -26,7 +26,7 @@ internal struct TimeSeriesInformationData : TimeSeriesInformationProtocol {
     if container.contains(.timestamps) {
         self.timestamps = try container.decode([Date]?.self, forKey: .timestamps)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct TimeSeriesInformationData : TimeSeriesInformationProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sensitivities as! [String], forKey: .sensitivities)
     try container.encode(self.values as! [Double], forKey: .values)
-    if self.timestamps != nil {try container.encode(self.timestamps as! [Date]?, forKey: .timestamps)}
+    if self.timestamps != nil { try container.encode(self.timestamps as! [Date]?, forKey: .timestamps) }
   }
 }
 

@@ -46,7 +46,7 @@ internal struct AzureVmWorkloadSQLDatabaseProtectedItemData : AzureVmWorkloadSQL
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct AzureVmWorkloadSQLDatabaseProtectedItemData : AzureVmWorkloadSQL
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureVmWorkloadProtectedItemExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -118,29 +118,29 @@ internal struct AzureVmWorkloadSQLDatabaseProtectedItemData : AzureVmWorkloadSQL
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
     if self.lastRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.lastRecoveryPoint!, format: .dateTime), forKey: .lastRecoveryPoint)
     }
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.parentName != nil {try container.encode(self.parentName, forKey: .parentName)}
-    if self.parentType != nil {try container.encode(self.parentType, forKey: .parentType)}
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.lastBackupStatus != nil {try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus)}
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.parentName != nil { try container.encode(self.parentName, forKey: .parentName) }
+    if self.parentType != nil { try container.encode(self.parentType, forKey: .parentType) }
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.lastBackupStatus != nil { try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus) }
     if self.lastBackupTime != nil {
         try container.encode(DateConverter.toString(date: self.lastBackupTime!, format: .dateTime), forKey: .lastBackupTime)
     }
-    if self.lastBackupErrorDetail != nil {try container.encode(self.lastBackupErrorDetail as! ErrorDetailData?, forKey: .lastBackupErrorDetail)}
-    if self.protectedItemDataSourceId != nil {try container.encode(self.protectedItemDataSourceId, forKey: .protectedItemDataSourceId)}
-    if self.protectedItemHealthStatus != nil {try container.encode(self.protectedItemHealthStatus, forKey: .protectedItemHealthStatus)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureVmWorkloadProtectedItemExtendedInfoData?, forKey: .extendedInfo)}
+    if self.lastBackupErrorDetail != nil { try container.encode(self.lastBackupErrorDetail as! ErrorDetailData?, forKey: .lastBackupErrorDetail) }
+    if self.protectedItemDataSourceId != nil { try container.encode(self.protectedItemDataSourceId, forKey: .protectedItemDataSourceId) }
+    if self.protectedItemHealthStatus != nil { try container.encode(self.protectedItemHealthStatus, forKey: .protectedItemHealthStatus) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureVmWorkloadProtectedItemExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

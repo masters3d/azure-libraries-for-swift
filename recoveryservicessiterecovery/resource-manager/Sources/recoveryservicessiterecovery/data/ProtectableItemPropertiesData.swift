@@ -22,7 +22,7 @@ internal struct ProtectableItemPropertiesData : ProtectableItemPropertiesProtoco
         case customDetails = "customDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ProtectableItemPropertiesData : ProtectableItemPropertiesProtoco
     if container.contains(.customDetails) {
         self.customDetails = try container.decode(ConfigurationSettingsData?.self, forKey: .customDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ProtectableItemPropertiesData : ProtectableItemPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
-    if self.replicationProtectedItemId != nil {try container.encode(self.replicationProtectedItemId, forKey: .replicationProtectedItemId)}
-    if self.recoveryServicesProviderId != nil {try container.encode(self.recoveryServicesProviderId, forKey: .recoveryServicesProviderId)}
-    if self.protectionReadinessErrors != nil {try container.encode(self.protectionReadinessErrors as! [String]?, forKey: .protectionReadinessErrors)}
-    if self.supportedReplicationProviders != nil {try container.encode(self.supportedReplicationProviders as! [String]?, forKey: .supportedReplicationProviders)}
-    if self.customDetails != nil {try container.encode(self.customDetails as! ConfigurationSettingsData?, forKey: .customDetails)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
+    if self.replicationProtectedItemId != nil { try container.encode(self.replicationProtectedItemId, forKey: .replicationProtectedItemId) }
+    if self.recoveryServicesProviderId != nil { try container.encode(self.recoveryServicesProviderId, forKey: .recoveryServicesProviderId) }
+    if self.protectionReadinessErrors != nil { try container.encode(self.protectionReadinessErrors as! [String]?, forKey: .protectionReadinessErrors) }
+    if self.supportedReplicationProviders != nil { try container.encode(self.supportedReplicationProviders as! [String]?, forKey: .supportedReplicationProviders) }
+    if self.customDetails != nil { try container.encode(self.customDetails as! ConfigurationSettingsData?, forKey: .customDetails) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct TaskIdRangeData : TaskIdRangeProtocol {
         case end = "end"
         }
 
-  public init(start: Int32, end: Int32)  {
+  public init(start: Int32, end: Int32) {
     self.start = start
     self.end = end
   }
@@ -21,7 +21,7 @@ internal struct TaskIdRangeData : TaskIdRangeProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.start = try container.decode(Int32.self, forKey: .start)
     self.end = try container.decode(Int32.self, forKey: .end)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

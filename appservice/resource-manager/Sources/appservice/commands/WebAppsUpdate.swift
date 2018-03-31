@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WebAppsUpdate  {
+public protocol WebAppsUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
@@ -10,9 +10,9 @@ public protocol WebAppsUpdate  {
     var forceDnsRegistration : Bool? { get set }
     var ttlInSeconds : String? { get set }
     var apiVersion : String { get set }
-    var siteEnvelope :  SitePatchResourceProtocol?  { get set }
+    var siteEnvelope :  SitePatchResourceProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SiteProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SiteProtocol?, Error?) -> Void)
 }
 
 extension Commands.WebApps {
@@ -40,7 +40,7 @@ extension Commands.WebApps {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -67,12 +67,12 @@ extension Commands.WebApps {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SiteData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SiteProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SiteProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SiteData?, error: Error?) in
                 completionHandler(result, error)

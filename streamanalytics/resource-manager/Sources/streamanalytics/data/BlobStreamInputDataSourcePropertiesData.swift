@@ -20,7 +20,7 @@ internal struct BlobStreamInputDataSourcePropertiesData : BlobStreamInputDataSou
         case sourcePartitionCount = "sourcePartitionCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct BlobStreamInputDataSourcePropertiesData : BlobStreamInputDataSou
     if container.contains(.sourcePartitionCount) {
         self.sourcePartitionCount = try container.decode(Int32?.self, forKey: .sourcePartitionCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct BlobStreamInputDataSourcePropertiesData : BlobStreamInputDataSou
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccounts != nil {try container.encode(self.storageAccounts as! [StorageAccountData?]?, forKey: .storageAccounts)}
-    if self.container != nil {try container.encode(self.container, forKey: .container)}
-    if self.pathPattern != nil {try container.encode(self.pathPattern, forKey: .pathPattern)}
-    if self.dateFormat != nil {try container.encode(self.dateFormat, forKey: .dateFormat)}
-    if self.timeFormat != nil {try container.encode(self.timeFormat, forKey: .timeFormat)}
-    if self.sourcePartitionCount != nil {try container.encode(self.sourcePartitionCount, forKey: .sourcePartitionCount)}
+    if self.storageAccounts != nil { try container.encode(self.storageAccounts as! [StorageAccountData?]?, forKey: .storageAccounts) }
+    if self.container != nil { try container.encode(self.container, forKey: .container) }
+    if self.pathPattern != nil { try container.encode(self.pathPattern, forKey: .pathPattern) }
+    if self.dateFormat != nil { try container.encode(self.dateFormat, forKey: .dateFormat) }
+    if self.timeFormat != nil { try container.encode(self.timeFormat, forKey: .timeFormat) }
+    if self.sourcePartitionCount != nil { try container.encode(self.sourcePartitionCount, forKey: .sourcePartitionCount) }
   }
 }
 

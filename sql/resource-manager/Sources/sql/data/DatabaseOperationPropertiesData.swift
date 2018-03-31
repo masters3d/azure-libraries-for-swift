@@ -36,7 +36,7 @@ internal struct DatabaseOperationPropertiesData : DatabaseOperationPropertiesPro
         case isCancellable = "isCancellable"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct DatabaseOperationPropertiesData : DatabaseOperationPropertiesPro
     if container.contains(.isCancellable) {
         self.isCancellable = try container.decode(Bool?.self, forKey: .isCancellable)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,24 +93,24 @@ internal struct DatabaseOperationPropertiesData : DatabaseOperationPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.operationFriendlyName != nil {try container.encode(self.operationFriendlyName, forKey: .operationFriendlyName)}
-    if self.percentComplete != nil {try container.encode(self.percentComplete, forKey: .percentComplete)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.operationFriendlyName != nil { try container.encode(self.operationFriendlyName, forKey: .operationFriendlyName) }
+    if self.percentComplete != nil { try container.encode(self.percentComplete, forKey: .percentComplete) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorDescription != nil {try container.encode(self.errorDescription, forKey: .errorDescription)}
-    if self.errorSeverity != nil {try container.encode(self.errorSeverity, forKey: .errorSeverity)}
-    if self.isUserError != nil {try container.encode(self.isUserError, forKey: .isUserError)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorDescription != nil { try container.encode(self.errorDescription, forKey: .errorDescription) }
+    if self.errorSeverity != nil { try container.encode(self.errorSeverity, forKey: .errorSeverity) }
+    if self.isUserError != nil { try container.encode(self.isUserError, forKey: .isUserError) }
     if self.estimatedCompletionTime != nil {
         try container.encode(DateConverter.toString(date: self.estimatedCompletionTime!, format: .dateTime), forKey: .estimatedCompletionTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.isCancellable != nil {try container.encode(self.isCancellable, forKey: .isCancellable)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.isCancellable != nil { try container.encode(self.isCancellable, forKey: .isCancellable) }
   }
 }
 

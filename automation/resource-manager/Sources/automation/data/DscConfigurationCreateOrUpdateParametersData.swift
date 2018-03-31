@@ -16,7 +16,7 @@ internal struct DscConfigurationCreateOrUpdateParametersData : DscConfigurationC
         case tags = "tags"
         }
 
-  public init(properties: DscConfigurationCreateOrUpdatePropertiesProtocol)  {
+  public init(properties: DscConfigurationCreateOrUpdatePropertiesProtocol) {
     self.properties = properties
   }
 
@@ -32,7 +32,7 @@ internal struct DscConfigurationCreateOrUpdateParametersData : DscConfigurationC
     if container.contains(.tags) {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct DscConfigurationCreateOrUpdateParametersData : DscConfigurationC
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.properties as! DscConfigurationCreateOrUpdatePropertiesData, forKey: .properties)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
   }
 }
 

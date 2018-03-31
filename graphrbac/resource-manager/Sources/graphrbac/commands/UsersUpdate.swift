@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol UsersUpdate  {
+public protocol UsersUpdate {
     var headerParameters: [String: String] { get set }
     var upnOrObjectId : String { get set }
     var tenantID : String { get set }
     var apiVersion : String { get set }
-    var parameters :  UserUpdateParametersProtocol?  { get set }
+    var parameters :  UserUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Users {
@@ -29,7 +29,7 @@ extension Commands.Users {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{upnOrObjectId}"] = String(describing: self.upnOrObjectId)
             self.pathParameters["{tenantID}"] = String(describing: self.tenantID)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -47,7 +47,7 @@ extension Commands.Users {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

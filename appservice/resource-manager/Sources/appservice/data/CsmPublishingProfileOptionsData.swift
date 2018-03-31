@@ -10,7 +10,7 @@ internal struct CsmPublishingProfileOptionsData : CsmPublishingProfileOptionsPro
         enum CodingKeys: String, CodingKey {case format = "format"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct CsmPublishingProfileOptionsData : CsmPublishingProfileOptionsPro
       if container.contains(.format) {
         self.format = try container.decode(PublishingProfileFormatEnum?.self, forKey: .format)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct CsmPublishingProfileOptionsData : CsmPublishingProfileOptionsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
   }
 }
 

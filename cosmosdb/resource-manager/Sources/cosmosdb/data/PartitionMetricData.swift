@@ -24,7 +24,7 @@ internal struct PartitionMetricData : PartitionMetricProtocol, MetricProtocol {
         case partitionKeyRangeId = "partitionKeyRangeId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct PartitionMetricData : PartitionMetricProtocol, MetricProtocol {
     if container.contains(.partitionKeyRangeId) {
         self.partitionKeyRangeId = try container.decode(String?.self, forKey: .partitionKeyRangeId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,12 +69,12 @@ internal struct PartitionMetricData : PartitionMetricProtocol, MetricProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.timeGrain != nil {try container.encode(self.timeGrain, forKey: .timeGrain)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.name != nil {try container.encode(self.name as! MetricNameData?, forKey: .name)}
-    if self.metricValues != nil {try container.encode(self.metricValues as! [MetricValueData?]?, forKey: .metricValues)}
-    if self.partitionId != nil {try container.encode(self.partitionId, forKey: .partitionId)}
-    if self.partitionKeyRangeId != nil {try container.encode(self.partitionKeyRangeId, forKey: .partitionKeyRangeId)}
+    if self.timeGrain != nil { try container.encode(self.timeGrain, forKey: .timeGrain) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.name != nil { try container.encode(self.name as! MetricNameData?, forKey: .name) }
+    if self.metricValues != nil { try container.encode(self.metricValues as! [MetricValueData?]?, forKey: .metricValues) }
+    if self.partitionId != nil { try container.encode(self.partitionId, forKey: .partitionId) }
+    if self.partitionKeyRangeId != nil { try container.encode(self.partitionKeyRangeId, forKey: .partitionKeyRangeId) }
   }
 }
 

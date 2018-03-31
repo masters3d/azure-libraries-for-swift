@@ -12,7 +12,7 @@ internal struct PoolEnableAutoScaleParameterData : PoolEnableAutoScaleParameterP
         case autoScaleEvaluationInterval = "autoScaleEvaluationInterval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct PoolEnableAutoScaleParameterData : PoolEnableAutoScaleParameterP
     if container.contains(.autoScaleEvaluationInterval) {
         self.autoScaleEvaluationInterval = try container.decode(String?.self, forKey: .autoScaleEvaluationInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct PoolEnableAutoScaleParameterData : PoolEnableAutoScaleParameterP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.autoScaleFormula != nil {try container.encode(self.autoScaleFormula, forKey: .autoScaleFormula)}
-    if self.autoScaleEvaluationInterval != nil {try container.encode(self.autoScaleEvaluationInterval, forKey: .autoScaleEvaluationInterval)}
+    if self.autoScaleFormula != nil { try container.encode(self.autoScaleFormula, forKey: .autoScaleFormula) }
+    if self.autoScaleEvaluationInterval != nil { try container.encode(self.autoScaleEvaluationInterval, forKey: .autoScaleEvaluationInterval) }
   }
 }
 

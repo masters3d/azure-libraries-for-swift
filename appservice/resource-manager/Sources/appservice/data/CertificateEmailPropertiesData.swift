@@ -12,7 +12,7 @@ internal struct CertificateEmailPropertiesData : CertificateEmailPropertiesProto
         case timeStamp = "timeStamp"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CertificateEmailPropertiesData : CertificateEmailPropertiesProto
     if container.contains(.timeStamp) {
         self.timeStamp = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .timeStamp)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct CertificateEmailPropertiesData : CertificateEmailPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.emailId != nil {try container.encode(self.emailId, forKey: .emailId)}
+    if self.emailId != nil { try container.encode(self.emailId, forKey: .emailId) }
     if self.timeStamp != nil {
         try container.encode(DateConverter.toString(date: self.timeStamp!, format: .dateTime), forKey: .timeStamp)
     }

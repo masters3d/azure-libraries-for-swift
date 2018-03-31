@@ -14,7 +14,7 @@ internal struct ApplicationLogsConfigData : ApplicationLogsConfigProtocol {
         case azureBlobStorage = "azureBlobStorage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApplicationLogsConfigData : ApplicationLogsConfigProtocol {
     if container.contains(.azureBlobStorage) {
         self.azureBlobStorage = try container.decode(AzureBlobStorageApplicationLogsConfigData?.self, forKey: .azureBlobStorage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApplicationLogsConfigData : ApplicationLogsConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fileSystem != nil {try container.encode(self.fileSystem as! FileSystemApplicationLogsConfigData?, forKey: .fileSystem)}
-    if self.azureTableStorage != nil {try container.encode(self.azureTableStorage as! AzureTableStorageApplicationLogsConfigData?, forKey: .azureTableStorage)}
-    if self.azureBlobStorage != nil {try container.encode(self.azureBlobStorage as! AzureBlobStorageApplicationLogsConfigData?, forKey: .azureBlobStorage)}
+    if self.fileSystem != nil { try container.encode(self.fileSystem as! FileSystemApplicationLogsConfigData?, forKey: .fileSystem) }
+    if self.azureTableStorage != nil { try container.encode(self.azureTableStorage as! AzureTableStorageApplicationLogsConfigData?, forKey: .azureTableStorage) }
+    if self.azureBlobStorage != nil { try container.encode(self.azureBlobStorage as! AzureBlobStorageApplicationLogsConfigData?, forKey: .azureBlobStorage) }
   }
 }
 

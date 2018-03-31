@@ -16,7 +16,7 @@ internal struct VmwareCbtPolicyDetailsData : VmwareCbtPolicyDetailsProtocol, Pol
         case crashConsistentFrequencyInMinutes = "crashConsistentFrequencyInMinutes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VmwareCbtPolicyDetailsData : VmwareCbtPolicyDetailsProtocol, Pol
     if container.contains(.crashConsistentFrequencyInMinutes) {
         self.crashConsistentFrequencyInMinutes = try container.decode(Int32?.self, forKey: .crashConsistentFrequencyInMinutes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VmwareCbtPolicyDetailsData : VmwareCbtPolicyDetailsProtocol, Pol
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointThresholdInMinutes != nil {try container.encode(self.recoveryPointThresholdInMinutes, forKey: .recoveryPointThresholdInMinutes)}
-    if self.recoveryPointHistory != nil {try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory)}
-    if self.appConsistentFrequencyInMinutes != nil {try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes)}
-    if self.crashConsistentFrequencyInMinutes != nil {try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes)}
+    if self.recoveryPointThresholdInMinutes != nil { try container.encode(self.recoveryPointThresholdInMinutes, forKey: .recoveryPointThresholdInMinutes) }
+    if self.recoveryPointHistory != nil { try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory) }
+    if self.appConsistentFrequencyInMinutes != nil { try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes) }
+    if self.crashConsistentFrequencyInMinutes != nil { try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes) }
   }
 }
 

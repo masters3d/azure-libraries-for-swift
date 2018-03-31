@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RedisCheckNameAvailability  {
+public protocol RedisCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckNameAvailabilityParametersProtocol?  { get set }
+    var parameters :  CheckNameAvailabilityParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Redis {
@@ -26,7 +26,7 @@ extension Commands.Redis {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = parameters
@@ -43,7 +43,7 @@ extension Commands.Redis {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

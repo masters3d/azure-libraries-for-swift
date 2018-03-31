@@ -12,7 +12,7 @@ internal struct VirtualMachineCaptureResultData : VirtualMachineCaptureResultPro
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VirtualMachineCaptureResultData : VirtualMachineCaptureResultPro
     if container.contains(.properties) {
         self.properties = try container.decode(VirtualMachineCaptureResultPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VirtualMachineCaptureResultData : VirtualMachineCaptureResultPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.properties != nil {try container.encode(self.properties as! VirtualMachineCaptureResultPropertiesData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.properties != nil { try container.encode(self.properties as! VirtualMachineCaptureResultPropertiesData?, forKey: .properties) }
   }
 }
 

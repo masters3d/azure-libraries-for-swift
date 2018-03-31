@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ViewsCreateOrUpdate  {
+public protocol ViewsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var hubName : String { get set }
     var viewName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ViewResourceFormatProtocol?  { get set }
+    var parameters :  ViewResourceFormatProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ViewResourceFormatProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ViewResourceFormatProtocol?, Error?) -> Void)
 }
 
 extension Commands.Views {
@@ -35,7 +35,7 @@ extension Commands.Views {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{hubName}"] = String(describing: self.hubName)
             self.pathParameters["{viewName}"] = String(describing: self.viewName)
@@ -59,12 +59,12 @@ extension Commands.Views {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ViewResourceFormatData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ViewResourceFormatProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ViewResourceFormatProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ViewResourceFormatData?, error: Error?) in
                 completionHandler(result, error)

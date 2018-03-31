@@ -20,7 +20,7 @@ internal struct TargetCostPropertiesData : TargetCostPropertiesProtocol {
         case cycleType = "cycleType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct TargetCostPropertiesData : TargetCostPropertiesProtocol {
     if container.contains(.cycleType) {
         self.cycleType = try container.decode(ReportingCycleTypeEnum?.self, forKey: .cycleType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct TargetCostPropertiesData : TargetCostPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.target != nil {try container.encode(self.target, forKey: .target)}
-    if self.costThresholds != nil {try container.encode(self.costThresholds as! [CostThresholdPropertiesData?]?, forKey: .costThresholds)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.target != nil { try container.encode(self.target, forKey: .target) }
+    if self.costThresholds != nil { try container.encode(self.costThresholds as! [CostThresholdPropertiesData?]?, forKey: .costThresholds) }
     if self.cycleStartDateTime != nil {
         try container.encode(DateConverter.toString(date: self.cycleStartDateTime!, format: .dateTime), forKey: .cycleStartDateTime)
     }
     if self.cycleEndDateTime != nil {
         try container.encode(DateConverter.toString(date: self.cycleEndDateTime!, format: .dateTime), forKey: .cycleEndDateTime)
     }
-    if self.cycleType != nil {try container.encode(self.cycleType, forKey: .cycleType)}
+    if self.cycleType != nil { try container.encode(self.cycleType, forKey: .cycleType) }
   }
 }
 

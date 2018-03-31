@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LogProfilesDelete  {
+public protocol LogProfilesDelete {
     var headerParameters: [String: String] { get set }
     var logProfileName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.LogProfiles {
@@ -26,7 +26,7 @@ extension Commands.LogProfiles {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{logProfileName}"] = String(describing: self.logProfileName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -34,7 +34,7 @@ extension Commands.LogProfiles {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

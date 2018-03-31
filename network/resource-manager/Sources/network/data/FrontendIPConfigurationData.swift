@@ -18,7 +18,7 @@ internal struct FrontendIPConfigurationData : FrontendIPConfigurationProtocol, S
         case zones = "zones"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct FrontendIPConfigurationData : FrontendIPConfigurationProtocol, S
     if container.contains(.zones) {
         self.zones = try container.decode([String]?.self, forKey: .zones)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct FrontendIPConfigurationData : FrontendIPConfigurationProtocol, S
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.properties != nil {try container.encode(self.properties as! FrontendIPConfigurationPropertiesFormatData?, forKey: .properties)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
-    if self.zones != nil {try container.encode(self.zones as! [String]?, forKey: .zones)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.properties != nil { try container.encode(self.properties as! FrontendIPConfigurationPropertiesFormatData?, forKey: .properties) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
+    if self.zones != nil { try container.encode(self.zones as! [String]?, forKey: .zones) }
   }
 }
 

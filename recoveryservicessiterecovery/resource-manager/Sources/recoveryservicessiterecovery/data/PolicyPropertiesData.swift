@@ -12,7 +12,7 @@ internal struct PolicyPropertiesData : PolicyPropertiesProtocol {
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct PolicyPropertiesData : PolicyPropertiesProtocol {
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(PolicyProviderSpecificDetailsData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct PolicyPropertiesData : PolicyPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! PolicyProviderSpecificDetailsData?, forKey: .providerSpecificDetails)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! PolicyProviderSpecificDetailsData?, forKey: .providerSpecificDetails) }
   }
 }
 

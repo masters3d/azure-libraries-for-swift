@@ -16,7 +16,7 @@ internal struct ReissueCertificateOrderRequestPropertiesData : ReissueCertificat
         case isPrivateKeyExternal = "isPrivateKeyExternal"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ReissueCertificateOrderRequestPropertiesData : ReissueCertificat
     if container.contains(.isPrivateKeyExternal) {
         self.isPrivateKeyExternal = try container.decode(Bool?.self, forKey: .isPrivateKeyExternal)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ReissueCertificateOrderRequestPropertiesData : ReissueCertificat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keySize != nil {try container.encode(self.keySize, forKey: .keySize)}
-    if self.delayExistingRevokeInHours != nil {try container.encode(self.delayExistingRevokeInHours, forKey: .delayExistingRevokeInHours)}
-    if self.csr != nil {try container.encode(self.csr, forKey: .csr)}
-    if self.isPrivateKeyExternal != nil {try container.encode(self.isPrivateKeyExternal, forKey: .isPrivateKeyExternal)}
+    if self.keySize != nil { try container.encode(self.keySize, forKey: .keySize) }
+    if self.delayExistingRevokeInHours != nil { try container.encode(self.delayExistingRevokeInHours, forKey: .delayExistingRevokeInHours) }
+    if self.csr != nil { try container.encode(self.csr, forKey: .csr) }
+    if self.isPrivateKeyExternal != nil { try container.encode(self.isPrivateKeyExternal, forKey: .isPrivateKeyExternal) }
   }
 }
 

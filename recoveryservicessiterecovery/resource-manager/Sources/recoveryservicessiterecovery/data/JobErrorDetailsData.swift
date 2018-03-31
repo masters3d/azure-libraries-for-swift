@@ -18,7 +18,7 @@ internal struct JobErrorDetailsData : JobErrorDetailsProtocol {
         case taskId = "taskId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobErrorDetailsData : JobErrorDetailsProtocol {
     if container.contains(.taskId) {
         self.taskId = try container.decode(String?.self, forKey: .taskId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,13 +48,13 @@ internal struct JobErrorDetailsData : JobErrorDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceErrorDetails != nil {try container.encode(self.serviceErrorDetails as! ServiceErrorData?, forKey: .serviceErrorDetails)}
-    if self.providerErrorDetails != nil {try container.encode(self.providerErrorDetails as! ProviderErrorData?, forKey: .providerErrorDetails)}
-    if self.errorLevel != nil {try container.encode(self.errorLevel, forKey: .errorLevel)}
+    if self.serviceErrorDetails != nil { try container.encode(self.serviceErrorDetails as! ServiceErrorData?, forKey: .serviceErrorDetails) }
+    if self.providerErrorDetails != nil { try container.encode(self.providerErrorDetails as! ProviderErrorData?, forKey: .providerErrorDetails) }
+    if self.errorLevel != nil { try container.encode(self.errorLevel, forKey: .errorLevel) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.taskId != nil {try container.encode(self.taskId, forKey: .taskId)}
+    if self.taskId != nil { try container.encode(self.taskId, forKey: .taskId) }
   }
 }
 

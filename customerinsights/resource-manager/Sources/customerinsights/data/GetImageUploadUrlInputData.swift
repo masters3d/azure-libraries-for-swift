@@ -14,7 +14,7 @@ internal struct GetImageUploadUrlInputData : GetImageUploadUrlInputProtocol {
         case relativePath = "relativePath"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct GetImageUploadUrlInputData : GetImageUploadUrlInputProtocol {
     if container.contains(.relativePath) {
         self.relativePath = try container.decode(String?.self, forKey: .relativePath)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct GetImageUploadUrlInputData : GetImageUploadUrlInputProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entityType != nil {try container.encode(self.entityType, forKey: .entityType)}
-    if self.entityTypeName != nil {try container.encode(self.entityTypeName, forKey: .entityTypeName)}
-    if self.relativePath != nil {try container.encode(self.relativePath, forKey: .relativePath)}
+    if self.entityType != nil { try container.encode(self.entityType, forKey: .entityType) }
+    if self.entityTypeName != nil { try container.encode(self.entityTypeName, forKey: .entityTypeName) }
+    if self.relativePath != nil { try container.encode(self.relativePath, forKey: .relativePath) }
   }
 }
 

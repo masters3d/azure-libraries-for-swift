@@ -10,7 +10,7 @@ internal struct UpdatePolicyInputPropertiesData : UpdatePolicyInputPropertiesPro
         enum CodingKeys: String, CodingKey {case replicationProviderSettings = "replicationProviderSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdatePolicyInputPropertiesData : UpdatePolicyInputPropertiesPro
       if container.contains(.replicationProviderSettings) {
         self.replicationProviderSettings = try container.decode(PolicyProviderSpecificInputData?.self, forKey: .replicationProviderSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdatePolicyInputPropertiesData : UpdatePolicyInputPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.replicationProviderSettings != nil {try container.encode(self.replicationProviderSettings as! PolicyProviderSpecificInputData?, forKey: .replicationProviderSettings)}
+    if self.replicationProviderSettings != nil { try container.encode(self.replicationProviderSettings as! PolicyProviderSpecificInputData?, forKey: .replicationProviderSettings) }
   }
 }
 

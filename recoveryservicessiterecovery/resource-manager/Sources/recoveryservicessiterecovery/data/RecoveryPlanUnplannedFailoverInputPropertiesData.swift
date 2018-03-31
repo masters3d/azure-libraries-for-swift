@@ -14,7 +14,7 @@ internal struct RecoveryPlanUnplannedFailoverInputPropertiesData : RecoveryPlanU
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init(failoverDirection: PossibleOperationsDirectionsEnum, sourceSiteOperations: SourceSiteOperationsEnum)  {
+  public init(failoverDirection: PossibleOperationsDirectionsEnum, sourceSiteOperations: SourceSiteOperationsEnum) {
     self.failoverDirection = failoverDirection
     self.sourceSiteOperations = sourceSiteOperations
   }
@@ -26,7 +26,7 @@ internal struct RecoveryPlanUnplannedFailoverInputPropertiesData : RecoveryPlanU
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode([RecoveryPlanProviderSpecificFailoverInputData?]?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct RecoveryPlanUnplannedFailoverInputPropertiesData : RecoveryPlanU
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.failoverDirection, forKey: .failoverDirection)
     try container.encode(self.sourceSiteOperations, forKey: .sourceSiteOperations)
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! [RecoveryPlanProviderSpecificFailoverInputData?]?, forKey: .providerSpecificDetails)}
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! [RecoveryPlanProviderSpecificFailoverInputData?]?, forKey: .providerSpecificDetails) }
   }
 }
 

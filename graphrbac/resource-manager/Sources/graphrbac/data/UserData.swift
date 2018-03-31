@@ -36,7 +36,7 @@ internal struct UserData : UserProtocol, DirectoryObjectProtocol {
         case signInNames = "signInNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct UserData : UserProtocol, DirectoryObjectProtocol {
     if container.contains(.signInNames) {
         self.signInNames = try container.decode([SignInNameData?]?.self, forKey: .signInNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,22 +93,22 @@ internal struct UserData : UserProtocol, DirectoryObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
     if self.deletionTimestamp != nil {
         try container.encode(DateConverter.toString(date: self.deletionTimestamp!, format: .dateTime), forKey: .deletionTimestamp)
     }
-    if self.immutableId != nil {try container.encode(self.immutableId, forKey: .immutableId)}
-    if self.usageLocation != nil {try container.encode(self.usageLocation, forKey: .usageLocation)}
-    if self.givenName != nil {try container.encode(self.givenName, forKey: .givenName)}
-    if self.surname != nil {try container.encode(self.surname, forKey: .surname)}
-    if self.userType != nil {try container.encode(self.userType, forKey: .userType)}
-    if self.accountEnabled != nil {try container.encode(self.accountEnabled, forKey: .accountEnabled)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.userPrincipalName != nil {try container.encode(self.userPrincipalName, forKey: .userPrincipalName)}
-    if self.mailNickname != nil {try container.encode(self.mailNickname, forKey: .mailNickname)}
-    if self.mail != nil {try container.encode(self.mail, forKey: .mail)}
-    if self.signInNames != nil {try container.encode(self.signInNames as! [SignInNameData?]?, forKey: .signInNames)}
+    if self.immutableId != nil { try container.encode(self.immutableId, forKey: .immutableId) }
+    if self.usageLocation != nil { try container.encode(self.usageLocation, forKey: .usageLocation) }
+    if self.givenName != nil { try container.encode(self.givenName, forKey: .givenName) }
+    if self.surname != nil { try container.encode(self.surname, forKey: .surname) }
+    if self.userType != nil { try container.encode(self.userType, forKey: .userType) }
+    if self.accountEnabled != nil { try container.encode(self.accountEnabled, forKey: .accountEnabled) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.userPrincipalName != nil { try container.encode(self.userPrincipalName, forKey: .userPrincipalName) }
+    if self.mailNickname != nil { try container.encode(self.mailNickname, forKey: .mailNickname) }
+    if self.mail != nil { try container.encode(self.mail, forKey: .mail) }
+    if self.signInNames != nil { try container.encode(self.signInNames as! [SignInNameData?]?, forKey: .signInNames) }
   }
 }
 

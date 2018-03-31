@@ -14,7 +14,7 @@ internal struct ExpressRouteCircuitServiceProviderPropertiesData : ExpressRouteC
         case bandwidthInMbps = "bandwidthInMbps"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ExpressRouteCircuitServiceProviderPropertiesData : ExpressRouteC
     if container.contains(.bandwidthInMbps) {
         self.bandwidthInMbps = try container.decode(Int32?.self, forKey: .bandwidthInMbps)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ExpressRouteCircuitServiceProviderPropertiesData : ExpressRouteC
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceProviderName != nil {try container.encode(self.serviceProviderName, forKey: .serviceProviderName)}
-    if self.peeringLocation != nil {try container.encode(self.peeringLocation, forKey: .peeringLocation)}
-    if self.bandwidthInMbps != nil {try container.encode(self.bandwidthInMbps, forKey: .bandwidthInMbps)}
+    if self.serviceProviderName != nil { try container.encode(self.serviceProviderName, forKey: .serviceProviderName) }
+    if self.peeringLocation != nil { try container.encode(self.peeringLocation, forKey: .peeringLocation) }
+    if self.bandwidthInMbps != nil { try container.encode(self.bandwidthInMbps, forKey: .bandwidthInMbps) }
   }
 }
 

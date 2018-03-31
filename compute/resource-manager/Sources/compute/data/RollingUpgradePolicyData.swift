@@ -16,7 +16,7 @@ internal struct RollingUpgradePolicyData : RollingUpgradePolicyProtocol {
         case pauseTimeBetweenBatches = "pauseTimeBetweenBatches"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RollingUpgradePolicyData : RollingUpgradePolicyProtocol {
     if container.contains(.pauseTimeBetweenBatches) {
         self.pauseTimeBetweenBatches = try container.decode(String?.self, forKey: .pauseTimeBetweenBatches)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RollingUpgradePolicyData : RollingUpgradePolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxBatchInstancePercent != nil {try container.encode(self.maxBatchInstancePercent, forKey: .maxBatchInstancePercent)}
-    if self.maxUnhealthyInstancePercent != nil {try container.encode(self.maxUnhealthyInstancePercent, forKey: .maxUnhealthyInstancePercent)}
-    if self.maxUnhealthyUpgradedInstancePercent != nil {try container.encode(self.maxUnhealthyUpgradedInstancePercent, forKey: .maxUnhealthyUpgradedInstancePercent)}
-    if self.pauseTimeBetweenBatches != nil {try container.encode(self.pauseTimeBetweenBatches, forKey: .pauseTimeBetweenBatches)}
+    if self.maxBatchInstancePercent != nil { try container.encode(self.maxBatchInstancePercent, forKey: .maxBatchInstancePercent) }
+    if self.maxUnhealthyInstancePercent != nil { try container.encode(self.maxUnhealthyInstancePercent, forKey: .maxUnhealthyInstancePercent) }
+    if self.maxUnhealthyUpgradedInstancePercent != nil { try container.encode(self.maxUnhealthyUpgradedInstancePercent, forKey: .maxUnhealthyUpgradedInstancePercent) }
+    if self.pauseTimeBetweenBatches != nil { try container.encode(self.pauseTimeBetweenBatches, forKey: .pauseTimeBetweenBatches) }
   }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PatchSchedulesCreateOrUpdate  {
+public protocol PatchSchedulesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
     var _default : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RedisPatchScheduleProtocol?  { get set }
+    var parameters :  RedisPatchScheduleProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RedisPatchScheduleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RedisPatchScheduleProtocol?, Error?) -> Void)
 }
 
 extension Commands.PatchSchedules {
@@ -35,7 +35,7 @@ extension Commands.PatchSchedules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{default}"] = String(describing: self._default)
@@ -59,12 +59,12 @@ extension Commands.PatchSchedules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RedisPatchScheduleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RedisPatchScheduleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RedisPatchScheduleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RedisPatchScheduleData?, error: Error?) in
                 completionHandler(result, error)

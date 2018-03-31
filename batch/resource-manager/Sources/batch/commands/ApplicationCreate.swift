@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationCreate  {
+public protocol ApplicationCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var applicationId : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ApplicationCreateParametersProtocol?  { get set }
+    var parameters :  ApplicationCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ApplicationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ApplicationProtocol?, Error?) -> Void)
 }
 
 extension Commands.Application {
@@ -34,7 +34,7 @@ extension Commands.Application {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{applicationId}"] = String(describing: self.applicationId)
@@ -58,12 +58,12 @@ extension Commands.Application {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ApplicationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ApplicationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ApplicationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ApplicationData?, error: Error?) in
                 completionHandler(result, error)

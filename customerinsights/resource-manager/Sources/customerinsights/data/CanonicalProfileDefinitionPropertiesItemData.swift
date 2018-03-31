@@ -18,7 +18,7 @@ internal struct CanonicalProfileDefinitionPropertiesItemData : CanonicalProfileD
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct CanonicalProfileDefinitionPropertiesItemData : CanonicalProfileD
     if container.contains(.value) {
         self.value = try container.decode(String?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct CanonicalProfileDefinitionPropertiesItemData : CanonicalProfileD
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.profileName != nil {try container.encode(self.profileName, forKey: .profileName)}
-    if self.profilePropertyName != nil {try container.encode(self.profilePropertyName, forKey: .profilePropertyName)}
-    if self.rank != nil {try container.encode(self.rank, forKey: .rank)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.profileName != nil { try container.encode(self.profileName, forKey: .profileName) }
+    if self.profilePropertyName != nil { try container.encode(self.profilePropertyName, forKey: .profilePropertyName) }
+    if self.rank != nil { try container.encode(self.rank, forKey: .rank) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
   }
 }
 

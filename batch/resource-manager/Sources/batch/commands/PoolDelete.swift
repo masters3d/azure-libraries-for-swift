@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PoolDelete  {
+public protocol PoolDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
@@ -8,7 +8,7 @@ public protocol PoolDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Pool {
@@ -33,7 +33,7 @@ extension Commands.Pool {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{poolName}"] = String(describing: self.poolName)
@@ -43,7 +43,7 @@ extension Commands.Pool {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

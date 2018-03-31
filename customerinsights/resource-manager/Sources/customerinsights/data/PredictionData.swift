@@ -42,7 +42,7 @@ internal struct PredictionData : PredictionProtocol {
         case systemGeneratedEntities = "systemGeneratedEntities"
         }
 
-  public init(negativeOutcomeExpression: String, positiveOutcomeExpression: String, primaryProfileType: String, scopeExpression: String, autoAnalyze: Bool, mappings: PredictionMappingsProtocol, scoreLabel: String)  {
+  public init(negativeOutcomeExpression: String, positiveOutcomeExpression: String, primaryProfileType: String, scopeExpression: String, autoAnalyze: Bool, mappings: PredictionMappingsProtocol, scoreLabel: String) {
     self.negativeOutcomeExpression = negativeOutcomeExpression
     self.positiveOutcomeExpression = positiveOutcomeExpression
     self.primaryProfileType = primaryProfileType
@@ -91,7 +91,7 @@ internal struct PredictionData : PredictionProtocol {
     if container.contains(.systemGeneratedEntities) {
         self.systemGeneratedEntities = try container.decode(PredictionSystemGeneratedEntitiesData?.self, forKey: .systemGeneratedEntities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -101,23 +101,23 @@ internal struct PredictionData : PredictionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.involvedInteractionTypes != nil {try container.encode(self.involvedInteractionTypes as! [String]?, forKey: .involvedInteractionTypes)}
-    if self.involvedKpiTypes != nil {try container.encode(self.involvedKpiTypes as! [String]?, forKey: .involvedKpiTypes)}
-    if self.involvedRelationships != nil {try container.encode(self.involvedRelationships as! [String]?, forKey: .involvedRelationships)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.involvedInteractionTypes != nil { try container.encode(self.involvedInteractionTypes as! [String]?, forKey: .involvedInteractionTypes) }
+    if self.involvedKpiTypes != nil { try container.encode(self.involvedKpiTypes as! [String]?, forKey: .involvedKpiTypes) }
+    if self.involvedRelationships != nil { try container.encode(self.involvedRelationships as! [String]?, forKey: .involvedRelationships) }
     try container.encode(self.negativeOutcomeExpression, forKey: .negativeOutcomeExpression)
     try container.encode(self.positiveOutcomeExpression, forKey: .positiveOutcomeExpression)
     try container.encode(self.primaryProfileType, forKey: .primaryProfileType)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.predictionName != nil {try container.encode(self.predictionName, forKey: .predictionName)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.predictionName != nil { try container.encode(self.predictionName, forKey: .predictionName) }
     try container.encode(self.scopeExpression, forKey: .scopeExpression)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
     try container.encode(self.autoAnalyze, forKey: .autoAnalyze)
     try container.encode(self.mappings as! PredictionMappingsData, forKey: .mappings)
     try container.encode(self.scoreLabel, forKey: .scoreLabel)
-    if self.grades != nil {try container.encode(self.grades as! [PredictionGradesItemData?]?, forKey: .grades)}
-    if self.systemGeneratedEntities != nil {try container.encode(self.systemGeneratedEntities as! PredictionSystemGeneratedEntitiesData?, forKey: .systemGeneratedEntities)}
+    if self.grades != nil { try container.encode(self.grades as! [PredictionGradesItemData?]?, forKey: .grades) }
+    if self.systemGeneratedEntities != nil { try container.encode(self.systemGeneratedEntities as! PredictionSystemGeneratedEntitiesData?, forKey: .systemGeneratedEntities) }
   }
 }
 

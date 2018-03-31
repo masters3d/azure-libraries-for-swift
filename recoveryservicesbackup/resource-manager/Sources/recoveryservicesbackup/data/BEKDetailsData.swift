@@ -14,7 +14,7 @@ internal struct BEKDetailsData : BEKDetailsProtocol {
         case secretData = "secretData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BEKDetailsData : BEKDetailsProtocol {
     if container.contains(.secretData) {
         self.secretData = try container.decode(String?.self, forKey: .secretData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BEKDetailsData : BEKDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.secretUrl != nil {try container.encode(self.secretUrl, forKey: .secretUrl)}
-    if self.secretVaultId != nil {try container.encode(self.secretVaultId, forKey: .secretVaultId)}
-    if self.secretData != nil {try container.encode(self.secretData, forKey: .secretData)}
+    if self.secretUrl != nil { try container.encode(self.secretUrl, forKey: .secretUrl) }
+    if self.secretVaultId != nil { try container.encode(self.secretVaultId, forKey: .secretVaultId) }
+    if self.secretData != nil { try container.encode(self.secretData, forKey: .secretData) }
   }
 }
 

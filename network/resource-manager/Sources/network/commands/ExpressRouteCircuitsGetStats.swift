@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ExpressRouteCircuitsGetStats  {
+public protocol ExpressRouteCircuitsGetStats {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var circuitName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ExpressRouteCircuitStatsProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ExpressRouteCircuitStatsProtocol?, Error?) -> Void)
 }
 
 extension Commands.ExpressRouteCircuits {
@@ -29,7 +29,7 @@ extension Commands.ExpressRouteCircuits {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{circuitName}"] = String(describing: self.circuitName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -42,12 +42,12 @@ extension Commands.ExpressRouteCircuits {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ExpressRouteCircuitStatsData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ExpressRouteCircuitStatsProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ExpressRouteCircuitStatsProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ExpressRouteCircuitStatsData?, error: Error?) in
                 completionHandler(result, error)

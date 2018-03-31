@@ -14,7 +14,7 @@ internal struct AzureFileshareProtectedItemExtendedInfoData : AzureFileshareProt
         case policyState = "policyState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureFileshareProtectedItemExtendedInfoData : AzureFileshareProt
     if container.contains(.policyState) {
         self.policyState = try container.decode(String?.self, forKey: .policyState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct AzureFileshareProtectedItemExtendedInfoData : AzureFileshareProt
     if self.oldestRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.oldestRecoveryPoint!, format: .dateTime), forKey: .oldestRecoveryPoint)
     }
-    if self.recoveryPointCount != nil {try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount)}
-    if self.policyState != nil {try container.encode(self.policyState, forKey: .policyState)}
+    if self.recoveryPointCount != nil { try container.encode(self.recoveryPointCount, forKey: .recoveryPointCount) }
+    if self.policyState != nil { try container.encode(self.policyState, forKey: .policyState) }
   }
 }
 

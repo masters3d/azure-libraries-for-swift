@@ -26,7 +26,7 @@ internal struct UpgradeDetailsData : UpgradeDetailsProtocol {
         case previousResourceId = "previousResourceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct UpgradeDetailsData : UpgradeDetailsProtocol {
     if container.contains(.previousResourceId) {
         self.previousResourceId = try container.decode(String?.self, forKey: .previousResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,7 +68,7 @@ internal struct UpgradeDetailsData : UpgradeDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
     if self.startTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.startTimeUtc!, format: .dateTime), forKey: .startTimeUtc)
     }
@@ -78,11 +78,11 @@ internal struct UpgradeDetailsData : UpgradeDetailsProtocol {
     if self.endTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.endTimeUtc!, format: .dateTime), forKey: .endTimeUtc)
     }
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.triggerType != nil {try container.encode(self.triggerType, forKey: .triggerType)}
-    if self.upgradedResourceId != nil {try container.encode(self.upgradedResourceId, forKey: .upgradedResourceId)}
-    if self.previousResourceId != nil {try container.encode(self.previousResourceId, forKey: .previousResourceId)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.triggerType != nil { try container.encode(self.triggerType, forKey: .triggerType) }
+    if self.upgradedResourceId != nil { try container.encode(self.upgradedResourceId, forKey: .upgradedResourceId) }
+    if self.previousResourceId != nil { try container.encode(self.previousResourceId, forKey: .previousResourceId) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct AdmCredentialPropertiesData : AdmCredentialPropertiesProtocol {
         case authTokenUrl = "authTokenUrl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AdmCredentialPropertiesData : AdmCredentialPropertiesProtocol {
     if container.contains(.authTokenUrl) {
         self.authTokenUrl = try container.decode(String?.self, forKey: .authTokenUrl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AdmCredentialPropertiesData : AdmCredentialPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientId != nil {try container.encode(self.clientId, forKey: .clientId)}
-    if self.clientSecret != nil {try container.encode(self.clientSecret, forKey: .clientSecret)}
-    if self.authTokenUrl != nil {try container.encode(self.authTokenUrl, forKey: .authTokenUrl)}
+    if self.clientId != nil { try container.encode(self.clientId, forKey: .clientId) }
+    if self.clientSecret != nil { try container.encode(self.clientSecret, forKey: .clientSecret) }
+    if self.authTokenUrl != nil { try container.encode(self.authTokenUrl, forKey: .authTokenUrl) }
   }
 }
 

@@ -10,14 +10,14 @@ internal struct ActivateApplicationPackageParametersData : ActivateApplicationPa
         enum CodingKeys: String, CodingKey {case format = "format"
         }
 
-  public init(format: String)  {
+  public init(format: String) {
     self.format = format
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.format = try container.decode(String.self, forKey: .format)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

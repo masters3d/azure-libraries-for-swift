@@ -22,7 +22,7 @@ internal struct AS2ProtocolSettingsData : AS2ProtocolSettingsProtocol {
         case errorSettings = "errorSettings"
         }
 
-  public init(messageConnectionSettings: AS2MessageConnectionSettingsProtocol, acknowledgementConnectionSettings: AS2AcknowledgementConnectionSettingsProtocol, mdnSettings: AS2MdnSettingsProtocol, securitySettings: AS2SecuritySettingsProtocol, validationSettings: AS2ValidationSettingsProtocol, envelopeSettings: AS2EnvelopeSettingsProtocol, errorSettings: AS2ErrorSettingsProtocol)  {
+  public init(messageConnectionSettings: AS2MessageConnectionSettingsProtocol, acknowledgementConnectionSettings: AS2AcknowledgementConnectionSettingsProtocol, mdnSettings: AS2MdnSettingsProtocol, securitySettings: AS2SecuritySettingsProtocol, validationSettings: AS2ValidationSettingsProtocol, envelopeSettings: AS2EnvelopeSettingsProtocol, errorSettings: AS2ErrorSettingsProtocol) {
     self.messageConnectionSettings = messageConnectionSettings
     self.acknowledgementConnectionSettings = acknowledgementConnectionSettings
     self.mdnSettings = mdnSettings
@@ -41,7 +41,7 @@ internal struct AS2ProtocolSettingsData : AS2ProtocolSettingsProtocol {
     self.validationSettings = try container.decode(AS2ValidationSettingsData.self, forKey: .validationSettings)
     self.envelopeSettings = try container.decode(AS2EnvelopeSettingsData.self, forKey: .envelopeSettings)
     self.errorSettings = try container.decode(AS2ErrorSettingsData.self, forKey: .errorSettings)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

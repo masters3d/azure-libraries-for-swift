@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworksGet  {
+public protocol VirtualNetworksGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkName : String { get set }
@@ -8,7 +8,7 @@ public protocol VirtualNetworksGet  {
     var apiVersion : String { get set }
     var expand : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualNetworkProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualNetworkProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworks {
@@ -31,7 +31,7 @@ extension Commands.VirtualNetworks {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkName}"] = String(describing: self.virtualNetworkName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -45,12 +45,12 @@ extension Commands.VirtualNetworks {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualNetworkData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualNetworkProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualNetworkProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: VirtualNetworkData?, error: Error?) in
                 completionHandler(result, error)

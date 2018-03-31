@@ -26,7 +26,7 @@ internal struct SyncMemberPropertiesData : SyncMemberPropertiesProtocol {
         case syncState = "syncState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct SyncMemberPropertiesData : SyncMemberPropertiesProtocol {
     if container.contains(.syncState) {
         self.syncState = try container.decode(SyncMemberStateEnum?.self, forKey: .syncState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct SyncMemberPropertiesData : SyncMemberPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseType != nil {try container.encode(self.databaseType, forKey: .databaseType)}
-    if self.syncAgentId != nil {try container.encode(self.syncAgentId, forKey: .syncAgentId)}
-    if self.sqlServerDatabaseId != nil {try container.encode(self.sqlServerDatabaseId, forKey: .sqlServerDatabaseId)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.syncDirection != nil {try container.encode(self.syncDirection, forKey: .syncDirection)}
-    if self.syncState != nil {try container.encode(self.syncState, forKey: .syncState)}
+    if self.databaseType != nil { try container.encode(self.databaseType, forKey: .databaseType) }
+    if self.syncAgentId != nil { try container.encode(self.syncAgentId, forKey: .syncAgentId) }
+    if self.sqlServerDatabaseId != nil { try container.encode(self.sqlServerDatabaseId, forKey: .sqlServerDatabaseId) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.syncDirection != nil { try container.encode(self.syncDirection, forKey: .syncDirection) }
+    if self.syncState != nil { try container.encode(self.syncState, forKey: .syncState) }
   }
 }
 

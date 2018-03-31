@@ -14,7 +14,7 @@ internal struct ServiceBusDataSourcePropertiesData : ServiceBusDataSourcePropert
         case sharedAccessPolicyKey = "sharedAccessPolicyKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ServiceBusDataSourcePropertiesData : ServiceBusDataSourcePropert
     if container.contains(.sharedAccessPolicyKey) {
         self.sharedAccessPolicyKey = try container.decode(String?.self, forKey: .sharedAccessPolicyKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ServiceBusDataSourcePropertiesData : ServiceBusDataSourcePropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusNamespace != nil {try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace)}
-    if self.sharedAccessPolicyName != nil {try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName)}
-    if self.sharedAccessPolicyKey != nil {try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey)}
+    if self.serviceBusNamespace != nil { try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace) }
+    if self.sharedAccessPolicyName != nil { try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName) }
+    if self.sharedAccessPolicyKey != nil { try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey) }
   }
 }
 

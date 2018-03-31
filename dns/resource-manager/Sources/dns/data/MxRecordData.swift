@@ -12,7 +12,7 @@ internal struct MxRecordData : MxRecordProtocol {
         case exchange = "exchange"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct MxRecordData : MxRecordProtocol {
     if container.contains(.exchange) {
         self.exchange = try container.decode(String?.self, forKey: .exchange)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct MxRecordData : MxRecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.preference != nil {try container.encode(self.preference, forKey: .preference)}
-    if self.exchange != nil {try container.encode(self.exchange, forKey: .exchange)}
+    if self.preference != nil { try container.encode(self.preference, forKey: .preference) }
+    if self.exchange != nil { try container.encode(self.exchange, forKey: .exchange) }
   }
 }
 

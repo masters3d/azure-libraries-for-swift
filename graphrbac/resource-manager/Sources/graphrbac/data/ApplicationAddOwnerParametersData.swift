@@ -12,7 +12,7 @@ internal struct ApplicationAddOwnerParametersData : ApplicationAddOwnerParameter
         case url = "url"
         }
 
-  public init(url: String)  {
+  public init(url: String) {
     self.url = url
   }
 
@@ -22,7 +22,7 @@ internal struct ApplicationAddOwnerParametersData : ApplicationAddOwnerParameter
         self.additionalProperties = try container.decode([String:[String: String?]]?.self, forKey: .additionalProperties)
     }
     self.url = try container.decode(String.self, forKey: .url)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ApplicationAddOwnerParametersData : ApplicationAddOwnerParameter
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.url, forKey: .url)
   }
 }

@@ -24,7 +24,7 @@ internal struct SoftwareUpdateConfigurationPropertiesData : SoftwareUpdateConfig
         case lastModifiedBy = "lastModifiedBy"
         }
 
-  public init(updateConfiguration: UpdateConfigurationProtocol, scheduleInfo: SchedulePropertiesProtocol)  {
+  public init(updateConfiguration: UpdateConfigurationProtocol, scheduleInfo: SchedulePropertiesProtocol) {
     self.updateConfiguration = updateConfiguration
     self.scheduleInfo = scheduleInfo
   }
@@ -51,7 +51,7 @@ internal struct SoftwareUpdateConfigurationPropertiesData : SoftwareUpdateConfig
     if container.contains(.lastModifiedBy) {
         self.lastModifiedBy = try container.decode(String?.self, forKey: .lastModifiedBy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct SoftwareUpdateConfigurationPropertiesData : SoftwareUpdateConfig
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.updateConfiguration as! UpdateConfigurationData, forKey: .updateConfiguration)
     try container.encode(self.scheduleInfo as! SchedulePropertiesData, forKey: .scheduleInfo)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.error != nil {try container.encode(self.error as! ErrorResponseData?, forKey: .error)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.error != nil { try container.encode(self.error as! ErrorResponseData?, forKey: .error) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.createdBy != nil {try container.encode(self.createdBy, forKey: .createdBy)}
+    if self.createdBy != nil { try container.encode(self.createdBy, forKey: .createdBy) }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.lastModifiedBy != nil {try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy)}
+    if self.lastModifiedBy != nil { try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy) }
   }
 }
 

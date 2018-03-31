@@ -10,7 +10,7 @@ internal struct HardwareProfileData : HardwareProfileProtocol {
         enum CodingKeys: String, CodingKey {case vmSize = "vmSize"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct HardwareProfileData : HardwareProfileProtocol {
       if container.contains(.vmSize) {
         self.vmSize = try container.decode(VirtualMachineSizeTypesEnum?.self, forKey: .vmSize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct HardwareProfileData : HardwareProfileProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
   }
 }
 

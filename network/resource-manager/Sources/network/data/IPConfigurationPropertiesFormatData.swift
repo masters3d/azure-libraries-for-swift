@@ -18,7 +18,7 @@ internal struct IPConfigurationPropertiesFormatData : IPConfigurationPropertiesF
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct IPConfigurationPropertiesFormatData : IPConfigurationPropertiesF
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct IPConfigurationPropertiesFormatData : IPConfigurationPropertiesF
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.privateIPAddress != nil {try container.encode(self.privateIPAddress, forKey: .privateIPAddress)}
-    if self.privateIPAllocationMethod != nil {try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod)}
-    if self.subnet != nil {try container.encode(self.subnet as! SubnetData?, forKey: .subnet)}
-    if self.publicIPAddress != nil {try container.encode(self.publicIPAddress as! PublicIPAddressData?, forKey: .publicIPAddress)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.privateIPAddress != nil { try container.encode(self.privateIPAddress, forKey: .privateIPAddress) }
+    if self.privateIPAllocationMethod != nil { try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod) }
+    if self.subnet != nil { try container.encode(self.subnet as! SubnetData?, forKey: .subnet) }
+    if self.publicIPAddress != nil { try container.encode(self.publicIPAddress as! PublicIPAddressData?, forKey: .publicIPAddress) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

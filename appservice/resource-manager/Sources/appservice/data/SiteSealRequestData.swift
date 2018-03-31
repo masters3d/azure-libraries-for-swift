@@ -12,7 +12,7 @@ internal struct SiteSealRequestData : SiteSealRequestProtocol {
         case locale = "locale"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SiteSealRequestData : SiteSealRequestProtocol {
     if container.contains(.locale) {
         self.locale = try container.decode(String?.self, forKey: .locale)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SiteSealRequestData : SiteSealRequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.lightTheme != nil {try container.encode(self.lightTheme, forKey: .lightTheme)}
-    if self.locale != nil {try container.encode(self.locale, forKey: .locale)}
+    if self.lightTheme != nil { try container.encode(self.lightTheme, forKey: .lightTheme) }
+    if self.locale != nil { try container.encode(self.locale, forKey: .locale) }
   }
 }
 

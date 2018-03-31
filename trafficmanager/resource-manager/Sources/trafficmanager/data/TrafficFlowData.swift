@@ -16,7 +16,7 @@ internal struct TrafficFlowData : TrafficFlowProtocol {
         case queryExperiences = "queryExperiences"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct TrafficFlowData : TrafficFlowProtocol {
     if container.contains(.queryExperiences) {
         self.queryExperiences = try container.decode([QueryExperienceData?]?.self, forKey: .queryExperiences)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct TrafficFlowData : TrafficFlowProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sourceIp != nil {try container.encode(self.sourceIp, forKey: .sourceIp)}
-    if self.latitude != nil {try container.encode(self.latitude, forKey: .latitude)}
-    if self.longitude != nil {try container.encode(self.longitude, forKey: .longitude)}
-    if self.queryExperiences != nil {try container.encode(self.queryExperiences as! [QueryExperienceData?]?, forKey: .queryExperiences)}
+    if self.sourceIp != nil { try container.encode(self.sourceIp, forKey: .sourceIp) }
+    if self.latitude != nil { try container.encode(self.latitude, forKey: .latitude) }
+    if self.longitude != nil { try container.encode(self.longitude, forKey: .longitude) }
+    if self.queryExperiences != nil { try container.encode(self.queryExperiences as! [QueryExperienceData?]?, forKey: .queryExperiences) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct EncryptionServicesData : EncryptionServicesProtocol {
         case queue = "queue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EncryptionServicesData : EncryptionServicesProtocol {
     if container.contains(.queue) {
         self.queue = try container.decode(EncryptionServiceData?.self, forKey: .queue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EncryptionServicesData : EncryptionServicesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.blob != nil {try container.encode(self.blob as! EncryptionServiceData?, forKey: .blob)}
-    if self.file != nil {try container.encode(self.file as! EncryptionServiceData?, forKey: .file)}
-    if self.table != nil {try container.encode(self.table as! EncryptionServiceData?, forKey: .table)}
-    if self.queue != nil {try container.encode(self.queue as! EncryptionServiceData?, forKey: .queue)}
+    if self.blob != nil { try container.encode(self.blob as! EncryptionServiceData?, forKey: .blob) }
+    if self.file != nil { try container.encode(self.file as! EncryptionServiceData?, forKey: .file) }
+    if self.table != nil { try container.encode(self.table as! EncryptionServiceData?, forKey: .table) }
+    if self.queue != nil { try container.encode(self.queue as! EncryptionServiceData?, forKey: .queue) }
   }
 }
 

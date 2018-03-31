@@ -22,7 +22,7 @@ internal struct ResourceMetricValueData : ResourceMetricValueProtocol {
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ResourceMetricValueData : ResourceMetricValueProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode([ResourceMetricPropertyData?]?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ResourceMetricValueData : ResourceMetricValueProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timestamp != nil {try container.encode(self.timestamp, forKey: .timestamp)}
-    if self.average != nil {try container.encode(self.average, forKey: .average)}
-    if self.minimum != nil {try container.encode(self.minimum, forKey: .minimum)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
-    if self.total != nil {try container.encode(self.total, forKey: .total)}
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.properties != nil {try container.encode(self.properties as! [ResourceMetricPropertyData?]?, forKey: .properties)}
+    if self.timestamp != nil { try container.encode(self.timestamp, forKey: .timestamp) }
+    if self.average != nil { try container.encode(self.average, forKey: .average) }
+    if self.minimum != nil { try container.encode(self.minimum, forKey: .minimum) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
+    if self.total != nil { try container.encode(self.total, forKey: .total) }
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.properties != nil { try container.encode(self.properties as! [ResourceMetricPropertyData?]?, forKey: .properties) }
   }
 }
 

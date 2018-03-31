@@ -38,7 +38,7 @@ internal struct RunbookPropertiesData : RunbookPropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct RunbookPropertiesData : RunbookPropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,25 +98,25 @@ internal struct RunbookPropertiesData : RunbookPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.runbookType != nil {try container.encode(self.runbookType, forKey: .runbookType)}
-    if self.publishContentLink != nil {try container.encode(self.publishContentLink as! ContentLinkData?, forKey: .publishContentLink)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.logVerbose != nil {try container.encode(self.logVerbose, forKey: .logVerbose)}
-    if self.logProgress != nil {try container.encode(self.logProgress, forKey: .logProgress)}
-    if self.logActivityTrace != nil {try container.encode(self.logActivityTrace, forKey: .logActivityTrace)}
-    if self.jobCount != nil {try container.encode(self.jobCount, forKey: .jobCount)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.outputTypes != nil {try container.encode(self.outputTypes as! [String]?, forKey: .outputTypes)}
-    if self.draft != nil {try container.encode(self.draft as! RunbookDraftData?, forKey: .draft)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.lastModifiedBy != nil {try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy)}
+    if self.runbookType != nil { try container.encode(self.runbookType, forKey: .runbookType) }
+    if self.publishContentLink != nil { try container.encode(self.publishContentLink as! ContentLinkData?, forKey: .publishContentLink) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.logVerbose != nil { try container.encode(self.logVerbose, forKey: .logVerbose) }
+    if self.logProgress != nil { try container.encode(self.logProgress, forKey: .logProgress) }
+    if self.logActivityTrace != nil { try container.encode(self.logActivityTrace, forKey: .logActivityTrace) }
+    if self.jobCount != nil { try container.encode(self.jobCount, forKey: .jobCount) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.outputTypes != nil { try container.encode(self.outputTypes as! [String]?, forKey: .outputTypes) }
+    if self.draft != nil { try container.encode(self.draft as! RunbookDraftData?, forKey: .draft) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.lastModifiedBy != nil { try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

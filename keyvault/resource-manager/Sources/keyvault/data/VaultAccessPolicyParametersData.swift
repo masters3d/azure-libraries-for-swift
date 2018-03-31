@@ -18,7 +18,7 @@ internal struct VaultAccessPolicyParametersData : VaultAccessPolicyParametersPro
         case properties = "properties"
         }
 
-  public init(properties: VaultAccessPolicyPropertiesProtocol)  {
+  public init(properties: VaultAccessPolicyPropertiesProtocol) {
     self.properties = properties
   }
 
@@ -37,7 +37,7 @@ internal struct VaultAccessPolicyParametersData : VaultAccessPolicyParametersPro
         self.location = try container.decode(String?.self, forKey: .location)
     }
     self.properties = try container.decode(VaultAccessPolicyPropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,10 +47,10 @@ internal struct VaultAccessPolicyParametersData : VaultAccessPolicyParametersPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
     try container.encode(self.properties as! VaultAccessPolicyPropertiesData, forKey: .properties)
   }
 }

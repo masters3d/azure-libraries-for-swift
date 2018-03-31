@@ -16,7 +16,7 @@ internal struct EffectiveNetworkSecurityGroupData : EffectiveNetworkSecurityGrou
         case tagMap = "tagMap"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EffectiveNetworkSecurityGroupData : EffectiveNetworkSecurityGrou
     if container.contains(.tagMap) {
         self.tagMap = try container.decode([String:[String]?]?.self, forKey: .tagMap)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EffectiveNetworkSecurityGroupData : EffectiveNetworkSecurityGrou
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.networkSecurityGroup != nil {try container.encode(self.networkSecurityGroup as! SubResourceData?, forKey: .networkSecurityGroup)}
-    if self.association != nil {try container.encode(self.association as! EffectiveNetworkSecurityGroupAssociationData?, forKey: .association)}
-    if self.effectiveSecurityRules != nil {try container.encode(self.effectiveSecurityRules as! [EffectiveNetworkSecurityRuleData?]?, forKey: .effectiveSecurityRules)}
-    if self.tagMap != nil {try container.encode(self.tagMap, forKey: .tagMap)}
+    if self.networkSecurityGroup != nil { try container.encode(self.networkSecurityGroup as! SubResourceData?, forKey: .networkSecurityGroup) }
+    if self.association != nil { try container.encode(self.association as! EffectiveNetworkSecurityGroupAssociationData?, forKey: .association) }
+    if self.effectiveSecurityRules != nil { try container.encode(self.effectiveSecurityRules as! [EffectiveNetworkSecurityRuleData?]?, forKey: .effectiveSecurityRules) }
+    if self.tagMap != nil { try container.encode(self.tagMap, forKey: .tagMap) }
   }
 }
 

@@ -32,7 +32,7 @@ internal struct RelationshipDefinitionData : RelationshipDefinitionProtocol {
         case tenantId = "tenantId"
         }
 
-  public init(profileType: String, relatedProfileType: String)  {
+  public init(profileType: String, relatedProfileType: String) {
     self.profileType = profileType
     self.relatedProfileType = relatedProfileType
   }
@@ -71,7 +71,7 @@ internal struct RelationshipDefinitionData : RelationshipDefinitionProtocol {
     if container.contains(.tenantId) {
         self.tenantId = try container.decode(String?.self, forKey: .tenantId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -81,20 +81,20 @@ internal struct RelationshipDefinitionData : RelationshipDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.cardinality != nil {try container.encode(self.cardinality, forKey: .cardinality)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.cardinality != nil { try container.encode(self.cardinality, forKey: .cardinality) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     if self.expiryDateTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.expiryDateTimeUtc!, format: .dateTime), forKey: .expiryDateTimeUtc)
     }
-    if self.fields != nil {try container.encode(self.fields as! [PropertyDefinitionData?]?, forKey: .fields)}
-    if self.lookupMappings != nil {try container.encode(self.lookupMappings as! [RelationshipTypeMappingData?]?, forKey: .lookupMappings)}
+    if self.fields != nil { try container.encode(self.fields as! [PropertyDefinitionData?]?, forKey: .fields) }
+    if self.lookupMappings != nil { try container.encode(self.lookupMappings as! [RelationshipTypeMappingData?]?, forKey: .lookupMappings) }
     try container.encode(self.profileType, forKey: .profileType)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.relationshipName != nil {try container.encode(self.relationshipName, forKey: .relationshipName)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.relationshipName != nil { try container.encode(self.relationshipName, forKey: .relationshipName) }
     try container.encode(self.relatedProfileType, forKey: .relatedProfileType)
-    if self.relationshipGuidId != nil {try container.encode(self.relationshipGuidId, forKey: .relationshipGuidId)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.relationshipGuidId != nil { try container.encode(self.relationshipGuidId, forKey: .relationshipGuidId) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
   }
 }
 

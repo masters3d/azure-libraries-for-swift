@@ -24,7 +24,7 @@ internal struct DiagnosticDetectorResponsePropertiesData : DiagnosticDetectorRes
         case responseMetaData = "responseMetaData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct DiagnosticDetectorResponsePropertiesData : DiagnosticDetectorRes
     if container.contains(.responseMetaData) {
         self.responseMetaData = try container.decode(ResponseMetaDataData?.self, forKey: .responseMetaData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,12 +69,12 @@ internal struct DiagnosticDetectorResponsePropertiesData : DiagnosticDetectorRes
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.issueDetected != nil {try container.encode(self.issueDetected, forKey: .issueDetected)}
-    if self.detectorDefinition != nil {try container.encode(self.detectorDefinition as! DetectorDefinitionData?, forKey: .detectorDefinition)}
-    if self.metrics != nil {try container.encode(self.metrics as! [DiagnosticMetricSetData?]?, forKey: .metrics)}
-    if self.abnormalTimePeriods != nil {try container.encode(self.abnormalTimePeriods as! [DetectorAbnormalTimePeriodData?]?, forKey: .abnormalTimePeriods)}
-    if self.data != nil {try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data)}
-    if self.responseMetaData != nil {try container.encode(self.responseMetaData as! ResponseMetaDataData?, forKey: .responseMetaData)}
+    if self.issueDetected != nil { try container.encode(self.issueDetected, forKey: .issueDetected) }
+    if self.detectorDefinition != nil { try container.encode(self.detectorDefinition as! DetectorDefinitionData?, forKey: .detectorDefinition) }
+    if self.metrics != nil { try container.encode(self.metrics as! [DiagnosticMetricSetData?]?, forKey: .metrics) }
+    if self.abnormalTimePeriods != nil { try container.encode(self.abnormalTimePeriods as! [DetectorAbnormalTimePeriodData?]?, forKey: .abnormalTimePeriods) }
+    if self.data != nil { try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data) }
+    if self.responseMetaData != nil { try container.encode(self.responseMetaData as! ResponseMetaDataData?, forKey: .responseMetaData) }
   }
 }
 

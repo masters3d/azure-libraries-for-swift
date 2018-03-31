@@ -10,7 +10,7 @@ internal struct InMageDisableProtectionProviderSpecificInputData : InMageDisable
         enum CodingKeys: String, CodingKey {case replicaVmDeletionStatus = "replicaVmDeletionStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct InMageDisableProtectionProviderSpecificInputData : InMageDisable
       if container.contains(.replicaVmDeletionStatus) {
         self.replicaVmDeletionStatus = try container.decode(String?.self, forKey: .replicaVmDeletionStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct InMageDisableProtectionProviderSpecificInputData : InMageDisable
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.replicaVmDeletionStatus != nil {try container.encode(self.replicaVmDeletionStatus, forKey: .replicaVmDeletionStatus)}
+    if self.replicaVmDeletionStatus != nil { try container.encode(self.replicaVmDeletionStatus, forKey: .replicaVmDeletionStatus) }
   }
 }
 

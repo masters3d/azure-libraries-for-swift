@@ -22,7 +22,7 @@ internal struct TensorFlowSettingsData : TensorFlowSettingsProtocol {
         case parameterServerCount = "parameterServerCount"
         }
 
-  public init(pythonScriptFilePath: String, masterCommandLineArgs: String)  {
+  public init(pythonScriptFilePath: String, masterCommandLineArgs: String) {
     self.pythonScriptFilePath = pythonScriptFilePath
     self.masterCommandLineArgs = masterCommandLineArgs
   }
@@ -46,7 +46,7 @@ internal struct TensorFlowSettingsData : TensorFlowSettingsProtocol {
     if container.contains(.parameterServerCount) {
         self.parameterServerCount = try container.decode(Int32?.self, forKey: .parameterServerCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,12 +57,12 @@ internal struct TensorFlowSettingsData : TensorFlowSettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pythonScriptFilePath, forKey: .pythonScriptFilePath)
-    if self.pythonInterpreterPath != nil {try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath)}
+    if self.pythonInterpreterPath != nil { try container.encode(self.pythonInterpreterPath, forKey: .pythonInterpreterPath) }
     try container.encode(self.masterCommandLineArgs, forKey: .masterCommandLineArgs)
-    if self.workerCommandLineArgs != nil {try container.encode(self.workerCommandLineArgs, forKey: .workerCommandLineArgs)}
-    if self.parameterServerCommandLineArgs != nil {try container.encode(self.parameterServerCommandLineArgs, forKey: .parameterServerCommandLineArgs)}
-    if self.workerCount != nil {try container.encode(self.workerCount, forKey: .workerCount)}
-    if self.parameterServerCount != nil {try container.encode(self.parameterServerCount, forKey: .parameterServerCount)}
+    if self.workerCommandLineArgs != nil { try container.encode(self.workerCommandLineArgs, forKey: .workerCommandLineArgs) }
+    if self.parameterServerCommandLineArgs != nil { try container.encode(self.parameterServerCommandLineArgs, forKey: .parameterServerCommandLineArgs) }
+    if self.workerCount != nil { try container.encode(self.workerCount, forKey: .workerCount) }
+    if self.parameterServerCount != nil { try container.encode(self.parameterServerCount, forKey: .parameterServerCount) }
   }
 }
 

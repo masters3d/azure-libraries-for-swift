@@ -22,7 +22,7 @@ internal struct JobData : JobProtocol {
         case activityId = "activityId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct JobData : JobProtocol {
     if container.contains(.activityId) {
         self.activityId = try container.decode(String?.self, forKey: .activityId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,17 +58,17 @@ internal struct JobData : JobProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entityFriendlyName != nil {try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.entityFriendlyName != nil { try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.activityId != nil {try container.encode(self.activityId, forKey: .activityId)}
+    if self.activityId != nil { try container.encode(self.activityId, forKey: .activityId) }
   }
 }
 

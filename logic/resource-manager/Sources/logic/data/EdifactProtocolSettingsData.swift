@@ -30,7 +30,7 @@ internal struct EdifactProtocolSettingsData : EdifactProtocolSettingsProtocol {
         case edifactDelimiterOverrides = "edifactDelimiterOverrides"
         }
 
-  public init(validationSettings: EdifactValidationSettingsProtocol, framingSettings: EdifactFramingSettingsProtocol, envelopeSettings: EdifactEnvelopeSettingsProtocol, acknowledgementSettings: EdifactAcknowledgementSettingsProtocol, messageFilter: EdifactMessageFilterProtocol, processingSettings: EdifactProcessingSettingsProtocol, schemaReferences: [EdifactSchemaReferenceProtocol])  {
+  public init(validationSettings: EdifactValidationSettingsProtocol, framingSettings: EdifactFramingSettingsProtocol, envelopeSettings: EdifactEnvelopeSettingsProtocol, acknowledgementSettings: EdifactAcknowledgementSettingsProtocol, messageFilter: EdifactMessageFilterProtocol, processingSettings: EdifactProcessingSettingsProtocol, schemaReferences: [EdifactSchemaReferenceProtocol]) {
     self.validationSettings = validationSettings
     self.framingSettings = framingSettings
     self.envelopeSettings = envelopeSettings
@@ -61,7 +61,7 @@ internal struct EdifactProtocolSettingsData : EdifactProtocolSettingsProtocol {
     if container.contains(.edifactDelimiterOverrides) {
         self.edifactDelimiterOverrides = try container.decode([EdifactDelimiterOverrideData?]?.self, forKey: .edifactDelimiterOverrides)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -77,11 +77,11 @@ internal struct EdifactProtocolSettingsData : EdifactProtocolSettingsProtocol {
     try container.encode(self.acknowledgementSettings as! EdifactAcknowledgementSettingsData, forKey: .acknowledgementSettings)
     try container.encode(self.messageFilter as! EdifactMessageFilterData, forKey: .messageFilter)
     try container.encode(self.processingSettings as! EdifactProcessingSettingsData, forKey: .processingSettings)
-    if self.envelopeOverrides != nil {try container.encode(self.envelopeOverrides as! [EdifactEnvelopeOverrideData?]?, forKey: .envelopeOverrides)}
-    if self.messageFilterList != nil {try container.encode(self.messageFilterList as! [EdifactMessageIdentifierData?]?, forKey: .messageFilterList)}
+    if self.envelopeOverrides != nil { try container.encode(self.envelopeOverrides as! [EdifactEnvelopeOverrideData?]?, forKey: .envelopeOverrides) }
+    if self.messageFilterList != nil { try container.encode(self.messageFilterList as! [EdifactMessageIdentifierData?]?, forKey: .messageFilterList) }
     try container.encode(self.schemaReferences as! [EdifactSchemaReferenceData], forKey: .schemaReferences)
-    if self.validationOverrides != nil {try container.encode(self.validationOverrides as! [EdifactValidationOverrideData?]?, forKey: .validationOverrides)}
-    if self.edifactDelimiterOverrides != nil {try container.encode(self.edifactDelimiterOverrides as! [EdifactDelimiterOverrideData?]?, forKey: .edifactDelimiterOverrides)}
+    if self.validationOverrides != nil { try container.encode(self.validationOverrides as! [EdifactValidationOverrideData?]?, forKey: .validationOverrides) }
+    if self.edifactDelimiterOverrides != nil { try container.encode(self.edifactDelimiterOverrides as! [EdifactDelimiterOverrideData?]?, forKey: .edifactDelimiterOverrides) }
   }
 }
 

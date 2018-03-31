@@ -26,7 +26,7 @@ internal struct RoutingStorageContainerPropertiesData : RoutingStorageContainerP
         case encoding = "encoding"
         }
 
-  public init(connectionString: String, name: String, containerName: String)  {
+  public init(connectionString: String, name: String, containerName: String) {
     self.connectionString = connectionString
     self.name = name
     self.containerName = containerName
@@ -55,7 +55,7 @@ internal struct RoutingStorageContainerPropertiesData : RoutingStorageContainerP
     if container.contains(.encoding) {
         self.encoding = try container.decode(String?.self, forKey: .encoding)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -67,13 +67,13 @@ internal struct RoutingStorageContainerPropertiesData : RoutingStorageContainerP
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.connectionString, forKey: .connectionString)
     try container.encode(self.name, forKey: .name)
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
     try container.encode(self.containerName, forKey: .containerName)
-    if self.fileNameFormat != nil {try container.encode(self.fileNameFormat, forKey: .fileNameFormat)}
-    if self.batchFrequencyInSeconds != nil {try container.encode(self.batchFrequencyInSeconds, forKey: .batchFrequencyInSeconds)}
-    if self.maxChunkSizeInBytes != nil {try container.encode(self.maxChunkSizeInBytes, forKey: .maxChunkSizeInBytes)}
-    if self.encoding != nil {try container.encode(self.encoding, forKey: .encoding)}
+    if self.fileNameFormat != nil { try container.encode(self.fileNameFormat, forKey: .fileNameFormat) }
+    if self.batchFrequencyInSeconds != nil { try container.encode(self.batchFrequencyInSeconds, forKey: .batchFrequencyInSeconds) }
+    if self.maxChunkSizeInBytes != nil { try container.encode(self.maxChunkSizeInBytes, forKey: .maxChunkSizeInBytes) }
+    if self.encoding != nil { try container.encode(self.encoding, forKey: .encoding) }
   }
 }
 

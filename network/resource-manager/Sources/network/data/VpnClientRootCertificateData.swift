@@ -16,7 +16,7 @@ internal struct VpnClientRootCertificateData : VpnClientRootCertificateProtocol,
         case etag = "etag"
         }
 
-  public init(properties: VpnClientRootCertificatePropertiesFormatProtocol)  {
+  public init(properties: VpnClientRootCertificatePropertiesFormatProtocol) {
     self.properties = properties
   }
 
@@ -32,7 +32,7 @@ internal struct VpnClientRootCertificateData : VpnClientRootCertificateProtocol,
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct VpnClientRootCertificateData : VpnClientRootCertificateProtocol,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     try container.encode(self.properties as! VpnClientRootCertificatePropertiesFormatData, forKey: .properties)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

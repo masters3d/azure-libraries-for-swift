@@ -20,7 +20,7 @@ internal struct ResourceData : ResourceProtocol {
         case eTag = "eTag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ResourceData : ResourceProtocol {
     if container.contains(.eTag) {
         self.eTag = try container.decode(String?.self, forKey: .eTag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ResourceData : ResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
   }
 }
 

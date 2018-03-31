@@ -16,7 +16,7 @@ internal struct HyperVReplica2012R2EventDetailsData : HyperVReplica2012R2EventDe
         case remoteFabricName = "remoteFabricName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct HyperVReplica2012R2EventDetailsData : HyperVReplica2012R2EventDe
     if container.contains(.remoteFabricName) {
         self.remoteFabricName = try container.decode(String?.self, forKey: .remoteFabricName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct HyperVReplica2012R2EventDetailsData : HyperVReplica2012R2EventDe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.remoteContainerName != nil {try container.encode(self.remoteContainerName, forKey: .remoteContainerName)}
-    if self.remoteFabricName != nil {try container.encode(self.remoteFabricName, forKey: .remoteFabricName)}
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.remoteContainerName != nil { try container.encode(self.remoteContainerName, forKey: .remoteContainerName) }
+    if self.remoteFabricName != nil { try container.encode(self.remoteFabricName, forKey: .remoteFabricName) }
   }
 }
 

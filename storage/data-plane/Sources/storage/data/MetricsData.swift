@@ -14,7 +14,7 @@ internal struct MetricsData : MetricsProtocol {
         case retentionPolicy = "RetentionPolicy"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -35,10 +35,10 @@ internal struct MetricsData : MetricsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.enabled != nil {try container.encode(enabled, forKey: .enabled)}
-    if self.includeAPIs != nil {try container.encode(includeAPIs, forKey: .includeAPIs)}
-    if self.retentionPolicy != nil {try container.encode(retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy)}
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.enabled != nil { try container.encode(enabled, forKey: .enabled) }
+    if self.includeAPIs != nil { try container.encode(includeAPIs, forKey: .includeAPIs) }
+    if self.retentionPolicy != nil { try container.encode(retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy) }
   }
 }
 

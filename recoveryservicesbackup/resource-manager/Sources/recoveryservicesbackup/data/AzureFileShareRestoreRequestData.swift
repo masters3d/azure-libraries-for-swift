@@ -20,7 +20,7 @@ internal struct AzureFileShareRestoreRequestData : AzureFileShareRestoreRequestP
         case targetDetails = "targetDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct AzureFileShareRestoreRequestData : AzureFileShareRestoreRequestP
     if container.contains(.targetDetails) {
         self.targetDetails = try container.decode(TargetAFSRestoreInfoData?.self, forKey: .targetDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct AzureFileShareRestoreRequestData : AzureFileShareRestoreRequestP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryType != nil {try container.encode(self.recoveryType, forKey: .recoveryType)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.copyOptions != nil {try container.encode(self.copyOptions, forKey: .copyOptions)}
-    if self.restoreRequestType != nil {try container.encode(self.restoreRequestType, forKey: .restoreRequestType)}
-    if self.restoreFileSpecs != nil {try container.encode(self.restoreFileSpecs as! [RestoreFileSpecsData?]?, forKey: .restoreFileSpecs)}
-    if self.targetDetails != nil {try container.encode(self.targetDetails as! TargetAFSRestoreInfoData?, forKey: .targetDetails)}
+    if self.recoveryType != nil { try container.encode(self.recoveryType, forKey: .recoveryType) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.copyOptions != nil { try container.encode(self.copyOptions, forKey: .copyOptions) }
+    if self.restoreRequestType != nil { try container.encode(self.restoreRequestType, forKey: .restoreRequestType) }
+    if self.restoreFileSpecs != nil { try container.encode(self.restoreFileSpecs as! [RestoreFileSpecsData?]?, forKey: .restoreFileSpecs) }
+    if self.targetDetails != nil { try container.encode(self.targetDetails as! TargetAFSRestoreInfoData?, forKey: .targetDetails) }
   }
 }
 

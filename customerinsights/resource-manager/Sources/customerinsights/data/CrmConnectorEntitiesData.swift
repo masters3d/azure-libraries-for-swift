@@ -14,7 +14,7 @@ internal struct CrmConnectorEntitiesData : CrmConnectorEntitiesProtocol {
         case isProfile = "isProfile"
         }
 
-  public init(logicalName: String)  {
+  public init(logicalName: String) {
     self.logicalName = logicalName
   }
 
@@ -27,7 +27,7 @@ internal struct CrmConnectorEntitiesData : CrmConnectorEntitiesProtocol {
     if container.contains(.isProfile) {
         self.isProfile = try container.decode(Bool?.self, forKey: .isProfile)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct CrmConnectorEntitiesData : CrmConnectorEntitiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.logicalName, forKey: .logicalName)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.isProfile != nil {try container.encode(self.isProfile, forKey: .isProfile)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.isProfile != nil { try container.encode(self.isProfile, forKey: .isProfile) }
   }
 }
 

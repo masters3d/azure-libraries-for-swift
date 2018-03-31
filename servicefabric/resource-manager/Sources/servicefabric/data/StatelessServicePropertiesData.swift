@@ -26,7 +26,7 @@ internal struct StatelessServicePropertiesData : StatelessServicePropertiesProto
         case instanceCount = "instanceCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct StatelessServicePropertiesData : StatelessServicePropertiesProto
     if container.contains(.instanceCount) {
         self.instanceCount = try container.decode(Int32?.self, forKey: .instanceCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct StatelessServicePropertiesData : StatelessServicePropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.placementConstraints != nil {try container.encode(self.placementConstraints, forKey: .placementConstraints)}
-    if self.correlationScheme != nil {try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme)}
-    if self.serviceLoadMetrics != nil {try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics)}
-    if self.servicePlacementPolicies != nil {try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies)}
-    if self.defaultMoveCost != nil {try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.serviceTypeName != nil {try container.encode(self.serviceTypeName, forKey: .serviceTypeName)}
-    if self.partitionDescription != nil {try container.encode(self.partitionDescription as! PartitionSchemeDescriptionData?, forKey: .partitionDescription)}
-    if self.instanceCount != nil {try container.encode(self.instanceCount, forKey: .instanceCount)}
+    if self.placementConstraints != nil { try container.encode(self.placementConstraints, forKey: .placementConstraints) }
+    if self.correlationScheme != nil { try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme) }
+    if self.serviceLoadMetrics != nil { try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics) }
+    if self.servicePlacementPolicies != nil { try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies) }
+    if self.defaultMoveCost != nil { try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.serviceTypeName != nil { try container.encode(self.serviceTypeName, forKey: .serviceTypeName) }
+    if self.partitionDescription != nil { try container.encode(self.partitionDescription as! PartitionSchemeDescriptionData?, forKey: .partitionDescription) }
+    if self.instanceCount != nil { try container.encode(self.instanceCount, forKey: .instanceCount) }
   }
 }
 

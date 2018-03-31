@@ -16,7 +16,7 @@ internal struct TldLegalAgreementData : TldLegalAgreementProtocol {
         case url = "url"
         }
 
-  public init(agreementKey: String, title: String, content: String)  {
+  public init(agreementKey: String, title: String, content: String) {
     self.agreementKey = agreementKey
     self.title = title
     self.content = content
@@ -30,7 +30,7 @@ internal struct TldLegalAgreementData : TldLegalAgreementProtocol {
     if container.contains(.url) {
         self.url = try container.decode(String?.self, forKey: .url)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct TldLegalAgreementData : TldLegalAgreementProtocol {
     try container.encode(self.agreementKey, forKey: .agreementKey)
     try container.encode(self.title, forKey: .title)
     try container.encode(self.content, forKey: .content)
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
   }
 }
 

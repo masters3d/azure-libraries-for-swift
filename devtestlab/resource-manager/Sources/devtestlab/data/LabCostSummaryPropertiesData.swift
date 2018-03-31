@@ -10,7 +10,7 @@ internal struct LabCostSummaryPropertiesData : LabCostSummaryPropertiesProtocol 
         enum CodingKeys: String, CodingKey {case estimatedLabCost = "estimatedLabCost"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct LabCostSummaryPropertiesData : LabCostSummaryPropertiesProtocol 
       if container.contains(.estimatedLabCost) {
         self.estimatedLabCost = try container.decode(Double?.self, forKey: .estimatedLabCost)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct LabCostSummaryPropertiesData : LabCostSummaryPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.estimatedLabCost != nil {try container.encode(self.estimatedLabCost, forKey: .estimatedLabCost)}
+    if self.estimatedLabCost != nil { try container.encode(self.estimatedLabCost, forKey: .estimatedLabCost) }
   }
 }
 

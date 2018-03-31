@@ -12,7 +12,7 @@ internal struct ConnectorMappingErrorManagementData : ConnectorMappingErrorManag
         case errorLimit = "errorLimit"
         }
 
-  public init(errorManagementType: ErrorManagementTypesEnum)  {
+  public init(errorManagementType: ErrorManagementTypesEnum) {
     self.errorManagementType = errorManagementType
   }
 
@@ -22,7 +22,7 @@ internal struct ConnectorMappingErrorManagementData : ConnectorMappingErrorManag
     if container.contains(.errorLimit) {
         self.errorLimit = try container.decode(Int32?.self, forKey: .errorLimit)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ConnectorMappingErrorManagementData : ConnectorMappingErrorManag
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errorManagementType, forKey: .errorManagementType)
-    if self.errorLimit != nil {try container.encode(self.errorLimit, forKey: .errorLimit)}
+    if self.errorLimit != nil { try container.encode(self.errorLimit, forKey: .errorLimit) }
   }
 }
 

@@ -26,7 +26,7 @@ internal struct CorrelationFilterData : CorrelationFilterProtocol {
         case requiresPreprocessing = "requiresPreprocessing"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct CorrelationFilterData : CorrelationFilterProtocol {
     if container.contains(.requiresPreprocessing) {
         self.requiresPreprocessing = try container.decode(Bool?.self, forKey: .requiresPreprocessing)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct CorrelationFilterData : CorrelationFilterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.messageId != nil {try container.encode(self.messageId, forKey: .messageId)}
-    if self.to != nil {try container.encode(self.to, forKey: .to)}
-    if self.replyTo != nil {try container.encode(self.replyTo, forKey: .replyTo)}
-    if self.label != nil {try container.encode(self.label, forKey: .label)}
-    if self.sessionId != nil {try container.encode(self.sessionId, forKey: .sessionId)}
-    if self.replyToSessionId != nil {try container.encode(self.replyToSessionId, forKey: .replyToSessionId)}
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
-    if self.requiresPreprocessing != nil {try container.encode(self.requiresPreprocessing, forKey: .requiresPreprocessing)}
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.messageId != nil { try container.encode(self.messageId, forKey: .messageId) }
+    if self.to != nil { try container.encode(self.to, forKey: .to) }
+    if self.replyTo != nil { try container.encode(self.replyTo, forKey: .replyTo) }
+    if self.label != nil { try container.encode(self.label, forKey: .label) }
+    if self.sessionId != nil { try container.encode(self.sessionId, forKey: .sessionId) }
+    if self.replyToSessionId != nil { try container.encode(self.replyToSessionId, forKey: .replyToSessionId) }
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
+    if self.requiresPreprocessing != nil { try container.encode(self.requiresPreprocessing, forKey: .requiresPreprocessing) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct WinRMConfigurationData : WinRMConfigurationProtocol {
         enum CodingKeys: String, CodingKey {case listeners = "listeners"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct WinRMConfigurationData : WinRMConfigurationProtocol {
       if container.contains(.listeners) {
         self.listeners = try container.decode([WinRMListenerData?]?.self, forKey: .listeners)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct WinRMConfigurationData : WinRMConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.listeners != nil {try container.encode(self.listeners as! [WinRMListenerData?]?, forKey: .listeners)}
+    if self.listeners != nil { try container.encode(self.listeners as! [WinRMListenerData?]?, forKey: .listeners) }
   }
 }
 

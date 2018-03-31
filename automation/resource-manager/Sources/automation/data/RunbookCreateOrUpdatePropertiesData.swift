@@ -22,7 +22,7 @@ internal struct RunbookCreateOrUpdatePropertiesData : RunbookCreateOrUpdatePrope
         case logActivityTrace = "logActivityTrace"
         }
 
-  public init(runbookType: RunbookTypeEnumEnum)  {
+  public init(runbookType: RunbookTypeEnumEnum) {
     self.runbookType = runbookType
   }
 
@@ -47,7 +47,7 @@ internal struct RunbookCreateOrUpdatePropertiesData : RunbookCreateOrUpdatePrope
     if container.contains(.logActivityTrace) {
         self.logActivityTrace = try container.decode(Int32?.self, forKey: .logActivityTrace)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,13 +57,13 @@ internal struct RunbookCreateOrUpdatePropertiesData : RunbookCreateOrUpdatePrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.logVerbose != nil {try container.encode(self.logVerbose, forKey: .logVerbose)}
-    if self.logProgress != nil {try container.encode(self.logProgress, forKey: .logProgress)}
+    if self.logVerbose != nil { try container.encode(self.logVerbose, forKey: .logVerbose) }
+    if self.logProgress != nil { try container.encode(self.logProgress, forKey: .logProgress) }
     try container.encode(self.runbookType, forKey: .runbookType)
-    if self.draft != nil {try container.encode(self.draft as! RunbookDraftData?, forKey: .draft)}
-    if self.publishContentLink != nil {try container.encode(self.publishContentLink as! ContentLinkData?, forKey: .publishContentLink)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.logActivityTrace != nil {try container.encode(self.logActivityTrace, forKey: .logActivityTrace)}
+    if self.draft != nil { try container.encode(self.draft as! RunbookDraftData?, forKey: .draft) }
+    if self.publishContentLink != nil { try container.encode(self.publishContentLink as! ContentLinkData?, forKey: .publishContentLink) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.logActivityTrace != nil { try container.encode(self.logActivityTrace, forKey: .logActivityTrace) }
   }
 }
 

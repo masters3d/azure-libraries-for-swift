@@ -16,7 +16,7 @@ internal struct NetworkAccessControlEntryData : NetworkAccessControlEntryProtoco
         case remoteSubnet = "remoteSubnet"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct NetworkAccessControlEntryData : NetworkAccessControlEntryProtoco
     if container.contains(.remoteSubnet) {
         self.remoteSubnet = try container.decode(String?.self, forKey: .remoteSubnet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct NetworkAccessControlEntryData : NetworkAccessControlEntryProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.order != nil {try container.encode(self.order, forKey: .order)}
-    if self.remoteSubnet != nil {try container.encode(self.remoteSubnet, forKey: .remoteSubnet)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.order != nil { try container.encode(self.order, forKey: .order) }
+    if self.remoteSubnet != nil { try container.encode(self.remoteSubnet, forKey: .remoteSubnet) }
   }
 }
 

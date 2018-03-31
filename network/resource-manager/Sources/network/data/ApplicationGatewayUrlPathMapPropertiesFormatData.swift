@@ -18,7 +18,7 @@ internal struct ApplicationGatewayUrlPathMapPropertiesFormatData : ApplicationGa
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApplicationGatewayUrlPathMapPropertiesFormatData : ApplicationGa
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApplicationGatewayUrlPathMapPropertiesFormatData : ApplicationGa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.defaultBackendAddressPool != nil {try container.encode(self.defaultBackendAddressPool as! SubResourceData?, forKey: .defaultBackendAddressPool)}
-    if self.defaultBackendHttpSettings != nil {try container.encode(self.defaultBackendHttpSettings as! SubResourceData?, forKey: .defaultBackendHttpSettings)}
-    if self.defaultRedirectConfiguration != nil {try container.encode(self.defaultRedirectConfiguration as! SubResourceData?, forKey: .defaultRedirectConfiguration)}
-    if self.pathRules != nil {try container.encode(self.pathRules as! [ApplicationGatewayPathRuleData?]?, forKey: .pathRules)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.defaultBackendAddressPool != nil { try container.encode(self.defaultBackendAddressPool as! SubResourceData?, forKey: .defaultBackendAddressPool) }
+    if self.defaultBackendHttpSettings != nil { try container.encode(self.defaultBackendHttpSettings as! SubResourceData?, forKey: .defaultBackendHttpSettings) }
+    if self.defaultRedirectConfiguration != nil { try container.encode(self.defaultRedirectConfiguration as! SubResourceData?, forKey: .defaultRedirectConfiguration) }
+    if self.pathRules != nil { try container.encode(self.pathRules as! [ApplicationGatewayPathRuleData?]?, forKey: .pathRules) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

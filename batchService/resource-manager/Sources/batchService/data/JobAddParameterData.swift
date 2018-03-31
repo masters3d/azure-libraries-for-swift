@@ -34,7 +34,7 @@ internal struct JobAddParameterData : JobAddParameterProtocol {
         case usesTaskDependencies = "usesTaskDependencies"
         }
 
-  public init(id: String, poolInfo: PoolInformationProtocol)  {
+  public init(id: String, poolInfo: PoolInformationProtocol) {
     self.id = id
     self.poolInfo = poolInfo
   }
@@ -76,7 +76,7 @@ internal struct JobAddParameterData : JobAddParameterProtocol {
     if container.contains(.usesTaskDependencies) {
         self.usesTaskDependencies = try container.decode(Bool?.self, forKey: .usesTaskDependencies)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -87,18 +87,18 @@ internal struct JobAddParameterData : JobAddParameterProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.constraints != nil {try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints)}
-    if self.jobManagerTask != nil {try container.encode(self.jobManagerTask as! JobManagerTaskData?, forKey: .jobManagerTask)}
-    if self.jobPreparationTask != nil {try container.encode(self.jobPreparationTask as! JobPreparationTaskData?, forKey: .jobPreparationTask)}
-    if self.jobReleaseTask != nil {try container.encode(self.jobReleaseTask as! JobReleaseTaskData?, forKey: .jobReleaseTask)}
-    if self.commonEnvironmentSettings != nil {try container.encode(self.commonEnvironmentSettings as! [EnvironmentSettingData?]?, forKey: .commonEnvironmentSettings)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.constraints != nil { try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints) }
+    if self.jobManagerTask != nil { try container.encode(self.jobManagerTask as! JobManagerTaskData?, forKey: .jobManagerTask) }
+    if self.jobPreparationTask != nil { try container.encode(self.jobPreparationTask as! JobPreparationTaskData?, forKey: .jobPreparationTask) }
+    if self.jobReleaseTask != nil { try container.encode(self.jobReleaseTask as! JobReleaseTaskData?, forKey: .jobReleaseTask) }
+    if self.commonEnvironmentSettings != nil { try container.encode(self.commonEnvironmentSettings as! [EnvironmentSettingData?]?, forKey: .commonEnvironmentSettings) }
     try container.encode(self.poolInfo as! PoolInformationData, forKey: .poolInfo)
-    if self.onAllTasksComplete != nil {try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete)}
-    if self.onTaskFailure != nil {try container.encode(self.onTaskFailure, forKey: .onTaskFailure)}
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
-    if self.usesTaskDependencies != nil {try container.encode(self.usesTaskDependencies, forKey: .usesTaskDependencies)}
+    if self.onAllTasksComplete != nil { try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete) }
+    if self.onTaskFailure != nil { try container.encode(self.onTaskFailure, forKey: .onTaskFailure) }
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
+    if self.usesTaskDependencies != nil { try container.encode(self.usesTaskDependencies, forKey: .usesTaskDependencies) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct ListAccountSasResponseData : ListAccountSasResponseProtocol {
         enum CodingKeys: String, CodingKey {case accountSasToken = "accountSasToken"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ListAccountSasResponseData : ListAccountSasResponseProtocol {
       if container.contains(.accountSasToken) {
         self.accountSasToken = try container.decode(String?.self, forKey: .accountSasToken)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ListAccountSasResponseData : ListAccountSasResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountSasToken != nil {try container.encode(self.accountSasToken, forKey: .accountSasToken)}
+    if self.accountSasToken != nil { try container.encode(self.accountSasToken, forKey: .accountSasToken) }
   }
 }
 

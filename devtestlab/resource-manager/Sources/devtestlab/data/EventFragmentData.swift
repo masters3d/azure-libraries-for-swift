@@ -10,7 +10,7 @@ internal struct EventFragmentData : EventFragmentProtocol {
         enum CodingKeys: String, CodingKey {case eventName = "eventName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct EventFragmentData : EventFragmentProtocol {
       if container.contains(.eventName) {
         self.eventName = try container.decode(NotificationChannelEventTypeEnum?.self, forKey: .eventName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct EventFragmentData : EventFragmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eventName != nil {try container.encode(self.eventName, forKey: .eventName)}
+    if self.eventName != nil { try container.encode(self.eventName, forKey: .eventName) }
   }
 }
 

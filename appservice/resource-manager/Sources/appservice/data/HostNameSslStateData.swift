@@ -20,7 +20,7 @@ internal struct HostNameSslStateData : HostNameSslStateProtocol {
         case hostType = "hostType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct HostNameSslStateData : HostNameSslStateProtocol {
     if container.contains(.hostType) {
         self.hostType = try container.decode(HostTypeEnum?.self, forKey: .hostType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct HostNameSslStateData : HostNameSslStateProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.sslState != nil {try container.encode(self.sslState, forKey: .sslState)}
-    if self.virtualIP != nil {try container.encode(self.virtualIP, forKey: .virtualIP)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.toUpdate != nil {try container.encode(self.toUpdate, forKey: .toUpdate)}
-    if self.hostType != nil {try container.encode(self.hostType, forKey: .hostType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.sslState != nil { try container.encode(self.sslState, forKey: .sslState) }
+    if self.virtualIP != nil { try container.encode(self.virtualIP, forKey: .virtualIP) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.toUpdate != nil { try container.encode(self.toUpdate, forKey: .toUpdate) }
+    if self.hostType != nil { try container.encode(self.hostType, forKey: .hostType) }
   }
 }
 

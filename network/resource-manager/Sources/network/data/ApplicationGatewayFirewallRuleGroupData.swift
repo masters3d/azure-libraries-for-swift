@@ -14,7 +14,7 @@ internal struct ApplicationGatewayFirewallRuleGroupData : ApplicationGatewayFire
         case rules = "rules"
         }
 
-  public init(ruleGroupName: String, rules: [ApplicationGatewayFirewallRuleProtocol])  {
+  public init(ruleGroupName: String, rules: [ApplicationGatewayFirewallRuleProtocol]) {
     self.ruleGroupName = ruleGroupName
     self.rules = rules
   }
@@ -26,7 +26,7 @@ internal struct ApplicationGatewayFirewallRuleGroupData : ApplicationGatewayFire
         self.description = try container.decode(String?.self, forKey: .description)
     }
     self.rules = try container.decode([ApplicationGatewayFirewallRuleData].self, forKey: .rules)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,7 +37,7 @@ internal struct ApplicationGatewayFirewallRuleGroupData : ApplicationGatewayFire
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ruleGroupName, forKey: .ruleGroupName)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.rules as! [ApplicationGatewayFirewallRuleData], forKey: .rules)
   }
 }

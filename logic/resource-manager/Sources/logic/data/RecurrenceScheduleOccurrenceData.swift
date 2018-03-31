@@ -12,7 +12,7 @@ internal struct RecurrenceScheduleOccurrenceData : RecurrenceScheduleOccurrenceP
         case occurrence = "occurrence"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RecurrenceScheduleOccurrenceData : RecurrenceScheduleOccurrenceP
     if container.contains(.occurrence) {
         self.occurrence = try container.decode(Int32?.self, forKey: .occurrence)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RecurrenceScheduleOccurrenceData : RecurrenceScheduleOccurrenceP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.day != nil {try container.encode(self.day, forKey: .day)}
-    if self.occurrence != nil {try container.encode(self.occurrence, forKey: .occurrence)}
+    if self.day != nil { try container.encode(self.day, forKey: .day) }
+    if self.occurrence != nil { try container.encode(self.occurrence, forKey: .occurrence) }
   }
 }
 

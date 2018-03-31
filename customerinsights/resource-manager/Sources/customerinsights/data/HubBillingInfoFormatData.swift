@@ -14,7 +14,7 @@ internal struct HubBillingInfoFormatData : HubBillingInfoFormatProtocol {
         case maxUnits = "maxUnits"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HubBillingInfoFormatData : HubBillingInfoFormatProtocol {
     if container.contains(.maxUnits) {
         self.maxUnits = try container.decode(Int32?.self, forKey: .maxUnits)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct HubBillingInfoFormatData : HubBillingInfoFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.skuName != nil {try container.encode(self.skuName, forKey: .skuName)}
-    if self.minUnits != nil {try container.encode(self.minUnits, forKey: .minUnits)}
-    if self.maxUnits != nil {try container.encode(self.maxUnits, forKey: .maxUnits)}
+    if self.skuName != nil { try container.encode(self.skuName, forKey: .skuName) }
+    if self.minUnits != nil { try container.encode(self.minUnits, forKey: .minUnits) }
+    if self.maxUnits != nil { try container.encode(self.maxUnits, forKey: .maxUnits) }
   }
 }
 

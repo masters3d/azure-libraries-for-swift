@@ -16,7 +16,7 @@ internal struct RulepropertiesData : RulepropertiesProtocol {
         case correlationFilter = "correlationFilter"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RulepropertiesData : RulepropertiesProtocol {
     if container.contains(.correlationFilter) {
         self.correlationFilter = try container.decode(CorrelationFilterData?.self, forKey: .correlationFilter)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RulepropertiesData : RulepropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.action != nil {try container.encode(self.action as! ActionData?, forKey: .action)}
-    if self.filterType != nil {try container.encode(self.filterType, forKey: .filterType)}
-    if self.sqlFilter != nil {try container.encode(self.sqlFilter as! SqlFilterData?, forKey: .sqlFilter)}
-    if self.correlationFilter != nil {try container.encode(self.correlationFilter as! CorrelationFilterData?, forKey: .correlationFilter)}
+    if self.action != nil { try container.encode(self.action as! ActionData?, forKey: .action) }
+    if self.filterType != nil { try container.encode(self.filterType, forKey: .filterType) }
+    if self.sqlFilter != nil { try container.encode(self.sqlFilter as! SqlFilterData?, forKey: .sqlFilter) }
+    if self.correlationFilter != nil { try container.encode(self.correlationFilter as! CorrelationFilterData?, forKey: .correlationFilter) }
   }
 }
 

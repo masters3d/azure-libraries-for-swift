@@ -30,7 +30,7 @@ internal struct TestJobData : TestJobProtocol {
         case logActivityTrace = "logActivityTrace"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct TestJobData : TestJobProtocol {
     if container.contains(.logActivityTrace) {
         self.logActivityTrace = try container.decode(Int32?.self, forKey: .logActivityTrace)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -81,24 +81,24 @@ internal struct TestJobData : TestJobProtocol {
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.statusDetails != nil {try container.encode(self.statusDetails, forKey: .statusDetails)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.statusDetails != nil { try container.encode(self.statusDetails, forKey: .statusDetails) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.exception != nil {try container.encode(self.exception, forKey: .exception)}
+    if self.exception != nil { try container.encode(self.exception, forKey: .exception) }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
     if self.lastStatusModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastStatusModifiedTime!, format: .dateTime), forKey: .lastStatusModifiedTime)
     }
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.logActivityTrace != nil {try container.encode(self.logActivityTrace, forKey: .logActivityTrace)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.logActivityTrace != nil { try container.encode(self.logActivityTrace, forKey: .logActivityTrace) }
   }
 }
 

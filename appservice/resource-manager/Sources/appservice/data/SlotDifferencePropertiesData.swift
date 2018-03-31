@@ -22,7 +22,7 @@ internal struct SlotDifferencePropertiesData : SlotDifferencePropertiesProtocol 
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SlotDifferencePropertiesData : SlotDifferencePropertiesProtocol 
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct SlotDifferencePropertiesData : SlotDifferencePropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.settingType != nil {try container.encode(self.settingType, forKey: .settingType)}
-    if self.diffRule != nil {try container.encode(self.diffRule, forKey: .diffRule)}
-    if self.settingName != nil {try container.encode(self.settingName, forKey: .settingName)}
-    if self.valueInCurrentSlot != nil {try container.encode(self.valueInCurrentSlot, forKey: .valueInCurrentSlot)}
-    if self.valueInTargetSlot != nil {try container.encode(self.valueInTargetSlot, forKey: .valueInTargetSlot)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.settingType != nil { try container.encode(self.settingType, forKey: .settingType) }
+    if self.diffRule != nil { try container.encode(self.diffRule, forKey: .diffRule) }
+    if self.settingName != nil { try container.encode(self.settingName, forKey: .settingName) }
+    if self.valueInCurrentSlot != nil { try container.encode(self.valueInCurrentSlot, forKey: .valueInCurrentSlot) }
+    if self.valueInTargetSlot != nil { try container.encode(self.valueInTargetSlot, forKey: .valueInTargetSlot) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

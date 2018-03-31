@@ -16,7 +16,7 @@ internal struct NodeFileData : NodeFileProtocol {
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct NodeFileData : NodeFileProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode(FilePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct NodeFileData : NodeFileProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.isDirectory != nil {try container.encode(self.isDirectory, forKey: .isDirectory)}
-    if self.properties != nil {try container.encode(self.properties as! FilePropertiesData?, forKey: .properties)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.isDirectory != nil { try container.encode(self.isDirectory, forKey: .isDirectory) }
+    if self.properties != nil { try container.encode(self.properties as! FilePropertiesData?, forKey: .properties) }
   }
 }
 

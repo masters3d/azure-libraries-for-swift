@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkGatewaysDelete  {
+public protocol VirtualNetworkGatewaysDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkGatewayName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkGateways {
@@ -31,7 +31,7 @@ extension Commands.VirtualNetworkGateways {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkGatewayName}"] = String(describing: self.virtualNetworkGatewayName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -40,7 +40,7 @@ extension Commands.VirtualNetworkGateways {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

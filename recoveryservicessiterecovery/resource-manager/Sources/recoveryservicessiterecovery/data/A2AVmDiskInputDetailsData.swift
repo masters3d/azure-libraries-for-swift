@@ -14,7 +14,7 @@ internal struct A2AVmDiskInputDetailsData : A2AVmDiskInputDetailsProtocol {
         case primaryStagingAzureStorageAccountId = "primaryStagingAzureStorageAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct A2AVmDiskInputDetailsData : A2AVmDiskInputDetailsProtocol {
     if container.contains(.primaryStagingAzureStorageAccountId) {
         self.primaryStagingAzureStorageAccountId = try container.decode(String?.self, forKey: .primaryStagingAzureStorageAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct A2AVmDiskInputDetailsData : A2AVmDiskInputDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskUri != nil {try container.encode(self.diskUri, forKey: .diskUri)}
-    if self.recoveryAzureStorageAccountId != nil {try container.encode(self.recoveryAzureStorageAccountId, forKey: .recoveryAzureStorageAccountId)}
-    if self.primaryStagingAzureStorageAccountId != nil {try container.encode(self.primaryStagingAzureStorageAccountId, forKey: .primaryStagingAzureStorageAccountId)}
+    if self.diskUri != nil { try container.encode(self.diskUri, forKey: .diskUri) }
+    if self.recoveryAzureStorageAccountId != nil { try container.encode(self.recoveryAzureStorageAccountId, forKey: .recoveryAzureStorageAccountId) }
+    if self.primaryStagingAzureStorageAccountId != nil { try container.encode(self.primaryStagingAzureStorageAccountId, forKey: .primaryStagingAzureStorageAccountId) }
   }
 }
 

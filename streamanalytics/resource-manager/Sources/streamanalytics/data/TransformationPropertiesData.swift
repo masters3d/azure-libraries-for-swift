@@ -14,7 +14,7 @@ internal struct TransformationPropertiesData : TransformationPropertiesProtocol 
         case etag = "etag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TransformationPropertiesData : TransformationPropertiesProtocol 
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TransformationPropertiesData : TransformationPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.streamingUnits != nil {try container.encode(self.streamingUnits, forKey: .streamingUnits)}
-    if self.query != nil {try container.encode(self.query, forKey: .query)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.streamingUnits != nil { try container.encode(self.streamingUnits, forKey: .streamingUnits) }
+    if self.query != nil { try container.encode(self.query, forKey: .query) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

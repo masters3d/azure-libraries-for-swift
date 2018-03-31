@@ -16,7 +16,7 @@ internal struct PoolResizeParameterData : PoolResizeParameterProtocol {
         case nodeDeallocationOption = "nodeDeallocationOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PoolResizeParameterData : PoolResizeParameterProtocol {
     if container.contains(.nodeDeallocationOption) {
         self.nodeDeallocationOption = try container.decode(ComputeNodeDeallocationOptionEnum?.self, forKey: .nodeDeallocationOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PoolResizeParameterData : PoolResizeParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetDedicatedNodes != nil {try container.encode(self.targetDedicatedNodes, forKey: .targetDedicatedNodes)}
-    if self.targetLowPriorityNodes != nil {try container.encode(self.targetLowPriorityNodes, forKey: .targetLowPriorityNodes)}
-    if self.resizeTimeout != nil {try container.encode(self.resizeTimeout, forKey: .resizeTimeout)}
-    if self.nodeDeallocationOption != nil {try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption)}
+    if self.targetDedicatedNodes != nil { try container.encode(self.targetDedicatedNodes, forKey: .targetDedicatedNodes) }
+    if self.targetLowPriorityNodes != nil { try container.encode(self.targetLowPriorityNodes, forKey: .targetLowPriorityNodes) }
+    if self.resizeTimeout != nil { try container.encode(self.resizeTimeout, forKey: .resizeTimeout) }
+    if self.nodeDeallocationOption != nil { try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption) }
   }
 }
 

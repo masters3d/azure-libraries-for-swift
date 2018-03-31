@@ -1,26 +1,26 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BlobsSetProperties  {
+public protocol BlobsSetProperties {
     var headerParameters: [String: String] { get set }
     var accountName : String { get set }
     var container : String { get set }
     var blob : String { get set }
     var timeout : Int32? { get set }
     var comp : String { get set }
-    var xMsBlobCacheControl : String?  { get set }
-    var xMsBlobContentType : String?  { get set }
-    var xMsBlobContentMd5 : String?  { get set }
-    var xMsBlobContentEncoding : String?  { get set }
-    var xMsBlobContentLanguage : String?  { get set }
-    var leaseId : String?  { get set }
-    var xMsBlobContentDisposition : String?  { get set }
-    var xMsBlobContentLength : String?  { get set }
-    var sequenceNumberAction : String?  { get set }
-    var blobSequenceNumber : String?  { get set }
-    var version : String?  { get set }
-    var requestId : String?  { get set }
+    var xMsBlobCacheControl : String? { get set }
+    var xMsBlobContentType : String? { get set }
+    var xMsBlobContentMd5 : String? { get set }
+    var xMsBlobContentEncoding : String? { get set }
+    var xMsBlobContentLanguage : String? { get set }
+    var leaseId : String? { get set }
+    var xMsBlobContentDisposition : String? { get set }
+    var xMsBlobContentLength : String? { get set }
+    var sequenceNumberAction : String? { get set }
+    var blobSequenceNumber : String? { get set }
+    var version : String? { get set }
+    var requestId : String? { get set }
     func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void;
+        completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Blobs {
@@ -36,14 +36,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-cache-control"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-cache-control"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-cache-control" }) {
                 return headerParameters["x-ms-blob-cache-control"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -53,14 +53,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-type"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-type"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-type" }) {
                 return headerParameters["x-ms-blob-content-type"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -70,14 +70,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-md5"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-md5"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-md5" }) {
                 return headerParameters["x-ms-blob-content-md5"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -87,14 +87,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-encoding"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-encoding"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-encoding" }) {
                 return headerParameters["x-ms-blob-content-encoding"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -104,14 +104,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-language"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-language"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-language" }) {
                 return headerParameters["x-ms-blob-content-language"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -121,14 +121,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-lease-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-lease-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-lease-id" }) {
                 return headerParameters["x-ms-lease-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -138,14 +138,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-disposition"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-disposition"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-disposition" }) {
                 return headerParameters["x-ms-blob-content-disposition"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -155,14 +155,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-blob-content-length"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-blob-content-length"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-blob-content-length" }) {
                 return headerParameters["x-ms-blob-content-length"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -172,14 +172,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-sequence-number-action"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-sequence-number-action"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-sequence-number-action" }) {
                 return headerParameters["x-ms-sequence-number-action"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -189,14 +189,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-sequence-number"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-sequence-number"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-sequence-number" }) {
                 return headerParameters["x-ms-sequence-number"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -206,14 +206,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-version"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-version"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-version" }) {
                 return headerParameters["x-ms-version"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -223,14 +223,14 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         set {
             if newValue != nil {
                 headerParameters["x-ms-client-request-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-client-request-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-client-request-id" }) {
                 return headerParameters["x-ms-client-request-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -249,7 +249,7 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         self.headerParameters = ["Content-Type":"application/xml; charset=utf-8"]
     }
 
-    public override func preCall()  {
+    public override func preCall() {
         self.pathParameters["{accountName}"] = String(describing: self.accountName)
         self.pathParameters["{container}"] = String(describing: self.container)
         self.pathParameters["{blob}"] = String(describing: self.blob)
@@ -257,9 +257,8 @@ internal class SetPropertiesCommand : BaseCommand, BlobsSetProperties {
         self.queryParameters["{comp}"] = String(describing: self.comp)
 }
 
-
     public func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void {
+        completionHandler: @escaping (Error?) -> Void) {
         client.executeAsync(command: self) {
             (error) in
             completionHandler(error)

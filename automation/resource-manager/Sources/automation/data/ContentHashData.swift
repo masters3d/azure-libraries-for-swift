@@ -12,7 +12,7 @@ internal struct ContentHashData : ContentHashProtocol {
         case value = "value"
         }
 
-  public init(algorithm: String, value: String)  {
+  public init(algorithm: String, value: String) {
     self.algorithm = algorithm
     self.value = value
   }
@@ -21,7 +21,7 @@ internal struct ContentHashData : ContentHashProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.algorithm = try container.decode(String.self, forKey: .algorithm)
     self.value = try container.decode(String.self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

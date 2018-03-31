@@ -20,7 +20,7 @@ internal struct YearlyRetentionScheduleData : YearlyRetentionScheduleProtocol {
         case retentionDuration = "retentionDuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct YearlyRetentionScheduleData : YearlyRetentionScheduleProtocol {
     if container.contains(.retentionDuration) {
         self.retentionDuration = try container.decode(RetentionDurationData?.self, forKey: .retentionDuration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct YearlyRetentionScheduleData : YearlyRetentionScheduleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.retentionScheduleFormatType != nil {try container.encode(self.retentionScheduleFormatType, forKey: .retentionScheduleFormatType)}
-    if self.monthsOfYear != nil {try container.encode(self.monthsOfYear as! [MonthOfYearEnum?]?, forKey: .monthsOfYear)}
-    if self.retentionScheduleDaily != nil {try container.encode(self.retentionScheduleDaily as! DailyRetentionFormatData?, forKey: .retentionScheduleDaily)}
-    if self.retentionScheduleWeekly != nil {try container.encode(self.retentionScheduleWeekly as! WeeklyRetentionFormatData?, forKey: .retentionScheduleWeekly)}
-    if self.retentionTimes != nil {try container.encode(self.retentionTimes as! [Date]?, forKey: .retentionTimes)}
-    if self.retentionDuration != nil {try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration)}
+    if self.retentionScheduleFormatType != nil { try container.encode(self.retentionScheduleFormatType, forKey: .retentionScheduleFormatType) }
+    if self.monthsOfYear != nil { try container.encode(self.monthsOfYear as! [MonthOfYearEnum?]?, forKey: .monthsOfYear) }
+    if self.retentionScheduleDaily != nil { try container.encode(self.retentionScheduleDaily as! DailyRetentionFormatData?, forKey: .retentionScheduleDaily) }
+    if self.retentionScheduleWeekly != nil { try container.encode(self.retentionScheduleWeekly as! WeeklyRetentionFormatData?, forKey: .retentionScheduleWeekly) }
+    if self.retentionTimes != nil { try container.encode(self.retentionTimes as! [Date]?, forKey: .retentionTimes) }
+    if self.retentionDuration != nil { try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration) }
   }
 }
 

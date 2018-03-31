@@ -28,7 +28,7 @@ internal struct DeploymentPropertiesData : DeploymentPropertiesProtocol {
         case details = "details"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct DeploymentPropertiesData : DeploymentPropertiesProtocol {
     if container.contains(.details) {
         self.details = try container.decode(String?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,20 +73,20 @@ internal struct DeploymentPropertiesData : DeploymentPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.author != nil {try container.encode(self.author, forKey: .author)}
-    if self.deployer != nil {try container.encode(self.deployer, forKey: .deployer)}
-    if self.authorEmail != nil {try container.encode(self.authorEmail, forKey: .authorEmail)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.author != nil { try container.encode(self.author, forKey: .author) }
+    if self.deployer != nil { try container.encode(self.deployer, forKey: .deployer) }
+    if self.authorEmail != nil { try container.encode(self.authorEmail, forKey: .authorEmail) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.active != nil {try container.encode(self.active, forKey: .active)}
-    if self.details != nil {try container.encode(self.details, forKey: .details)}
+    if self.active != nil { try container.encode(self.active, forKey: .active) }
+    if self.details != nil { try container.encode(self.details, forKey: .details) }
   }
 }
 

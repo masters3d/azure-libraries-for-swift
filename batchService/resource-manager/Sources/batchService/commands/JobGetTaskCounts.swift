@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobGetTaskCounts  {
+public protocol JobGetTaskCounts {
     var headerParameters: [String: String] { get set }
     var jobId : String { get set }
     var timeout : Int32? { get set }
@@ -9,7 +9,7 @@ public protocol JobGetTaskCounts  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (TaskCountsProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (TaskCountsProtocol?, Error?) -> Void)
 }
 
 extension Commands.Job {
@@ -34,7 +34,7 @@ extension Commands.Job {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -49,12 +49,12 @@ extension Commands.Job {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(TaskCountsData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (TaskCountsProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (TaskCountsProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: TaskCountsData?, error: Error?) in
                 completionHandler(result, error)

@@ -14,7 +14,7 @@ internal struct OSDiskDetailsData : OSDiskDetailsProtocol {
         case vhdName = "vhdName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct OSDiskDetailsData : OSDiskDetailsProtocol {
     if container.contains(.vhdName) {
         self.vhdName = try container.decode(String?.self, forKey: .vhdName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct OSDiskDetailsData : OSDiskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osVhdId != nil {try container.encode(self.osVhdId, forKey: .osVhdId)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.vhdName != nil {try container.encode(self.vhdName, forKey: .vhdName)}
+    if self.osVhdId != nil { try container.encode(self.osVhdId, forKey: .osVhdId) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.vhdName != nil { try container.encode(self.vhdName, forKey: .vhdName) }
   }
 }
 

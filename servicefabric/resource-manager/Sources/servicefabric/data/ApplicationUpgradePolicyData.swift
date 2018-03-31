@@ -16,7 +16,7 @@ internal struct ApplicationUpgradePolicyData : ApplicationUpgradePolicyProtocol 
         case applicationHealthPolicy = "applicationHealthPolicy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ApplicationUpgradePolicyData : ApplicationUpgradePolicyProtocol 
     if container.contains(.applicationHealthPolicy) {
         self.applicationHealthPolicy = try container.decode(ApplicationHealthPolicyData?.self, forKey: .applicationHealthPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ApplicationUpgradePolicyData : ApplicationUpgradePolicyProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.upgradeReplicaSetCheckTimeout != nil {try container.encode(self.upgradeReplicaSetCheckTimeout, forKey: .upgradeReplicaSetCheckTimeout)}
-    if self.forceRestart != nil {try container.encode(self.forceRestart, forKey: .forceRestart)}
-    if self.rollingUpgradeMonitoringPolicy != nil {try container.encode(self.rollingUpgradeMonitoringPolicy as! RollingUpgradeMonitoringPolicyData?, forKey: .rollingUpgradeMonitoringPolicy)}
-    if self.applicationHealthPolicy != nil {try container.encode(self.applicationHealthPolicy as! ApplicationHealthPolicyData?, forKey: .applicationHealthPolicy)}
+    if self.upgradeReplicaSetCheckTimeout != nil { try container.encode(self.upgradeReplicaSetCheckTimeout, forKey: .upgradeReplicaSetCheckTimeout) }
+    if self.forceRestart != nil { try container.encode(self.forceRestart, forKey: .forceRestart) }
+    if self.rollingUpgradeMonitoringPolicy != nil { try container.encode(self.rollingUpgradeMonitoringPolicy as! RollingUpgradeMonitoringPolicyData?, forKey: .rollingUpgradeMonitoringPolicy) }
+    if self.applicationHealthPolicy != nil { try container.encode(self.applicationHealthPolicy as! ApplicationHealthPolicyData?, forKey: .applicationHealthPolicy) }
   }
 }
 

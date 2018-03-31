@@ -12,7 +12,7 @@ internal struct InitialReplicationDetailsData : InitialReplicationDetailsProtoco
         case initialReplicationProgressPercentage = "initialReplicationProgressPercentage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InitialReplicationDetailsData : InitialReplicationDetailsProtoco
     if container.contains(.initialReplicationProgressPercentage) {
         self.initialReplicationProgressPercentage = try container.decode(String?.self, forKey: .initialReplicationProgressPercentage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InitialReplicationDetailsData : InitialReplicationDetailsProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.initialReplicationType != nil {try container.encode(self.initialReplicationType, forKey: .initialReplicationType)}
-    if self.initialReplicationProgressPercentage != nil {try container.encode(self.initialReplicationProgressPercentage, forKey: .initialReplicationProgressPercentage)}
+    if self.initialReplicationType != nil { try container.encode(self.initialReplicationType, forKey: .initialReplicationType) }
+    if self.initialReplicationProgressPercentage != nil { try container.encode(self.initialReplicationProgressPercentage, forKey: .initialReplicationProgressPercentage) }
   }
 }
 

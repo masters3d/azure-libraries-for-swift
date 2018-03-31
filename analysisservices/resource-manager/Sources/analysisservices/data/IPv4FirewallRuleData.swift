@@ -14,7 +14,7 @@ internal struct IPv4FirewallRuleData : IPv4FirewallRuleProtocol {
         case rangeEnd = "rangeEnd"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct IPv4FirewallRuleData : IPv4FirewallRuleProtocol {
     if container.contains(.rangeEnd) {
         self.rangeEnd = try container.decode(String?.self, forKey: .rangeEnd)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct IPv4FirewallRuleData : IPv4FirewallRuleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.firewallRuleName != nil {try container.encode(self.firewallRuleName, forKey: .firewallRuleName)}
-    if self.rangeStart != nil {try container.encode(self.rangeStart, forKey: .rangeStart)}
-    if self.rangeEnd != nil {try container.encode(self.rangeEnd, forKey: .rangeEnd)}
+    if self.firewallRuleName != nil { try container.encode(self.firewallRuleName, forKey: .firewallRuleName) }
+    if self.rangeStart != nil { try container.encode(self.rangeStart, forKey: .rangeStart) }
+    if self.rangeEnd != nil { try container.encode(self.rangeEnd, forKey: .rangeEnd) }
   }
 }
 

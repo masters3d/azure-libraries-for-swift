@@ -22,7 +22,7 @@ internal struct AzureIaaSVMJobTaskDetailsData : AzureIaaSVMJobTaskDetailsProtoco
         case progressPercentage = "progressPercentage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureIaaSVMJobTaskDetailsData : AzureIaaSVMJobTaskDetailsProtoco
     if container.contains(.progressPercentage) {
         self.progressPercentage = try container.decode(Double?.self, forKey: .progressPercentage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,17 +58,17 @@ internal struct AzureIaaSVMJobTaskDetailsData : AzureIaaSVMJobTaskDetailsProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.taskId != nil {try container.encode(self.taskId, forKey: .taskId)}
+    if self.taskId != nil { try container.encode(self.taskId, forKey: .taskId) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.instanceId != nil {try container.encode(self.instanceId, forKey: .instanceId)}
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.progressPercentage != nil {try container.encode(self.progressPercentage, forKey: .progressPercentage)}
+    if self.instanceId != nil { try container.encode(self.instanceId, forKey: .instanceId) }
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.progressPercentage != nil { try container.encode(self.progressPercentage, forKey: .progressPercentage) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct WeeklyRetentionFormatData : WeeklyRetentionFormatProtocol {
         case weeksOfTheMonth = "weeksOfTheMonth"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct WeeklyRetentionFormatData : WeeklyRetentionFormatProtocol {
     if container.contains(.weeksOfTheMonth) {
         self.weeksOfTheMonth = try container.decode([WeekOfMonthEnum?]?.self, forKey: .weeksOfTheMonth)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct WeeklyRetentionFormatData : WeeklyRetentionFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.daysOfTheWeek != nil {try container.encode(self.daysOfTheWeek as! [DayOfWeekEnum?]?, forKey: .daysOfTheWeek)}
-    if self.weeksOfTheMonth != nil {try container.encode(self.weeksOfTheMonth as! [WeekOfMonthEnum?]?, forKey: .weeksOfTheMonth)}
+    if self.daysOfTheWeek != nil { try container.encode(self.daysOfTheWeek as! [DayOfWeekEnum?]?, forKey: .daysOfTheWeek) }
+    if self.weeksOfTheMonth != nil { try container.encode(self.weeksOfTheMonth as! [WeekOfMonthEnum?]?, forKey: .weeksOfTheMonth) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct WorkloadInquiryDetailsData : WorkloadInquiryDetailsProtocol {
         case inquiryValidation = "inquiryValidation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct WorkloadInquiryDetailsData : WorkloadInquiryDetailsProtocol {
     if container.contains(.inquiryValidation) {
         self.inquiryValidation = try container.decode(InquiryValidationData?.self, forKey: .inquiryValidation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct WorkloadInquiryDetailsData : WorkloadInquiryDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.itemCount != nil {try container.encode(self.itemCount, forKey: .itemCount)}
-    if self.inquiryValidation != nil {try container.encode(self.inquiryValidation as! InquiryValidationData?, forKey: .inquiryValidation)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.itemCount != nil { try container.encode(self.itemCount, forKey: .itemCount) }
+    if self.inquiryValidation != nil { try container.encode(self.inquiryValidation as! InquiryValidationData?, forKey: .inquiryValidation) }
   }
 }
 

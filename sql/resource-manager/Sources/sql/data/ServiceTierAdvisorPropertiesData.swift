@@ -46,7 +46,7 @@ internal struct ServiceTierAdvisorPropertiesData : ServiceTierAdvisorPropertiesP
         case confidence = "confidence"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct ServiceTierAdvisorPropertiesData : ServiceTierAdvisorPropertiesP
     if container.contains(.confidence) {
         self.confidence = try container.decode(Double?.self, forKey: .confidence)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -124,23 +124,23 @@ internal struct ServiceTierAdvisorPropertiesData : ServiceTierAdvisorPropertiesP
     if self.observationPeriodEnd != nil {
         try container.encode(DateConverter.toString(date: self.observationPeriodEnd!, format: .dateTime), forKey: .observationPeriodEnd)
     }
-    if self.activeTimeRatio != nil {try container.encode(self.activeTimeRatio, forKey: .activeTimeRatio)}
-    if self.minDtu != nil {try container.encode(self.minDtu, forKey: .minDtu)}
-    if self.avgDtu != nil {try container.encode(self.avgDtu, forKey: .avgDtu)}
-    if self.maxDtu != nil {try container.encode(self.maxDtu, forKey: .maxDtu)}
-    if self.maxSizeInGB != nil {try container.encode(self.maxSizeInGB, forKey: .maxSizeInGB)}
-    if self.serviceLevelObjectiveUsageMetrics != nil {try container.encode(self.serviceLevelObjectiveUsageMetrics as! [SloUsageMetricData?]?, forKey: .serviceLevelObjectiveUsageMetrics)}
-    if self.currentServiceLevelObjective != nil {try container.encode(self.currentServiceLevelObjective, forKey: .currentServiceLevelObjective)}
-    if self.currentServiceLevelObjectiveId != nil {try container.encode(self.currentServiceLevelObjectiveId, forKey: .currentServiceLevelObjectiveId)}
-    if self.usageBasedRecommendationServiceLevelObjective != nil {try container.encode(self.usageBasedRecommendationServiceLevelObjective, forKey: .usageBasedRecommendationServiceLevelObjective)}
-    if self.usageBasedRecommendationServiceLevelObjectiveId != nil {try container.encode(self.usageBasedRecommendationServiceLevelObjectiveId, forKey: .usageBasedRecommendationServiceLevelObjectiveId)}
-    if self.databaseSizeBasedRecommendationServiceLevelObjective != nil {try container.encode(self.databaseSizeBasedRecommendationServiceLevelObjective, forKey: .databaseSizeBasedRecommendationServiceLevelObjective)}
-    if self.databaseSizeBasedRecommendationServiceLevelObjectiveId != nil {try container.encode(self.databaseSizeBasedRecommendationServiceLevelObjectiveId, forKey: .databaseSizeBasedRecommendationServiceLevelObjectiveId)}
-    if self.disasterPlanBasedRecommendationServiceLevelObjective != nil {try container.encode(self.disasterPlanBasedRecommendationServiceLevelObjective, forKey: .disasterPlanBasedRecommendationServiceLevelObjective)}
-    if self.disasterPlanBasedRecommendationServiceLevelObjectiveId != nil {try container.encode(self.disasterPlanBasedRecommendationServiceLevelObjectiveId, forKey: .disasterPlanBasedRecommendationServiceLevelObjectiveId)}
-    if self.overallRecommendationServiceLevelObjective != nil {try container.encode(self.overallRecommendationServiceLevelObjective, forKey: .overallRecommendationServiceLevelObjective)}
-    if self.overallRecommendationServiceLevelObjectiveId != nil {try container.encode(self.overallRecommendationServiceLevelObjectiveId, forKey: .overallRecommendationServiceLevelObjectiveId)}
-    if self.confidence != nil {try container.encode(self.confidence, forKey: .confidence)}
+    if self.activeTimeRatio != nil { try container.encode(self.activeTimeRatio, forKey: .activeTimeRatio) }
+    if self.minDtu != nil { try container.encode(self.minDtu, forKey: .minDtu) }
+    if self.avgDtu != nil { try container.encode(self.avgDtu, forKey: .avgDtu) }
+    if self.maxDtu != nil { try container.encode(self.maxDtu, forKey: .maxDtu) }
+    if self.maxSizeInGB != nil { try container.encode(self.maxSizeInGB, forKey: .maxSizeInGB) }
+    if self.serviceLevelObjectiveUsageMetrics != nil { try container.encode(self.serviceLevelObjectiveUsageMetrics as! [SloUsageMetricData?]?, forKey: .serviceLevelObjectiveUsageMetrics) }
+    if self.currentServiceLevelObjective != nil { try container.encode(self.currentServiceLevelObjective, forKey: .currentServiceLevelObjective) }
+    if self.currentServiceLevelObjectiveId != nil { try container.encode(self.currentServiceLevelObjectiveId, forKey: .currentServiceLevelObjectiveId) }
+    if self.usageBasedRecommendationServiceLevelObjective != nil { try container.encode(self.usageBasedRecommendationServiceLevelObjective, forKey: .usageBasedRecommendationServiceLevelObjective) }
+    if self.usageBasedRecommendationServiceLevelObjectiveId != nil { try container.encode(self.usageBasedRecommendationServiceLevelObjectiveId, forKey: .usageBasedRecommendationServiceLevelObjectiveId) }
+    if self.databaseSizeBasedRecommendationServiceLevelObjective != nil { try container.encode(self.databaseSizeBasedRecommendationServiceLevelObjective, forKey: .databaseSizeBasedRecommendationServiceLevelObjective) }
+    if self.databaseSizeBasedRecommendationServiceLevelObjectiveId != nil { try container.encode(self.databaseSizeBasedRecommendationServiceLevelObjectiveId, forKey: .databaseSizeBasedRecommendationServiceLevelObjectiveId) }
+    if self.disasterPlanBasedRecommendationServiceLevelObjective != nil { try container.encode(self.disasterPlanBasedRecommendationServiceLevelObjective, forKey: .disasterPlanBasedRecommendationServiceLevelObjective) }
+    if self.disasterPlanBasedRecommendationServiceLevelObjectiveId != nil { try container.encode(self.disasterPlanBasedRecommendationServiceLevelObjectiveId, forKey: .disasterPlanBasedRecommendationServiceLevelObjectiveId) }
+    if self.overallRecommendationServiceLevelObjective != nil { try container.encode(self.overallRecommendationServiceLevelObjective, forKey: .overallRecommendationServiceLevelObjective) }
+    if self.overallRecommendationServiceLevelObjectiveId != nil { try container.encode(self.overallRecommendationServiceLevelObjectiveId, forKey: .overallRecommendationServiceLevelObjectiveId) }
+    if self.confidence != nil { try container.encode(self.confidence, forKey: .confidence) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct SimpleSchedulePolicyData : SimpleSchedulePolicyProtocol, Schedul
         case scheduleWeeklyFrequency = "scheduleWeeklyFrequency"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SimpleSchedulePolicyData : SimpleSchedulePolicyProtocol, Schedul
     if container.contains(.scheduleWeeklyFrequency) {
         self.scheduleWeeklyFrequency = try container.decode(Int32?.self, forKey: .scheduleWeeklyFrequency)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SimpleSchedulePolicyData : SimpleSchedulePolicyProtocol, Schedul
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.scheduleRunFrequency != nil {try container.encode(self.scheduleRunFrequency, forKey: .scheduleRunFrequency)}
-    if self.scheduleRunDays != nil {try container.encode(self.scheduleRunDays as! [DayOfWeekEnum?]?, forKey: .scheduleRunDays)}
-    if self.scheduleRunTimes != nil {try container.encode(self.scheduleRunTimes as! [Date]?, forKey: .scheduleRunTimes)}
-    if self.scheduleWeeklyFrequency != nil {try container.encode(self.scheduleWeeklyFrequency, forKey: .scheduleWeeklyFrequency)}
+    if self.scheduleRunFrequency != nil { try container.encode(self.scheduleRunFrequency, forKey: .scheduleRunFrequency) }
+    if self.scheduleRunDays != nil { try container.encode(self.scheduleRunDays as! [DayOfWeekEnum?]?, forKey: .scheduleRunDays) }
+    if self.scheduleRunTimes != nil { try container.encode(self.scheduleRunTimes as! [Date]?, forKey: .scheduleRunTimes) }
+    if self.scheduleWeeklyFrequency != nil { try container.encode(self.scheduleWeeklyFrequency, forKey: .scheduleWeeklyFrequency) }
   }
 }
 

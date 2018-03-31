@@ -14,7 +14,7 @@ internal struct VMwareCbtPolicyCreationInputData : VMwareCbtPolicyCreationInputP
         case appConsistentFrequencyInMinutes = "appConsistentFrequencyInMinutes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VMwareCbtPolicyCreationInputData : VMwareCbtPolicyCreationInputP
     if container.contains(.appConsistentFrequencyInMinutes) {
         self.appConsistentFrequencyInMinutes = try container.decode(Int32?.self, forKey: .appConsistentFrequencyInMinutes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VMwareCbtPolicyCreationInputData : VMwareCbtPolicyCreationInputP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointHistory != nil {try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory)}
-    if self.crashConsistentFrequencyInMinutes != nil {try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes)}
-    if self.appConsistentFrequencyInMinutes != nil {try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes)}
+    if self.recoveryPointHistory != nil { try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory) }
+    if self.crashConsistentFrequencyInMinutes != nil { try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes) }
+    if self.appConsistentFrequencyInMinutes != nil { try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes) }
   }
 }
 

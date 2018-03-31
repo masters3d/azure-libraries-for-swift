@@ -10,7 +10,7 @@ internal struct SasTokenInformationData : SasTokenInformationProtocol {
         enum CodingKeys: String, CodingKey {case accessToken = "accessToken"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SasTokenInformationData : SasTokenInformationProtocol {
       if container.contains(.accessToken) {
         self.accessToken = try container.decode(String?.self, forKey: .accessToken)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SasTokenInformationData : SasTokenInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accessToken != nil {try container.encode(self.accessToken, forKey: .accessToken)}
+    if self.accessToken != nil { try container.encode(self.accessToken, forKey: .accessToken) }
   }
 }
 

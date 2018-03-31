@@ -36,7 +36,7 @@ internal struct BackupItemPropertiesData : BackupItemPropertiesProtocol {
         case websiteSizeInBytes = "websiteSizeInBytes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct BackupItemPropertiesData : BackupItemPropertiesProtocol {
     if container.contains(.websiteSizeInBytes) {
         self.websiteSizeInBytes = try container.decode(Int64?.self, forKey: .websiteSizeInBytes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,26 +93,26 @@ internal struct BackupItemPropertiesData : BackupItemPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupId != nil {try container.encode(self.backupId, forKey: .backupId)}
-    if self.storageAccountUrl != nil {try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl)}
-    if self.blobName != nil {try container.encode(self.blobName, forKey: .blobName)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.sizeInBytes != nil {try container.encode(self.sizeInBytes, forKey: .sizeInBytes)}
+    if self.backupId != nil { try container.encode(self.backupId, forKey: .backupId) }
+    if self.storageAccountUrl != nil { try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl) }
+    if self.blobName != nil { try container.encode(self.blobName, forKey: .blobName) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.sizeInBytes != nil { try container.encode(self.sizeInBytes, forKey: .sizeInBytes) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTime), forKey: .created)
     }
-    if self.log != nil {try container.encode(self.log, forKey: .log)}
-    if self.databases != nil {try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases)}
-    if self.scheduled != nil {try container.encode(self.scheduled, forKey: .scheduled)}
+    if self.log != nil { try container.encode(self.log, forKey: .log) }
+    if self.databases != nil { try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases) }
+    if self.scheduled != nil { try container.encode(self.scheduled, forKey: .scheduled) }
     if self.lastRestoreTimeStamp != nil {
         try container.encode(DateConverter.toString(date: self.lastRestoreTimeStamp!, format: .dateTime), forKey: .lastRestoreTimeStamp)
     }
     if self.finishedTimeStamp != nil {
         try container.encode(DateConverter.toString(date: self.finishedTimeStamp!, format: .dateTime), forKey: .finishedTimeStamp)
     }
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.websiteSizeInBytes != nil {try container.encode(self.websiteSizeInBytes, forKey: .websiteSizeInBytes)}
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.websiteSizeInBytes != nil { try container.encode(self.websiteSizeInBytes, forKey: .websiteSizeInBytes) }
   }
 }
 

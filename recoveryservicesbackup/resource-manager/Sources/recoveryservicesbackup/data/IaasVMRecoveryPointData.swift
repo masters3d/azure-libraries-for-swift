@@ -30,7 +30,7 @@ internal struct IaasVMRecoveryPointData : IaasVMRecoveryPointProtocol, RecoveryP
         case originalStorageAccountOption = "originalStorageAccountOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct IaasVMRecoveryPointData : IaasVMRecoveryPointProtocol, RecoveryP
     if container.contains(.originalStorageAccountOption) {
         self.originalStorageAccountOption = try container.decode(Bool?.self, forKey: .originalStorageAccountOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,19 +78,19 @@ internal struct IaasVMRecoveryPointData : IaasVMRecoveryPointProtocol, RecoveryP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointType != nil {try container.encode(self.recoveryPointType, forKey: .recoveryPointType)}
+    if self.recoveryPointType != nil { try container.encode(self.recoveryPointType, forKey: .recoveryPointType) }
     if self.recoveryPointTime != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTime!, format: .dateTime), forKey: .recoveryPointTime)
     }
-    if self.recoveryPointAdditionalInfo != nil {try container.encode(self.recoveryPointAdditionalInfo, forKey: .recoveryPointAdditionalInfo)}
-    if self.sourceVMStorageType != nil {try container.encode(self.sourceVMStorageType, forKey: .sourceVMStorageType)}
-    if self.isSourceVMEncrypted != nil {try container.encode(self.isSourceVMEncrypted, forKey: .isSourceVMEncrypted)}
-    if self.keyAndSecret != nil {try container.encode(self.keyAndSecret as! KeyAndSecretDetailsData?, forKey: .keyAndSecret)}
-    if self.isInstantIlrSessionActive != nil {try container.encode(self.isInstantIlrSessionActive, forKey: .isInstantIlrSessionActive)}
-    if self.recoveryPointTierDetails != nil {try container.encode(self.recoveryPointTierDetails as! [RecoveryPointTierInformationData?]?, forKey: .recoveryPointTierDetails)}
-    if self.isManagedVirtualMachine != nil {try container.encode(self.isManagedVirtualMachine, forKey: .isManagedVirtualMachine)}
-    if self.virtualMachineSize != nil {try container.encode(self.virtualMachineSize, forKey: .virtualMachineSize)}
-    if self.originalStorageAccountOption != nil {try container.encode(self.originalStorageAccountOption, forKey: .originalStorageAccountOption)}
+    if self.recoveryPointAdditionalInfo != nil { try container.encode(self.recoveryPointAdditionalInfo, forKey: .recoveryPointAdditionalInfo) }
+    if self.sourceVMStorageType != nil { try container.encode(self.sourceVMStorageType, forKey: .sourceVMStorageType) }
+    if self.isSourceVMEncrypted != nil { try container.encode(self.isSourceVMEncrypted, forKey: .isSourceVMEncrypted) }
+    if self.keyAndSecret != nil { try container.encode(self.keyAndSecret as! KeyAndSecretDetailsData?, forKey: .keyAndSecret) }
+    if self.isInstantIlrSessionActive != nil { try container.encode(self.isInstantIlrSessionActive, forKey: .isInstantIlrSessionActive) }
+    if self.recoveryPointTierDetails != nil { try container.encode(self.recoveryPointTierDetails as! [RecoveryPointTierInformationData?]?, forKey: .recoveryPointTierDetails) }
+    if self.isManagedVirtualMachine != nil { try container.encode(self.isManagedVirtualMachine, forKey: .isManagedVirtualMachine) }
+    if self.virtualMachineSize != nil { try container.encode(self.virtualMachineSize, forKey: .virtualMachineSize) }
+    if self.originalStorageAccountOption != nil { try container.encode(self.originalStorageAccountOption, forKey: .originalStorageAccountOption) }
   }
 }
 

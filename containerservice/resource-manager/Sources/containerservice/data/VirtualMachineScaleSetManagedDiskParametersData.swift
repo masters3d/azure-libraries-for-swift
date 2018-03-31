@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetManagedDiskParametersData : VirtualMachine
         enum CodingKeys: String, CodingKey {case storageAccountType = "storageAccountType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetManagedDiskParametersData : VirtualMachine
       if container.contains(.storageAccountType) {
         self.storageAccountType = try container.decode(StorageAccountTypesEnum?.self, forKey: .storageAccountType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetManagedDiskParametersData : VirtualMachine
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccountType != nil {try container.encode(self.storageAccountType, forKey: .storageAccountType)}
+    if self.storageAccountType != nil { try container.encode(self.storageAccountType, forKey: .storageAccountType) }
   }
 }
 

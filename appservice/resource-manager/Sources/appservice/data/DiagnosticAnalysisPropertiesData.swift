@@ -18,7 +18,7 @@ internal struct DiagnosticAnalysisPropertiesData : DiagnosticAnalysisPropertiesP
         case nonCorrelatedDetectors = "nonCorrelatedDetectors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DiagnosticAnalysisPropertiesData : DiagnosticAnalysisPropertiesP
     if container.contains(.nonCorrelatedDetectors) {
         self.nonCorrelatedDetectors = try container.decode([DetectorDefinitionData?]?.self, forKey: .nonCorrelatedDetectors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -54,9 +54,9 @@ internal struct DiagnosticAnalysisPropertiesData : DiagnosticAnalysisPropertiesP
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.abnormalTimePeriods != nil {try container.encode(self.abnormalTimePeriods as! [AbnormalTimePeriodData?]?, forKey: .abnormalTimePeriods)}
-    if self.payload != nil {try container.encode(self.payload as! [AnalysisDataData?]?, forKey: .payload)}
-    if self.nonCorrelatedDetectors != nil {try container.encode(self.nonCorrelatedDetectors as! [DetectorDefinitionData?]?, forKey: .nonCorrelatedDetectors)}
+    if self.abnormalTimePeriods != nil { try container.encode(self.abnormalTimePeriods as! [AbnormalTimePeriodData?]?, forKey: .abnormalTimePeriods) }
+    if self.payload != nil { try container.encode(self.payload as! [AnalysisDataData?]?, forKey: .payload) }
+    if self.nonCorrelatedDetectors != nil { try container.encode(self.nonCorrelatedDetectors as! [DetectorDefinitionData?]?, forKey: .nonCorrelatedDetectors) }
   }
 }
 

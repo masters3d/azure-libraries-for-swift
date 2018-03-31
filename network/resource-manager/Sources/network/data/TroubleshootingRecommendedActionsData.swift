@@ -16,7 +16,7 @@ internal struct TroubleshootingRecommendedActionsData : TroubleshootingRecommend
         case actionUriText = "actionUriText"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct TroubleshootingRecommendedActionsData : TroubleshootingRecommend
     if container.contains(.actionUriText) {
         self.actionUriText = try container.decode(String?.self, forKey: .actionUriText)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct TroubleshootingRecommendedActionsData : TroubleshootingRecommend
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.actionId != nil {try container.encode(self.actionId, forKey: .actionId)}
-    if self.actionText != nil {try container.encode(self.actionText, forKey: .actionText)}
-    if self.actionUri != nil {try container.encode(self.actionUri, forKey: .actionUri)}
-    if self.actionUriText != nil {try container.encode(self.actionUriText, forKey: .actionUriText)}
+    if self.actionId != nil { try container.encode(self.actionId, forKey: .actionId) }
+    if self.actionText != nil { try container.encode(self.actionText, forKey: .actionText) }
+    if self.actionUri != nil { try container.encode(self.actionUri, forKey: .actionUri) }
+    if self.actionUriText != nil { try container.encode(self.actionUriText, forKey: .actionUriText) }
   }
 }
 

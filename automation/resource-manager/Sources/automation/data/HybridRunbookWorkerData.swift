@@ -14,7 +14,7 @@ internal struct HybridRunbookWorkerData : HybridRunbookWorkerProtocol {
         case registrationTime = "registrationTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HybridRunbookWorkerData : HybridRunbookWorkerProtocol {
     if container.contains(.registrationTime) {
         self.registrationTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .registrationTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct HybridRunbookWorkerData : HybridRunbookWorkerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.ip != nil {try container.encode(self.ip, forKey: .ip)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.ip != nil { try container.encode(self.ip, forKey: .ip) }
     if self.registrationTime != nil {
         try container.encode(DateConverter.toString(date: self.registrationTime!, format: .dateTime), forKey: .registrationTime)
     }

@@ -12,7 +12,7 @@ internal struct InMageDiskExclusionInputData : InMageDiskExclusionInputProtocol 
         case diskSignatureOptions = "diskSignatureOptions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InMageDiskExclusionInputData : InMageDiskExclusionInputProtocol 
     if container.contains(.diskSignatureOptions) {
         self.diskSignatureOptions = try container.decode([InMageDiskSignatureExclusionOptionsData?]?.self, forKey: .diskSignatureOptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InMageDiskExclusionInputData : InMageDiskExclusionInputProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.volumeOptions != nil {try container.encode(self.volumeOptions as! [InMageVolumeExclusionOptionsData?]?, forKey: .volumeOptions)}
-    if self.diskSignatureOptions != nil {try container.encode(self.diskSignatureOptions as! [InMageDiskSignatureExclusionOptionsData?]?, forKey: .diskSignatureOptions)}
+    if self.volumeOptions != nil { try container.encode(self.volumeOptions as! [InMageVolumeExclusionOptionsData?]?, forKey: .volumeOptions) }
+    if self.diskSignatureOptions != nil { try container.encode(self.diskSignatureOptions as! [InMageDiskSignatureExclusionOptionsData?]?, forKey: .diskSignatureOptions) }
   }
 }
 

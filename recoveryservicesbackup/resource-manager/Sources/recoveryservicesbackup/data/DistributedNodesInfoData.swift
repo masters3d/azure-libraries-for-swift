@@ -14,7 +14,7 @@ internal struct DistributedNodesInfoData : DistributedNodesInfoProtocol {
         case errorDetail = "errorDetail"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DistributedNodesInfoData : DistributedNodesInfoProtocol {
     if container.contains(.errorDetail) {
         self.errorDetail = try container.decode(ErrorDetailData?.self, forKey: .errorDetail)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DistributedNodesInfoData : DistributedNodesInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nodeName != nil {try container.encode(self.nodeName, forKey: .nodeName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.errorDetail != nil {try container.encode(self.errorDetail as! ErrorDetailData?, forKey: .errorDetail)}
+    if self.nodeName != nil { try container.encode(self.nodeName, forKey: .nodeName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.errorDetail != nil { try container.encode(self.errorDetail as! ErrorDetailData?, forKey: .errorDetail) }
   }
 }
 

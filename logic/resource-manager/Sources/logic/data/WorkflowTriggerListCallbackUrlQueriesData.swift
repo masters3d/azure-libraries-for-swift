@@ -16,7 +16,7 @@ internal struct WorkflowTriggerListCallbackUrlQueriesData : WorkflowTriggerListC
         case sig = "sig"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct WorkflowTriggerListCallbackUrlQueriesData : WorkflowTriggerListC
     if container.contains(.sig) {
         self.sig = try container.decode(String?.self, forKey: .sig)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct WorkflowTriggerListCallbackUrlQueriesData : WorkflowTriggerListC
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.apiVersion != nil {try container.encode(self.apiVersion, forKey: .apiVersion)}
-    if self.sp != nil {try container.encode(self.sp, forKey: .sp)}
-    if self.sv != nil {try container.encode(self.sv, forKey: .sv)}
-    if self.sig != nil {try container.encode(self.sig, forKey: .sig)}
+    if self.apiVersion != nil { try container.encode(self.apiVersion, forKey: .apiVersion) }
+    if self.sp != nil { try container.encode(self.sp, forKey: .sp) }
+    if self.sv != nil { try container.encode(self.sv, forKey: .sv) }
+    if self.sig != nil { try container.encode(self.sig, forKey: .sig) }
   }
 }
 

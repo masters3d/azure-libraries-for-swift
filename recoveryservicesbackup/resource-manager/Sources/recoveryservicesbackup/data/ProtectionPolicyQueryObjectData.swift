@@ -12,7 +12,7 @@ internal struct ProtectionPolicyQueryObjectData : ProtectionPolicyQueryObjectPro
         case fabricName = "fabricName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ProtectionPolicyQueryObjectData : ProtectionPolicyQueryObjectPro
     if container.contains(.fabricName) {
         self.fabricName = try container.decode(String?.self, forKey: .fabricName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ProtectionPolicyQueryObjectData : ProtectionPolicyQueryObjectPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
   }
 }
 

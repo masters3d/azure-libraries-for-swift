@@ -18,7 +18,7 @@ internal struct GroupCreateParametersData : GroupCreateParametersProtocol {
         case securityEnabled = "securityEnabled"
         }
 
-  public init(displayName: String, mailEnabled: Bool, mailNickname: String, securityEnabled: Bool)  {
+  public init(displayName: String, mailEnabled: Bool, mailNickname: String, securityEnabled: Bool) {
     self.displayName = displayName
     self.mailEnabled = mailEnabled
     self.mailNickname = mailNickname
@@ -34,7 +34,7 @@ internal struct GroupCreateParametersData : GroupCreateParametersProtocol {
     self.mailEnabled = try container.decode(Bool.self, forKey: .mailEnabled)
     self.mailNickname = try container.decode(String.self, forKey: .mailNickname)
     self.securityEnabled = try container.decode(Bool.self, forKey: .securityEnabled)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct GroupCreateParametersData : GroupCreateParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.mailEnabled, forKey: .mailEnabled)
     try container.encode(self.mailNickname, forKey: .mailNickname)

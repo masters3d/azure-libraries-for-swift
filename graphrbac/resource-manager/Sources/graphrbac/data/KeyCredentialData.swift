@@ -24,7 +24,7 @@ internal struct KeyCredentialData : KeyCredentialProtocol {
         case customKeyIdentifier = "customKeyIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct KeyCredentialData : KeyCredentialProtocol {
     if container.contains(.customKeyIdentifier) {
         self.customKeyIdentifier = try container.decode([UInt8]?.self, forKey: .customKeyIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,18 +63,18 @@ internal struct KeyCredentialData : KeyCredentialProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     if self.startDate != nil {
         try container.encode(DateConverter.toString(date: self.startDate!, format: .dateTime), forKey: .startDate)
     }
     if self.endDate != nil {
         try container.encode(DateConverter.toString(date: self.endDate!, format: .dateTime), forKey: .endDate)
     }
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.keyId != nil {try container.encode(self.keyId, forKey: .keyId)}
-    if self.usage != nil {try container.encode(self.usage, forKey: .usage)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.customKeyIdentifier != nil {try container.encode(self.customKeyIdentifier, forKey: .customKeyIdentifier)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.keyId != nil { try container.encode(self.keyId, forKey: .keyId) }
+    if self.usage != nil { try container.encode(self.usage, forKey: .usage) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.customKeyIdentifier != nil { try container.encode(self.customKeyIdentifier, forKey: .customKeyIdentifier) }
   }
 }
 

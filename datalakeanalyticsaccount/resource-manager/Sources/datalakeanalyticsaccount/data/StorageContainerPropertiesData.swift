@@ -10,7 +10,7 @@ internal struct StorageContainerPropertiesData : StorageContainerPropertiesProto
         enum CodingKeys: String, CodingKey {case lastModifiedTime = "lastModifiedTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct StorageContainerPropertiesData : StorageContainerPropertiesProto
       if container.contains(.lastModifiedTime) {
         self.lastModifiedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastModifiedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

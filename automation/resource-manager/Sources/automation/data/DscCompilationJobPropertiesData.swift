@@ -36,7 +36,7 @@ internal struct DscCompilationJobPropertiesData : DscCompilationJobPropertiesPro
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct DscCompilationJobPropertiesData : DscCompilationJobPropertiesPro
     if container.contains(.parameters) {
         self.parameters = try container.decode([String:String]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,30 +93,30 @@ internal struct DscCompilationJobPropertiesData : DscCompilationJobPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.configuration != nil {try container.encode(self.configuration as! DscConfigurationAssociationPropertyData?, forKey: .configuration)}
-    if self.startedBy != nil {try container.encode(self.startedBy, forKey: .startedBy)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
+    if self.configuration != nil { try container.encode(self.configuration as! DscConfigurationAssociationPropertyData?, forKey: .configuration) }
+    if self.startedBy != nil { try container.encode(self.startedBy, forKey: .startedBy) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState as! JobProvisioningStatePropertyData?, forKey: .provisioningState)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.statusDetails != nil {try container.encode(self.statusDetails, forKey: .statusDetails)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState as! JobProvisioningStatePropertyData?, forKey: .provisioningState) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.statusDetails != nil { try container.encode(self.statusDetails, forKey: .statusDetails) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.exception != nil {try container.encode(self.exception, forKey: .exception)}
+    if self.exception != nil { try container.encode(self.exception, forKey: .exception) }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
     if self.lastStatusModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastStatusModifiedTime!, format: .dateTime), forKey: .lastStatusModifiedTime)
     }
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ServerAdministratorPropertiesData : ServerAdministratorPropertie
         case tenantId = "tenantId"
         }
 
-  public init(administratorType: String, login: String, sid: String, tenantId: String)  {
+  public init(administratorType: String, login: String, sid: String, tenantId: String) {
     self.administratorType = administratorType
     self.login = login
     self.sid = sid
@@ -29,7 +29,7 @@ internal struct ServerAdministratorPropertiesData : ServerAdministratorPropertie
     self.login = try container.decode(String.self, forKey: .login)
     self.sid = try container.decode(String.self, forKey: .sid)
     self.tenantId = try container.decode(String.self, forKey: .tenantId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

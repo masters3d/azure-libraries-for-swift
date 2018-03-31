@@ -12,7 +12,7 @@ internal struct ErrorBodyData : ErrorBodyProtocol {
         case message = "message"
         }
 
-  public init(code: String, message: String)  {
+  public init(code: String, message: String) {
     self.code = code
     self.message = message
   }
@@ -21,7 +21,7 @@ internal struct ErrorBodyData : ErrorBodyProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.code = try container.decode(String.self, forKey: .code)
     self.message = try container.decode(String.self, forKey: .message)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

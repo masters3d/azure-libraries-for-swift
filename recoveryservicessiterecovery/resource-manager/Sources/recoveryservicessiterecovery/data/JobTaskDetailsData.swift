@@ -10,7 +10,7 @@ internal struct JobTaskDetailsData : JobTaskDetailsProtocol, TaskTypeDetailsProt
         enum CodingKeys: String, CodingKey {case jobTask = "jobTask"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct JobTaskDetailsData : JobTaskDetailsProtocol, TaskTypeDetailsProt
       if container.contains(.jobTask) {
         self.jobTask = try container.decode(JobEntityData?.self, forKey: .jobTask)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct JobTaskDetailsData : JobTaskDetailsProtocol, TaskTypeDetailsProt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobTask != nil {try container.encode(self.jobTask as! JobEntityData?, forKey: .jobTask)}
+    if self.jobTask != nil { try container.encode(self.jobTask as! JobEntityData?, forKey: .jobTask) }
   }
 }
 

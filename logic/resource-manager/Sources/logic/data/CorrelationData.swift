@@ -10,7 +10,7 @@ internal struct CorrelationData : CorrelationProtocol {
         enum CodingKeys: String, CodingKey {case clientTrackingId = "clientTrackingId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct CorrelationData : CorrelationProtocol {
       if container.contains(.clientTrackingId) {
         self.clientTrackingId = try container.decode(String?.self, forKey: .clientTrackingId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct CorrelationData : CorrelationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientTrackingId != nil {try container.encode(self.clientTrackingId, forKey: .clientTrackingId)}
+    if self.clientTrackingId != nil { try container.encode(self.clientTrackingId, forKey: .clientTrackingId) }
   }
 }
 

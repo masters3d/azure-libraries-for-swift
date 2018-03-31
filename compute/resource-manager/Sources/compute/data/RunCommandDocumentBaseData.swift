@@ -18,7 +18,7 @@ internal struct RunCommandDocumentBaseData : RunCommandDocumentBaseProtocol {
         case description = "description"
         }
 
-  public init(schema: String, id: String, osType: OperatingSystemTypesEnum, label: String, description: String)  {
+  public init(schema: String, id: String, osType: OperatingSystemTypesEnum, label: String, description: String) {
     self.schema = schema
     self.id = id
     self.osType = osType
@@ -33,7 +33,7 @@ internal struct RunCommandDocumentBaseData : RunCommandDocumentBaseProtocol {
     self.osType = try container.decode(OperatingSystemTypesEnum.self, forKey: .osType)
     self.label = try container.decode(String.self, forKey: .label)
     self.description = try container.decode(String.self, forKey: .description)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

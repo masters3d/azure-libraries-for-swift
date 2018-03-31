@@ -10,7 +10,7 @@ public struct SignedIdentifierData : SignedIdentifierProtocol {
         case accessPolicy = "AccessPolicy"
     }
 
-  public init(id: String, accessPolicy: AccessPolicyProtocol)  {
+  public init(id: String, accessPolicy: AccessPolicyProtocol) {
     self.id = id
     self.accessPolicy = accessPolicy
   }

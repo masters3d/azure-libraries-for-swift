@@ -16,7 +16,7 @@ internal struct SetupTaskData : SetupTaskProtocol {
         case stdOutErrPathPrefix = "stdOutErrPathPrefix"
         }
 
-  public init(commandLine: String, stdOutErrPathPrefix: String)  {
+  public init(commandLine: String, stdOutErrPathPrefix: String) {
     self.commandLine = commandLine
     self.stdOutErrPathPrefix = stdOutErrPathPrefix
   }
@@ -31,7 +31,7 @@ internal struct SetupTaskData : SetupTaskProtocol {
         self.runElevated = try container.decode(Bool?.self, forKey: .runElevated)
     }
     self.stdOutErrPathPrefix = try container.decode(String.self, forKey: .stdOutErrPathPrefix)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,8 +42,8 @@ internal struct SetupTaskData : SetupTaskProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.commandLine, forKey: .commandLine)
-    if self.environmentVariables != nil {try container.encode(self.environmentVariables as! [EnvironmentSettingData?]?, forKey: .environmentVariables)}
-    if self.runElevated != nil {try container.encode(self.runElevated, forKey: .runElevated)}
+    if self.environmentVariables != nil { try container.encode(self.environmentVariables as! [EnvironmentSettingData?]?, forKey: .environmentVariables) }
+    if self.runElevated != nil { try container.encode(self.runElevated, forKey: .runElevated) }
     try container.encode(self.stdOutErrPathPrefix, forKey: .stdOutErrPathPrefix)
   }
 }

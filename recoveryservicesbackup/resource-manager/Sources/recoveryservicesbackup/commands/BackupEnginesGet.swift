@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BackupEnginesGet  {
+public protocol BackupEnginesGet {
     var headerParameters: [String: String] { get set }
     var vaultName : String { get set }
     var resourceGroupName : String { get set }
@@ -10,7 +10,7 @@ public protocol BackupEnginesGet  {
     var filter : String? { get set }
     var skipToken : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (BackupEngineBaseResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (BackupEngineBaseResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.BackupEngines {
@@ -36,7 +36,7 @@ extension Commands.BackupEngines {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{vaultName}"] = String(describing: self.vaultName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -52,12 +52,12 @@ extension Commands.BackupEngines {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(BackupEngineBaseResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (BackupEngineBaseResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (BackupEngineBaseResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: BackupEngineBaseResourceData?, error: Error?) in
                 completionHandler(result, error)

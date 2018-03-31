@@ -20,7 +20,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationPropertiesData : Virtu
         case enableIPForwarding = "enableIPForwarding"
         }
 
-  public init(ipConfigurations: [VirtualMachineScaleSetIPConfigurationProtocol])  {
+  public init(ipConfigurations: [VirtualMachineScaleSetIPConfigurationProtocol]) {
     self.ipConfigurations = ipConfigurations
   }
 
@@ -42,7 +42,7 @@ internal struct VirtualMachineScaleSetNetworkConfigurationPropertiesData : Virtu
     if container.contains(.enableIPForwarding) {
         self.enableIPForwarding = try container.decode(Bool?.self, forKey: .enableIPForwarding)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,12 +52,12 @@ internal struct VirtualMachineScaleSetNetworkConfigurationPropertiesData : Virtu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
-    if self.enableAcceleratedNetworking != nil {try container.encode(self.enableAcceleratedNetworking, forKey: .enableAcceleratedNetworking)}
-    if self.networkSecurityGroup != nil {try container.encode(self.networkSecurityGroup as! SubResourceData?, forKey: .networkSecurityGroup)}
-    if self.dnsSettings != nil {try container.encode(self.dnsSettings as! VirtualMachineScaleSetNetworkConfigurationDnsSettingsData?, forKey: .dnsSettings)}
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
+    if self.enableAcceleratedNetworking != nil { try container.encode(self.enableAcceleratedNetworking, forKey: .enableAcceleratedNetworking) }
+    if self.networkSecurityGroup != nil { try container.encode(self.networkSecurityGroup as! SubResourceData?, forKey: .networkSecurityGroup) }
+    if self.dnsSettings != nil { try container.encode(self.dnsSettings as! VirtualMachineScaleSetNetworkConfigurationDnsSettingsData?, forKey: .dnsSettings) }
     try container.encode(self.ipConfigurations as! [VirtualMachineScaleSetIPConfigurationData], forKey: .ipConfigurations)
-    if self.enableIPForwarding != nil {try container.encode(self.enableIPForwarding, forKey: .enableIPForwarding)}
+    if self.enableIPForwarding != nil { try container.encode(self.enableIPForwarding, forKey: .enableIPForwarding) }
   }
 }
 

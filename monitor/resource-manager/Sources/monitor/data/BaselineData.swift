@@ -14,7 +14,7 @@ internal struct BaselineData : BaselineProtocol {
         case highThresholds = "highThresholds"
         }
 
-  public init(sensitivity: SensitivityEnum, lowThresholds: [Double], highThresholds: [Double])  {
+  public init(sensitivity: SensitivityEnum, lowThresholds: [Double], highThresholds: [Double]) {
     self.sensitivity = sensitivity
     self.lowThresholds = lowThresholds
     self.highThresholds = highThresholds
@@ -25,7 +25,7 @@ internal struct BaselineData : BaselineProtocol {
       self.sensitivity = try container.decode(SensitivityEnum.self, forKey: .sensitivity)
     self.lowThresholds = try container.decode([Double].self, forKey: .lowThresholds)
     self.highThresholds = try container.decode([Double].self, forKey: .highThresholds)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

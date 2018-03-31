@@ -16,7 +16,7 @@ internal struct LoggingData : LoggingProtocol {
         case retentionPolicy = "RetentionPolicy"
     }
 
-  public init(version: String, delete: Bool, read: Bool, write: Bool, retentionPolicy: RetentionPolicyProtocol)  {
+  public init(version: String, delete: Bool, read: Bool, write: Bool, retentionPolicy: RetentionPolicyProtocol) {
     self.version = version
     self.delete = delete
     self.read = read

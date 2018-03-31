@@ -12,7 +12,7 @@ internal struct ScaleRuleData : ScaleRuleProtocol {
         case scaleAction = "scaleAction"
         }
 
-  public init(metricTrigger: MetricTriggerProtocol, scaleAction: ScaleActionProtocol)  {
+  public init(metricTrigger: MetricTriggerProtocol, scaleAction: ScaleActionProtocol) {
     self.metricTrigger = metricTrigger
     self.scaleAction = scaleAction
   }
@@ -21,7 +21,7 @@ internal struct ScaleRuleData : ScaleRuleProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metricTrigger = try container.decode(MetricTriggerData.self, forKey: .metricTrigger)
     self.scaleAction = try container.decode(ScaleActionData.self, forKey: .scaleAction)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

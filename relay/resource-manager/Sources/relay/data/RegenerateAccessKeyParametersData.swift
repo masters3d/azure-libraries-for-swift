@@ -12,7 +12,7 @@ internal struct RegenerateAccessKeyParametersData : RegenerateAccessKeyParameter
         case key = "key"
         }
 
-  public init(keyType: KeyTypeEnum)  {
+  public init(keyType: KeyTypeEnum) {
     self.keyType = keyType
   }
 
@@ -22,7 +22,7 @@ internal struct RegenerateAccessKeyParametersData : RegenerateAccessKeyParameter
     if container.contains(.key) {
         self.key = try container.decode(String?.self, forKey: .key)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct RegenerateAccessKeyParametersData : RegenerateAccessKeyParameter
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.keyType, forKey: .keyType)
-    if self.key != nil {try container.encode(self.key, forKey: .key)}
+    if self.key != nil { try container.encode(self.key, forKey: .key) }
   }
 }
 

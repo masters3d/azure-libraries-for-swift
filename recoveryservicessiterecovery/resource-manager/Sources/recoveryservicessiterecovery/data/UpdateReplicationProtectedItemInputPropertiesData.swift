@@ -26,7 +26,7 @@ internal struct UpdateReplicationProtectedItemInputPropertiesData : UpdateReplic
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct UpdateReplicationProtectedItemInputPropertiesData : UpdateReplic
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(UpdateReplicationProtectedItemProviderInputData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct UpdateReplicationProtectedItemInputPropertiesData : UpdateReplic
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryAzureVMName != nil {try container.encode(self.recoveryAzureVMName, forKey: .recoveryAzureVMName)}
-    if self.recoveryAzureVMSize != nil {try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize)}
-    if self.selectedRecoveryAzureNetworkId != nil {try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId)}
-    if self.selectedSourceNicId != nil {try container.encode(self.selectedSourceNicId, forKey: .selectedSourceNicId)}
-    if self.enableRdpOnTargetOption != nil {try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption)}
-    if self.vmNics != nil {try container.encode(self.vmNics as! [VMNicInputDetailsData?]?, forKey: .vmNics)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
-    if self.recoveryAvailabilitySetId != nil {try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! UpdateReplicationProtectedItemProviderInputData?, forKey: .providerSpecificDetails)}
+    if self.recoveryAzureVMName != nil { try container.encode(self.recoveryAzureVMName, forKey: .recoveryAzureVMName) }
+    if self.recoveryAzureVMSize != nil { try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize) }
+    if self.selectedRecoveryAzureNetworkId != nil { try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId) }
+    if self.selectedSourceNicId != nil { try container.encode(self.selectedSourceNicId, forKey: .selectedSourceNicId) }
+    if self.enableRdpOnTargetOption != nil { try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption) }
+    if self.vmNics != nil { try container.encode(self.vmNics as! [VMNicInputDetailsData?]?, forKey: .vmNics) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
+    if self.recoveryAvailabilitySetId != nil { try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! UpdateReplicationProtectedItemProviderInputData?, forKey: .providerSpecificDetails) }
   }
 }
 

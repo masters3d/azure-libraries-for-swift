@@ -22,7 +22,7 @@ internal struct RunCommandDocumentData : RunCommandDocumentProtocol, RunCommandD
         case parameters = "parameters"
         }
 
-  public init(schema: String, id: String, osType: OperatingSystemTypesEnum, label: String, description: String, script: [String])  {
+  public init(schema: String, id: String, osType: OperatingSystemTypesEnum, label: String, description: String, script: [String]) {
     self.schema = schema
     self.id = id
     self.osType = osType
@@ -42,7 +42,7 @@ internal struct RunCommandDocumentData : RunCommandDocumentProtocol, RunCommandD
     if container.contains(.parameters) {
         self.parameters = try container.decode([RunCommandParameterDefinitionData?]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,7 +58,7 @@ internal struct RunCommandDocumentData : RunCommandDocumentProtocol, RunCommandD
     try container.encode(self.label, forKey: .label)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.script as! [String], forKey: .script)
-    if self.parameters != nil {try container.encode(self.parameters as! [RunCommandParameterDefinitionData?]?, forKey: .parameters)}
+    if self.parameters != nil { try container.encode(self.parameters as! [RunCommandParameterDefinitionData?]?, forKey: .parameters) }
   }
 }
 

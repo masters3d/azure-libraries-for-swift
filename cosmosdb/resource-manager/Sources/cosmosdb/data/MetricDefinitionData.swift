@@ -18,7 +18,7 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
         case name = "name"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
     if container.contains(.name) {
         self.name = try container.decode(MetricNameData?.self, forKey: .name)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metricAvailabilities != nil {try container.encode(self.metricAvailabilities as! [MetricAvailabilityData?]?, forKey: .metricAvailabilities)}
-    if self.primaryAggregationType != nil {try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.resourceUri != nil {try container.encode(self.resourceUri, forKey: .resourceUri)}
-    if self.name != nil {try container.encode(self.name as! MetricNameData?, forKey: .name)}
+    if self.metricAvailabilities != nil { try container.encode(self.metricAvailabilities as! [MetricAvailabilityData?]?, forKey: .metricAvailabilities) }
+    if self.primaryAggregationType != nil { try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.resourceUri != nil { try container.encode(self.resourceUri, forKey: .resourceUri) }
+    if self.name != nil { try container.encode(self.name as! MetricNameData?, forKey: .name) }
   }
 }
 

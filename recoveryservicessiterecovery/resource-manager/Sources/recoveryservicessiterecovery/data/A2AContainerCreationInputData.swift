@@ -6,12 +6,11 @@ import Foundation
 import azureSwiftRuntime
 internal struct A2AContainerCreationInputData : A2AContainerCreationInputProtocol, ReplicationProviderSpecificContainerCreationInputProtocol {
 
-
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

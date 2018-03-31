@@ -20,7 +20,7 @@ internal struct TaskInformationData : TaskInformationProtocol {
         case executionInfo = "executionInfo"
         }
 
-  public init(taskState: TaskStateEnum)  {
+  public init(taskState: TaskStateEnum) {
     self.taskState = taskState
   }
 
@@ -42,7 +42,7 @@ internal struct TaskInformationData : TaskInformationProtocol {
     if container.contains(.executionInfo) {
         self.executionInfo = try container.decode(TaskExecutionInformationData?.self, forKey: .executionInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,12 +52,12 @@ internal struct TaskInformationData : TaskInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.taskUrl != nil {try container.encode(self.taskUrl, forKey: .taskUrl)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
-    if self.taskId != nil {try container.encode(self.taskId, forKey: .taskId)}
-    if self.subtaskId != nil {try container.encode(self.subtaskId, forKey: .subtaskId)}
+    if self.taskUrl != nil { try container.encode(self.taskUrl, forKey: .taskUrl) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
+    if self.taskId != nil { try container.encode(self.taskId, forKey: .taskId) }
+    if self.subtaskId != nil { try container.encode(self.subtaskId, forKey: .subtaskId) }
     try container.encode(self.taskState, forKey: .taskState)
-    if self.executionInfo != nil {try container.encode(self.executionInfo as! TaskExecutionInformationData?, forKey: .executionInfo)}
+    if self.executionInfo != nil { try container.encode(self.executionInfo as! TaskExecutionInformationData?, forKey: .executionInfo) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ResourceUsageData : ResourceUsageProtocol {
         case limit = "limit"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ResourceUsageData : ResourceUsageProtocol {
     if container.contains(.limit) {
         self.limit = try container.decode(Int32?.self, forKey: .limit)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ResourceUsageData : ResourceUsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
   }
 }
 

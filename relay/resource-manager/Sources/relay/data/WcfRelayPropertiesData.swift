@@ -24,7 +24,7 @@ internal struct WcfRelayPropertiesData : WcfRelayPropertiesProtocol {
         case userMetadata = "userMetadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct WcfRelayPropertiesData : WcfRelayPropertiesProtocol {
     if container.contains(.userMetadata) {
         self.userMetadata = try container.decode(String?.self, forKey: .userMetadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,18 +63,18 @@ internal struct WcfRelayPropertiesData : WcfRelayPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isDynamic != nil {try container.encode(self.isDynamic, forKey: .isDynamic)}
+    if self.isDynamic != nil { try container.encode(self.isDynamic, forKey: .isDynamic) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.listenerCount != nil {try container.encode(self.listenerCount, forKey: .listenerCount)}
-    if self.relayType != nil {try container.encode(self.relayType, forKey: .relayType)}
-    if self.requiresClientAuthorization != nil {try container.encode(self.requiresClientAuthorization, forKey: .requiresClientAuthorization)}
-    if self.requiresTransportSecurity != nil {try container.encode(self.requiresTransportSecurity, forKey: .requiresTransportSecurity)}
-    if self.userMetadata != nil {try container.encode(self.userMetadata, forKey: .userMetadata)}
+    if self.listenerCount != nil { try container.encode(self.listenerCount, forKey: .listenerCount) }
+    if self.relayType != nil { try container.encode(self.relayType, forKey: .relayType) }
+    if self.requiresClientAuthorization != nil { try container.encode(self.requiresClientAuthorization, forKey: .requiresClientAuthorization) }
+    if self.requiresTransportSecurity != nil { try container.encode(self.requiresTransportSecurity, forKey: .requiresTransportSecurity) }
+    if self.userMetadata != nil { try container.encode(self.userMetadata, forKey: .userMetadata) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct NetworkRuleSetData : NetworkRuleSetProtocol {
         case defaultAction = "defaultAction"
         }
 
-  public init(defaultAction: DefaultActionEnum)  {
+  public init(defaultAction: DefaultActionEnum) {
     self.defaultAction = defaultAction
   }
 
@@ -32,7 +32,7 @@ internal struct NetworkRuleSetData : NetworkRuleSetProtocol {
         self.ipRules = try container.decode([IPRuleData?]?.self, forKey: .ipRules)
     }
     self.defaultAction = try container.decode(DefaultActionEnum.self, forKey: .defaultAction)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct NetworkRuleSetData : NetworkRuleSetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.bypass != nil {try container.encode(self.bypass, forKey: .bypass)}
-    if self.virtualNetworkRules != nil {try container.encode(self.virtualNetworkRules as! [VirtualNetworkRuleData?]?, forKey: .virtualNetworkRules)}
-    if self.ipRules != nil {try container.encode(self.ipRules as! [IPRuleData?]?, forKey: .ipRules)}
+    if self.bypass != nil { try container.encode(self.bypass, forKey: .bypass) }
+    if self.virtualNetworkRules != nil { try container.encode(self.virtualNetworkRules as! [VirtualNetworkRuleData?]?, forKey: .virtualNetworkRules) }
+    if self.ipRules != nil { try container.encode(self.ipRules as! [IPRuleData?]?, forKey: .ipRules) }
     try container.encode(self.defaultAction, forKey: .defaultAction)
   }
 }

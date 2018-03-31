@@ -42,7 +42,7 @@ internal struct AzureIaaSClassicComputeVMProtectedItemData : AzureIaaSClassicCom
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,7 +98,7 @@ internal struct AzureIaaSClassicComputeVMProtectedItemData : AzureIaaSClassicCom
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureIaaSVMProtectedItemExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -108,27 +108,27 @@ internal struct AzureIaaSClassicComputeVMProtectedItemData : AzureIaaSClassicCom
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
     if self.lastRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.lastRecoveryPoint!, format: .dateTime), forKey: .lastRecoveryPoint)
     }
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.virtualMachineId != nil {try container.encode(self.virtualMachineId, forKey: .virtualMachineId)}
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.healthDetails != nil {try container.encode(self.healthDetails as! [AzureIaaSVMHealthDetailsData?]?, forKey: .healthDetails)}
-    if self.lastBackupStatus != nil {try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus)}
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.virtualMachineId != nil { try container.encode(self.virtualMachineId, forKey: .virtualMachineId) }
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.healthDetails != nil { try container.encode(self.healthDetails as! [AzureIaaSVMHealthDetailsData?]?, forKey: .healthDetails) }
+    if self.lastBackupStatus != nil { try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus) }
     if self.lastBackupTime != nil {
         try container.encode(DateConverter.toString(date: self.lastBackupTime!, format: .dateTime), forKey: .lastBackupTime)
     }
-    if self.protectedItemDataId != nil {try container.encode(self.protectedItemDataId, forKey: .protectedItemDataId)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureIaaSVMProtectedItemExtendedInfoData?, forKey: .extendedInfo)}
+    if self.protectedItemDataId != nil { try container.encode(self.protectedItemDataId, forKey: .protectedItemDataId) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureIaaSVMProtectedItemExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

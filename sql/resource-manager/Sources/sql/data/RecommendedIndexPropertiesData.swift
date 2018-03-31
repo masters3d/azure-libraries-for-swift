@@ -32,7 +32,7 @@ internal struct RecommendedIndexPropertiesData : RecommendedIndexPropertiesProto
         case reportedImpact = "reportedImpact"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct RecommendedIndexPropertiesData : RecommendedIndexPropertiesProto
     if container.contains(.reportedImpact) {
         self.reportedImpact = try container.decode([OperationImpactData?]?.self, forKey: .reportedImpact)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,22 +83,22 @@ internal struct RecommendedIndexPropertiesData : RecommendedIndexPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTime), forKey: .created)
     }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
-    if self.indexType != nil {try container.encode(self.indexType, forKey: .indexType)}
-    if self.schema != nil {try container.encode(self.schema, forKey: .schema)}
-    if self.table != nil {try container.encode(self.table, forKey: .table)}
-    if self.columns != nil {try container.encode(self.columns as! [String]?, forKey: .columns)}
-    if self.includedColumns != nil {try container.encode(self.includedColumns as! [String]?, forKey: .includedColumns)}
-    if self.indexScript != nil {try container.encode(self.indexScript, forKey: .indexScript)}
-    if self.estimatedImpact != nil {try container.encode(self.estimatedImpact as! [OperationImpactData?]?, forKey: .estimatedImpact)}
-    if self.reportedImpact != nil {try container.encode(self.reportedImpact as! [OperationImpactData?]?, forKey: .reportedImpact)}
+    if self.indexType != nil { try container.encode(self.indexType, forKey: .indexType) }
+    if self.schema != nil { try container.encode(self.schema, forKey: .schema) }
+    if self.table != nil { try container.encode(self.table, forKey: .table) }
+    if self.columns != nil { try container.encode(self.columns as! [String]?, forKey: .columns) }
+    if self.includedColumns != nil { try container.encode(self.includedColumns as! [String]?, forKey: .includedColumns) }
+    if self.indexScript != nil { try container.encode(self.indexScript, forKey: .indexScript) }
+    if self.estimatedImpact != nil { try container.encode(self.estimatedImpact as! [OperationImpactData?]?, forKey: .estimatedImpact) }
+    if self.reportedImpact != nil { try container.encode(self.reportedImpact as! [OperationImpactData?]?, forKey: .reportedImpact) }
   }
 }
 

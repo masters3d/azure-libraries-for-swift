@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol TransformationsGet  {
+public protocol TransformationsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol TransformationsGet  {
     var transformationName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (TransformationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (TransformationProtocol?, Error?) -> Void)
 }
 
 extension Commands.Transformations {
@@ -32,7 +32,7 @@ extension Commands.Transformations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{jobName}"] = String(describing: self.jobName)
@@ -46,12 +46,12 @@ extension Commands.Transformations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(TransformationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (TransformationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (TransformationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: TransformationData?, error: Error?) in
                 completionHandler(result, error)

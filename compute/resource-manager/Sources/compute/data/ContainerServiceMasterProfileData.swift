@@ -14,7 +14,7 @@ internal struct ContainerServiceMasterProfileData : ContainerServiceMasterProfil
         case fqdn = "fqdn"
         }
 
-  public init(dnsPrefix: String)  {
+  public init(dnsPrefix: String) {
     self.dnsPrefix = dnsPrefix
   }
 
@@ -27,7 +27,7 @@ internal struct ContainerServiceMasterProfileData : ContainerServiceMasterProfil
     if container.contains(.fqdn) {
         self.fqdn = try container.decode(String?.self, forKey: .fqdn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct ContainerServiceMasterProfileData : ContainerServiceMasterProfil
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
     try container.encode(self.dnsPrefix, forKey: .dnsPrefix)
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
   }
 }
 

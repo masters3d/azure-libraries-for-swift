@@ -20,7 +20,7 @@ internal struct ExpressRouteCircuitPeeringConfigData : ExpressRouteCircuitPeerin
         case routingRegistryName = "routingRegistryName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ExpressRouteCircuitPeeringConfigData : ExpressRouteCircuitPeerin
     if container.contains(.routingRegistryName) {
         self.routingRegistryName = try container.decode(String?.self, forKey: .routingRegistryName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ExpressRouteCircuitPeeringConfigData : ExpressRouteCircuitPeerin
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.advertisedPublicPrefixes != nil {try container.encode(self.advertisedPublicPrefixes as! [String]?, forKey: .advertisedPublicPrefixes)}
-    if self.advertisedCommunities != nil {try container.encode(self.advertisedCommunities as! [String]?, forKey: .advertisedCommunities)}
-    if self.advertisedPublicPrefixesState != nil {try container.encode(self.advertisedPublicPrefixesState, forKey: .advertisedPublicPrefixesState)}
-    if self.legacyMode != nil {try container.encode(self.legacyMode, forKey: .legacyMode)}
-    if self.customerASN != nil {try container.encode(self.customerASN, forKey: .customerASN)}
-    if self.routingRegistryName != nil {try container.encode(self.routingRegistryName, forKey: .routingRegistryName)}
+    if self.advertisedPublicPrefixes != nil { try container.encode(self.advertisedPublicPrefixes as! [String]?, forKey: .advertisedPublicPrefixes) }
+    if self.advertisedCommunities != nil { try container.encode(self.advertisedCommunities as! [String]?, forKey: .advertisedCommunities) }
+    if self.advertisedPublicPrefixesState != nil { try container.encode(self.advertisedPublicPrefixesState, forKey: .advertisedPublicPrefixesState) }
+    if self.legacyMode != nil { try container.encode(self.legacyMode, forKey: .legacyMode) }
+    if self.customerASN != nil { try container.encode(self.customerASN, forKey: .customerASN) }
+    if self.routingRegistryName != nil { try container.encode(self.routingRegistryName, forKey: .routingRegistryName) }
   }
 }
 

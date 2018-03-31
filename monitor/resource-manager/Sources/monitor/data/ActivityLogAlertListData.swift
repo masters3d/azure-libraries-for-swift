@@ -12,7 +12,7 @@ internal struct ActivityLogAlertListData : ActivityLogAlertListProtocol {
         case _nextLink = "nextLink"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ActivityLogAlertListData : ActivityLogAlertListProtocol {
     if container.contains(._nextLink) {
         self._nextLink = try container.decode(String?.self, forKey: ._nextLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ActivityLogAlertListData : ActivityLogAlertListProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value as! [ActivityLogAlertResourceData?]?, forKey: .value)}
-    if self._nextLink != nil {try container.encode(self._nextLink, forKey: ._nextLink)}
+    if self.value != nil { try container.encode(self.value as! [ActivityLogAlertResourceData?]?, forKey: .value) }
+    if self._nextLink != nil { try container.encode(self._nextLink, forKey: ._nextLink) }
   }
 }
 

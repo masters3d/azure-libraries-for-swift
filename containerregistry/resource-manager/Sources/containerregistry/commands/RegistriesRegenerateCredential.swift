@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RegistriesRegenerateCredential  {
+public protocol RegistriesRegenerateCredential {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var registryName : String { get set }
     var apiVersion : String { get set }
-    var regenerateCredentialParameters :  RegenerateCredentialParametersProtocol?  { get set }
+    var regenerateCredentialParameters :  RegenerateCredentialParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RegistryListCredentialsResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RegistryListCredentialsResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Registries {
@@ -32,7 +32,7 @@ extension Commands.Registries {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{registryName}"] = String(describing: self.registryName)
@@ -55,12 +55,12 @@ extension Commands.Registries {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RegistryListCredentialsResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RegistryListCredentialsResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RegistryListCredentialsResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RegistryListCredentialsResultData?, error: Error?) in
                 completionHandler(result, error)

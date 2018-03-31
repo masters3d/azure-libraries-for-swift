@@ -10,7 +10,7 @@ internal struct BlockData : BlockProtocol {
         case size = "size"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -25,8 +25,8 @@ internal struct BlockData : BlockProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(name, forKey: .name)}
-    if self.size != nil {try container.encode(size, forKey: .size)}
+    if self.name != nil { try container.encode(name, forKey: .name) }
+    if self.size != nil { try container.encode(size, forKey: .size) }
   }
 }
 

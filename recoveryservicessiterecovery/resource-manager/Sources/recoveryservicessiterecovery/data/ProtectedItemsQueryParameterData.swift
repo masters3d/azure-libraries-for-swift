@@ -18,7 +18,7 @@ internal struct ProtectedItemsQueryParameterData : ProtectedItemsQueryParameterP
         case multiVmGroupCreateOption = "multiVmGroupCreateOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ProtectedItemsQueryParameterData : ProtectedItemsQueryParameterP
     if container.contains(.multiVmGroupCreateOption) {
         self.multiVmGroupCreateOption = try container.decode(MultiVmGroupCreateOptionEnum?.self, forKey: .multiVmGroupCreateOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ProtectedItemsQueryParameterData : ProtectedItemsQueryParameterP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sourceFabricName != nil {try container.encode(self.sourceFabricName, forKey: .sourceFabricName)}
-    if self.recoveryPlanName != nil {try container.encode(self.recoveryPlanName, forKey: .recoveryPlanName)}
-    if self.vCenterName != nil {try container.encode(self.vCenterName, forKey: .vCenterName)}
-    if self.instanceType != nil {try container.encode(self.instanceType, forKey: .instanceType)}
-    if self.multiVmGroupCreateOption != nil {try container.encode(self.multiVmGroupCreateOption, forKey: .multiVmGroupCreateOption)}
+    if self.sourceFabricName != nil { try container.encode(self.sourceFabricName, forKey: .sourceFabricName) }
+    if self.recoveryPlanName != nil { try container.encode(self.recoveryPlanName, forKey: .recoveryPlanName) }
+    if self.vCenterName != nil { try container.encode(self.vCenterName, forKey: .vCenterName) }
+    if self.instanceType != nil { try container.encode(self.instanceType, forKey: .instanceType) }
+    if self.multiVmGroupCreateOption != nil { try container.encode(self.multiVmGroupCreateOption, forKey: .multiVmGroupCreateOption) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct TaskUpdateParameterData : TaskUpdateParameterProtocol {
         enum CodingKeys: String, CodingKey {case constraints = "constraints"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct TaskUpdateParameterData : TaskUpdateParameterProtocol {
       if container.contains(.constraints) {
         self.constraints = try container.decode(TaskConstraintsData?.self, forKey: .constraints)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct TaskUpdateParameterData : TaskUpdateParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.constraints != nil {try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints)}
+    if self.constraints != nil { try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct SkuData : SkuProtocol {
         case plan = "plan"
         }
 
-  public init(name: SkuNameEnum)  {
+  public init(name: SkuNameEnum) {
     self.name = name
   }
 
@@ -22,7 +22,7 @@ internal struct SkuData : SkuProtocol {
     if container.contains(.plan) {
         self.plan = try container.decode(ResourceReferenceData?.self, forKey: .plan)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct SkuData : SkuProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.plan != nil {try container.encode(self.plan as! ResourceReferenceData?, forKey: .plan)}
+    if self.plan != nil { try container.encode(self.plan as! ResourceReferenceData?, forKey: .plan) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct AzureVMResourceFeatureSupportRequestData : AzureVMResourceFeatur
         case vmSku = "vmSku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureVMResourceFeatureSupportRequestData : AzureVMResourceFeatur
     if container.contains(.vmSku) {
         self.vmSku = try container.decode(String?.self, forKey: .vmSku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureVMResourceFeatureSupportRequestData : AzureVMResourceFeatur
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.vmSku != nil {try container.encode(self.vmSku, forKey: .vmSku)}
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.vmSku != nil { try container.encode(self.vmSku, forKey: .vmSku) }
   }
 }
 

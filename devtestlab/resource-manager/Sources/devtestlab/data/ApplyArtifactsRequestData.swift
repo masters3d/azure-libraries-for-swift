@@ -10,7 +10,7 @@ internal struct ApplyArtifactsRequestData : ApplyArtifactsRequestProtocol {
         enum CodingKeys: String, CodingKey {case artifacts = "artifacts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ApplyArtifactsRequestData : ApplyArtifactsRequestProtocol {
       if container.contains(.artifacts) {
         self.artifacts = try container.decode([ArtifactInstallPropertiesData?]?.self, forKey: .artifacts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ApplyArtifactsRequestData : ApplyArtifactsRequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.artifacts != nil {try container.encode(self.artifacts as! [ArtifactInstallPropertiesData?]?, forKey: .artifacts)}
+    if self.artifacts != nil { try container.encode(self.artifacts as! [ArtifactInstallPropertiesData?]?, forKey: .artifacts) }
   }
 }
 

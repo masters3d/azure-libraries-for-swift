@@ -16,7 +16,7 @@ internal struct LongTermRetentionPolicyData : LongTermRetentionPolicyProtocol, R
         case yearlySchedule = "yearlySchedule"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct LongTermRetentionPolicyData : LongTermRetentionPolicyProtocol, R
     if container.contains(.yearlySchedule) {
         self.yearlySchedule = try container.decode(YearlyRetentionScheduleData?.self, forKey: .yearlySchedule)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct LongTermRetentionPolicyData : LongTermRetentionPolicyProtocol, R
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dailySchedule != nil {try container.encode(self.dailySchedule as! DailyRetentionScheduleData?, forKey: .dailySchedule)}
-    if self.weeklySchedule != nil {try container.encode(self.weeklySchedule as! WeeklyRetentionScheduleData?, forKey: .weeklySchedule)}
-    if self.monthlySchedule != nil {try container.encode(self.monthlySchedule as! MonthlyRetentionScheduleData?, forKey: .monthlySchedule)}
-    if self.yearlySchedule != nil {try container.encode(self.yearlySchedule as! YearlyRetentionScheduleData?, forKey: .yearlySchedule)}
+    if self.dailySchedule != nil { try container.encode(self.dailySchedule as! DailyRetentionScheduleData?, forKey: .dailySchedule) }
+    if self.weeklySchedule != nil { try container.encode(self.weeklySchedule as! WeeklyRetentionScheduleData?, forKey: .weeklySchedule) }
+    if self.monthlySchedule != nil { try container.encode(self.monthlySchedule as! MonthlyRetentionScheduleData?, forKey: .monthlySchedule) }
+    if self.yearlySchedule != nil { try container.encode(self.yearlySchedule as! YearlyRetentionScheduleData?, forKey: .yearlySchedule) }
   }
 }
 

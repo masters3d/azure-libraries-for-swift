@@ -12,7 +12,7 @@ internal struct ImageDiskReferenceData : ImageDiskReferenceProtocol {
         case lun = "lun"
         }
 
-  public init(id: String)  {
+  public init(id: String) {
     self.id = id
   }
 
@@ -22,7 +22,7 @@ internal struct ImageDiskReferenceData : ImageDiskReferenceProtocol {
     if container.contains(.lun) {
         self.lun = try container.decode(Int32?.self, forKey: .lun)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ImageDiskReferenceData : ImageDiskReferenceProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.lun != nil {try container.encode(self.lun, forKey: .lun)}
+    if self.lun != nil { try container.encode(self.lun, forKey: .lun) }
   }
 }
 

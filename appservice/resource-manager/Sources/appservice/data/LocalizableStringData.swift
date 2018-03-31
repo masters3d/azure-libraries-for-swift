@@ -12,7 +12,7 @@ internal struct LocalizableStringData : LocalizableStringProtocol {
         case localizedValue = "localizedValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct LocalizableStringData : LocalizableStringProtocol {
     if container.contains(.localizedValue) {
         self.localizedValue = try container.decode(String?.self, forKey: .localizedValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct LocalizableStringData : LocalizableStringProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.localizedValue != nil {try container.encode(self.localizedValue, forKey: .localizedValue)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.localizedValue != nil { try container.encode(self.localizedValue, forKey: .localizedValue) }
   }
 }
 

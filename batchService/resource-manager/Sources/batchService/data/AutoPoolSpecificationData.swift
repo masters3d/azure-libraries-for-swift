@@ -16,7 +16,7 @@ internal struct AutoPoolSpecificationData : AutoPoolSpecificationProtocol {
         case pool = "pool"
         }
 
-  public init(poolLifetimeOption: PoolLifetimeOptionEnum)  {
+  public init(poolLifetimeOption: PoolLifetimeOptionEnum) {
     self.poolLifetimeOption = poolLifetimeOption
   }
 
@@ -32,7 +32,7 @@ internal struct AutoPoolSpecificationData : AutoPoolSpecificationProtocol {
     if container.contains(.pool) {
         self.pool = try container.decode(PoolSpecificationData?.self, forKey: .pool)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct AutoPoolSpecificationData : AutoPoolSpecificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.autoPoolIdPrefix != nil {try container.encode(self.autoPoolIdPrefix, forKey: .autoPoolIdPrefix)}
+    if self.autoPoolIdPrefix != nil { try container.encode(self.autoPoolIdPrefix, forKey: .autoPoolIdPrefix) }
     try container.encode(self.poolLifetimeOption, forKey: .poolLifetimeOption)
-    if self.keepAlive != nil {try container.encode(self.keepAlive, forKey: .keepAlive)}
-    if self.pool != nil {try container.encode(self.pool as! PoolSpecificationData?, forKey: .pool)}
+    if self.keepAlive != nil { try container.encode(self.keepAlive, forKey: .keepAlive) }
+    if self.pool != nil { try container.encode(self.pool as! PoolSpecificationData?, forKey: .pool) }
   }
 }
 

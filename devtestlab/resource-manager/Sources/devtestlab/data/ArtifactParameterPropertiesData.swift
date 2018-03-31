@@ -12,7 +12,7 @@ internal struct ArtifactParameterPropertiesData : ArtifactParameterPropertiesPro
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ArtifactParameterPropertiesData : ArtifactParameterPropertiesPro
     if container.contains(.value) {
         self.value = try container.decode(String?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ArtifactParameterPropertiesData : ArtifactParameterPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
   }
 }
 

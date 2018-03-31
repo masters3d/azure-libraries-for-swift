@@ -14,7 +14,7 @@ internal struct AzureMachineLearningWebServiceInputColumnData : AzureMachineLear
         case mapTo = "mapTo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureMachineLearningWebServiceInputColumnData : AzureMachineLear
     if container.contains(.mapTo) {
         self.mapTo = try container.decode(Int32?.self, forKey: .mapTo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureMachineLearningWebServiceInputColumnData : AzureMachineLear
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.dataType != nil {try container.encode(self.dataType, forKey: .dataType)}
-    if self.mapTo != nil {try container.encode(self.mapTo, forKey: .mapTo)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.dataType != nil { try container.encode(self.dataType, forKey: .dataType) }
+    if self.mapTo != nil { try container.encode(self.mapTo, forKey: .mapTo) }
   }
 }
 

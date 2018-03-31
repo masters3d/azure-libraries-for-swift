@@ -16,7 +16,7 @@ internal struct PoolUpdatePropertiesParameterData : PoolUpdatePropertiesParamete
         case metadata = "metadata"
         }
 
-  public init(certificateReferences: [CertificateReferenceProtocol], applicationPackageReferences: [ApplicationPackageReferenceProtocol], metadata: [MetadataItemProtocol])  {
+  public init(certificateReferences: [CertificateReferenceProtocol], applicationPackageReferences: [ApplicationPackageReferenceProtocol], metadata: [MetadataItemProtocol]) {
     self.certificateReferences = certificateReferences
     self.applicationPackageReferences = applicationPackageReferences
     self.metadata = metadata
@@ -30,7 +30,7 @@ internal struct PoolUpdatePropertiesParameterData : PoolUpdatePropertiesParamete
     self.certificateReferences = try container.decode([CertificateReferenceData].self, forKey: .certificateReferences)
     self.applicationPackageReferences = try container.decode([ApplicationPackageReferenceData].self, forKey: .applicationPackageReferences)
     self.metadata = try container.decode([MetadataItemData].self, forKey: .metadata)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -40,7 +40,7 @@ internal struct PoolUpdatePropertiesParameterData : PoolUpdatePropertiesParamete
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.startTask != nil {try container.encode(self.startTask as! StartTaskData?, forKey: .startTask)}
+    if self.startTask != nil { try container.encode(self.startTask as! StartTaskData?, forKey: .startTask) }
     try container.encode(self.certificateReferences as! [CertificateReferenceData], forKey: .certificateReferences)
     try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData], forKey: .applicationPackageReferences)
     try container.encode(self.metadata as! [MetadataItemData], forKey: .metadata)

@@ -16,7 +16,7 @@ internal struct DiskDetailsData : DiskDetailsProtocol {
         case vhdName = "vhdName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct DiskDetailsData : DiskDetailsProtocol {
     if container.contains(.vhdName) {
         self.vhdName = try container.decode(String?.self, forKey: .vhdName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct DiskDetailsData : DiskDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxSizeMB != nil {try container.encode(self.maxSizeMB, forKey: .maxSizeMB)}
-    if self.vhdType != nil {try container.encode(self.vhdType, forKey: .vhdType)}
-    if self.vhdId != nil {try container.encode(self.vhdId, forKey: .vhdId)}
-    if self.vhdName != nil {try container.encode(self.vhdName, forKey: .vhdName)}
+    if self.maxSizeMB != nil { try container.encode(self.maxSizeMB, forKey: .maxSizeMB) }
+    if self.vhdType != nil { try container.encode(self.vhdType, forKey: .vhdType) }
+    if self.vhdId != nil { try container.encode(self.vhdId, forKey: .vhdId) }
+    if self.vhdName != nil { try container.encode(self.vhdName, forKey: .vhdName) }
   }
 }
 

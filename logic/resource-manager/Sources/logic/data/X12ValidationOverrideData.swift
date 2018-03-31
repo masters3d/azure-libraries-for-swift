@@ -22,7 +22,7 @@ internal struct X12ValidationOverrideData : X12ValidationOverrideProtocol {
         case trailingSeparatorPolicy = "trailingSeparatorPolicy"
         }
 
-  public init(messageId: String, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, validateCharacterSet: Bool, trimLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum)  {
+  public init(messageId: String, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, validateCharacterSet: Bool, trimLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum) {
     self.messageId = messageId
     self.validateEdiTypes = validateEdiTypes
     self.validateXsdTypes = validateXsdTypes
@@ -41,7 +41,7 @@ internal struct X12ValidationOverrideData : X12ValidationOverrideProtocol {
     self.validateCharacterSet = try container.decode(Bool.self, forKey: .validateCharacterSet)
     self.trimLeadingAndTrailingSpacesAndZeroes = try container.decode(Bool.self, forKey: .trimLeadingAndTrailingSpacesAndZeroes)
     self.trailingSeparatorPolicy = try container.decode(TrailingSeparatorPolicyEnum.self, forKey: .trailingSeparatorPolicy)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkPeeringsDelete  {
+public protocol VirtualNetworkPeeringsDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkName : String { get set }
@@ -8,7 +8,7 @@ public protocol VirtualNetworkPeeringsDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkPeerings {
@@ -34,7 +34,7 @@ extension Commands.VirtualNetworkPeerings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkName}"] = String(describing: self.virtualNetworkName)
             self.pathParameters["{virtualNetworkPeeringName}"] = String(describing: self.virtualNetworkPeeringName)
@@ -44,7 +44,7 @@ extension Commands.VirtualNetworkPeerings {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

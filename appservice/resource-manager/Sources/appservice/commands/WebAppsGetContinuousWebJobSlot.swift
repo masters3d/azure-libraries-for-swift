@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WebAppsGetContinuousWebJobSlot  {
+public protocol WebAppsGetContinuousWebJobSlot {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
@@ -9,7 +9,7 @@ public protocol WebAppsGetContinuousWebJobSlot  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ContinuousWebJobProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ContinuousWebJobProtocol?, Error?) -> Void)
 }
 
 extension Commands.WebApps {
@@ -35,7 +35,7 @@ extension Commands.WebApps {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{webJobName}"] = String(describing: self.webJobName)
@@ -50,12 +50,12 @@ extension Commands.WebApps {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ContinuousWebJobData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ContinuousWebJobProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ContinuousWebJobProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ContinuousWebJobData?, error: Error?) in
                 completionHandler(result, error)

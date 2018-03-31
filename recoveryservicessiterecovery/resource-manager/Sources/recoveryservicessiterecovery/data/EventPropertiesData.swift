@@ -28,7 +28,7 @@ internal struct EventPropertiesData : EventPropertiesProtocol {
         case healthErrors = "healthErrors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct EventPropertiesData : EventPropertiesProtocol {
     if container.contains(.healthErrors) {
         self.healthErrors = try container.decode([HealthErrorData?]?.self, forKey: .healthErrors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,18 +73,18 @@ internal struct EventPropertiesData : EventPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eventCode != nil {try container.encode(self.eventCode, forKey: .eventCode)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.eventType != nil {try container.encode(self.eventType, forKey: .eventType)}
-    if self.affectedObjectFriendlyName != nil {try container.encode(self.affectedObjectFriendlyName, forKey: .affectedObjectFriendlyName)}
-    if self.severity != nil {try container.encode(self.severity, forKey: .severity)}
+    if self.eventCode != nil { try container.encode(self.eventCode, forKey: .eventCode) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.eventType != nil { try container.encode(self.eventType, forKey: .eventType) }
+    if self.affectedObjectFriendlyName != nil { try container.encode(self.affectedObjectFriendlyName, forKey: .affectedObjectFriendlyName) }
+    if self.severity != nil { try container.encode(self.severity, forKey: .severity) }
     if self.timeOfOccurrence != nil {
         try container.encode(DateConverter.toString(date: self.timeOfOccurrence!, format: .dateTime), forKey: .timeOfOccurrence)
     }
-    if self.fabricId != nil {try container.encode(self.fabricId, forKey: .fabricId)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! EventProviderSpecificDetailsData?, forKey: .providerSpecificDetails)}
-    if self.eventSpecificDetails != nil {try container.encode(self.eventSpecificDetails as! EventSpecificDetailsData?, forKey: .eventSpecificDetails)}
-    if self.healthErrors != nil {try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors)}
+    if self.fabricId != nil { try container.encode(self.fabricId, forKey: .fabricId) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! EventProviderSpecificDetailsData?, forKey: .providerSpecificDetails) }
+    if self.eventSpecificDetails != nil { try container.encode(self.eventSpecificDetails as! EventSpecificDetailsData?, forKey: .eventSpecificDetails) }
+    if self.healthErrors != nil { try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors) }
   }
 }
 

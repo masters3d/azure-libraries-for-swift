@@ -12,7 +12,7 @@ internal struct WindowsPropertiesData : WindowsPropertiesProtocol {
         case excludedKbNumbers = "excludedKbNumbers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct WindowsPropertiesData : WindowsPropertiesProtocol {
     if container.contains(.excludedKbNumbers) {
         self.excludedKbNumbers = try container.decode([String]?.self, forKey: .excludedKbNumbers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct WindowsPropertiesData : WindowsPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.includedUpdateClassifications != nil {try container.encode(self.includedUpdateClassifications, forKey: .includedUpdateClassifications)}
-    if self.excludedKbNumbers != nil {try container.encode(self.excludedKbNumbers as! [String]?, forKey: .excludedKbNumbers)}
+    if self.includedUpdateClassifications != nil { try container.encode(self.includedUpdateClassifications, forKey: .includedUpdateClassifications) }
+    if self.excludedKbNumbers != nil { try container.encode(self.excludedKbNumbers as! [String]?, forKey: .excludedKbNumbers) }
   }
 }
 

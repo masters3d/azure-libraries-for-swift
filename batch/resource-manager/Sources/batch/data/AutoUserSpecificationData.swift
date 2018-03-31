@@ -12,7 +12,7 @@ internal struct AutoUserSpecificationData : AutoUserSpecificationProtocol {
         case elevationLevel = "elevationLevel"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AutoUserSpecificationData : AutoUserSpecificationProtocol {
     if container.contains(.elevationLevel) {
         self.elevationLevel = try container.decode(ElevationLevelEnum?.self, forKey: .elevationLevel)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AutoUserSpecificationData : AutoUserSpecificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.scope != nil {try container.encode(self.scope, forKey: .scope)}
-    if self.elevationLevel != nil {try container.encode(self.elevationLevel, forKey: .elevationLevel)}
+    if self.scope != nil { try container.encode(self.scope, forKey: .scope) }
+    if self.elevationLevel != nil { try container.encode(self.elevationLevel, forKey: .elevationLevel) }
   }
 }
 

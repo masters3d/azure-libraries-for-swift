@@ -22,7 +22,7 @@ internal struct VirtualMachineScaleSetVMProfileData : VirtualMachineScaleSetVMPr
         case priority = "priority"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct VirtualMachineScaleSetVMProfileData : VirtualMachineScaleSetVMPr
     if container.contains(.priority) {
         self.priority = try container.decode(VirtualMachinePriorityTypesEnum?.self, forKey: .priority)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct VirtualMachineScaleSetVMProfileData : VirtualMachineScaleSetVMPr
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osProfile != nil {try container.encode(self.osProfile as! VirtualMachineScaleSetOSProfileData?, forKey: .osProfile)}
-    if self.storageProfile != nil {try container.encode(self.storageProfile as! VirtualMachineScaleSetStorageProfileData?, forKey: .storageProfile)}
-    if self.networkProfile != nil {try container.encode(self.networkProfile as! VirtualMachineScaleSetNetworkProfileData?, forKey: .networkProfile)}
-    if self.diagnosticsProfile != nil {try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile)}
-    if self.extensionProfile != nil {try container.encode(self.extensionProfile as! VirtualMachineScaleSetExtensionProfileData?, forKey: .extensionProfile)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
+    if self.osProfile != nil { try container.encode(self.osProfile as! VirtualMachineScaleSetOSProfileData?, forKey: .osProfile) }
+    if self.storageProfile != nil { try container.encode(self.storageProfile as! VirtualMachineScaleSetStorageProfileData?, forKey: .storageProfile) }
+    if self.networkProfile != nil { try container.encode(self.networkProfile as! VirtualMachineScaleSetNetworkProfileData?, forKey: .networkProfile) }
+    if self.diagnosticsProfile != nil { try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile) }
+    if self.extensionProfile != nil { try container.encode(self.extensionProfile as! VirtualMachineScaleSetExtensionProfileData?, forKey: .extensionProfile) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
   }
 }
 

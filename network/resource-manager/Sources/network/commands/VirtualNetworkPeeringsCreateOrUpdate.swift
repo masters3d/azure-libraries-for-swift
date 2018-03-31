@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkPeeringsCreateOrUpdate  {
+public protocol VirtualNetworkPeeringsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkName : String { get set }
     var virtualNetworkPeeringName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var virtualNetworkPeeringParameters :  VirtualNetworkPeeringProtocol?  { get set }
+    var virtualNetworkPeeringParameters :  VirtualNetworkPeeringProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualNetworkPeeringProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualNetworkPeeringProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkPeerings {
@@ -37,7 +37,7 @@ extension Commands.VirtualNetworkPeerings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkName}"] = String(describing: self.virtualNetworkName)
             self.pathParameters["{virtualNetworkPeeringName}"] = String(describing: self.virtualNetworkPeeringName)
@@ -61,12 +61,12 @@ extension Commands.VirtualNetworkPeerings {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualNetworkPeeringData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualNetworkPeeringProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualNetworkPeeringProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: VirtualNetworkPeeringData?, error: Error?) in
                 completionHandler(result, error)

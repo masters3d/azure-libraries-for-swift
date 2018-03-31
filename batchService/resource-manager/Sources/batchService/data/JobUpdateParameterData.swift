@@ -18,7 +18,7 @@ internal struct JobUpdateParameterData : JobUpdateParameterProtocol {
         case onAllTasksComplete = "onAllTasksComplete"
         }
 
-  public init(poolInfo: PoolInformationProtocol)  {
+  public init(poolInfo: PoolInformationProtocol) {
     self.poolInfo = poolInfo
   }
 
@@ -37,7 +37,7 @@ internal struct JobUpdateParameterData : JobUpdateParameterProtocol {
     if container.contains(.onAllTasksComplete) {
         self.onAllTasksComplete = try container.decode(OnAllTasksCompleteEnum?.self, forKey: .onAllTasksComplete)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,11 +47,11 @@ internal struct JobUpdateParameterData : JobUpdateParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.constraints != nil {try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints)}
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.constraints != nil { try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints) }
     try container.encode(self.poolInfo as! PoolInformationData, forKey: .poolInfo)
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
-    if self.onAllTasksComplete != nil {try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete)}
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
+    if self.onAllTasksComplete != nil { try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct TriggeredJobRunPropertiesData : TriggeredJobRunPropertiesProtoco
         case trigger = "trigger"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct TriggeredJobRunPropertiesData : TriggeredJobRunPropertiesProtoco
     if container.contains(.trigger) {
         self.trigger = try container.decode(String?.self, forKey: .trigger)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,21 +78,21 @@ internal struct TriggeredJobRunPropertiesData : TriggeredJobRunPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.outputUrl != nil {try container.encode(self.outputUrl, forKey: .outputUrl)}
-    if self.errorUrl != nil {try container.encode(self.errorUrl, forKey: .errorUrl)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.jobName != nil {try container.encode(self.jobName, forKey: .jobName)}
-    if self.trigger != nil {try container.encode(self.trigger, forKey: .trigger)}
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.outputUrl != nil { try container.encode(self.outputUrl, forKey: .outputUrl) }
+    if self.errorUrl != nil { try container.encode(self.errorUrl, forKey: .errorUrl) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.jobName != nil { try container.encode(self.jobName, forKey: .jobName) }
+    if self.trigger != nil { try container.encode(self.trigger, forKey: .trigger) }
   }
 }
 

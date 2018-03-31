@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol FirewallRulesCreateOrUpdate  {
+public protocol FirewallRulesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var cacheName : String { get set }
     var ruleName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RedisFirewallRuleCreateParametersProtocol?  { get set }
+    var parameters :  RedisFirewallRuleCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RedisFirewallRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RedisFirewallRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.FirewallRules {
@@ -35,7 +35,7 @@ extension Commands.FirewallRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{cacheName}"] = String(describing: self.cacheName)
             self.pathParameters["{ruleName}"] = String(describing: self.ruleName)
@@ -59,12 +59,12 @@ extension Commands.FirewallRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RedisFirewallRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RedisFirewallRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RedisFirewallRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RedisFirewallRuleData?, error: Error?) in
                 completionHandler(result, error)

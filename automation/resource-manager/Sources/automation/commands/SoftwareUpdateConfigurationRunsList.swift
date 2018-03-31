@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SoftwareUpdateConfigurationRunsList  {
+public protocol SoftwareUpdateConfigurationRunsList {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -11,7 +11,7 @@ public protocol SoftwareUpdateConfigurationRunsList  {
     var top : String? { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SoftwareUpdateConfigurationRunListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SoftwareUpdateConfigurationRunListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.SoftwareUpdateConfigurationRuns {
@@ -37,7 +37,7 @@ extension Commands.SoftwareUpdateConfigurationRuns {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -54,12 +54,12 @@ extension Commands.SoftwareUpdateConfigurationRuns {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SoftwareUpdateConfigurationRunListResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SoftwareUpdateConfigurationRunListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SoftwareUpdateConfigurationRunListResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SoftwareUpdateConfigurationRunListResultData?, error: Error?) in
                 completionHandler(result, error)

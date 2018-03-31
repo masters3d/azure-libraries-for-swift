@@ -10,14 +10,14 @@ internal struct RecoveryPlanInMageFailoverInputData : RecoveryPlanInMageFailover
         enum CodingKeys: String, CodingKey {case recoveryPointType = "recoveryPointType"
         }
 
-  public init(recoveryPointType: RpInMageRecoveryPointTypeEnum)  {
+  public init(recoveryPointType: RpInMageRecoveryPointTypeEnum) {
     self.recoveryPointType = recoveryPointType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.recoveryPointType = try container.decode(RpInMageRecoveryPointTypeEnum.self, forKey: .recoveryPointType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

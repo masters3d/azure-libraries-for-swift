@@ -18,7 +18,7 @@ internal struct EventRequestMessageData : EventRequestMessageProtocol {
         case version = "version"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct EventRequestMessageData : EventRequestMessageProtocol {
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct EventRequestMessageData : EventRequestMessageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.content != nil {try container.encode(self.content as! EventContentData?, forKey: .content)}
-    if self.headers != nil {try container.encode(self.headers, forKey: .headers)}
-    if self.method != nil {try container.encode(self.method, forKey: .method)}
-    if self.requestUri != nil {try container.encode(self.requestUri, forKey: .requestUri)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.content != nil { try container.encode(self.content as! EventContentData?, forKey: .content) }
+    if self.headers != nil { try container.encode(self.headers, forKey: .headers) }
+    if self.method != nil { try container.encode(self.method, forKey: .method) }
+    if self.requestUri != nil { try container.encode(self.requestUri, forKey: .requestUri) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

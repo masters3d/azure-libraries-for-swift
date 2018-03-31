@@ -30,7 +30,7 @@ internal struct AzureVmWorkloadSQLDatabaseProtectableItemData : AzureVmWorkloadS
         case prebackupvalidation = "prebackupvalidation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct AzureVmWorkloadSQLDatabaseProtectableItemData : AzureVmWorkloadS
     if container.contains(.prebackupvalidation) {
         self.prebackupvalidation = try container.decode(PreBackupValidationData?.self, forKey: .prebackupvalidation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct AzureVmWorkloadSQLDatabaseProtectableItemData : AzureVmWorkloadS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.parentName != nil {try container.encode(self.parentName, forKey: .parentName)}
-    if self.parentUniqueName != nil {try container.encode(self.parentUniqueName, forKey: .parentUniqueName)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.isAutoProtectable != nil {try container.encode(self.isAutoProtectable, forKey: .isAutoProtectable)}
-    if self.subinquireditemcount != nil {try container.encode(self.subinquireditemcount, forKey: .subinquireditemcount)}
-    if self.subprotectableitemcount != nil {try container.encode(self.subprotectableitemcount, forKey: .subprotectableitemcount)}
-    if self.prebackupvalidation != nil {try container.encode(self.prebackupvalidation as! PreBackupValidationData?, forKey: .prebackupvalidation)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.parentName != nil { try container.encode(self.parentName, forKey: .parentName) }
+    if self.parentUniqueName != nil { try container.encode(self.parentUniqueName, forKey: .parentUniqueName) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.isAutoProtectable != nil { try container.encode(self.isAutoProtectable, forKey: .isAutoProtectable) }
+    if self.subinquireditemcount != nil { try container.encode(self.subinquireditemcount, forKey: .subinquireditemcount) }
+    if self.subprotectableitemcount != nil { try container.encode(self.subprotectableitemcount, forKey: .subprotectableitemcount) }
+    if self.prebackupvalidation != nil { try container.encode(self.prebackupvalidation as! PreBackupValidationData?, forKey: .prebackupvalidation) }
   }
 }
 

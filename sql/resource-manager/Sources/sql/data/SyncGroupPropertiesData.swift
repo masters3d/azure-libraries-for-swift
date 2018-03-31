@@ -24,7 +24,7 @@ internal struct SyncGroupPropertiesData : SyncGroupPropertiesProtocol {
         case schema = "schema"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct SyncGroupPropertiesData : SyncGroupPropertiesProtocol {
     if container.contains(.schema) {
         self.schema = try container.decode(SyncGroupSchemaData?.self, forKey: .schema)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct SyncGroupPropertiesData : SyncGroupPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
     if self.lastSyncTime != nil {
         try container.encode(DateConverter.toString(date: self.lastSyncTime!, format: .dateTime), forKey: .lastSyncTime)
     }
-    if self.conflictResolutionPolicy != nil {try container.encode(self.conflictResolutionPolicy, forKey: .conflictResolutionPolicy)}
-    if self.syncDatabaseId != nil {try container.encode(self.syncDatabaseId, forKey: .syncDatabaseId)}
-    if self.hubDatabaseUserName != nil {try container.encode(self.hubDatabaseUserName, forKey: .hubDatabaseUserName)}
-    if self.hubDatabasePassword != nil {try container.encode(self.hubDatabasePassword, forKey: .hubDatabasePassword)}
-    if self.syncState != nil {try container.encode(self.syncState, forKey: .syncState)}
-    if self.schema != nil {try container.encode(self.schema as! SyncGroupSchemaData?, forKey: .schema)}
+    if self.conflictResolutionPolicy != nil { try container.encode(self.conflictResolutionPolicy, forKey: .conflictResolutionPolicy) }
+    if self.syncDatabaseId != nil { try container.encode(self.syncDatabaseId, forKey: .syncDatabaseId) }
+    if self.hubDatabaseUserName != nil { try container.encode(self.hubDatabaseUserName, forKey: .hubDatabaseUserName) }
+    if self.hubDatabasePassword != nil { try container.encode(self.hubDatabasePassword, forKey: .hubDatabasePassword) }
+    if self.syncState != nil { try container.encode(self.syncState, forKey: .syncState) }
+    if self.schema != nil { try container.encode(self.schema as! SyncGroupSchemaData?, forKey: .schema) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct CheckSkuAvailabilityParameterData : CheckSkuAvailabilityParamete
         case type = "type"
         }
 
-  public init(skus: [SkuNameEnum], kind: KindEnum, type: String)  {
+  public init(skus: [SkuNameEnum], kind: KindEnum, type: String) {
     self.skus = skus
     self.kind = kind
     self.type = type
@@ -25,7 +25,7 @@ internal struct CheckSkuAvailabilityParameterData : CheckSkuAvailabilityParamete
       self.skus = try container.decode([SkuNameEnum].self, forKey: .skus)
     self.kind = try container.decode(KindEnum.self, forKey: .kind)
     self.type = try container.decode(String.self, forKey: .type)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

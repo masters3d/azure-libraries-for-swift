@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol TaskGet  {
+public protocol TaskGet {
     var headerParameters: [String: String] { get set }
     var jobId : String { get set }
     var taskId : String { get set }
@@ -16,7 +16,7 @@ public protocol TaskGet  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CloudTaskProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CloudTaskProtocol?, Error?) -> Void)
 }
 
 extension Commands.Task {
@@ -47,7 +47,7 @@ extension Commands.Task {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             self.pathParameters["{taskId}"] = String(describing: self.taskId)
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
@@ -69,12 +69,12 @@ extension Commands.Task {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CloudTaskData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CloudTaskProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CloudTaskProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CloudTaskData?, error: Error?) in
                 completionHandler(result, error)

@@ -10,7 +10,7 @@ internal struct DataDiskImageData : DataDiskImageProtocol {
         enum CodingKeys: String, CodingKey {case lun = "lun"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DataDiskImageData : DataDiskImageProtocol {
       if container.contains(.lun) {
         self.lun = try container.decode(Int32?.self, forKey: .lun)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DataDiskImageData : DataDiskImageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.lun != nil {try container.encode(self.lun, forKey: .lun)}
+    if self.lun != nil { try container.encode(self.lun, forKey: .lun) }
   }
 }
 

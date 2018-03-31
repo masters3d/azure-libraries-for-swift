@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WebAppsDeleteHybridConnectionSlot  {
+public protocol WebAppsDeleteHybridConnectionSlot {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
@@ -10,7 +10,7 @@ public protocol WebAppsDeleteHybridConnectionSlot  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.WebApps {
@@ -38,7 +38,7 @@ extension Commands.WebApps {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
@@ -50,7 +50,7 @@ extension Commands.WebApps {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

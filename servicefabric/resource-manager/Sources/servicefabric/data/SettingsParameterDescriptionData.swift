@@ -12,7 +12,7 @@ internal struct SettingsParameterDescriptionData : SettingsParameterDescriptionP
         case value = "value"
         }
 
-  public init(name: String, value: String)  {
+  public init(name: String, value: String) {
     self.name = name
     self.value = value
   }
@@ -21,7 +21,7 @@ internal struct SettingsParameterDescriptionData : SettingsParameterDescriptionP
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
     self.value = try container.decode(String.self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

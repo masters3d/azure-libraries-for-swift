@@ -12,7 +12,7 @@ internal struct VnetGatewayPropertiesData : VnetGatewayPropertiesProtocol {
         case vpnPackageUri = "vpnPackageUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VnetGatewayPropertiesData : VnetGatewayPropertiesProtocol {
     if container.contains(.vpnPackageUri) {
         self.vpnPackageUri = try container.decode(String?.self, forKey: .vpnPackageUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VnetGatewayPropertiesData : VnetGatewayPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vnetName != nil {try container.encode(self.vnetName, forKey: .vnetName)}
-    if self.vpnPackageUri != nil {try container.encode(self.vpnPackageUri, forKey: .vpnPackageUri)}
+    if self.vnetName != nil { try container.encode(self.vnetName, forKey: .vnetName) }
+    if self.vpnPackageUri != nil { try container.encode(self.vpnPackageUri, forKey: .vpnPackageUri) }
   }
 }
 

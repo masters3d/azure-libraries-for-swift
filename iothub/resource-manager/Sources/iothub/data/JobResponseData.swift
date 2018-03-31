@@ -24,7 +24,7 @@ internal struct JobResponseData : JobResponseProtocol {
         case parentJobId = "parentJobId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct JobResponseData : JobResponseProtocol {
     if container.contains(.parentJobId) {
         self.parentJobId = try container.decode(String?.self, forKey: .parentJobId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,18 +63,18 @@ internal struct JobResponseData : JobResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
     if self.startTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.startTimeUtc!, format: .dateTimeRfc1123), forKey: .startTimeUtc)
     }
     if self.endTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.endTimeUtc!, format: .dateTimeRfc1123), forKey: .endTimeUtc)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.failureReason != nil {try container.encode(self.failureReason, forKey: .failureReason)}
-    if self.statusMessage != nil {try container.encode(self.statusMessage, forKey: .statusMessage)}
-    if self.parentJobId != nil {try container.encode(self.parentJobId, forKey: .parentJobId)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.failureReason != nil { try container.encode(self.failureReason, forKey: .failureReason) }
+    if self.statusMessage != nil { try container.encode(self.statusMessage, forKey: .statusMessage) }
+    if self.parentJobId != nil { try container.encode(self.parentJobId, forKey: .parentJobId) }
   }
 }
 

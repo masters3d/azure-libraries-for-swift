@@ -16,7 +16,7 @@ internal struct TaskFailureInformationData : TaskFailureInformationProtocol {
         case details = "details"
         }
 
-  public init(category: ErrorCategoryEnum)  {
+  public init(category: ErrorCategoryEnum) {
     self.category = category
   }
 
@@ -32,7 +32,7 @@ internal struct TaskFailureInformationData : TaskFailureInformationProtocol {
     if container.contains(.details) {
         self.details = try container.decode([NameValuePairData?]?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct TaskFailureInformationData : TaskFailureInformationProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.category, forKey: .category)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.details != nil {try container.encode(self.details as! [NameValuePairData?]?, forKey: .details)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.details != nil { try container.encode(self.details as! [NameValuePairData?]?, forKey: .details) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct AzureStorageErrorInfoData : AzureStorageErrorInfoProtocol {
         case recommendations = "recommendations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureStorageErrorInfoData : AzureStorageErrorInfoProtocol {
     if container.contains(.recommendations) {
         self.recommendations = try container.decode([String]?.self, forKey: .recommendations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureStorageErrorInfoData : AzureStorageErrorInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorString != nil {try container.encode(self.errorString, forKey: .errorString)}
-    if self.recommendations != nil {try container.encode(self.recommendations as! [String]?, forKey: .recommendations)}
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorString != nil { try container.encode(self.errorString, forKey: .errorString) }
+    if self.recommendations != nil { try container.encode(self.recommendations as! [String]?, forKey: .recommendations) }
   }
 }
 

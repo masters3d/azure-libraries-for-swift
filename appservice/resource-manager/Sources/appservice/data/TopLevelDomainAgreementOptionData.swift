@@ -12,7 +12,7 @@ internal struct TopLevelDomainAgreementOptionData : TopLevelDomainAgreementOptio
         case forTransfer = "forTransfer"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TopLevelDomainAgreementOptionData : TopLevelDomainAgreementOptio
     if container.contains(.forTransfer) {
         self.forTransfer = try container.decode(Bool?.self, forKey: .forTransfer)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TopLevelDomainAgreementOptionData : TopLevelDomainAgreementOptio
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.includePrivacy != nil {try container.encode(self.includePrivacy, forKey: .includePrivacy)}
-    if self.forTransfer != nil {try container.encode(self.forTransfer, forKey: .forTransfer)}
+    if self.includePrivacy != nil { try container.encode(self.includePrivacy, forKey: .includePrivacy) }
+    if self.forTransfer != nil { try container.encode(self.forTransfer, forKey: .forTransfer) }
   }
 }
 

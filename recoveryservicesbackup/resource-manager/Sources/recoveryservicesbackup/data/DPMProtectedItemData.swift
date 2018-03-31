@@ -32,7 +32,7 @@ internal struct DPMProtectedItemData : DPMProtectedItemProtocol, ProtectedItemPr
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct DPMProtectedItemData : DPMProtectedItemProtocol, ProtectedItemPr
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(DPMProtectedItemExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,20 +83,20 @@ internal struct DPMProtectedItemData : DPMProtectedItemProtocol, ProtectedItemPr
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
     if self.lastRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.lastRecoveryPoint!, format: .dateTime), forKey: .lastRecoveryPoint)
     }
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupEngineName != nil {try container.encode(self.backupEngineName, forKey: .backupEngineName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.isScheduledForDeferredDelete != nil {try container.encode(self.isScheduledForDeferredDelete, forKey: .isScheduledForDeferredDelete)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! DPMProtectedItemExtendedInfoData?, forKey: .extendedInfo)}
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupEngineName != nil { try container.encode(self.backupEngineName, forKey: .backupEngineName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.isScheduledForDeferredDelete != nil { try container.encode(self.isScheduledForDeferredDelete, forKey: .isScheduledForDeferredDelete) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! DPMProtectedItemExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

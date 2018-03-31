@@ -14,7 +14,7 @@ internal struct CheckNameAvailabilityResultData : CheckNameAvailabilityResultPro
         case reason = "reason"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CheckNameAvailabilityResultData : CheckNameAvailabilityResultPro
     if container.contains(.reason) {
         self.reason = try container.decode(UnavailableReasonEnum?.self, forKey: .reason)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CheckNameAvailabilityResultData : CheckNameAvailabilityResultPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.nameAvailable != nil {try container.encode(self.nameAvailable, forKey: .nameAvailable)}
-    if self.reason != nil {try container.encode(self.reason, forKey: .reason)}
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.nameAvailable != nil { try container.encode(self.nameAvailable, forKey: .nameAvailable) }
+    if self.reason != nil { try container.encode(self.reason, forKey: .reason) }
   }
 }
 

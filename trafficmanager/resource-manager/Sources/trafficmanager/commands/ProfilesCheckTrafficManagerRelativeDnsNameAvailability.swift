@@ -1,11 +1,11 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ProfilesCheckTrafficManagerRelativeDnsNameAvailability  {
+public protocol ProfilesCheckTrafficManagerRelativeDnsNameAvailability {
     var headerParameters: [String: String] { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckTrafficManagerRelativeDnsNameAvailabilityParametersProtocol?  { get set }
+    var parameters :  CheckTrafficManagerRelativeDnsNameAvailabilityParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (TrafficManagerNameAvailabilityProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (TrafficManagerNameAvailabilityProtocol?, Error?) -> Void)
 }
 
 extension Commands.Profiles {
@@ -23,7 +23,7 @@ extension Commands.Profiles {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = parameters
 
@@ -43,12 +43,12 @@ extension Commands.Profiles {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(TrafficManagerNameAvailabilityData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (TrafficManagerNameAvailabilityProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (TrafficManagerNameAvailabilityProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: TrafficManagerNameAvailabilityData?, error: Error?) in
                 completionHandler(result, error)

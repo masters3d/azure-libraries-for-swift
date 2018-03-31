@@ -20,7 +20,7 @@ internal struct A2AEventDetailsData : A2AEventDetailsProtocol, EventProviderSpec
         case remoteFabricLocation = "remoteFabricLocation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct A2AEventDetailsData : A2AEventDetailsProtocol, EventProviderSpec
     if container.contains(.remoteFabricLocation) {
         self.remoteFabricLocation = try container.decode(String?.self, forKey: .remoteFabricLocation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct A2AEventDetailsData : A2AEventDetailsProtocol, EventProviderSpec
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectedItemName != nil {try container.encode(self.protectedItemName, forKey: .protectedItemName)}
-    if self.fabricObjectId != nil {try container.encode(self.fabricObjectId, forKey: .fabricObjectId)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.fabricLocation != nil {try container.encode(self.fabricLocation, forKey: .fabricLocation)}
-    if self.remoteFabricName != nil {try container.encode(self.remoteFabricName, forKey: .remoteFabricName)}
-    if self.remoteFabricLocation != nil {try container.encode(self.remoteFabricLocation, forKey: .remoteFabricLocation)}
+    if self.protectedItemName != nil { try container.encode(self.protectedItemName, forKey: .protectedItemName) }
+    if self.fabricObjectId != nil { try container.encode(self.fabricObjectId, forKey: .fabricObjectId) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.fabricLocation != nil { try container.encode(self.fabricLocation, forKey: .fabricLocation) }
+    if self.remoteFabricName != nil { try container.encode(self.remoteFabricName, forKey: .remoteFabricName) }
+    if self.remoteFabricLocation != nil { try container.encode(self.remoteFabricLocation, forKey: .remoteFabricLocation) }
   }
 }
 

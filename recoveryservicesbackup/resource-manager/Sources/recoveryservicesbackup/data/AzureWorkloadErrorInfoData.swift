@@ -18,7 +18,7 @@ internal struct AzureWorkloadErrorInfoData : AzureWorkloadErrorInfoProtocol {
         case additionalDetails = "additionalDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AzureWorkloadErrorInfoData : AzureWorkloadErrorInfoProtocol {
     if container.contains(.additionalDetails) {
         self.additionalDetails = try container.decode(String?.self, forKey: .additionalDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AzureWorkloadErrorInfoData : AzureWorkloadErrorInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorString != nil {try container.encode(self.errorString, forKey: .errorString)}
-    if self.errorTitle != nil {try container.encode(self.errorTitle, forKey: .errorTitle)}
-    if self.recommendations != nil {try container.encode(self.recommendations as! [String]?, forKey: .recommendations)}
-    if self.additionalDetails != nil {try container.encode(self.additionalDetails, forKey: .additionalDetails)}
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorString != nil { try container.encode(self.errorString, forKey: .errorString) }
+    if self.errorTitle != nil { try container.encode(self.errorTitle, forKey: .errorTitle) }
+    if self.recommendations != nil { try container.encode(self.recommendations as! [String]?, forKey: .recommendations) }
+    if self.additionalDetails != nil { try container.encode(self.additionalDetails, forKey: .additionalDetails) }
   }
 }
 

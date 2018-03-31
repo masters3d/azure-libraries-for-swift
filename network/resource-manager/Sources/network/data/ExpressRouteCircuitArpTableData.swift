@@ -16,7 +16,7 @@ internal struct ExpressRouteCircuitArpTableData : ExpressRouteCircuitArpTablePro
         case macAddress = "macAddress"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ExpressRouteCircuitArpTableData : ExpressRouteCircuitArpTablePro
     if container.contains(.macAddress) {
         self.macAddress = try container.decode(String?.self, forKey: .macAddress)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ExpressRouteCircuitArpTableData : ExpressRouteCircuitArpTablePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.age != nil {try container.encode(self.age, forKey: .age)}
-    if self.interface != nil {try container.encode(self.interface, forKey: .interface)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.macAddress != nil {try container.encode(self.macAddress, forKey: .macAddress)}
+    if self.age != nil { try container.encode(self.age, forKey: .age) }
+    if self.interface != nil { try container.encode(self.interface, forKey: .interface) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.macAddress != nil { try container.encode(self.macAddress, forKey: .macAddress) }
   }
 }
 

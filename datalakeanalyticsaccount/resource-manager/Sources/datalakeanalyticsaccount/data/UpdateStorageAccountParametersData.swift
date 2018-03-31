@@ -10,7 +10,7 @@ internal struct UpdateStorageAccountParametersData : UpdateStorageAccountParamet
         enum CodingKeys: String, CodingKey {case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdateStorageAccountParametersData : UpdateStorageAccountParamet
       if container.contains(.properties) {
         self.properties = try container.decode(UpdateStorageAccountPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdateStorageAccountParametersData : UpdateStorageAccountParamet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.properties != nil {try container.encode(self.properties as! UpdateStorageAccountPropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! UpdateStorageAccountPropertiesData?, forKey: .properties) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct UserSecretStoreFragmentData : UserSecretStoreFragmentProtocol {
         case keyVaultId = "keyVaultId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct UserSecretStoreFragmentData : UserSecretStoreFragmentProtocol {
     if container.contains(.keyVaultId) {
         self.keyVaultId = try container.decode(String?.self, forKey: .keyVaultId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct UserSecretStoreFragmentData : UserSecretStoreFragmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyVaultUri != nil {try container.encode(self.keyVaultUri, forKey: .keyVaultUri)}
-    if self.keyVaultId != nil {try container.encode(self.keyVaultId, forKey: .keyVaultId)}
+    if self.keyVaultUri != nil { try container.encode(self.keyVaultUri, forKey: .keyVaultUri) }
+    if self.keyVaultId != nil { try container.encode(self.keyVaultId, forKey: .keyVaultId) }
   }
 }
 

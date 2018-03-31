@@ -12,7 +12,7 @@ internal struct ManualScaleSettingsData : ManualScaleSettingsProtocol {
         case nodeDeallocationOption = "nodeDeallocationOption"
         }
 
-  public init(targetNodeCount: Int32)  {
+  public init(targetNodeCount: Int32) {
     self.targetNodeCount = targetNodeCount
   }
 
@@ -22,7 +22,7 @@ internal struct ManualScaleSettingsData : ManualScaleSettingsProtocol {
     if container.contains(.nodeDeallocationOption) {
         self.nodeDeallocationOption = try container.decode(DeallocationOptionEnum?.self, forKey: .nodeDeallocationOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ManualScaleSettingsData : ManualScaleSettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.targetNodeCount, forKey: .targetNodeCount)
-    if self.nodeDeallocationOption != nil {try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption)}
+    if self.nodeDeallocationOption != nil { try container.encode(self.nodeDeallocationOption, forKey: .nodeDeallocationOption) }
   }
 }
 

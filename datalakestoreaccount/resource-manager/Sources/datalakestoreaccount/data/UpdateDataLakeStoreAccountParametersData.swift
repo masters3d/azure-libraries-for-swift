@@ -12,7 +12,7 @@ internal struct UpdateDataLakeStoreAccountParametersData : UpdateDataLakeStoreAc
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct UpdateDataLakeStoreAccountParametersData : UpdateDataLakeStoreAc
     if container.contains(.properties) {
         self.properties = try container.decode(UpdateDataLakeStoreAccountPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct UpdateDataLakeStoreAccountParametersData : UpdateDataLakeStoreAc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.properties != nil {try container.encode(self.properties as! UpdateDataLakeStoreAccountPropertiesData?, forKey: .properties)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.properties != nil { try container.encode(self.properties as! UpdateDataLakeStoreAccountPropertiesData?, forKey: .properties) }
   }
 }
 

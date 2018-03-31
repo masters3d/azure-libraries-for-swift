@@ -14,7 +14,7 @@ internal struct TaskConstraintsData : TaskConstraintsProtocol {
         case maxTaskRetryCount = "maxTaskRetryCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TaskConstraintsData : TaskConstraintsProtocol {
     if container.contains(.maxTaskRetryCount) {
         self.maxTaskRetryCount = try container.decode(Int32?.self, forKey: .maxTaskRetryCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TaskConstraintsData : TaskConstraintsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxWallClockTime != nil {try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime)}
-    if self.retentionTime != nil {try container.encode(self.retentionTime, forKey: .retentionTime)}
-    if self.maxTaskRetryCount != nil {try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount)}
+    if self.maxWallClockTime != nil { try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime) }
+    if self.retentionTime != nil { try container.encode(self.retentionTime, forKey: .retentionTime) }
+    if self.maxTaskRetryCount != nil { try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount) }
   }
 }
 

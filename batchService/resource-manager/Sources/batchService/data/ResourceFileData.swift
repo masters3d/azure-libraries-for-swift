@@ -14,7 +14,7 @@ internal struct ResourceFileData : ResourceFileProtocol {
         case fileMode = "fileMode"
         }
 
-  public init(blobSource: String, filePath: String)  {
+  public init(blobSource: String, filePath: String) {
     self.blobSource = blobSource
     self.filePath = filePath
   }
@@ -26,7 +26,7 @@ internal struct ResourceFileData : ResourceFileProtocol {
     if container.contains(.fileMode) {
         self.fileMode = try container.decode(String?.self, forKey: .fileMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct ResourceFileData : ResourceFileProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.blobSource, forKey: .blobSource)
     try container.encode(self.filePath, forKey: .filePath)
-    if self.fileMode != nil {try container.encode(self.fileMode, forKey: .fileMode)}
+    if self.fileMode != nil { try container.encode(self.fileMode, forKey: .fileMode) }
   }
 }
 

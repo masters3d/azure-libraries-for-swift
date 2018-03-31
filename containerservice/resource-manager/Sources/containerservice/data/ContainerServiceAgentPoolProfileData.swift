@@ -18,7 +18,7 @@ internal struct ContainerServiceAgentPoolProfileData : ContainerServiceAgentPool
         case fqdn = "fqdn"
         }
 
-  public init(name: String, count: Int32, vmSize: ContainerServiceVMSizeTypesEnum, dnsPrefix: String)  {
+  public init(name: String, count: Int32, vmSize: ContainerServiceVMSizeTypesEnum, dnsPrefix: String) {
     self.name = name
     self.count = count
     self.vmSize = vmSize
@@ -34,7 +34,7 @@ internal struct ContainerServiceAgentPoolProfileData : ContainerServiceAgentPool
     if container.contains(.fqdn) {
         self.fqdn = try container.decode(String?.self, forKey: .fqdn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,7 +48,7 @@ internal struct ContainerServiceAgentPoolProfileData : ContainerServiceAgentPool
     try container.encode(self.count, forKey: .count)
     try container.encode(self.vmSize, forKey: .vmSize)
     try container.encode(self.dnsPrefix, forKey: .dnsPrefix)
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
   }
 }
 

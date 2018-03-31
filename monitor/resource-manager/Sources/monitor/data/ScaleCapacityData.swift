@@ -14,7 +14,7 @@ internal struct ScaleCapacityData : ScaleCapacityProtocol {
         case _default = "default"
         }
 
-  public init(minimum: String, maximum: String, _default: String)  {
+  public init(minimum: String, maximum: String, _default: String) {
     self.minimum = minimum
     self.maximum = maximum
     self._default = _default
@@ -25,7 +25,7 @@ internal struct ScaleCapacityData : ScaleCapacityProtocol {
       self.minimum = try container.decode(String.self, forKey: .minimum)
     self.maximum = try container.decode(String.self, forKey: .maximum)
     self._default = try container.decode(String.self, forKey: ._default)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

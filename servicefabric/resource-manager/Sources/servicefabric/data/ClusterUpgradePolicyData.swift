@@ -26,7 +26,7 @@ internal struct ClusterUpgradePolicyData : ClusterUpgradePolicyProtocol {
         case deltaHealthPolicy = "deltaHealthPolicy"
         }
 
-  public init(upgradeReplicaSetCheckTimeout: String, healthCheckWaitDuration: String, healthCheckStableDuration: String, healthCheckRetryTimeout: String, upgradeTimeout: String, upgradeDomainTimeout: String, healthPolicy: ClusterHealthPolicyProtocol)  {
+  public init(upgradeReplicaSetCheckTimeout: String, healthCheckWaitDuration: String, healthCheckStableDuration: String, healthCheckRetryTimeout: String, upgradeTimeout: String, upgradeDomainTimeout: String, healthPolicy: ClusterHealthPolicyProtocol) {
     self.upgradeReplicaSetCheckTimeout = upgradeReplicaSetCheckTimeout
     self.healthCheckWaitDuration = healthCheckWaitDuration
     self.healthCheckStableDuration = healthCheckStableDuration
@@ -51,7 +51,7 @@ internal struct ClusterUpgradePolicyData : ClusterUpgradePolicyProtocol {
     if container.contains(.deltaHealthPolicy) {
         self.deltaHealthPolicy = try container.decode(ClusterUpgradeDeltaHealthPolicyData?.self, forKey: .deltaHealthPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -61,7 +61,7 @@ internal struct ClusterUpgradePolicyData : ClusterUpgradePolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.forceRestart != nil {try container.encode(self.forceRestart, forKey: .forceRestart)}
+    if self.forceRestart != nil { try container.encode(self.forceRestart, forKey: .forceRestart) }
     try container.encode(self.upgradeReplicaSetCheckTimeout, forKey: .upgradeReplicaSetCheckTimeout)
     try container.encode(self.healthCheckWaitDuration, forKey: .healthCheckWaitDuration)
     try container.encode(self.healthCheckStableDuration, forKey: .healthCheckStableDuration)
@@ -69,7 +69,7 @@ internal struct ClusterUpgradePolicyData : ClusterUpgradePolicyProtocol {
     try container.encode(self.upgradeTimeout, forKey: .upgradeTimeout)
     try container.encode(self.upgradeDomainTimeout, forKey: .upgradeDomainTimeout)
     try container.encode(self.healthPolicy as! ClusterHealthPolicyData, forKey: .healthPolicy)
-    if self.deltaHealthPolicy != nil {try container.encode(self.deltaHealthPolicy as! ClusterUpgradeDeltaHealthPolicyData?, forKey: .deltaHealthPolicy)}
+    if self.deltaHealthPolicy != nil { try container.encode(self.deltaHealthPolicy as! ClusterUpgradeDeltaHealthPolicyData?, forKey: .deltaHealthPolicy) }
   }
 }
 

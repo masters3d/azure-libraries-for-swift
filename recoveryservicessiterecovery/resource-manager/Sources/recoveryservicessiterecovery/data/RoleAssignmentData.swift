@@ -18,7 +18,7 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
         case roleDefinitionId = "roleDefinitionId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
     if container.contains(.roleDefinitionId) {
         self.roleDefinitionId = try container.decode(String?.self, forKey: .roleDefinitionId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.scope != nil {try container.encode(self.scope, forKey: .scope)}
-    if self.principalId != nil {try container.encode(self.principalId, forKey: .principalId)}
-    if self.roleDefinitionId != nil {try container.encode(self.roleDefinitionId, forKey: .roleDefinitionId)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.scope != nil { try container.encode(self.scope, forKey: .scope) }
+    if self.principalId != nil { try container.encode(self.principalId, forKey: .principalId) }
+    if self.roleDefinitionId != nil { try container.encode(self.roleDefinitionId, forKey: .roleDefinitionId) }
   }
 }
 

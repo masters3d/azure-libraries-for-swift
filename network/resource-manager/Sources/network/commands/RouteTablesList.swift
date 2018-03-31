@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RouteTablesList  {
+public protocol RouteTablesList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol RouteTablesList  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RouteTableListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RouteTableListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.RouteTables {
@@ -34,7 +34,7 @@ extension Commands.RouteTables {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -53,15 +53,15 @@ extension Commands.RouteTables {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RouteTableListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RouteTableListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

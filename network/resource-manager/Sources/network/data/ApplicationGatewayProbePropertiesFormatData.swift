@@ -28,7 +28,7 @@ internal struct ApplicationGatewayProbePropertiesFormatData : ApplicationGateway
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ApplicationGatewayProbePropertiesFormatData : ApplicationGateway
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct ApplicationGatewayProbePropertiesFormatData : ApplicationGateway
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.host != nil {try container.encode(self.host, forKey: .host)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
-    if self.timeout != nil {try container.encode(self.timeout, forKey: .timeout)}
-    if self.unhealthyThreshold != nil {try container.encode(self.unhealthyThreshold, forKey: .unhealthyThreshold)}
-    if self.pickHostNameFromBackendHttpSettings != nil {try container.encode(self.pickHostNameFromBackendHttpSettings, forKey: .pickHostNameFromBackendHttpSettings)}
-    if self.minServers != nil {try container.encode(self.minServers, forKey: .minServers)}
-    if self.match != nil {try container.encode(self.match as! ApplicationGatewayProbeHealthResponseMatchData?, forKey: .match)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.host != nil { try container.encode(self.host, forKey: .host) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
+    if self.timeout != nil { try container.encode(self.timeout, forKey: .timeout) }
+    if self.unhealthyThreshold != nil { try container.encode(self.unhealthyThreshold, forKey: .unhealthyThreshold) }
+    if self.pickHostNameFromBackendHttpSettings != nil { try container.encode(self.pickHostNameFromBackendHttpSettings, forKey: .pickHostNameFromBackendHttpSettings) }
+    if self.minServers != nil { try container.encode(self.minServers, forKey: .minServers) }
+    if self.match != nil { try container.encode(self.match as! ApplicationGatewayProbeHealthResponseMatchData?, forKey: .match) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

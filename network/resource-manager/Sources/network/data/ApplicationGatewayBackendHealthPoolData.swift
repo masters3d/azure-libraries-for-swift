@@ -12,7 +12,7 @@ internal struct ApplicationGatewayBackendHealthPoolData : ApplicationGatewayBack
         case backendHttpSettingsCollection = "backendHttpSettingsCollection"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ApplicationGatewayBackendHealthPoolData : ApplicationGatewayBack
     if container.contains(.backendHttpSettingsCollection) {
         self.backendHttpSettingsCollection = try container.decode([ApplicationGatewayBackendHealthHttpSettingsData?]?.self, forKey: .backendHttpSettingsCollection)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ApplicationGatewayBackendHealthPoolData : ApplicationGatewayBack
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backendAddressPool != nil {try container.encode(self.backendAddressPool as! ApplicationGatewayBackendAddressPoolData?, forKey: .backendAddressPool)}
-    if self.backendHttpSettingsCollection != nil {try container.encode(self.backendHttpSettingsCollection as! [ApplicationGatewayBackendHealthHttpSettingsData?]?, forKey: .backendHttpSettingsCollection)}
+    if self.backendAddressPool != nil { try container.encode(self.backendAddressPool as! ApplicationGatewayBackendAddressPoolData?, forKey: .backendAddressPool) }
+    if self.backendHttpSettingsCollection != nil { try container.encode(self.backendHttpSettingsCollection as! [ApplicationGatewayBackendHealthHttpSettingsData?]?, forKey: .backendHttpSettingsCollection) }
   }
 }
 

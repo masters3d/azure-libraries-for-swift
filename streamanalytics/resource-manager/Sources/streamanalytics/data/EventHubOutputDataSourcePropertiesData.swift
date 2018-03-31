@@ -18,7 +18,7 @@ internal struct EventHubOutputDataSourcePropertiesData : EventHubOutputDataSourc
         case partitionKey = "partitionKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct EventHubOutputDataSourcePropertiesData : EventHubOutputDataSourc
     if container.contains(.partitionKey) {
         self.partitionKey = try container.decode(String?.self, forKey: .partitionKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct EventHubOutputDataSourcePropertiesData : EventHubOutputDataSourc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusNamespace != nil {try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace)}
-    if self.sharedAccessPolicyName != nil {try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName)}
-    if self.sharedAccessPolicyKey != nil {try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey)}
-    if self.eventHubName != nil {try container.encode(self.eventHubName, forKey: .eventHubName)}
-    if self.partitionKey != nil {try container.encode(self.partitionKey, forKey: .partitionKey)}
+    if self.serviceBusNamespace != nil { try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace) }
+    if self.sharedAccessPolicyName != nil { try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName) }
+    if self.sharedAccessPolicyKey != nil { try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey) }
+    if self.eventHubName != nil { try container.encode(self.eventHubName, forKey: .eventHubName) }
+    if self.partitionKey != nil { try container.encode(self.partitionKey, forKey: .partitionKey) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct SyncGroupSchemaTableData : SyncGroupSchemaTableProtocol {
         case quotedName = "quotedName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SyncGroupSchemaTableData : SyncGroupSchemaTableProtocol {
     if container.contains(.quotedName) {
         self.quotedName = try container.decode(String?.self, forKey: .quotedName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SyncGroupSchemaTableData : SyncGroupSchemaTableProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.columns != nil {try container.encode(self.columns as! [SyncGroupSchemaTableColumnData?]?, forKey: .columns)}
-    if self.quotedName != nil {try container.encode(self.quotedName, forKey: .quotedName)}
+    if self.columns != nil { try container.encode(self.columns as! [SyncGroupSchemaTableColumnData?]?, forKey: .columns) }
+    if self.quotedName != nil { try container.encode(self.quotedName, forKey: .quotedName) }
   }
 }
 

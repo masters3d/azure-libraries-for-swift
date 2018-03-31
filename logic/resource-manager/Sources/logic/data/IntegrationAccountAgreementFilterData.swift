@@ -10,14 +10,14 @@ internal struct IntegrationAccountAgreementFilterData : IntegrationAccountAgreem
         enum CodingKeys: String, CodingKey {case agreementType = "agreementType"
         }
 
-  public init(agreementType: AgreementTypeEnum)  {
+  public init(agreementType: AgreementTypeEnum) {
     self.agreementType = agreementType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.agreementType = try container.decode(AgreementTypeEnum.self, forKey: .agreementType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

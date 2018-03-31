@@ -14,7 +14,7 @@ internal struct FailoverGroupUpdatePropertiesData : FailoverGroupUpdatePropertie
         case databases = "databases"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct FailoverGroupUpdatePropertiesData : FailoverGroupUpdatePropertie
     if container.contains(.databases) {
         self.databases = try container.decode([String]?.self, forKey: .databases)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct FailoverGroupUpdatePropertiesData : FailoverGroupUpdatePropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.readWriteEndpoint != nil {try container.encode(self.readWriteEndpoint as! FailoverGroupReadWriteEndpointData?, forKey: .readWriteEndpoint)}
-    if self.readOnlyEndpoint != nil {try container.encode(self.readOnlyEndpoint as! FailoverGroupReadOnlyEndpointData?, forKey: .readOnlyEndpoint)}
-    if self.databases != nil {try container.encode(self.databases as! [String]?, forKey: .databases)}
+    if self.readWriteEndpoint != nil { try container.encode(self.readWriteEndpoint as! FailoverGroupReadWriteEndpointData?, forKey: .readWriteEndpoint) }
+    if self.readOnlyEndpoint != nil { try container.encode(self.readOnlyEndpoint as! FailoverGroupReadOnlyEndpointData?, forKey: .readOnlyEndpoint) }
+    if self.databases != nil { try container.encode(self.databases as! [String]?, forKey: .databases) }
   }
 }
 

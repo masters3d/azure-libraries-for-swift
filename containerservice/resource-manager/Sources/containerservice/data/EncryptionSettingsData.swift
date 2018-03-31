@@ -14,7 +14,7 @@ internal struct EncryptionSettingsData : EncryptionSettingsProtocol {
         case keyEncryptionKey = "keyEncryptionKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct EncryptionSettingsData : EncryptionSettingsProtocol {
     if container.contains(.keyEncryptionKey) {
         self.keyEncryptionKey = try container.decode(KeyVaultAndKeyReferenceData?.self, forKey: .keyEncryptionKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct EncryptionSettingsData : EncryptionSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.diskEncryptionKey != nil {try container.encode(self.diskEncryptionKey as! KeyVaultAndSecretReferenceData?, forKey: .diskEncryptionKey)}
-    if self.keyEncryptionKey != nil {try container.encode(self.keyEncryptionKey as! KeyVaultAndKeyReferenceData?, forKey: .keyEncryptionKey)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.diskEncryptionKey != nil { try container.encode(self.diskEncryptionKey as! KeyVaultAndSecretReferenceData?, forKey: .diskEncryptionKey) }
+    if self.keyEncryptionKey != nil { try container.encode(self.keyEncryptionKey as! KeyVaultAndKeyReferenceData?, forKey: .keyEncryptionKey) }
   }
 }
 

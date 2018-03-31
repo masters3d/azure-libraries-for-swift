@@ -26,7 +26,7 @@ internal struct ContainerServicePropertiesData : ContainerServicePropertiesProto
         case diagnosticsProfile = "diagnosticsProfile"
         }
 
-  public init(masterProfile: ContainerServiceMasterProfileProtocol, agentPoolProfiles: [ContainerServiceAgentPoolProfileProtocol], linuxProfile: ContainerServiceLinuxProfileProtocol)  {
+  public init(masterProfile: ContainerServiceMasterProfileProtocol, agentPoolProfiles: [ContainerServiceAgentPoolProfileProtocol], linuxProfile: ContainerServiceLinuxProfileProtocol) {
     self.masterProfile = masterProfile
     self.agentPoolProfiles = agentPoolProfiles
     self.linuxProfile = linuxProfile
@@ -55,7 +55,7 @@ internal struct ContainerServicePropertiesData : ContainerServicePropertiesProto
     if container.contains(.diagnosticsProfile) {
         self.diagnosticsProfile = try container.decode(ContainerServiceDiagnosticsProfileData?.self, forKey: .diagnosticsProfile)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -65,15 +65,15 @@ internal struct ContainerServicePropertiesData : ContainerServicePropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.orchestratorProfile != nil {try container.encode(self.orchestratorProfile as! ContainerServiceOrchestratorProfileData?, forKey: .orchestratorProfile)}
-    if self.customProfile != nil {try container.encode(self.customProfile as! ContainerServiceCustomProfileData?, forKey: .customProfile)}
-    if self.servicePrincipalProfile != nil {try container.encode(self.servicePrincipalProfile as! ContainerServiceServicePrincipalProfileData?, forKey: .servicePrincipalProfile)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.orchestratorProfile != nil { try container.encode(self.orchestratorProfile as! ContainerServiceOrchestratorProfileData?, forKey: .orchestratorProfile) }
+    if self.customProfile != nil { try container.encode(self.customProfile as! ContainerServiceCustomProfileData?, forKey: .customProfile) }
+    if self.servicePrincipalProfile != nil { try container.encode(self.servicePrincipalProfile as! ContainerServiceServicePrincipalProfileData?, forKey: .servicePrincipalProfile) }
     try container.encode(self.masterProfile as! ContainerServiceMasterProfileData, forKey: .masterProfile)
     try container.encode(self.agentPoolProfiles as! [ContainerServiceAgentPoolProfileData], forKey: .agentPoolProfiles)
-    if self.windowsProfile != nil {try container.encode(self.windowsProfile as! ContainerServiceWindowsProfileData?, forKey: .windowsProfile)}
+    if self.windowsProfile != nil { try container.encode(self.windowsProfile as! ContainerServiceWindowsProfileData?, forKey: .windowsProfile) }
     try container.encode(self.linuxProfile as! ContainerServiceLinuxProfileData, forKey: .linuxProfile)
-    if self.diagnosticsProfile != nil {try container.encode(self.diagnosticsProfile as! ContainerServiceDiagnosticsProfileData?, forKey: .diagnosticsProfile)}
+    if self.diagnosticsProfile != nil { try container.encode(self.diagnosticsProfile as! ContainerServiceDiagnosticsProfileData?, forKey: .diagnosticsProfile) }
   }
 }
 

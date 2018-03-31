@@ -36,7 +36,7 @@ internal struct HyperVReplicaAzureEnableProtectionInputData : HyperVReplicaAzure
         case useManagedDisks = "useManagedDisks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct HyperVReplicaAzureEnableProtectionInputData : HyperVReplicaAzure
     if container.contains(.useManagedDisks) {
         self.useManagedDisks = try container.decode(String?.self, forKey: .useManagedDisks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,20 +93,20 @@ internal struct HyperVReplicaAzureEnableProtectionInputData : HyperVReplicaAzure
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hvHostVmId != nil {try container.encode(self.hvHostVmId, forKey: .hvHostVmId)}
-    if self.vmName != nil {try container.encode(self.vmName, forKey: .vmName)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.vhdId != nil {try container.encode(self.vhdId, forKey: .vhdId)}
-    if self.targetStorageAccountId != nil {try container.encode(self.targetStorageAccountId, forKey: .targetStorageAccountId)}
-    if self.targetAzureNetworkId != nil {try container.encode(self.targetAzureNetworkId, forKey: .targetAzureNetworkId)}
-    if self.targetAzureSubnetId != nil {try container.encode(self.targetAzureSubnetId, forKey: .targetAzureSubnetId)}
-    if self.enableRdpOnTargetOption != nil {try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption)}
-    if self.targetAzureVmName != nil {try container.encode(self.targetAzureVmName, forKey: .targetAzureVmName)}
-    if self.logStorageAccountId != nil {try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId)}
-    if self.disksToInclude != nil {try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude)}
-    if self.targetAzureV1ResourceGroupId != nil {try container.encode(self.targetAzureV1ResourceGroupId, forKey: .targetAzureV1ResourceGroupId)}
-    if self.targetAzureV2ResourceGroupId != nil {try container.encode(self.targetAzureV2ResourceGroupId, forKey: .targetAzureV2ResourceGroupId)}
-    if self.useManagedDisks != nil {try container.encode(self.useManagedDisks, forKey: .useManagedDisks)}
+    if self.hvHostVmId != nil { try container.encode(self.hvHostVmId, forKey: .hvHostVmId) }
+    if self.vmName != nil { try container.encode(self.vmName, forKey: .vmName) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.vhdId != nil { try container.encode(self.vhdId, forKey: .vhdId) }
+    if self.targetStorageAccountId != nil { try container.encode(self.targetStorageAccountId, forKey: .targetStorageAccountId) }
+    if self.targetAzureNetworkId != nil { try container.encode(self.targetAzureNetworkId, forKey: .targetAzureNetworkId) }
+    if self.targetAzureSubnetId != nil { try container.encode(self.targetAzureSubnetId, forKey: .targetAzureSubnetId) }
+    if self.enableRdpOnTargetOption != nil { try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption) }
+    if self.targetAzureVmName != nil { try container.encode(self.targetAzureVmName, forKey: .targetAzureVmName) }
+    if self.logStorageAccountId != nil { try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId) }
+    if self.disksToInclude != nil { try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude) }
+    if self.targetAzureV1ResourceGroupId != nil { try container.encode(self.targetAzureV1ResourceGroupId, forKey: .targetAzureV1ResourceGroupId) }
+    if self.targetAzureV2ResourceGroupId != nil { try container.encode(self.targetAzureV2ResourceGroupId, forKey: .targetAzureV2ResourceGroupId) }
+    if self.useManagedDisks != nil { try container.encode(self.useManagedDisks, forKey: .useManagedDisks) }
   }
 }
 

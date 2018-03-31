@@ -12,7 +12,7 @@ internal struct UnmanagedFileSystemReferenceData : UnmanagedFileSystemReferenceP
         case relativeMountPath = "relativeMountPath"
         }
 
-  public init(mountCommand: String, relativeMountPath: String)  {
+  public init(mountCommand: String, relativeMountPath: String) {
     self.mountCommand = mountCommand
     self.relativeMountPath = relativeMountPath
   }
@@ -21,7 +21,7 @@ internal struct UnmanagedFileSystemReferenceData : UnmanagedFileSystemReferenceP
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.mountCommand = try container.decode(String.self, forKey: .mountCommand)
     self.relativeMountPath = try container.decode(String.self, forKey: .relativeMountPath)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

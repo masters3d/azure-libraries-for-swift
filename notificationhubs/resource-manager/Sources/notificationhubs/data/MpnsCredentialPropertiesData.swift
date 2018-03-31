@@ -14,7 +14,7 @@ internal struct MpnsCredentialPropertiesData : MpnsCredentialPropertiesProtocol 
         case thumbprint = "thumbprint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct MpnsCredentialPropertiesData : MpnsCredentialPropertiesProtocol 
     if container.contains(.thumbprint) {
         self.thumbprint = try container.decode(String?.self, forKey: .thumbprint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct MpnsCredentialPropertiesData : MpnsCredentialPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.mpnsCertificate != nil {try container.encode(self.mpnsCertificate, forKey: .mpnsCertificate)}
-    if self.certificateKey != nil {try container.encode(self.certificateKey, forKey: .certificateKey)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.mpnsCertificate != nil { try container.encode(self.mpnsCertificate, forKey: .mpnsCertificate) }
+    if self.certificateKey != nil { try container.encode(self.certificateKey, forKey: .certificateKey) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
   }
 }
 

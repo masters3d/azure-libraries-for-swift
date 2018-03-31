@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PoolCreate  {
+public protocol PoolCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
@@ -9,9 +9,9 @@ public protocol PoolCreate  {
     var apiVersion : String { get set }
     var ifMatch : String? { get set }
     var ifNoneMatch : String? { get set }
-    var parameters :  PoolProtocol?  { get set }
+    var parameters :  PoolProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PoolProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PoolProtocol?, Error?) -> Void)
 }
 
 extension Commands.Pool {
@@ -41,7 +41,7 @@ extension Commands.Pool {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{poolName}"] = String(describing: self.poolName)
@@ -67,12 +67,12 @@ extension Commands.Pool {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PoolData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PoolProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PoolProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: PoolData?, error: Error?) in
                 completionHandler(result, error)

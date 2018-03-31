@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachinesPerformMaintenance  {
+public protocol VirtualMachinesPerformMaintenance {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var vmName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (OperationStatusResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (OperationStatusResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachines {
@@ -31,7 +31,7 @@ extension Commands.VirtualMachines {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{vmName}"] = String(describing: self.vmName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -44,12 +44,12 @@ extension Commands.VirtualMachines {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(OperationStatusResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (OperationStatusResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (OperationStatusResponseProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: OperationStatusResponseData?, error: Error?) in
                 completionHandler(result, error)

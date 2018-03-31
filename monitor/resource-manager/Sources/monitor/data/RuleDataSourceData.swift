@@ -10,7 +10,7 @@ internal struct RuleDataSourceData : RuleDataSourceProtocol {
         enum CodingKeys: String, CodingKey {case resourceUri = "resourceUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RuleDataSourceData : RuleDataSourceProtocol {
       if container.contains(.resourceUri) {
         self.resourceUri = try container.decode(String?.self, forKey: .resourceUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RuleDataSourceData : RuleDataSourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceUri != nil {try container.encode(self.resourceUri, forKey: .resourceUri)}
+    if self.resourceUri != nil { try container.encode(self.resourceUri, forKey: .resourceUri) }
   }
 }
 

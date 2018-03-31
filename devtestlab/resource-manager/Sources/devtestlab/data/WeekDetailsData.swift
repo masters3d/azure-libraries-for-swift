@@ -12,7 +12,7 @@ internal struct WeekDetailsData : WeekDetailsProtocol {
         case time = "time"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct WeekDetailsData : WeekDetailsProtocol {
     if container.contains(.time) {
         self.time = try container.decode(String?.self, forKey: .time)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct WeekDetailsData : WeekDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.weekdays != nil {try container.encode(self.weekdays as! [String]?, forKey: .weekdays)}
-    if self.time != nil {try container.encode(self.time, forKey: .time)}
+    if self.weekdays != nil { try container.encode(self.weekdays as! [String]?, forKey: .weekdays) }
+    if self.time != nil { try container.encode(self.time, forKey: .time) }
   }
 }
 

@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LogProfilesGet  {
+public protocol LogProfilesGet {
     var headerParameters: [String: String] { get set }
     var logProfileName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LogProfileResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LogProfileResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.LogProfiles {
@@ -26,7 +26,7 @@ extension Commands.LogProfiles {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{logProfileName}"] = String(describing: self.logProfileName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -38,12 +38,12 @@ extension Commands.LogProfiles {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LogProfileResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LogProfileResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LogProfileResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: LogProfileResourceData?, error: Error?) in
                 completionHandler(result, error)

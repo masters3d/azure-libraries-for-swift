@@ -82,7 +82,7 @@ internal struct InMageReplicationDetailsData : InMageReplicationDetailsProtocol,
         case osVersion = "osVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -198,7 +198,7 @@ internal struct InMageReplicationDetailsData : InMageReplicationDetailsProtocol,
     if container.contains(.osVersion) {
         self.osVersion = try container.decode(String?.self, forKey: .osVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -208,53 +208,53 @@ internal struct InMageReplicationDetailsData : InMageReplicationDetailsProtocol,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.activeSiteType != nil {try container.encode(self.activeSiteType, forKey: .activeSiteType)}
-    if self.sourceVmCpuCount != nil {try container.encode(self.sourceVmCpuCount, forKey: .sourceVmCpuCount)}
-    if self.sourceVmRamSizeInMB != nil {try container.encode(self.sourceVmRamSizeInMB, forKey: .sourceVmRamSizeInMB)}
-    if self.osDetails != nil {try container.encode(self.osDetails as! OSDiskDetailsData?, forKey: .osDetails)}
-    if self.protectionStage != nil {try container.encode(self.protectionStage, forKey: .protectionStage)}
-    if self.vmId != nil {try container.encode(self.vmId, forKey: .vmId)}
-    if self.vmProtectionState != nil {try container.encode(self.vmProtectionState, forKey: .vmProtectionState)}
-    if self.vmProtectionStateDescription != nil {try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription)}
-    if self.resyncDetails != nil {try container.encode(self.resyncDetails as! InitialReplicationDetailsData?, forKey: .resyncDetails)}
+    if self.activeSiteType != nil { try container.encode(self.activeSiteType, forKey: .activeSiteType) }
+    if self.sourceVmCpuCount != nil { try container.encode(self.sourceVmCpuCount, forKey: .sourceVmCpuCount) }
+    if self.sourceVmRamSizeInMB != nil { try container.encode(self.sourceVmRamSizeInMB, forKey: .sourceVmRamSizeInMB) }
+    if self.osDetails != nil { try container.encode(self.osDetails as! OSDiskDetailsData?, forKey: .osDetails) }
+    if self.protectionStage != nil { try container.encode(self.protectionStage, forKey: .protectionStage) }
+    if self.vmId != nil { try container.encode(self.vmId, forKey: .vmId) }
+    if self.vmProtectionState != nil { try container.encode(self.vmProtectionState, forKey: .vmProtectionState) }
+    if self.vmProtectionStateDescription != nil { try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription) }
+    if self.resyncDetails != nil { try container.encode(self.resyncDetails as! InitialReplicationDetailsData?, forKey: .resyncDetails) }
     if self.retentionWindowStart != nil {
         try container.encode(DateConverter.toString(date: self.retentionWindowStart!, format: .dateTime), forKey: .retentionWindowStart)
     }
     if self.retentionWindowEnd != nil {
         try container.encode(DateConverter.toString(date: self.retentionWindowEnd!, format: .dateTime), forKey: .retentionWindowEnd)
     }
-    if self.compressedDataRateInMB != nil {try container.encode(self.compressedDataRateInMB, forKey: .compressedDataRateInMB)}
-    if self.uncompressedDataRateInMB != nil {try container.encode(self.uncompressedDataRateInMB, forKey: .uncompressedDataRateInMB)}
-    if self.rpoInSeconds != nil {try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds)}
-    if self.protectedDisks != nil {try container.encode(self.protectedDisks as! [InMageProtectedDiskDetailsData?]?, forKey: .protectedDisks)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
+    if self.compressedDataRateInMB != nil { try container.encode(self.compressedDataRateInMB, forKey: .compressedDataRateInMB) }
+    if self.uncompressedDataRateInMB != nil { try container.encode(self.uncompressedDataRateInMB, forKey: .uncompressedDataRateInMB) }
+    if self.rpoInSeconds != nil { try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds) }
+    if self.protectedDisks != nil { try container.encode(self.protectedDisks as! [InMageProtectedDiskDetailsData?]?, forKey: .protectedDisks) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
     if self.lastHeartbeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartbeat!, format: .dateTime), forKey: .lastHeartbeat)
     }
-    if self.processServerId != nil {try container.encode(self.processServerId, forKey: .processServerId)}
-    if self.masterTargetId != nil {try container.encode(self.masterTargetId, forKey: .masterTargetId)}
-    if self.consistencyPoints != nil {try container.encode(self.consistencyPoints, forKey: .consistencyPoints)}
-    if self.diskResized != nil {try container.encode(self.diskResized, forKey: .diskResized)}
-    if self.rebootAfterUpdateStatus != nil {try container.encode(self.rebootAfterUpdateStatus, forKey: .rebootAfterUpdateStatus)}
-    if self.multiVmGroupId != nil {try container.encode(self.multiVmGroupId, forKey: .multiVmGroupId)}
-    if self.multiVmGroupName != nil {try container.encode(self.multiVmGroupName, forKey: .multiVmGroupName)}
-    if self.multiVmSyncStatus != nil {try container.encode(self.multiVmSyncStatus, forKey: .multiVmSyncStatus)}
-    if self.agentDetails != nil {try container.encode(self.agentDetails as! InMageAgentDetailsData?, forKey: .agentDetails)}
-    if self.vCenterInfrastructureId != nil {try container.encode(self.vCenterInfrastructureId, forKey: .vCenterInfrastructureId)}
-    if self.infrastructureVmId != nil {try container.encode(self.infrastructureVmId, forKey: .infrastructureVmId)}
-    if self.vmNics != nil {try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics)}
-    if self.discoveryType != nil {try container.encode(self.discoveryType, forKey: .discoveryType)}
-    if self.azureStorageAccountId != nil {try container.encode(self.azureStorageAccountId, forKey: .azureStorageAccountId)}
-    if self.datastores != nil {try container.encode(self.datastores as! [String]?, forKey: .datastores)}
-    if self.validationErrors != nil {try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors)}
+    if self.processServerId != nil { try container.encode(self.processServerId, forKey: .processServerId) }
+    if self.masterTargetId != nil { try container.encode(self.masterTargetId, forKey: .masterTargetId) }
+    if self.consistencyPoints != nil { try container.encode(self.consistencyPoints, forKey: .consistencyPoints) }
+    if self.diskResized != nil { try container.encode(self.diskResized, forKey: .diskResized) }
+    if self.rebootAfterUpdateStatus != nil { try container.encode(self.rebootAfterUpdateStatus, forKey: .rebootAfterUpdateStatus) }
+    if self.multiVmGroupId != nil { try container.encode(self.multiVmGroupId, forKey: .multiVmGroupId) }
+    if self.multiVmGroupName != nil { try container.encode(self.multiVmGroupName, forKey: .multiVmGroupName) }
+    if self.multiVmSyncStatus != nil { try container.encode(self.multiVmSyncStatus, forKey: .multiVmSyncStatus) }
+    if self.agentDetails != nil { try container.encode(self.agentDetails as! InMageAgentDetailsData?, forKey: .agentDetails) }
+    if self.vCenterInfrastructureId != nil { try container.encode(self.vCenterInfrastructureId, forKey: .vCenterInfrastructureId) }
+    if self.infrastructureVmId != nil { try container.encode(self.infrastructureVmId, forKey: .infrastructureVmId) }
+    if self.vmNics != nil { try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics) }
+    if self.discoveryType != nil { try container.encode(self.discoveryType, forKey: .discoveryType) }
+    if self.azureStorageAccountId != nil { try container.encode(self.azureStorageAccountId, forKey: .azureStorageAccountId) }
+    if self.datastores != nil { try container.encode(self.datastores as! [String]?, forKey: .datastores) }
+    if self.validationErrors != nil { try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors) }
     if self.lastRpoCalculatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRpoCalculatedTime!, format: .dateTime), forKey: .lastRpoCalculatedTime)
     }
     if self.lastUpdateReceivedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastUpdateReceivedTime!, format: .dateTime), forKey: .lastUpdateReceivedTime)
     }
-    if self.replicaId != nil {try container.encode(self.replicaId, forKey: .replicaId)}
-    if self.osVersion != nil {try container.encode(self.osVersion, forKey: .osVersion)}
+    if self.replicaId != nil { try container.encode(self.replicaId, forKey: .replicaId) }
+    if self.osVersion != nil { try container.encode(self.osVersion, forKey: .osVersion) }
   }
 }
 

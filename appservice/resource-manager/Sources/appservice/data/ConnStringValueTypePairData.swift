@@ -12,7 +12,7 @@ internal struct ConnStringValueTypePairData : ConnStringValueTypePairProtocol {
         case type = "type"
         }
 
-  public init(value: String, type: ConnectionStringTypeEnum)  {
+  public init(value: String, type: ConnectionStringTypeEnum) {
     self.value = value
     self.type = type
   }
@@ -21,7 +21,7 @@ internal struct ConnStringValueTypePairData : ConnStringValueTypePairProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.value = try container.decode(String.self, forKey: .value)
     self.type = try container.decode(ConnectionStringTypeEnum.self, forKey: .type)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

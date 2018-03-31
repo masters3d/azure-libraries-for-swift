@@ -12,7 +12,7 @@ internal struct DscNodeUpdateParametersData : DscNodeUpdateParametersProtocol {
         case nodeConfiguration = "nodeConfiguration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DscNodeUpdateParametersData : DscNodeUpdateParametersProtocol {
     if container.contains(.nodeConfiguration) {
         self.nodeConfiguration = try container.decode(DscNodeConfigurationAssociationPropertyData?.self, forKey: .nodeConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DscNodeUpdateParametersData : DscNodeUpdateParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nodeId != nil {try container.encode(self.nodeId, forKey: .nodeId)}
-    if self.nodeConfiguration != nil {try container.encode(self.nodeConfiguration as! DscNodeConfigurationAssociationPropertyData?, forKey: .nodeConfiguration)}
+    if self.nodeId != nil { try container.encode(self.nodeId, forKey: .nodeId) }
+    if self.nodeConfiguration != nil { try container.encode(self.nodeConfiguration as! DscNodeConfigurationAssociationPropertyData?, forKey: .nodeConfiguration) }
   }
 }
 

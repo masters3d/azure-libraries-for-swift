@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RelationshipsDelete  {
+public protocol RelationshipsDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var hubName : String { get set }
@@ -8,7 +8,7 @@ public protocol RelationshipsDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Relationships {
@@ -33,7 +33,7 @@ extension Commands.Relationships {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{hubName}"] = String(describing: self.hubName)
             self.pathParameters["{relationshipName}"] = String(describing: self.relationshipName)
@@ -43,7 +43,7 @@ extension Commands.Relationships {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

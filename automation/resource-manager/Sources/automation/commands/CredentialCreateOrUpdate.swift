@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CredentialCreateOrUpdate  {
+public protocol CredentialCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var credentialName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CredentialCreateOrUpdateParametersProtocol?  { get set }
+    var parameters :  CredentialCreateOrUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CredentialProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CredentialProtocol?, Error?) -> Void)
 }
 
 extension Commands.Credential {
@@ -35,7 +35,7 @@ extension Commands.Credential {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{credentialName}"] = String(describing: self.credentialName)
@@ -59,12 +59,12 @@ extension Commands.Credential {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CredentialData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CredentialProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CredentialProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CredentialData?, error: Error?) in
                 completionHandler(result, error)

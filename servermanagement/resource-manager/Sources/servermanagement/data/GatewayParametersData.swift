@@ -14,7 +14,7 @@ internal struct GatewayParametersData : GatewayParametersProtocol {
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct GatewayParametersData : GatewayParametersProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode(GatewayParametersPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct GatewayParametersData : GatewayParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.properties != nil {try container.encode(self.properties as! GatewayParametersPropertiesData?, forKey: .properties)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.properties != nil { try container.encode(self.properties as! GatewayParametersPropertiesData?, forKey: .properties) }
   }
 }
 

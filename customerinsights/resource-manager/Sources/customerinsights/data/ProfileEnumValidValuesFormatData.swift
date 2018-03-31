@@ -12,7 +12,7 @@ internal struct ProfileEnumValidValuesFormatData : ProfileEnumValidValuesFormatP
         case localizedValueNames = "localizedValueNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ProfileEnumValidValuesFormatData : ProfileEnumValidValuesFormatP
     if container.contains(.localizedValueNames) {
         self.localizedValueNames = try container.decode([String:String]?.self, forKey: .localizedValueNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ProfileEnumValidValuesFormatData : ProfileEnumValidValuesFormatP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.localizedValueNames != nil {try container.encode(self.localizedValueNames, forKey: .localizedValueNames)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.localizedValueNames != nil { try container.encode(self.localizedValueNames, forKey: .localizedValueNames) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct IaasVMBackupRequestData : IaasVMBackupRequestProtocol, BackupReq
         enum CodingKeys: String, CodingKey {case recoveryPointExpiryTimeInUTC = "recoveryPointExpiryTimeInUTC"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct IaasVMBackupRequestData : IaasVMBackupRequestProtocol, BackupReq
       if container.contains(.recoveryPointExpiryTimeInUTC) {
         self.recoveryPointExpiryTimeInUTC = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .recoveryPointExpiryTimeInUTC)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -10,7 +10,7 @@ internal struct HourDetailsData : HourDetailsProtocol {
         enum CodingKeys: String, CodingKey {case minute = "minute"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct HourDetailsData : HourDetailsProtocol {
       if container.contains(.minute) {
         self.minute = try container.decode(Int32?.self, forKey: .minute)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct HourDetailsData : HourDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.minute != nil {try container.encode(self.minute, forKey: .minute)}
+    if self.minute != nil { try container.encode(self.minute, forKey: .minute) }
   }
 }
 

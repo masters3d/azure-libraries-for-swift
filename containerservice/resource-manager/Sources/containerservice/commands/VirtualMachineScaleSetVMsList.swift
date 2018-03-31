@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachineScaleSetVMsList  {
+public protocol VirtualMachineScaleSetVMsList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -12,7 +12,7 @@ public protocol VirtualMachineScaleSetVMsList  {
     var expand : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualMachineScaleSetVMListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualMachineScaleSetVMListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachineScaleSetVMs {
@@ -43,7 +43,7 @@ extension Commands.VirtualMachineScaleSetVMs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualMachineScaleSetName}"] = String(describing: self.virtualMachineScaleSetName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -66,15 +66,15 @@ extension Commands.VirtualMachineScaleSetVMs {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualMachineScaleSetVMListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualMachineScaleSetVMListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

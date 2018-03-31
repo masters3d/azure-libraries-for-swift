@@ -22,7 +22,7 @@ internal struct AzureIaaSComputeVMContainerData : AzureIaaSComputeVMContainerPro
         case resourceGroup = "resourceGroup"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureIaaSComputeVMContainerData : AzureIaaSComputeVMContainerPro
     if container.contains(.resourceGroup) {
         self.resourceGroup = try container.decode(String?.self, forKey: .resourceGroup)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct AzureIaaSComputeVMContainerData : AzureIaaSComputeVMContainerPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.virtualMachineId != nil {try container.encode(self.virtualMachineId, forKey: .virtualMachineId)}
-    if self.virtualMachineVersion != nil {try container.encode(self.virtualMachineVersion, forKey: .virtualMachineVersion)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.virtualMachineId != nil { try container.encode(self.virtualMachineId, forKey: .virtualMachineId) }
+    if self.virtualMachineVersion != nil { try container.encode(self.virtualMachineVersion, forKey: .virtualMachineVersion) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
   }
 }
 

@@ -10,14 +10,14 @@ internal struct AzureBlobConnectorPropertiesData : AzureBlobConnectorPropertiesP
         enum CodingKeys: String, CodingKey {case connectionKeyVaultUrl = "connectionKeyVaultUrl"
         }
 
-  public init(connectionKeyVaultUrl: String)  {
+  public init(connectionKeyVaultUrl: String) {
     self.connectionKeyVaultUrl = connectionKeyVaultUrl
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.connectionKeyVaultUrl = try container.decode(String.self, forKey: .connectionKeyVaultUrl)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

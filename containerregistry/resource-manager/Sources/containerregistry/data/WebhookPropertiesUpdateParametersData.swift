@@ -18,7 +18,7 @@ internal struct WebhookPropertiesUpdateParametersData : WebhookPropertiesUpdateP
         case actions = "actions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct WebhookPropertiesUpdateParametersData : WebhookPropertiesUpdateP
     if container.contains(.actions) {
         self.actions = try container.decode([WebhookActionEnum?]?.self, forKey: .actions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct WebhookPropertiesUpdateParametersData : WebhookPropertiesUpdateP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceUri != nil {try container.encode(self.serviceUri, forKey: .serviceUri)}
-    if self.customHeaders != nil {try container.encode(self.customHeaders, forKey: .customHeaders)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.scope != nil {try container.encode(self.scope, forKey: .scope)}
-    if self.actions != nil {try container.encode(self.actions as! [WebhookActionEnum?]?, forKey: .actions)}
+    if self.serviceUri != nil { try container.encode(self.serviceUri, forKey: .serviceUri) }
+    if self.customHeaders != nil { try container.encode(self.customHeaders, forKey: .customHeaders) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.scope != nil { try container.encode(self.scope, forKey: .scope) }
+    if self.actions != nil { try container.encode(self.actions as! [WebhookActionEnum?]?, forKey: .actions) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct AzureBlobStorageApplicationLogsConfigData : AzureBlobStorageAppl
         case retentionInDays = "retentionInDays"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureBlobStorageApplicationLogsConfigData : AzureBlobStorageAppl
     if container.contains(.retentionInDays) {
         self.retentionInDays = try container.decode(Int32?.self, forKey: .retentionInDays)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureBlobStorageApplicationLogsConfigData : AzureBlobStorageAppl
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
-    if self.sasUrl != nil {try container.encode(self.sasUrl, forKey: .sasUrl)}
-    if self.retentionInDays != nil {try container.encode(self.retentionInDays, forKey: .retentionInDays)}
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
+    if self.sasUrl != nil { try container.encode(self.sasUrl, forKey: .sasUrl) }
+    if self.retentionInDays != nil { try container.encode(self.retentionInDays, forKey: .retentionInDays) }
   }
 }
 

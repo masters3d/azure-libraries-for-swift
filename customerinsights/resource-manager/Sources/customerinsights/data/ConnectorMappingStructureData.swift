@@ -16,7 +16,7 @@ internal struct ConnectorMappingStructureData : ConnectorMappingStructureProtoco
         case isEncrypted = "isEncrypted"
         }
 
-  public init(propertyName: String, columnName: String)  {
+  public init(propertyName: String, columnName: String) {
     self.propertyName = propertyName
     self.columnName = columnName
   }
@@ -31,7 +31,7 @@ internal struct ConnectorMappingStructureData : ConnectorMappingStructureProtoco
     if container.contains(.isEncrypted) {
         self.isEncrypted = try container.decode(Bool?.self, forKey: .isEncrypted)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct ConnectorMappingStructureData : ConnectorMappingStructureProtoco
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.propertyName, forKey: .propertyName)
     try container.encode(self.columnName, forKey: .columnName)
-    if self.customFormatSpecifier != nil {try container.encode(self.customFormatSpecifier, forKey: .customFormatSpecifier)}
-    if self.isEncrypted != nil {try container.encode(self.isEncrypted, forKey: .isEncrypted)}
+    if self.customFormatSpecifier != nil { try container.encode(self.customFormatSpecifier, forKey: .customFormatSpecifier) }
+    if self.isEncrypted != nil { try container.encode(self.isEncrypted, forKey: .isEncrypted) }
   }
 }
 

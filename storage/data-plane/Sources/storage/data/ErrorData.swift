@@ -12,7 +12,7 @@ internal struct ErrorData : ErrorProtocol {
         case exceptionDetails = "ExceptionDetails"
     }
 
-  public init(code: String, message: String)  {
+  public init(code: String, message: String) {
     self.code = code
     self.message = message
   }
@@ -30,7 +30,7 @@ internal struct ErrorData : ErrorProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(code, forKey: .code)
     try container.encode(message, forKey: .message)
-    if self.exceptionDetails != nil {try container.encode(exceptionDetails as! ErrorExceptionDetailsData?, forKey: .exceptionDetails)}
+    if self.exceptionDetails != nil { try container.encode(exceptionDetails as! ErrorExceptionDetailsData?, forKey: .exceptionDetails) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct BatchAccountCreatePropertiesData : BatchAccountCreatePropertiesP
         case keyVaultReference = "keyVaultReference"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BatchAccountCreatePropertiesData : BatchAccountCreatePropertiesP
     if container.contains(.keyVaultReference) {
         self.keyVaultReference = try container.decode(KeyVaultReferenceData?.self, forKey: .keyVaultReference)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BatchAccountCreatePropertiesData : BatchAccountCreatePropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.autoStorage != nil {try container.encode(self.autoStorage as! AutoStorageBasePropertiesData?, forKey: .autoStorage)}
-    if self.poolAllocationMode != nil {try container.encode(self.poolAllocationMode, forKey: .poolAllocationMode)}
-    if self.keyVaultReference != nil {try container.encode(self.keyVaultReference as! KeyVaultReferenceData?, forKey: .keyVaultReference)}
+    if self.autoStorage != nil { try container.encode(self.autoStorage as! AutoStorageBasePropertiesData?, forKey: .autoStorage) }
+    if self.poolAllocationMode != nil { try container.encode(self.poolAllocationMode, forKey: .poolAllocationMode) }
+    if self.keyVaultReference != nil { try container.encode(self.keyVaultReference as! KeyVaultReferenceData?, forKey: .keyVaultReference) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ConnectionUpdatePropertiesData : ConnectionUpdatePropertiesProto
         case fieldDefinitionValues = "fieldDefinitionValues"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ConnectionUpdatePropertiesData : ConnectionUpdatePropertiesProto
     if container.contains(.fieldDefinitionValues) {
         self.fieldDefinitionValues = try container.decode([String:String]?.self, forKey: .fieldDefinitionValues)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ConnectionUpdatePropertiesData : ConnectionUpdatePropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.fieldDefinitionValues != nil {try container.encode(self.fieldDefinitionValues, forKey: .fieldDefinitionValues)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.fieldDefinitionValues != nil { try container.encode(self.fieldDefinitionValues, forKey: .fieldDefinitionValues) }
   }
 }
 

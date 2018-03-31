@@ -14,7 +14,7 @@ internal struct AzureReachabilityReportLocationData : AzureReachabilityReportLoc
         case city = "city"
         }
 
-  public init(country: String)  {
+  public init(country: String) {
     self.country = country
   }
 
@@ -27,7 +27,7 @@ internal struct AzureReachabilityReportLocationData : AzureReachabilityReportLoc
     if container.contains(.city) {
         self.city = try container.decode(String?.self, forKey: .city)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct AzureReachabilityReportLocationData : AzureReachabilityReportLoc
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.country, forKey: .country)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.city != nil {try container.encode(self.city, forKey: .city)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.city != nil { try container.encode(self.city, forKey: .city) }
   }
 }
 

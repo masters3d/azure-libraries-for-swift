@@ -48,7 +48,7 @@ internal struct CertificatePatchResourcePropertiesData : CertificatePatchResourc
         case serverFarmId = "serverFarmId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -113,7 +113,7 @@ internal struct CertificatePatchResourcePropertiesData : CertificatePatchResourc
     if container.contains(.serverFarmId) {
         self.serverFarmId = try container.decode(String?.self, forKey: .serverFarmId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -123,30 +123,30 @@ internal struct CertificatePatchResourcePropertiesData : CertificatePatchResourc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.subjectName != nil {try container.encode(self.subjectName, forKey: .subjectName)}
-    if self.hostNames != nil {try container.encode(self.hostNames as! [String]?, forKey: .hostNames)}
-    if self.pfxBlob != nil {try container.encode(self.pfxBlob, forKey: .pfxBlob)}
-    if self.siteName != nil {try container.encode(self.siteName, forKey: .siteName)}
-    if self.selfLink != nil {try container.encode(self.selfLink, forKey: .selfLink)}
-    if self.issuer != nil {try container.encode(self.issuer, forKey: .issuer)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.subjectName != nil { try container.encode(self.subjectName, forKey: .subjectName) }
+    if self.hostNames != nil { try container.encode(self.hostNames as! [String]?, forKey: .hostNames) }
+    if self.pfxBlob != nil { try container.encode(self.pfxBlob, forKey: .pfxBlob) }
+    if self.siteName != nil { try container.encode(self.siteName, forKey: .siteName) }
+    if self.selfLink != nil { try container.encode(self.selfLink, forKey: .selfLink) }
+    if self.issuer != nil { try container.encode(self.issuer, forKey: .issuer) }
     if self.issueDate != nil {
         try container.encode(DateConverter.toString(date: self.issueDate!, format: .dateTime), forKey: .issueDate)
     }
     if self.expirationDate != nil {
         try container.encode(DateConverter.toString(date: self.expirationDate!, format: .dateTime), forKey: .expirationDate)
     }
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.valid != nil {try container.encode(self.valid, forKey: .valid)}
-    if self.cerBlob != nil {try container.encode(self.cerBlob, forKey: .cerBlob)}
-    if self.publicKeyHash != nil {try container.encode(self.publicKeyHash, forKey: .publicKeyHash)}
-    if self.hostingEnvironmentProfile != nil {try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile)}
-    if self.keyVaultId != nil {try container.encode(self.keyVaultId, forKey: .keyVaultId)}
-    if self.keyVaultSecretName != nil {try container.encode(self.keyVaultSecretName, forKey: .keyVaultSecretName)}
-    if self.keyVaultSecretStatus != nil {try container.encode(self.keyVaultSecretStatus, forKey: .keyVaultSecretStatus)}
-    if self.geoRegion != nil {try container.encode(self.geoRegion, forKey: .geoRegion)}
-    if self.serverFarmId != nil {try container.encode(self.serverFarmId, forKey: .serverFarmId)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.valid != nil { try container.encode(self.valid, forKey: .valid) }
+    if self.cerBlob != nil { try container.encode(self.cerBlob, forKey: .cerBlob) }
+    if self.publicKeyHash != nil { try container.encode(self.publicKeyHash, forKey: .publicKeyHash) }
+    if self.hostingEnvironmentProfile != nil { try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile) }
+    if self.keyVaultId != nil { try container.encode(self.keyVaultId, forKey: .keyVaultId) }
+    if self.keyVaultSecretName != nil { try container.encode(self.keyVaultSecretName, forKey: .keyVaultSecretName) }
+    if self.keyVaultSecretStatus != nil { try container.encode(self.keyVaultSecretStatus, forKey: .keyVaultSecretStatus) }
+    if self.geoRegion != nil { try container.encode(self.geoRegion, forKey: .geoRegion) }
+    if self.serverFarmId != nil { try container.encode(self.serverFarmId, forKey: .serverFarmId) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct PolicySetResultData : PolicySetResultProtocol {
         case policyViolations = "policyViolations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct PolicySetResultData : PolicySetResultProtocol {
     if container.contains(.policyViolations) {
         self.policyViolations = try container.decode([PolicyViolationData?]?.self, forKey: .policyViolations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct PolicySetResultData : PolicySetResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hasError != nil {try container.encode(self.hasError, forKey: .hasError)}
-    if self.policyViolations != nil {try container.encode(self.policyViolations as! [PolicyViolationData?]?, forKey: .policyViolations)}
+    if self.hasError != nil { try container.encode(self.hasError, forKey: .hasError) }
+    if self.policyViolations != nil { try container.encode(self.policyViolations as! [PolicyViolationData?]?, forKey: .policyViolations) }
   }
 }
 

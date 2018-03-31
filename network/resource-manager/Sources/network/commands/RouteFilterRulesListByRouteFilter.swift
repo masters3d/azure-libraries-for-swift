@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RouteFilterRulesListByRouteFilter  {
+public protocol RouteFilterRulesListByRouteFilter {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -9,7 +9,7 @@ public protocol RouteFilterRulesListByRouteFilter  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RouteFilterRuleListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RouteFilterRuleListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.RouteFilterRules {
@@ -37,7 +37,7 @@ extension Commands.RouteFilterRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{routeFilterName}"] = String(describing: self.routeFilterName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,15 +57,15 @@ extension Commands.RouteFilterRules {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RouteFilterRuleListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RouteFilterRuleListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

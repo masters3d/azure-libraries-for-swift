@@ -10,14 +10,14 @@ internal struct OutputFileUploadOptionsData : OutputFileUploadOptionsProtocol {
         enum CodingKeys: String, CodingKey {case uploadCondition = "uploadCondition"
         }
 
-  public init(uploadCondition: OutputFileUploadConditionEnum)  {
+  public init(uploadCondition: OutputFileUploadConditionEnum) {
     self.uploadCondition = uploadCondition
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.uploadCondition = try container.decode(OutputFileUploadConditionEnum.self, forKey: .uploadCondition)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

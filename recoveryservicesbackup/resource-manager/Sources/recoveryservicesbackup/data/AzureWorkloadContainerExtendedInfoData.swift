@@ -14,7 +14,7 @@ internal struct AzureWorkloadContainerExtendedInfoData : AzureWorkloadContainerE
         case nodesList = "nodesList"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureWorkloadContainerExtendedInfoData : AzureWorkloadContainerE
     if container.contains(.nodesList) {
         self.nodesList = try container.decode([DistributedNodesInfoData?]?.self, forKey: .nodesList)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AzureWorkloadContainerExtendedInfoData : AzureWorkloadContainerE
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hostServerName != nil {try container.encode(self.hostServerName, forKey: .hostServerName)}
-    if self.inquiryInfo != nil {try container.encode(self.inquiryInfo as! InquiryInfoData?, forKey: .inquiryInfo)}
-    if self.nodesList != nil {try container.encode(self.nodesList as! [DistributedNodesInfoData?]?, forKey: .nodesList)}
+    if self.hostServerName != nil { try container.encode(self.hostServerName, forKey: .hostServerName) }
+    if self.inquiryInfo != nil { try container.encode(self.inquiryInfo as! InquiryInfoData?, forKey: .inquiryInfo) }
+    if self.nodesList != nil { try container.encode(self.nodesList as! [DistributedNodesInfoData?]?, forKey: .nodesList) }
   }
 }
 

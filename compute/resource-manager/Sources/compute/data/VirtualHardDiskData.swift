@@ -10,7 +10,7 @@ internal struct VirtualHardDiskData : VirtualHardDiskProtocol {
         enum CodingKeys: String, CodingKey {case uri = "uri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualHardDiskData : VirtualHardDiskProtocol {
       if container.contains(.uri) {
         self.uri = try container.decode(String?.self, forKey: .uri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualHardDiskData : VirtualHardDiskProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
   }
 }
 

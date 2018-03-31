@@ -20,7 +20,7 @@ internal struct RetryHistoryData : RetryHistoryProtocol {
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct RetryHistoryData : RetryHistoryProtocol {
     if container.contains(.error) {
         self.error = try container.decode(ErrorResponseData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -59,10 +59,10 @@ internal struct RetryHistoryData : RetryHistoryProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.clientRequestId != nil {try container.encode(self.clientRequestId, forKey: .clientRequestId)}
-    if self.serviceRequestId != nil {try container.encode(self.serviceRequestId, forKey: .serviceRequestId)}
-    if self.error != nil {try container.encode(self.error as! ErrorResponseData?, forKey: .error)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.clientRequestId != nil { try container.encode(self.clientRequestId, forKey: .clientRequestId) }
+    if self.serviceRequestId != nil { try container.encode(self.serviceRequestId, forKey: .serviceRequestId) }
+    if self.error != nil { try container.encode(self.error as! ErrorResponseData?, forKey: .error) }
   }
 }
 

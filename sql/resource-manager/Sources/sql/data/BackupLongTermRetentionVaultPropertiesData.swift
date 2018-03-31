@@ -10,14 +10,14 @@ internal struct BackupLongTermRetentionVaultPropertiesData : BackupLongTermReten
         enum CodingKeys: String, CodingKey {case recoveryServicesVaultResourceId = "recoveryServicesVaultResourceId"
         }
 
-  public init(recoveryServicesVaultResourceId: String)  {
+  public init(recoveryServicesVaultResourceId: String) {
     self.recoveryServicesVaultResourceId = recoveryServicesVaultResourceId
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.recoveryServicesVaultResourceId = try container.decode(String.self, forKey: .recoveryServicesVaultResourceId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -14,7 +14,7 @@ internal struct ContainerListBlobsHeadersData : ContainerListBlobsHeadersProtoco
         case date = "Date"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -35,10 +35,10 @@ internal struct ContainerListBlobsHeadersData : ContainerListBlobsHeadersProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.contentType != nil {try container.encode(contentType, forKey: .contentType)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
+    if self.contentType != nil { try container.encode(contentType, forKey: .contentType) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
   }
 }
 

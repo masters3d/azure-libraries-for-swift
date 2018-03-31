@@ -26,7 +26,7 @@ internal struct AzureVmWorkloadItemData : AzureVmWorkloadItemProtocol, WorkloadI
         case subWorkloadItemCount = "subWorkloadItemCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct AzureVmWorkloadItemData : AzureVmWorkloadItemProtocol, WorkloadI
     if container.contains(.subWorkloadItemCount) {
         self.subWorkloadItemCount = try container.decode(Int32?.self, forKey: .subWorkloadItemCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct AzureVmWorkloadItemData : AzureVmWorkloadItemProtocol, WorkloadI
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.parentName != nil {try container.encode(self.parentName, forKey: .parentName)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.isAutoProtectable != nil {try container.encode(self.isAutoProtectable, forKey: .isAutoProtectable)}
-    if self.subinquireditemcount != nil {try container.encode(self.subinquireditemcount, forKey: .subinquireditemcount)}
-    if self.subWorkloadItemCount != nil {try container.encode(self.subWorkloadItemCount, forKey: .subWorkloadItemCount)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.parentName != nil { try container.encode(self.parentName, forKey: .parentName) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.isAutoProtectable != nil { try container.encode(self.isAutoProtectable, forKey: .isAutoProtectable) }
+    if self.subinquireditemcount != nil { try container.encode(self.subinquireditemcount, forKey: .subinquireditemcount) }
+    if self.subWorkloadItemCount != nil { try container.encode(self.subWorkloadItemCount, forKey: .subWorkloadItemCount) }
   }
 }
 

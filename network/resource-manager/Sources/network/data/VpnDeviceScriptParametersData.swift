@@ -14,7 +14,7 @@ internal struct VpnDeviceScriptParametersData : VpnDeviceScriptParametersProtoco
         case firmwareVersion = "firmwareVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VpnDeviceScriptParametersData : VpnDeviceScriptParametersProtoco
     if container.contains(.firmwareVersion) {
         self.firmwareVersion = try container.decode(String?.self, forKey: .firmwareVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VpnDeviceScriptParametersData : VpnDeviceScriptParametersProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vendor != nil {try container.encode(self.vendor, forKey: .vendor)}
-    if self.deviceFamily != nil {try container.encode(self.deviceFamily, forKey: .deviceFamily)}
-    if self.firmwareVersion != nil {try container.encode(self.firmwareVersion, forKey: .firmwareVersion)}
+    if self.vendor != nil { try container.encode(self.vendor, forKey: .vendor) }
+    if self.deviceFamily != nil { try container.encode(self.deviceFamily, forKey: .deviceFamily) }
+    if self.firmwareVersion != nil { try container.encode(self.firmwareVersion, forKey: .firmwareVersion) }
   }
 }
 

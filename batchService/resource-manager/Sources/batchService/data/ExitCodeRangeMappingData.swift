@@ -14,7 +14,7 @@ internal struct ExitCodeRangeMappingData : ExitCodeRangeMappingProtocol {
         case exitOptions = "exitOptions"
         }
 
-  public init(start: Int32, end: Int32, exitOptions: ExitOptionsProtocol)  {
+  public init(start: Int32, end: Int32, exitOptions: ExitOptionsProtocol) {
     self.start = start
     self.end = end
     self.exitOptions = exitOptions
@@ -25,7 +25,7 @@ internal struct ExitCodeRangeMappingData : ExitCodeRangeMappingProtocol {
       self.start = try container.decode(Int32.self, forKey: .start)
     self.end = try container.decode(Int32.self, forKey: .end)
     self.exitOptions = try container.decode(ExitOptionsData.self, forKey: .exitOptions)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

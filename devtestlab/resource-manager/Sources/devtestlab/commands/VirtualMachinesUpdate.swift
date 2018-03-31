@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachinesUpdate  {
+public protocol VirtualMachinesUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var labName : String { get set }
     var name : String { get set }
     var apiVersion : String { get set }
-    var labVirtualMachine :  LabVirtualMachineFragmentProtocol?  { get set }
+    var labVirtualMachine :  LabVirtualMachineFragmentProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LabVirtualMachineProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LabVirtualMachineProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachines {
@@ -35,7 +35,7 @@ extension Commands.VirtualMachines {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{labName}"] = String(describing: self.labName)
@@ -59,12 +59,12 @@ extension Commands.VirtualMachines {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LabVirtualMachineData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LabVirtualMachineProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LabVirtualMachineProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: LabVirtualMachineData?, error: Error?) in
                 completionHandler(result, error)

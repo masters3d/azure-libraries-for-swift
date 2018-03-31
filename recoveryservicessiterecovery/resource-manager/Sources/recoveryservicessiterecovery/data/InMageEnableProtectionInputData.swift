@@ -28,7 +28,7 @@ internal struct InMageEnableProtectionInputData : InMageEnableProtectionInputPro
         case disksToInclude = "disksToInclude"
         }
 
-  public init(masterTargetId: String, processServerId: String, retentionDrive: String, multiVmGroupId: String, multiVmGroupName: String)  {
+  public init(masterTargetId: String, processServerId: String, retentionDrive: String, multiVmGroupId: String, multiVmGroupName: String) {
     self.masterTargetId = masterTargetId
     self.processServerId = processServerId
     self.retentionDrive = retentionDrive
@@ -58,7 +58,7 @@ internal struct InMageEnableProtectionInputData : InMageEnableProtectionInputPro
     if container.contains(.disksToInclude) {
         self.disksToInclude = try container.decode([String]?.self, forKey: .disksToInclude)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,16 +68,16 @@ internal struct InMageEnableProtectionInputData : InMageEnableProtectionInputPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmFriendlyName != nil {try container.encode(self.vmFriendlyName, forKey: .vmFriendlyName)}
+    if self.vmFriendlyName != nil { try container.encode(self.vmFriendlyName, forKey: .vmFriendlyName) }
     try container.encode(self.masterTargetId, forKey: .masterTargetId)
     try container.encode(self.processServerId, forKey: .processServerId)
     try container.encode(self.retentionDrive, forKey: .retentionDrive)
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
     try container.encode(self.multiVmGroupId, forKey: .multiVmGroupId)
     try container.encode(self.multiVmGroupName, forKey: .multiVmGroupName)
-    if self.datastoreName != nil {try container.encode(self.datastoreName, forKey: .datastoreName)}
-    if self.diskExclusionInput != nil {try container.encode(self.diskExclusionInput as! InMageDiskExclusionInputData?, forKey: .diskExclusionInput)}
-    if self.disksToInclude != nil {try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude)}
+    if self.datastoreName != nil { try container.encode(self.datastoreName, forKey: .datastoreName) }
+    if self.diskExclusionInput != nil { try container.encode(self.diskExclusionInput as! InMageDiskExclusionInputData?, forKey: .diskExclusionInput) }
+    if self.disksToInclude != nil { try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude) }
   }
 }
 

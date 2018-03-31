@@ -22,7 +22,7 @@ internal struct EventContentData : EventContentProtocol {
         case source = "source"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct EventContentData : EventContentProtocol {
     if container.contains(.source) {
         self.source = try container.decode(SourceData?.self, forKey: .source)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,15 +58,15 @@ internal struct EventContentData : EventContentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
-    if self.target != nil {try container.encode(self.target as! TargetData?, forKey: .target)}
-    if self.request != nil {try container.encode(self.request as! RequestData?, forKey: .request)}
-    if self.actor != nil {try container.encode(self.actor as! ActorData?, forKey: .actor)}
-    if self.source != nil {try container.encode(self.source as! SourceData?, forKey: .source)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
+    if self.target != nil { try container.encode(self.target as! TargetData?, forKey: .target) }
+    if self.request != nil { try container.encode(self.request as! RequestData?, forKey: .request) }
+    if self.actor != nil { try container.encode(self.actor as! ActorData?, forKey: .actor) }
+    if self.source != nil { try container.encode(self.source as! SourceData?, forKey: .source) }
   }
 }
 

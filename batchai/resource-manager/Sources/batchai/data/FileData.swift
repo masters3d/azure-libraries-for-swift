@@ -14,7 +14,7 @@ internal struct FileData : FileProtocol {
         case properties = "properties"
         }
 
-  public init(name: String, downloadUrl: String)  {
+  public init(name: String, downloadUrl: String) {
     self.name = name
     self.downloadUrl = downloadUrl
   }
@@ -26,7 +26,7 @@ internal struct FileData : FileProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode(FilePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct FileData : FileProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.downloadUrl, forKey: .downloadUrl)
-    if self.properties != nil {try container.encode(self.properties as! FilePropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! FilePropertiesData?, forKey: .properties) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct DiskSkuData : DiskSkuProtocol {
         case tier = "tier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DiskSkuData : DiskSkuProtocol {
     if container.contains(.tier) {
         self.tier = try container.decode(String?.self, forKey: .tier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DiskSkuData : DiskSkuProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
   }
 }
 

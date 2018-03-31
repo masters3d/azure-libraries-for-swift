@@ -20,7 +20,7 @@ internal struct SyncAgentLinkedDatabasePropertiesData : SyncAgentLinkedDatabaseP
         case userName = "userName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct SyncAgentLinkedDatabasePropertiesData : SyncAgentLinkedDatabaseP
     if container.contains(.userName) {
         self.userName = try container.decode(String?.self, forKey: .userName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct SyncAgentLinkedDatabasePropertiesData : SyncAgentLinkedDatabaseP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseType != nil {try container.encode(self.databaseType, forKey: .databaseType)}
-    if self.databaseId != nil {try container.encode(self.databaseId, forKey: .databaseId)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
+    if self.databaseType != nil { try container.encode(self.databaseType, forKey: .databaseType) }
+    if self.databaseId != nil { try container.encode(self.databaseId, forKey: .databaseId) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
   }
 }
 

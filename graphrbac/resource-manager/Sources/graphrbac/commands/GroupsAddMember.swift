@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol GroupsAddMember  {
+public protocol GroupsAddMember {
     var headerParameters: [String: String] { get set }
     var groupObjectId : String { get set }
     var tenantID : String { get set }
     var apiVersion : String { get set }
-    var parameters :  GroupAddMemberParametersProtocol?  { get set }
+    var parameters :  GroupAddMemberParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Groups {
@@ -29,7 +29,7 @@ extension Commands.Groups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{groupObjectId}"] = String(describing: self.groupObjectId)
             self.pathParameters["{tenantID}"] = String(describing: self.tenantID)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -47,7 +47,7 @@ extension Commands.Groups {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

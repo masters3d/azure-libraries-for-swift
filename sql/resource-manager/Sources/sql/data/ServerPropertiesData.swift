@@ -18,7 +18,7 @@ internal struct ServerPropertiesData : ServerPropertiesProtocol {
         case fullyQualifiedDomainName = "fullyQualifiedDomainName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ServerPropertiesData : ServerPropertiesProtocol {
     if container.contains(.fullyQualifiedDomainName) {
         self.fullyQualifiedDomainName = try container.decode(String?.self, forKey: .fullyQualifiedDomainName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ServerPropertiesData : ServerPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.administratorLogin != nil {try container.encode(self.administratorLogin, forKey: .administratorLogin)}
-    if self.administratorLoginPassword != nil {try container.encode(self.administratorLoginPassword, forKey: .administratorLoginPassword)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.fullyQualifiedDomainName != nil {try container.encode(self.fullyQualifiedDomainName, forKey: .fullyQualifiedDomainName)}
+    if self.administratorLogin != nil { try container.encode(self.administratorLogin, forKey: .administratorLogin) }
+    if self.administratorLoginPassword != nil { try container.encode(self.administratorLoginPassword, forKey: .administratorLoginPassword) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.fullyQualifiedDomainName != nil { try container.encode(self.fullyQualifiedDomainName, forKey: .fullyQualifiedDomainName) }
   }
 }
 

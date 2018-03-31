@@ -18,7 +18,7 @@ internal struct RollingUpgradeMonitoringPolicyData : RollingUpgradeMonitoringPol
         case upgradeDomainTimeout = "upgradeDomainTimeout"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct RollingUpgradeMonitoringPolicyData : RollingUpgradeMonitoringPol
     if container.contains(.upgradeDomainTimeout) {
         self.upgradeDomainTimeout = try container.decode(String?.self, forKey: .upgradeDomainTimeout)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct RollingUpgradeMonitoringPolicyData : RollingUpgradeMonitoringPol
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.healthCheckWaitDuration != nil {try container.encode(self.healthCheckWaitDuration, forKey: .healthCheckWaitDuration)}
-    if self.healthCheckStableDuration != nil {try container.encode(self.healthCheckStableDuration, forKey: .healthCheckStableDuration)}
-    if self.healthCheckRetryTimeout != nil {try container.encode(self.healthCheckRetryTimeout, forKey: .healthCheckRetryTimeout)}
-    if self.upgradeTimeout != nil {try container.encode(self.upgradeTimeout, forKey: .upgradeTimeout)}
-    if self.upgradeDomainTimeout != nil {try container.encode(self.upgradeDomainTimeout, forKey: .upgradeDomainTimeout)}
+    if self.healthCheckWaitDuration != nil { try container.encode(self.healthCheckWaitDuration, forKey: .healthCheckWaitDuration) }
+    if self.healthCheckStableDuration != nil { try container.encode(self.healthCheckStableDuration, forKey: .healthCheckStableDuration) }
+    if self.healthCheckRetryTimeout != nil { try container.encode(self.healthCheckRetryTimeout, forKey: .healthCheckRetryTimeout) }
+    if self.upgradeTimeout != nil { try container.encode(self.upgradeTimeout, forKey: .upgradeTimeout) }
+    if self.upgradeDomainTimeout != nil { try container.encode(self.upgradeDomainTimeout, forKey: .upgradeDomainTimeout) }
   }
 }
 

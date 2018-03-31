@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServiceValidateProbe  {
+public protocol ServiceValidateProbe {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var validateProbeInput :  ValidateProbeInputProtocol?  { get set }
+    var validateProbeInput :  ValidateProbeInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ValidateProbeOutputProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ValidateProbeOutputProtocol?, Error?) -> Void)
 }
 
 extension Commands.Service {
@@ -28,7 +28,7 @@ extension Commands.Service {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = validateProbeInput
@@ -49,12 +49,12 @@ extension Commands.Service {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ValidateProbeOutputData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ValidateProbeOutputProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ValidateProbeOutputProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ValidateProbeOutputData?, error: Error?) in
                 completionHandler(result, error)

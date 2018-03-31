@@ -16,7 +16,7 @@ internal struct RoutingServiceBusQueueEndpointPropertiesData : RoutingServiceBus
         case resourceGroup = "resourceGroup"
         }
 
-  public init(connectionString: String, name: String)  {
+  public init(connectionString: String, name: String) {
     self.connectionString = connectionString
     self.name = name
   }
@@ -31,7 +31,7 @@ internal struct RoutingServiceBusQueueEndpointPropertiesData : RoutingServiceBus
     if container.contains(.resourceGroup) {
         self.resourceGroup = try container.decode(String?.self, forKey: .resourceGroup)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct RoutingServiceBusQueueEndpointPropertiesData : RoutingServiceBus
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.connectionString, forKey: .connectionString)
     try container.encode(self.name, forKey: .name)
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
   }
 }
 

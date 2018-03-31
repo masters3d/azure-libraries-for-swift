@@ -14,7 +14,7 @@ internal struct VirtualMachineCaptureParametersData : VirtualMachineCaptureParam
         case overwriteVhds = "overwriteVhds"
         }
 
-  public init(vhdPrefix: String, destinationContainerName: String, overwriteVhds: Bool)  {
+  public init(vhdPrefix: String, destinationContainerName: String, overwriteVhds: Bool) {
     self.vhdPrefix = vhdPrefix
     self.destinationContainerName = destinationContainerName
     self.overwriteVhds = overwriteVhds
@@ -25,7 +25,7 @@ internal struct VirtualMachineCaptureParametersData : VirtualMachineCaptureParam
       self.vhdPrefix = try container.decode(String.self, forKey: .vhdPrefix)
     self.destinationContainerName = try container.decode(String.self, forKey: .destinationContainerName)
     self.overwriteVhds = try container.decode(Bool.self, forKey: .overwriteVhds)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

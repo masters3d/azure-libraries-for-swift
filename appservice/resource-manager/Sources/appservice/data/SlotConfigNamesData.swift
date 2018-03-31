@@ -12,7 +12,7 @@ internal struct SlotConfigNamesData : SlotConfigNamesProtocol {
         case appSettingNames = "appSettingNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SlotConfigNamesData : SlotConfigNamesProtocol {
     if container.contains(.appSettingNames) {
         self.appSettingNames = try container.decode([String]?.self, forKey: .appSettingNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SlotConfigNamesData : SlotConfigNamesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectionStringNames != nil {try container.encode(self.connectionStringNames as! [String]?, forKey: .connectionStringNames)}
-    if self.appSettingNames != nil {try container.encode(self.appSettingNames as! [String]?, forKey: .appSettingNames)}
+    if self.connectionStringNames != nil { try container.encode(self.connectionStringNames as! [String]?, forKey: .connectionStringNames) }
+    if self.appSettingNames != nil { try container.encode(self.appSettingNames as! [String]?, forKey: .appSettingNames) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct PoolInformationData : PoolInformationProtocol {
         case autoPoolSpecification = "autoPoolSpecification"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct PoolInformationData : PoolInformationProtocol {
     if container.contains(.autoPoolSpecification) {
         self.autoPoolSpecification = try container.decode(AutoPoolSpecificationData?.self, forKey: .autoPoolSpecification)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct PoolInformationData : PoolInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.poolId != nil {try container.encode(self.poolId, forKey: .poolId)}
-    if self.autoPoolSpecification != nil {try container.encode(self.autoPoolSpecification as! AutoPoolSpecificationData?, forKey: .autoPoolSpecification)}
+    if self.poolId != nil { try container.encode(self.poolId, forKey: .poolId) }
+    if self.autoPoolSpecification != nil { try container.encode(self.autoPoolSpecification as! AutoPoolSpecificationData?, forKey: .autoPoolSpecification) }
   }
 }
 

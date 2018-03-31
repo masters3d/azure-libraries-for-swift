@@ -12,7 +12,7 @@ internal struct CognitiveServicesResourceAndSkuData : CognitiveServicesResourceA
         case sku = "sku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CognitiveServicesResourceAndSkuData : CognitiveServicesResourceA
     if container.contains(.sku) {
         self.sku = try container.decode(SkuData?.self, forKey: .sku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CognitiveServicesResourceAndSkuData : CognitiveServicesResourceA
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
   }
 }
 

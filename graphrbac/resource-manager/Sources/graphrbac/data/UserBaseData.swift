@@ -20,7 +20,7 @@ internal struct UserBaseData : UserBaseProtocol {
         case userType = "userType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct UserBaseData : UserBaseProtocol {
     if container.contains(.userType) {
         self.userType = try container.decode(UserTypeEnum?.self, forKey: .userType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct UserBaseData : UserBaseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.immutableId != nil {try container.encode(self.immutableId, forKey: .immutableId)}
-    if self.usageLocation != nil {try container.encode(self.usageLocation, forKey: .usageLocation)}
-    if self.givenName != nil {try container.encode(self.givenName, forKey: .givenName)}
-    if self.surname != nil {try container.encode(self.surname, forKey: .surname)}
-    if self.userType != nil {try container.encode(self.userType, forKey: .userType)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.immutableId != nil { try container.encode(self.immutableId, forKey: .immutableId) }
+    if self.usageLocation != nil { try container.encode(self.usageLocation, forKey: .usageLocation) }
+    if self.givenName != nil { try container.encode(self.givenName, forKey: .givenName) }
+    if self.surname != nil { try container.encode(self.surname, forKey: .surname) }
+    if self.userType != nil { try container.encode(self.userType, forKey: .userType) }
   }
 }
 

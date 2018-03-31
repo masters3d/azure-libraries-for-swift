@@ -10,7 +10,7 @@ internal struct AzureSqlDatabaseOutputDataSourceData : AzureSqlDatabaseOutputDat
         enum CodingKeys: String, CodingKey {case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AzureSqlDatabaseOutputDataSourceData : AzureSqlDatabaseOutputDat
       if container.contains(.properties) {
         self.properties = try container.decode(AzureSqlDatabaseOutputDataSourcePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AzureSqlDatabaseOutputDataSourceData : AzureSqlDatabaseOutputDat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.properties != nil {try container.encode(self.properties as! AzureSqlDatabaseOutputDataSourcePropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! AzureSqlDatabaseOutputDataSourcePropertiesData?, forKey: .properties) }
   }
 }
 

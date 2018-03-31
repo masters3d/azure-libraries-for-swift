@@ -20,7 +20,7 @@ internal struct ApplicableScheduleData : ApplicableScheduleProtocol, ResourcePro
         case properties = "properties"
         }
 
-  public init(properties: ApplicableSchedulePropertiesProtocol)  {
+  public init(properties: ApplicableSchedulePropertiesProtocol) {
     self.properties = properties
   }
 
@@ -42,7 +42,7 @@ internal struct ApplicableScheduleData : ApplicableScheduleProtocol, ResourcePro
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
     self.properties = try container.decode(ApplicableSchedulePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,11 +52,11 @@ internal struct ApplicableScheduleData : ApplicableScheduleProtocol, ResourcePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.properties as! ApplicableSchedulePropertiesData, forKey: .properties)
   }
 }

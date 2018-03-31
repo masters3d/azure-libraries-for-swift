@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobGetOutput  {
+public protocol JobGetOutput {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol JobGetOutput  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (String?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (String?, Error?) -> Void)
 }
 
 extension Commands.Job {
@@ -34,7 +34,7 @@ extension Commands.Job {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -49,12 +49,12 @@ extension Commands.Job {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(String?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (String?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (String?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: String?, error: Error?) in
                 completionHandler(result, error)

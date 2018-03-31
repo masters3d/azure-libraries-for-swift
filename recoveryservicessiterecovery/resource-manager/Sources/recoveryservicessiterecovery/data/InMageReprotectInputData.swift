@@ -24,7 +24,7 @@ internal struct InMageReprotectInputData : InMageReprotectInputProtocol, Reverse
         case disksToInclude = "disksToInclude"
         }
 
-  public init(masterTargetId: String, processServerId: String, retentionDrive: String, profileId: String)  {
+  public init(masterTargetId: String, processServerId: String, retentionDrive: String, profileId: String) {
     self.masterTargetId = masterTargetId
     self.processServerId = processServerId
     self.retentionDrive = retentionDrive
@@ -49,7 +49,7 @@ internal struct InMageReprotectInputData : InMageReprotectInputProtocol, Reverse
     if container.contains(.disksToInclude) {
         self.disksToInclude = try container.decode([String]?.self, forKey: .disksToInclude)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,11 +62,11 @@ internal struct InMageReprotectInputData : InMageReprotectInputProtocol, Reverse
     try container.encode(self.masterTargetId, forKey: .masterTargetId)
     try container.encode(self.processServerId, forKey: .processServerId)
     try container.encode(self.retentionDrive, forKey: .retentionDrive)
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
-    if self.datastoreName != nil {try container.encode(self.datastoreName, forKey: .datastoreName)}
-    if self.diskExclusionInput != nil {try container.encode(self.diskExclusionInput as! InMageDiskExclusionInputData?, forKey: .diskExclusionInput)}
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
+    if self.datastoreName != nil { try container.encode(self.datastoreName, forKey: .datastoreName) }
+    if self.diskExclusionInput != nil { try container.encode(self.diskExclusionInput as! InMageDiskExclusionInputData?, forKey: .diskExclusionInput) }
     try container.encode(self.profileId, forKey: .profileId)
-    if self.disksToInclude != nil {try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude)}
+    if self.disksToInclude != nil { try container.encode(self.disksToInclude as! [String]?, forKey: .disksToInclude) }
   }
 }
 

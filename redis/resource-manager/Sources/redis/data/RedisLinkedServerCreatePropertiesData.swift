@@ -14,7 +14,7 @@ internal struct RedisLinkedServerCreatePropertiesData : RedisLinkedServerCreateP
         case serverRole = "serverRole"
         }
 
-  public init(linkedRedisCacheId: String, linkedRedisCacheLocation: String, serverRole: ReplicationRoleEnum)  {
+  public init(linkedRedisCacheId: String, linkedRedisCacheLocation: String, serverRole: ReplicationRoleEnum) {
     self.linkedRedisCacheId = linkedRedisCacheId
     self.linkedRedisCacheLocation = linkedRedisCacheLocation
     self.serverRole = serverRole
@@ -25,7 +25,7 @@ internal struct RedisLinkedServerCreatePropertiesData : RedisLinkedServerCreateP
       self.linkedRedisCacheId = try container.decode(String.self, forKey: .linkedRedisCacheId)
     self.linkedRedisCacheLocation = try container.decode(String.self, forKey: .linkedRedisCacheLocation)
     self.serverRole = try container.decode(ReplicationRoleEnum.self, forKey: .serverRole)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

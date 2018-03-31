@@ -26,7 +26,7 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
         case resourceIdDimensionNameOverride = "resourceIdDimensionNameOverride"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
     if container.contains(.resourceIdDimensionNameOverride) {
         self.resourceIdDimensionNameOverride = try container.decode(String?.self, forKey: .resourceIdDimensionNameOverride)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.displayDescription != nil {try container.encode(self.displayDescription, forKey: .displayDescription)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.dimensions != nil {try container.encode(self.dimensions as! [DimensionData?]?, forKey: .dimensions)}
-    if self.aggregationType != nil {try container.encode(self.aggregationType, forKey: .aggregationType)}
-    if self.fillGapWithZero != nil {try container.encode(self.fillGapWithZero, forKey: .fillGapWithZero)}
-    if self.category != nil {try container.encode(self.category, forKey: .category)}
-    if self.resourceIdDimensionNameOverride != nil {try container.encode(self.resourceIdDimensionNameOverride, forKey: .resourceIdDimensionNameOverride)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.displayDescription != nil { try container.encode(self.displayDescription, forKey: .displayDescription) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.dimensions != nil { try container.encode(self.dimensions as! [DimensionData?]?, forKey: .dimensions) }
+    if self.aggregationType != nil { try container.encode(self.aggregationType, forKey: .aggregationType) }
+    if self.fillGapWithZero != nil { try container.encode(self.fillGapWithZero, forKey: .fillGapWithZero) }
+    if self.category != nil { try container.encode(self.category, forKey: .category) }
+    if self.resourceIdDimensionNameOverride != nil { try container.encode(self.resourceIdDimensionNameOverride, forKey: .resourceIdDimensionNameOverride) }
   }
 }
 

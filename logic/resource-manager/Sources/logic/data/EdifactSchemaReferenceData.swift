@@ -22,7 +22,7 @@ internal struct EdifactSchemaReferenceData : EdifactSchemaReferenceProtocol {
         case schemaName = "schemaName"
         }
 
-  public init(messageId: String, messageVersion: String, messageRelease: String, schemaName: String)  {
+  public init(messageId: String, messageVersion: String, messageRelease: String, schemaName: String) {
     self.messageId = messageId
     self.messageVersion = messageVersion
     self.messageRelease = messageRelease
@@ -44,7 +44,7 @@ internal struct EdifactSchemaReferenceData : EdifactSchemaReferenceProtocol {
         self.associationAssignedCode = try container.decode(String?.self, forKey: .associationAssignedCode)
     }
     self.schemaName = try container.decode(String.self, forKey: .schemaName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,9 +57,9 @@ internal struct EdifactSchemaReferenceData : EdifactSchemaReferenceProtocol {
     try container.encode(self.messageId, forKey: .messageId)
     try container.encode(self.messageVersion, forKey: .messageVersion)
     try container.encode(self.messageRelease, forKey: .messageRelease)
-    if self.senderApplicationId != nil {try container.encode(self.senderApplicationId, forKey: .senderApplicationId)}
-    if self.senderApplicationQualifier != nil {try container.encode(self.senderApplicationQualifier, forKey: .senderApplicationQualifier)}
-    if self.associationAssignedCode != nil {try container.encode(self.associationAssignedCode, forKey: .associationAssignedCode)}
+    if self.senderApplicationId != nil { try container.encode(self.senderApplicationId, forKey: .senderApplicationId) }
+    if self.senderApplicationQualifier != nil { try container.encode(self.senderApplicationQualifier, forKey: .senderApplicationQualifier) }
+    if self.associationAssignedCode != nil { try container.encode(self.associationAssignedCode, forKey: .associationAssignedCode) }
     try container.encode(self.schemaName, forKey: .schemaName)
   }
 }

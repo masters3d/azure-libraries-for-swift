@@ -14,7 +14,7 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
         case kekCertExpiryDate = "kekCertExpiryDate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
     if container.contains(.kekCertExpiryDate) {
         self.kekCertExpiryDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .kekCertExpiryDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.kekState != nil {try container.encode(self.kekState, forKey: .kekState)}
-    if self.kekCertThumbprint != nil {try container.encode(self.kekCertThumbprint, forKey: .kekCertThumbprint)}
+    if self.kekState != nil { try container.encode(self.kekState, forKey: .kekState) }
+    if self.kekCertThumbprint != nil { try container.encode(self.kekCertThumbprint, forKey: .kekCertThumbprint) }
     if self.kekCertExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.kekCertExpiryDate!, format: .dateTime), forKey: .kekCertExpiryDate)
     }

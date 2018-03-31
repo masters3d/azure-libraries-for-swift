@@ -16,7 +16,7 @@ internal struct AvailableProvidersListParametersData : AvailableProvidersListPar
         case city = "city"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AvailableProvidersListParametersData : AvailableProvidersListPar
     if container.contains(.city) {
         self.city = try container.decode(String?.self, forKey: .city)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AvailableProvidersListParametersData : AvailableProvidersListPar
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azureLocations != nil {try container.encode(self.azureLocations as! [String]?, forKey: .azureLocations)}
-    if self.country != nil {try container.encode(self.country, forKey: .country)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.city != nil {try container.encode(self.city, forKey: .city)}
+    if self.azureLocations != nil { try container.encode(self.azureLocations as! [String]?, forKey: .azureLocations) }
+    if self.country != nil { try container.encode(self.country, forKey: .country) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.city != nil { try container.encode(self.city, forKey: .city) }
   }
 }
 

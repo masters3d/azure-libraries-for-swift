@@ -10,7 +10,7 @@ internal struct TagsObjectData : TagsObjectProtocol {
         enum CodingKeys: String, CodingKey {case tags = "tags"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct TagsObjectData : TagsObjectProtocol {
       if container.contains(.tags) {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct TagsObjectData : TagsObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
   }
 }
 

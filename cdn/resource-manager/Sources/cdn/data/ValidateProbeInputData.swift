@@ -10,14 +10,14 @@ internal struct ValidateProbeInputData : ValidateProbeInputProtocol {
         enum CodingKeys: String, CodingKey {case probeURL = "probeURL"
         }
 
-  public init(probeURL: String)  {
+  public init(probeURL: String) {
     self.probeURL = probeURL
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.probeURL = try container.decode(String.self, forKey: .probeURL)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

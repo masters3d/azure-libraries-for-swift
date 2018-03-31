@@ -16,7 +16,7 @@ internal struct InvoicePropertiesData : InvoicePropertiesProtocol {
         case billingPeriodIds = "billingPeriodIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct InvoicePropertiesData : InvoicePropertiesProtocol {
     if container.contains(.billingPeriodIds) {
         self.billingPeriodIds = try container.decode([String]?.self, forKey: .billingPeriodIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,14 +43,14 @@ internal struct InvoicePropertiesData : InvoicePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.downloadUrl != nil {try container.encode(self.downloadUrl as! DownloadUrlData?, forKey: .downloadUrl)}
+    if self.downloadUrl != nil { try container.encode(self.downloadUrl as! DownloadUrlData?, forKey: .downloadUrl) }
     if self.invoicePeriodStartDate != nil {
         try container.encode(DateConverter.toString(date: self.invoicePeriodStartDate!, format: .date), forKey: .invoicePeriodStartDate)
     }
     if self.invoicePeriodEndDate != nil {
         try container.encode(DateConverter.toString(date: self.invoicePeriodEndDate!, format: .date), forKey: .invoicePeriodEndDate)
     }
-    if self.billingPeriodIds != nil {try container.encode(self.billingPeriodIds as! [String]?, forKey: .billingPeriodIds)}
+    if self.billingPeriodIds != nil { try container.encode(self.billingPeriodIds as! [String]?, forKey: .billingPeriodIds) }
   }
 }
 

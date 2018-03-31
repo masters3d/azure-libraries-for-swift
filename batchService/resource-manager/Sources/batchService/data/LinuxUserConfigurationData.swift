@@ -14,7 +14,7 @@ internal struct LinuxUserConfigurationData : LinuxUserConfigurationProtocol {
         case sshPrivateKey = "sshPrivateKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct LinuxUserConfigurationData : LinuxUserConfigurationProtocol {
     if container.contains(.sshPrivateKey) {
         self.sshPrivateKey = try container.decode(String?.self, forKey: .sshPrivateKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct LinuxUserConfigurationData : LinuxUserConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.uid != nil {try container.encode(self.uid, forKey: .uid)}
-    if self.gid != nil {try container.encode(self.gid, forKey: .gid)}
-    if self.sshPrivateKey != nil {try container.encode(self.sshPrivateKey, forKey: .sshPrivateKey)}
+    if self.uid != nil { try container.encode(self.uid, forKey: .uid) }
+    if self.gid != nil { try container.encode(self.gid, forKey: .gid) }
+    if self.sshPrivateKey != nil { try container.encode(self.sshPrivateKey, forKey: .sshPrivateKey) }
   }
 }
 

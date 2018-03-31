@@ -12,7 +12,7 @@ internal struct RuleMetricDataSourceData : RuleMetricDataSourceProtocol, RuleDat
         case metricName = "metricName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RuleMetricDataSourceData : RuleMetricDataSourceProtocol, RuleDat
     if container.contains(.metricName) {
         self.metricName = try container.decode(String?.self, forKey: .metricName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RuleMetricDataSourceData : RuleMetricDataSourceProtocol, RuleDat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceUri != nil {try container.encode(self.resourceUri, forKey: .resourceUri)}
-    if self.metricName != nil {try container.encode(self.metricName, forKey: .metricName)}
+    if self.resourceUri != nil { try container.encode(self.resourceUri, forKey: .resourceUri) }
+    if self.metricName != nil { try container.encode(self.metricName, forKey: .metricName) }
   }
 }
 

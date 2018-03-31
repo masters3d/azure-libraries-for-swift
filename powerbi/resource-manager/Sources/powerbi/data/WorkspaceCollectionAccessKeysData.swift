@@ -12,7 +12,7 @@ internal struct WorkspaceCollectionAccessKeysData : WorkspaceCollectionAccessKey
         case key2 = "key2"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct WorkspaceCollectionAccessKeysData : WorkspaceCollectionAccessKey
     if container.contains(.key2) {
         self.key2 = try container.decode(String?.self, forKey: .key2)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct WorkspaceCollectionAccessKeysData : WorkspaceCollectionAccessKey
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.key1 != nil {try container.encode(self.key1, forKey: .key1)}
-    if self.key2 != nil {try container.encode(self.key2, forKey: .key2)}
+    if self.key1 != nil { try container.encode(self.key1, forKey: .key1) }
+    if self.key2 != nil { try container.encode(self.key2, forKey: .key2) }
   }
 }
 

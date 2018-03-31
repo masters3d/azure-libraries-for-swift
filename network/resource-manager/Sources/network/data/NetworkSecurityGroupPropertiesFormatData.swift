@@ -20,7 +20,7 @@ internal struct NetworkSecurityGroupPropertiesFormatData : NetworkSecurityGroupP
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct NetworkSecurityGroupPropertiesFormatData : NetworkSecurityGroupP
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct NetworkSecurityGroupPropertiesFormatData : NetworkSecurityGroupP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.securityRules != nil {try container.encode(self.securityRules as! [SecurityRuleData?]?, forKey: .securityRules)}
-    if self.defaultSecurityRules != nil {try container.encode(self.defaultSecurityRules as! [SecurityRuleData?]?, forKey: .defaultSecurityRules)}
-    if self.networkInterfaces != nil {try container.encode(self.networkInterfaces as! [NetworkInterfaceData?]?, forKey: .networkInterfaces)}
-    if self.subnets != nil {try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.securityRules != nil { try container.encode(self.securityRules as! [SecurityRuleData?]?, forKey: .securityRules) }
+    if self.defaultSecurityRules != nil { try container.encode(self.defaultSecurityRules as! [SecurityRuleData?]?, forKey: .defaultSecurityRules) }
+    if self.networkInterfaces != nil { try container.encode(self.networkInterfaces as! [NetworkInterfaceData?]?, forKey: .networkInterfaces) }
+    if self.subnets != nil { try container.encode(self.subnets as! [SubnetData?]?, forKey: .subnets) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

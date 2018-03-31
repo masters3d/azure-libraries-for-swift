@@ -18,7 +18,7 @@ internal struct ActivityLogAlertData : ActivityLogAlertProtocol {
         case description = "description"
         }
 
-  public init(scopes: [String], condition: ActivityLogAlertAllOfConditionProtocol, actions: ActivityLogAlertActionListProtocol)  {
+  public init(scopes: [String], condition: ActivityLogAlertAllOfConditionProtocol, actions: ActivityLogAlertActionListProtocol) {
     self.scopes = scopes
     self.condition = condition
     self.actions = actions
@@ -35,7 +35,7 @@ internal struct ActivityLogAlertData : ActivityLogAlertProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,10 +46,10 @@ internal struct ActivityLogAlertData : ActivityLogAlertProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scopes as! [String], forKey: .scopes)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
     try container.encode(self.condition as! ActivityLogAlertAllOfConditionData, forKey: .condition)
     try container.encode(self.actions as! ActivityLogAlertActionListData, forKey: .actions)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

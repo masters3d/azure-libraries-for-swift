@@ -12,7 +12,7 @@ internal struct ExpressRouteServiceProviderBandwidthsOfferedData : ExpressRouteS
         case valueInMbps = "valueInMbps"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ExpressRouteServiceProviderBandwidthsOfferedData : ExpressRouteS
     if container.contains(.valueInMbps) {
         self.valueInMbps = try container.decode(Int32?.self, forKey: .valueInMbps)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ExpressRouteServiceProviderBandwidthsOfferedData : ExpressRouteS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.offerName != nil {try container.encode(self.offerName, forKey: .offerName)}
-    if self.valueInMbps != nil {try container.encode(self.valueInMbps, forKey: .valueInMbps)}
+    if self.offerName != nil { try container.encode(self.offerName, forKey: .offerName) }
+    if self.valueInMbps != nil { try container.encode(self.valueInMbps, forKey: .valueInMbps) }
   }
 }
 

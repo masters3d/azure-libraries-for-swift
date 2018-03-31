@@ -26,7 +26,7 @@ internal struct ImportExportResponsePropertiesData : ImportExportResponsePropert
         case errorMessage = "errorMessage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct ImportExportResponsePropertiesData : ImportExportResponsePropert
     if container.contains(.errorMessage) {
         self.errorMessage = try container.decode(String?.self, forKey: .errorMessage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct ImportExportResponsePropertiesData : ImportExportResponsePropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.requestType != nil {try container.encode(self.requestType, forKey: .requestType)}
-    if self.requestId != nil {try container.encode(self.requestId, forKey: .requestId)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.lastModifiedTime != nil {try container.encode(self.lastModifiedTime, forKey: .lastModifiedTime)}
-    if self.queuedTime != nil {try container.encode(self.queuedTime, forKey: .queuedTime)}
-    if self.blobUri != nil {try container.encode(self.blobUri, forKey: .blobUri)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
+    if self.requestType != nil { try container.encode(self.requestType, forKey: .requestType) }
+    if self.requestId != nil { try container.encode(self.requestId, forKey: .requestId) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.lastModifiedTime != nil { try container.encode(self.lastModifiedTime, forKey: .lastModifiedTime) }
+    if self.queuedTime != nil { try container.encode(self.queuedTime, forKey: .queuedTime) }
+    if self.blobUri != nil { try container.encode(self.blobUri, forKey: .blobUri) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
   }
 }
 

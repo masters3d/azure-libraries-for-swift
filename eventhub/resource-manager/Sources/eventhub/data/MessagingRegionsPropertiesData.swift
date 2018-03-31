@@ -12,7 +12,7 @@ internal struct MessagingRegionsPropertiesData : MessagingRegionsPropertiesProto
         case fullName = "fullName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct MessagingRegionsPropertiesData : MessagingRegionsPropertiesProto
     if container.contains(.fullName) {
         self.fullName = try container.decode(String?.self, forKey: .fullName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct MessagingRegionsPropertiesData : MessagingRegionsPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.fullName != nil {try container.encode(self.fullName, forKey: .fullName)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.fullName != nil { try container.encode(self.fullName, forKey: .fullName) }
   }
 }
 

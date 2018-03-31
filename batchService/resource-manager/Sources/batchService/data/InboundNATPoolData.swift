@@ -20,7 +20,7 @@ internal struct InboundNATPoolData : InboundNATPoolProtocol {
         case networkSecurityGroupRules = "networkSecurityGroupRules"
         }
 
-  public init(name: String, _protocol: InboundEndpointProtocolEnum, backendPort: Int32, frontendPortRangeStart: Int32, frontendPortRangeEnd: Int32)  {
+  public init(name: String, _protocol: InboundEndpointProtocolEnum, backendPort: Int32, frontendPortRangeStart: Int32, frontendPortRangeEnd: Int32) {
     self.name = name
     self._protocol = _protocol
     self.backendPort = backendPort
@@ -38,7 +38,7 @@ internal struct InboundNATPoolData : InboundNATPoolProtocol {
     if container.contains(.networkSecurityGroupRules) {
         self.networkSecurityGroupRules = try container.decode([NetworkSecurityGroupRuleData?]?.self, forKey: .networkSecurityGroupRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,7 +53,7 @@ internal struct InboundNATPoolData : InboundNATPoolProtocol {
     try container.encode(self.backendPort, forKey: .backendPort)
     try container.encode(self.frontendPortRangeStart, forKey: .frontendPortRangeStart)
     try container.encode(self.frontendPortRangeEnd, forKey: .frontendPortRangeEnd)
-    if self.networkSecurityGroupRules != nil {try container.encode(self.networkSecurityGroupRules as! [NetworkSecurityGroupRuleData?]?, forKey: .networkSecurityGroupRules)}
+    if self.networkSecurityGroupRules != nil { try container.encode(self.networkSecurityGroupRules as! [NetworkSecurityGroupRuleData?]?, forKey: .networkSecurityGroupRules) }
   }
 }
 

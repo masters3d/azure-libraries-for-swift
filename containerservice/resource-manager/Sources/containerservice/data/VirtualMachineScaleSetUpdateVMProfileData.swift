@@ -20,7 +20,7 @@ internal struct VirtualMachineScaleSetUpdateVMProfileData : VirtualMachineScaleS
         case licenseType = "licenseType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct VirtualMachineScaleSetUpdateVMProfileData : VirtualMachineScaleS
     if container.contains(.licenseType) {
         self.licenseType = try container.decode(String?.self, forKey: .licenseType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct VirtualMachineScaleSetUpdateVMProfileData : VirtualMachineScaleS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osProfile != nil {try container.encode(self.osProfile as! VirtualMachineScaleSetUpdateOSProfileData?, forKey: .osProfile)}
-    if self.storageProfile != nil {try container.encode(self.storageProfile as! VirtualMachineScaleSetUpdateStorageProfileData?, forKey: .storageProfile)}
-    if self.networkProfile != nil {try container.encode(self.networkProfile as! VirtualMachineScaleSetUpdateNetworkProfileData?, forKey: .networkProfile)}
-    if self.diagnosticsProfile != nil {try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile)}
-    if self.extensionProfile != nil {try container.encode(self.extensionProfile as! VirtualMachineScaleSetExtensionProfileData?, forKey: .extensionProfile)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
+    if self.osProfile != nil { try container.encode(self.osProfile as! VirtualMachineScaleSetUpdateOSProfileData?, forKey: .osProfile) }
+    if self.storageProfile != nil { try container.encode(self.storageProfile as! VirtualMachineScaleSetUpdateStorageProfileData?, forKey: .storageProfile) }
+    if self.networkProfile != nil { try container.encode(self.networkProfile as! VirtualMachineScaleSetUpdateNetworkProfileData?, forKey: .networkProfile) }
+    if self.diagnosticsProfile != nil { try container.encode(self.diagnosticsProfile as! DiagnosticsProfileData?, forKey: .diagnosticsProfile) }
+    if self.extensionProfile != nil { try container.encode(self.extensionProfile as! VirtualMachineScaleSetExtensionProfileData?, forKey: .extensionProfile) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
   }
 }
 

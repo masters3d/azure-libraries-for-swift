@@ -12,7 +12,7 @@ internal struct ActivityLogAlertActionGroupData : ActivityLogAlertActionGroupPro
         case webhookProperties = "webhookProperties"
         }
 
-  public init(actionGroupId: String)  {
+  public init(actionGroupId: String) {
     self.actionGroupId = actionGroupId
   }
 
@@ -22,7 +22,7 @@ internal struct ActivityLogAlertActionGroupData : ActivityLogAlertActionGroupPro
     if container.contains(.webhookProperties) {
         self.webhookProperties = try container.decode([String:String]?.self, forKey: .webhookProperties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ActivityLogAlertActionGroupData : ActivityLogAlertActionGroupPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.actionGroupId, forKey: .actionGroupId)
-    if self.webhookProperties != nil {try container.encode(self.webhookProperties, forKey: .webhookProperties)}
+    if self.webhookProperties != nil { try container.encode(self.webhookProperties, forKey: .webhookProperties) }
   }
 }
 

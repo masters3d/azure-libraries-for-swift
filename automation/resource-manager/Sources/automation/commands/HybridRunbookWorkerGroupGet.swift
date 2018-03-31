@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol HybridRunbookWorkerGroupGet  {
+public protocol HybridRunbookWorkerGroupGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
@@ -8,7 +8,7 @@ public protocol HybridRunbookWorkerGroupGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (HybridRunbookWorkerGroupProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (HybridRunbookWorkerGroupProtocol?, Error?) -> Void)
 }
 
 extension Commands.HybridRunbookWorkerGroup {
@@ -32,7 +32,7 @@ extension Commands.HybridRunbookWorkerGroup {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{hybridRunbookWorkerGroupName}"] = String(describing: self.hybridRunbookWorkerGroupName)
@@ -46,12 +46,12 @@ extension Commands.HybridRunbookWorkerGroup {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(HybridRunbookWorkerGroupData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (HybridRunbookWorkerGroupProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (HybridRunbookWorkerGroupProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: HybridRunbookWorkerGroupData?, error: Error?) in
                 completionHandler(result, error)

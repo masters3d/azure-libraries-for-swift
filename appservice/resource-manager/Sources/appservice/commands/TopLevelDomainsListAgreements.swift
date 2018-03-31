@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol TopLevelDomainsListAgreements  {
+public protocol TopLevelDomainsListAgreements {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
     var name : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var agreementOption :  TopLevelDomainAgreementOptionProtocol?  { get set }
+    var agreementOption :  TopLevelDomainAgreementOptionProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (TldLegalAgreementCollectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (TldLegalAgreementCollectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.TopLevelDomains {
@@ -37,7 +37,7 @@ extension Commands.TopLevelDomains {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -66,15 +66,15 @@ extension Commands.TopLevelDomains {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (TldLegalAgreementCollectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (TldLegalAgreementCollectionProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

@@ -16,7 +16,7 @@ internal struct LogicalNetworkPropertiesData : LogicalNetworkPropertiesProtocol 
         case logicalNetworkDefinitionsStatus = "logicalNetworkDefinitionsStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct LogicalNetworkPropertiesData : LogicalNetworkPropertiesProtocol 
     if container.contains(.logicalNetworkDefinitionsStatus) {
         self.logicalNetworkDefinitionsStatus = try container.decode(String?.self, forKey: .logicalNetworkDefinitionsStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct LogicalNetworkPropertiesData : LogicalNetworkPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.networkVirtualizationStatus != nil {try container.encode(self.networkVirtualizationStatus, forKey: .networkVirtualizationStatus)}
-    if self.logicalNetworkUsage != nil {try container.encode(self.logicalNetworkUsage, forKey: .logicalNetworkUsage)}
-    if self.logicalNetworkDefinitionsStatus != nil {try container.encode(self.logicalNetworkDefinitionsStatus, forKey: .logicalNetworkDefinitionsStatus)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.networkVirtualizationStatus != nil { try container.encode(self.networkVirtualizationStatus, forKey: .networkVirtualizationStatus) }
+    if self.logicalNetworkUsage != nil { try container.encode(self.logicalNetworkUsage, forKey: .logicalNetworkUsage) }
+    if self.logicalNetworkDefinitionsStatus != nil { try container.encode(self.logicalNetworkDefinitionsStatus, forKey: .logicalNetworkDefinitionsStatus) }
   }
 }
 

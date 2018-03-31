@@ -12,7 +12,7 @@ internal struct A2AFailoverProviderInputData : A2AFailoverProviderInputProtocol,
         case cloudServiceCreationOption = "cloudServiceCreationOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct A2AFailoverProviderInputData : A2AFailoverProviderInputProtocol,
     if container.contains(.cloudServiceCreationOption) {
         self.cloudServiceCreationOption = try container.decode(String?.self, forKey: .cloudServiceCreationOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct A2AFailoverProviderInputData : A2AFailoverProviderInputProtocol,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointId != nil {try container.encode(self.recoveryPointId, forKey: .recoveryPointId)}
-    if self.cloudServiceCreationOption != nil {try container.encode(self.cloudServiceCreationOption, forKey: .cloudServiceCreationOption)}
+    if self.recoveryPointId != nil { try container.encode(self.recoveryPointId, forKey: .recoveryPointId) }
+    if self.cloudServiceCreationOption != nil { try container.encode(self.cloudServiceCreationOption, forKey: .cloudServiceCreationOption) }
   }
 }
 

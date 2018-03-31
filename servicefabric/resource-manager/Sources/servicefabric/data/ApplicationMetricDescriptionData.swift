@@ -16,7 +16,7 @@ internal struct ApplicationMetricDescriptionData : ApplicationMetricDescriptionP
         case totalApplicationCapacity = "TotalApplicationCapacity"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ApplicationMetricDescriptionData : ApplicationMetricDescriptionP
     if container.contains(.totalApplicationCapacity) {
         self.totalApplicationCapacity = try container.decode(Int64?.self, forKey: .totalApplicationCapacity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ApplicationMetricDescriptionData : ApplicationMetricDescriptionP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.maximumCapacity != nil {try container.encode(self.maximumCapacity, forKey: .maximumCapacity)}
-    if self.reservationCapacity != nil {try container.encode(self.reservationCapacity, forKey: .reservationCapacity)}
-    if self.totalApplicationCapacity != nil {try container.encode(self.totalApplicationCapacity, forKey: .totalApplicationCapacity)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.maximumCapacity != nil { try container.encode(self.maximumCapacity, forKey: .maximumCapacity) }
+    if self.reservationCapacity != nil { try container.encode(self.reservationCapacity, forKey: .reservationCapacity) }
+    if self.totalApplicationCapacity != nil { try container.encode(self.totalApplicationCapacity, forKey: .totalApplicationCapacity) }
   }
 }
 

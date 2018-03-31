@@ -24,7 +24,7 @@ internal struct BackupEngineExtendedInfoData : BackupEngineExtendedInfoProtocol 
         case azureProtectedInstances = "azureProtectedInstances"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct BackupEngineExtendedInfoData : BackupEngineExtendedInfoProtocol 
     if container.contains(.azureProtectedInstances) {
         self.azureProtectedInstances = try container.decode(Int32?.self, forKey: .azureProtectedInstances)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct BackupEngineExtendedInfoData : BackupEngineExtendedInfoProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
-    if self.protectedItemsCount != nil {try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount)}
-    if self.protectedServersCount != nil {try container.encode(self.protectedServersCount, forKey: .protectedServersCount)}
-    if self.diskCount != nil {try container.encode(self.diskCount, forKey: .diskCount)}
-    if self.usedDiskSpace != nil {try container.encode(self.usedDiskSpace, forKey: .usedDiskSpace)}
-    if self.availableDiskSpace != nil {try container.encode(self.availableDiskSpace, forKey: .availableDiskSpace)}
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
+    if self.protectedItemsCount != nil { try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount) }
+    if self.protectedServersCount != nil { try container.encode(self.protectedServersCount, forKey: .protectedServersCount) }
+    if self.diskCount != nil { try container.encode(self.diskCount, forKey: .diskCount) }
+    if self.usedDiskSpace != nil { try container.encode(self.usedDiskSpace, forKey: .usedDiskSpace) }
+    if self.availableDiskSpace != nil { try container.encode(self.availableDiskSpace, forKey: .availableDiskSpace) }
     if self.refreshedAt != nil {
         try container.encode(DateConverter.toString(date: self.refreshedAt!, format: .dateTime), forKey: .refreshedAt)
     }
-    if self.azureProtectedInstances != nil {try container.encode(self.azureProtectedInstances, forKey: .azureProtectedInstances)}
+    if self.azureProtectedInstances != nil { try container.encode(self.azureProtectedInstances, forKey: .azureProtectedInstances) }
   }
 }
 

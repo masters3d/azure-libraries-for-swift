@@ -14,7 +14,7 @@ internal struct AzureFileShareRecoveryPointData : AzureFileShareRecoveryPointPro
         case fileShareSnapshotUri = "fileShareSnapshotUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AzureFileShareRecoveryPointData : AzureFileShareRecoveryPointPro
     if container.contains(.fileShareSnapshotUri) {
         self.fileShareSnapshotUri = try container.decode(String?.self, forKey: .fileShareSnapshotUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,11 +38,11 @@ internal struct AzureFileShareRecoveryPointData : AzureFileShareRecoveryPointPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointType != nil {try container.encode(self.recoveryPointType, forKey: .recoveryPointType)}
+    if self.recoveryPointType != nil { try container.encode(self.recoveryPointType, forKey: .recoveryPointType) }
     if self.recoveryPointTime != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTime!, format: .dateTime), forKey: .recoveryPointTime)
     }
-    if self.fileShareSnapshotUri != nil {try container.encode(self.fileShareSnapshotUri, forKey: .fileShareSnapshotUri)}
+    if self.fileShareSnapshotUri != nil { try container.encode(self.fileShareSnapshotUri, forKey: .fileShareSnapshotUri) }
   }
 }
 

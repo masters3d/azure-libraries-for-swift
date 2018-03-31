@@ -16,7 +16,7 @@ internal struct EventHubDataSourcePropertiesData : EventHubDataSourcePropertiesP
         case eventHubName = "eventHubName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EventHubDataSourcePropertiesData : EventHubDataSourcePropertiesP
     if container.contains(.eventHubName) {
         self.eventHubName = try container.decode(String?.self, forKey: .eventHubName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EventHubDataSourcePropertiesData : EventHubDataSourcePropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusNamespace != nil {try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace)}
-    if self.sharedAccessPolicyName != nil {try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName)}
-    if self.sharedAccessPolicyKey != nil {try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey)}
-    if self.eventHubName != nil {try container.encode(self.eventHubName, forKey: .eventHubName)}
+    if self.serviceBusNamespace != nil { try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace) }
+    if self.sharedAccessPolicyName != nil { try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName) }
+    if self.sharedAccessPolicyKey != nil { try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey) }
+    if self.eventHubName != nil { try container.encode(self.eventHubName, forKey: .eventHubName) }
   }
 }
 

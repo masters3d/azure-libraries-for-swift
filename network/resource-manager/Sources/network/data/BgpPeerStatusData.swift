@@ -24,7 +24,7 @@ internal struct BgpPeerStatusData : BgpPeerStatusProtocol {
         case messagesReceived = "messagesReceived"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct BgpPeerStatusData : BgpPeerStatusProtocol {
     if container.contains(.messagesReceived) {
         self.messagesReceived = try container.decode(Int64?.self, forKey: .messagesReceived)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct BgpPeerStatusData : BgpPeerStatusProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.localAddress != nil {try container.encode(self.localAddress, forKey: .localAddress)}
-    if self.neighbor != nil {try container.encode(self.neighbor, forKey: .neighbor)}
-    if self.asn != nil {try container.encode(self.asn, forKey: .asn)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.connectedDuration != nil {try container.encode(self.connectedDuration, forKey: .connectedDuration)}
-    if self.routesReceived != nil {try container.encode(self.routesReceived, forKey: .routesReceived)}
-    if self.messagesSent != nil {try container.encode(self.messagesSent, forKey: .messagesSent)}
-    if self.messagesReceived != nil {try container.encode(self.messagesReceived, forKey: .messagesReceived)}
+    if self.localAddress != nil { try container.encode(self.localAddress, forKey: .localAddress) }
+    if self.neighbor != nil { try container.encode(self.neighbor, forKey: .neighbor) }
+    if self.asn != nil { try container.encode(self.asn, forKey: .asn) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.connectedDuration != nil { try container.encode(self.connectedDuration, forKey: .connectedDuration) }
+    if self.routesReceived != nil { try container.encode(self.routesReceived, forKey: .routesReceived) }
+    if self.messagesSent != nil { try container.encode(self.messagesSent, forKey: .messagesSent) }
+    if self.messagesReceived != nil { try container.encode(self.messagesReceived, forKey: .messagesReceived) }
   }
 }
 

@@ -22,7 +22,7 @@ internal struct ApplicationPackageData : ApplicationPackageProtocol {
         case lastActivationTime = "lastActivationTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ApplicationPackageData : ApplicationPackageProtocol {
     if container.contains(.lastActivationTime) {
         self.lastActivationTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastActivationTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,11 +58,11 @@ internal struct ApplicationPackageData : ApplicationPackageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
-    if self.storageUrl != nil {try container.encode(self.storageUrl, forKey: .storageUrl)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
+    if self.storageUrl != nil { try container.encode(self.storageUrl, forKey: .storageUrl) }
     if self.storageUrlExpiry != nil {
         try container.encode(DateConverter.toString(date: self.storageUrlExpiry!, format: .dateTime), forKey: .storageUrlExpiry)
     }

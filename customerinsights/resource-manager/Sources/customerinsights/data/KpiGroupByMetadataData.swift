@@ -14,7 +14,7 @@ internal struct KpiGroupByMetadataData : KpiGroupByMetadataProtocol {
         case fieldType = "fieldType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct KpiGroupByMetadataData : KpiGroupByMetadataProtocol {
     if container.contains(.fieldType) {
         self.fieldType = try container.decode(String?.self, forKey: .fieldType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct KpiGroupByMetadataData : KpiGroupByMetadataProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.fieldName != nil {try container.encode(self.fieldName, forKey: .fieldName)}
-    if self.fieldType != nil {try container.encode(self.fieldType, forKey: .fieldType)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.fieldName != nil { try container.encode(self.fieldName, forKey: .fieldName) }
+    if self.fieldType != nil { try container.encode(self.fieldType, forKey: .fieldType) }
   }
 }
 

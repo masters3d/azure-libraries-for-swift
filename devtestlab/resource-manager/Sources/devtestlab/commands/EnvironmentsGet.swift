@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol EnvironmentsGet  {
+public protocol EnvironmentsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -10,7 +10,7 @@ public protocol EnvironmentsGet  {
     var expand : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DtlEnvironmentProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DtlEnvironmentProtocol?, Error?) -> Void)
 }
 
 extension Commands.Environments {
@@ -37,7 +37,7 @@ extension Commands.Environments {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{labName}"] = String(describing: self.labName)
@@ -53,12 +53,12 @@ extension Commands.Environments {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DtlEnvironmentData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DtlEnvironmentProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DtlEnvironmentProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DtlEnvironmentData?, error: Error?) in
                 completionHandler(result, error)

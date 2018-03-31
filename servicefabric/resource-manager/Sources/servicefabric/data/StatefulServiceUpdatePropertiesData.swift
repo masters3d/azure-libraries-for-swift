@@ -28,7 +28,7 @@ internal struct StatefulServiceUpdatePropertiesData : StatefulServiceUpdatePrope
         case standByReplicaKeepDuration = "standByReplicaKeepDuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct StatefulServiceUpdatePropertiesData : StatefulServiceUpdatePrope
     if container.contains(.standByReplicaKeepDuration) {
         self.standByReplicaKeepDuration = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .standByReplicaKeepDuration)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,13 +73,13 @@ internal struct StatefulServiceUpdatePropertiesData : StatefulServiceUpdatePrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.placementConstraints != nil {try container.encode(self.placementConstraints, forKey: .placementConstraints)}
-    if self.correlationScheme != nil {try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme)}
-    if self.serviceLoadMetrics != nil {try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics)}
-    if self.servicePlacementPolicies != nil {try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies)}
-    if self.defaultMoveCost != nil {try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost)}
-    if self.targetReplicaSetSize != nil {try container.encode(self.targetReplicaSetSize, forKey: .targetReplicaSetSize)}
-    if self.minReplicaSetSize != nil {try container.encode(self.minReplicaSetSize, forKey: .minReplicaSetSize)}
+    if self.placementConstraints != nil { try container.encode(self.placementConstraints, forKey: .placementConstraints) }
+    if self.correlationScheme != nil { try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme) }
+    if self.serviceLoadMetrics != nil { try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics) }
+    if self.servicePlacementPolicies != nil { try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies) }
+    if self.defaultMoveCost != nil { try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost) }
+    if self.targetReplicaSetSize != nil { try container.encode(self.targetReplicaSetSize, forKey: .targetReplicaSetSize) }
+    if self.minReplicaSetSize != nil { try container.encode(self.minReplicaSetSize, forKey: .minReplicaSetSize) }
     if self.replicaRestartWaitDuration != nil {
         try container.encode(DateConverter.toString(date: self.replicaRestartWaitDuration!, format: .dateTime), forKey: .replicaRestartWaitDuration)
     }

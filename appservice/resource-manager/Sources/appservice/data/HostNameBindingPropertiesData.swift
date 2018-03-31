@@ -26,7 +26,7 @@ internal struct HostNameBindingPropertiesData : HostNameBindingPropertiesProtoco
         case virtualIP = "virtualIP"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct HostNameBindingPropertiesData : HostNameBindingPropertiesProtoco
     if container.contains(.virtualIP) {
         self.virtualIP = try container.decode(String?.self, forKey: .virtualIP)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct HostNameBindingPropertiesData : HostNameBindingPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.siteName != nil {try container.encode(self.siteName, forKey: .siteName)}
-    if self.domainId != nil {try container.encode(self.domainId, forKey: .domainId)}
-    if self.azureResourceName != nil {try container.encode(self.azureResourceName, forKey: .azureResourceName)}
-    if self.azureResourceType != nil {try container.encode(self.azureResourceType, forKey: .azureResourceType)}
-    if self.customHostNameDnsRecordType != nil {try container.encode(self.customHostNameDnsRecordType, forKey: .customHostNameDnsRecordType)}
-    if self.hostNameType != nil {try container.encode(self.hostNameType, forKey: .hostNameType)}
-    if self.sslState != nil {try container.encode(self.sslState, forKey: .sslState)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.virtualIP != nil {try container.encode(self.virtualIP, forKey: .virtualIP)}
+    if self.siteName != nil { try container.encode(self.siteName, forKey: .siteName) }
+    if self.domainId != nil { try container.encode(self.domainId, forKey: .domainId) }
+    if self.azureResourceName != nil { try container.encode(self.azureResourceName, forKey: .azureResourceName) }
+    if self.azureResourceType != nil { try container.encode(self.azureResourceType, forKey: .azureResourceType) }
+    if self.customHostNameDnsRecordType != nil { try container.encode(self.customHostNameDnsRecordType, forKey: .customHostNameDnsRecordType) }
+    if self.hostNameType != nil { try container.encode(self.hostNameType, forKey: .hostNameType) }
+    if self.sslState != nil { try container.encode(self.sslState, forKey: .sslState) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.virtualIP != nil { try container.encode(self.virtualIP, forKey: .virtualIP) }
   }
 }
 

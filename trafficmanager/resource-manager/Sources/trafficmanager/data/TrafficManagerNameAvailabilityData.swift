@@ -18,7 +18,7 @@ internal struct TrafficManagerNameAvailabilityData : TrafficManagerNameAvailabil
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct TrafficManagerNameAvailabilityData : TrafficManagerNameAvailabil
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct TrafficManagerNameAvailabilityData : TrafficManagerNameAvailabil
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.nameAvailable != nil {try container.encode(self.nameAvailable, forKey: .nameAvailable)}
-    if self.reason != nil {try container.encode(self.reason, forKey: .reason)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.nameAvailable != nil { try container.encode(self.nameAvailable, forKey: .nameAvailable) }
+    if self.reason != nil { try container.encode(self.reason, forKey: .reason) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

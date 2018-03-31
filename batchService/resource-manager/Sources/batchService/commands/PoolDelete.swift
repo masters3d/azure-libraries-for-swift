@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PoolDelete  {
+public protocol PoolDelete {
     var headerParameters: [String: String] { get set }
     var poolId : String { get set }
     var timeout : Int32? { get set }
@@ -13,7 +13,7 @@ public protocol PoolDelete  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Pool {
@@ -46,7 +46,7 @@ extension Commands.Pool {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{poolId}"] = String(describing: self.poolId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -61,7 +61,7 @@ extension Commands.Pool {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

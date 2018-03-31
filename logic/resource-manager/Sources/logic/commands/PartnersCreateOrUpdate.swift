@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PartnersCreateOrUpdate  {
+public protocol PartnersCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var integrationAccountName : String { get set }
     var partnerName : String { get set }
     var apiVersion : String { get set }
-    var partner :  IntegrationAccountPartnerProtocol?  { get set }
+    var partner :  IntegrationAccountPartnerProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IntegrationAccountPartnerProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IntegrationAccountPartnerProtocol?, Error?) -> Void)
 }
 
 extension Commands.Partners {
@@ -35,7 +35,7 @@ extension Commands.Partners {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{integrationAccountName}"] = String(describing: self.integrationAccountName)
@@ -59,12 +59,12 @@ extension Commands.Partners {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(IntegrationAccountPartnerData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IntegrationAccountPartnerProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IntegrationAccountPartnerProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: IntegrationAccountPartnerData?, error: Error?) in
                 completionHandler(result, error)

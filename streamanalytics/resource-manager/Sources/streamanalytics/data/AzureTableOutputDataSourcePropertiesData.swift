@@ -22,7 +22,7 @@ internal struct AzureTableOutputDataSourcePropertiesData : AzureTableOutputDataS
         case batchSize = "batchSize"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct AzureTableOutputDataSourcePropertiesData : AzureTableOutputDataS
     if container.contains(.batchSize) {
         self.batchSize = try container.decode(Int32?.self, forKey: .batchSize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct AzureTableOutputDataSourcePropertiesData : AzureTableOutputDataS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountName != nil {try container.encode(self.accountName, forKey: .accountName)}
-    if self.accountKey != nil {try container.encode(self.accountKey, forKey: .accountKey)}
-    if self.table != nil {try container.encode(self.table, forKey: .table)}
-    if self.partitionKey != nil {try container.encode(self.partitionKey, forKey: .partitionKey)}
-    if self.rowKey != nil {try container.encode(self.rowKey, forKey: .rowKey)}
-    if self.columnsToRemove != nil {try container.encode(self.columnsToRemove as! [String]?, forKey: .columnsToRemove)}
-    if self.batchSize != nil {try container.encode(self.batchSize, forKey: .batchSize)}
+    if self.accountName != nil { try container.encode(self.accountName, forKey: .accountName) }
+    if self.accountKey != nil { try container.encode(self.accountKey, forKey: .accountKey) }
+    if self.table != nil { try container.encode(self.table, forKey: .table) }
+    if self.partitionKey != nil { try container.encode(self.partitionKey, forKey: .partitionKey) }
+    if self.rowKey != nil { try container.encode(self.rowKey, forKey: .rowKey) }
+    if self.columnsToRemove != nil { try container.encode(self.columnsToRemove as! [String]?, forKey: .columnsToRemove) }
+    if self.batchSize != nil { try container.encode(self.batchSize, forKey: .batchSize) }
   }
 }
 

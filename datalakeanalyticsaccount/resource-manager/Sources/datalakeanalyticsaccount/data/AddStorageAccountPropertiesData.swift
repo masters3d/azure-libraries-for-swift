@@ -12,7 +12,7 @@ internal struct AddStorageAccountPropertiesData : AddStorageAccountPropertiesPro
         case suffix = "suffix"
         }
 
-  public init(accessKey: String)  {
+  public init(accessKey: String) {
     self.accessKey = accessKey
   }
 
@@ -22,7 +22,7 @@ internal struct AddStorageAccountPropertiesData : AddStorageAccountPropertiesPro
     if container.contains(.suffix) {
         self.suffix = try container.decode(String?.self, forKey: .suffix)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct AddStorageAccountPropertiesData : AddStorageAccountPropertiesPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.accessKey, forKey: .accessKey)
-    if self.suffix != nil {try container.encode(self.suffix, forKey: .suffix)}
+    if self.suffix != nil { try container.encode(self.suffix, forKey: .suffix) }
   }
 }
 

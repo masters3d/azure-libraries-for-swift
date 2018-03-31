@@ -38,7 +38,7 @@ internal struct DpmJobData : DpmJobProtocol, JobProtocol {
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct DpmJobData : DpmJobProtocol, JobProtocol {
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(DpmJobExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,25 +98,25 @@ internal struct DpmJobData : DpmJobProtocol, JobProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entityFriendlyName != nil {try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.entityFriendlyName != nil { try container.encode(self.entityFriendlyName, forKey: .entityFriendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.activityId != nil {try container.encode(self.activityId, forKey: .activityId)}
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.dpmServerName != nil {try container.encode(self.dpmServerName, forKey: .dpmServerName)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.containerType != nil {try container.encode(self.containerType, forKey: .containerType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.actionsInfo != nil {try container.encode(self.actionsInfo as! [JobSupportedActionEnum?]?, forKey: .actionsInfo)}
-    if self.errorDetails != nil {try container.encode(self.errorDetails as! [DpmErrorInfoData?]?, forKey: .errorDetails)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! DpmJobExtendedInfoData?, forKey: .extendedInfo)}
+    if self.activityId != nil { try container.encode(self.activityId, forKey: .activityId) }
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.dpmServerName != nil { try container.encode(self.dpmServerName, forKey: .dpmServerName) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.containerType != nil { try container.encode(self.containerType, forKey: .containerType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.actionsInfo != nil { try container.encode(self.actionsInfo as! [JobSupportedActionEnum?]?, forKey: .actionsInfo) }
+    if self.errorDetails != nil { try container.encode(self.errorDetails as! [DpmErrorInfoData?]?, forKey: .errorDetails) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! DpmJobExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

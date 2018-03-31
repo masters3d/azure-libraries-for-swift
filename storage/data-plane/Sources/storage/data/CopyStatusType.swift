@@ -1,7 +1,6 @@
 // CopyStatusType enumerates the values for copy status type.
 
-public enum CopyStatusType: String, Codable
-{
+public enum CopyStatusType: String, Codable {
 // Aborted specifies the aborted state for copy status type.
     case Aborted = "aborted"
 // Failed specifies the failed state for copy status type.

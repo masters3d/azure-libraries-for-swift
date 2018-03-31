@@ -18,7 +18,7 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
         case fileMode = "fileMode"
         }
 
-  public init(lastModified: Date, contentLength: Int64)  {
+  public init(lastModified: Date, contentLength: Int64) {
     self.lastModified = lastModified
     self.contentLength = contentLength
   }
@@ -36,7 +36,7 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
     if container.contains(.fileMode) {
         self.fileMode = try container.decode(String?.self, forKey: .fileMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,8 +51,8 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
     }
     try container.encode(DateConverter.toString(date: self.lastModified, format: .dateTime), forKey: .lastModified)
     try container.encode(self.contentLength, forKey: .contentLength)
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
-    if self.fileMode != nil {try container.encode(self.fileMode, forKey: .fileMode)}
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
+    if self.fileMode != nil { try container.encode(self.fileMode, forKey: .fileMode) }
   }
 }
 

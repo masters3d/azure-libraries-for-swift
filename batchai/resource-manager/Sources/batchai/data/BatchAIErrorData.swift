@@ -14,7 +14,7 @@ internal struct BatchAIErrorData : BatchAIErrorProtocol {
         case details = "details"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BatchAIErrorData : BatchAIErrorProtocol {
     if container.contains(.details) {
         self.details = try container.decode([NameValuePairData?]?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BatchAIErrorData : BatchAIErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.details != nil {try container.encode(self.details as! [NameValuePairData?]?, forKey: .details)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.details != nil { try container.encode(self.details as! [NameValuePairData?]?, forKey: .details) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct VersionData : VersionProtocol {
         case minorRevision = "minorRevision"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct VersionData : VersionProtocol {
     if container.contains(.minorRevision) {
         self.minorRevision = try container.decode(Int32?.self, forKey: .minorRevision)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct VersionData : VersionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.major != nil {try container.encode(self.major, forKey: .major)}
-    if self.minor != nil {try container.encode(self.minor, forKey: .minor)}
-    if self.build != nil {try container.encode(self.build, forKey: .build)}
-    if self.revision != nil {try container.encode(self.revision, forKey: .revision)}
-    if self.majorRevision != nil {try container.encode(self.majorRevision, forKey: .majorRevision)}
-    if self.minorRevision != nil {try container.encode(self.minorRevision, forKey: .minorRevision)}
+    if self.major != nil { try container.encode(self.major, forKey: .major) }
+    if self.minor != nil { try container.encode(self.minor, forKey: .minor) }
+    if self.build != nil { try container.encode(self.build, forKey: .build) }
+    if self.revision != nil { try container.encode(self.revision, forKey: .revision) }
+    if self.majorRevision != nil { try container.encode(self.majorRevision, forKey: .majorRevision) }
+    if self.minorRevision != nil { try container.encode(self.minorRevision, forKey: .minorRevision) }
   }
 }
 

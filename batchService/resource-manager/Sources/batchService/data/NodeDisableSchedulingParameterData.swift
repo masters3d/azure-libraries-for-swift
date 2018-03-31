@@ -10,7 +10,7 @@ internal struct NodeDisableSchedulingParameterData : NodeDisableSchedulingParame
         enum CodingKeys: String, CodingKey {case nodeDisableSchedulingOption = "nodeDisableSchedulingOption"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NodeDisableSchedulingParameterData : NodeDisableSchedulingParame
       if container.contains(.nodeDisableSchedulingOption) {
         self.nodeDisableSchedulingOption = try container.decode(DisableComputeNodeSchedulingOptionEnum?.self, forKey: .nodeDisableSchedulingOption)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NodeDisableSchedulingParameterData : NodeDisableSchedulingParame
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nodeDisableSchedulingOption != nil {try container.encode(self.nodeDisableSchedulingOption, forKey: .nodeDisableSchedulingOption)}
+    if self.nodeDisableSchedulingOption != nil { try container.encode(self.nodeDisableSchedulingOption, forKey: .nodeDisableSchedulingOption) }
   }
 }
 

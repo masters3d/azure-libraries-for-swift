@@ -24,7 +24,7 @@ internal struct JobHistoryDefinitionPropertiesData : JobHistoryDefinitionPropert
         case repeatCount = "repeatCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct JobHistoryDefinitionPropertiesData : JobHistoryDefinitionPropert
     if container.contains(.repeatCount) {
         self.repeatCount = try container.decode(Int32?.self, forKey: .repeatCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -72,11 +72,11 @@ internal struct JobHistoryDefinitionPropertiesData : JobHistoryDefinitionPropert
     if self.expectedExecutionTime != nil {
         try container.encode(DateConverter.toString(date: self.expectedExecutionTime!, format: .dateTime), forKey: .expectedExecutionTime)
     }
-    if self.actionName != nil {try container.encode(self.actionName, forKey: .actionName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.retryCount != nil {try container.encode(self.retryCount, forKey: .retryCount)}
-    if self.repeatCount != nil {try container.encode(self.repeatCount, forKey: .repeatCount)}
+    if self.actionName != nil { try container.encode(self.actionName, forKey: .actionName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.retryCount != nil { try container.encode(self.retryCount, forKey: .retryCount) }
+    if self.repeatCount != nil { try container.encode(self.repeatCount, forKey: .repeatCount) }
   }
 }
 

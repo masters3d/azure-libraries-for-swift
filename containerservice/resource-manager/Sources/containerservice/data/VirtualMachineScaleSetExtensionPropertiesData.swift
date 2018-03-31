@@ -24,7 +24,7 @@ internal struct VirtualMachineScaleSetExtensionPropertiesData : VirtualMachineSc
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct VirtualMachineScaleSetExtensionPropertiesData : VirtualMachineSc
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct VirtualMachineScaleSetExtensionPropertiesData : VirtualMachineSc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.forceUpdateTag != nil {try container.encode(self.forceUpdateTag, forKey: .forceUpdateTag)}
-    if self.publisher != nil {try container.encode(self.publisher, forKey: .publisher)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.typeHandlerVersion != nil {try container.encode(self.typeHandlerVersion, forKey: .typeHandlerVersion)}
-    if self.autoUpgradeMinorVersion != nil {try container.encode(self.autoUpgradeMinorVersion, forKey: .autoUpgradeMinorVersion)}
-    if self.settings != nil {try container.encode(self.settings, forKey: .settings)}
-    if self.protectedSettings != nil {try container.encode(self.protectedSettings, forKey: .protectedSettings)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.forceUpdateTag != nil { try container.encode(self.forceUpdateTag, forKey: .forceUpdateTag) }
+    if self.publisher != nil { try container.encode(self.publisher, forKey: .publisher) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.typeHandlerVersion != nil { try container.encode(self.typeHandlerVersion, forKey: .typeHandlerVersion) }
+    if self.autoUpgradeMinorVersion != nil { try container.encode(self.autoUpgradeMinorVersion, forKey: .autoUpgradeMinorVersion) }
+    if self.settings != nil { try container.encode(self.settings, forKey: .settings) }
+    if self.protectedSettings != nil { try container.encode(self.protectedSettings, forKey: .protectedSettings) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

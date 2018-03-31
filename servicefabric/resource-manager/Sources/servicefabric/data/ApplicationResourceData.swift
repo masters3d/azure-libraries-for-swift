@@ -18,7 +18,7 @@ internal struct ApplicationResourceData : ApplicationResourceProtocol, ProxyReso
         case properties = "properties"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -37,7 +37,7 @@ internal struct ApplicationResourceData : ApplicationResourceProtocol, ProxyReso
     if container.contains(.properties) {
         self.properties = try container.decode(ApplicationPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,11 +47,11 @@ internal struct ApplicationResourceData : ApplicationResourceProtocol, ProxyReso
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.properties != nil {try container.encode(self.properties as! ApplicationPropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! ApplicationPropertiesData?, forKey: .properties) }
   }
 }
 

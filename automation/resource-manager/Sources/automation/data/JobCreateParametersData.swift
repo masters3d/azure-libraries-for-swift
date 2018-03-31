@@ -10,14 +10,14 @@ internal struct JobCreateParametersData : JobCreateParametersProtocol {
         enum CodingKeys: String, CodingKey {case properties = "properties"
         }
 
-  public init(properties: JobCreatePropertiesProtocol)  {
+  public init(properties: JobCreatePropertiesProtocol) {
     self.properties = properties
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.properties = try container.decode(JobCreatePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -42,7 +42,7 @@ internal struct AppServicePlanPatchResourcePropertiesData : AppServicePlanPatchR
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,7 +98,7 @@ internal struct AppServicePlanPatchResourcePropertiesData : AppServicePlanPatchR
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(ProvisioningStateEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -108,25 +108,25 @@ internal struct AppServicePlanPatchResourcePropertiesData : AppServicePlanPatchR
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.workerTierName != nil {try container.encode(self.workerTierName, forKey: .workerTierName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.subscription != nil {try container.encode(self.subscription, forKey: .subscription)}
-    if self.adminSiteName != nil {try container.encode(self.adminSiteName, forKey: .adminSiteName)}
-    if self.hostingEnvironmentProfile != nil {try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile)}
-    if self.maximumNumberOfWorkers != nil {try container.encode(self.maximumNumberOfWorkers, forKey: .maximumNumberOfWorkers)}
-    if self.geoRegion != nil {try container.encode(self.geoRegion, forKey: .geoRegion)}
-    if self.perSiteScaling != nil {try container.encode(self.perSiteScaling, forKey: .perSiteScaling)}
-    if self.numberOfSites != nil {try container.encode(self.numberOfSites, forKey: .numberOfSites)}
-    if self.isSpot != nil {try container.encode(self.isSpot, forKey: .isSpot)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.workerTierName != nil { try container.encode(self.workerTierName, forKey: .workerTierName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.subscription != nil { try container.encode(self.subscription, forKey: .subscription) }
+    if self.adminSiteName != nil { try container.encode(self.adminSiteName, forKey: .adminSiteName) }
+    if self.hostingEnvironmentProfile != nil { try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile) }
+    if self.maximumNumberOfWorkers != nil { try container.encode(self.maximumNumberOfWorkers, forKey: .maximumNumberOfWorkers) }
+    if self.geoRegion != nil { try container.encode(self.geoRegion, forKey: .geoRegion) }
+    if self.perSiteScaling != nil { try container.encode(self.perSiteScaling, forKey: .perSiteScaling) }
+    if self.numberOfSites != nil { try container.encode(self.numberOfSites, forKey: .numberOfSites) }
+    if self.isSpot != nil { try container.encode(self.isSpot, forKey: .isSpot) }
     if self.spotExpirationTime != nil {
         try container.encode(DateConverter.toString(date: self.spotExpirationTime!, format: .dateTime), forKey: .spotExpirationTime)
     }
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
-    if self.reserved != nil {try container.encode(self.reserved, forKey: .reserved)}
-    if self.targetWorkerCount != nil {try container.encode(self.targetWorkerCount, forKey: .targetWorkerCount)}
-    if self.targetWorkerSizeId != nil {try container.encode(self.targetWorkerSizeId, forKey: .targetWorkerSizeId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
+    if self.reserved != nil { try container.encode(self.reserved, forKey: .reserved) }
+    if self.targetWorkerCount != nil { try container.encode(self.targetWorkerCount, forKey: .targetWorkerCount) }
+    if self.targetWorkerSizeId != nil { try container.encode(self.targetWorkerSizeId, forKey: .targetWorkerSizeId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct HybridConnectionLimitsPropertiesData : HybridConnectionLimitsPro
         case maximum = "maximum"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct HybridConnectionLimitsPropertiesData : HybridConnectionLimitsPro
     if container.contains(.maximum) {
         self.maximum = try container.decode(Int32?.self, forKey: .maximum)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct HybridConnectionLimitsPropertiesData : HybridConnectionLimitsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.current != nil {try container.encode(self.current, forKey: .current)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
+    if self.current != nil { try container.encode(self.current, forKey: .current) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
   }
 }
 

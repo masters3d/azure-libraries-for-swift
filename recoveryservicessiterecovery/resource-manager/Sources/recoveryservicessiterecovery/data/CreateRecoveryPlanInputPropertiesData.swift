@@ -16,7 +16,7 @@ internal struct CreateRecoveryPlanInputPropertiesData : CreateRecoveryPlanInputP
         case groups = "groups"
         }
 
-  public init(primaryFabricId: String, recoveryFabricId: String, groups: [RecoveryPlanGroupProtocol])  {
+  public init(primaryFabricId: String, recoveryFabricId: String, groups: [RecoveryPlanGroupProtocol]) {
     self.primaryFabricId = primaryFabricId
     self.recoveryFabricId = recoveryFabricId
     self.groups = groups
@@ -30,7 +30,7 @@ internal struct CreateRecoveryPlanInputPropertiesData : CreateRecoveryPlanInputP
         self.failoverDeploymentModel = try container.decode(FailoverDeploymentModelEnum?.self, forKey: .failoverDeploymentModel)
     }
     self.groups = try container.decode([RecoveryPlanGroupData].self, forKey: .groups)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,7 +42,7 @@ internal struct CreateRecoveryPlanInputPropertiesData : CreateRecoveryPlanInputP
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.primaryFabricId, forKey: .primaryFabricId)
     try container.encode(self.recoveryFabricId, forKey: .recoveryFabricId)
-    if self.failoverDeploymentModel != nil {try container.encode(self.failoverDeploymentModel, forKey: .failoverDeploymentModel)}
+    if self.failoverDeploymentModel != nil { try container.encode(self.failoverDeploymentModel, forKey: .failoverDeploymentModel) }
     try container.encode(self.groups as! [RecoveryPlanGroupData], forKey: .groups)
   }
 }

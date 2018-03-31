@@ -14,7 +14,7 @@ internal struct DnsConfigData : DnsConfigProtocol {
         case ttl = "ttl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DnsConfigData : DnsConfigProtocol {
     if container.contains(.ttl) {
         self.ttl = try container.decode(Int64?.self, forKey: .ttl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DnsConfigData : DnsConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.relativeName != nil {try container.encode(self.relativeName, forKey: .relativeName)}
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
-    if self.ttl != nil {try container.encode(self.ttl, forKey: .ttl)}
+    if self.relativeName != nil { try container.encode(self.relativeName, forKey: .relativeName) }
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
+    if self.ttl != nil { try container.encode(self.ttl, forKey: .ttl) }
   }
 }
 

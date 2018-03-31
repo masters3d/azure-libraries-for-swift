@@ -18,7 +18,7 @@ internal struct RoutePropertiesData : RoutePropertiesProtocol {
         case isEnabled = "isEnabled"
         }
 
-  public init(name: String, source: RoutingSourceEnum, endpointNames: [String], isEnabled: Bool)  {
+  public init(name: String, source: RoutingSourceEnum, endpointNames: [String], isEnabled: Bool) {
     self.name = name
     self.source = source
     self.endpointNames = endpointNames
@@ -34,7 +34,7 @@ internal struct RoutePropertiesData : RoutePropertiesProtocol {
     }
     self.endpointNames = try container.decode([String].self, forKey: .endpointNames)
     self.isEnabled = try container.decode(Bool.self, forKey: .isEnabled)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,7 +46,7 @@ internal struct RoutePropertiesData : RoutePropertiesProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.source, forKey: .source)
-    if self.condition != nil {try container.encode(self.condition, forKey: .condition)}
+    if self.condition != nil { try container.encode(self.condition, forKey: .condition) }
     try container.encode(self.endpointNames as! [String], forKey: .endpointNames)
     try container.encode(self.isEnabled, forKey: .isEnabled)
   }

@@ -18,7 +18,7 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
         case secretKeyVaultId = "secretKeyVaultId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
     if container.contains(.secretKeyVaultId) {
         self.secretKeyVaultId = try container.decode(String?.self, forKey: .secretKeyVaultId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct EncryptionDetailsData : EncryptionDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.encryptionEnabled != nil {try container.encode(self.encryptionEnabled, forKey: .encryptionEnabled)}
-    if self.kekUrl != nil {try container.encode(self.kekUrl, forKey: .kekUrl)}
-    if self.secretKeyUrl != nil {try container.encode(self.secretKeyUrl, forKey: .secretKeyUrl)}
-    if self.kekVaultId != nil {try container.encode(self.kekVaultId, forKey: .kekVaultId)}
-    if self.secretKeyVaultId != nil {try container.encode(self.secretKeyVaultId, forKey: .secretKeyVaultId)}
+    if self.encryptionEnabled != nil { try container.encode(self.encryptionEnabled, forKey: .encryptionEnabled) }
+    if self.kekUrl != nil { try container.encode(self.kekUrl, forKey: .kekUrl) }
+    if self.secretKeyUrl != nil { try container.encode(self.secretKeyUrl, forKey: .secretKeyUrl) }
+    if self.kekVaultId != nil { try container.encode(self.kekVaultId, forKey: .kekVaultId) }
+    if self.secretKeyVaultId != nil { try container.encode(self.secretKeyVaultId, forKey: .secretKeyVaultId) }
   }
 }
 

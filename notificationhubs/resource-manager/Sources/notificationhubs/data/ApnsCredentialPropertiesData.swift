@@ -24,7 +24,7 @@ internal struct ApnsCredentialPropertiesData : ApnsCredentialPropertiesProtocol 
         case token = "token"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ApnsCredentialPropertiesData : ApnsCredentialPropertiesProtocol 
     if container.contains(.token) {
         self.token = try container.decode(String?.self, forKey: .token)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct ApnsCredentialPropertiesData : ApnsCredentialPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.apnsCertificate != nil {try container.encode(self.apnsCertificate, forKey: .apnsCertificate)}
-    if self.certificateKey != nil {try container.encode(self.certificateKey, forKey: .certificateKey)}
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.keyId != nil {try container.encode(self.keyId, forKey: .keyId)}
-    if self.appName != nil {try container.encode(self.appName, forKey: .appName)}
-    if self.appId != nil {try container.encode(self.appId, forKey: .appId)}
-    if self.token != nil {try container.encode(self.token, forKey: .token)}
+    if self.apnsCertificate != nil { try container.encode(self.apnsCertificate, forKey: .apnsCertificate) }
+    if self.certificateKey != nil { try container.encode(self.certificateKey, forKey: .certificateKey) }
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.keyId != nil { try container.encode(self.keyId, forKey: .keyId) }
+    if self.appName != nil { try container.encode(self.appName, forKey: .appName) }
+    if self.appId != nil { try container.encode(self.appId, forKey: .appId) }
+    if self.token != nil { try container.encode(self.token, forKey: .token) }
   }
 }
 

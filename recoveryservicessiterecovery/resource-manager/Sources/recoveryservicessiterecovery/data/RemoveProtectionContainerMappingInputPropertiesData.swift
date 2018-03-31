@@ -10,7 +10,7 @@ internal struct RemoveProtectionContainerMappingInputPropertiesData : RemoveProt
         enum CodingKeys: String, CodingKey {case providerSpecificInput = "providerSpecificInput"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RemoveProtectionContainerMappingInputPropertiesData : RemoveProt
       if container.contains(.providerSpecificInput) {
         self.providerSpecificInput = try container.decode(ReplicationProviderContainerUnmappingInputData?.self, forKey: .providerSpecificInput)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RemoveProtectionContainerMappingInputPropertiesData : RemoveProt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.providerSpecificInput != nil {try container.encode(self.providerSpecificInput as! ReplicationProviderContainerUnmappingInputData?, forKey: .providerSpecificInput)}
+    if self.providerSpecificInput != nil { try container.encode(self.providerSpecificInput as! ReplicationProviderContainerUnmappingInputData?, forKey: .providerSpecificInput) }
   }
 }
 

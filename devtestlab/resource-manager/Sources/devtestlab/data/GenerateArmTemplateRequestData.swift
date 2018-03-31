@@ -16,7 +16,7 @@ internal struct GenerateArmTemplateRequestData : GenerateArmTemplateRequestProto
         case fileUploadOptions = "fileUploadOptions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct GenerateArmTemplateRequestData : GenerateArmTemplateRequestProto
     if container.contains(.fileUploadOptions) {
         self.fileUploadOptions = try container.decode(FileUploadOptionsEnum?.self, forKey: .fileUploadOptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct GenerateArmTemplateRequestData : GenerateArmTemplateRequestProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualMachineName != nil {try container.encode(self.virtualMachineName, forKey: .virtualMachineName)}
-    if self.parameters != nil {try container.encode(self.parameters as! [ParameterInfoData?]?, forKey: .parameters)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.fileUploadOptions != nil {try container.encode(self.fileUploadOptions, forKey: .fileUploadOptions)}
+    if self.virtualMachineName != nil { try container.encode(self.virtualMachineName, forKey: .virtualMachineName) }
+    if self.parameters != nil { try container.encode(self.parameters as! [ParameterInfoData?]?, forKey: .parameters) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.fileUploadOptions != nil { try container.encode(self.fileUploadOptions, forKey: .fileUploadOptions) }
   }
 }
 

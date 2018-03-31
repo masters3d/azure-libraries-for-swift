@@ -10,7 +10,7 @@ internal struct BillingAccountPropertiesData : BillingAccountPropertiesProtocol 
         enum CodingKeys: String, CodingKey {case principalName = "principalName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct BillingAccountPropertiesData : BillingAccountPropertiesProtocol 
       if container.contains(.principalName) {
         self.principalName = try container.decode(String?.self, forKey: .principalName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct BillingAccountPropertiesData : BillingAccountPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.principalName != nil {try container.encode(self.principalName, forKey: .principalName)}
+    if self.principalName != nil { try container.encode(self.principalName, forKey: .principalName) }
   }
 }
 

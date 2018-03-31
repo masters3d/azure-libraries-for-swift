@@ -12,7 +12,7 @@ internal struct LinuxPropertiesData : LinuxPropertiesProtocol {
         case excludedPackageNameMasks = "excludedPackageNameMasks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct LinuxPropertiesData : LinuxPropertiesProtocol {
     if container.contains(.excludedPackageNameMasks) {
         self.excludedPackageNameMasks = try container.decode([String]?.self, forKey: .excludedPackageNameMasks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct LinuxPropertiesData : LinuxPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.includedPackageClassifications != nil {try container.encode(self.includedPackageClassifications, forKey: .includedPackageClassifications)}
-    if self.excludedPackageNameMasks != nil {try container.encode(self.excludedPackageNameMasks as! [String]?, forKey: .excludedPackageNameMasks)}
+    if self.includedPackageClassifications != nil { try container.encode(self.includedPackageClassifications, forKey: .includedPackageClassifications) }
+    if self.excludedPackageNameMasks != nil { try container.encode(self.excludedPackageNameMasks as! [String]?, forKey: .excludedPackageNameMasks) }
   }
 }
 

@@ -28,7 +28,7 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
         case enablePurgeProtection = "enablePurgeProtection"
         }
 
-  public init(tenantId: String, sku: SkuProtocol)  {
+  public init(tenantId: String, sku: SkuProtocol) {
     self.tenantId = tenantId
     self.sku = sku
   }
@@ -61,7 +61,7 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
     if container.contains(.enablePurgeProtection) {
         self.enablePurgeProtection = try container.decode(Bool?.self, forKey: .enablePurgeProtection)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,14 +73,14 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.tenantId, forKey: .tenantId)
     try container.encode(self.sku as! SkuData, forKey: .sku)
-    if self.accessPolicies != nil {try container.encode(self.accessPolicies as! [AccessPolicyEntryData?]?, forKey: .accessPolicies)}
-    if self.vaultUri != nil {try container.encode(self.vaultUri, forKey: .vaultUri)}
-    if self.enabledForDeployment != nil {try container.encode(self.enabledForDeployment, forKey: .enabledForDeployment)}
-    if self.enabledForDiskEncryption != nil {try container.encode(self.enabledForDiskEncryption, forKey: .enabledForDiskEncryption)}
-    if self.enabledForTemplateDeployment != nil {try container.encode(self.enabledForTemplateDeployment, forKey: .enabledForTemplateDeployment)}
-    if self.enableSoftDelete != nil {try container.encode(self.enableSoftDelete, forKey: .enableSoftDelete)}
-    if self.createMode != nil {try container.encode(self.createMode, forKey: .createMode)}
-    if self.enablePurgeProtection != nil {try container.encode(self.enablePurgeProtection, forKey: .enablePurgeProtection)}
+    if self.accessPolicies != nil { try container.encode(self.accessPolicies as! [AccessPolicyEntryData?]?, forKey: .accessPolicies) }
+    if self.vaultUri != nil { try container.encode(self.vaultUri, forKey: .vaultUri) }
+    if self.enabledForDeployment != nil { try container.encode(self.enabledForDeployment, forKey: .enabledForDeployment) }
+    if self.enabledForDiskEncryption != nil { try container.encode(self.enabledForDiskEncryption, forKey: .enabledForDiskEncryption) }
+    if self.enabledForTemplateDeployment != nil { try container.encode(self.enabledForTemplateDeployment, forKey: .enabledForTemplateDeployment) }
+    if self.enableSoftDelete != nil { try container.encode(self.enableSoftDelete, forKey: .enableSoftDelete) }
+    if self.createMode != nil { try container.encode(self.createMode, forKey: .createMode) }
+    if self.enablePurgeProtection != nil { try container.encode(self.enablePurgeProtection, forKey: .enablePurgeProtection) }
   }
 }
 

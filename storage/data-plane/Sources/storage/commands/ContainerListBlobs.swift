@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ContainerListBlobs  {
+public protocol ContainerListBlobs {
     var headerParameters: [String: String] { get set }
     var accountName : String { get set }
     var container : String { get set }
@@ -12,10 +12,10 @@ public protocol ContainerListBlobs  {
     var timeout : Int32? { get set }
     var restype : String { get set }
     var comp : String { get set }
-    var version : String?  { get set }
-    var requestId : String?  { get set }
+    var version : String? { get set }
+    var requestId : String? { get set }
     func execute(client: RuntimeClient,
-        completionHandler: @escaping (BlobEnumerationResultsProtocol?, Error?) -> Void) -> Void ;
+        completionHandler: @escaping (BlobEnumerationResultsProtocol?, Error?) -> Void)
 }
 
 extension Commands.Container {
@@ -36,14 +36,14 @@ internal class ListBlobsCommand : BaseCommand, ContainerListBlobs {
         set {
             if newValue != nil {
                 headerParameters["x-ms-version"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-version"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-version" }) {
                 return headerParameters["x-ms-version"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -53,19 +53,19 @@ internal class ListBlobsCommand : BaseCommand, ContainerListBlobs {
         set {
             if newValue != nil {
                 headerParameters["x-ms-client-request-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-client-request-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-client-request-id" }) {
                 return headerParameters["x-ms-client-request-id"]
-            }else {
+            } else {
                 return nil
             }
         }
     }
-    
+
     let azureStorageKey: String
 
     public init(azureStorageKey: String, accountName: String, container: String, restype: String, comp: String) {
@@ -82,7 +82,7 @@ internal class ListBlobsCommand : BaseCommand, ContainerListBlobs {
         self.headerParameters = ["Content-Type":"application/xml; charset=utf-8"]
     }
 
-    public override func preCall()  {
+    public override func preCall() {
         self.pathParameters["{accountName}"] = String(describing: self.accountName)
         self.pathParameters["{container}"] = String(describing: self.container)
         if self.prefix != nil { queryParameters["prefix"] = String(describing: self.prefix!) }
@@ -104,16 +104,16 @@ internal class ListBlobsCommand : BaseCommand, ContainerListBlobs {
             do {
                 let res = try decoder.decode(BlobEnumerationResultsData?.self, from: data)
                 return res
-                
+
             } catch {
                 print("=== returnFunc error:", error)
             }
         }
-        
+
         throw DecodeError.unknownMimeType
     }
     public func execute(client: RuntimeClient,
-        completionHandler: @escaping (BlobEnumerationResultsProtocol?, Error?) -> Void) -> Void {
+        completionHandler: @escaping (BlobEnumerationResultsProtocol?, Error?) -> Void) {
         client.executeAsync(command: self) {
             (result: BlobEnumerationResultsData?, error: Error?) in
             completionHandler(result, error)

@@ -14,7 +14,7 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
         case capacity = "capacity"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -27,7 +27,7 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
     if container.contains(.capacity) {
         self.capacity = try container.decode(Int32?.self, forKey: .capacity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
-    if self.capacity != nil {try container.encode(self.capacity, forKey: .capacity)}
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
+    if self.capacity != nil { try container.encode(self.capacity, forKey: .capacity) }
   }
 }
 

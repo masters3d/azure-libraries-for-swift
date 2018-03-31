@@ -10,14 +10,14 @@ internal struct ContainerServiceDiagnosticsProfileData : ContainerServiceDiagnos
         enum CodingKeys: String, CodingKey {case vmDiagnostics = "vmDiagnostics"
         }
 
-  public init(vmDiagnostics: ContainerServiceVMDiagnosticsProtocol)  {
+  public init(vmDiagnostics: ContainerServiceVMDiagnosticsProtocol) {
     self.vmDiagnostics = vmDiagnostics
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.vmDiagnostics = try container.decode(ContainerServiceVMDiagnosticsData.self, forKey: .vmDiagnostics)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

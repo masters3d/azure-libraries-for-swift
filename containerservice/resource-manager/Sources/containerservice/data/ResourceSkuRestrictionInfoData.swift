@@ -12,7 +12,7 @@ internal struct ResourceSkuRestrictionInfoData : ResourceSkuRestrictionInfoProto
         case zones = "zones"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ResourceSkuRestrictionInfoData : ResourceSkuRestrictionInfoProto
     if container.contains(.zones) {
         self.zones = try container.decode([String]?.self, forKey: .zones)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ResourceSkuRestrictionInfoData : ResourceSkuRestrictionInfoProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.locations != nil {try container.encode(self.locations as! [String]?, forKey: .locations)}
-    if self.zones != nil {try container.encode(self.zones as! [String]?, forKey: .zones)}
+    if self.locations != nil { try container.encode(self.locations as! [String]?, forKey: .locations) }
+    if self.zones != nil { try container.encode(self.zones as! [String]?, forKey: .zones) }
   }
 }
 

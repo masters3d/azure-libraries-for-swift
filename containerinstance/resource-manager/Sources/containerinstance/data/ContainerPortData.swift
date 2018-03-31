@@ -12,7 +12,7 @@ internal struct ContainerPortData : ContainerPortProtocol {
         case port = "port"
         }
 
-  public init(port: Int32)  {
+  public init(port: Int32) {
     self.port = port
   }
 
@@ -22,7 +22,7 @@ internal struct ContainerPortData : ContainerPortProtocol {
         self._protocol = try container.decode(ContainerNetworkProtocolEnum?.self, forKey: ._protocol)
     }
     self.port = try container.decode(Int32.self, forKey: .port)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ContainerPortData : ContainerPortProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
     try container.encode(self.port, forKey: .port)
   }
 }

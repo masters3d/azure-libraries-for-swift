@@ -12,7 +12,7 @@ internal struct ContainerServiceWindowsProfileData : ContainerServiceWindowsProf
         case adminPassword = "adminPassword"
         }
 
-  public init(adminUsername: String, adminPassword: String)  {
+  public init(adminUsername: String, adminPassword: String) {
     self.adminUsername = adminUsername
     self.adminPassword = adminPassword
   }
@@ -21,7 +21,7 @@ internal struct ContainerServiceWindowsProfileData : ContainerServiceWindowsProf
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.adminUsername = try container.decode(String.self, forKey: .adminUsername)
     self.adminPassword = try container.decode(String.self, forKey: .adminPassword)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

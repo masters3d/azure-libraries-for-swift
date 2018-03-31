@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetVMInstanceIDsData : VirtualMachineScaleSet
         enum CodingKeys: String, CodingKey {case instanceIds = "instanceIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetVMInstanceIDsData : VirtualMachineScaleSet
       if container.contains(.instanceIds) {
         self.instanceIds = try container.decode([String]?.self, forKey: .instanceIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetVMInstanceIDsData : VirtualMachineScaleSet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.instanceIds != nil {try container.encode(self.instanceIds as! [String]?, forKey: .instanceIds)}
+    if self.instanceIds != nil { try container.encode(self.instanceIds as! [String]?, forKey: .instanceIds) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct PushSettingsPropertiesData : PushSettingsPropertiesProtocol {
         case dynamicTagsJson = "dynamicTagsJson"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PushSettingsPropertiesData : PushSettingsPropertiesProtocol {
     if container.contains(.dynamicTagsJson) {
         self.dynamicTagsJson = try container.decode(String?.self, forKey: .dynamicTagsJson)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PushSettingsPropertiesData : PushSettingsPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isPushEnabled != nil {try container.encode(self.isPushEnabled, forKey: .isPushEnabled)}
-    if self.tagWhitelistJson != nil {try container.encode(self.tagWhitelistJson, forKey: .tagWhitelistJson)}
-    if self.tagsRequiringAuth != nil {try container.encode(self.tagsRequiringAuth, forKey: .tagsRequiringAuth)}
-    if self.dynamicTagsJson != nil {try container.encode(self.dynamicTagsJson, forKey: .dynamicTagsJson)}
+    if self.isPushEnabled != nil { try container.encode(self.isPushEnabled, forKey: .isPushEnabled) }
+    if self.tagWhitelistJson != nil { try container.encode(self.tagWhitelistJson, forKey: .tagWhitelistJson) }
+    if self.tagsRequiringAuth != nil { try container.encode(self.tagsRequiringAuth, forKey: .tagsRequiringAuth) }
+    if self.dynamicTagsJson != nil { try container.encode(self.dynamicTagsJson, forKey: .dynamicTagsJson) }
   }
 }
 

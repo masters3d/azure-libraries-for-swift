@@ -10,7 +10,7 @@ internal struct JavaScriptFunctionRetrieveDefaultDefinitionParametersData : Java
         enum CodingKeys: String, CodingKey {case bindingRetrievalProperties = "bindingRetrievalProperties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct JavaScriptFunctionRetrieveDefaultDefinitionParametersData : Java
       if container.contains(.bindingRetrievalProperties) {
         self.bindingRetrievalProperties = try container.decode(JavaScriptFunctionBindingRetrievalPropertiesData?.self, forKey: .bindingRetrievalProperties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct JavaScriptFunctionRetrieveDefaultDefinitionParametersData : Java
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.bindingRetrievalProperties != nil {try container.encode(self.bindingRetrievalProperties as! JavaScriptFunctionBindingRetrievalPropertiesData?, forKey: .bindingRetrievalProperties)}
+    if self.bindingRetrievalProperties != nil { try container.encode(self.bindingRetrievalProperties as! JavaScriptFunctionBindingRetrievalPropertiesData?, forKey: .bindingRetrievalProperties) }
   }
 }
 

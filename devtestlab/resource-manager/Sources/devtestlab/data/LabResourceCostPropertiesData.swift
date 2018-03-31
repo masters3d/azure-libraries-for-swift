@@ -26,7 +26,7 @@ internal struct LabResourceCostPropertiesData : LabResourceCostPropertiesProtoco
         case externalResourceId = "externalResourceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct LabResourceCostPropertiesData : LabResourceCostPropertiesProtoco
     if container.contains(.externalResourceId) {
         self.externalResourceId = try container.decode(String?.self, forKey: .externalResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct LabResourceCostPropertiesData : LabResourceCostPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourcename != nil {try container.encode(self.resourcename, forKey: .resourcename)}
-    if self.resourceUId != nil {try container.encode(self.resourceUId, forKey: .resourceUId)}
-    if self.resourceCost != nil {try container.encode(self.resourceCost, forKey: .resourceCost)}
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.resourceOwner != nil {try container.encode(self.resourceOwner, forKey: .resourceOwner)}
-    if self.resourcePricingTier != nil {try container.encode(self.resourcePricingTier, forKey: .resourcePricingTier)}
-    if self.resourceStatus != nil {try container.encode(self.resourceStatus, forKey: .resourceStatus)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.externalResourceId != nil {try container.encode(self.externalResourceId, forKey: .externalResourceId)}
+    if self.resourcename != nil { try container.encode(self.resourcename, forKey: .resourcename) }
+    if self.resourceUId != nil { try container.encode(self.resourceUId, forKey: .resourceUId) }
+    if self.resourceCost != nil { try container.encode(self.resourceCost, forKey: .resourceCost) }
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.resourceOwner != nil { try container.encode(self.resourceOwner, forKey: .resourceOwner) }
+    if self.resourcePricingTier != nil { try container.encode(self.resourcePricingTier, forKey: .resourcePricingTier) }
+    if self.resourceStatus != nil { try container.encode(self.resourceStatus, forKey: .resourceStatus) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.externalResourceId != nil { try container.encode(self.externalResourceId, forKey: .externalResourceId) }
   }
 }
 

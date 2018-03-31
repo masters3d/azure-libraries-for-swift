@@ -10,14 +10,14 @@ internal struct AutoStorageBasePropertiesData : AutoStorageBasePropertiesProtoco
         enum CodingKeys: String, CodingKey {case storageAccountId = "storageAccountId"
         }
 
-  public init(storageAccountId: String)  {
+  public init(storageAccountId: String) {
     self.storageAccountId = storageAccountId
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.storageAccountId = try container.decode(String.self, forKey: .storageAccountId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

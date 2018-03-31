@@ -16,7 +16,7 @@ internal struct IdentityPropertiesData : IdentityPropertiesProtocol {
         case clientSecretUrl = "clientSecretUrl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct IdentityPropertiesData : IdentityPropertiesProtocol {
     if container.contains(.clientSecretUrl) {
         self.clientSecretUrl = try container.decode(String?.self, forKey: .clientSecretUrl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct IdentityPropertiesData : IdentityPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.principalId != nil {try container.encode(self.principalId, forKey: .principalId)}
-    if self.clientId != nil {try container.encode(self.clientId, forKey: .clientId)}
-    if self.clientSecretUrl != nil {try container.encode(self.clientSecretUrl, forKey: .clientSecretUrl)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.principalId != nil { try container.encode(self.principalId, forKey: .principalId) }
+    if self.clientId != nil { try container.encode(self.clientId, forKey: .clientId) }
+    if self.clientSecretUrl != nil { try container.encode(self.clientSecretUrl, forKey: .clientSecretUrl) }
   }
 }
 

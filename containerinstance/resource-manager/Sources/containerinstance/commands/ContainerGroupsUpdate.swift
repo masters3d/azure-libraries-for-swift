@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ContainerGroupsUpdate  {
+public protocol ContainerGroupsUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var containerGroupName : String { get set }
     var apiVersion : String { get set }
-    var resource :  ResourceProtocol?  { get set }
+    var resource :  ResourceProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ContainerGroupProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ContainerGroupProtocol?, Error?) -> Void)
 }
 
 extension Commands.ContainerGroups {
@@ -31,7 +31,7 @@ extension Commands.ContainerGroups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{containerGroupName}"] = String(describing: self.containerGroupName)
@@ -54,12 +54,12 @@ extension Commands.ContainerGroups {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ContainerGroupData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ContainerGroupProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ContainerGroupProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ContainerGroupData?, error: Error?) in
                 completionHandler(result, error)

@@ -12,7 +12,7 @@ internal struct BasicAuthenticationData : BasicAuthenticationProtocol, HttpAuthe
         case password = "password"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct BasicAuthenticationData : BasicAuthenticationProtocol, HttpAuthe
     if container.contains(.password) {
         self.password = try container.decode(String?.self, forKey: .password)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct BasicAuthenticationData : BasicAuthenticationProtocol, HttpAuthe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.username != nil {try container.encode(self.username, forKey: .username)}
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
+    if self.username != nil { try container.encode(self.username, forKey: .username) }
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
   }
 }
 

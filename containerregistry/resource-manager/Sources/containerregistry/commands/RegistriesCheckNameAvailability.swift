@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RegistriesCheckNameAvailability  {
+public protocol RegistriesCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var registryNameCheckRequest :  RegistryNameCheckRequestProtocol?  { get set }
+    var registryNameCheckRequest :  RegistryNameCheckRequestProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RegistryNameStatusProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RegistryNameStatusProtocol?, Error?) -> Void)
 }
 
 extension Commands.Registries {
@@ -27,7 +27,7 @@ extension Commands.Registries {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = registryNameCheckRequest
@@ -48,12 +48,12 @@ extension Commands.Registries {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RegistryNameStatusData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RegistryNameStatusProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RegistryNameStatusProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RegistryNameStatusData?, error: Error?) in
                 completionHandler(result, error)

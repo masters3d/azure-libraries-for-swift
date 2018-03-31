@@ -28,7 +28,7 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,24 +73,24 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isEnabled != nil {try container.encode(self.isEnabled, forKey: .isEnabled)}
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
+    if self.isEnabled != nil { try container.encode(self.isEnabled, forKey: .isEnabled) }
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
     if self.lastInvokedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastInvokedTime!, format: .dateTime), forKey: .lastInvokedTime)
     }
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.runbook != nil {try container.encode(self.runbook as! RunbookAssociationPropertyData?, forKey: .runbook)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.runbook != nil { try container.encode(self.runbook as! RunbookAssociationPropertyData?, forKey: .runbook) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

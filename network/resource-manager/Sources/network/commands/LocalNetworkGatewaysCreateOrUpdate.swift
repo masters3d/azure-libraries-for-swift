@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LocalNetworkGatewaysCreateOrUpdate  {
+public protocol LocalNetworkGatewaysCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var localNetworkGatewayName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  LocalNetworkGatewayProtocol?  { get set }
+    var parameters :  LocalNetworkGatewayProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LocalNetworkGatewayProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LocalNetworkGatewayProtocol?, Error?) -> Void)
 }
 
 extension Commands.LocalNetworkGateways {
@@ -34,7 +34,7 @@ extension Commands.LocalNetworkGateways {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{localNetworkGatewayName}"] = String(describing: self.localNetworkGatewayName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.LocalNetworkGateways {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LocalNetworkGatewayData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LocalNetworkGatewayProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LocalNetworkGatewayProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: LocalNetworkGatewayData?, error: Error?) in
                 completionHandler(result, error)

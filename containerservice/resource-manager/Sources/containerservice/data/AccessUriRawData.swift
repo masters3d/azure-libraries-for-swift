@@ -10,7 +10,7 @@ internal struct AccessUriRawData : AccessUriRawProtocol {
         enum CodingKeys: String, CodingKey {case accessSAS = "accessSAS"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AccessUriRawData : AccessUriRawProtocol {
       if container.contains(.accessSAS) {
         self.accessSAS = try container.decode(String?.self, forKey: .accessSAS)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AccessUriRawData : AccessUriRawProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accessSAS != nil {try container.encode(self.accessSAS, forKey: .accessSAS)}
+    if self.accessSAS != nil { try container.encode(self.accessSAS, forKey: .accessSAS) }
   }
 }
 

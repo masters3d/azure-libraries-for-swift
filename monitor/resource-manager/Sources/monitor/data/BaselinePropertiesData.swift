@@ -20,7 +20,7 @@ internal struct BaselinePropertiesData : BaselinePropertiesProtocol {
         case metadata = "metadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct BaselinePropertiesData : BaselinePropertiesProtocol {
     if container.contains(.metadata) {
         self.metadata = try container.decode([BaselineMetadataValueData?]?.self, forKey: .metadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct BaselinePropertiesData : BaselinePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timespan != nil {try container.encode(self.timespan, forKey: .timespan)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
-    if self.aggregation != nil {try container.encode(self.aggregation, forKey: .aggregation)}
-    if self.timestamps != nil {try container.encode(self.timestamps as! [Date]?, forKey: .timestamps)}
-    if self.baseline != nil {try container.encode(self.baseline as! [BaselineData?]?, forKey: .baseline)}
-    if self.metadata != nil {try container.encode(self.metadata as! [BaselineMetadataValueData?]?, forKey: .metadata)}
+    if self.timespan != nil { try container.encode(self.timespan, forKey: .timespan) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
+    if self.aggregation != nil { try container.encode(self.aggregation, forKey: .aggregation) }
+    if self.timestamps != nil { try container.encode(self.timestamps as! [Date]?, forKey: .timestamps) }
+    if self.baseline != nil { try container.encode(self.baseline as! [BaselineData?]?, forKey: .baseline) }
+    if self.metadata != nil { try container.encode(self.metadata as! [BaselineMetadataValueData?]?, forKey: .metadata) }
   }
 }
 

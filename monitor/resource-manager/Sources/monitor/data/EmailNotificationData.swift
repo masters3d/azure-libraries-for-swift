@@ -14,7 +14,7 @@ internal struct EmailNotificationData : EmailNotificationProtocol {
         case customEmails = "customEmails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct EmailNotificationData : EmailNotificationProtocol {
     if container.contains(.customEmails) {
         self.customEmails = try container.decode([String]?.self, forKey: .customEmails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct EmailNotificationData : EmailNotificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sendToSubscriptionAdministrator != nil {try container.encode(self.sendToSubscriptionAdministrator, forKey: .sendToSubscriptionAdministrator)}
-    if self.sendToSubscriptionCoAdministrators != nil {try container.encode(self.sendToSubscriptionCoAdministrators, forKey: .sendToSubscriptionCoAdministrators)}
-    if self.customEmails != nil {try container.encode(self.customEmails as! [String]?, forKey: .customEmails)}
+    if self.sendToSubscriptionAdministrator != nil { try container.encode(self.sendToSubscriptionAdministrator, forKey: .sendToSubscriptionAdministrator) }
+    if self.sendToSubscriptionCoAdministrators != nil { try container.encode(self.sendToSubscriptionCoAdministrators, forKey: .sendToSubscriptionCoAdministrators) }
+    if self.customEmails != nil { try container.encode(self.customEmails as! [String]?, forKey: .customEmails) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct HeatMapPropertiesData : HeatMapPropertiesProtocol {
         case trafficFlows = "trafficFlows"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct HeatMapPropertiesData : HeatMapPropertiesProtocol {
     if container.contains(.trafficFlows) {
         self.trafficFlows = try container.decode([TrafficFlowData?]?.self, forKey: .trafficFlows)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct HeatMapPropertiesData : HeatMapPropertiesProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.endpoints != nil {try container.encode(self.endpoints as! [HeatMapEndpointData?]?, forKey: .endpoints)}
-    if self.trafficFlows != nil {try container.encode(self.trafficFlows as! [TrafficFlowData?]?, forKey: .trafficFlows)}
+    if self.endpoints != nil { try container.encode(self.endpoints as! [HeatMapEndpointData?]?, forKey: .endpoints) }
+    if self.trafficFlows != nil { try container.encode(self.trafficFlows as! [TrafficFlowData?]?, forKey: .trafficFlows) }
   }
 }
 

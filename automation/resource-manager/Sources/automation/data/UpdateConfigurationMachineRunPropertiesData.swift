@@ -38,7 +38,7 @@ internal struct UpdateConfigurationMachineRunPropertiesData : UpdateConfiguratio
         case lastModifiedBy = "lastModifiedBy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct UpdateConfigurationMachineRunPropertiesData : UpdateConfiguratio
     if container.contains(.lastModifiedBy) {
         self.lastModifiedBy = try container.decode(String?.self, forKey: .lastModifiedBy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,29 +98,29 @@ internal struct UpdateConfigurationMachineRunPropertiesData : UpdateConfiguratio
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetComputer != nil {try container.encode(self.targetComputer, forKey: .targetComputer)}
-    if self.targetComputerType != nil {try container.encode(self.targetComputerType, forKey: .targetComputerType)}
-    if self.softwareUpdateConfiguration != nil {try container.encode(self.softwareUpdateConfiguration as! UpdateConfigurationNavigationData?, forKey: .softwareUpdateConfiguration)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.sourceComputerId != nil {try container.encode(self.sourceComputerId, forKey: .sourceComputerId)}
+    if self.targetComputer != nil { try container.encode(self.targetComputer, forKey: .targetComputer) }
+    if self.targetComputerType != nil { try container.encode(self.targetComputerType, forKey: .targetComputerType) }
+    if self.softwareUpdateConfiguration != nil { try container.encode(self.softwareUpdateConfiguration as! UpdateConfigurationNavigationData?, forKey: .softwareUpdateConfiguration) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.sourceComputerId != nil { try container.encode(self.sourceComputerId, forKey: .sourceComputerId) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.configuredDuration != nil {try container.encode(self.configuredDuration, forKey: .configuredDuration)}
-    if self.job != nil {try container.encode(self.job as! JobNavigationData?, forKey: .job)}
+    if self.configuredDuration != nil { try container.encode(self.configuredDuration, forKey: .configuredDuration) }
+    if self.job != nil { try container.encode(self.job as! JobNavigationData?, forKey: .job) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.createdBy != nil {try container.encode(self.createdBy, forKey: .createdBy)}
+    if self.createdBy != nil { try container.encode(self.createdBy, forKey: .createdBy) }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.lastModifiedBy != nil {try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy)}
+    if self.lastModifiedBy != nil { try container.encode(self.lastModifiedBy, forKey: .lastModifiedBy) }
   }
 }
 

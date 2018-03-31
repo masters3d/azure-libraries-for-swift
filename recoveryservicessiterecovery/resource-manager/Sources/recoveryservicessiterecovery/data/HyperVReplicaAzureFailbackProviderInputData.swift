@@ -14,7 +14,7 @@ internal struct HyperVReplicaAzureFailbackProviderInputData : HyperVReplicaAzure
         case providerIdForAlternateRecovery = "providerIdForAlternateRecovery"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HyperVReplicaAzureFailbackProviderInputData : HyperVReplicaAzure
     if container.contains(.providerIdForAlternateRecovery) {
         self.providerIdForAlternateRecovery = try container.decode(String?.self, forKey: .providerIdForAlternateRecovery)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct HyperVReplicaAzureFailbackProviderInputData : HyperVReplicaAzure
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSyncOption != nil {try container.encode(self.dataSyncOption, forKey: .dataSyncOption)}
-    if self.recoveryVmCreationOption != nil {try container.encode(self.recoveryVmCreationOption, forKey: .recoveryVmCreationOption)}
-    if self.providerIdForAlternateRecovery != nil {try container.encode(self.providerIdForAlternateRecovery, forKey: .providerIdForAlternateRecovery)}
+    if self.dataSyncOption != nil { try container.encode(self.dataSyncOption, forKey: .dataSyncOption) }
+    if self.recoveryVmCreationOption != nil { try container.encode(self.recoveryVmCreationOption, forKey: .recoveryVmCreationOption) }
+    if self.providerIdForAlternateRecovery != nil { try container.encode(self.providerIdForAlternateRecovery, forKey: .providerIdForAlternateRecovery) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct SkuInfosData : SkuInfosProtocol {
         case skus = "skus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SkuInfosData : SkuInfosProtocol {
     if container.contains(.skus) {
         self.skus = try container.decode([GlobalCsmSkuDescriptionData?]?.self, forKey: .skus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SkuInfosData : SkuInfosProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.skus != nil {try container.encode(self.skus as! [GlobalCsmSkuDescriptionData?]?, forKey: .skus)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.skus != nil { try container.encode(self.skus as! [GlobalCsmSkuDescriptionData?]?, forKey: .skus) }
   }
 }
 

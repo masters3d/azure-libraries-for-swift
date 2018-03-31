@@ -12,7 +12,7 @@ internal struct SshPublicKeyData : SshPublicKeyProtocol {
         case keyData = "keyData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SshPublicKeyData : SshPublicKeyProtocol {
     if container.contains(.keyData) {
         self.keyData = try container.decode(String?.self, forKey: .keyData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SshPublicKeyData : SshPublicKeyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.keyData != nil {try container.encode(self.keyData, forKey: .keyData)}
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.keyData != nil { try container.encode(self.keyData, forKey: .keyData) }
   }
 }
 

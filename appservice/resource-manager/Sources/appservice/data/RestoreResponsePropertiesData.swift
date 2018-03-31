@@ -10,7 +10,7 @@ internal struct RestoreResponsePropertiesData : RestoreResponsePropertiesProtoco
         enum CodingKeys: String, CodingKey {case operationId = "operationId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RestoreResponsePropertiesData : RestoreResponsePropertiesProtoco
       if container.contains(.operationId) {
         self.operationId = try container.decode(String?.self, forKey: .operationId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RestoreResponsePropertiesData : RestoreResponsePropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
   }
 }
 

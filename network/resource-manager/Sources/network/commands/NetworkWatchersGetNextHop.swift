@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkWatchersGetNextHop  {
+public protocol NetworkWatchersGetNextHop {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkWatcherName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  NextHopParametersProtocol?  { get set }
+    var parameters :  NextHopParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NextHopResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NextHopResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkWatchers {
@@ -33,7 +33,7 @@ extension Commands.NetworkWatchers {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkWatcherName}"] = String(describing: self.networkWatcherName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -56,12 +56,12 @@ extension Commands.NetworkWatchers {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NextHopResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NextHopResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NextHopResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: NextHopResultData?, error: Error?) in
                 completionHandler(result, error)

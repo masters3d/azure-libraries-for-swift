@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VaultsUpdateAccessPolicy  {
+public protocol VaultsUpdateAccessPolicy {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var vaultName : String { get set }
     var operationKind : AccessPolicyUpdateKindEnum { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  VaultAccessPolicyParametersProtocol?  { get set }
+    var parameters :  VaultAccessPolicyParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VaultAccessPolicyParametersProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VaultAccessPolicyParametersProtocol?, Error?) -> Void)
 }
 
 extension Commands.Vaults {
@@ -35,7 +35,7 @@ extension Commands.Vaults {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{vaultName}"] = String(describing: self.vaultName)
             self.pathParameters["{operationKind}"] = String(describing: self.operationKind)
@@ -59,12 +59,12 @@ extension Commands.Vaults {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VaultAccessPolicyParametersData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VaultAccessPolicyParametersProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VaultAccessPolicyParametersProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: VaultAccessPolicyParametersData?, error: Error?) in
                 completionHandler(result, error)

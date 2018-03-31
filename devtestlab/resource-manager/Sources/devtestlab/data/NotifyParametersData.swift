@@ -12,7 +12,7 @@ internal struct NotifyParametersData : NotifyParametersProtocol {
         case jsonPayload = "jsonPayload"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct NotifyParametersData : NotifyParametersProtocol {
     if container.contains(.jsonPayload) {
         self.jsonPayload = try container.decode(String?.self, forKey: .jsonPayload)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct NotifyParametersData : NotifyParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eventName != nil {try container.encode(self.eventName, forKey: .eventName)}
-    if self.jsonPayload != nil {try container.encode(self.jsonPayload, forKey: .jsonPayload)}
+    if self.eventName != nil { try container.encode(self.eventName, forKey: .eventName) }
+    if self.jsonPayload != nil { try container.encode(self.jsonPayload, forKey: .jsonPayload) }
   }
 }
 

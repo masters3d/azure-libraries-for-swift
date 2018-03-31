@@ -12,7 +12,7 @@ internal struct FirewallRulePropertiesData : FirewallRulePropertiesProtocol {
         case endIpAddress = "endIpAddress"
         }
 
-  public init(startIpAddress: String, endIpAddress: String)  {
+  public init(startIpAddress: String, endIpAddress: String) {
     self.startIpAddress = startIpAddress
     self.endIpAddress = endIpAddress
   }
@@ -21,7 +21,7 @@ internal struct FirewallRulePropertiesData : FirewallRulePropertiesProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startIpAddress = try container.decode(String.self, forKey: .startIpAddress)
     self.endIpAddress = try container.decode(String.self, forKey: .endIpAddress)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

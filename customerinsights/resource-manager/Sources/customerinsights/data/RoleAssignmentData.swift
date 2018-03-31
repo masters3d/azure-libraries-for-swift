@@ -48,7 +48,7 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
         case segments = "segments"
         }
 
-  public init(role: RoleTypesEnum, principals: [AssignmentPrincipalProtocol])  {
+  public init(role: RoleTypesEnum, principals: [AssignmentPrincipalProtocol]) {
     self.role = role
     self.principals = principals
   }
@@ -111,7 +111,7 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
     if container.contains(.segments) {
         self.segments = try container.decode(ResourceSetDescriptionData?.self, forKey: .segments)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -121,26 +121,26 @@ internal struct RoleAssignmentData : RoleAssignmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.assignmentName != nil {try container.encode(self.assignmentName, forKey: .assignmentName)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.assignmentName != nil { try container.encode(self.assignmentName, forKey: .assignmentName) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     try container.encode(self.role, forKey: .role)
     try container.encode(self.principals as! [AssignmentPrincipalData], forKey: .principals)
-    if self.profiles != nil {try container.encode(self.profiles as! ResourceSetDescriptionData?, forKey: .profiles)}
-    if self.interactions != nil {try container.encode(self.interactions as! ResourceSetDescriptionData?, forKey: .interactions)}
-    if self.links != nil {try container.encode(self.links as! ResourceSetDescriptionData?, forKey: .links)}
-    if self.kpis != nil {try container.encode(self.kpis as! ResourceSetDescriptionData?, forKey: .kpis)}
-    if self.sasPolicies != nil {try container.encode(self.sasPolicies as! ResourceSetDescriptionData?, forKey: .sasPolicies)}
-    if self.connectors != nil {try container.encode(self.connectors as! ResourceSetDescriptionData?, forKey: .connectors)}
-    if self.views != nil {try container.encode(self.views as! ResourceSetDescriptionData?, forKey: .views)}
-    if self.relationshipLinks != nil {try container.encode(self.relationshipLinks as! ResourceSetDescriptionData?, forKey: .relationshipLinks)}
-    if self.relationships != nil {try container.encode(self.relationships as! ResourceSetDescriptionData?, forKey: .relationships)}
-    if self.widgetTypes != nil {try container.encode(self.widgetTypes as! ResourceSetDescriptionData?, forKey: .widgetTypes)}
-    if self.roleAssignments != nil {try container.encode(self.roleAssignments as! ResourceSetDescriptionData?, forKey: .roleAssignments)}
-    if self.conflationPolicies != nil {try container.encode(self.conflationPolicies as! ResourceSetDescriptionData?, forKey: .conflationPolicies)}
-    if self.segments != nil {try container.encode(self.segments as! ResourceSetDescriptionData?, forKey: .segments)}
+    if self.profiles != nil { try container.encode(self.profiles as! ResourceSetDescriptionData?, forKey: .profiles) }
+    if self.interactions != nil { try container.encode(self.interactions as! ResourceSetDescriptionData?, forKey: .interactions) }
+    if self.links != nil { try container.encode(self.links as! ResourceSetDescriptionData?, forKey: .links) }
+    if self.kpis != nil { try container.encode(self.kpis as! ResourceSetDescriptionData?, forKey: .kpis) }
+    if self.sasPolicies != nil { try container.encode(self.sasPolicies as! ResourceSetDescriptionData?, forKey: .sasPolicies) }
+    if self.connectors != nil { try container.encode(self.connectors as! ResourceSetDescriptionData?, forKey: .connectors) }
+    if self.views != nil { try container.encode(self.views as! ResourceSetDescriptionData?, forKey: .views) }
+    if self.relationshipLinks != nil { try container.encode(self.relationshipLinks as! ResourceSetDescriptionData?, forKey: .relationshipLinks) }
+    if self.relationships != nil { try container.encode(self.relationships as! ResourceSetDescriptionData?, forKey: .relationships) }
+    if self.widgetTypes != nil { try container.encode(self.widgetTypes as! ResourceSetDescriptionData?, forKey: .widgetTypes) }
+    if self.roleAssignments != nil { try container.encode(self.roleAssignments as! ResourceSetDescriptionData?, forKey: .roleAssignments) }
+    if self.conflationPolicies != nil { try container.encode(self.conflationPolicies as! ResourceSetDescriptionData?, forKey: .conflationPolicies) }
+    if self.segments != nil { try container.encode(self.segments as! ResourceSetDescriptionData?, forKey: .segments) }
   }
 }
 

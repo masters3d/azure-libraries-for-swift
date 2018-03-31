@@ -12,7 +12,7 @@ internal struct IPv4FirewallSettingsData : IPv4FirewallSettingsProtocol {
         case enablePowerBIService = "enablePowerBIService"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct IPv4FirewallSettingsData : IPv4FirewallSettingsProtocol {
     if container.contains(.enablePowerBIService) {
         self.enablePowerBIService = try container.decode(String?.self, forKey: .enablePowerBIService)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct IPv4FirewallSettingsData : IPv4FirewallSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.firewallRules != nil {try container.encode(self.firewallRules as! [IPv4FirewallRuleData?]?, forKey: .firewallRules)}
-    if self.enablePowerBIService != nil {try container.encode(self.enablePowerBIService, forKey: .enablePowerBIService)}
+    if self.firewallRules != nil { try container.encode(self.firewallRules as! [IPv4FirewallRuleData?]?, forKey: .firewallRules) }
+    if self.enablePowerBIService != nil { try container.encode(self.enablePowerBIService, forKey: .enablePowerBIService) }
   }
 }
 

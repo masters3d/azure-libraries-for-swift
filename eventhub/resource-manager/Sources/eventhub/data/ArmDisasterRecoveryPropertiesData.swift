@@ -16,7 +16,7 @@ internal struct ArmDisasterRecoveryPropertiesData : ArmDisasterRecoveryPropertie
         case role = "role"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ArmDisasterRecoveryPropertiesData : ArmDisasterRecoveryPropertie
     if container.contains(.role) {
         self.role = try container.decode(RoleDisasterRecoveryEnum?.self, forKey: .role)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ArmDisasterRecoveryPropertiesData : ArmDisasterRecoveryPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.partnerNamespace != nil {try container.encode(self.partnerNamespace, forKey: .partnerNamespace)}
-    if self.alternateName != nil {try container.encode(self.alternateName, forKey: .alternateName)}
-    if self.role != nil {try container.encode(self.role, forKey: .role)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.partnerNamespace != nil { try container.encode(self.partnerNamespace, forKey: .partnerNamespace) }
+    if self.alternateName != nil { try container.encode(self.alternateName, forKey: .alternateName) }
+    if self.role != nil { try container.encode(self.role, forKey: .role) }
   }
 }
 

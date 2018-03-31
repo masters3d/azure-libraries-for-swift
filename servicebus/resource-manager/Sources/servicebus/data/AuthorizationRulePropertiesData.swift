@@ -10,14 +10,14 @@ internal struct AuthorizationRulePropertiesData : AuthorizationRulePropertiesPro
         enum CodingKeys: String, CodingKey {case rights = "rights"
         }
 
-  public init(rights: [AccessRightsEnum])  {
+  public init(rights: [AccessRightsEnum]) {
     self.rights = rights
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.rights = try container.decode([AccessRightsEnum].self, forKey: .rights)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

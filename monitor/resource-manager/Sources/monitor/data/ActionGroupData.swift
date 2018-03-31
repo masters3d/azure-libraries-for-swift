@@ -24,7 +24,7 @@ internal struct ActionGroupData : ActionGroupProtocol {
         case automationRunbookReceivers = "automationRunbookReceivers"
         }
 
-  public init(groupShortName: String, enabled: Bool)  {
+  public init(groupShortName: String, enabled: Bool) {
     self.groupShortName = groupShortName
     self.enabled = enabled
   }
@@ -51,7 +51,7 @@ internal struct ActionGroupData : ActionGroupProtocol {
     if container.contains(.automationRunbookReceivers) {
         self.automationRunbookReceivers = try container.decode([AutomationRunbookReceiverData?]?.self, forKey: .automationRunbookReceivers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,12 +63,12 @@ internal struct ActionGroupData : ActionGroupProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.groupShortName, forKey: .groupShortName)
     try container.encode(self.enabled, forKey: .enabled)
-    if self.emailReceivers != nil {try container.encode(self.emailReceivers as! [EmailReceiverData?]?, forKey: .emailReceivers)}
-    if self.smsReceivers != nil {try container.encode(self.smsReceivers as! [SmsReceiverData?]?, forKey: .smsReceivers)}
-    if self.webhookReceivers != nil {try container.encode(self.webhookReceivers as! [WebhookReceiverData?]?, forKey: .webhookReceivers)}
-    if self.itsmReceivers != nil {try container.encode(self.itsmReceivers as! [ItsmReceiverData?]?, forKey: .itsmReceivers)}
-    if self.azureAppPushReceivers != nil {try container.encode(self.azureAppPushReceivers as! [AzureAppPushReceiverData?]?, forKey: .azureAppPushReceivers)}
-    if self.automationRunbookReceivers != nil {try container.encode(self.automationRunbookReceivers as! [AutomationRunbookReceiverData?]?, forKey: .automationRunbookReceivers)}
+    if self.emailReceivers != nil { try container.encode(self.emailReceivers as! [EmailReceiverData?]?, forKey: .emailReceivers) }
+    if self.smsReceivers != nil { try container.encode(self.smsReceivers as! [SmsReceiverData?]?, forKey: .smsReceivers) }
+    if self.webhookReceivers != nil { try container.encode(self.webhookReceivers as! [WebhookReceiverData?]?, forKey: .webhookReceivers) }
+    if self.itsmReceivers != nil { try container.encode(self.itsmReceivers as! [ItsmReceiverData?]?, forKey: .itsmReceivers) }
+    if self.azureAppPushReceivers != nil { try container.encode(self.azureAppPushReceivers as! [AzureAppPushReceiverData?]?, forKey: .azureAppPushReceivers) }
+    if self.automationRunbookReceivers != nil { try container.encode(self.automationRunbookReceivers as! [AutomationRunbookReceiverData?]?, forKey: .automationRunbookReceivers) }
   }
 }
 

@@ -10,14 +10,14 @@ internal struct VirtualNetworkConnectionGatewayReferenceData : VirtualNetworkCon
         enum CodingKeys: String, CodingKey {case id = "id"
         }
 
-  public init(id: String)  {
+  public init(id: String) {
     self.id = id
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.id = try container.decode(String.self, forKey: .id)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

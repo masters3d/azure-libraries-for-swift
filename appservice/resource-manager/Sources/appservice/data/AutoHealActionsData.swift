@@ -14,7 +14,7 @@ internal struct AutoHealActionsData : AutoHealActionsProtocol {
         case minProcessExecutionTime = "minProcessExecutionTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AutoHealActionsData : AutoHealActionsProtocol {
     if container.contains(.minProcessExecutionTime) {
         self.minProcessExecutionTime = try container.decode(String?.self, forKey: .minProcessExecutionTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AutoHealActionsData : AutoHealActionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.actionType != nil {try container.encode(self.actionType, forKey: .actionType)}
-    if self.customAction != nil {try container.encode(self.customAction as! AutoHealCustomActionData?, forKey: .customAction)}
-    if self.minProcessExecutionTime != nil {try container.encode(self.minProcessExecutionTime, forKey: .minProcessExecutionTime)}
+    if self.actionType != nil { try container.encode(self.actionType, forKey: .actionType) }
+    if self.customAction != nil { try container.encode(self.customAction as! AutoHealCustomActionData?, forKey: .customAction) }
+    if self.minProcessExecutionTime != nil { try container.encode(self.minProcessExecutionTime, forKey: .minProcessExecutionTime) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct UpgradeNotificationData : UpgradeNotificationProtocol {
         case upsellNotification = "upsellNotification"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct UpgradeNotificationData : UpgradeNotificationProtocol {
     if container.contains(.upsellNotification) {
         self.upsellNotification = try container.decode([String:String]?.self, forKey: .upsellNotification)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,11 +38,11 @@ internal struct UpgradeNotificationData : UpgradeNotificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.upsellNotification != nil {try container.encode(self.upsellNotification, forKey: .upsellNotification)}
+    if self.upsellNotification != nil { try container.encode(self.upsellNotification, forKey: .upsellNotification) }
   }
 }
 

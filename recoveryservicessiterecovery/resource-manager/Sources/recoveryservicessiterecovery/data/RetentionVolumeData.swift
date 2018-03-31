@@ -16,7 +16,7 @@ internal struct RetentionVolumeData : RetentionVolumeProtocol {
         case thresholdPercentage = "thresholdPercentage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RetentionVolumeData : RetentionVolumeProtocol {
     if container.contains(.thresholdPercentage) {
         self.thresholdPercentage = try container.decode(Int32?.self, forKey: .thresholdPercentage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RetentionVolumeData : RetentionVolumeProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.volumeName != nil {try container.encode(self.volumeName, forKey: .volumeName)}
-    if self.capacityInBytes != nil {try container.encode(self.capacityInBytes, forKey: .capacityInBytes)}
-    if self.freeSpaceInBytes != nil {try container.encode(self.freeSpaceInBytes, forKey: .freeSpaceInBytes)}
-    if self.thresholdPercentage != nil {try container.encode(self.thresholdPercentage, forKey: .thresholdPercentage)}
+    if self.volumeName != nil { try container.encode(self.volumeName, forKey: .volumeName) }
+    if self.capacityInBytes != nil { try container.encode(self.capacityInBytes, forKey: .capacityInBytes) }
+    if self.freeSpaceInBytes != nil { try container.encode(self.freeSpaceInBytes, forKey: .freeSpaceInBytes) }
+    if self.thresholdPercentage != nil { try container.encode(self.thresholdPercentage, forKey: .thresholdPercentage) }
   }
 }
 

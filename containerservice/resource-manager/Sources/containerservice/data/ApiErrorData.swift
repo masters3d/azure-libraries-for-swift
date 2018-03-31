@@ -18,7 +18,7 @@ internal struct ApiErrorData : ApiErrorProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApiErrorData : ApiErrorProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApiErrorData : ApiErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.details != nil {try container.encode(self.details as! [ApiErrorBaseData?]?, forKey: .details)}
-    if self.innererror != nil {try container.encode(self.innererror as! InnerErrorData?, forKey: .innererror)}
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.target != nil {try container.encode(self.target, forKey: .target)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.details != nil { try container.encode(self.details as! [ApiErrorBaseData?]?, forKey: .details) }
+    if self.innererror != nil { try container.encode(self.innererror as! InnerErrorData?, forKey: .innererror) }
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.target != nil { try container.encode(self.target, forKey: .target) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

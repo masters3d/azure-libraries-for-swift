@@ -14,7 +14,7 @@ internal struct VolumeMountData : VolumeMountProtocol {
         case readOnly = "readOnly"
         }
 
-  public init(name: String, mountPath: String)  {
+  public init(name: String, mountPath: String) {
     self.name = name
     self.mountPath = mountPath
   }
@@ -26,7 +26,7 @@ internal struct VolumeMountData : VolumeMountProtocol {
     if container.contains(.readOnly) {
         self.readOnly = try container.decode(Bool?.self, forKey: .readOnly)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct VolumeMountData : VolumeMountProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.mountPath, forKey: .mountPath)
-    if self.readOnly != nil {try container.encode(self.readOnly, forKey: .readOnly)}
+    if self.readOnly != nil { try container.encode(self.readOnly, forKey: .readOnly) }
   }
 }
 

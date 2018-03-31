@@ -14,7 +14,7 @@ internal struct ConsistencyPolicyData : ConsistencyPolicyProtocol {
         case maxIntervalInSeconds = "maxIntervalInSeconds"
         }
 
-  public init(defaultConsistencyLevel: DefaultConsistencyLevelEnum)  {
+  public init(defaultConsistencyLevel: DefaultConsistencyLevelEnum) {
     self.defaultConsistencyLevel = defaultConsistencyLevel
   }
 
@@ -27,7 +27,7 @@ internal struct ConsistencyPolicyData : ConsistencyPolicyProtocol {
     if container.contains(.maxIntervalInSeconds) {
         self.maxIntervalInSeconds = try container.decode(Int32?.self, forKey: .maxIntervalInSeconds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct ConsistencyPolicyData : ConsistencyPolicyProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.defaultConsistencyLevel, forKey: .defaultConsistencyLevel)
-    if self.maxStalenessPrefix != nil {try container.encode(self.maxStalenessPrefix, forKey: .maxStalenessPrefix)}
-    if self.maxIntervalInSeconds != nil {try container.encode(self.maxIntervalInSeconds, forKey: .maxIntervalInSeconds)}
+    if self.maxStalenessPrefix != nil { try container.encode(self.maxStalenessPrefix, forKey: .maxStalenessPrefix) }
+    if self.maxIntervalInSeconds != nil { try container.encode(self.maxIntervalInSeconds, forKey: .maxIntervalInSeconds) }
   }
 }
 

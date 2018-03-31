@@ -60,7 +60,7 @@ internal struct DatabasePropertiesData : DatabasePropertiesProtocol {
         case zoneRedundant = "zoneRedundant"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -143,7 +143,7 @@ internal struct DatabasePropertiesData : DatabasePropertiesProtocol {
     if container.contains(.zoneRedundant) {
         self.zoneRedundant = try container.decode(Bool?.self, forKey: .zoneRedundant)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -153,40 +153,40 @@ internal struct DatabasePropertiesData : DatabasePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.collation != nil {try container.encode(self.collation, forKey: .collation)}
+    if self.collation != nil { try container.encode(self.collation, forKey: .collation) }
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }
-    if self.containmentState != nil {try container.encode(self.containmentState, forKey: .containmentState)}
-    if self.currentServiceObjectiveId != nil {try container.encode(self.currentServiceObjectiveId, forKey: .currentServiceObjectiveId)}
-    if self.databaseId != nil {try container.encode(self.databaseId, forKey: .databaseId)}
+    if self.containmentState != nil { try container.encode(self.containmentState, forKey: .containmentState) }
+    if self.currentServiceObjectiveId != nil { try container.encode(self.currentServiceObjectiveId, forKey: .currentServiceObjectiveId) }
+    if self.databaseId != nil { try container.encode(self.databaseId, forKey: .databaseId) }
     if self.earliestRestoreDate != nil {
         try container.encode(DateConverter.toString(date: self.earliestRestoreDate!, format: .dateTime), forKey: .earliestRestoreDate)
     }
-    if self.createMode != nil {try container.encode(self.createMode, forKey: .createMode)}
-    if self.sourceDatabaseId != nil {try container.encode(self.sourceDatabaseId, forKey: .sourceDatabaseId)}
+    if self.createMode != nil { try container.encode(self.createMode, forKey: .createMode) }
+    if self.sourceDatabaseId != nil { try container.encode(self.sourceDatabaseId, forKey: .sourceDatabaseId) }
     if self.sourceDatabaseDeletionDate != nil {
         try container.encode(DateConverter.toString(date: self.sourceDatabaseDeletionDate!, format: .dateTime), forKey: .sourceDatabaseDeletionDate)
     }
     if self.restorePointInTime != nil {
         try container.encode(DateConverter.toString(date: self.restorePointInTime!, format: .dateTime), forKey: .restorePointInTime)
     }
-    if self.recoveryServicesRecoveryPointResourceId != nil {try container.encode(self.recoveryServicesRecoveryPointResourceId, forKey: .recoveryServicesRecoveryPointResourceId)}
-    if self.edition != nil {try container.encode(self.edition, forKey: .edition)}
-    if self.maxSizeBytes != nil {try container.encode(self.maxSizeBytes, forKey: .maxSizeBytes)}
-    if self.requestedServiceObjectiveId != nil {try container.encode(self.requestedServiceObjectiveId, forKey: .requestedServiceObjectiveId)}
-    if self.requestedServiceObjectiveName != nil {try container.encode(self.requestedServiceObjectiveName, forKey: .requestedServiceObjectiveName)}
-    if self.serviceLevelObjective != nil {try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.elasticPoolName != nil {try container.encode(self.elasticPoolName, forKey: .elasticPoolName)}
-    if self.defaultSecondaryLocation != nil {try container.encode(self.defaultSecondaryLocation, forKey: .defaultSecondaryLocation)}
-    if self.serviceTierAdvisors != nil {try container.encode(self.serviceTierAdvisors as! [ServiceTierAdvisorData?]?, forKey: .serviceTierAdvisors)}
-    if self.transparentDataEncryption != nil {try container.encode(self.transparentDataEncryption as! [TransparentDataEncryptionData?]?, forKey: .transparentDataEncryption)}
-    if self.recommendedIndex != nil {try container.encode(self.recommendedIndex as! [RecommendedIndexData?]?, forKey: .recommendedIndex)}
-    if self.failoverGroupId != nil {try container.encode(self.failoverGroupId, forKey: .failoverGroupId)}
-    if self.readScale != nil {try container.encode(self.readScale, forKey: .readScale)}
-    if self.sampleName != nil {try container.encode(self.sampleName, forKey: .sampleName)}
-    if self.zoneRedundant != nil {try container.encode(self.zoneRedundant, forKey: .zoneRedundant)}
+    if self.recoveryServicesRecoveryPointResourceId != nil { try container.encode(self.recoveryServicesRecoveryPointResourceId, forKey: .recoveryServicesRecoveryPointResourceId) }
+    if self.edition != nil { try container.encode(self.edition, forKey: .edition) }
+    if self.maxSizeBytes != nil { try container.encode(self.maxSizeBytes, forKey: .maxSizeBytes) }
+    if self.requestedServiceObjectiveId != nil { try container.encode(self.requestedServiceObjectiveId, forKey: .requestedServiceObjectiveId) }
+    if self.requestedServiceObjectiveName != nil { try container.encode(self.requestedServiceObjectiveName, forKey: .requestedServiceObjectiveName) }
+    if self.serviceLevelObjective != nil { try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.elasticPoolName != nil { try container.encode(self.elasticPoolName, forKey: .elasticPoolName) }
+    if self.defaultSecondaryLocation != nil { try container.encode(self.defaultSecondaryLocation, forKey: .defaultSecondaryLocation) }
+    if self.serviceTierAdvisors != nil { try container.encode(self.serviceTierAdvisors as! [ServiceTierAdvisorData?]?, forKey: .serviceTierAdvisors) }
+    if self.transparentDataEncryption != nil { try container.encode(self.transparentDataEncryption as! [TransparentDataEncryptionData?]?, forKey: .transparentDataEncryption) }
+    if self.recommendedIndex != nil { try container.encode(self.recommendedIndex as! [RecommendedIndexData?]?, forKey: .recommendedIndex) }
+    if self.failoverGroupId != nil { try container.encode(self.failoverGroupId, forKey: .failoverGroupId) }
+    if self.readScale != nil { try container.encode(self.readScale, forKey: .readScale) }
+    if self.sampleName != nil { try container.encode(self.sampleName, forKey: .sampleName) }
+    if self.zoneRedundant != nil { try container.encode(self.zoneRedundant, forKey: .zoneRedundant) }
   }
 }
 

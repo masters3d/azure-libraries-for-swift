@@ -18,7 +18,7 @@ internal struct JobPatchParameterData : JobPatchParameterProtocol {
         case metadata = "metadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobPatchParameterData : JobPatchParameterProtocol {
     if container.contains(.metadata) {
         self.metadata = try container.decode([MetadataItemData?]?.self, forKey: .metadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct JobPatchParameterData : JobPatchParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.onAllTasksComplete != nil {try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete)}
-    if self.constraints != nil {try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints)}
-    if self.poolInfo != nil {try container.encode(self.poolInfo as! PoolInformationData?, forKey: .poolInfo)}
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.onAllTasksComplete != nil { try container.encode(self.onAllTasksComplete, forKey: .onAllTasksComplete) }
+    if self.constraints != nil { try container.encode(self.constraints as! JobConstraintsData?, forKey: .constraints) }
+    if self.poolInfo != nil { try container.encode(self.poolInfo as! PoolInformationData?, forKey: .poolInfo) }
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
   }
 }
 

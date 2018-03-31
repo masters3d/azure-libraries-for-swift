@@ -16,7 +16,7 @@ internal struct RunCommandParameterDefinitionData : RunCommandParameterDefinitio
         case _required = "required"
         }
 
-  public init(name: String, type: String)  {
+  public init(name: String, type: String) {
     self.name = name
     self.type = type
   }
@@ -31,7 +31,7 @@ internal struct RunCommandParameterDefinitionData : RunCommandParameterDefinitio
     if container.contains(._required) {
         self._required = try container.decode(Bool?.self, forKey: ._required)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct RunCommandParameterDefinitionData : RunCommandParameterDefinitio
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
-    if self.defaultValue != nil {try container.encode(self.defaultValue, forKey: .defaultValue)}
-    if self._required != nil {try container.encode(self._required, forKey: ._required)}
+    if self.defaultValue != nil { try container.encode(self.defaultValue, forKey: .defaultValue) }
+    if self._required != nil { try container.encode(self._required, forKey: ._required) }
   }
 }
 

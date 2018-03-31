@@ -18,7 +18,7 @@ internal struct DomainData : DomainProtocol {
         case name = "name"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -37,7 +37,7 @@ internal struct DomainData : DomainProtocol {
         self.isVerified = try container.decode(Bool?.self, forKey: .isVerified)
     }
     self.name = try container.decode(String.self, forKey: .name)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,10 +47,10 @@ internal struct DomainData : DomainProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.authenticationType != nil {try container.encode(self.authenticationType, forKey: .authenticationType)}
-    if self.isDefault != nil {try container.encode(self.isDefault, forKey: .isDefault)}
-    if self.isVerified != nil {try container.encode(self.isVerified, forKey: .isVerified)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.authenticationType != nil { try container.encode(self.authenticationType, forKey: .authenticationType) }
+    if self.isDefault != nil { try container.encode(self.isDefault, forKey: .isDefault) }
+    if self.isVerified != nil { try container.encode(self.isVerified, forKey: .isVerified) }
     try container.encode(self.name, forKey: .name)
   }
 }

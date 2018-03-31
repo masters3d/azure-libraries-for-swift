@@ -24,7 +24,7 @@ internal struct FabricPropertiesData : FabricPropertiesProtocol {
         case health = "health"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct FabricPropertiesData : FabricPropertiesProtocol {
     if container.contains(.health) {
         self.health = try container.decode(String?.self, forKey: .health)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct FabricPropertiesData : FabricPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.encryptionDetails != nil {try container.encode(self.encryptionDetails as! EncryptionDetailsData?, forKey: .encryptionDetails)}
-    if self.rolloverEncryptionDetails != nil {try container.encode(self.rolloverEncryptionDetails as! EncryptionDetailsData?, forKey: .rolloverEncryptionDetails)}
-    if self.internalIdentifier != nil {try container.encode(self.internalIdentifier, forKey: .internalIdentifier)}
-    if self.bcdrState != nil {try container.encode(self.bcdrState, forKey: .bcdrState)}
-    if self.customDetails != nil {try container.encode(self.customDetails as! FabricSpecificDetailsData?, forKey: .customDetails)}
-    if self.healthErrorDetails != nil {try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails)}
-    if self.health != nil {try container.encode(self.health, forKey: .health)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.encryptionDetails != nil { try container.encode(self.encryptionDetails as! EncryptionDetailsData?, forKey: .encryptionDetails) }
+    if self.rolloverEncryptionDetails != nil { try container.encode(self.rolloverEncryptionDetails as! EncryptionDetailsData?, forKey: .rolloverEncryptionDetails) }
+    if self.internalIdentifier != nil { try container.encode(self.internalIdentifier, forKey: .internalIdentifier) }
+    if self.bcdrState != nil { try container.encode(self.bcdrState, forKey: .bcdrState) }
+    if self.customDetails != nil { try container.encode(self.customDetails as! FabricSpecificDetailsData?, forKey: .customDetails) }
+    if self.healthErrorDetails != nil { try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails) }
+    if self.health != nil { try container.encode(self.health, forKey: .health) }
   }
 }
 

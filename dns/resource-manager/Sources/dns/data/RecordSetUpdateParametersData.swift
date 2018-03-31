@@ -10,7 +10,7 @@ internal struct RecordSetUpdateParametersData : RecordSetUpdateParametersProtoco
         enum CodingKeys: String, CodingKey {case recordSet = "RecordSet"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RecordSetUpdateParametersData : RecordSetUpdateParametersProtoco
       if container.contains(.recordSet) {
         self.recordSet = try container.decode(RecordSetData?.self, forKey: .recordSet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RecordSetUpdateParametersData : RecordSetUpdateParametersProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recordSet != nil {try container.encode(self.recordSet as! RecordSetData?, forKey: .recordSet)}
+    if self.recordSet != nil { try container.encode(self.recordSet as! RecordSetData?, forKey: .recordSet) }
   }
 }
 

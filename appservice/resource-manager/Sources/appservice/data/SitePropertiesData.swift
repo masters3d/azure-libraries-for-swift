@@ -72,7 +72,7 @@ internal struct SitePropertiesData : SitePropertiesProtocol {
         case httpsOnly = "httpsOnly"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -173,7 +173,7 @@ internal struct SitePropertiesData : SitePropertiesProtocol {
     if container.contains(.httpsOnly) {
         self.httpsOnly = try container.decode(Bool?.self, forKey: .httpsOnly)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -183,42 +183,42 @@ internal struct SitePropertiesData : SitePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.hostNames != nil {try container.encode(self.hostNames as! [String]?, forKey: .hostNames)}
-    if self.repositorySiteName != nil {try container.encode(self.repositorySiteName, forKey: .repositorySiteName)}
-    if self.usageState != nil {try container.encode(self.usageState, forKey: .usageState)}
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.enabledHostNames != nil {try container.encode(self.enabledHostNames as! [String]?, forKey: .enabledHostNames)}
-    if self.availabilityState != nil {try container.encode(self.availabilityState, forKey: .availabilityState)}
-    if self.hostNameSslStates != nil {try container.encode(self.hostNameSslStates as! [HostNameSslStateData?]?, forKey: .hostNameSslStates)}
-    if self.serverFarmId != nil {try container.encode(self.serverFarmId, forKey: .serverFarmId)}
-    if self.reserved != nil {try container.encode(self.reserved, forKey: .reserved)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.hostNames != nil { try container.encode(self.hostNames as! [String]?, forKey: .hostNames) }
+    if self.repositorySiteName != nil { try container.encode(self.repositorySiteName, forKey: .repositorySiteName) }
+    if self.usageState != nil { try container.encode(self.usageState, forKey: .usageState) }
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.enabledHostNames != nil { try container.encode(self.enabledHostNames as! [String]?, forKey: .enabledHostNames) }
+    if self.availabilityState != nil { try container.encode(self.availabilityState, forKey: .availabilityState) }
+    if self.hostNameSslStates != nil { try container.encode(self.hostNameSslStates as! [HostNameSslStateData?]?, forKey: .hostNameSslStates) }
+    if self.serverFarmId != nil { try container.encode(self.serverFarmId, forKey: .serverFarmId) }
+    if self.reserved != nil { try container.encode(self.reserved, forKey: .reserved) }
     if self.lastModifiedTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTimeUtc!, format: .dateTime), forKey: .lastModifiedTimeUtc)
     }
-    if self.siteConfig != nil {try container.encode(self.siteConfig as! SiteConfigData?, forKey: .siteConfig)}
-    if self.trafficManagerHostNames != nil {try container.encode(self.trafficManagerHostNames as! [String]?, forKey: .trafficManagerHostNames)}
-    if self.scmSiteAlsoStopped != nil {try container.encode(self.scmSiteAlsoStopped, forKey: .scmSiteAlsoStopped)}
-    if self.targetSwapSlot != nil {try container.encode(self.targetSwapSlot, forKey: .targetSwapSlot)}
-    if self.hostingEnvironmentProfile != nil {try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile)}
-    if self.clientAffinityEnabled != nil {try container.encode(self.clientAffinityEnabled, forKey: .clientAffinityEnabled)}
-    if self.clientCertEnabled != nil {try container.encode(self.clientCertEnabled, forKey: .clientCertEnabled)}
-    if self.hostNamesDisabled != nil {try container.encode(self.hostNamesDisabled, forKey: .hostNamesDisabled)}
-    if self.outboundIpAddresses != nil {try container.encode(self.outboundIpAddresses, forKey: .outboundIpAddresses)}
-    if self.possibleOutboundIpAddresses != nil {try container.encode(self.possibleOutboundIpAddresses, forKey: .possibleOutboundIpAddresses)}
-    if self.containerSize != nil {try container.encode(self.containerSize, forKey: .containerSize)}
-    if self.dailyMemoryTimeQuota != nil {try container.encode(self.dailyMemoryTimeQuota, forKey: .dailyMemoryTimeQuota)}
+    if self.siteConfig != nil { try container.encode(self.siteConfig as! SiteConfigData?, forKey: .siteConfig) }
+    if self.trafficManagerHostNames != nil { try container.encode(self.trafficManagerHostNames as! [String]?, forKey: .trafficManagerHostNames) }
+    if self.scmSiteAlsoStopped != nil { try container.encode(self.scmSiteAlsoStopped, forKey: .scmSiteAlsoStopped) }
+    if self.targetSwapSlot != nil { try container.encode(self.targetSwapSlot, forKey: .targetSwapSlot) }
+    if self.hostingEnvironmentProfile != nil { try container.encode(self.hostingEnvironmentProfile as! HostingEnvironmentProfileData?, forKey: .hostingEnvironmentProfile) }
+    if self.clientAffinityEnabled != nil { try container.encode(self.clientAffinityEnabled, forKey: .clientAffinityEnabled) }
+    if self.clientCertEnabled != nil { try container.encode(self.clientCertEnabled, forKey: .clientCertEnabled) }
+    if self.hostNamesDisabled != nil { try container.encode(self.hostNamesDisabled, forKey: .hostNamesDisabled) }
+    if self.outboundIpAddresses != nil { try container.encode(self.outboundIpAddresses, forKey: .outboundIpAddresses) }
+    if self.possibleOutboundIpAddresses != nil { try container.encode(self.possibleOutboundIpAddresses, forKey: .possibleOutboundIpAddresses) }
+    if self.containerSize != nil { try container.encode(self.containerSize, forKey: .containerSize) }
+    if self.dailyMemoryTimeQuota != nil { try container.encode(self.dailyMemoryTimeQuota, forKey: .dailyMemoryTimeQuota) }
     if self.suspendedTill != nil {
         try container.encode(DateConverter.toString(date: self.suspendedTill!, format: .dateTime), forKey: .suspendedTill)
     }
-    if self.maxNumberOfWorkers != nil {try container.encode(self.maxNumberOfWorkers, forKey: .maxNumberOfWorkers)}
-    if self.cloningInfo != nil {try container.encode(self.cloningInfo as! CloningInfoData?, forKey: .cloningInfo)}
-    if self.snapshotInfo != nil {try container.encode(self.snapshotInfo as! SnapshotRecoveryRequestData?, forKey: .snapshotInfo)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
-    if self.isDefaultContainer != nil {try container.encode(self.isDefaultContainer, forKey: .isDefaultContainer)}
-    if self.defaultHostName != nil {try container.encode(self.defaultHostName, forKey: .defaultHostName)}
-    if self.slotSwapStatus != nil {try container.encode(self.slotSwapStatus as! SlotSwapStatusData?, forKey: .slotSwapStatus)}
-    if self.httpsOnly != nil {try container.encode(self.httpsOnly, forKey: .httpsOnly)}
+    if self.maxNumberOfWorkers != nil { try container.encode(self.maxNumberOfWorkers, forKey: .maxNumberOfWorkers) }
+    if self.cloningInfo != nil { try container.encode(self.cloningInfo as! CloningInfoData?, forKey: .cloningInfo) }
+    if self.snapshotInfo != nil { try container.encode(self.snapshotInfo as! SnapshotRecoveryRequestData?, forKey: .snapshotInfo) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
+    if self.isDefaultContainer != nil { try container.encode(self.isDefaultContainer, forKey: .isDefaultContainer) }
+    if self.defaultHostName != nil { try container.encode(self.defaultHostName, forKey: .defaultHostName) }
+    if self.slotSwapStatus != nil { try container.encode(self.slotSwapStatus as! SlotSwapStatusData?, forKey: .slotSwapStatus) }
+    if self.httpsOnly != nil { try container.encode(self.httpsOnly, forKey: .httpsOnly) }
   }
 }
 

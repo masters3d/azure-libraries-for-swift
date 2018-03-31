@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol IntegrationAccountsGet  {
+public protocol IntegrationAccountsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var integrationAccountName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IntegrationAccountProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IntegrationAccountProtocol?, Error?) -> Void)
 }
 
 extension Commands.IntegrationAccounts {
@@ -29,7 +29,7 @@ extension Commands.IntegrationAccounts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{integrationAccountName}"] = String(describing: self.integrationAccountName)
@@ -42,12 +42,12 @@ extension Commands.IntegrationAccounts {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(IntegrationAccountData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IntegrationAccountProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IntegrationAccountProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: IntegrationAccountData?, error: Error?) in
                 completionHandler(result, error)

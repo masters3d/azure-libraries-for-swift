@@ -10,7 +10,7 @@ internal struct RunCommandResultPropertiesData : RunCommandResultPropertiesProto
         enum CodingKeys: String, CodingKey {case output = "output"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RunCommandResultPropertiesData : RunCommandResultPropertiesProto
       if container.contains(.output) {
         self.output = try container.decode([String: String?]?.self, forKey: .output)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RunCommandResultPropertiesData : RunCommandResultPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.output != nil {try container.encode(self.output, forKey: .output)}
+    if self.output != nil { try container.encode(self.output, forKey: .output) }
   }
 }
 

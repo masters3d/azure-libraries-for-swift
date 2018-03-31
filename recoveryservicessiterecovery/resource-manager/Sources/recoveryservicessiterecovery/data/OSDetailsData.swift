@@ -20,7 +20,7 @@ internal struct OSDetailsData : OSDetailsProtocol {
         case oSMinorVersion = "oSMinorVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct OSDetailsData : OSDetailsProtocol {
     if container.contains(.oSMinorVersion) {
         self.oSMinorVersion = try container.decode(String?.self, forKey: .oSMinorVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct OSDetailsData : OSDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.productType != nil {try container.encode(self.productType, forKey: .productType)}
-    if self.osEdition != nil {try container.encode(self.osEdition, forKey: .osEdition)}
-    if self.oSVersion != nil {try container.encode(self.oSVersion, forKey: .oSVersion)}
-    if self.oSMajorVersion != nil {try container.encode(self.oSMajorVersion, forKey: .oSMajorVersion)}
-    if self.oSMinorVersion != nil {try container.encode(self.oSMinorVersion, forKey: .oSMinorVersion)}
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.productType != nil { try container.encode(self.productType, forKey: .productType) }
+    if self.osEdition != nil { try container.encode(self.osEdition, forKey: .osEdition) }
+    if self.oSVersion != nil { try container.encode(self.oSVersion, forKey: .oSVersion) }
+    if self.oSMajorVersion != nil { try container.encode(self.oSMajorVersion, forKey: .oSMajorVersion) }
+    if self.oSMinorVersion != nil { try container.encode(self.oSMinorVersion, forKey: .oSMinorVersion) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct DomainPurchaseConsentData : DomainPurchaseConsentProtocol {
         case agreedAt = "agreedAt"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DomainPurchaseConsentData : DomainPurchaseConsentProtocol {
     if container.contains(.agreedAt) {
         self.agreedAt = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .agreedAt)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct DomainPurchaseConsentData : DomainPurchaseConsentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.agreementKeys != nil {try container.encode(self.agreementKeys as! [String]?, forKey: .agreementKeys)}
-    if self.agreedBy != nil {try container.encode(self.agreedBy, forKey: .agreedBy)}
+    if self.agreementKeys != nil { try container.encode(self.agreementKeys as! [String]?, forKey: .agreementKeys) }
+    if self.agreedBy != nil { try container.encode(self.agreedBy, forKey: .agreedBy) }
     if self.agreedAt != nil {
         try container.encode(DateConverter.toString(date: self.agreedAt!, format: .dateTime), forKey: .agreedAt)
     }

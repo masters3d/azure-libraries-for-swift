@@ -30,7 +30,7 @@ internal struct RelationshipLinkDefinitionData : RelationshipLinkDefinitionProto
         case tenantId = "tenantId"
         }
 
-  public init(interactionType: String, profilePropertyReferences: [ParticipantProfilePropertyReferenceProtocol], relatedProfilePropertyReferences: [ParticipantProfilePropertyReferenceProtocol], relationshipName: String)  {
+  public init(interactionType: String, profilePropertyReferences: [ParticipantProfilePropertyReferenceProtocol], relatedProfilePropertyReferences: [ParticipantProfilePropertyReferenceProtocol], relationshipName: String) {
     self.interactionType = interactionType
     self.profilePropertyReferences = profilePropertyReferences
     self.relatedProfilePropertyReferences = relatedProfilePropertyReferences
@@ -64,7 +64,7 @@ internal struct RelationshipLinkDefinitionData : RelationshipLinkDefinitionProto
     if container.contains(.tenantId) {
         self.tenantId = try container.decode(String?.self, forKey: .tenantId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -74,17 +74,17 @@ internal struct RelationshipLinkDefinitionData : RelationshipLinkDefinitionProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.interactionType, forKey: .interactionType)
-    if self.linkName != nil {try container.encode(self.linkName, forKey: .linkName)}
-    if self.mappings != nil {try container.encode(self.mappings as! [RelationshipLinkFieldMappingData?]?, forKey: .mappings)}
+    if self.linkName != nil { try container.encode(self.linkName, forKey: .linkName) }
+    if self.mappings != nil { try container.encode(self.mappings as! [RelationshipLinkFieldMappingData?]?, forKey: .mappings) }
     try container.encode(self.profilePropertyReferences as! [ParticipantProfilePropertyReferenceData], forKey: .profilePropertyReferences)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     try container.encode(self.relatedProfilePropertyReferences as! [ParticipantProfilePropertyReferenceData], forKey: .relatedProfilePropertyReferences)
     try container.encode(self.relationshipName, forKey: .relationshipName)
-    if self.relationshipGuidId != nil {try container.encode(self.relationshipGuidId, forKey: .relationshipGuidId)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.relationshipGuidId != nil { try container.encode(self.relationshipGuidId, forKey: .relationshipGuidId) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
   }
 }
 

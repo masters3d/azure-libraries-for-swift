@@ -12,7 +12,7 @@ internal struct BatchAccountDeleteHeadersData : BatchAccountDeleteHeadersProtoco
         case retryAfter = "Retry-After"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct BatchAccountDeleteHeadersData : BatchAccountDeleteHeadersProtoco
     if container.contains(.retryAfter) {
         self.retryAfter = try container.decode(Int32?.self, forKey: .retryAfter)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct BatchAccountDeleteHeadersData : BatchAccountDeleteHeadersProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.retryAfter != nil {try container.encode(self.retryAfter, forKey: .retryAfter)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.retryAfter != nil { try container.encode(self.retryAfter, forKey: .retryAfter) }
   }
 }
 

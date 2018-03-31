@@ -14,7 +14,7 @@ internal struct ImageRegistryCredentialData : ImageRegistryCredentialProtocol {
         case password = "password"
         }
 
-  public init(server: String, username: String)  {
+  public init(server: String, username: String) {
     self.server = server
     self.username = username
   }
@@ -26,7 +26,7 @@ internal struct ImageRegistryCredentialData : ImageRegistryCredentialProtocol {
     if container.contains(.password) {
         self.password = try container.decode(String?.self, forKey: .password)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct ImageRegistryCredentialData : ImageRegistryCredentialProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.server, forKey: .server)
     try container.encode(self.username, forKey: .username)
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
   }
 }
 

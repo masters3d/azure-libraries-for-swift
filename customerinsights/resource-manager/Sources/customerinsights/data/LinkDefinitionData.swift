@@ -34,7 +34,7 @@ internal struct LinkDefinitionData : LinkDefinitionProtocol {
         case operationType = "operationType"
         }
 
-  public init(sourceEntityType: EntityTypeEnum, targetEntityType: EntityTypeEnum, sourceEntityTypeName: String, targetEntityTypeName: String, participantPropertyReferences: [ParticipantPropertyReferenceProtocol])  {
+  public init(sourceEntityType: EntityTypeEnum, targetEntityType: EntityTypeEnum, sourceEntityTypeName: String, targetEntityTypeName: String, participantPropertyReferences: [ParticipantPropertyReferenceProtocol]) {
     self.sourceEntityType = sourceEntityType
     self.targetEntityType = targetEntityType
     self.sourceEntityTypeName = sourceEntityTypeName
@@ -73,7 +73,7 @@ internal struct LinkDefinitionData : LinkDefinitionProtocol {
     if container.contains(.operationType) {
         self.operationType = try container.decode(InstanceOperationTypeEnum?.self, forKey: .operationType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,19 +83,19 @@ internal struct LinkDefinitionData : LinkDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.linkName != nil {try container.encode(self.linkName, forKey: .linkName)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.linkName != nil { try container.encode(self.linkName, forKey: .linkName) }
     try container.encode(self.sourceEntityType, forKey: .sourceEntityType)
     try container.encode(self.targetEntityType, forKey: .targetEntityType)
     try container.encode(self.sourceEntityTypeName, forKey: .sourceEntityTypeName)
     try container.encode(self.targetEntityTypeName, forKey: .targetEntityTypeName)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.mappings != nil {try container.encode(self.mappings as! [TypePropertiesMappingData?]?, forKey: .mappings)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.mappings != nil { try container.encode(self.mappings as! [TypePropertiesMappingData?]?, forKey: .mappings) }
     try container.encode(self.participantPropertyReferences as! [ParticipantPropertyReferenceData], forKey: .participantPropertyReferences)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.referenceOnly != nil {try container.encode(self.referenceOnly, forKey: .referenceOnly)}
-    if self.operationType != nil {try container.encode(self.operationType, forKey: .operationType)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.referenceOnly != nil { try container.encode(self.referenceOnly, forKey: .referenceOnly) }
+    if self.operationType != nil { try container.encode(self.operationType, forKey: .operationType) }
   }
 }
 

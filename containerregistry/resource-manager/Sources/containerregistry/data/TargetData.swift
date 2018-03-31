@@ -22,7 +22,7 @@ internal struct TargetData : TargetProtocol {
         case tag = "tag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct TargetData : TargetProtocol {
     if container.contains(.tag) {
         self.tag = try container.decode(String?.self, forKey: .tag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct TargetData : TargetProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.mediaType != nil {try container.encode(self.mediaType, forKey: .mediaType)}
-    if self.size != nil {try container.encode(self.size, forKey: .size)}
-    if self.digest != nil {try container.encode(self.digest, forKey: .digest)}
-    if self.length != nil {try container.encode(self.length, forKey: .length)}
-    if self.repository != nil {try container.encode(self.repository, forKey: .repository)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.tag != nil {try container.encode(self.tag, forKey: .tag)}
+    if self.mediaType != nil { try container.encode(self.mediaType, forKey: .mediaType) }
+    if self.size != nil { try container.encode(self.size, forKey: .size) }
+    if self.digest != nil { try container.encode(self.digest, forKey: .digest) }
+    if self.length != nil { try container.encode(self.length, forKey: .length) }
+    if self.repository != nil { try container.encode(self.repository, forKey: .repository) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.tag != nil { try container.encode(self.tag, forKey: .tag) }
   }
 }
 

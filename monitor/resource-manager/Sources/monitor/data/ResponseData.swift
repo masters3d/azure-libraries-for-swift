@@ -20,7 +20,7 @@ internal struct ResponseData : ResponseProtocol {
         case value = "value"
         }
 
-  public init(timespan: String, value: [MetricProtocol])  {
+  public init(timespan: String, value: [MetricProtocol]) {
     self.timespan = timespan
     self.value = value
   }
@@ -41,7 +41,7 @@ internal struct ResponseData : ResponseProtocol {
         self.resourceregion = try container.decode(String?.self, forKey: .resourceregion)
     }
     self.value = try container.decode([MetricData].self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,11 +51,11 @@ internal struct ResponseData : ResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.cost != nil {try container.encode(self.cost, forKey: .cost)}
+    if self.cost != nil { try container.encode(self.cost, forKey: .cost) }
     try container.encode(self.timespan, forKey: .timespan)
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
-    if self.namespace != nil {try container.encode(self.namespace, forKey: .namespace)}
-    if self.resourceregion != nil {try container.encode(self.resourceregion, forKey: .resourceregion)}
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
+    if self.namespace != nil { try container.encode(self.namespace, forKey: .namespace) }
+    if self.resourceregion != nil { try container.encode(self.resourceregion, forKey: .resourceregion) }
     try container.encode(self.value as! [MetricData], forKey: .value)
   }
 }

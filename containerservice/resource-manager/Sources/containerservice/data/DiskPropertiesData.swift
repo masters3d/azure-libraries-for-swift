@@ -20,7 +20,7 @@ internal struct DiskPropertiesData : DiskPropertiesProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(creationData: CreationDataProtocol)  {
+  public init(creationData: CreationDataProtocol) {
     self.creationData = creationData
   }
 
@@ -42,7 +42,7 @@ internal struct DiskPropertiesData : DiskPropertiesProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -55,11 +55,11 @@ internal struct DiskPropertiesData : DiskPropertiesProtocol {
     if self.timeCreated != nil {
         try container.encode(DateConverter.toString(date: self.timeCreated!, format: .dateTime), forKey: .timeCreated)
     }
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
     try container.encode(self.creationData as! CreationDataData, forKey: .creationData)
-    if self.diskSizeGB != nil {try container.encode(self.diskSizeGB, forKey: .diskSizeGB)}
-    if self.encryptionSettings != nil {try container.encode(self.encryptionSettings as! EncryptionSettingsData?, forKey: .encryptionSettings)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.diskSizeGB != nil { try container.encode(self.diskSizeGB, forKey: .diskSizeGB) }
+    if self.encryptionSettings != nil { try container.encode(self.encryptionSettings as! EncryptionSettingsData?, forKey: .encryptionSettings) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

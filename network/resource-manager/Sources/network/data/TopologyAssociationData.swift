@@ -14,7 +14,7 @@ internal struct TopologyAssociationData : TopologyAssociationProtocol {
         case associationType = "associationType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TopologyAssociationData : TopologyAssociationProtocol {
     if container.contains(.associationType) {
         self.associationType = try container.decode(AssociationTypeEnum?.self, forKey: .associationType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TopologyAssociationData : TopologyAssociationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.associationType != nil {try container.encode(self.associationType, forKey: .associationType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.associationType != nil { try container.encode(self.associationType, forKey: .associationType) }
   }
 }
 

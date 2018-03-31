@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol FirewallRulesDelete  {
+public protocol FirewallRulesDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var cacheName : String { get set }
@@ -8,7 +8,7 @@ public protocol FirewallRulesDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.FirewallRules {
@@ -32,7 +32,7 @@ extension Commands.FirewallRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{cacheName}"] = String(describing: self.cacheName)
             self.pathParameters["{ruleName}"] = String(describing: self.ruleName)
@@ -42,7 +42,7 @@ extension Commands.FirewallRules {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

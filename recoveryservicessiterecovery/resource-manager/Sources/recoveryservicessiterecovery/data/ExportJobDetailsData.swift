@@ -14,7 +14,7 @@ internal struct ExportJobDetailsData : ExportJobDetailsProtocol, JobDetailsProto
         case sasToken = "sasToken"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ExportJobDetailsData : ExportJobDetailsProtocol, JobDetailsProto
     if container.contains(.sasToken) {
         self.sasToken = try container.decode(String?.self, forKey: .sasToken)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ExportJobDetailsData : ExportJobDetailsProtocol, JobDetailsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.affectedObjectDetails != nil {try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails)}
-    if self.blobUri != nil {try container.encode(self.blobUri, forKey: .blobUri)}
-    if self.sasToken != nil {try container.encode(self.sasToken, forKey: .sasToken)}
+    if self.affectedObjectDetails != nil { try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails) }
+    if self.blobUri != nil { try container.encode(self.blobUri, forKey: .blobUri) }
+    if self.sasToken != nil { try container.encode(self.sasToken, forKey: .sasToken) }
   }
 }
 

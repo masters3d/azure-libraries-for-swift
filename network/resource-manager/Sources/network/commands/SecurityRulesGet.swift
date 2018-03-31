@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SecurityRulesGet  {
+public protocol SecurityRulesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkSecurityGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol SecurityRulesGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SecurityRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SecurityRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.SecurityRules {
@@ -32,7 +32,7 @@ extension Commands.SecurityRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkSecurityGroupName}"] = String(describing: self.networkSecurityGroupName)
             self.pathParameters["{securityRuleName}"] = String(describing: self.securityRuleName)
@@ -46,12 +46,12 @@ extension Commands.SecurityRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SecurityRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SecurityRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SecurityRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SecurityRuleData?, error: Error?) in
                 completionHandler(result, error)

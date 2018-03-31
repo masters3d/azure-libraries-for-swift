@@ -14,7 +14,7 @@ internal struct AzureReachabilityReportData : AzureReachabilityReportProtocol {
         case reachabilityReport = "reachabilityReport"
         }
 
-  public init(aggregationLevel: String, providerLocation: AzureReachabilityReportLocationProtocol, reachabilityReport: [AzureReachabilityReportItemProtocol])  {
+  public init(aggregationLevel: String, providerLocation: AzureReachabilityReportLocationProtocol, reachabilityReport: [AzureReachabilityReportItemProtocol]) {
     self.aggregationLevel = aggregationLevel
     self.providerLocation = providerLocation
     self.reachabilityReport = reachabilityReport
@@ -25,7 +25,7 @@ internal struct AzureReachabilityReportData : AzureReachabilityReportProtocol {
       self.aggregationLevel = try container.decode(String.self, forKey: .aggregationLevel)
     self.providerLocation = try container.decode(AzureReachabilityReportLocationData.self, forKey: .providerLocation)
     self.reachabilityReport = try container.decode([AzureReachabilityReportItemData].self, forKey: .reachabilityReport)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

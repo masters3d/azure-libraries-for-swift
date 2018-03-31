@@ -12,7 +12,7 @@ internal struct EndpointRangeDescriptionData : EndpointRangeDescriptionProtocol 
         case endPort = "endPort"
         }
 
-  public init(startPort: Int32, endPort: Int32)  {
+  public init(startPort: Int32, endPort: Int32) {
     self.startPort = startPort
     self.endPort = endPort
   }
@@ -21,7 +21,7 @@ internal struct EndpointRangeDescriptionData : EndpointRangeDescriptionProtocol 
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startPort = try container.decode(Int32.self, forKey: .startPort)
     self.endPort = try container.decode(Int32.self, forKey: .endPort)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -14,7 +14,7 @@ internal struct DomainAvailablilityCheckResultData : DomainAvailablilityCheckRes
         case domainType = "domainType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DomainAvailablilityCheckResultData : DomainAvailablilityCheckRes
     if container.contains(.domainType) {
         self.domainType = try container.decode(DomainTypeEnum?.self, forKey: .domainType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DomainAvailablilityCheckResultData : DomainAvailablilityCheckRes
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.available != nil {try container.encode(self.available, forKey: .available)}
-    if self.domainType != nil {try container.encode(self.domainType, forKey: .domainType)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.available != nil { try container.encode(self.available, forKey: .available) }
+    if self.domainType != nil { try container.encode(self.domainType, forKey: .domainType) }
   }
 }
 

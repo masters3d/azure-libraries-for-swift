@@ -16,7 +16,7 @@ internal struct RunbookUpdatePropertiesData : RunbookUpdatePropertiesProtocol {
         case logActivityTrace = "logActivityTrace"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RunbookUpdatePropertiesData : RunbookUpdatePropertiesProtocol {
     if container.contains(.logActivityTrace) {
         self.logActivityTrace = try container.decode(Int32?.self, forKey: .logActivityTrace)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RunbookUpdatePropertiesData : RunbookUpdatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.logVerbose != nil {try container.encode(self.logVerbose, forKey: .logVerbose)}
-    if self.logProgress != nil {try container.encode(self.logProgress, forKey: .logProgress)}
-    if self.logActivityTrace != nil {try container.encode(self.logActivityTrace, forKey: .logActivityTrace)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.logVerbose != nil { try container.encode(self.logVerbose, forKey: .logVerbose) }
+    if self.logProgress != nil { try container.encode(self.logProgress, forKey: .logProgress) }
+    if self.logActivityTrace != nil { try container.encode(self.logActivityTrace, forKey: .logActivityTrace) }
   }
 }
 

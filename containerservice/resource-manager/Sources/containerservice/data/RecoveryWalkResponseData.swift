@@ -12,7 +12,7 @@ internal struct RecoveryWalkResponseData : RecoveryWalkResponseProtocol {
         case nextPlatformUpdateDomain = "nextPlatformUpdateDomain"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RecoveryWalkResponseData : RecoveryWalkResponseProtocol {
     if container.contains(.nextPlatformUpdateDomain) {
         self.nextPlatformUpdateDomain = try container.decode(Int32?.self, forKey: .nextPlatformUpdateDomain)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RecoveryWalkResponseData : RecoveryWalkResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.walkPerformed != nil {try container.encode(self.walkPerformed, forKey: .walkPerformed)}
-    if self.nextPlatformUpdateDomain != nil {try container.encode(self.nextPlatformUpdateDomain, forKey: .nextPlatformUpdateDomain)}
+    if self.walkPerformed != nil { try container.encode(self.walkPerformed, forKey: .walkPerformed) }
+    if self.nextPlatformUpdateDomain != nil { try container.encode(self.nextPlatformUpdateDomain, forKey: .nextPlatformUpdateDomain) }
   }
 }
 

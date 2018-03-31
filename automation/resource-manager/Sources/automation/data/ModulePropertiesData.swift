@@ -28,7 +28,7 @@ internal struct ModulePropertiesData : ModulePropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ModulePropertiesData : ModulePropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,20 +73,20 @@ internal struct ModulePropertiesData : ModulePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isGlobal != nil {try container.encode(self.isGlobal, forKey: .isGlobal)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.sizeInBytes != nil {try container.encode(self.sizeInBytes, forKey: .sizeInBytes)}
-    if self.activityCount != nil {try container.encode(self.activityCount, forKey: .activityCount)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.contentLink != nil {try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink)}
-    if self.error != nil {try container.encode(self.error as! ModuleErrorInfoData?, forKey: .error)}
+    if self.isGlobal != nil { try container.encode(self.isGlobal, forKey: .isGlobal) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.sizeInBytes != nil { try container.encode(self.sizeInBytes, forKey: .sizeInBytes) }
+    if self.activityCount != nil { try container.encode(self.activityCount, forKey: .activityCount) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.contentLink != nil { try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink) }
+    if self.error != nil { try container.encode(self.error as! ModuleErrorInfoData?, forKey: .error) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

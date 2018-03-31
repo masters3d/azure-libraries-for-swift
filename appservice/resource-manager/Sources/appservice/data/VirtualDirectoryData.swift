@@ -12,7 +12,7 @@ internal struct VirtualDirectoryData : VirtualDirectoryProtocol {
         case physicalPath = "physicalPath"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VirtualDirectoryData : VirtualDirectoryProtocol {
     if container.contains(.physicalPath) {
         self.physicalPath = try container.decode(String?.self, forKey: .physicalPath)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VirtualDirectoryData : VirtualDirectoryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualPath != nil {try container.encode(self.virtualPath, forKey: .virtualPath)}
-    if self.physicalPath != nil {try container.encode(self.physicalPath, forKey: .physicalPath)}
+    if self.virtualPath != nil { try container.encode(self.virtualPath, forKey: .virtualPath) }
+    if self.physicalPath != nil { try container.encode(self.physicalPath, forKey: .physicalPath) }
   }
 }
 

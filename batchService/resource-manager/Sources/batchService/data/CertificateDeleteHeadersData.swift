@@ -16,7 +16,7 @@ internal struct CertificateDeleteHeadersData : CertificateDeleteHeadersProtocol 
         case lastModified = "Last-Modified"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct CertificateDeleteHeadersData : CertificateDeleteHeadersProtocol 
     if container.contains(.lastModified) {
         self.lastModified = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastModified)), format: .dateTimeRfc1123)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct CertificateDeleteHeadersData : CertificateDeleteHeadersProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientRequestId != nil {try container.encode(self.clientRequestId, forKey: .clientRequestId)}
-    if self.requestId != nil {try container.encode(self.requestId, forKey: .requestId)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.clientRequestId != nil { try container.encode(self.clientRequestId, forKey: .clientRequestId) }
+    if self.requestId != nil { try container.encode(self.requestId, forKey: .requestId) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTimeRfc1123), forKey: .lastModified)
     }

@@ -14,7 +14,7 @@ internal struct LabCostDetailsPropertiesData : LabCostDetailsPropertiesProtocol 
         case costType = "costType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct LabCostDetailsPropertiesData : LabCostDetailsPropertiesProtocol 
     if container.contains(.costType) {
         self.costType = try container.decode(CostTypeEnum?.self, forKey: .costType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct LabCostDetailsPropertiesData : LabCostDetailsPropertiesProtocol 
     if self.date != nil {
         try container.encode(DateConverter.toString(date: self.date!, format: .dateTime), forKey: .date)
     }
-    if self.cost != nil {try container.encode(self.cost, forKey: .cost)}
-    if self.costType != nil {try container.encode(self.costType, forKey: .costType)}
+    if self.cost != nil { try container.encode(self.cost, forKey: .cost) }
+    if self.costType != nil { try container.encode(self.costType, forKey: .costType) }
   }
 }
 

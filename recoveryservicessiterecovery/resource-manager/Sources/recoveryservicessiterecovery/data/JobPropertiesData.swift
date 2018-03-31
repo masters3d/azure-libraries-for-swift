@@ -36,7 +36,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
         case customDetails = "customDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
     if container.contains(.customDetails) {
         self.customDetails = try container.decode(JobDetailsData?.self, forKey: .customDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,24 +93,24 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.activityId != nil {try container.encode(self.activityId, forKey: .activityId)}
-    if self.scenarioName != nil {try container.encode(self.scenarioName, forKey: .scenarioName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.stateDescription != nil {try container.encode(self.stateDescription, forKey: .stateDescription)}
-    if self.tasks != nil {try container.encode(self.tasks as! [ASRTaskData?]?, forKey: .tasks)}
-    if self.errors != nil {try container.encode(self.errors as! [JobErrorDetailsData?]?, forKey: .errors)}
+    if self.activityId != nil { try container.encode(self.activityId, forKey: .activityId) }
+    if self.scenarioName != nil { try container.encode(self.scenarioName, forKey: .scenarioName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.stateDescription != nil { try container.encode(self.stateDescription, forKey: .stateDescription) }
+    if self.tasks != nil { try container.encode(self.tasks as! [ASRTaskData?]?, forKey: .tasks) }
+    if self.errors != nil { try container.encode(self.errors as! [JobErrorDetailsData?]?, forKey: .errors) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.allowedActions != nil {try container.encode(self.allowedActions as! [String]?, forKey: .allowedActions)}
-    if self.targetObjectId != nil {try container.encode(self.targetObjectId, forKey: .targetObjectId)}
-    if self.targetObjectName != nil {try container.encode(self.targetObjectName, forKey: .targetObjectName)}
-    if self.targetInstanceType != nil {try container.encode(self.targetInstanceType, forKey: .targetInstanceType)}
-    if self.customDetails != nil {try container.encode(self.customDetails as! JobDetailsData?, forKey: .customDetails)}
+    if self.allowedActions != nil { try container.encode(self.allowedActions as! [String]?, forKey: .allowedActions) }
+    if self.targetObjectId != nil { try container.encode(self.targetObjectId, forKey: .targetObjectId) }
+    if self.targetObjectName != nil { try container.encode(self.targetObjectName, forKey: .targetObjectName) }
+    if self.targetInstanceType != nil { try container.encode(self.targetInstanceType, forKey: .targetInstanceType) }
+    if self.customDetails != nil { try container.encode(self.customDetails as! JobDetailsData?, forKey: .customDetails) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct AzureToAzureNetworkMappingSettingsData : AzureToAzureNetworkMapp
         case recoveryFabricLocation = "recoveryFabricLocation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureToAzureNetworkMappingSettingsData : AzureToAzureNetworkMapp
     if container.contains(.recoveryFabricLocation) {
         self.recoveryFabricLocation = try container.decode(String?.self, forKey: .recoveryFabricLocation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureToAzureNetworkMappingSettingsData : AzureToAzureNetworkMapp
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primaryFabricLocation != nil {try container.encode(self.primaryFabricLocation, forKey: .primaryFabricLocation)}
-    if self.recoveryFabricLocation != nil {try container.encode(self.recoveryFabricLocation, forKey: .recoveryFabricLocation)}
+    if self.primaryFabricLocation != nil { try container.encode(self.primaryFabricLocation, forKey: .primaryFabricLocation) }
+    if self.recoveryFabricLocation != nil { try container.encode(self.recoveryFabricLocation, forKey: .recoveryFabricLocation) }
   }
 }
 

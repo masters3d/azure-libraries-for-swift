@@ -14,7 +14,7 @@ internal struct CurrentScenarioDetailsData : CurrentScenarioDetailsProtocol {
         case startTime = "startTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CurrentScenarioDetailsData : CurrentScenarioDetailsProtocol {
     if container.contains(.startTime) {
         self.startTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .startTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct CurrentScenarioDetailsData : CurrentScenarioDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.scenarioName != nil {try container.encode(self.scenarioName, forKey: .scenarioName)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
+    if self.scenarioName != nil { try container.encode(self.scenarioName, forKey: .scenarioName) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }

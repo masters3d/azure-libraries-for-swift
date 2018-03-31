@@ -14,7 +14,7 @@ internal struct MigrateMySqlStatusPropertiesData : MigrateMySqlStatusPropertiesP
         case localMySqlEnabled = "localMySqlEnabled"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct MigrateMySqlStatusPropertiesData : MigrateMySqlStatusPropertiesP
     if container.contains(.localMySqlEnabled) {
         self.localMySqlEnabled = try container.decode(Bool?.self, forKey: .localMySqlEnabled)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct MigrateMySqlStatusPropertiesData : MigrateMySqlStatusPropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.migrationOperationStatus != nil {try container.encode(self.migrationOperationStatus, forKey: .migrationOperationStatus)}
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
-    if self.localMySqlEnabled != nil {try container.encode(self.localMySqlEnabled, forKey: .localMySqlEnabled)}
+    if self.migrationOperationStatus != nil { try container.encode(self.migrationOperationStatus, forKey: .migrationOperationStatus) }
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
+    if self.localMySqlEnabled != nil { try container.encode(self.localMySqlEnabled, forKey: .localMySqlEnabled) }
   }
 }
 

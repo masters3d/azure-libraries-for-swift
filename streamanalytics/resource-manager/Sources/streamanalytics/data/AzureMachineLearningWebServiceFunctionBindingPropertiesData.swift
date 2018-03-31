@@ -18,7 +18,7 @@ internal struct AzureMachineLearningWebServiceFunctionBindingPropertiesData : Az
         case batchSize = "batchSize"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AzureMachineLearningWebServiceFunctionBindingPropertiesData : Az
     if container.contains(.batchSize) {
         self.batchSize = try container.decode(Int32?.self, forKey: .batchSize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AzureMachineLearningWebServiceFunctionBindingPropertiesData : Az
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
-    if self.apiKey != nil {try container.encode(self.apiKey, forKey: .apiKey)}
-    if self.inputs != nil {try container.encode(self.inputs as! AzureMachineLearningWebServiceInputsData?, forKey: .inputs)}
-    if self.outputs != nil {try container.encode(self.outputs as! [AzureMachineLearningWebServiceOutputColumnData?]?, forKey: .outputs)}
-    if self.batchSize != nil {try container.encode(self.batchSize, forKey: .batchSize)}
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
+    if self.apiKey != nil { try container.encode(self.apiKey, forKey: .apiKey) }
+    if self.inputs != nil { try container.encode(self.inputs as! AzureMachineLearningWebServiceInputsData?, forKey: .inputs) }
+    if self.outputs != nil { try container.encode(self.outputs as! [AzureMachineLearningWebServiceOutputColumnData?]?, forKey: .outputs) }
+    if self.batchSize != nil { try container.encode(self.batchSize, forKey: .batchSize) }
   }
 }
 

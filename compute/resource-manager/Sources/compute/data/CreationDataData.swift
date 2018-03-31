@@ -18,7 +18,7 @@ internal struct CreationDataData : CreationDataProtocol {
         case sourceResourceId = "sourceResourceId"
         }
 
-  public init(createOption: DiskCreateOptionEnum)  {
+  public init(createOption: DiskCreateOptionEnum) {
     self.createOption = createOption
   }
 
@@ -37,7 +37,7 @@ internal struct CreationDataData : CreationDataProtocol {
     if container.contains(.sourceResourceId) {
         self.sourceResourceId = try container.decode(String?.self, forKey: .sourceResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct CreationDataData : CreationDataProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.createOption, forKey: .createOption)
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.imageReference != nil {try container.encode(self.imageReference as! ImageDiskReferenceData?, forKey: .imageReference)}
-    if self.sourceUri != nil {try container.encode(self.sourceUri, forKey: .sourceUri)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.imageReference != nil { try container.encode(self.imageReference as! ImageDiskReferenceData?, forKey: .imageReference) }
+    if self.sourceUri != nil { try container.encode(self.sourceUri, forKey: .sourceUri) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
   }
 }
 

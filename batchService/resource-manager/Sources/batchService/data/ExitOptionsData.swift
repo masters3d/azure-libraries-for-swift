@@ -12,7 +12,7 @@ internal struct ExitOptionsData : ExitOptionsProtocol {
         case dependencyAction = "dependencyAction"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ExitOptionsData : ExitOptionsProtocol {
     if container.contains(.dependencyAction) {
         self.dependencyAction = try container.decode(DependencyActionEnum?.self, forKey: .dependencyAction)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ExitOptionsData : ExitOptionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobAction != nil {try container.encode(self.jobAction, forKey: .jobAction)}
-    if self.dependencyAction != nil {try container.encode(self.dependencyAction, forKey: .dependencyAction)}
+    if self.jobAction != nil { try container.encode(self.jobAction, forKey: .jobAction) }
+    if self.dependencyAction != nil { try container.encode(self.dependencyAction, forKey: .dependencyAction) }
   }
 }
 

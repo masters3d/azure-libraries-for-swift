@@ -12,7 +12,7 @@ internal struct CustomDomainData : CustomDomainProtocol {
         case useSubDomain = "useSubDomain"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -22,7 +22,7 @@ internal struct CustomDomainData : CustomDomainProtocol {
     if container.contains(.useSubDomain) {
         self.useSubDomain = try container.decode(Bool?.self, forKey: .useSubDomain)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct CustomDomainData : CustomDomainProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.useSubDomain != nil {try container.encode(self.useSubDomain, forKey: .useSubDomain)}
+    if self.useSubDomain != nil { try container.encode(self.useSubDomain, forKey: .useSubDomain) }
   }
 }
 

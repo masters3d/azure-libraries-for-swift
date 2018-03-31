@@ -18,7 +18,7 @@ internal struct ProviderErrorData : ProviderErrorProtocol {
         case recommendedAction = "recommendedAction"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ProviderErrorData : ProviderErrorProtocol {
     if container.contains(.recommendedAction) {
         self.recommendedAction = try container.decode(String?.self, forKey: .recommendedAction)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ProviderErrorData : ProviderErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.errorId != nil {try container.encode(self.errorId, forKey: .errorId)}
-    if self.possibleCauses != nil {try container.encode(self.possibleCauses, forKey: .possibleCauses)}
-    if self.recommendedAction != nil {try container.encode(self.recommendedAction, forKey: .recommendedAction)}
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.errorId != nil { try container.encode(self.errorId, forKey: .errorId) }
+    if self.possibleCauses != nil { try container.encode(self.possibleCauses, forKey: .possibleCauses) }
+    if self.recommendedAction != nil { try container.encode(self.recommendedAction, forKey: .recommendedAction) }
   }
 }
 

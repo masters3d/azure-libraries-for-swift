@@ -22,7 +22,7 @@ internal struct ConnectionMonitorResultPropertiesData : ConnectionMonitorResultP
         case monitoringStatus = "monitoringStatus"
         }
 
-  public init(source: ConnectionMonitorSourceProtocol, destination: ConnectionMonitorDestinationProtocol)  {
+  public init(source: ConnectionMonitorSourceProtocol, destination: ConnectionMonitorDestinationProtocol) {
     self.source = source
     self.destination = destination
   }
@@ -46,7 +46,7 @@ internal struct ConnectionMonitorResultPropertiesData : ConnectionMonitorResultP
     if container.contains(.monitoringStatus) {
         self.monitoringStatus = try container.decode(String?.self, forKey: .monitoringStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ConnectionMonitorResultPropertiesData : ConnectionMonitorResultP
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.source as! ConnectionMonitorSourceData, forKey: .source)
     try container.encode(self.destination as! ConnectionMonitorDestinationData, forKey: .destination)
-    if self.autoStart != nil {try container.encode(self.autoStart, forKey: .autoStart)}
-    if self.monitoringIntervalInSeconds != nil {try container.encode(self.monitoringIntervalInSeconds, forKey: .monitoringIntervalInSeconds)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.autoStart != nil { try container.encode(self.autoStart, forKey: .autoStart) }
+    if self.monitoringIntervalInSeconds != nil { try container.encode(self.monitoringIntervalInSeconds, forKey: .monitoringIntervalInSeconds) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.monitoringStatus != nil {try container.encode(self.monitoringStatus, forKey: .monitoringStatus)}
+    if self.monitoringStatus != nil { try container.encode(self.monitoringStatus, forKey: .monitoringStatus) }
   }
 }
 

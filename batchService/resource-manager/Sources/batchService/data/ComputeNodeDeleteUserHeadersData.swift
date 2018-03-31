@@ -12,7 +12,7 @@ internal struct ComputeNodeDeleteUserHeadersData : ComputeNodeDeleteUserHeadersP
         case requestId = "request-id"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ComputeNodeDeleteUserHeadersData : ComputeNodeDeleteUserHeadersP
     if container.contains(.requestId) {
         self.requestId = try container.decode(String?.self, forKey: .requestId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ComputeNodeDeleteUserHeadersData : ComputeNodeDeleteUserHeadersP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientRequestId != nil {try container.encode(self.clientRequestId, forKey: .clientRequestId)}
-    if self.requestId != nil {try container.encode(self.requestId, forKey: .requestId)}
+    if self.clientRequestId != nil { try container.encode(self.clientRequestId, forKey: .clientRequestId) }
+    if self.requestId != nil { try container.encode(self.requestId, forKey: .requestId) }
   }
 }
 

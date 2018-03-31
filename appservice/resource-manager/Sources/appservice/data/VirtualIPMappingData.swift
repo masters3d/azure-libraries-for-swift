@@ -16,7 +16,7 @@ internal struct VirtualIPMappingData : VirtualIPMappingProtocol {
         case inUse = "inUse"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VirtualIPMappingData : VirtualIPMappingProtocol {
     if container.contains(.inUse) {
         self.inUse = try container.decode(Bool?.self, forKey: .inUse)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VirtualIPMappingData : VirtualIPMappingProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualIP != nil {try container.encode(self.virtualIP, forKey: .virtualIP)}
-    if self.internalHttpPort != nil {try container.encode(self.internalHttpPort, forKey: .internalHttpPort)}
-    if self.internalHttpsPort != nil {try container.encode(self.internalHttpsPort, forKey: .internalHttpsPort)}
-    if self.inUse != nil {try container.encode(self.inUse, forKey: .inUse)}
+    if self.virtualIP != nil { try container.encode(self.virtualIP, forKey: .virtualIP) }
+    if self.internalHttpPort != nil { try container.encode(self.internalHttpPort, forKey: .internalHttpPort) }
+    if self.internalHttpsPort != nil { try container.encode(self.internalHttpsPort, forKey: .internalHttpsPort) }
+    if self.inUse != nil { try container.encode(self.inUse, forKey: .inUse) }
   }
 }
 

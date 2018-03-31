@@ -22,7 +22,7 @@ internal struct ProtectableContainerResourceData : ProtectableContainerResourceP
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ProtectableContainerResourceData : ProtectableContainerResourceP
     if container.contains(.properties) {
         self.properties = try container.decode(ProtectableContainerData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ProtectableContainerResourceData : ProtectableContainerResourceP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
-    if self.properties != nil {try container.encode(self.properties as! ProtectableContainerData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
+    if self.properties != nil { try container.encode(self.properties as! ProtectableContainerData?, forKey: .properties) }
   }
 }
 

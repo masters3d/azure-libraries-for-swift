@@ -14,7 +14,7 @@ internal struct ManagedServiceIdentityData : ManagedServiceIdentityProtocol {
         case principalId = "principalId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ManagedServiceIdentityData : ManagedServiceIdentityProtocol {
     if container.contains(.principalId) {
         self.principalId = try container.decode(String?.self, forKey: .principalId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ManagedServiceIdentityData : ManagedServiceIdentityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.principalId != nil {try container.encode(self.principalId, forKey: .principalId)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.principalId != nil { try container.encode(self.principalId, forKey: .principalId) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ContainerLogsList  {
+public protocol ContainerLogsList {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol ContainerLogsList  {
     var apiVersion : String { get set }
     var tail : Int32? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LogsProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LogsProtocol?, Error?) -> Void)
 }
 
 extension Commands.ContainerLogs {
@@ -34,7 +34,7 @@ extension Commands.ContainerLogs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{containerGroupName}"] = String(describing: self.containerGroupName)
@@ -49,12 +49,12 @@ extension Commands.ContainerLogs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LogsData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LogsProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LogsProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: LogsData?, error: Error?) in
                 completionHandler(result, error)

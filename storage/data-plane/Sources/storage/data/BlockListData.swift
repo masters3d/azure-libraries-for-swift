@@ -10,7 +10,7 @@ internal struct BlockListData : BlockListProtocol {
         case uncommittedBlocks = "UncommittedBlocks"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -25,8 +25,8 @@ internal struct BlockListData : BlockListProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.committedBlocks != nil {try container.encode(committedBlocks as! [BlockData?]?, forKey: .committedBlocks)}
-    if self.uncommittedBlocks != nil {try container.encode(uncommittedBlocks as! [BlockData?]?, forKey: .uncommittedBlocks)}
+    if self.committedBlocks != nil { try container.encode(committedBlocks as! [BlockData?]?, forKey: .committedBlocks) }
+    if self.uncommittedBlocks != nil { try container.encode(uncommittedBlocks as! [BlockData?]?, forKey: .uncommittedBlocks) }
   }
 }
 

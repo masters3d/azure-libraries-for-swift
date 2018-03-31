@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationGet  {
+public protocol ApplicationGet {
     var headerParameters: [String: String] { get set }
     var applicationId : String { get set }
     var timeout : Int32? { get set }
@@ -9,7 +9,7 @@ public protocol ApplicationGet  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ApplicationSummaryProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ApplicationSummaryProtocol?, Error?) -> Void)
 }
 
 extension Commands.Application {
@@ -33,7 +33,7 @@ extension Commands.Application {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{applicationId}"] = String(describing: self.applicationId)
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -48,12 +48,12 @@ extension Commands.Application {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ApplicationSummaryData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ApplicationSummaryProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ApplicationSummaryProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ApplicationSummaryData?, error: Error?) in
                 completionHandler(result, error)

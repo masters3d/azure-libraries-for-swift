@@ -16,7 +16,7 @@ internal struct UserAccountData : UserAccountProtocol {
         case linuxUserConfiguration = "linuxUserConfiguration"
         }
 
-  public init(name: String, password: String)  {
+  public init(name: String, password: String) {
     self.name = name
     self.password = password
   }
@@ -31,7 +31,7 @@ internal struct UserAccountData : UserAccountProtocol {
     if container.contains(.linuxUserConfiguration) {
         self.linuxUserConfiguration = try container.decode(LinuxUserConfigurationData?.self, forKey: .linuxUserConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct UserAccountData : UserAccountProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.password, forKey: .password)
-    if self.elevationLevel != nil {try container.encode(self.elevationLevel, forKey: .elevationLevel)}
-    if self.linuxUserConfiguration != nil {try container.encode(self.linuxUserConfiguration as! LinuxUserConfigurationData?, forKey: .linuxUserConfiguration)}
+    if self.elevationLevel != nil { try container.encode(self.elevationLevel, forKey: .elevationLevel) }
+    if self.linuxUserConfiguration != nil { try container.encode(self.linuxUserConfiguration as! LinuxUserConfigurationData?, forKey: .linuxUserConfiguration) }
   }
 }
 

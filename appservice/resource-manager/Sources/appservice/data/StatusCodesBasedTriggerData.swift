@@ -18,7 +18,7 @@ internal struct StatusCodesBasedTriggerData : StatusCodesBasedTriggerProtocol {
         case timeInterval = "timeInterval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct StatusCodesBasedTriggerData : StatusCodesBasedTriggerProtocol {
     if container.contains(.timeInterval) {
         self.timeInterval = try container.decode(String?.self, forKey: .timeInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct StatusCodesBasedTriggerData : StatusCodesBasedTriggerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.subStatus != nil {try container.encode(self.subStatus, forKey: .subStatus)}
-    if self.win32Status != nil {try container.encode(self.win32Status, forKey: .win32Status)}
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.timeInterval != nil {try container.encode(self.timeInterval, forKey: .timeInterval)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.subStatus != nil { try container.encode(self.subStatus, forKey: .subStatus) }
+    if self.win32Status != nil { try container.encode(self.win32Status, forKey: .win32Status) }
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.timeInterval != nil { try container.encode(self.timeInterval, forKey: .timeInterval) }
   }
 }
 

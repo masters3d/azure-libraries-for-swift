@@ -14,7 +14,7 @@ internal struct ApplicationGatewaySslPredefinedPolicyData : ApplicationGatewaySs
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApplicationGatewaySslPredefinedPolicyData : ApplicationGatewaySs
     if container.contains(.properties) {
         self.properties = try container.decode(ApplicationGatewaySslPredefinedPolicyPropertiesFormatData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApplicationGatewaySslPredefinedPolicyData : ApplicationGatewaySs
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.properties != nil {try container.encode(self.properties as! ApplicationGatewaySslPredefinedPolicyPropertiesFormatData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.properties != nil { try container.encode(self.properties as! ApplicationGatewaySslPredefinedPolicyPropertiesFormatData?, forKey: .properties) }
   }
 }
 

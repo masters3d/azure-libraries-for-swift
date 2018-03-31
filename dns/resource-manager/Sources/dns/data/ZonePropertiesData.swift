@@ -14,7 +14,7 @@ internal struct ZonePropertiesData : ZonePropertiesProtocol {
         case nameServers = "nameServers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ZonePropertiesData : ZonePropertiesProtocol {
     if container.contains(.nameServers) {
         self.nameServers = try container.decode([String]?.self, forKey: .nameServers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ZonePropertiesData : ZonePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxNumberOfRecordSets != nil {try container.encode(self.maxNumberOfRecordSets, forKey: .maxNumberOfRecordSets)}
-    if self.numberOfRecordSets != nil {try container.encode(self.numberOfRecordSets, forKey: .numberOfRecordSets)}
-    if self.nameServers != nil {try container.encode(self.nameServers as! [String]?, forKey: .nameServers)}
+    if self.maxNumberOfRecordSets != nil { try container.encode(self.maxNumberOfRecordSets, forKey: .maxNumberOfRecordSets) }
+    if self.numberOfRecordSets != nil { try container.encode(self.numberOfRecordSets, forKey: .numberOfRecordSets) }
+    if self.nameServers != nil { try container.encode(self.nameServers as! [String]?, forKey: .nameServers) }
   }
 }
 

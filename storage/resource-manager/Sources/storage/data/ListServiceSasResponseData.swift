@@ -10,7 +10,7 @@ internal struct ListServiceSasResponseData : ListServiceSasResponseProtocol {
         enum CodingKeys: String, CodingKey {case serviceSasToken = "serviceSasToken"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ListServiceSasResponseData : ListServiceSasResponseProtocol {
       if container.contains(.serviceSasToken) {
         self.serviceSasToken = try container.decode(String?.self, forKey: .serviceSasToken)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ListServiceSasResponseData : ListServiceSasResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceSasToken != nil {try container.encode(self.serviceSasToken, forKey: .serviceSasToken)}
+    if self.serviceSasToken != nil { try container.encode(self.serviceSasToken, forKey: .serviceSasToken) }
   }
 }
 

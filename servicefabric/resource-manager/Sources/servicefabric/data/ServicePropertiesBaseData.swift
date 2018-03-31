@@ -18,7 +18,7 @@ internal struct ServicePropertiesBaseData : ServicePropertiesBaseProtocol {
         case defaultMoveCost = "defaultMoveCost"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ServicePropertiesBaseData : ServicePropertiesBaseProtocol {
     if container.contains(.defaultMoveCost) {
         self.defaultMoveCost = try container.decode(DefaultMoveCostEnum?.self, forKey: .defaultMoveCost)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ServicePropertiesBaseData : ServicePropertiesBaseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.placementConstraints != nil {try container.encode(self.placementConstraints, forKey: .placementConstraints)}
-    if self.correlationScheme != nil {try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme)}
-    if self.serviceLoadMetrics != nil {try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics)}
-    if self.servicePlacementPolicies != nil {try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies)}
-    if self.defaultMoveCost != nil {try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost)}
+    if self.placementConstraints != nil { try container.encode(self.placementConstraints, forKey: .placementConstraints) }
+    if self.correlationScheme != nil { try container.encode(self.correlationScheme as! [ServiceCorrelationDescriptionData?]?, forKey: .correlationScheme) }
+    if self.serviceLoadMetrics != nil { try container.encode(self.serviceLoadMetrics as! [ServiceLoadMetricDescriptionData?]?, forKey: .serviceLoadMetrics) }
+    if self.servicePlacementPolicies != nil { try container.encode(self.servicePlacementPolicies as! [ServicePlacementPolicyDescriptionData?]?, forKey: .servicePlacementPolicies) }
+    if self.defaultMoveCost != nil { try container.encode(self.defaultMoveCost, forKey: .defaultMoveCost) }
   }
 }
 

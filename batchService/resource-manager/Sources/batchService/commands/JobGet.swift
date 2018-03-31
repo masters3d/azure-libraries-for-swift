@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobGet  {
+public protocol JobGet {
     var headerParameters: [String: String] { get set }
     var jobId : String { get set }
     var select : String? { get set }
@@ -15,7 +15,7 @@ public protocol JobGet  {
     var ifModifiedSince : Date? { get set }
     var ifUnmodifiedSince : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CloudJobProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CloudJobProtocol?, Error?) -> Void)
 }
 
 extension Commands.Job {
@@ -43,7 +43,7 @@ extension Commands.Job {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             if self.select != nil { queryParameters["$select"] = String(describing: self.select!) }
             if self.expand != nil { queryParameters["$expand"] = String(describing: self.expand!) }
@@ -64,12 +64,12 @@ extension Commands.Job {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CloudJobData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CloudJobProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CloudJobProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CloudJobData?, error: Error?) in
                 completionHandler(result, error)

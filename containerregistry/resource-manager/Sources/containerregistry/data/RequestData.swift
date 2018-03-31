@@ -18,7 +18,7 @@ internal struct RequestData : RequestProtocol {
         case useragent = "useragent"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct RequestData : RequestProtocol {
     if container.contains(.useragent) {
         self.useragent = try container.decode(String?.self, forKey: .useragent)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct RequestData : RequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.addr != nil {try container.encode(self.addr, forKey: .addr)}
-    if self.host != nil {try container.encode(self.host, forKey: .host)}
-    if self.method != nil {try container.encode(self.method, forKey: .method)}
-    if self.useragent != nil {try container.encode(self.useragent, forKey: .useragent)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.addr != nil { try container.encode(self.addr, forKey: .addr) }
+    if self.host != nil { try container.encode(self.host, forKey: .host) }
+    if self.method != nil { try container.encode(self.method, forKey: .method) }
+    if self.useragent != nil { try container.encode(self.useragent, forKey: .useragent) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct JobScheduleExecutionInformationData : JobScheduleExecutionInform
         case endTime = "endTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct JobScheduleExecutionInformationData : JobScheduleExecutionInform
     if container.contains(.endTime) {
         self.endTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .endTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,7 +41,7 @@ internal struct JobScheduleExecutionInformationData : JobScheduleExecutionInform
     if self.nextRunTime != nil {
         try container.encode(DateConverter.toString(date: self.nextRunTime!, format: .dateTime), forKey: .nextRunTime)
     }
-    if self.recentJob != nil {try container.encode(self.recentJob as! RecentJobData?, forKey: .recentJob)}
+    if self.recentJob != nil { try container.encode(self.recentJob as! RecentJobData?, forKey: .recentJob) }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }

@@ -12,7 +12,7 @@ internal struct RawCertificateDataData : RawCertificateDataProtocol {
         case certificate = "certificate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RawCertificateDataData : RawCertificateDataProtocol {
     if container.contains(.certificate) {
         self.certificate = try container.decode([UInt8]?.self, forKey: .certificate)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RawCertificateDataData : RawCertificateDataProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authType != nil {try container.encode(self.authType, forKey: .authType)}
-    if self.certificate != nil {try container.encode(self.certificate, forKey: .certificate)}
+    if self.authType != nil { try container.encode(self.authType, forKey: .authType) }
+    if self.certificate != nil { try container.encode(self.certificate, forKey: .certificate) }
   }
 }
 

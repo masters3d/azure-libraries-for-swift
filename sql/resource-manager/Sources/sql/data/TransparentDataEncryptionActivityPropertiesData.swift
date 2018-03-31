@@ -12,7 +12,7 @@ internal struct TransparentDataEncryptionActivityPropertiesData : TransparentDat
         case percentComplete = "percentComplete"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TransparentDataEncryptionActivityPropertiesData : TransparentDat
     if container.contains(.percentComplete) {
         self.percentComplete = try container.decode(Double?.self, forKey: .percentComplete)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TransparentDataEncryptionActivityPropertiesData : TransparentDat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.percentComplete != nil {try container.encode(self.percentComplete, forKey: .percentComplete)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.percentComplete != nil { try container.encode(self.percentComplete, forKey: .percentComplete) }
   }
 }
 

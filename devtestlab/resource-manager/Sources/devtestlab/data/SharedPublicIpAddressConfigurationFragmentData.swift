@@ -10,7 +10,7 @@ internal struct SharedPublicIpAddressConfigurationFragmentData : SharedPublicIpA
         enum CodingKeys: String, CodingKey {case inboundNatRules = "inboundNatRules"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SharedPublicIpAddressConfigurationFragmentData : SharedPublicIpA
       if container.contains(.inboundNatRules) {
         self.inboundNatRules = try container.decode([InboundNatRuleFragmentData?]?.self, forKey: .inboundNatRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SharedPublicIpAddressConfigurationFragmentData : SharedPublicIpA
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.inboundNatRules != nil {try container.encode(self.inboundNatRules as! [InboundNatRuleFragmentData?]?, forKey: .inboundNatRules)}
+    if self.inboundNatRules != nil { try container.encode(self.inboundNatRules as! [InboundNatRuleFragmentData?]?, forKey: .inboundNatRules) }
   }
 }
 

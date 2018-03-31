@@ -28,7 +28,7 @@ internal struct ExpressRouteCircuitPropertiesFormatData : ExpressRouteCircuitPro
         case gatewayManagerEtag = "gatewayManagerEtag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct ExpressRouteCircuitPropertiesFormatData : ExpressRouteCircuitPro
     if container.contains(.gatewayManagerEtag) {
         self.gatewayManagerEtag = try container.decode(String?.self, forKey: .gatewayManagerEtag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct ExpressRouteCircuitPropertiesFormatData : ExpressRouteCircuitPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allowClassicOperations != nil {try container.encode(self.allowClassicOperations, forKey: .allowClassicOperations)}
-    if self.circuitProvisioningState != nil {try container.encode(self.circuitProvisioningState, forKey: .circuitProvisioningState)}
-    if self.serviceProviderProvisioningState != nil {try container.encode(self.serviceProviderProvisioningState, forKey: .serviceProviderProvisioningState)}
-    if self.authorizations != nil {try container.encode(self.authorizations as! [ExpressRouteCircuitAuthorizationData?]?, forKey: .authorizations)}
-    if self.peerings != nil {try container.encode(self.peerings as! [ExpressRouteCircuitPeeringData?]?, forKey: .peerings)}
-    if self.serviceKey != nil {try container.encode(self.serviceKey, forKey: .serviceKey)}
-    if self.serviceProviderNotes != nil {try container.encode(self.serviceProviderNotes, forKey: .serviceProviderNotes)}
-    if self.serviceProviderProperties != nil {try container.encode(self.serviceProviderProperties as! ExpressRouteCircuitServiceProviderPropertiesData?, forKey: .serviceProviderProperties)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.gatewayManagerEtag != nil {try container.encode(self.gatewayManagerEtag, forKey: .gatewayManagerEtag)}
+    if self.allowClassicOperations != nil { try container.encode(self.allowClassicOperations, forKey: .allowClassicOperations) }
+    if self.circuitProvisioningState != nil { try container.encode(self.circuitProvisioningState, forKey: .circuitProvisioningState) }
+    if self.serviceProviderProvisioningState != nil { try container.encode(self.serviceProviderProvisioningState, forKey: .serviceProviderProvisioningState) }
+    if self.authorizations != nil { try container.encode(self.authorizations as! [ExpressRouteCircuitAuthorizationData?]?, forKey: .authorizations) }
+    if self.peerings != nil { try container.encode(self.peerings as! [ExpressRouteCircuitPeeringData?]?, forKey: .peerings) }
+    if self.serviceKey != nil { try container.encode(self.serviceKey, forKey: .serviceKey) }
+    if self.serviceProviderNotes != nil { try container.encode(self.serviceProviderNotes, forKey: .serviceProviderNotes) }
+    if self.serviceProviderProperties != nil { try container.encode(self.serviceProviderProperties as! ExpressRouteCircuitServiceProviderPropertiesData?, forKey: .serviceProviderProperties) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.gatewayManagerEtag != nil { try container.encode(self.gatewayManagerEtag, forKey: .gatewayManagerEtag) }
   }
 }
 

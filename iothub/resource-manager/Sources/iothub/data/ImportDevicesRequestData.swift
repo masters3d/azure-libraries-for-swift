@@ -12,7 +12,7 @@ internal struct ImportDevicesRequestData : ImportDevicesRequestProtocol {
         case outputBlobContainerUri = "OutputBlobContainerUri"
         }
 
-  public init(inputBlobContainerUri: String, outputBlobContainerUri: String)  {
+  public init(inputBlobContainerUri: String, outputBlobContainerUri: String) {
     self.inputBlobContainerUri = inputBlobContainerUri
     self.outputBlobContainerUri = outputBlobContainerUri
   }
@@ -21,7 +21,7 @@ internal struct ImportDevicesRequestData : ImportDevicesRequestProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inputBlobContainerUri = try container.decode(String.self, forKey: .inputBlobContainerUri)
     self.outputBlobContainerUri = try container.decode(String.self, forKey: .outputBlobContainerUri)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

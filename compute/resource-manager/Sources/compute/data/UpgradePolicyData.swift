@@ -14,7 +14,7 @@ internal struct UpgradePolicyData : UpgradePolicyProtocol {
         case automaticOSUpgrade = "automaticOSUpgrade"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct UpgradePolicyData : UpgradePolicyProtocol {
     if container.contains(.automaticOSUpgrade) {
         self.automaticOSUpgrade = try container.decode(Bool?.self, forKey: .automaticOSUpgrade)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct UpgradePolicyData : UpgradePolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.mode != nil {try container.encode(self.mode, forKey: .mode)}
-    if self.rollingUpgradePolicy != nil {try container.encode(self.rollingUpgradePolicy as! RollingUpgradePolicyData?, forKey: .rollingUpgradePolicy)}
-    if self.automaticOSUpgrade != nil {try container.encode(self.automaticOSUpgrade, forKey: .automaticOSUpgrade)}
+    if self.mode != nil { try container.encode(self.mode, forKey: .mode) }
+    if self.rollingUpgradePolicy != nil { try container.encode(self.rollingUpgradePolicy as! RollingUpgradePolicyData?, forKey: .rollingUpgradePolicy) }
+    if self.automaticOSUpgrade != nil { try container.encode(self.automaticOSUpgrade, forKey: .automaticOSUpgrade) }
   }
 }
 

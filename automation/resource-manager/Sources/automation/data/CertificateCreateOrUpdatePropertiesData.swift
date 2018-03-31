@@ -16,7 +16,7 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
         case isExportable = "isExportable"
         }
 
-  public init(base64Value: String)  {
+  public init(base64Value: String) {
     self.base64Value = base64Value
   }
 
@@ -32,7 +32,7 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
     if container.contains(.isExportable) {
         self.isExportable = try container.decode(Bool?.self, forKey: .isExportable)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct CertificateCreateOrUpdatePropertiesData : CertificateCreateOrUpd
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.base64Value, forKey: .base64Value)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.isExportable != nil {try container.encode(self.isExportable, forKey: .isExportable)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.isExportable != nil { try container.encode(self.isExportable, forKey: .isExportable) }
   }
 }
 

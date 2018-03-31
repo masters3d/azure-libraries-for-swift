@@ -14,7 +14,7 @@ internal struct SQLDataDirectoryData : SQLDataDirectoryProtocol {
         case logicalName = "logicalName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SQLDataDirectoryData : SQLDataDirectoryProtocol {
     if container.contains(.logicalName) {
         self.logicalName = try container.decode(String?.self, forKey: .logicalName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SQLDataDirectoryData : SQLDataDirectoryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.logicalName != nil {try container.encode(self.logicalName, forKey: .logicalName)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.logicalName != nil { try container.encode(self.logicalName, forKey: .logicalName) }
   }
 }
 

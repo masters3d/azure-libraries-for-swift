@@ -14,7 +14,7 @@ internal struct ImageSourceRegistryData : ImageSourceRegistryProtocol {
         case credentials = "credentials"
         }
 
-  public init(image: String)  {
+  public init(image: String) {
     self.image = image
   }
 
@@ -27,7 +27,7 @@ internal struct ImageSourceRegistryData : ImageSourceRegistryProtocol {
     if container.contains(.credentials) {
         self.credentials = try container.decode(PrivateRegistryCredentialsData?.self, forKey: .credentials)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct ImageSourceRegistryData : ImageSourceRegistryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serverUrl != nil {try container.encode(self.serverUrl, forKey: .serverUrl)}
+    if self.serverUrl != nil { try container.encode(self.serverUrl, forKey: .serverUrl) }
     try container.encode(self.image, forKey: .image)
-    if self.credentials != nil {try container.encode(self.credentials as! PrivateRegistryCredentialsData?, forKey: .credentials)}
+    if self.credentials != nil { try container.encode(self.credentials as! PrivateRegistryCredentialsData?, forKey: .credentials) }
   }
 }
 

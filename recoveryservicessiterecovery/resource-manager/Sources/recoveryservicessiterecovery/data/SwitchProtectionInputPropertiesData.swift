@@ -12,7 +12,7 @@ internal struct SwitchProtectionInputPropertiesData : SwitchProtectionInputPrope
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SwitchProtectionInputPropertiesData : SwitchProtectionInputPrope
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(SwitchProtectionProviderSpecificInputData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SwitchProtectionInputPropertiesData : SwitchProtectionInputPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.replicationProtectedItemName != nil {try container.encode(self.replicationProtectedItemName, forKey: .replicationProtectedItemName)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! SwitchProtectionProviderSpecificInputData?, forKey: .providerSpecificDetails)}
+    if self.replicationProtectedItemName != nil { try container.encode(self.replicationProtectedItemName, forKey: .replicationProtectedItemName) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! SwitchProtectionProviderSpecificInputData?, forKey: .providerSpecificDetails) }
   }
 }
 

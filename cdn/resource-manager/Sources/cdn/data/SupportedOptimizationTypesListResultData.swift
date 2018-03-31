@@ -10,7 +10,7 @@ internal struct SupportedOptimizationTypesListResultData : SupportedOptimization
         enum CodingKeys: String, CodingKey {case supportedOptimizationTypes = "supportedOptimizationTypes"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SupportedOptimizationTypesListResultData : SupportedOptimization
       if container.contains(.supportedOptimizationTypes) {
         self.supportedOptimizationTypes = try container.decode([OptimizationTypeEnum?]?.self, forKey: .supportedOptimizationTypes)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SupportedOptimizationTypesListResultData : SupportedOptimization
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.supportedOptimizationTypes != nil {try container.encode(self.supportedOptimizationTypes as! [OptimizationTypeEnum?]?, forKey: .supportedOptimizationTypes)}
+    if self.supportedOptimizationTypes != nil { try container.encode(self.supportedOptimizationTypes as! [OptimizationTypeEnum?]?, forKey: .supportedOptimizationTypes) }
   }
 }
 

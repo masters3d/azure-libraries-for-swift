@@ -14,7 +14,7 @@ internal struct IntegrationAccountSessionPropertiesData : IntegrationAccountSess
         case content = "content"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct IntegrationAccountSessionPropertiesData : IntegrationAccountSess
     if container.contains(.content) {
         self.content = try container.decode([String: String?]?.self, forKey: .content)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct IntegrationAccountSessionPropertiesData : IntegrationAccountSess
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.content != nil {try container.encode(self.content, forKey: .content)}
+    if self.content != nil { try container.encode(self.content, forKey: .content) }
   }
 }
 

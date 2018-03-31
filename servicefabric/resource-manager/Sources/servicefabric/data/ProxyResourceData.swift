@@ -16,7 +16,7 @@ internal struct ProxyResourceData : ProxyResourceProtocol {
         case location = "location"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -32,7 +32,7 @@ internal struct ProxyResourceData : ProxyResourceProtocol {
         self.type = try container.decode(String?.self, forKey: .type)
     }
     self.location = try container.decode(String.self, forKey: .location)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct ProxyResourceData : ProxyResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
   }
 }

@@ -12,7 +12,7 @@ internal struct MetricAvailabilityData : MetricAvailabilityProtocol {
         case blobDuration = "blobDuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct MetricAvailabilityData : MetricAvailabilityProtocol {
     if container.contains(.blobDuration) {
         self.blobDuration = try container.decode(String?.self, forKey: .blobDuration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct MetricAvailabilityData : MetricAvailabilityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timeGrain != nil {try container.encode(self.timeGrain, forKey: .timeGrain)}
-    if self.blobDuration != nil {try container.encode(self.blobDuration, forKey: .blobDuration)}
+    if self.timeGrain != nil { try container.encode(self.timeGrain, forKey: .timeGrain) }
+    if self.blobDuration != nil { try container.encode(self.blobDuration, forKey: .blobDuration) }
   }
 }
 

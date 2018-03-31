@@ -18,7 +18,7 @@ internal struct JobExecutionInformationData : JobExecutionInformationProtocol {
         case terminateReason = "terminateReason"
         }
 
-  public init(startTime: Date)  {
+  public init(startTime: Date) {
     self.startTime = startTime
   }
 
@@ -37,7 +37,7 @@ internal struct JobExecutionInformationData : JobExecutionInformationProtocol {
     if container.contains(.terminateReason) {
         self.terminateReason = try container.decode(String?.self, forKey: .terminateReason)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,9 +51,9 @@ internal struct JobExecutionInformationData : JobExecutionInformationProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.poolId != nil {try container.encode(self.poolId, forKey: .poolId)}
-    if self.schedulingError != nil {try container.encode(self.schedulingError as! JobSchedulingErrorData?, forKey: .schedulingError)}
-    if self.terminateReason != nil {try container.encode(self.terminateReason, forKey: .terminateReason)}
+    if self.poolId != nil { try container.encode(self.poolId, forKey: .poolId) }
+    if self.schedulingError != nil { try container.encode(self.schedulingError as! JobSchedulingErrorData?, forKey: .schedulingError) }
+    if self.terminateReason != nil { try container.encode(self.terminateReason, forKey: .terminateReason) }
   }
 }
 

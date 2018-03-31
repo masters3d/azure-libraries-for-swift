@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkSecurityGroupsCreateOrUpdate  {
+public protocol NetworkSecurityGroupsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkSecurityGroupName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  NetworkSecurityGroupProtocol?  { get set }
+    var parameters :  NetworkSecurityGroupProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkSecurityGroupProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkSecurityGroupProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkSecurityGroups {
@@ -34,7 +34,7 @@ extension Commands.NetworkSecurityGroups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkSecurityGroupName}"] = String(describing: self.networkSecurityGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.NetworkSecurityGroups {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NetworkSecurityGroupData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkSecurityGroupProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkSecurityGroupProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: NetworkSecurityGroupData?, error: Error?) in
                 completionHandler(result, error)

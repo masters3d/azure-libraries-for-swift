@@ -20,7 +20,7 @@ internal struct RunCommandResultData : RunCommandResultProtocol, OperationStatus
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct RunCommandResultData : RunCommandResultProtocol, OperationStatus
     if container.contains(.properties) {
         self.properties = try container.decode(RunCommandResultPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct RunCommandResultData : RunCommandResultProtocol, OperationStatus
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.error != nil {try container.encode(self.error as! ApiErrorData?, forKey: .error)}
-    if self.properties != nil {try container.encode(self.properties as! RunCommandResultPropertiesData?, forKey: .properties)}
+    if self.error != nil { try container.encode(self.error as! ApiErrorData?, forKey: .error) }
+    if self.properties != nil { try container.encode(self.properties as! RunCommandResultPropertiesData?, forKey: .properties) }
   }
 }
 

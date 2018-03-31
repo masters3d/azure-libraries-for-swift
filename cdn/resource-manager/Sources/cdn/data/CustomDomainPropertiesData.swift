@@ -20,7 +20,7 @@ internal struct CustomDomainPropertiesData : CustomDomainPropertiesProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(hostName: String)  {
+  public init(hostName: String) {
     self.hostName = hostName
   }
 
@@ -42,7 +42,7 @@ internal struct CustomDomainPropertiesData : CustomDomainPropertiesProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,11 +53,11 @@ internal struct CustomDomainPropertiesData : CustomDomainPropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.hostName, forKey: .hostName)
-    if self.resourceState != nil {try container.encode(self.resourceState, forKey: .resourceState)}
-    if self.customHttpsProvisioningState != nil {try container.encode(self.customHttpsProvisioningState, forKey: .customHttpsProvisioningState)}
-    if self.customHttpsProvisioningSubstate != nil {try container.encode(self.customHttpsProvisioningSubstate, forKey: .customHttpsProvisioningSubstate)}
-    if self.validationData != nil {try container.encode(self.validationData, forKey: .validationData)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.resourceState != nil { try container.encode(self.resourceState, forKey: .resourceState) }
+    if self.customHttpsProvisioningState != nil { try container.encode(self.customHttpsProvisioningState, forKey: .customHttpsProvisioningState) }
+    if self.customHttpsProvisioningSubstate != nil { try container.encode(self.customHttpsProvisioningSubstate, forKey: .customHttpsProvisioningSubstate) }
+    if self.validationData != nil { try container.encode(self.validationData, forKey: .validationData) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -28,7 +28,7 @@ internal struct EdifactValidationSettingsData : EdifactValidationSettingsProtoco
         case trailingSeparatorPolicy = "trailingSeparatorPolicy"
         }
 
-  public init(validateCharacterSet: Bool, checkDuplicateInterchangeControlNumber: Bool, interchangeControlNumberValidityDays: Int32, checkDuplicateGroupControlNumber: Bool, checkDuplicateTransactionSetControlNumber: Bool, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, trimLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum)  {
+  public init(validateCharacterSet: Bool, checkDuplicateInterchangeControlNumber: Bool, interchangeControlNumberValidityDays: Int32, checkDuplicateGroupControlNumber: Bool, checkDuplicateTransactionSetControlNumber: Bool, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, trimLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum) {
     self.validateCharacterSet = validateCharacterSet
     self.checkDuplicateInterchangeControlNumber = checkDuplicateInterchangeControlNumber
     self.interchangeControlNumberValidityDays = interchangeControlNumberValidityDays
@@ -53,7 +53,7 @@ internal struct EdifactValidationSettingsData : EdifactValidationSettingsProtoco
     self.allowLeadingAndTrailingSpacesAndZeroes = try container.decode(Bool.self, forKey: .allowLeadingAndTrailingSpacesAndZeroes)
     self.trimLeadingAndTrailingSpacesAndZeroes = try container.decode(Bool.self, forKey: .trimLeadingAndTrailingSpacesAndZeroes)
     self.trailingSeparatorPolicy = try container.decode(TrailingSeparatorPolicyEnum.self, forKey: .trailingSeparatorPolicy)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

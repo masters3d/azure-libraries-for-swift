@@ -10,14 +10,14 @@ internal struct ContainerSettingsData : ContainerSettingsProtocol {
         enum CodingKeys: String, CodingKey {case imageSourceRegistry = "imageSourceRegistry"
         }
 
-  public init(imageSourceRegistry: ImageSourceRegistryProtocol)  {
+  public init(imageSourceRegistry: ImageSourceRegistryProtocol) {
     self.imageSourceRegistry = imageSourceRegistry
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.imageSourceRegistry = try container.decode(ImageSourceRegistryData.self, forKey: .imageSourceRegistry)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachineScaleSetsGetInstanceView  {
+public protocol VirtualMachineScaleSetsGetInstanceView {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var vmScaleSetName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualMachineScaleSetInstanceViewProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualMachineScaleSetInstanceViewProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachineScaleSets {
@@ -29,7 +29,7 @@ extension Commands.VirtualMachineScaleSets {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{vmScaleSetName}"] = String(describing: self.vmScaleSetName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -42,12 +42,12 @@ extension Commands.VirtualMachineScaleSets {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualMachineScaleSetInstanceViewData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualMachineScaleSetInstanceViewProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualMachineScaleSetInstanceViewProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: VirtualMachineScaleSetInstanceViewData?, error: Error?) in
                 completionHandler(result, error)

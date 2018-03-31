@@ -12,7 +12,7 @@ internal struct GetCallbackUrlParametersData : GetCallbackUrlParametersProtocol 
         case keyType = "keyType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct GetCallbackUrlParametersData : GetCallbackUrlParametersProtocol 
     if container.contains(.keyType) {
         self.keyType = try container.decode(KeyTypeEnum?.self, forKey: .keyType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct GetCallbackUrlParametersData : GetCallbackUrlParametersProtocol 
     if self.notAfter != nil {
         try container.encode(DateConverter.toString(date: self.notAfter!, format: .dateTime), forKey: .notAfter)
     }
-    if self.keyType != nil {try container.encode(self.keyType, forKey: .keyType)}
+    if self.keyType != nil { try container.encode(self.keyType, forKey: .keyType) }
   }
 }
 

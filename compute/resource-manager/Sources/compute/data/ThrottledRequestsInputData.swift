@@ -20,7 +20,7 @@ internal struct ThrottledRequestsInputData : ThrottledRequestsInputProtocol, Log
         case groupByResourceName = "groupByResourceName"
         }
 
-  public init(blobContainerSasUri: String, fromTime: Date, toTime: Date)  {
+  public init(blobContainerSasUri: String, fromTime: Date, toTime: Date) {
     self.blobContainerSasUri = blobContainerSasUri
     self.fromTime = fromTime
     self.toTime = toTime
@@ -40,7 +40,7 @@ internal struct ThrottledRequestsInputData : ThrottledRequestsInputProtocol, Log
     if container.contains(.groupByResourceName) {
         self.groupByResourceName = try container.decode(Bool?.self, forKey: .groupByResourceName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,9 +53,9 @@ internal struct ThrottledRequestsInputData : ThrottledRequestsInputProtocol, Log
     try container.encode(self.blobContainerSasUri, forKey: .blobContainerSasUri)
     try container.encode(DateConverter.toString(date: self.fromTime, format: .dateTime), forKey: .fromTime)
     try container.encode(DateConverter.toString(date: self.toTime, format: .dateTime), forKey: .toTime)
-    if self.groupByThrottlePolicy != nil {try container.encode(self.groupByThrottlePolicy, forKey: .groupByThrottlePolicy)}
-    if self.groupByOperationName != nil {try container.encode(self.groupByOperationName, forKey: .groupByOperationName)}
-    if self.groupByResourceName != nil {try container.encode(self.groupByResourceName, forKey: .groupByResourceName)}
+    if self.groupByThrottlePolicy != nil { try container.encode(self.groupByThrottlePolicy, forKey: .groupByThrottlePolicy) }
+    if self.groupByOperationName != nil { try container.encode(self.groupByOperationName, forKey: .groupByOperationName) }
+    if self.groupByResourceName != nil { try container.encode(self.groupByResourceName, forKey: .groupByResourceName) }
   }
 }
 

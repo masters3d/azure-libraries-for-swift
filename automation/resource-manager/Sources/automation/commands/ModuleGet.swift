@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ModuleGet  {
+public protocol ModuleGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
@@ -8,7 +8,7 @@ public protocol ModuleGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ModuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ModuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.Module {
@@ -32,7 +32,7 @@ extension Commands.Module {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{moduleName}"] = String(describing: self.moduleName)
@@ -46,12 +46,12 @@ extension Commands.Module {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ModuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ModuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ModuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ModuleData?, error: Error?) in
                 completionHandler(result, error)

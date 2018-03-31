@@ -20,7 +20,7 @@ internal struct NotificationData : NotificationProtocol {
         case contactGroups = "contactGroups"
         }
 
-  public init(enabled: Bool, _operator: OperatorTypeEnum, threshold: Decimal, contactEmails: [String])  {
+  public init(enabled: Bool, _operator: OperatorTypeEnum, threshold: Decimal, contactEmails: [String]) {
     self.enabled = enabled
     self._operator = _operator
     self.threshold = threshold
@@ -39,7 +39,7 @@ internal struct NotificationData : NotificationProtocol {
     if container.contains(.contactGroups) {
         self.contactGroups = try container.decode([String]?.self, forKey: .contactGroups)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,8 +53,8 @@ internal struct NotificationData : NotificationProtocol {
     try container.encode(self._operator, forKey: ._operator)
     try container.encode(self.threshold, forKey: .threshold)
     try container.encode(self.contactEmails as! [String], forKey: .contactEmails)
-    if self.contactRoles != nil {try container.encode(self.contactRoles as! [String]?, forKey: .contactRoles)}
-    if self.contactGroups != nil {try container.encode(self.contactGroups as! [String]?, forKey: .contactGroups)}
+    if self.contactRoles != nil { try container.encode(self.contactRoles as! [String]?, forKey: .contactRoles) }
+    if self.contactGroups != nil { try container.encode(self.contactGroups as! [String]?, forKey: .contactGroups) }
   }
 }
 

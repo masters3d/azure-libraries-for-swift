@@ -14,7 +14,7 @@ internal struct AuthorizationPropertiesFormatData : AuthorizationPropertiesForma
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AuthorizationPropertiesFormatData : AuthorizationPropertiesForma
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AuthorizationPropertiesFormatData : AuthorizationPropertiesForma
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authorizationKey != nil {try container.encode(self.authorizationKey, forKey: .authorizationKey)}
-    if self.authorizationUseStatus != nil {try container.encode(self.authorizationUseStatus, forKey: .authorizationUseStatus)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.authorizationKey != nil { try container.encode(self.authorizationKey, forKey: .authorizationKey) }
+    if self.authorizationUseStatus != nil { try container.encode(self.authorizationUseStatus, forKey: .authorizationUseStatus) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

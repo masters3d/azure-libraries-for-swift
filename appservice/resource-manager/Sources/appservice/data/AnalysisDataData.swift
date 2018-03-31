@@ -18,7 +18,7 @@ internal struct AnalysisDataData : AnalysisDataProtocol {
         case detectorMetaData = "detectorMetaData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct AnalysisDataData : AnalysisDataProtocol {
     if container.contains(.detectorMetaData) {
         self.detectorMetaData = try container.decode(ResponseMetaDataData?.self, forKey: .detectorMetaData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct AnalysisDataData : AnalysisDataProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.source != nil {try container.encode(self.source, forKey: .source)}
-    if self.detectorDefinition != nil {try container.encode(self.detectorDefinition as! DetectorDefinitionData?, forKey: .detectorDefinition)}
-    if self.metrics != nil {try container.encode(self.metrics as! [DiagnosticMetricSetData?]?, forKey: .metrics)}
-    if self.data != nil {try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data)}
-    if self.detectorMetaData != nil {try container.encode(self.detectorMetaData as! ResponseMetaDataData?, forKey: .detectorMetaData)}
+    if self.source != nil { try container.encode(self.source, forKey: .source) }
+    if self.detectorDefinition != nil { try container.encode(self.detectorDefinition as! DetectorDefinitionData?, forKey: .detectorDefinition) }
+    if self.metrics != nil { try container.encode(self.metrics as! [DiagnosticMetricSetData?]?, forKey: .metrics) }
+    if self.data != nil { try container.encode(self.data as! [[NameValuePairData?]?]?, forKey: .data) }
+    if self.detectorMetaData != nil { try container.encode(self.detectorMetaData as! ResponseMetaDataData?, forKey: .detectorMetaData) }
   }
 }
 

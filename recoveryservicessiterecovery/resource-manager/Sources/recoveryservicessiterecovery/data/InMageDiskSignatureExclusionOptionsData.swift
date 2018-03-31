@@ -10,7 +10,7 @@ internal struct InMageDiskSignatureExclusionOptionsData : InMageDiskSignatureExc
         enum CodingKeys: String, CodingKey {case diskSignature = "diskSignature"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct InMageDiskSignatureExclusionOptionsData : InMageDiskSignatureExc
       if container.contains(.diskSignature) {
         self.diskSignature = try container.decode(String?.self, forKey: .diskSignature)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct InMageDiskSignatureExclusionOptionsData : InMageDiskSignatureExc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskSignature != nil {try container.encode(self.diskSignature, forKey: .diskSignature)}
+    if self.diskSignature != nil { try container.encode(self.diskSignature, forKey: .diskSignature) }
   }
 }
 

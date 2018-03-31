@@ -14,7 +14,7 @@ internal struct ApplicationGatewayBackendHealthServerData : ApplicationGatewayBa
         case health = "health"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApplicationGatewayBackendHealthServerData : ApplicationGatewayBa
     if container.contains(.health) {
         self.health = try container.decode(ApplicationGatewayBackendHealthServerHealthEnum?.self, forKey: .health)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApplicationGatewayBackendHealthServerData : ApplicationGatewayBa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.address != nil {try container.encode(self.address, forKey: .address)}
-    if self.ipConfiguration != nil {try container.encode(self.ipConfiguration as! NetworkInterfaceIPConfigurationData?, forKey: .ipConfiguration)}
-    if self.health != nil {try container.encode(self.health, forKey: .health)}
+    if self.address != nil { try container.encode(self.address, forKey: .address) }
+    if self.ipConfiguration != nil { try container.encode(self.ipConfiguration as! NetworkInterfaceIPConfigurationData?, forKey: .ipConfiguration) }
+    if self.health != nil { try container.encode(self.health, forKey: .health) }
   }
 }
 

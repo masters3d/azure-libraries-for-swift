@@ -10,7 +10,7 @@ internal struct DscReportResourceNavigationData : DscReportResourceNavigationPro
         enum CodingKeys: String, CodingKey {case resourceId = "resourceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DscReportResourceNavigationData : DscReportResourceNavigationPro
       if container.contains(.resourceId) {
         self.resourceId = try container.decode(String?.self, forKey: .resourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DscReportResourceNavigationData : DscReportResourceNavigationPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
   }
 }
 

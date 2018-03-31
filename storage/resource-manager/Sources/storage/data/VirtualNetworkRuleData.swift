@@ -14,7 +14,7 @@ internal struct VirtualNetworkRuleData : VirtualNetworkRuleProtocol {
         case state = "state"
         }
 
-  public init(virtualNetworkResourceId: String)  {
+  public init(virtualNetworkResourceId: String) {
     self.virtualNetworkResourceId = virtualNetworkResourceId
   }
 
@@ -27,7 +27,7 @@ internal struct VirtualNetworkRuleData : VirtualNetworkRuleProtocol {
     if container.contains(.state) {
         self.state = try container.decode(StateEnum?.self, forKey: .state)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct VirtualNetworkRuleData : VirtualNetworkRuleProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.virtualNetworkResourceId, forKey: .virtualNetworkResourceId)
-    if self.action != nil {try container.encode(self.action, forKey: .action)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.action != nil { try container.encode(self.action, forKey: .action) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
   }
 }
 

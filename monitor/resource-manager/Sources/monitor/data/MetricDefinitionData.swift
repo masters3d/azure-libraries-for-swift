@@ -28,7 +28,7 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
         case dimensions = "dimensions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
     if container.contains(.dimensions) {
         self.dimensions = try container.decode([LocalizableStringData?]?.self, forKey: .dimensions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct MetricDefinitionData : MetricDefinitionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isDimensionRequired != nil {try container.encode(self.isDimensionRequired, forKey: .isDimensionRequired)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.namespace != nil {try container.encode(self.namespace, forKey: .namespace)}
-    if self.name != nil {try container.encode(self.name as! LocalizableStringData?, forKey: .name)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.primaryAggregationType != nil {try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType)}
-    if self.supportedAggregationTypes != nil {try container.encode(self.supportedAggregationTypes as! [AggregationTypeEnum?]?, forKey: .supportedAggregationTypes)}
-    if self.metricAvailabilities != nil {try container.encode(self.metricAvailabilities as! [MetricAvailabilityData?]?, forKey: .metricAvailabilities)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.dimensions != nil {try container.encode(self.dimensions as! [LocalizableStringData?]?, forKey: .dimensions)}
+    if self.isDimensionRequired != nil { try container.encode(self.isDimensionRequired, forKey: .isDimensionRequired) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.namespace != nil { try container.encode(self.namespace, forKey: .namespace) }
+    if self.name != nil { try container.encode(self.name as! LocalizableStringData?, forKey: .name) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.primaryAggregationType != nil { try container.encode(self.primaryAggregationType, forKey: .primaryAggregationType) }
+    if self.supportedAggregationTypes != nil { try container.encode(self.supportedAggregationTypes as! [AggregationTypeEnum?]?, forKey: .supportedAggregationTypes) }
+    if self.metricAvailabilities != nil { try container.encode(self.metricAvailabilities as! [MetricAvailabilityData?]?, forKey: .metricAvailabilities) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.dimensions != nil { try container.encode(self.dimensions as! [LocalizableStringData?]?, forKey: .dimensions) }
   }
 }
 

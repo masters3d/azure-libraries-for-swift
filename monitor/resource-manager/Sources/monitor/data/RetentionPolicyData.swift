@@ -12,7 +12,7 @@ internal struct RetentionPolicyData : RetentionPolicyProtocol {
         case days = "days"
         }
 
-  public init(enabled: Bool, days: Int32)  {
+  public init(enabled: Bool, days: Int32) {
     self.enabled = enabled
     self.days = days
   }
@@ -21,7 +21,7 @@ internal struct RetentionPolicyData : RetentionPolicyProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decode(Bool.self, forKey: .enabled)
     self.days = try container.decode(Int32.self, forKey: .days)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

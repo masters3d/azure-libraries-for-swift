@@ -12,7 +12,7 @@ internal struct VaultSecretGroupData : VaultSecretGroupProtocol {
         case vaultCertificates = "vaultCertificates"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VaultSecretGroupData : VaultSecretGroupProtocol {
     if container.contains(.vaultCertificates) {
         self.vaultCertificates = try container.decode([VaultCertificateData?]?.self, forKey: .vaultCertificates)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VaultSecretGroupData : VaultSecretGroupProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sourceVault != nil {try container.encode(self.sourceVault as! SubResourceData?, forKey: .sourceVault)}
-    if self.vaultCertificates != nil {try container.encode(self.vaultCertificates as! [VaultCertificateData?]?, forKey: .vaultCertificates)}
+    if self.sourceVault != nil { try container.encode(self.sourceVault as! SubResourceData?, forKey: .sourceVault) }
+    if self.vaultCertificates != nil { try container.encode(self.vaultCertificates as! [VaultCertificateData?]?, forKey: .vaultCertificates) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct UpdateConfigurationData : UpdateConfigurationProtocol {
         case nonAzureComputerNames = "nonAzureComputerNames"
         }
 
-  public init(operatingSystem: OperatingSystemTypeEnum)  {
+  public init(operatingSystem: OperatingSystemTypeEnum) {
     self.operatingSystem = operatingSystem
   }
 
@@ -42,7 +42,7 @@ internal struct UpdateConfigurationData : UpdateConfigurationProtocol {
     if container.contains(.nonAzureComputerNames) {
         self.nonAzureComputerNames = try container.decode([String]?.self, forKey: .nonAzureComputerNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,11 +53,11 @@ internal struct UpdateConfigurationData : UpdateConfigurationProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.operatingSystem, forKey: .operatingSystem)
-    if self.windows != nil {try container.encode(self.windows as! WindowsPropertiesData?, forKey: .windows)}
-    if self.linux != nil {try container.encode(self.linux as! LinuxPropertiesData?, forKey: .linux)}
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
-    if self.azureVirtualMachines != nil {try container.encode(self.azureVirtualMachines as! [String]?, forKey: .azureVirtualMachines)}
-    if self.nonAzureComputerNames != nil {try container.encode(self.nonAzureComputerNames as! [String]?, forKey: .nonAzureComputerNames)}
+    if self.windows != nil { try container.encode(self.windows as! WindowsPropertiesData?, forKey: .windows) }
+    if self.linux != nil { try container.encode(self.linux as! LinuxPropertiesData?, forKey: .linux) }
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
+    if self.azureVirtualMachines != nil { try container.encode(self.azureVirtualMachines as! [String]?, forKey: .azureVirtualMachines) }
+    if self.nonAzureComputerNames != nil { try container.encode(self.nonAzureComputerNames as! [String]?, forKey: .nonAzureComputerNames) }
   }
 }
 

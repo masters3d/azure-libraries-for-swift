@@ -16,7 +16,7 @@ internal struct StrongIdData : StrongIdProtocol {
         case description = "description"
         }
 
-  public init(keyPropertyNames: [String], strongIdName: String)  {
+  public init(keyPropertyNames: [String], strongIdName: String) {
     self.keyPropertyNames = keyPropertyNames
     self.strongIdName = strongIdName
   }
@@ -31,7 +31,7 @@ internal struct StrongIdData : StrongIdProtocol {
     if container.contains(.description) {
         self.description = try container.decode([String:String]?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct StrongIdData : StrongIdProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.keyPropertyNames as! [String], forKey: .keyPropertyNames)
     try container.encode(self.strongIdName, forKey: .strongIdName)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

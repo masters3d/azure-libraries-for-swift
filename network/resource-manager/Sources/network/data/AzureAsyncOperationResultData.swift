@@ -12,7 +12,7 @@ internal struct AzureAsyncOperationResultData : AzureAsyncOperationResultProtoco
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureAsyncOperationResultData : AzureAsyncOperationResultProtoco
     if container.contains(.error) {
         self.error = try container.decode(ErrorData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureAsyncOperationResultData : AzureAsyncOperationResultProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.error != nil {try container.encode(self.error as! ErrorData?, forKey: .error)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.error != nil { try container.encode(self.error as! ErrorData?, forKey: .error) }
   }
 }
 

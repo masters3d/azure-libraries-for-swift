@@ -10,7 +10,7 @@ internal struct NsRecordData : NsRecordProtocol {
         enum CodingKeys: String, CodingKey {case nsdname = "nsdname"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct NsRecordData : NsRecordProtocol {
       if container.contains(.nsdname) {
         self.nsdname = try container.decode(String?.self, forKey: .nsdname)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct NsRecordData : NsRecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nsdname != nil {try container.encode(self.nsdname, forKey: .nsdname)}
+    if self.nsdname != nil { try container.encode(self.nsdname, forKey: .nsdname) }
   }
 }
 

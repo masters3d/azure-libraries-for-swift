@@ -24,7 +24,7 @@ internal struct TargetComputeSizePropertiesData : TargetComputeSizePropertiesPro
         case highIopsSupported = "highIopsSupported"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct TargetComputeSizePropertiesData : TargetComputeSizePropertiesPro
     if container.contains(.highIopsSupported) {
         self.highIopsSupported = try container.decode(String?.self, forKey: .highIopsSupported)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct TargetComputeSizePropertiesData : TargetComputeSizePropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.cpuCoresCount != nil {try container.encode(self.cpuCoresCount, forKey: .cpuCoresCount)}
-    if self.memoryInGB != nil {try container.encode(self.memoryInGB, forKey: .memoryInGB)}
-    if self.maxDataDiskCount != nil {try container.encode(self.maxDataDiskCount, forKey: .maxDataDiskCount)}
-    if self.maxNicsCount != nil {try container.encode(self.maxNicsCount, forKey: .maxNicsCount)}
-    if self.errors != nil {try container.encode(self.errors as! [ComputeSizeErrorDetailsData?]?, forKey: .errors)}
-    if self.highIopsSupported != nil {try container.encode(self.highIopsSupported, forKey: .highIopsSupported)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.cpuCoresCount != nil { try container.encode(self.cpuCoresCount, forKey: .cpuCoresCount) }
+    if self.memoryInGB != nil { try container.encode(self.memoryInGB, forKey: .memoryInGB) }
+    if self.maxDataDiskCount != nil { try container.encode(self.maxDataDiskCount, forKey: .maxDataDiskCount) }
+    if self.maxNicsCount != nil { try container.encode(self.maxNicsCount, forKey: .maxNicsCount) }
+    if self.errors != nil { try container.encode(self.errors as! [ComputeSizeErrorDetailsData?]?, forKey: .errors) }
+    if self.highIopsSupported != nil { try container.encode(self.highIopsSupported, forKey: .highIopsSupported) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct EndpointsData : EndpointsProtocol {
         case file = "file"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EndpointsData : EndpointsProtocol {
     if container.contains(.file) {
         self.file = try container.decode(String?.self, forKey: .file)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EndpointsData : EndpointsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.blob != nil {try container.encode(self.blob, forKey: .blob)}
-    if self.queue != nil {try container.encode(self.queue, forKey: .queue)}
-    if self.table != nil {try container.encode(self.table, forKey: .table)}
-    if self.file != nil {try container.encode(self.file, forKey: .file)}
+    if self.blob != nil { try container.encode(self.blob, forKey: .blob) }
+    if self.queue != nil { try container.encode(self.queue, forKey: .queue) }
+    if self.table != nil { try container.encode(self.table, forKey: .table) }
+    if self.file != nil { try container.encode(self.file, forKey: .file) }
   }
 }
 

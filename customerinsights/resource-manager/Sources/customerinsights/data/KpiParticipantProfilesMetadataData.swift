@@ -10,14 +10,14 @@ internal struct KpiParticipantProfilesMetadataData : KpiParticipantProfilesMetad
         enum CodingKeys: String, CodingKey {case typeName = "typeName"
         }
 
-  public init(typeName: String)  {
+  public init(typeName: String) {
     self.typeName = typeName
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.typeName = try container.decode(String.self, forKey: .typeName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

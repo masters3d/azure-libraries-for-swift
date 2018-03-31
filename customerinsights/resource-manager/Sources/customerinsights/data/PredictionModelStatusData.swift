@@ -30,7 +30,7 @@ internal struct PredictionModelStatusData : PredictionModelStatusProtocol {
         case modelVersion = "modelVersion"
         }
 
-  public init(status: PredictionModelLifeCycleEnum)  {
+  public init(status: PredictionModelLifeCycleEnum) {
     self.status = status
   }
 
@@ -67,7 +67,7 @@ internal struct PredictionModelStatusData : PredictionModelStatusProtocol {
     if container.contains(.modelVersion) {
         self.modelVersion = try container.decode(String?.self, forKey: .modelVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -77,17 +77,17 @@ internal struct PredictionModelStatusData : PredictionModelStatusProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.predictionName != nil {try container.encode(self.predictionName, forKey: .predictionName)}
-    if self.predictionGuidId != nil {try container.encode(self.predictionGuidId, forKey: .predictionGuidId)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.predictionName != nil { try container.encode(self.predictionName, forKey: .predictionName) }
+    if self.predictionGuidId != nil { try container.encode(self.predictionGuidId, forKey: .predictionGuidId) }
     try container.encode(self.status, forKey: .status)
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.trainingSetCount != nil {try container.encode(self.trainingSetCount, forKey: .trainingSetCount)}
-    if self.testSetCount != nil {try container.encode(self.testSetCount, forKey: .testSetCount)}
-    if self.validationSetCount != nil {try container.encode(self.validationSetCount, forKey: .validationSetCount)}
-    if self.trainingAccuracy != nil {try container.encode(self.trainingAccuracy, forKey: .trainingAccuracy)}
-    if self.signalsUsed != nil {try container.encode(self.signalsUsed, forKey: .signalsUsed)}
-    if self.modelVersion != nil {try container.encode(self.modelVersion, forKey: .modelVersion)}
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.trainingSetCount != nil { try container.encode(self.trainingSetCount, forKey: .trainingSetCount) }
+    if self.testSetCount != nil { try container.encode(self.testSetCount, forKey: .testSetCount) }
+    if self.validationSetCount != nil { try container.encode(self.validationSetCount, forKey: .validationSetCount) }
+    if self.trainingAccuracy != nil { try container.encode(self.trainingAccuracy, forKey: .trainingAccuracy) }
+    if self.signalsUsed != nil { try container.encode(self.signalsUsed, forKey: .signalsUsed) }
+    if self.modelVersion != nil { try container.encode(self.modelVersion, forKey: .modelVersion) }
   }
 }
 

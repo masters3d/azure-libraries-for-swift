@@ -18,7 +18,7 @@ internal struct ProfilePropertiesData : ProfilePropertiesProtocol {
         case endpoints = "endpoints"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ProfilePropertiesData : ProfilePropertiesProtocol {
     if container.contains(.endpoints) {
         self.endpoints = try container.decode([EndpointData?]?.self, forKey: .endpoints)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ProfilePropertiesData : ProfilePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.profileStatus != nil {try container.encode(self.profileStatus, forKey: .profileStatus)}
-    if self.trafficRoutingMethod != nil {try container.encode(self.trafficRoutingMethod, forKey: .trafficRoutingMethod)}
-    if self.dnsConfig != nil {try container.encode(self.dnsConfig as! DnsConfigData?, forKey: .dnsConfig)}
-    if self.monitorConfig != nil {try container.encode(self.monitorConfig as! MonitorConfigData?, forKey: .monitorConfig)}
-    if self.endpoints != nil {try container.encode(self.endpoints as! [EndpointData?]?, forKey: .endpoints)}
+    if self.profileStatus != nil { try container.encode(self.profileStatus, forKey: .profileStatus) }
+    if self.trafficRoutingMethod != nil { try container.encode(self.trafficRoutingMethod, forKey: .trafficRoutingMethod) }
+    if self.dnsConfig != nil { try container.encode(self.dnsConfig as! DnsConfigData?, forKey: .dnsConfig) }
+    if self.monitorConfig != nil { try container.encode(self.monitorConfig as! MonitorConfigData?, forKey: .monitorConfig) }
+    if self.endpoints != nil { try container.encode(self.endpoints as! [EndpointData?]?, forKey: .endpoints) }
   }
 }
 

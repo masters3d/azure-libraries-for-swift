@@ -16,7 +16,7 @@ internal struct RollingUpgradeRunningStatusData : RollingUpgradeRunningStatusPro
         case lastActionTime = "lastActionTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RollingUpgradeRunningStatusData : RollingUpgradeRunningStatusPro
     if container.contains(.lastActionTime) {
         self.lastActionTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastActionTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,11 +43,11 @@ internal struct RollingUpgradeRunningStatusData : RollingUpgradeRunningStatusPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.lastAction != nil {try container.encode(self.lastAction, forKey: .lastAction)}
+    if self.lastAction != nil { try container.encode(self.lastAction, forKey: .lastAction) }
     if self.lastActionTime != nil {
         try container.encode(DateConverter.toString(date: self.lastActionTime!, format: .dateTime), forKey: .lastActionTime)
     }

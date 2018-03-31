@@ -14,7 +14,7 @@ internal struct RestoreFileSpecsData : RestoreFileSpecsProtocol {
         case targetFolderPath = "targetFolderPath"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RestoreFileSpecsData : RestoreFileSpecsProtocol {
     if container.contains(.targetFolderPath) {
         self.targetFolderPath = try container.decode(String?.self, forKey: .targetFolderPath)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RestoreFileSpecsData : RestoreFileSpecsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.fileSpecType != nil {try container.encode(self.fileSpecType, forKey: .fileSpecType)}
-    if self.targetFolderPath != nil {try container.encode(self.targetFolderPath, forKey: .targetFolderPath)}
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.fileSpecType != nil { try container.encode(self.fileSpecType, forKey: .fileSpecType) }
+    if self.targetFolderPath != nil { try container.encode(self.targetFolderPath, forKey: .targetFolderPath) }
   }
 }
 

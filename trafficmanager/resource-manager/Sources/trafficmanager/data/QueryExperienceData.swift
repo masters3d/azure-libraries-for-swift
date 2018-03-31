@@ -14,7 +14,7 @@ internal struct QueryExperienceData : QueryExperienceProtocol {
         case latency = "latency"
         }
 
-  public init(endpointId: Int32, queryCount: Int32)  {
+  public init(endpointId: Int32, queryCount: Int32) {
     self.endpointId = endpointId
     self.queryCount = queryCount
   }
@@ -26,7 +26,7 @@ internal struct QueryExperienceData : QueryExperienceProtocol {
     if container.contains(.latency) {
         self.latency = try container.decode(Double?.self, forKey: .latency)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct QueryExperienceData : QueryExperienceProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.endpointId, forKey: .endpointId)
     try container.encode(self.queryCount, forKey: .queryCount)
-    if self.latency != nil {try container.encode(self.latency, forKey: .latency)}
+    if self.latency != nil { try container.encode(self.latency, forKey: .latency) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct AccountListNodeAgentSkusResultData : AccountListNodeAgentSkusRes
         case odatanextLink = "odata.nextLink"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AccountListNodeAgentSkusResultData : AccountListNodeAgentSkusRes
     if container.contains(.odatanextLink) {
         self.odatanextLink = try container.decode(String?.self, forKey: .odatanextLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AccountListNodeAgentSkusResultData : AccountListNodeAgentSkusRes
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value as! [NodeAgentSkuData?]?, forKey: .value)}
-    if self.odatanextLink != nil {try container.encode(self.odatanextLink, forKey: .odatanextLink)}
+    if self.value != nil { try container.encode(self.value as! [NodeAgentSkuData?]?, forKey: .value) }
+    if self.odatanextLink != nil { try container.encode(self.odatanextLink, forKey: .odatanextLink) }
   }
 }
 

@@ -24,7 +24,7 @@ internal struct SourceControlCreateOrUpdatePropertiesData : SourceControlCreateO
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct SourceControlCreateOrUpdatePropertiesData : SourceControlCreateO
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct SourceControlCreateOrUpdatePropertiesData : SourceControlCreateO
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.repoUrl != nil {try container.encode(self.repoUrl, forKey: .repoUrl)}
-    if self.branch != nil {try container.encode(self.branch, forKey: .branch)}
-    if self.folderPath != nil {try container.encode(self.folderPath, forKey: .folderPath)}
-    if self.autoSync != nil {try container.encode(self.autoSync, forKey: .autoSync)}
-    if self.publishRunbook != nil {try container.encode(self.publishRunbook, forKey: .publishRunbook)}
-    if self.sourceType != nil {try container.encode(self.sourceType, forKey: .sourceType)}
-    if self.securityToken != nil {try container.encode(self.securityToken, forKey: .securityToken)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.repoUrl != nil { try container.encode(self.repoUrl, forKey: .repoUrl) }
+    if self.branch != nil { try container.encode(self.branch, forKey: .branch) }
+    if self.folderPath != nil { try container.encode(self.folderPath, forKey: .folderPath) }
+    if self.autoSync != nil { try container.encode(self.autoSync, forKey: .autoSync) }
+    if self.publishRunbook != nil { try container.encode(self.publishRunbook, forKey: .publishRunbook) }
+    if self.sourceType != nil { try container.encode(self.sourceType, forKey: .sourceType) }
+    if self.securityToken != nil { try container.encode(self.securityToken, forKey: .securityToken) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

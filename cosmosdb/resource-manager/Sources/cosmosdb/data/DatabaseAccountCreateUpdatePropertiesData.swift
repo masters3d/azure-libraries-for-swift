@@ -20,7 +20,7 @@ internal struct DatabaseAccountCreateUpdatePropertiesData : DatabaseAccountCreat
         case capabilities = "capabilities"
         }
 
-  public init(locations: [LocationProtocol], databaseAccountOfferType: String)  {
+  public init(locations: [LocationProtocol], databaseAccountOfferType: String) {
     self.locations = locations
     self.databaseAccountOfferType = databaseAccountOfferType
   }
@@ -41,7 +41,7 @@ internal struct DatabaseAccountCreateUpdatePropertiesData : DatabaseAccountCreat
     if container.contains(.capabilities) {
         self.capabilities = try container.decode([CapabilityData?]?.self, forKey: .capabilities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,12 +51,12 @@ internal struct DatabaseAccountCreateUpdatePropertiesData : DatabaseAccountCreat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.consistencyPolicy != nil {try container.encode(self.consistencyPolicy as! ConsistencyPolicyData?, forKey: .consistencyPolicy)}
+    if self.consistencyPolicy != nil { try container.encode(self.consistencyPolicy as! ConsistencyPolicyData?, forKey: .consistencyPolicy) }
     try container.encode(self.locations as! [LocationData], forKey: .locations)
     try container.encode(self.databaseAccountOfferType, forKey: .databaseAccountOfferType)
-    if self.ipRangeFilter != nil {try container.encode(self.ipRangeFilter, forKey: .ipRangeFilter)}
-    if self.enableAutomaticFailover != nil {try container.encode(self.enableAutomaticFailover, forKey: .enableAutomaticFailover)}
-    if self.capabilities != nil {try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities)}
+    if self.ipRangeFilter != nil { try container.encode(self.ipRangeFilter, forKey: .ipRangeFilter) }
+    if self.enableAutomaticFailover != nil { try container.encode(self.enableAutomaticFailover, forKey: .enableAutomaticFailover) }
+    if self.capabilities != nil { try container.encode(self.capabilities as! [CapabilityData?]?, forKey: .capabilities) }
   }
 }
 

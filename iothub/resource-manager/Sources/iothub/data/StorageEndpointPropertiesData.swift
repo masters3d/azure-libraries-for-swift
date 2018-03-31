@@ -14,7 +14,7 @@ internal struct StorageEndpointPropertiesData : StorageEndpointPropertiesProtoco
         case containerName = "containerName"
         }
 
-  public init(connectionString: String, containerName: String)  {
+  public init(connectionString: String, containerName: String) {
     self.connectionString = connectionString
     self.containerName = containerName
   }
@@ -26,7 +26,7 @@ internal struct StorageEndpointPropertiesData : StorageEndpointPropertiesProtoco
     }
     self.connectionString = try container.decode(String.self, forKey: .connectionString)
     self.containerName = try container.decode(String.self, forKey: .containerName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct StorageEndpointPropertiesData : StorageEndpointPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sasTtlAsIso8601 != nil {try container.encode(self.sasTtlAsIso8601, forKey: .sasTtlAsIso8601)}
+    if self.sasTtlAsIso8601 != nil { try container.encode(self.sasTtlAsIso8601, forKey: .sasTtlAsIso8601) }
     try container.encode(self.connectionString, forKey: .connectionString)
     try container.encode(self.containerName, forKey: .containerName)
   }

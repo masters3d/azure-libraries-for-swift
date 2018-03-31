@@ -14,7 +14,7 @@ internal struct PrivateRegistryCredentialsData : PrivateRegistryCredentialsProto
         case passwordSecretReference = "passwordSecretReference"
         }
 
-  public init(username: String)  {
+  public init(username: String) {
     self.username = username
   }
 
@@ -27,7 +27,7 @@ internal struct PrivateRegistryCredentialsData : PrivateRegistryCredentialsProto
     if container.contains(.passwordSecretReference) {
         self.passwordSecretReference = try container.decode(KeyVaultSecretReferenceData?.self, forKey: .passwordSecretReference)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct PrivateRegistryCredentialsData : PrivateRegistryCredentialsProto
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.username, forKey: .username)
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.passwordSecretReference != nil {try container.encode(self.passwordSecretReference as! KeyVaultSecretReferenceData?, forKey: .passwordSecretReference)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.passwordSecretReference != nil { try container.encode(self.passwordSecretReference as! KeyVaultSecretReferenceData?, forKey: .passwordSecretReference) }
   }
 }
 

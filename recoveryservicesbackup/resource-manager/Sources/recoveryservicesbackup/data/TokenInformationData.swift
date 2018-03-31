@@ -14,7 +14,7 @@ internal struct TokenInformationData : TokenInformationProtocol {
         case securityPIN = "securityPIN"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TokenInformationData : TokenInformationProtocol {
     if container.contains(.securityPIN) {
         self.securityPIN = try container.decode(String?.self, forKey: .securityPIN)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TokenInformationData : TokenInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.token != nil {try container.encode(self.token, forKey: .token)}
-    if self.expiryTimeInUtcTicks != nil {try container.encode(self.expiryTimeInUtcTicks, forKey: .expiryTimeInUtcTicks)}
-    if self.securityPIN != nil {try container.encode(self.securityPIN, forKey: .securityPIN)}
+    if self.token != nil { try container.encode(self.token, forKey: .token) }
+    if self.expiryTimeInUtcTicks != nil { try container.encode(self.expiryTimeInUtcTicks, forKey: .expiryTimeInUtcTicks) }
+    if self.securityPIN != nil { try container.encode(self.securityPIN, forKey: .securityPIN) }
   }
 }
 

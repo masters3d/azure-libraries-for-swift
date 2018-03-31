@@ -12,7 +12,7 @@ internal struct TimeSeriesElementData : TimeSeriesElementProtocol {
         case data = "data"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct TimeSeriesElementData : TimeSeriesElementProtocol {
     if container.contains(.data) {
         self.data = try container.decode([MetricValueData?]?.self, forKey: .data)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct TimeSeriesElementData : TimeSeriesElementProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metadatavalues != nil {try container.encode(self.metadatavalues as! [MetadataValueData?]?, forKey: .metadatavalues)}
-    if self.data != nil {try container.encode(self.data as! [MetricValueData?]?, forKey: .data)}
+    if self.metadatavalues != nil { try container.encode(self.metadatavalues as! [MetadataValueData?]?, forKey: .metadatavalues) }
+    if self.data != nil { try container.encode(self.data as! [MetricValueData?]?, forKey: .data) }
   }
 }
 

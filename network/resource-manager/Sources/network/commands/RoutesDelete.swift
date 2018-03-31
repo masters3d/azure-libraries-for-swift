@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RoutesDelete  {
+public protocol RoutesDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var routeTableName : String { get set }
@@ -8,7 +8,7 @@ public protocol RoutesDelete  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Routes {
@@ -34,7 +34,7 @@ extension Commands.Routes {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{routeTableName}"] = String(describing: self.routeTableName)
             self.pathParameters["{routeName}"] = String(describing: self.routeName)
@@ -44,7 +44,7 @@ extension Commands.Routes {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

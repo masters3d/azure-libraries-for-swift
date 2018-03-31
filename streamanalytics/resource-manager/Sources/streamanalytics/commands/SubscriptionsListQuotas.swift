@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SubscriptionsListQuotas  {
+public protocol SubscriptionsListQuotas {
     var headerParameters: [String: String] { get set }
     var location : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SubscriptionQuotasListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SubscriptionQuotasListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Subscriptions {
@@ -26,7 +26,7 @@ extension Commands.Subscriptions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{location}"] = String(describing: self.location)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -38,12 +38,12 @@ extension Commands.Subscriptions {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SubscriptionQuotasListResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SubscriptionQuotasListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SubscriptionQuotasListResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SubscriptionQuotasListResultData?, error: Error?) in
                 completionHandler(result, error)

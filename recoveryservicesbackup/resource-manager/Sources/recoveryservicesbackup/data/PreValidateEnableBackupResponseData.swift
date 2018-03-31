@@ -20,7 +20,7 @@ internal struct PreValidateEnableBackupResponseData : PreValidateEnableBackupRes
         case protectedItemName = "protectedItemName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct PreValidateEnableBackupResponseData : PreValidateEnableBackupRes
     if container.contains(.protectedItemName) {
         self.protectedItemName = try container.decode(String?.self, forKey: .protectedItemName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct PreValidateEnableBackupResponseData : PreValidateEnableBackupRes
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.recommendation != nil {try container.encode(self.recommendation, forKey: .recommendation)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.protectedItemName != nil {try container.encode(self.protectedItemName, forKey: .protectedItemName)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.recommendation != nil { try container.encode(self.recommendation, forKey: .recommendation) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.protectedItemName != nil { try container.encode(self.protectedItemName, forKey: .protectedItemName) }
   }
 }
 

@@ -18,7 +18,7 @@ internal struct DisplayData : DisplayProtocol {
         case origin = "origin"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DisplayData : DisplayProtocol {
     if container.contains(.origin) {
         self.origin = try container.decode(String?.self, forKey: .origin)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct DisplayData : DisplayProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provider != nil {try container.encode(self.provider, forKey: .provider)}
-    if self.resource != nil {try container.encode(self.resource, forKey: .resource)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.origin != nil {try container.encode(self.origin, forKey: .origin)}
+    if self.provider != nil { try container.encode(self.provider, forKey: .provider) }
+    if self.resource != nil { try container.encode(self.resource, forKey: .resource) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.origin != nil { try container.encode(self.origin, forKey: .origin) }
   }
 }
 

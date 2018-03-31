@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetUpdateData : VirtualMachineScaleSetUpdateP
         case identity = "identity"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct VirtualMachineScaleSetUpdateData : VirtualMachineScaleSetUpdateP
     if container.contains(.identity) {
         self.identity = try container.decode(VirtualMachineScaleSetIdentityData?.self, forKey: .identity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct VirtualMachineScaleSetUpdateData : VirtualMachineScaleSetUpdateP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.plan != nil {try container.encode(self.plan as! PlanData?, forKey: .plan)}
-    if self.properties != nil {try container.encode(self.properties as! VirtualMachineScaleSetUpdatePropertiesData?, forKey: .properties)}
-    if self.identity != nil {try container.encode(self.identity as! VirtualMachineScaleSetIdentityData?, forKey: .identity)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.plan != nil { try container.encode(self.plan as! PlanData?, forKey: .plan) }
+    if self.properties != nil { try container.encode(self.properties as! VirtualMachineScaleSetUpdatePropertiesData?, forKey: .properties) }
+    if self.identity != nil { try container.encode(self.identity as! VirtualMachineScaleSetIdentityData?, forKey: .identity) }
   }
 }
 

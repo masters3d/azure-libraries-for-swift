@@ -12,7 +12,7 @@ internal struct RetargetSchedulePropertiesData : RetargetSchedulePropertiesProto
         case targetResourceId = "targetResourceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RetargetSchedulePropertiesData : RetargetSchedulePropertiesProto
     if container.contains(.targetResourceId) {
         self.targetResourceId = try container.decode(String?.self, forKey: .targetResourceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RetargetSchedulePropertiesData : RetargetSchedulePropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.currentResourceId != nil {try container.encode(self.currentResourceId, forKey: .currentResourceId)}
-    if self.targetResourceId != nil {try container.encode(self.targetResourceId, forKey: .targetResourceId)}
+    if self.currentResourceId != nil { try container.encode(self.currentResourceId, forKey: .currentResourceId) }
+    if self.targetResourceId != nil { try container.encode(self.targetResourceId, forKey: .targetResourceId) }
   }
 }
 

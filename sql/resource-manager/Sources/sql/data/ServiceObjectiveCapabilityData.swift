@@ -20,7 +20,7 @@ internal struct ServiceObjectiveCapabilityData : ServiceObjectiveCapabilityProto
         case includedMaxSize = "includedMaxSize"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ServiceObjectiveCapabilityData : ServiceObjectiveCapabilityProto
     if container.contains(.includedMaxSize) {
         self.includedMaxSize = try container.decode(MaxSizeCapabilityData?.self, forKey: .includedMaxSize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ServiceObjectiveCapabilityData : ServiceObjectiveCapabilityProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.performanceLevel != nil {try container.encode(self.performanceLevel as! PerformanceLevelData?, forKey: .performanceLevel)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.supportedMaxSizes != nil {try container.encode(self.supportedMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedMaxSizes)}
-    if self.includedMaxSize != nil {try container.encode(self.includedMaxSize as! MaxSizeCapabilityData?, forKey: .includedMaxSize)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.performanceLevel != nil { try container.encode(self.performanceLevel as! PerformanceLevelData?, forKey: .performanceLevel) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.supportedMaxSizes != nil { try container.encode(self.supportedMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedMaxSizes) }
+    if self.includedMaxSize != nil { try container.encode(self.includedMaxSize as! MaxSizeCapabilityData?, forKey: .includedMaxSize) }
   }
 }
 

@@ -32,7 +32,7 @@ internal struct DataMaskingRulePropertiesData : DataMaskingRulePropertiesProtoco
         case replacementString = "replacementString"
         }
 
-  public init(schemaName: String, tableName: String, columnName: String, maskingFunction: DataMaskingFunctionEnum)  {
+  public init(schemaName: String, tableName: String, columnName: String, maskingFunction: DataMaskingFunctionEnum) {
     self.schemaName = schemaName
     self.tableName = tableName
     self.columnName = columnName
@@ -69,7 +69,7 @@ internal struct DataMaskingRulePropertiesData : DataMaskingRulePropertiesProtoco
     if container.contains(.replacementString) {
         self.replacementString = try container.decode(String?.self, forKey: .replacementString)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -79,18 +79,18 @@ internal struct DataMaskingRulePropertiesData : DataMaskingRulePropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.aliasName != nil {try container.encode(self.aliasName, forKey: .aliasName)}
-    if self.ruleState != nil {try container.encode(self.ruleState, forKey: .ruleState)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.aliasName != nil { try container.encode(self.aliasName, forKey: .aliasName) }
+    if self.ruleState != nil { try container.encode(self.ruleState, forKey: .ruleState) }
     try container.encode(self.schemaName, forKey: .schemaName)
     try container.encode(self.tableName, forKey: .tableName)
     try container.encode(self.columnName, forKey: .columnName)
     try container.encode(self.maskingFunction, forKey: .maskingFunction)
-    if self.numberFrom != nil {try container.encode(self.numberFrom, forKey: .numberFrom)}
-    if self.numberTo != nil {try container.encode(self.numberTo, forKey: .numberTo)}
-    if self.prefixSize != nil {try container.encode(self.prefixSize, forKey: .prefixSize)}
-    if self.suffixSize != nil {try container.encode(self.suffixSize, forKey: .suffixSize)}
-    if self.replacementString != nil {try container.encode(self.replacementString, forKey: .replacementString)}
+    if self.numberFrom != nil { try container.encode(self.numberFrom, forKey: .numberFrom) }
+    if self.numberTo != nil { try container.encode(self.numberTo, forKey: .numberTo) }
+    if self.prefixSize != nil { try container.encode(self.prefixSize, forKey: .prefixSize) }
+    if self.suffixSize != nil { try container.encode(self.suffixSize, forKey: .suffixSize) }
+    if self.replacementString != nil { try container.encode(self.replacementString, forKey: .replacementString) }
   }
 }
 

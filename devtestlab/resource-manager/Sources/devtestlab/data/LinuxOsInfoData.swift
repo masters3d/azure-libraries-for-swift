@@ -10,7 +10,7 @@ internal struct LinuxOsInfoData : LinuxOsInfoProtocol {
         enum CodingKeys: String, CodingKey {case linuxOsState = "linuxOsState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct LinuxOsInfoData : LinuxOsInfoProtocol {
       if container.contains(.linuxOsState) {
         self.linuxOsState = try container.decode(LinuxOsStateEnum?.self, forKey: .linuxOsState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct LinuxOsInfoData : LinuxOsInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.linuxOsState != nil {try container.encode(self.linuxOsState, forKey: .linuxOsState)}
+    if self.linuxOsState != nil { try container.encode(self.linuxOsState, forKey: .linuxOsState) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct BlobsPutHeadersData : BlobsPutHeadersProtocol {
         case isServerEncrypted = "x-ms-request-server-encrypted"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -50,13 +50,13 @@ internal struct BlobsPutHeadersData : BlobsPutHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eTag != nil {try container.encode(eTag, forKey: .eTag)}
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.contentMD5 != nil {try container.encode(contentMD5, forKey: .contentMD5)}
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
-    if self.date != nil {try container.encode(date, forKey: .date)}
-    if self.isServerEncrypted != nil {try container.encode(isServerEncrypted, forKey: .isServerEncrypted)}
+    if self.eTag != nil { try container.encode(eTag, forKey: .eTag) }
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.contentMD5 != nil { try container.encode(contentMD5, forKey: .contentMD5) }
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
+    if self.date != nil { try container.encode(date, forKey: .date) }
+    if self.isServerEncrypted != nil { try container.encode(isServerEncrypted, forKey: .isServerEncrypted) }
   }
 }
 

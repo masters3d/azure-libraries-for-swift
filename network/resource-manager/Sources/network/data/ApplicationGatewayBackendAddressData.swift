@@ -12,7 +12,7 @@ internal struct ApplicationGatewayBackendAddressData : ApplicationGatewayBackend
         case ipAddress = "ipAddress"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ApplicationGatewayBackendAddressData : ApplicationGatewayBackend
     if container.contains(.ipAddress) {
         self.ipAddress = try container.decode(String?.self, forKey: .ipAddress)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ApplicationGatewayBackendAddressData : ApplicationGatewayBackend
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
   }
 }
 

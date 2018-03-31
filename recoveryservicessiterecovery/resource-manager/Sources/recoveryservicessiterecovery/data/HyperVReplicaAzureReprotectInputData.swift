@@ -20,7 +20,7 @@ internal struct HyperVReplicaAzureReprotectInputData : HyperVReplicaAzureReprote
         case logStorageAccountId = "logStorageAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct HyperVReplicaAzureReprotectInputData : HyperVReplicaAzureReprote
     if container.contains(.logStorageAccountId) {
         self.logStorageAccountId = try container.decode(String?.self, forKey: .logStorageAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct HyperVReplicaAzureReprotectInputData : HyperVReplicaAzureReprote
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hvHostVmId != nil {try container.encode(self.hvHostVmId, forKey: .hvHostVmId)}
-    if self.vmName != nil {try container.encode(self.vmName, forKey: .vmName)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.vHDId != nil {try container.encode(self.vHDId, forKey: .vHDId)}
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.logStorageAccountId != nil {try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId)}
+    if self.hvHostVmId != nil { try container.encode(self.hvHostVmId, forKey: .hvHostVmId) }
+    if self.vmName != nil { try container.encode(self.vmName, forKey: .vmName) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.vHDId != nil { try container.encode(self.vHDId, forKey: .vHDId) }
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.logStorageAccountId != nil { try container.encode(self.logStorageAccountId, forKey: .logStorageAccountId) }
   }
 }
 

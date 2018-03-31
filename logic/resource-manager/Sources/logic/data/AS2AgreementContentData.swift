@@ -12,7 +12,7 @@ internal struct AS2AgreementContentData : AS2AgreementContentProtocol {
         case sendAgreement = "sendAgreement"
         }
 
-  public init(receiveAgreement: AS2OneWayAgreementProtocol, sendAgreement: AS2OneWayAgreementProtocol)  {
+  public init(receiveAgreement: AS2OneWayAgreementProtocol, sendAgreement: AS2OneWayAgreementProtocol) {
     self.receiveAgreement = receiveAgreement
     self.sendAgreement = sendAgreement
   }
@@ -21,7 +21,7 @@ internal struct AS2AgreementContentData : AS2AgreementContentProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.receiveAgreement = try container.decode(AS2OneWayAgreementData.self, forKey: .receiveAgreement)
     self.sendAgreement = try container.decode(AS2OneWayAgreementData.self, forKey: .sendAgreement)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

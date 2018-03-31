@@ -20,7 +20,7 @@ internal struct DeletedSiteData : DeletedSiteProtocol {
         case slot = "slot"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DeletedSiteData : DeletedSiteProtocol {
     if container.contains(.slot) {
         self.slot = try container.decode(String?.self, forKey: .slot)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct DeletedSiteData : DeletedSiteProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.deletedTimestamp != nil {try container.encode(self.deletedTimestamp, forKey: .deletedTimestamp)}
-    if self.subscription != nil {try container.encode(self.subscription, forKey: .subscription)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.slot != nil {try container.encode(self.slot, forKey: .slot)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.deletedTimestamp != nil { try container.encode(self.deletedTimestamp, forKey: .deletedTimestamp) }
+    if self.subscription != nil { try container.encode(self.subscription, forKey: .subscription) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.slot != nil { try container.encode(self.slot, forKey: .slot) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol IntegrationAccountsListBySubscription  {
+public protocol IntegrationAccountsListBySubscription {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol IntegrationAccountsListBySubscription  {
     var apiVersion : String { get set }
     var top : Int32? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IntegrationAccountListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IntegrationAccountListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.IntegrationAccounts {
@@ -33,7 +33,7 @@ extension Commands.IntegrationAccounts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.top != nil { queryParameters["$top"] = String(describing: self.top!) }
@@ -52,15 +52,15 @@ extension Commands.IntegrationAccounts {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IntegrationAccountListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IntegrationAccountListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

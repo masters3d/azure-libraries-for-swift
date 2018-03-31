@@ -64,7 +64,7 @@ internal struct ProcessServerData : ProcessServerProtocol {
         case agentVersionDetails = "agentVersionDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -153,7 +153,7 @@ internal struct ProcessServerData : ProcessServerProtocol {
     if container.contains(.agentVersionDetails) {
         self.agentVersionDetails = try container.decode(VersionDetailsData?.self, forKey: .agentVersionDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -163,40 +163,40 @@ internal struct ProcessServerData : ProcessServerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.agentVersion != nil {try container.encode(self.agentVersion, forKey: .agentVersion)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.agentVersion != nil { try container.encode(self.agentVersion, forKey: .agentVersion) }
     if self.lastHeartbeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartbeat!, format: .dateTime), forKey: .lastHeartbeat)
     }
-    if self.versionStatus != nil {try container.encode(self.versionStatus, forKey: .versionStatus)}
-    if self.mobilityServiceUpdates != nil {try container.encode(self.mobilityServiceUpdates as! [MobilityServiceUpdateData?]?, forKey: .mobilityServiceUpdates)}
-    if self.hostId != nil {try container.encode(self.hostId, forKey: .hostId)}
-    if self.machineCount != nil {try container.encode(self.machineCount, forKey: .machineCount)}
-    if self.replicationPairCount != nil {try container.encode(self.replicationPairCount, forKey: .replicationPairCount)}
-    if self.systemLoad != nil {try container.encode(self.systemLoad, forKey: .systemLoad)}
-    if self.systemLoadStatus != nil {try container.encode(self.systemLoadStatus, forKey: .systemLoadStatus)}
-    if self.cpuLoad != nil {try container.encode(self.cpuLoad, forKey: .cpuLoad)}
-    if self.cpuLoadStatus != nil {try container.encode(self.cpuLoadStatus, forKey: .cpuLoadStatus)}
-    if self.totalMemoryInBytes != nil {try container.encode(self.totalMemoryInBytes, forKey: .totalMemoryInBytes)}
-    if self.availableMemoryInBytes != nil {try container.encode(self.availableMemoryInBytes, forKey: .availableMemoryInBytes)}
-    if self.memoryUsageStatus != nil {try container.encode(self.memoryUsageStatus, forKey: .memoryUsageStatus)}
-    if self.totalSpaceInBytes != nil {try container.encode(self.totalSpaceInBytes, forKey: .totalSpaceInBytes)}
-    if self.availableSpaceInBytes != nil {try container.encode(self.availableSpaceInBytes, forKey: .availableSpaceInBytes)}
-    if self.spaceUsageStatus != nil {try container.encode(self.spaceUsageStatus, forKey: .spaceUsageStatus)}
-    if self.psServiceStatus != nil {try container.encode(self.psServiceStatus, forKey: .psServiceStatus)}
+    if self.versionStatus != nil { try container.encode(self.versionStatus, forKey: .versionStatus) }
+    if self.mobilityServiceUpdates != nil { try container.encode(self.mobilityServiceUpdates as! [MobilityServiceUpdateData?]?, forKey: .mobilityServiceUpdates) }
+    if self.hostId != nil { try container.encode(self.hostId, forKey: .hostId) }
+    if self.machineCount != nil { try container.encode(self.machineCount, forKey: .machineCount) }
+    if self.replicationPairCount != nil { try container.encode(self.replicationPairCount, forKey: .replicationPairCount) }
+    if self.systemLoad != nil { try container.encode(self.systemLoad, forKey: .systemLoad) }
+    if self.systemLoadStatus != nil { try container.encode(self.systemLoadStatus, forKey: .systemLoadStatus) }
+    if self.cpuLoad != nil { try container.encode(self.cpuLoad, forKey: .cpuLoad) }
+    if self.cpuLoadStatus != nil { try container.encode(self.cpuLoadStatus, forKey: .cpuLoadStatus) }
+    if self.totalMemoryInBytes != nil { try container.encode(self.totalMemoryInBytes, forKey: .totalMemoryInBytes) }
+    if self.availableMemoryInBytes != nil { try container.encode(self.availableMemoryInBytes, forKey: .availableMemoryInBytes) }
+    if self.memoryUsageStatus != nil { try container.encode(self.memoryUsageStatus, forKey: .memoryUsageStatus) }
+    if self.totalSpaceInBytes != nil { try container.encode(self.totalSpaceInBytes, forKey: .totalSpaceInBytes) }
+    if self.availableSpaceInBytes != nil { try container.encode(self.availableSpaceInBytes, forKey: .availableSpaceInBytes) }
+    if self.spaceUsageStatus != nil { try container.encode(self.spaceUsageStatus, forKey: .spaceUsageStatus) }
+    if self.psServiceStatus != nil { try container.encode(self.psServiceStatus, forKey: .psServiceStatus) }
     if self.sslCertExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.sslCertExpiryDate!, format: .dateTime), forKey: .sslCertExpiryDate)
     }
-    if self.sslCertExpiryRemainingDays != nil {try container.encode(self.sslCertExpiryRemainingDays, forKey: .sslCertExpiryRemainingDays)}
-    if self.osVersion != nil {try container.encode(self.osVersion, forKey: .osVersion)}
-    if self.healthErrors != nil {try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors)}
+    if self.sslCertExpiryRemainingDays != nil { try container.encode(self.sslCertExpiryRemainingDays, forKey: .sslCertExpiryRemainingDays) }
+    if self.osVersion != nil { try container.encode(self.osVersion, forKey: .osVersion) }
+    if self.healthErrors != nil { try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors) }
     if self.agentExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.agentExpiryDate!, format: .dateTime), forKey: .agentExpiryDate)
     }
-    if self.agentVersionDetails != nil {try container.encode(self.agentVersionDetails as! VersionDetailsData?, forKey: .agentVersionDetails)}
+    if self.agentVersionDetails != nil { try container.encode(self.agentVersionDetails as! VersionDetailsData?, forKey: .agentVersionDetails) }
   }
 }
 

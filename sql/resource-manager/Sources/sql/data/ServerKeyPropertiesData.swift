@@ -18,7 +18,7 @@ internal struct ServerKeyPropertiesData : ServerKeyPropertiesProtocol {
         case creationDate = "creationDate"
         }
 
-  public init(serverKeyType: ServerKeyTypeEnum)  {
+  public init(serverKeyType: ServerKeyTypeEnum) {
     self.serverKeyType = serverKeyType
   }
 
@@ -37,7 +37,7 @@ internal struct ServerKeyPropertiesData : ServerKeyPropertiesProtocol {
     if container.contains(.creationDate) {
         self.creationDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .creationDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,10 +47,10 @@ internal struct ServerKeyPropertiesData : ServerKeyPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subregion != nil {try container.encode(self.subregion, forKey: .subregion)}
+    if self.subregion != nil { try container.encode(self.subregion, forKey: .subregion) }
     try container.encode(self.serverKeyType, forKey: .serverKeyType)
-    if self.uri != nil {try container.encode(self.uri, forKey: .uri)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.uri != nil { try container.encode(self.uri, forKey: .uri) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
     if self.creationDate != nil {
         try container.encode(DateConverter.toString(date: self.creationDate!, format: .dateTime), forKey: .creationDate)
     }

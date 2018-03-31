@@ -28,7 +28,7 @@ internal struct PowerShellCommandResultData : PowerShellCommandResultProtocol {
         case descriptions = "descriptions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct PowerShellCommandResultData : PowerShellCommandResultProtocol {
     if container.contains(.descriptions) {
         self.descriptions = try container.decode([PromptFieldDescriptionData?]?.self, forKey: .descriptions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct PowerShellCommandResultData : PowerShellCommandResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.messageType != nil {try container.encode(self.messageType, forKey: .messageType)}
-    if self.foregroundColor != nil {try container.encode(self.foregroundColor, forKey: .foregroundColor)}
-    if self.backgroundColor != nil {try container.encode(self.backgroundColor, forKey: .backgroundColor)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.prompt != nil {try container.encode(self.prompt, forKey: .prompt)}
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.caption != nil {try container.encode(self.caption, forKey: .caption)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.descriptions != nil {try container.encode(self.descriptions as! [PromptFieldDescriptionData?]?, forKey: .descriptions)}
+    if self.messageType != nil { try container.encode(self.messageType, forKey: .messageType) }
+    if self.foregroundColor != nil { try container.encode(self.foregroundColor, forKey: .foregroundColor) }
+    if self.backgroundColor != nil { try container.encode(self.backgroundColor, forKey: .backgroundColor) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.prompt != nil { try container.encode(self.prompt, forKey: .prompt) }
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.caption != nil { try container.encode(self.caption, forKey: .caption) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.descriptions != nil { try container.encode(self.descriptions as! [PromptFieldDescriptionData?]?, forKey: .descriptions) }
   }
 }
 

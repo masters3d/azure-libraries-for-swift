@@ -46,7 +46,7 @@ internal struct DscNodeReportData : DscNodeReportProtocol {
         case rawErrors = "rawErrors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct DscNodeReportData : DscNodeReportProtocol {
     if container.contains(.rawErrors) {
         self.rawErrors = try container.decode(String?.self, forKey: .rawErrors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -127,22 +127,22 @@ internal struct DscNodeReportData : DscNodeReportProtocol {
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.reportId != nil {try container.encode(self.reportId, forKey: .reportId)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.refreshMode != nil {try container.encode(self.refreshMode, forKey: .refreshMode)}
-    if self.rebootRequested != nil {try container.encode(self.rebootRequested, forKey: .rebootRequested)}
-    if self.reportFormatVersion != nil {try container.encode(self.reportFormatVersion, forKey: .reportFormatVersion)}
-    if self.configurationVersion != nil {try container.encode(self.configurationVersion, forKey: .configurationVersion)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.errors != nil {try container.encode(self.errors as! [DscReportErrorData?]?, forKey: .errors)}
-    if self.resources != nil {try container.encode(self.resources as! [DscReportResourceData?]?, forKey: .resources)}
-    if self.metaConfiguration != nil {try container.encode(self.metaConfiguration as! DscMetaConfigurationData?, forKey: .metaConfiguration)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
-    if self.iPV4Addresses != nil {try container.encode(self.iPV4Addresses as! [String]?, forKey: .iPV4Addresses)}
-    if self.iPV6Addresses != nil {try container.encode(self.iPV6Addresses as! [String]?, forKey: .iPV6Addresses)}
-    if self.numberOfResources != nil {try container.encode(self.numberOfResources, forKey: .numberOfResources)}
-    if self.rawErrors != nil {try container.encode(self.rawErrors, forKey: .rawErrors)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.reportId != nil { try container.encode(self.reportId, forKey: .reportId) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.refreshMode != nil { try container.encode(self.refreshMode, forKey: .refreshMode) }
+    if self.rebootRequested != nil { try container.encode(self.rebootRequested, forKey: .rebootRequested) }
+    if self.reportFormatVersion != nil { try container.encode(self.reportFormatVersion, forKey: .reportFormatVersion) }
+    if self.configurationVersion != nil { try container.encode(self.configurationVersion, forKey: .configurationVersion) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.errors != nil { try container.encode(self.errors as! [DscReportErrorData?]?, forKey: .errors) }
+    if self.resources != nil { try container.encode(self.resources as! [DscReportResourceData?]?, forKey: .resources) }
+    if self.metaConfiguration != nil { try container.encode(self.metaConfiguration as! DscMetaConfigurationData?, forKey: .metaConfiguration) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
+    if self.iPV4Addresses != nil { try container.encode(self.iPV4Addresses as! [String]?, forKey: .iPV4Addresses) }
+    if self.iPV6Addresses != nil { try container.encode(self.iPV6Addresses as! [String]?, forKey: .iPV6Addresses) }
+    if self.numberOfResources != nil { try container.encode(self.numberOfResources, forKey: .numberOfResources) }
+    if self.rawErrors != nil { try container.encode(self.rawErrors, forKey: .rawErrors) }
   }
 }
 

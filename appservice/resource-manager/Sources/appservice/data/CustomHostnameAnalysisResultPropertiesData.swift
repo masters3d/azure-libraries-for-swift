@@ -30,7 +30,7 @@ internal struct CustomHostnameAnalysisResultPropertiesData : CustomHostnameAnaly
         case alternateTxtRecords = "alternateTxtRecords"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct CustomHostnameAnalysisResultPropertiesData : CustomHostnameAnaly
     if container.contains(.alternateTxtRecords) {
         self.alternateTxtRecords = try container.decode([String]?.self, forKey: .alternateTxtRecords)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct CustomHostnameAnalysisResultPropertiesData : CustomHostnameAnaly
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isHostnameAlreadyVerified != nil {try container.encode(self.isHostnameAlreadyVerified, forKey: .isHostnameAlreadyVerified)}
-    if self.customDomainVerificationTest != nil {try container.encode(self.customDomainVerificationTest, forKey: .customDomainVerificationTest)}
-    if self.customDomainVerificationFailureInfo != nil {try container.encode(self.customDomainVerificationFailureInfo as! ErrorEntityData?, forKey: .customDomainVerificationFailureInfo)}
-    if self.hasConflictOnScaleUnit != nil {try container.encode(self.hasConflictOnScaleUnit, forKey: .hasConflictOnScaleUnit)}
-    if self.hasConflictAcrossSubscription != nil {try container.encode(self.hasConflictAcrossSubscription, forKey: .hasConflictAcrossSubscription)}
-    if self.conflictingAppResourceId != nil {try container.encode(self.conflictingAppResourceId, forKey: .conflictingAppResourceId)}
-    if self.cNameRecords != nil {try container.encode(self.cNameRecords as! [String]?, forKey: .cNameRecords)}
-    if self.txtRecords != nil {try container.encode(self.txtRecords as! [String]?, forKey: .txtRecords)}
-    if self.aRecords != nil {try container.encode(self.aRecords as! [String]?, forKey: .aRecords)}
-    if self.alternateCNameRecords != nil {try container.encode(self.alternateCNameRecords as! [String]?, forKey: .alternateCNameRecords)}
-    if self.alternateTxtRecords != nil {try container.encode(self.alternateTxtRecords as! [String]?, forKey: .alternateTxtRecords)}
+    if self.isHostnameAlreadyVerified != nil { try container.encode(self.isHostnameAlreadyVerified, forKey: .isHostnameAlreadyVerified) }
+    if self.customDomainVerificationTest != nil { try container.encode(self.customDomainVerificationTest, forKey: .customDomainVerificationTest) }
+    if self.customDomainVerificationFailureInfo != nil { try container.encode(self.customDomainVerificationFailureInfo as! ErrorEntityData?, forKey: .customDomainVerificationFailureInfo) }
+    if self.hasConflictOnScaleUnit != nil { try container.encode(self.hasConflictOnScaleUnit, forKey: .hasConflictOnScaleUnit) }
+    if self.hasConflictAcrossSubscription != nil { try container.encode(self.hasConflictAcrossSubscription, forKey: .hasConflictAcrossSubscription) }
+    if self.conflictingAppResourceId != nil { try container.encode(self.conflictingAppResourceId, forKey: .conflictingAppResourceId) }
+    if self.cNameRecords != nil { try container.encode(self.cNameRecords as! [String]?, forKey: .cNameRecords) }
+    if self.txtRecords != nil { try container.encode(self.txtRecords as! [String]?, forKey: .txtRecords) }
+    if self.aRecords != nil { try container.encode(self.aRecords as! [String]?, forKey: .aRecords) }
+    if self.alternateCNameRecords != nil { try container.encode(self.alternateCNameRecords as! [String]?, forKey: .alternateCNameRecords) }
+    if self.alternateTxtRecords != nil { try container.encode(self.alternateTxtRecords as! [String]?, forKey: .alternateTxtRecords) }
   }
 }
 

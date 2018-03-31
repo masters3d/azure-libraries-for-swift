@@ -30,7 +30,7 @@ internal struct MabContainerData : MabContainerProtocol, ProtectionContainerProt
         case containerHealthState = "containerHealthState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct MabContainerData : MabContainerProtocol, ProtectionContainerProt
     if container.contains(.containerHealthState) {
         self.containerHealthState = try container.decode(String?.self, forKey: .containerHealthState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct MabContainerData : MabContainerProtocol, ProtectionContainerProt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.canReRegister != nil {try container.encode(self.canReRegister, forKey: .canReRegister)}
-    if self.containerId != nil {try container.encode(self.containerId, forKey: .containerId)}
-    if self.protectedItemCount != nil {try container.encode(self.protectedItemCount, forKey: .protectedItemCount)}
-    if self.agentVersion != nil {try container.encode(self.agentVersion, forKey: .agentVersion)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! MabContainerExtendedInfoData?, forKey: .extendedInfo)}
-    if self.mabContainerHealthDetails != nil {try container.encode(self.mabContainerHealthDetails as! [MABContainerHealthDetailsData?]?, forKey: .mabContainerHealthDetails)}
-    if self.containerHealthState != nil {try container.encode(self.containerHealthState, forKey: .containerHealthState)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.canReRegister != nil { try container.encode(self.canReRegister, forKey: .canReRegister) }
+    if self.containerId != nil { try container.encode(self.containerId, forKey: .containerId) }
+    if self.protectedItemCount != nil { try container.encode(self.protectedItemCount, forKey: .protectedItemCount) }
+    if self.agentVersion != nil { try container.encode(self.agentVersion, forKey: .agentVersion) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! MabContainerExtendedInfoData?, forKey: .extendedInfo) }
+    if self.mabContainerHealthDetails != nil { try container.encode(self.mabContainerHealthDetails as! [MABContainerHealthDetailsData?]?, forKey: .mabContainerHealthDetails) }
+    if self.containerHealthState != nil { try container.encode(self.containerHealthState, forKey: .containerHealthState) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct DayData : DayProtocol {
         case isLast = "isLast"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DayData : DayProtocol {
     if container.contains(.isLast) {
         self.isLast = try container.decode(Bool?.self, forKey: .isLast)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DayData : DayProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.date != nil {try container.encode(self.date, forKey: .date)}
-    if self.isLast != nil {try container.encode(self.isLast, forKey: .isLast)}
+    if self.date != nil { try container.encode(self.date, forKey: .date) }
+    if self.isLast != nil { try container.encode(self.isLast, forKey: .isLast) }
   }
 }
 

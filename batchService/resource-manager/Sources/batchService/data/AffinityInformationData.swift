@@ -10,14 +10,14 @@ internal struct AffinityInformationData : AffinityInformationProtocol {
         enum CodingKeys: String, CodingKey {case affinityId = "affinityId"
         }
 
-  public init(affinityId: String)  {
+  public init(affinityId: String) {
     self.affinityId = affinityId
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.affinityId = try container.decode(String.self, forKey: .affinityId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

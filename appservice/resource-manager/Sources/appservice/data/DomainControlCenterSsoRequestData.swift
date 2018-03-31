@@ -14,7 +14,7 @@ internal struct DomainControlCenterSsoRequestData : DomainControlCenterSsoReques
         case postParameterValue = "postParameterValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DomainControlCenterSsoRequestData : DomainControlCenterSsoReques
     if container.contains(.postParameterValue) {
         self.postParameterValue = try container.decode(String?.self, forKey: .postParameterValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DomainControlCenterSsoRequestData : DomainControlCenterSsoReques
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.postParameterKey != nil {try container.encode(self.postParameterKey, forKey: .postParameterKey)}
-    if self.postParameterValue != nil {try container.encode(self.postParameterValue, forKey: .postParameterValue)}
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.postParameterKey != nil { try container.encode(self.postParameterKey, forKey: .postParameterKey) }
+    if self.postParameterValue != nil { try container.encode(self.postParameterValue, forKey: .postParameterValue) }
   }
 }
 

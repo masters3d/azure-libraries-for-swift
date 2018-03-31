@@ -42,7 +42,7 @@ internal struct VirtualNetworkGatewayConnectionListEntityPropertiesFormatData : 
         case provisioningState = "provisioningState"
         }
 
-  public init(virtualNetworkGateway1: VirtualNetworkConnectionGatewayReferenceProtocol, connectionType: VirtualNetworkGatewayConnectionTypeEnum)  {
+  public init(virtualNetworkGateway1: VirtualNetworkConnectionGatewayReferenceProtocol, connectionType: VirtualNetworkGatewayConnectionTypeEnum) {
     self.virtualNetworkGateway1 = virtualNetworkGateway1
     self.connectionType = connectionType
   }
@@ -96,7 +96,7 @@ internal struct VirtualNetworkGatewayConnectionListEntityPropertiesFormatData : 
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -106,23 +106,23 @@ internal struct VirtualNetworkGatewayConnectionListEntityPropertiesFormatData : 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authorizationKey != nil {try container.encode(self.authorizationKey, forKey: .authorizationKey)}
+    if self.authorizationKey != nil { try container.encode(self.authorizationKey, forKey: .authorizationKey) }
     try container.encode(self.virtualNetworkGateway1 as! VirtualNetworkConnectionGatewayReferenceData, forKey: .virtualNetworkGateway1)
-    if self.virtualNetworkGateway2 != nil {try container.encode(self.virtualNetworkGateway2 as! VirtualNetworkConnectionGatewayReferenceData?, forKey: .virtualNetworkGateway2)}
-    if self.localNetworkGateway2 != nil {try container.encode(self.localNetworkGateway2 as! VirtualNetworkConnectionGatewayReferenceData?, forKey: .localNetworkGateway2)}
+    if self.virtualNetworkGateway2 != nil { try container.encode(self.virtualNetworkGateway2 as! VirtualNetworkConnectionGatewayReferenceData?, forKey: .virtualNetworkGateway2) }
+    if self.localNetworkGateway2 != nil { try container.encode(self.localNetworkGateway2 as! VirtualNetworkConnectionGatewayReferenceData?, forKey: .localNetworkGateway2) }
     try container.encode(self.connectionType, forKey: .connectionType)
-    if self.routingWeight != nil {try container.encode(self.routingWeight, forKey: .routingWeight)}
-    if self.sharedKey != nil {try container.encode(self.sharedKey, forKey: .sharedKey)}
-    if self.connectionStatus != nil {try container.encode(self.connectionStatus, forKey: .connectionStatus)}
-    if self.tunnelConnectionStatus != nil {try container.encode(self.tunnelConnectionStatus as! [TunnelConnectionHealthData?]?, forKey: .tunnelConnectionStatus)}
-    if self.egressBytesTransferred != nil {try container.encode(self.egressBytesTransferred, forKey: .egressBytesTransferred)}
-    if self.ingressBytesTransferred != nil {try container.encode(self.ingressBytesTransferred, forKey: .ingressBytesTransferred)}
-    if self.peer != nil {try container.encode(self.peer as! SubResourceData?, forKey: .peer)}
-    if self.enableBgp != nil {try container.encode(self.enableBgp, forKey: .enableBgp)}
-    if self.usePolicyBasedTrafficSelectors != nil {try container.encode(self.usePolicyBasedTrafficSelectors, forKey: .usePolicyBasedTrafficSelectors)}
-    if self.ipsecPolicies != nil {try container.encode(self.ipsecPolicies as! [IpsecPolicyData?]?, forKey: .ipsecPolicies)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.routingWeight != nil { try container.encode(self.routingWeight, forKey: .routingWeight) }
+    if self.sharedKey != nil { try container.encode(self.sharedKey, forKey: .sharedKey) }
+    if self.connectionStatus != nil { try container.encode(self.connectionStatus, forKey: .connectionStatus) }
+    if self.tunnelConnectionStatus != nil { try container.encode(self.tunnelConnectionStatus as! [TunnelConnectionHealthData?]?, forKey: .tunnelConnectionStatus) }
+    if self.egressBytesTransferred != nil { try container.encode(self.egressBytesTransferred, forKey: .egressBytesTransferred) }
+    if self.ingressBytesTransferred != nil { try container.encode(self.ingressBytesTransferred, forKey: .ingressBytesTransferred) }
+    if self.peer != nil { try container.encode(self.peer as! SubResourceData?, forKey: .peer) }
+    if self.enableBgp != nil { try container.encode(self.enableBgp, forKey: .enableBgp) }
+    if self.usePolicyBasedTrafficSelectors != nil { try container.encode(self.usePolicyBasedTrafficSelectors, forKey: .usePolicyBasedTrafficSelectors) }
+    if self.ipsecPolicies != nil { try container.encode(self.ipsecPolicies as! [IpsecPolicyData?]?, forKey: .ipsecPolicies) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

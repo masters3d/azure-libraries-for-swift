@@ -10,7 +10,7 @@ internal struct DailyRetentionFormatData : DailyRetentionFormatProtocol {
         enum CodingKeys: String, CodingKey {case daysOfTheMonth = "daysOfTheMonth"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DailyRetentionFormatData : DailyRetentionFormatProtocol {
       if container.contains(.daysOfTheMonth) {
         self.daysOfTheMonth = try container.decode([DayData?]?.self, forKey: .daysOfTheMonth)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DailyRetentionFormatData : DailyRetentionFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.daysOfTheMonth != nil {try container.encode(self.daysOfTheMonth as! [DayData?]?, forKey: .daysOfTheMonth)}
+    if self.daysOfTheMonth != nil { try container.encode(self.daysOfTheMonth as! [DayData?]?, forKey: .daysOfTheMonth) }
   }
 }
 

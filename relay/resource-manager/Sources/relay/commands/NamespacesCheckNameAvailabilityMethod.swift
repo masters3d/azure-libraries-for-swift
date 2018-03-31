@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NamespacesCheckNameAvailabilityMethod  {
+public protocol NamespacesCheckNameAvailabilityMethod {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckNameAvailabilityProtocol?  { get set }
+    var parameters :  CheckNameAvailabilityProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Namespaces {
@@ -26,7 +26,7 @@ extension Commands.Namespaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = parameters
@@ -47,12 +47,12 @@ extension Commands.Namespaces {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CheckNameAvailabilityResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CheckNameAvailabilityResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CheckNameAvailabilityResultData?, error: Error?) in
                 completionHandler(result, error)

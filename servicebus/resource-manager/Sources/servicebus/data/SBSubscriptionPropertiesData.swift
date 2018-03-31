@@ -42,7 +42,7 @@ internal struct SBSubscriptionPropertiesData : SBSubscriptionPropertiesProtocol 
         case forwardDeadLetteredMessagesTo = "forwardDeadLetteredMessagesTo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,7 +98,7 @@ internal struct SBSubscriptionPropertiesData : SBSubscriptionPropertiesProtocol 
     if container.contains(.forwardDeadLetteredMessagesTo) {
         self.forwardDeadLetteredMessagesTo = try container.decode(String?.self, forKey: .forwardDeadLetteredMessagesTo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -108,7 +108,7 @@ internal struct SBSubscriptionPropertiesData : SBSubscriptionPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.messageCount != nil {try container.encode(self.messageCount, forKey: .messageCount)}
+    if self.messageCount != nil { try container.encode(self.messageCount, forKey: .messageCount) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
@@ -118,19 +118,19 @@ internal struct SBSubscriptionPropertiesData : SBSubscriptionPropertiesProtocol 
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.countDetails != nil {try container.encode(self.countDetails as! MessageCountDetailsData?, forKey: .countDetails)}
-    if self.lockDuration != nil {try container.encode(self.lockDuration, forKey: .lockDuration)}
-    if self.requiresSession != nil {try container.encode(self.requiresSession, forKey: .requiresSession)}
-    if self.defaultMessageTimeToLive != nil {try container.encode(self.defaultMessageTimeToLive, forKey: .defaultMessageTimeToLive)}
-    if self.deadLetteringOnFilterEvaluationExceptions != nil {try container.encode(self.deadLetteringOnFilterEvaluationExceptions, forKey: .deadLetteringOnFilterEvaluationExceptions)}
-    if self.deadLetteringOnMessageExpiration != nil {try container.encode(self.deadLetteringOnMessageExpiration, forKey: .deadLetteringOnMessageExpiration)}
-    if self.duplicateDetectionHistoryTimeWindow != nil {try container.encode(self.duplicateDetectionHistoryTimeWindow, forKey: .duplicateDetectionHistoryTimeWindow)}
-    if self.maxDeliveryCount != nil {try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.enableBatchedOperations != nil {try container.encode(self.enableBatchedOperations, forKey: .enableBatchedOperations)}
-    if self.autoDeleteOnIdle != nil {try container.encode(self.autoDeleteOnIdle, forKey: .autoDeleteOnIdle)}
-    if self.forwardTo != nil {try container.encode(self.forwardTo, forKey: .forwardTo)}
-    if self.forwardDeadLetteredMessagesTo != nil {try container.encode(self.forwardDeadLetteredMessagesTo, forKey: .forwardDeadLetteredMessagesTo)}
+    if self.countDetails != nil { try container.encode(self.countDetails as! MessageCountDetailsData?, forKey: .countDetails) }
+    if self.lockDuration != nil { try container.encode(self.lockDuration, forKey: .lockDuration) }
+    if self.requiresSession != nil { try container.encode(self.requiresSession, forKey: .requiresSession) }
+    if self.defaultMessageTimeToLive != nil { try container.encode(self.defaultMessageTimeToLive, forKey: .defaultMessageTimeToLive) }
+    if self.deadLetteringOnFilterEvaluationExceptions != nil { try container.encode(self.deadLetteringOnFilterEvaluationExceptions, forKey: .deadLetteringOnFilterEvaluationExceptions) }
+    if self.deadLetteringOnMessageExpiration != nil { try container.encode(self.deadLetteringOnMessageExpiration, forKey: .deadLetteringOnMessageExpiration) }
+    if self.duplicateDetectionHistoryTimeWindow != nil { try container.encode(self.duplicateDetectionHistoryTimeWindow, forKey: .duplicateDetectionHistoryTimeWindow) }
+    if self.maxDeliveryCount != nil { try container.encode(self.maxDeliveryCount, forKey: .maxDeliveryCount) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.enableBatchedOperations != nil { try container.encode(self.enableBatchedOperations, forKey: .enableBatchedOperations) }
+    if self.autoDeleteOnIdle != nil { try container.encode(self.autoDeleteOnIdle, forKey: .autoDeleteOnIdle) }
+    if self.forwardTo != nil { try container.encode(self.forwardTo, forKey: .forwardTo) }
+    if self.forwardDeadLetteredMessagesTo != nil { try container.encode(self.forwardDeadLetteredMessagesTo, forKey: .forwardDeadLetteredMessagesTo) }
   }
 }
 

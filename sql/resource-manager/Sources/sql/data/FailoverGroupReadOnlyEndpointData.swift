@@ -10,7 +10,7 @@ internal struct FailoverGroupReadOnlyEndpointData : FailoverGroupReadOnlyEndpoin
         enum CodingKeys: String, CodingKey {case failoverPolicy = "failoverPolicy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct FailoverGroupReadOnlyEndpointData : FailoverGroupReadOnlyEndpoin
       if container.contains(.failoverPolicy) {
         self.failoverPolicy = try container.decode(ReadOnlyEndpointFailoverPolicyEnum?.self, forKey: .failoverPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct FailoverGroupReadOnlyEndpointData : FailoverGroupReadOnlyEndpoin
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.failoverPolicy != nil {try container.encode(self.failoverPolicy, forKey: .failoverPolicy)}
+    if self.failoverPolicy != nil { try container.encode(self.failoverPolicy, forKey: .failoverPolicy) }
   }
 }
 

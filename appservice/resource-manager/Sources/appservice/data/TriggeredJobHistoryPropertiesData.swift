@@ -10,7 +10,7 @@ internal struct TriggeredJobHistoryPropertiesData : TriggeredJobHistoryPropertie
         enum CodingKeys: String, CodingKey {case triggeredJobRuns = "triggeredJobRuns"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct TriggeredJobHistoryPropertiesData : TriggeredJobHistoryPropertie
       if container.contains(.triggeredJobRuns) {
         self.triggeredJobRuns = try container.decode([TriggeredJobRunData?]?.self, forKey: .triggeredJobRuns)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct TriggeredJobHistoryPropertiesData : TriggeredJobHistoryPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.triggeredJobRuns != nil {try container.encode(self.triggeredJobRuns as! [TriggeredJobRunData?]?, forKey: .triggeredJobRuns)}
+    if self.triggeredJobRuns != nil { try container.encode(self.triggeredJobRuns as! [TriggeredJobRunData?]?, forKey: .triggeredJobRuns) }
   }
 }
 

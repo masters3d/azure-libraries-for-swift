@@ -10,7 +10,7 @@ internal struct ARecordData : ARecordProtocol {
         enum CodingKeys: String, CodingKey {case ipv4Address = "ipv4Address"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ARecordData : ARecordProtocol {
       if container.contains(.ipv4Address) {
         self.ipv4Address = try container.decode(String?.self, forKey: .ipv4Address)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ARecordData : ARecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ipv4Address != nil {try container.encode(self.ipv4Address, forKey: .ipv4Address)}
+    if self.ipv4Address != nil { try container.encode(self.ipv4Address, forKey: .ipv4Address) }
   }
 }
 

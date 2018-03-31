@@ -26,7 +26,7 @@ internal struct ReservationSummariesPropertiesData : ReservationSummariesPropert
         case maxUtilizationPercentage = "maxUtilizationPercentage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct ReservationSummariesPropertiesData : ReservationSummariesPropert
     if container.contains(.maxUtilizationPercentage) {
         self.maxUtilizationPercentage = try container.decode(Decimal?.self, forKey: .maxUtilizationPercentage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,17 +68,17 @@ internal struct ReservationSummariesPropertiesData : ReservationSummariesPropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.reservationOrderId != nil {try container.encode(self.reservationOrderId, forKey: .reservationOrderId)}
-    if self.reservationId != nil {try container.encode(self.reservationId, forKey: .reservationId)}
-    if self.skuName != nil {try container.encode(self.skuName, forKey: .skuName)}
-    if self.reservedHours != nil {try container.encode(self.reservedHours, forKey: .reservedHours)}
+    if self.reservationOrderId != nil { try container.encode(self.reservationOrderId, forKey: .reservationOrderId) }
+    if self.reservationId != nil { try container.encode(self.reservationId, forKey: .reservationId) }
+    if self.skuName != nil { try container.encode(self.skuName, forKey: .skuName) }
+    if self.reservedHours != nil { try container.encode(self.reservedHours, forKey: .reservedHours) }
     if self.usageDate != nil {
         try container.encode(DateConverter.toString(date: self.usageDate!, format: .dateTime), forKey: .usageDate)
     }
-    if self.usedHours != nil {try container.encode(self.usedHours, forKey: .usedHours)}
-    if self.minUtilizationPercentage != nil {try container.encode(self.minUtilizationPercentage, forKey: .minUtilizationPercentage)}
-    if self.avgUtilizationPercentage != nil {try container.encode(self.avgUtilizationPercentage, forKey: .avgUtilizationPercentage)}
-    if self.maxUtilizationPercentage != nil {try container.encode(self.maxUtilizationPercentage, forKey: .maxUtilizationPercentage)}
+    if self.usedHours != nil { try container.encode(self.usedHours, forKey: .usedHours) }
+    if self.minUtilizationPercentage != nil { try container.encode(self.minUtilizationPercentage, forKey: .minUtilizationPercentage) }
+    if self.avgUtilizationPercentage != nil { try container.encode(self.avgUtilizationPercentage, forKey: .avgUtilizationPercentage) }
+    if self.maxUtilizationPercentage != nil { try container.encode(self.maxUtilizationPercentage, forKey: .maxUtilizationPercentage) }
   }
 }
 

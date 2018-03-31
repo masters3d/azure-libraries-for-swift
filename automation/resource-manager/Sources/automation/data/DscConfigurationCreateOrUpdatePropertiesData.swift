@@ -18,7 +18,7 @@ internal struct DscConfigurationCreateOrUpdatePropertiesData : DscConfigurationC
         case description = "description"
         }
 
-  public init(source: ContentSourceProtocol)  {
+  public init(source: ContentSourceProtocol) {
     self.source = source
   }
 
@@ -37,7 +37,7 @@ internal struct DscConfigurationCreateOrUpdatePropertiesData : DscConfigurationC
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,11 +47,11 @@ internal struct DscConfigurationCreateOrUpdatePropertiesData : DscConfigurationC
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.logVerbose != nil {try container.encode(self.logVerbose, forKey: .logVerbose)}
-    if self.logProgress != nil {try container.encode(self.logProgress, forKey: .logProgress)}
+    if self.logVerbose != nil { try container.encode(self.logVerbose, forKey: .logVerbose) }
+    if self.logProgress != nil { try container.encode(self.logProgress, forKey: .logProgress) }
     try container.encode(self.source as! ContentSourceData, forKey: .source)
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

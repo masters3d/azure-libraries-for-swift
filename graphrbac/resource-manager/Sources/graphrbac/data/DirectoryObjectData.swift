@@ -14,7 +14,7 @@ internal struct DirectoryObjectData : DirectoryObjectProtocol {
         case deletionTimestamp = "deletionTimestamp"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DirectoryObjectData : DirectoryObjectProtocol {
     if container.contains(.deletionTimestamp) {
         self.deletionTimestamp = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .deletionTimestamp)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct DirectoryObjectData : DirectoryObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
     if self.deletionTimestamp != nil {
         try container.encode(DateConverter.toString(date: self.deletionTimestamp!, format: .dateTime), forKey: .deletionTimestamp)
     }

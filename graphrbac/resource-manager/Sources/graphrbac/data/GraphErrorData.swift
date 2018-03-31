@@ -10,7 +10,7 @@ internal struct GraphErrorData : GraphErrorProtocol {
         enum CodingKeys: String, CodingKey {case odataerror = "odata.error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GraphErrorData : GraphErrorProtocol {
       if container.contains(.odataerror) {
         self.odataerror = try container.decode(OdataErrorData?.self, forKey: .odataerror)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GraphErrorData : GraphErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.odataerror != nil {try container.encode(self.odataerror as! OdataErrorData?, forKey: .odataerror)}
+    if self.odataerror != nil { try container.encode(self.odataerror as! OdataErrorData?, forKey: .odataerror) }
   }
 }
 

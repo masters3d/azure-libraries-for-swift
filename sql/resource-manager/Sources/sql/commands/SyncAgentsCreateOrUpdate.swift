@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SyncAgentsCreateOrUpdate  {
+public protocol SyncAgentsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var serverName : String { get set }
     var syncAgentName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  SyncAgentProtocol?  { get set }
+    var parameters :  SyncAgentProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SyncAgentProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SyncAgentProtocol?, Error?) -> Void)
 }
 
 extension Commands.SyncAgents {
@@ -36,7 +36,7 @@ extension Commands.SyncAgents {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{serverName}"] = String(describing: self.serverName)
             self.pathParameters["{syncAgentName}"] = String(describing: self.syncAgentName)
@@ -60,12 +60,12 @@ extension Commands.SyncAgents {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SyncAgentData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SyncAgentProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SyncAgentProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: SyncAgentData?, error: Error?) in
                 completionHandler(result, error)

@@ -12,7 +12,7 @@ internal struct AzureWorkloadJobTaskDetailsData : AzureWorkloadJobTaskDetailsPro
         case status = "status"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureWorkloadJobTaskDetailsData : AzureWorkloadJobTaskDetailsPro
     if container.contains(.status) {
         self.status = try container.decode(String?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureWorkloadJobTaskDetailsData : AzureWorkloadJobTaskDetailsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.taskId != nil {try container.encode(self.taskId, forKey: .taskId)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.taskId != nil { try container.encode(self.taskId, forKey: .taskId) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

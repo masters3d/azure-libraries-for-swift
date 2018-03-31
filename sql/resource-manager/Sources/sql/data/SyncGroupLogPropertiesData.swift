@@ -20,7 +20,7 @@ internal struct SyncGroupLogPropertiesData : SyncGroupLogPropertiesProtocol {
         case operationStatus = "operationStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct SyncGroupLogPropertiesData : SyncGroupLogPropertiesProtocol {
     if container.contains(.operationStatus) {
         self.operationStatus = try container.decode(String?.self, forKey: .operationStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,11 +56,11 @@ internal struct SyncGroupLogPropertiesData : SyncGroupLogPropertiesProtocol {
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.source != nil {try container.encode(self.source, forKey: .source)}
-    if self.details != nil {try container.encode(self.details, forKey: .details)}
-    if self.tracingId != nil {try container.encode(self.tracingId, forKey: .tracingId)}
-    if self.operationStatus != nil {try container.encode(self.operationStatus, forKey: .operationStatus)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.source != nil { try container.encode(self.source, forKey: .source) }
+    if self.details != nil { try container.encode(self.details, forKey: .details) }
+    if self.tracingId != nil { try container.encode(self.tracingId, forKey: .tracingId) }
+    if self.operationStatus != nil { try container.encode(self.operationStatus, forKey: .operationStatus) }
   }
 }
 

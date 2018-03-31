@@ -14,7 +14,7 @@ internal struct CreateNetworkMappingInputPropertiesData : CreateNetworkMappingIn
         case fabricSpecificDetails = "fabricSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CreateNetworkMappingInputPropertiesData : CreateNetworkMappingIn
     if container.contains(.fabricSpecificDetails) {
         self.fabricSpecificDetails = try container.decode(FabricSpecificCreateNetworkMappingInputData?.self, forKey: .fabricSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CreateNetworkMappingInputPropertiesData : CreateNetworkMappingIn
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryFabricName != nil {try container.encode(self.recoveryFabricName, forKey: .recoveryFabricName)}
-    if self.recoveryNetworkId != nil {try container.encode(self.recoveryNetworkId, forKey: .recoveryNetworkId)}
-    if self.fabricSpecificDetails != nil {try container.encode(self.fabricSpecificDetails as! FabricSpecificCreateNetworkMappingInputData?, forKey: .fabricSpecificDetails)}
+    if self.recoveryFabricName != nil { try container.encode(self.recoveryFabricName, forKey: .recoveryFabricName) }
+    if self.recoveryNetworkId != nil { try container.encode(self.recoveryNetworkId, forKey: .recoveryNetworkId) }
+    if self.fabricSpecificDetails != nil { try container.encode(self.fabricSpecificDetails as! FabricSpecificCreateNetworkMappingInputData?, forKey: .fabricSpecificDetails) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct X12OneWayAgreementData : X12OneWayAgreementProtocol {
         case protocolSettings = "protocolSettings"
         }
 
-  public init(senderBusinessIdentity: BusinessIdentityProtocol, receiverBusinessIdentity: BusinessIdentityProtocol, protocolSettings: X12ProtocolSettingsProtocol)  {
+  public init(senderBusinessIdentity: BusinessIdentityProtocol, receiverBusinessIdentity: BusinessIdentityProtocol, protocolSettings: X12ProtocolSettingsProtocol) {
     self.senderBusinessIdentity = senderBusinessIdentity
     self.receiverBusinessIdentity = receiverBusinessIdentity
     self.protocolSettings = protocolSettings
@@ -25,7 +25,7 @@ internal struct X12OneWayAgreementData : X12OneWayAgreementProtocol {
       self.senderBusinessIdentity = try container.decode(BusinessIdentityData.self, forKey: .senderBusinessIdentity)
     self.receiverBusinessIdentity = try container.decode(BusinessIdentityData.self, forKey: .receiverBusinessIdentity)
     self.protocolSettings = try container.decode(X12ProtocolSettingsData.self, forKey: .protocolSettings)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -30,7 +30,7 @@ internal struct CloningInfoData : CloningInfoProtocol {
         case ignoreQuotas = "ignoreQuotas"
         }
 
-  public init(sourceWebAppId: String)  {
+  public init(sourceWebAppId: String) {
     self.sourceWebAppId = sourceWebAppId
   }
 
@@ -67,7 +67,7 @@ internal struct CloningInfoData : CloningInfoProtocol {
     if container.contains(.ignoreQuotas) {
         self.ignoreQuotas = try container.decode(Bool?.self, forKey: .ignoreQuotas)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -77,17 +77,17 @@ internal struct CloningInfoData : CloningInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.overwrite != nil {try container.encode(self.overwrite, forKey: .overwrite)}
-    if self.cloneCustomHostNames != nil {try container.encode(self.cloneCustomHostNames, forKey: .cloneCustomHostNames)}
-    if self.cloneSourceControl != nil {try container.encode(self.cloneSourceControl, forKey: .cloneSourceControl)}
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.overwrite != nil { try container.encode(self.overwrite, forKey: .overwrite) }
+    if self.cloneCustomHostNames != nil { try container.encode(self.cloneCustomHostNames, forKey: .cloneCustomHostNames) }
+    if self.cloneSourceControl != nil { try container.encode(self.cloneSourceControl, forKey: .cloneSourceControl) }
     try container.encode(self.sourceWebAppId, forKey: .sourceWebAppId)
-    if self.hostingEnvironment != nil {try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment)}
-    if self.appSettingsOverrides != nil {try container.encode(self.appSettingsOverrides, forKey: .appSettingsOverrides)}
-    if self.configureLoadBalancing != nil {try container.encode(self.configureLoadBalancing, forKey: .configureLoadBalancing)}
-    if self.trafficManagerProfileId != nil {try container.encode(self.trafficManagerProfileId, forKey: .trafficManagerProfileId)}
-    if self.trafficManagerProfileName != nil {try container.encode(self.trafficManagerProfileName, forKey: .trafficManagerProfileName)}
-    if self.ignoreQuotas != nil {try container.encode(self.ignoreQuotas, forKey: .ignoreQuotas)}
+    if self.hostingEnvironment != nil { try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment) }
+    if self.appSettingsOverrides != nil { try container.encode(self.appSettingsOverrides, forKey: .appSettingsOverrides) }
+    if self.configureLoadBalancing != nil { try container.encode(self.configureLoadBalancing, forKey: .configureLoadBalancing) }
+    if self.trafficManagerProfileId != nil { try container.encode(self.trafficManagerProfileId, forKey: .trafficManagerProfileId) }
+    if self.trafficManagerProfileName != nil { try container.encode(self.trafficManagerProfileName, forKey: .trafficManagerProfileName) }
+    if self.ignoreQuotas != nil { try container.encode(self.ignoreQuotas, forKey: .ignoreQuotas) }
   }
 }
 

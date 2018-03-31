@@ -12,7 +12,7 @@ internal struct TroubleshootingPropertiesData : TroubleshootingPropertiesProtoco
         case storagePath = "storagePath"
         }
 
-  public init(storageId: String, storagePath: String)  {
+  public init(storageId: String, storagePath: String) {
     self.storageId = storageId
     self.storagePath = storagePath
   }
@@ -21,7 +21,7 @@ internal struct TroubleshootingPropertiesData : TroubleshootingPropertiesProtoco
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.storageId = try container.decode(String.self, forKey: .storageId)
     self.storagePath = try container.decode(String.self, forKey: .storagePath)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

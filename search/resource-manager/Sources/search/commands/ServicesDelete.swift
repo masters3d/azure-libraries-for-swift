@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServicesDelete  {
+public protocol ServicesDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var searchServiceName : String { get set }
@@ -8,7 +8,7 @@ public protocol ServicesDelete  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Services {
@@ -31,7 +31,7 @@ extension Commands.Services {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -41,7 +41,7 @@ extension Commands.Services {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

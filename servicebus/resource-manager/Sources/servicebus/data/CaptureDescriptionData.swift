@@ -18,7 +18,7 @@ internal struct CaptureDescriptionData : CaptureDescriptionProtocol {
         case destination = "destination"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct CaptureDescriptionData : CaptureDescriptionProtocol {
     if container.contains(.destination) {
         self.destination = try container.decode(DestinationData?.self, forKey: .destination)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct CaptureDescriptionData : CaptureDescriptionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.encoding != nil {try container.encode(self.encoding, forKey: .encoding)}
-    if self.intervalInSeconds != nil {try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds)}
-    if self.sizeLimitInBytes != nil {try container.encode(self.sizeLimitInBytes, forKey: .sizeLimitInBytes)}
-    if self.destination != nil {try container.encode(self.destination as! DestinationData?, forKey: .destination)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.encoding != nil { try container.encode(self.encoding, forKey: .encoding) }
+    if self.intervalInSeconds != nil { try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds) }
+    if self.sizeLimitInBytes != nil { try container.encode(self.sizeLimitInBytes, forKey: .sizeLimitInBytes) }
+    if self.destination != nil { try container.encode(self.destination as! DestinationData?, forKey: .destination) }
   }
 }
 

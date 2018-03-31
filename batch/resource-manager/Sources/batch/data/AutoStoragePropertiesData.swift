@@ -12,7 +12,7 @@ internal struct AutoStoragePropertiesData : AutoStoragePropertiesProtocol, AutoS
         case lastKeySync = "lastKeySync"
         }
 
-  public init(storageAccountId: String, lastKeySync: Date)  {
+  public init(storageAccountId: String, lastKeySync: Date) {
     self.storageAccountId = storageAccountId
     self.lastKeySync = lastKeySync
   }
@@ -21,7 +21,7 @@ internal struct AutoStoragePropertiesData : AutoStoragePropertiesProtocol, AutoS
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.storageAccountId = try container.decode(String.self, forKey: .storageAccountId)
         self.lastKeySync = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastKeySync)), format: .dateTime)!
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

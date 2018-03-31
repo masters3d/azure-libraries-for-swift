@@ -14,7 +14,7 @@ internal struct ImageStorageProfileData : ImageStorageProfileProtocol {
         case zoneResilient = "zoneResilient"
         }
 
-  public init(osDisk: ImageOSDiskProtocol)  {
+  public init(osDisk: ImageOSDiskProtocol) {
     self.osDisk = osDisk
   }
 
@@ -27,7 +27,7 @@ internal struct ImageStorageProfileData : ImageStorageProfileProtocol {
     if container.contains(.zoneResilient) {
         self.zoneResilient = try container.decode(Bool?.self, forKey: .zoneResilient)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct ImageStorageProfileData : ImageStorageProfileProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osDisk as! ImageOSDiskData, forKey: .osDisk)
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! [ImageDataDiskData?]?, forKey: .dataDisks)}
-    if self.zoneResilient != nil {try container.encode(self.zoneResilient, forKey: .zoneResilient)}
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! [ImageDataDiskData?]?, forKey: .dataDisks) }
+    if self.zoneResilient != nil { try container.encode(self.zoneResilient, forKey: .zoneResilient) }
   }
 }
 

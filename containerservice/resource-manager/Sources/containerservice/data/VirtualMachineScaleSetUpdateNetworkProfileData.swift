@@ -10,7 +10,7 @@ internal struct VirtualMachineScaleSetUpdateNetworkProfileData : VirtualMachineS
         enum CodingKeys: String, CodingKey {case networkInterfaceConfigurations = "networkInterfaceConfigurations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetUpdateNetworkProfileData : VirtualMachineS
       if container.contains(.networkInterfaceConfigurations) {
         self.networkInterfaceConfigurations = try container.decode([VirtualMachineScaleSetUpdateNetworkConfigurationData?]?.self, forKey: .networkInterfaceConfigurations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetUpdateNetworkProfileData : VirtualMachineS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.networkInterfaceConfigurations != nil {try container.encode(self.networkInterfaceConfigurations as! [VirtualMachineScaleSetUpdateNetworkConfigurationData?]?, forKey: .networkInterfaceConfigurations)}
+    if self.networkInterfaceConfigurations != nil { try container.encode(self.networkInterfaceConfigurations as! [VirtualMachineScaleSetUpdateNetworkConfigurationData?]?, forKey: .networkInterfaceConfigurations) }
   }
 }
 

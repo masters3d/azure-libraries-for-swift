@@ -22,11 +22,11 @@ extension AzureClient:  StorageRuntimeClient {
                     completionHandler(res, nil)
                 },
                 onError: { error in
-                    completionHandler(nil,error)
+                    completionHandler(nil, error)
                 }
             ).disposed(by: disposeBag)
     }
-    
+
     public func executeHead<T:Decodable> (command: BaseCommand) throws -> T {
         guard let (httpResponse, _) = try self.createExecuteObservable(command: command).toBlocking().single() else {
             throw RuntimeError.general(message: "AzureClient.executeHead returned nil")

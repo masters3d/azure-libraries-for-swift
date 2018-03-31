@@ -14,7 +14,7 @@ internal struct BlobData : BlobProtocol {
         case metadata = "Metadata"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -35,10 +35,10 @@ internal struct BlobData : BlobProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(name, forKey: .name)}
-    if self.snapshot != nil {try container.encode(snapshot, forKey: .snapshot)}
-    if self.properties != nil {try container.encode(properties as! BlobPropertiesData?, forKey: .properties)}
-    if self.metadata != nil {try container.encode(metadata, forKey: .metadata)}
+    if self.name != nil { try container.encode(name, forKey: .name) }
+    if self.snapshot != nil { try container.encode(snapshot, forKey: .snapshot) }
+    if self.properties != nil { try container.encode(properties as! BlobPropertiesData?, forKey: .properties) }
+    if self.metadata != nil { try container.encode(metadata, forKey: .metadata) }
   }
 }
 

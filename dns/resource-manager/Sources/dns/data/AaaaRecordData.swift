@@ -10,7 +10,7 @@ internal struct AaaaRecordData : AaaaRecordProtocol {
         enum CodingKeys: String, CodingKey {case ipv6Address = "ipv6Address"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AaaaRecordData : AaaaRecordProtocol {
       if container.contains(.ipv6Address) {
         self.ipv6Address = try container.decode(String?.self, forKey: .ipv6Address)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AaaaRecordData : AaaaRecordProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ipv6Address != nil {try container.encode(self.ipv6Address, forKey: .ipv6Address)}
+    if self.ipv6Address != nil { try container.encode(self.ipv6Address, forKey: .ipv6Address) }
   }
 }
 

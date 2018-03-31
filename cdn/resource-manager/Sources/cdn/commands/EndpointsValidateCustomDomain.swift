@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol EndpointsValidateCustomDomain  {
+public protocol EndpointsValidateCustomDomain {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var profileName : String { get set }
     var endpointName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var customDomainProperties :  ValidateCustomDomainInputProtocol?  { get set }
+    var customDomainProperties :  ValidateCustomDomainInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ValidateCustomDomainOutputProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ValidateCustomDomainOutputProtocol?, Error?) -> Void)
 }
 
 extension Commands.Endpoints {
@@ -35,7 +35,7 @@ extension Commands.Endpoints {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{profileName}"] = String(describing: self.profileName)
             self.pathParameters["{endpointName}"] = String(describing: self.endpointName)
@@ -59,12 +59,12 @@ extension Commands.Endpoints {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ValidateCustomDomainOutputData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ValidateCustomDomainOutputProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ValidateCustomDomainOutputProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ValidateCustomDomainOutputData?, error: Error?) in
                 completionHandler(result, error)

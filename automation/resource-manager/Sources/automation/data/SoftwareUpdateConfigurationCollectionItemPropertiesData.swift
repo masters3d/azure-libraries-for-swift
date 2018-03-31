@@ -22,7 +22,7 @@ internal struct SoftwareUpdateConfigurationCollectionItemPropertiesData : Softwa
         case nextRun = "nextRun"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SoftwareUpdateConfigurationCollectionItemPropertiesData : Softwa
     if container.contains(.nextRun) {
         self.nextRun = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .nextRun)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,8 +58,8 @@ internal struct SoftwareUpdateConfigurationCollectionItemPropertiesData : Softwa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.updateConfiguration != nil {try container.encode(self.updateConfiguration as! CollectionItemUpdateConfigurationData?, forKey: .updateConfiguration)}
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
+    if self.updateConfiguration != nil { try container.encode(self.updateConfiguration as! CollectionItemUpdateConfigurationData?, forKey: .updateConfiguration) }
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
@@ -69,7 +69,7 @@ internal struct SoftwareUpdateConfigurationCollectionItemPropertiesData : Softwa
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.nextRun != nil {
         try container.encode(DateConverter.toString(date: self.nextRun!, format: .dateTime), forKey: .nextRun)
     }

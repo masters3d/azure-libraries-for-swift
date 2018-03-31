@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ZonesDelete  {
+public protocol ZonesDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var zoneName : String { get set }
@@ -8,7 +8,7 @@ public protocol ZonesDelete  {
     var apiVersion : String { get set }
     var ifMatch : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Zones {
@@ -33,7 +33,7 @@ extension Commands.Zones {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{zoneName}"] = String(describing: self.zoneName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -43,7 +43,7 @@ extension Commands.Zones {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

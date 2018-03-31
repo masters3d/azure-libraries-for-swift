@@ -18,7 +18,7 @@ internal struct ExpressRouteCircuitRoutesTableData : ExpressRouteCircuitRoutesTa
         case path = "path"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ExpressRouteCircuitRoutesTableData : ExpressRouteCircuitRoutesTa
     if container.contains(.path) {
         self.path = try container.decode(String?.self, forKey: .path)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ExpressRouteCircuitRoutesTableData : ExpressRouteCircuitRoutesTa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.network != nil {try container.encode(self.network, forKey: .network)}
-    if self.nextHop != nil {try container.encode(self.nextHop, forKey: .nextHop)}
-    if self.locPrf != nil {try container.encode(self.locPrf, forKey: .locPrf)}
-    if self.weight != nil {try container.encode(self.weight, forKey: .weight)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
+    if self.network != nil { try container.encode(self.network, forKey: .network) }
+    if self.nextHop != nil { try container.encode(self.nextHop, forKey: .nextHop) }
+    if self.locPrf != nil { try container.encode(self.locPrf, forKey: .locPrf) }
+    if self.weight != nil { try container.encode(self.weight, forKey: .weight) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
   }
 }
 

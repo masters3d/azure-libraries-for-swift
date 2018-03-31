@@ -14,7 +14,7 @@ internal struct ConsumerGroupPropertiesData : ConsumerGroupPropertiesProtocol {
         case userMetadata = "userMetadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ConsumerGroupPropertiesData : ConsumerGroupPropertiesProtocol {
     if container.contains(.userMetadata) {
         self.userMetadata = try container.decode(String?.self, forKey: .userMetadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct ConsumerGroupPropertiesData : ConsumerGroupPropertiesProtocol {
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.userMetadata != nil {try container.encode(self.userMetadata, forKey: .userMetadata)}
+    if self.userMetadata != nil { try container.encode(self.userMetadata, forKey: .userMetadata) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct ServiceGetPropertiesHeadersData : ServiceGetPropertiesHeadersPro
         case version = "x-ms-version"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -25,8 +25,8 @@ internal struct ServiceGetPropertiesHeadersData : ServiceGetPropertiesHeadersPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.requestId != nil {try container.encode(requestId, forKey: .requestId)}
-    if self.version != nil {try container.encode(version, forKey: .version)}
+    if self.requestId != nil { try container.encode(requestId, forKey: .requestId) }
+    if self.version != nil { try container.encode(version, forKey: .version) }
   }
 }
 

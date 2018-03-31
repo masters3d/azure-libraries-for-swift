@@ -14,7 +14,7 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
         case displayName = "displayName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
     if container.contains(.displayName) {
         self.displayName = try container.decode(String?.self, forKey: .displayName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApplicationUpdateParametersData : ApplicationUpdateParametersPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allowUpdates != nil {try container.encode(self.allowUpdates, forKey: .allowUpdates)}
-    if self.defaultVersion != nil {try container.encode(self.defaultVersion, forKey: .defaultVersion)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
+    if self.allowUpdates != nil { try container.encode(self.allowUpdates, forKey: .allowUpdates) }
+    if self.defaultVersion != nil { try container.encode(self.defaultVersion, forKey: .defaultVersion) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct LogSettingsData : LogSettingsProtocol {
         case retentionPolicy = "retentionPolicy"
         }
 
-  public init(enabled: Bool)  {
+  public init(enabled: Bool) {
     self.enabled = enabled
   }
 
@@ -27,7 +27,7 @@ internal struct LogSettingsData : LogSettingsProtocol {
     if container.contains(.retentionPolicy) {
         self.retentionPolicy = try container.decode(RetentionPolicyData?.self, forKey: .retentionPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct LogSettingsData : LogSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.category != nil {try container.encode(self.category, forKey: .category)}
+    if self.category != nil { try container.encode(self.category, forKey: .category) }
     try container.encode(self.enabled, forKey: .enabled)
-    if self.retentionPolicy != nil {try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy)}
+    if self.retentionPolicy != nil { try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy) }
   }
 }
 

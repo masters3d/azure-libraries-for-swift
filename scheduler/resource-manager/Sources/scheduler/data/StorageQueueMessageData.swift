@@ -16,7 +16,7 @@ internal struct StorageQueueMessageData : StorageQueueMessageProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct StorageQueueMessageData : StorageQueueMessageProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct StorageQueueMessageData : StorageQueueMessageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccount != nil {try container.encode(self.storageAccount, forKey: .storageAccount)}
-    if self.queueName != nil {try container.encode(self.queueName, forKey: .queueName)}
-    if self.sasToken != nil {try container.encode(self.sasToken, forKey: .sasToken)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.storageAccount != nil { try container.encode(self.storageAccount, forKey: .storageAccount) }
+    if self.queueName != nil { try container.encode(self.queueName, forKey: .queueName) }
+    if self.sasToken != nil { try container.encode(self.sasToken, forKey: .sasToken) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

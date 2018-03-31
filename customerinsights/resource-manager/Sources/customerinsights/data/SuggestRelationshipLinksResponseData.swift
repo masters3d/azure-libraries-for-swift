@@ -12,7 +12,7 @@ internal struct SuggestRelationshipLinksResponseData : SuggestRelationshipLinksR
         case suggestedRelationships = "suggestedRelationships"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SuggestRelationshipLinksResponseData : SuggestRelationshipLinksR
     if container.contains(.suggestedRelationships) {
         self.suggestedRelationships = try container.decode([RelationshipsLookupData?]?.self, forKey: .suggestedRelationships)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SuggestRelationshipLinksResponseData : SuggestRelationshipLinksR
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.interactionName != nil {try container.encode(self.interactionName, forKey: .interactionName)}
-    if self.suggestedRelationships != nil {try container.encode(self.suggestedRelationships as! [RelationshipsLookupData?]?, forKey: .suggestedRelationships)}
+    if self.interactionName != nil { try container.encode(self.interactionName, forKey: .interactionName) }
+    if self.suggestedRelationships != nil { try container.encode(self.suggestedRelationships as! [RelationshipsLookupData?]?, forKey: .suggestedRelationships) }
   }
 }
 

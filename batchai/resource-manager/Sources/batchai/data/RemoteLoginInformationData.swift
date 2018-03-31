@@ -14,7 +14,7 @@ internal struct RemoteLoginInformationData : RemoteLoginInformationProtocol {
         case port = "port"
         }
 
-  public init(nodeId: String, ipAddress: String, port: Double)  {
+  public init(nodeId: String, ipAddress: String, port: Double) {
     self.nodeId = nodeId
     self.ipAddress = ipAddress
     self.port = port
@@ -25,7 +25,7 @@ internal struct RemoteLoginInformationData : RemoteLoginInformationProtocol {
       self.nodeId = try container.decode(String.self, forKey: .nodeId)
     self.ipAddress = try container.decode(String.self, forKey: .ipAddress)
     self.port = try container.decode(Double.self, forKey: .port)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

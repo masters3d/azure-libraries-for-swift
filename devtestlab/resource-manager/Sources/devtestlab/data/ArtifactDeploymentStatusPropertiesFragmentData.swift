@@ -14,7 +14,7 @@ internal struct ArtifactDeploymentStatusPropertiesFragmentData : ArtifactDeploym
         case totalArtifacts = "totalArtifacts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ArtifactDeploymentStatusPropertiesFragmentData : ArtifactDeploym
     if container.contains(.totalArtifacts) {
         self.totalArtifacts = try container.decode(Int32?.self, forKey: .totalArtifacts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ArtifactDeploymentStatusPropertiesFragmentData : ArtifactDeploym
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.deploymentStatus != nil {try container.encode(self.deploymentStatus, forKey: .deploymentStatus)}
-    if self.artifactsApplied != nil {try container.encode(self.artifactsApplied, forKey: .artifactsApplied)}
-    if self.totalArtifacts != nil {try container.encode(self.totalArtifacts, forKey: .totalArtifacts)}
+    if self.deploymentStatus != nil { try container.encode(self.deploymentStatus, forKey: .deploymentStatus) }
+    if self.artifactsApplied != nil { try container.encode(self.artifactsApplied, forKey: .artifactsApplied) }
+    if self.totalArtifacts != nil { try container.encode(self.totalArtifacts, forKey: .totalArtifacts) }
   }
 }
 

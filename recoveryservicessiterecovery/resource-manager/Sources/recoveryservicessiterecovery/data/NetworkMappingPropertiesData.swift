@@ -26,7 +26,7 @@ internal struct NetworkMappingPropertiesData : NetworkMappingPropertiesProtocol 
         case fabricSpecificSettings = "fabricSpecificSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct NetworkMappingPropertiesData : NetworkMappingPropertiesProtocol 
     if container.contains(.fabricSpecificSettings) {
         self.fabricSpecificSettings = try container.decode(NetworkMappingFabricSpecificSettingsData?.self, forKey: .fabricSpecificSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct NetworkMappingPropertiesData : NetworkMappingPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.primaryNetworkFriendlyName != nil {try container.encode(self.primaryNetworkFriendlyName, forKey: .primaryNetworkFriendlyName)}
-    if self.primaryNetworkId != nil {try container.encode(self.primaryNetworkId, forKey: .primaryNetworkId)}
-    if self.primaryFabricFriendlyName != nil {try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName)}
-    if self.recoveryNetworkFriendlyName != nil {try container.encode(self.recoveryNetworkFriendlyName, forKey: .recoveryNetworkFriendlyName)}
-    if self.recoveryNetworkId != nil {try container.encode(self.recoveryNetworkId, forKey: .recoveryNetworkId)}
-    if self.recoveryFabricArmId != nil {try container.encode(self.recoveryFabricArmId, forKey: .recoveryFabricArmId)}
-    if self.recoveryFabricFriendlyName != nil {try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName)}
-    if self.fabricSpecificSettings != nil {try container.encode(self.fabricSpecificSettings as! NetworkMappingFabricSpecificSettingsData?, forKey: .fabricSpecificSettings)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.primaryNetworkFriendlyName != nil { try container.encode(self.primaryNetworkFriendlyName, forKey: .primaryNetworkFriendlyName) }
+    if self.primaryNetworkId != nil { try container.encode(self.primaryNetworkId, forKey: .primaryNetworkId) }
+    if self.primaryFabricFriendlyName != nil { try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName) }
+    if self.recoveryNetworkFriendlyName != nil { try container.encode(self.recoveryNetworkFriendlyName, forKey: .recoveryNetworkFriendlyName) }
+    if self.recoveryNetworkId != nil { try container.encode(self.recoveryNetworkId, forKey: .recoveryNetworkId) }
+    if self.recoveryFabricArmId != nil { try container.encode(self.recoveryFabricArmId, forKey: .recoveryFabricArmId) }
+    if self.recoveryFabricFriendlyName != nil { try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName) }
+    if self.fabricSpecificSettings != nil { try container.encode(self.fabricSpecificSettings as! NetworkMappingFabricSpecificSettingsData?, forKey: .fabricSpecificSettings) }
   }
 }
 

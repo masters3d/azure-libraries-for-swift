@@ -12,7 +12,7 @@ internal struct AzureFabricSpecificDetailsData : AzureFabricSpecificDetailsProto
         case containerIds = "containerIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureFabricSpecificDetailsData : AzureFabricSpecificDetailsProto
     if container.contains(.containerIds) {
         self.containerIds = try container.decode([String]?.self, forKey: .containerIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AzureFabricSpecificDetailsData : AzureFabricSpecificDetailsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.containerIds != nil {try container.encode(self.containerIds as! [String]?, forKey: .containerIds)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.containerIds != nil { try container.encode(self.containerIds as! [String]?, forKey: .containerIds) }
   }
 }
 

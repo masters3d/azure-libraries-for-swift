@@ -16,7 +16,7 @@ internal struct RollingUpgradeStatusInfoPropertiesData : RollingUpgradeStatusInf
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RollingUpgradeStatusInfoPropertiesData : RollingUpgradeStatusInf
     if container.contains(.error) {
         self.error = try container.decode(ApiErrorData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RollingUpgradeStatusInfoPropertiesData : RollingUpgradeStatusInf
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policy != nil {try container.encode(self.policy as! RollingUpgradePolicyData?, forKey: .policy)}
-    if self.runningStatus != nil {try container.encode(self.runningStatus as! RollingUpgradeRunningStatusData?, forKey: .runningStatus)}
-    if self.progress != nil {try container.encode(self.progress as! RollingUpgradeProgressInfoData?, forKey: .progress)}
-    if self.error != nil {try container.encode(self.error as! ApiErrorData?, forKey: .error)}
+    if self.policy != nil { try container.encode(self.policy as! RollingUpgradePolicyData?, forKey: .policy) }
+    if self.runningStatus != nil { try container.encode(self.runningStatus as! RollingUpgradeRunningStatusData?, forKey: .runningStatus) }
+    if self.progress != nil { try container.encode(self.progress as! RollingUpgradeProgressInfoData?, forKey: .progress) }
+    if self.error != nil { try container.encode(self.error as! ApiErrorData?, forKey: .error) }
   }
 }
 

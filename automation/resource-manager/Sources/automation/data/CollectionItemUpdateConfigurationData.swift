@@ -12,7 +12,7 @@ internal struct CollectionItemUpdateConfigurationData : CollectionItemUpdateConf
         case duration = "duration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CollectionItemUpdateConfigurationData : CollectionItemUpdateConf
     if container.contains(.duration) {
         self.duration = try container.decode(String?.self, forKey: .duration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CollectionItemUpdateConfigurationData : CollectionItemUpdateConf
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azureVirtualMachines != nil {try container.encode(self.azureVirtualMachines as! [String]?, forKey: .azureVirtualMachines)}
-    if self.duration != nil {try container.encode(self.duration, forKey: .duration)}
+    if self.azureVirtualMachines != nil { try container.encode(self.azureVirtualMachines as! [String]?, forKey: .azureVirtualMachines) }
+    if self.duration != nil { try container.encode(self.duration, forKey: .duration) }
   }
 }
 

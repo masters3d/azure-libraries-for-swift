@@ -14,7 +14,7 @@ internal struct VirtualMachineAgentInstanceViewData : VirtualMachineAgentInstanc
         case statuses = "statuses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VirtualMachineAgentInstanceViewData : VirtualMachineAgentInstanc
     if container.contains(.statuses) {
         self.statuses = try container.decode([InstanceViewStatusData?]?.self, forKey: .statuses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VirtualMachineAgentInstanceViewData : VirtualMachineAgentInstanc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmAgentVersion != nil {try container.encode(self.vmAgentVersion, forKey: .vmAgentVersion)}
-    if self.extensionHandlers != nil {try container.encode(self.extensionHandlers as! [VirtualMachineExtensionHandlerInstanceViewData?]?, forKey: .extensionHandlers)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
+    if self.vmAgentVersion != nil { try container.encode(self.vmAgentVersion, forKey: .vmAgentVersion) }
+    if self.extensionHandlers != nil { try container.encode(self.extensionHandlers as! [VirtualMachineExtensionHandlerInstanceViewData?]?, forKey: .extensionHandlers) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
   }
 }
 

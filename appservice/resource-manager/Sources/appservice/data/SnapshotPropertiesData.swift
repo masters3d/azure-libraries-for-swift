@@ -10,7 +10,7 @@ internal struct SnapshotPropertiesData : SnapshotPropertiesProtocol {
         enum CodingKeys: String, CodingKey {case time = "time"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SnapshotPropertiesData : SnapshotPropertiesProtocol {
       if container.contains(.time) {
         self.time = try container.decode(String?.self, forKey: .time)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SnapshotPropertiesData : SnapshotPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.time != nil {try container.encode(self.time, forKey: .time)}
+    if self.time != nil { try container.encode(self.time, forKey: .time) }
   }
 }
 

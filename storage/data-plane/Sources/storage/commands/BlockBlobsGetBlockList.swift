@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BlockBlobsGetBlockList  {
+public protocol BlockBlobsGetBlockList {
     var headerParameters: [String: String] { get set }
     var accountName : String { get set }
     var container : String { get set }
@@ -9,11 +9,11 @@ public protocol BlockBlobsGetBlockList  {
     var listType : BlockListType? { get set }
     var timeout : Int32? { get set }
     var comp : String { get set }
-    var leaseId : String?  { get set }
-    var version : String?  { get set }
-    var requestId : String?  { get set }
+    var leaseId : String? { get set }
+    var version : String? { get set }
+    var requestId : String? { get set }
     func execute(client: RuntimeClient,
-        completionHandler: @escaping (BlockListProtocol?, Error?) -> Void) -> Void ;
+        completionHandler: @escaping (BlockListProtocol?, Error?) -> Void)
 }
 
 extension Commands.BlockBlobs {
@@ -32,14 +32,14 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         set {
             if newValue != nil {
                 headerParameters["x-ms-lease-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-lease-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-lease-id" }) {
                 return headerParameters["x-ms-lease-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -49,14 +49,14 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         set {
             if newValue != nil {
                 headerParameters["x-ms-version"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-version"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-version" }) {
                 return headerParameters["x-ms-version"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -66,14 +66,14 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         set {
             if newValue != nil {
                 headerParameters["x-ms-client-request-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-client-request-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-client-request-id" }) {
                 return headerParameters["x-ms-client-request-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -92,7 +92,7 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         self.headerParameters = ["Content-Type":"application/xml; charset=utf-8"]
     }
 
-    public override func preCall()  {
+    public override func preCall() {
         self.pathParameters["{accountName}"] = String(describing: self.accountName)
         self.pathParameters["{container}"] = String(describing: self.container)
         self.pathParameters["{blob}"] = String(describing: self.blob)
@@ -101,7 +101,6 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         if self.timeout != nil { queryParameters["{timeout}"] = String(describing: self.timeout!) }
         self.queryParameters["{comp}"] = String(describing: self.comp)
 }
-
 
     public override func returnFunc(data: Data) throws -> Decodable? {
         let contentType = "application/xml"
@@ -112,7 +111,7 @@ internal class GetBlockListCommand : BaseCommand, BlockBlobsGetBlockList {
         throw DecodeError.unknownMimeType
     }
     public func execute(client: RuntimeClient,
-        completionHandler: @escaping (BlockListProtocol?, Error?) -> Void) -> Void {
+        completionHandler: @escaping (BlockListProtocol?, Error?) -> Void) {
         client.executeAsync(command: self) {
             (result: BlockListData?, error: Error?) in
             completionHandler(result, error)

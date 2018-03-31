@@ -22,7 +22,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
         case containerConfiguration = "containerConfiguration"
         }
 
-  public init(imageReference: ImageReferenceProtocol, nodeAgentSKUId: String)  {
+  public init(imageReference: ImageReferenceProtocol, nodeAgentSKUId: String) {
     self.imageReference = imageReference
     self.nodeAgentSKUId = nodeAgentSKUId
   }
@@ -46,7 +46,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
     if container.contains(.containerConfiguration) {
         self.containerConfiguration = try container.decode(ContainerConfigurationData?.self, forKey: .containerConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,12 +57,12 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.imageReference as! ImageReferenceData, forKey: .imageReference)
-    if self.osDisk != nil {try container.encode(self.osDisk as! OSDiskData?, forKey: .osDisk)}
+    if self.osDisk != nil { try container.encode(self.osDisk as! OSDiskData?, forKey: .osDisk) }
     try container.encode(self.nodeAgentSKUId, forKey: .nodeAgentSKUId)
-    if self.windowsConfiguration != nil {try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration)}
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! [DataDiskData?]?, forKey: .dataDisks)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
-    if self.containerConfiguration != nil {try container.encode(self.containerConfiguration as! ContainerConfigurationData?, forKey: .containerConfiguration)}
+    if self.windowsConfiguration != nil { try container.encode(self.windowsConfiguration as! WindowsConfigurationData?, forKey: .windowsConfiguration) }
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! [DataDiskData?]?, forKey: .dataDisks) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
+    if self.containerConfiguration != nil { try container.encode(self.containerConfiguration as! ContainerConfigurationData?, forKey: .containerConfiguration) }
   }
 }
 

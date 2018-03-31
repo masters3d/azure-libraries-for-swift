@@ -12,7 +12,7 @@ internal struct DisableProtectionInputPropertiesData : DisableProtectionInputPro
         case replicationProviderInput = "replicationProviderInput"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DisableProtectionInputPropertiesData : DisableProtectionInputPro
     if container.contains(.replicationProviderInput) {
         self.replicationProviderInput = try container.decode(DisableProtectionProviderSpecificInputData?.self, forKey: .replicationProviderInput)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DisableProtectionInputPropertiesData : DisableProtectionInputPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.disableProtectionReason != nil {try container.encode(self.disableProtectionReason, forKey: .disableProtectionReason)}
-    if self.replicationProviderInput != nil {try container.encode(self.replicationProviderInput as! DisableProtectionProviderSpecificInputData?, forKey: .replicationProviderInput)}
+    if self.disableProtectionReason != nil { try container.encode(self.disableProtectionReason, forKey: .disableProtectionReason) }
+    if self.replicationProviderInput != nil { try container.encode(self.replicationProviderInput as! DisableProtectionProviderSpecificInputData?, forKey: .replicationProviderInput) }
   }
 }
 

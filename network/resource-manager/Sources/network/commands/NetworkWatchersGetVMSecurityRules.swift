@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkWatchersGetVMSecurityRules  {
+public protocol NetworkWatchersGetVMSecurityRules {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkWatcherName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  SecurityGroupViewParametersProtocol?  { get set }
+    var parameters :  SecurityGroupViewParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SecurityGroupViewResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SecurityGroupViewResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkWatchers {
@@ -34,7 +34,7 @@ extension Commands.NetworkWatchers {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkWatcherName}"] = String(describing: self.networkWatcherName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.NetworkWatchers {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SecurityGroupViewResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SecurityGroupViewResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SecurityGroupViewResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: SecurityGroupViewResultData?, error: Error?) in
                 completionHandler(result, error)

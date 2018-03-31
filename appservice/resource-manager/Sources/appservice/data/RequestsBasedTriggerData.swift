@@ -12,7 +12,7 @@ internal struct RequestsBasedTriggerData : RequestsBasedTriggerProtocol {
         case timeInterval = "timeInterval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RequestsBasedTriggerData : RequestsBasedTriggerProtocol {
     if container.contains(.timeInterval) {
         self.timeInterval = try container.decode(String?.self, forKey: .timeInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RequestsBasedTriggerData : RequestsBasedTriggerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.timeInterval != nil {try container.encode(self.timeInterval, forKey: .timeInterval)}
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.timeInterval != nil { try container.encode(self.timeInterval, forKey: .timeInterval) }
   }
 }
 

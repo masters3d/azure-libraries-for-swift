@@ -12,7 +12,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
         case evaluationInterval = "evaluationInterval"
         }
 
-  public init(formula: String)  {
+  public init(formula: String) {
     self.formula = formula
   }
 
@@ -22,7 +22,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
     if container.contains(.evaluationInterval) {
         self.evaluationInterval = try container.decode(String?.self, forKey: .evaluationInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.formula, forKey: .formula)
-    if self.evaluationInterval != nil {try container.encode(self.evaluationInterval, forKey: .evaluationInterval)}
+    if self.evaluationInterval != nil { try container.encode(self.evaluationInterval, forKey: .evaluationInterval) }
   }
 }
 

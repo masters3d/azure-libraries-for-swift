@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SubscriptionUsagesGet  {
+public protocol SubscriptionUsagesGet {
     var headerParameters: [String: String] { get set }
     var locationName : String { get set }
     var usageName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SubscriptionUsageProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SubscriptionUsageProtocol?, Error?) -> Void)
 }
 
 extension Commands.SubscriptionUsages {
@@ -29,7 +29,7 @@ extension Commands.SubscriptionUsages {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{locationName}"] = String(describing: self.locationName)
             self.pathParameters["{usageName}"] = String(describing: self.usageName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -42,12 +42,12 @@ extension Commands.SubscriptionUsages {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SubscriptionUsageData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SubscriptionUsageProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SubscriptionUsageProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SubscriptionUsageData?, error: Error?) in
                 completionHandler(result, error)

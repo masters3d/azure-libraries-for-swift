@@ -14,7 +14,7 @@ internal struct SkuData : SkuProtocol {
         case capacity = "capacity"
         }
 
-  public init(name: SkuNameEnum, family: SkuFamilyEnum, capacity: Int32)  {
+  public init(name: SkuNameEnum, family: SkuFamilyEnum, capacity: Int32) {
     self.name = name
     self.family = family
     self.capacity = capacity
@@ -25,7 +25,7 @@ internal struct SkuData : SkuProtocol {
       self.name = try container.decode(SkuNameEnum.self, forKey: .name)
     self.family = try container.decode(SkuFamilyEnum.self, forKey: .family)
     self.capacity = try container.decode(Int32.self, forKey: .capacity)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

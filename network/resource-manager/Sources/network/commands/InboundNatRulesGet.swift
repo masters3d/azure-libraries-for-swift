@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol InboundNatRulesGet  {
+public protocol InboundNatRulesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var loadBalancerName : String { get set }
@@ -9,7 +9,7 @@ public protocol InboundNatRulesGet  {
     var apiVersion : String { get set }
     var expand : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (InboundNatRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (InboundNatRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.InboundNatRules {
@@ -34,7 +34,7 @@ extension Commands.InboundNatRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{loadBalancerName}"] = String(describing: self.loadBalancerName)
             self.pathParameters["{inboundNatRuleName}"] = String(describing: self.inboundNatRuleName)
@@ -49,12 +49,12 @@ extension Commands.InboundNatRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(InboundNatRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (InboundNatRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (InboundNatRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: InboundNatRuleData?, error: Error?) in
                 completionHandler(result, error)

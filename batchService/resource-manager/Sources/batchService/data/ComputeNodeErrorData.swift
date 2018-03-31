@@ -14,7 +14,7 @@ internal struct ComputeNodeErrorData : ComputeNodeErrorProtocol {
         case errorDetails = "errorDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ComputeNodeErrorData : ComputeNodeErrorProtocol {
     if container.contains(.errorDetails) {
         self.errorDetails = try container.decode([NameValuePairData?]?.self, forKey: .errorDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ComputeNodeErrorData : ComputeNodeErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.errorDetails != nil {try container.encode(self.errorDetails as! [NameValuePairData?]?, forKey: .errorDetails)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.errorDetails != nil { try container.encode(self.errorDetails as! [NameValuePairData?]?, forKey: .errorDetails) }
   }
 }
 

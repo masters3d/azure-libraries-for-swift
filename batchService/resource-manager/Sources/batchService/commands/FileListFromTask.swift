@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol FileListFromTask  {
+public protocol FileListFromTask {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -15,7 +15,7 @@ public protocol FileListFromTask  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NodeFileListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NodeFileListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.File {
@@ -48,7 +48,7 @@ extension Commands.File {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{jobId}"] = String(describing: self.jobId)
             self.pathParameters["{taskId}"] = String(describing: self.taskId)
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
@@ -74,15 +74,15 @@ extension Commands.File {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NodeFileListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NodeFileListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

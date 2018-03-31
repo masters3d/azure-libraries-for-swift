@@ -30,7 +30,7 @@ internal struct RestoreRequestPropertiesData : RestoreRequestPropertiesProtocol 
         case hostingEnvironment = "hostingEnvironment"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct RestoreRequestPropertiesData : RestoreRequestPropertiesProtocol 
     if container.contains(.hostingEnvironment) {
         self.hostingEnvironment = try container.decode(String?.self, forKey: .hostingEnvironment)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct RestoreRequestPropertiesData : RestoreRequestPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccountUrl != nil {try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl)}
-    if self.blobName != nil {try container.encode(self.blobName, forKey: .blobName)}
-    if self.overwrite != nil {try container.encode(self.overwrite, forKey: .overwrite)}
-    if self.siteName != nil {try container.encode(self.siteName, forKey: .siteName)}
-    if self.databases != nil {try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases)}
-    if self.ignoreConflictingHostNames != nil {try container.encode(self.ignoreConflictingHostNames, forKey: .ignoreConflictingHostNames)}
-    if self.ignoreDatabases != nil {try container.encode(self.ignoreDatabases, forKey: .ignoreDatabases)}
-    if self.appServicePlan != nil {try container.encode(self.appServicePlan, forKey: .appServicePlan)}
-    if self.operationType != nil {try container.encode(self.operationType, forKey: .operationType)}
-    if self.adjustConnectionStrings != nil {try container.encode(self.adjustConnectionStrings, forKey: .adjustConnectionStrings)}
-    if self.hostingEnvironment != nil {try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment)}
+    if self.storageAccountUrl != nil { try container.encode(self.storageAccountUrl, forKey: .storageAccountUrl) }
+    if self.blobName != nil { try container.encode(self.blobName, forKey: .blobName) }
+    if self.overwrite != nil { try container.encode(self.overwrite, forKey: .overwrite) }
+    if self.siteName != nil { try container.encode(self.siteName, forKey: .siteName) }
+    if self.databases != nil { try container.encode(self.databases as! [DatabaseBackupSettingData?]?, forKey: .databases) }
+    if self.ignoreConflictingHostNames != nil { try container.encode(self.ignoreConflictingHostNames, forKey: .ignoreConflictingHostNames) }
+    if self.ignoreDatabases != nil { try container.encode(self.ignoreDatabases, forKey: .ignoreDatabases) }
+    if self.appServicePlan != nil { try container.encode(self.appServicePlan, forKey: .appServicePlan) }
+    if self.operationType != nil { try container.encode(self.operationType, forKey: .operationType) }
+    if self.adjustConnectionStrings != nil { try container.encode(self.adjustConnectionStrings, forKey: .adjustConnectionStrings) }
+    if self.hostingEnvironment != nil { try container.encode(self.hostingEnvironment, forKey: .hostingEnvironment) }
   }
 }
 

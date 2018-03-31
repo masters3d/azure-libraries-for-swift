@@ -14,7 +14,7 @@ internal struct NodeUpdateUserParameterData : NodeUpdateUserParameterProtocol {
         case sshPublicKey = "sshPublicKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct NodeUpdateUserParameterData : NodeUpdateUserParameterProtocol {
     if container.contains(.sshPublicKey) {
         self.sshPublicKey = try container.decode(String?.self, forKey: .sshPublicKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,11 +38,11 @@ internal struct NodeUpdateUserParameterData : NodeUpdateUserParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.sshPublicKey != nil {try container.encode(self.sshPublicKey, forKey: .sshPublicKey)}
+    if self.sshPublicKey != nil { try container.encode(self.sshPublicKey, forKey: .sshPublicKey) }
   }
 }
 

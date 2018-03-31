@@ -14,7 +14,7 @@ internal struct SloUsageMetricData : SloUsageMetricProtocol {
         case inRangeTimeRatio = "inRangeTimeRatio"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SloUsageMetricData : SloUsageMetricProtocol {
     if container.contains(.inRangeTimeRatio) {
         self.inRangeTimeRatio = try container.decode(Double?.self, forKey: .inRangeTimeRatio)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SloUsageMetricData : SloUsageMetricProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceLevelObjective != nil {try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective)}
-    if self.serviceLevelObjectiveId != nil {try container.encode(self.serviceLevelObjectiveId, forKey: .serviceLevelObjectiveId)}
-    if self.inRangeTimeRatio != nil {try container.encode(self.inRangeTimeRatio, forKey: .inRangeTimeRatio)}
+    if self.serviceLevelObjective != nil { try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective) }
+    if self.serviceLevelObjectiveId != nil { try container.encode(self.serviceLevelObjectiveId, forKey: .serviceLevelObjectiveId) }
+    if self.inRangeTimeRatio != nil { try container.encode(self.inRangeTimeRatio, forKey: .inRangeTimeRatio) }
   }
 }
 

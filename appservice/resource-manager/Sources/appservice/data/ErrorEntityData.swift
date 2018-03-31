@@ -20,7 +20,7 @@ internal struct ErrorEntityData : ErrorEntityProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ErrorEntityData : ErrorEntityProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ErrorEntityData : ErrorEntityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.extendedCode != nil {try container.encode(self.extendedCode, forKey: .extendedCode)}
-    if self.messageTemplate != nil {try container.encode(self.messageTemplate, forKey: .messageTemplate)}
-    if self.parameters != nil {try container.encode(self.parameters as! [String]?, forKey: .parameters)}
-    if self.innerErrors != nil {try container.encode(self.innerErrors as! [ErrorEntityData?]?, forKey: .innerErrors)}
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.extendedCode != nil { try container.encode(self.extendedCode, forKey: .extendedCode) }
+    if self.messageTemplate != nil { try container.encode(self.messageTemplate, forKey: .messageTemplate) }
+    if self.parameters != nil { try container.encode(self.parameters as! [String]?, forKey: .parameters) }
+    if self.innerErrors != nil { try container.encode(self.innerErrors as! [ErrorEntityData?]?, forKey: .innerErrors) }
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

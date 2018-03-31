@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServiceCheckDnsNameAvailability  {
+public protocol ServiceCheckDnsNameAvailability {
     var headerParameters: [String: String] { get set }
     var location : String { get set }
     var subscriptionId : String { get set }
     var domainNameLabel : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DnsNameAvailabilityResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DnsNameAvailabilityResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Service {
@@ -29,7 +29,7 @@ extension Commands.Service {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{location}"] = String(describing: self.location)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["domainNameLabel"] = String(describing: self.domainNameLabel)
@@ -42,12 +42,12 @@ extension Commands.Service {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DnsNameAvailabilityResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DnsNameAvailabilityResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DnsNameAvailabilityResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: DnsNameAvailabilityResultData?, error: Error?) in
                 completionHandler(result, error)

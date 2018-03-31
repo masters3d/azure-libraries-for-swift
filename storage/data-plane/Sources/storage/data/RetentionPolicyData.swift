@@ -10,7 +10,7 @@ internal struct RetentionPolicyData : RetentionPolicyProtocol {
         case days = "Days"
     }
 
-  public init(enabled: Bool)  {
+  public init(enabled: Bool) {
     self.enabled = enabled
   }
 
@@ -25,7 +25,7 @@ internal struct RetentionPolicyData : RetentionPolicyProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(enabled, forKey: .enabled)
-    if self.days != nil {try container.encode(days, forKey: .days)}
+    if self.days != nil { try container.encode(days, forKey: .days) }
   }
 }
 

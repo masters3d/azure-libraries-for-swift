@@ -28,7 +28,7 @@ internal struct X12EnvelopeOverrideData : X12EnvelopeOverrideProtocol {
         case timeFormat = "timeFormat"
         }
 
-  public init(targetNamespace: String, protocolVersion: String, messageId: String, responsibleAgencyCode: String, headerVersion: String, senderApplicationId: String, receiverApplicationId: String, dateFormat: X12DateFormatEnum, timeFormat: X12TimeFormatEnum)  {
+  public init(targetNamespace: String, protocolVersion: String, messageId: String, responsibleAgencyCode: String, headerVersion: String, senderApplicationId: String, receiverApplicationId: String, dateFormat: X12DateFormatEnum, timeFormat: X12TimeFormatEnum) {
     self.targetNamespace = targetNamespace
     self.protocolVersion = protocolVersion
     self.messageId = messageId
@@ -54,7 +54,7 @@ internal struct X12EnvelopeOverrideData : X12EnvelopeOverrideProtocol {
     }
     self.dateFormat = try container.decode(X12DateFormatEnum.self, forKey: .dateFormat)
     self.timeFormat = try container.decode(X12TimeFormatEnum.self, forKey: .timeFormat)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -71,7 +71,7 @@ internal struct X12EnvelopeOverrideData : X12EnvelopeOverrideProtocol {
     try container.encode(self.headerVersion, forKey: .headerVersion)
     try container.encode(self.senderApplicationId, forKey: .senderApplicationId)
     try container.encode(self.receiverApplicationId, forKey: .receiverApplicationId)
-    if self.functionalIdentifierCode != nil {try container.encode(self.functionalIdentifierCode, forKey: .functionalIdentifierCode)}
+    if self.functionalIdentifierCode != nil { try container.encode(self.functionalIdentifierCode, forKey: .functionalIdentifierCode) }
     try container.encode(self.dateFormat, forKey: .dateFormat)
     try container.encode(self.timeFormat, forKey: .timeFormat)
   }

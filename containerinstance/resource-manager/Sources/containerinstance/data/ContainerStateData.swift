@@ -18,7 +18,7 @@ internal struct ContainerStateData : ContainerStateProtocol {
         case detailStatus = "detailStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ContainerStateData : ContainerStateProtocol {
     if container.contains(.detailStatus) {
         self.detailStatus = try container.decode(String?.self, forKey: .detailStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct ContainerStateData : ContainerStateProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
     if self.finishTime != nil {
         try container.encode(DateConverter.toString(date: self.finishTime!, format: .dateTime), forKey: .finishTime)
     }
-    if self.detailStatus != nil {try container.encode(self.detailStatus, forKey: .detailStatus)}
+    if self.detailStatus != nil { try container.encode(self.detailStatus, forKey: .detailStatus) }
   }
 }
 

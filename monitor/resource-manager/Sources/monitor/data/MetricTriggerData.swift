@@ -24,7 +24,7 @@ internal struct MetricTriggerData : MetricTriggerProtocol {
         case threshold = "threshold"
         }
 
-  public init(metricName: String, metricResourceUri: String, timeGrain: String, statistic: MetricStatisticTypeEnum, timeWindow: String, timeAggregation: TimeAggregationTypeEnum, _operator: ComparisonOperationTypeEnum, threshold: Double)  {
+  public init(metricName: String, metricResourceUri: String, timeGrain: String, statistic: MetricStatisticTypeEnum, timeWindow: String, timeAggregation: TimeAggregationTypeEnum, _operator: ComparisonOperationTypeEnum, threshold: Double) {
     self.metricName = metricName
     self.metricResourceUri = metricResourceUri
     self.timeGrain = timeGrain
@@ -45,7 +45,7 @@ internal struct MetricTriggerData : MetricTriggerProtocol {
     self.timeAggregation = try container.decode(TimeAggregationTypeEnum.self, forKey: .timeAggregation)
     self._operator = try container.decode(ComparisonOperationTypeEnum.self, forKey: ._operator)
     self.threshold = try container.decode(Double.self, forKey: .threshold)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

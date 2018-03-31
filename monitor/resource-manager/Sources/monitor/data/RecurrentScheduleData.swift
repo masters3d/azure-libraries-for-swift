@@ -16,7 +16,7 @@ internal struct RecurrentScheduleData : RecurrentScheduleProtocol {
         case minutes = "minutes"
         }
 
-  public init(timeZone: String, days: [String], hours: [Int32], minutes: [Int32])  {
+  public init(timeZone: String, days: [String], hours: [Int32], minutes: [Int32]) {
     self.timeZone = timeZone
     self.days = days
     self.hours = hours
@@ -29,7 +29,7 @@ internal struct RecurrentScheduleData : RecurrentScheduleProtocol {
     self.days = try container.decode([String].self, forKey: .days)
     self.hours = try container.decode([Int32].self, forKey: .hours)
     self.minutes = try container.decode([Int32].self, forKey: .minutes)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

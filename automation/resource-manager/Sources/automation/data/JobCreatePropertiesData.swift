@@ -14,7 +14,7 @@ internal struct JobCreatePropertiesData : JobCreatePropertiesProtocol {
         case runOn = "runOn"
         }
 
-  public init(runbook: RunbookAssociationPropertyProtocol)  {
+  public init(runbook: RunbookAssociationPropertyProtocol) {
     self.runbook = runbook
   }
 
@@ -27,7 +27,7 @@ internal struct JobCreatePropertiesData : JobCreatePropertiesProtocol {
     if container.contains(.runOn) {
         self.runOn = try container.decode(String?.self, forKey: .runOn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct JobCreatePropertiesData : JobCreatePropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.runbook as! RunbookAssociationPropertyData, forKey: .runbook)
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
   }
 }
 

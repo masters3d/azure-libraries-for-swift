@@ -12,7 +12,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
         case userAccountSettings = "userAccountSettings"
         }
 
-  public init(userAccountSettings: UserAccountSettingsProtocol)  {
+  public init(userAccountSettings: UserAccountSettingsProtocol) {
     self.userAccountSettings = userAccountSettings
   }
 
@@ -22,7 +22,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
         self.publicIPsToAllow = try container.decode([String]?.self, forKey: .publicIPsToAllow)
     }
     self.userAccountSettings = try container.decode(UserAccountSettingsData.self, forKey: .userAccountSettings)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.publicIPsToAllow != nil {try container.encode(self.publicIPsToAllow as! [String]?, forKey: .publicIPsToAllow)}
+    if self.publicIPsToAllow != nil { try container.encode(self.publicIPsToAllow as! [String]?, forKey: .publicIPsToAllow) }
     try container.encode(self.userAccountSettings as! UserAccountSettingsData, forKey: .userAccountSettings)
   }
 }

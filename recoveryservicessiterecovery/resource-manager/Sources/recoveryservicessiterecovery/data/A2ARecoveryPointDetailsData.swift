@@ -10,7 +10,7 @@ internal struct A2ARecoveryPointDetailsData : A2ARecoveryPointDetailsProtocol, P
         enum CodingKeys: String, CodingKey {case recoveryPointSyncType = "recoveryPointSyncType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct A2ARecoveryPointDetailsData : A2ARecoveryPointDetailsProtocol, P
       if container.contains(.recoveryPointSyncType) {
         self.recoveryPointSyncType = try container.decode(RecoveryPointSyncTypeEnum?.self, forKey: .recoveryPointSyncType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct A2ARecoveryPointDetailsData : A2ARecoveryPointDetailsProtocol, P
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointSyncType != nil {try container.encode(self.recoveryPointSyncType, forKey: .recoveryPointSyncType)}
+    if self.recoveryPointSyncType != nil { try container.encode(self.recoveryPointSyncType, forKey: .recoveryPointSyncType) }
   }
 }
 

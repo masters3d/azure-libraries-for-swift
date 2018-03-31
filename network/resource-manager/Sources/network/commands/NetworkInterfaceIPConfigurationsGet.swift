@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkInterfaceIPConfigurationsGet  {
+public protocol NetworkInterfaceIPConfigurationsGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkInterfaceName : String { get set }
@@ -8,7 +8,7 @@ public protocol NetworkInterfaceIPConfigurationsGet  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkInterfaceIPConfigurationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkInterfaceIPConfigurationProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkInterfaceIPConfigurations {
@@ -32,7 +32,7 @@ extension Commands.NetworkInterfaceIPConfigurations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkInterfaceName}"] = String(describing: self.networkInterfaceName)
             self.pathParameters["{ipConfigurationName}"] = String(describing: self.ipConfigurationName)
@@ -46,12 +46,12 @@ extension Commands.NetworkInterfaceIPConfigurations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NetworkInterfaceIPConfigurationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkInterfaceIPConfigurationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkInterfaceIPConfigurationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: NetworkInterfaceIPConfigurationData?, error: Error?) in
                 completionHandler(result, error)

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol BillingPeriodsList  {
+public protocol BillingPeriodsList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol BillingPeriodsList  {
     var skiptoken : String? { get set }
     var top : Int32? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (BillingPeriodsListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (BillingPeriodsListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.BillingPeriods {
@@ -39,7 +39,7 @@ extension Commands.BillingPeriods {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
@@ -60,15 +60,15 @@ extension Commands.BillingPeriods {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (BillingPeriodsListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (BillingPeriodsListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

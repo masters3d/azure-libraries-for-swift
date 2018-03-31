@@ -12,7 +12,7 @@ internal struct BgpServiceCommunityPropertiesFormatData : BgpServiceCommunityPro
         case bgpCommunities = "bgpCommunities"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct BgpServiceCommunityPropertiesFormatData : BgpServiceCommunityPro
     if container.contains(.bgpCommunities) {
         self.bgpCommunities = try container.decode([BGPCommunityData?]?.self, forKey: .bgpCommunities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct BgpServiceCommunityPropertiesFormatData : BgpServiceCommunityPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceName != nil {try container.encode(self.serviceName, forKey: .serviceName)}
-    if self.bgpCommunities != nil {try container.encode(self.bgpCommunities as! [BGPCommunityData?]?, forKey: .bgpCommunities)}
+    if self.serviceName != nil { try container.encode(self.serviceName, forKey: .serviceName) }
+    if self.bgpCommunities != nil { try container.encode(self.bgpCommunities as! [BGPCommunityData?]?, forKey: .bgpCommunities) }
   }
 }
 

@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AlertRulesUpdate  {
+public protocol AlertRulesUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var ruleName : String { get set }
     var apiVersion : String { get set }
-    var alertRulesResource :  AlertRuleResourcePatchProtocol?  { get set }
+    var alertRulesResource :  AlertRuleResourcePatchProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AlertRuleResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AlertRuleResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.AlertRules {
@@ -32,7 +32,7 @@ extension Commands.AlertRules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{ruleName}"] = String(describing: self.ruleName)
@@ -55,12 +55,12 @@ extension Commands.AlertRules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AlertRuleResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AlertRuleResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AlertRuleResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AlertRuleResourceData?, error: Error?) in
                 completionHandler(result, error)

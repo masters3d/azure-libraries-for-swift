@@ -12,7 +12,7 @@ internal struct GrantAccessDataData : GrantAccessDataProtocol {
         case durationInSeconds = "durationInSeconds"
         }
 
-  public init(access: AccessLevelEnum, durationInSeconds: Int32)  {
+  public init(access: AccessLevelEnum, durationInSeconds: Int32) {
     self.access = access
     self.durationInSeconds = durationInSeconds
   }
@@ -21,7 +21,7 @@ internal struct GrantAccessDataData : GrantAccessDataProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.access = try container.decode(AccessLevelEnum.self, forKey: .access)
     self.durationInSeconds = try container.decode(Int32.self, forKey: .durationInSeconds)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -20,7 +20,7 @@ internal struct ExportRequestData : ExportRequestProtocol {
         case authenticationType = "authenticationType"
         }
 
-  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String)  {
+  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String) {
     self.storageKeyType = storageKeyType
     self.storageKey = storageKey
     self.storageUri = storageUri
@@ -38,7 +38,7 @@ internal struct ExportRequestData : ExportRequestProtocol {
     if container.contains(.authenticationType) {
         self.authenticationType = try container.decode(AuthenticationTypeEnum?.self, forKey: .authenticationType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,7 +53,7 @@ internal struct ExportRequestData : ExportRequestProtocol {
     try container.encode(self.storageUri, forKey: .storageUri)
     try container.encode(self.administratorLogin, forKey: .administratorLogin)
     try container.encode(self.administratorLoginPassword, forKey: .administratorLoginPassword)
-    if self.authenticationType != nil {try container.encode(self.authenticationType, forKey: .authenticationType)}
+    if self.authenticationType != nil { try container.encode(self.authenticationType, forKey: .authenticationType) }
   }
 }
 

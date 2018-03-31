@@ -22,7 +22,7 @@ internal struct ContainerPropertiesData : ContainerPropertiesProtocol {
         case volumeMounts = "volumeMounts"
         }
 
-  public init(image: String, resources: ResourceRequirementsProtocol)  {
+  public init(image: String, resources: ResourceRequirementsProtocol) {
     self.image = image
     self.resources = resources
   }
@@ -46,7 +46,7 @@ internal struct ContainerPropertiesData : ContainerPropertiesProtocol {
     if container.contains(.volumeMounts) {
         self.volumeMounts = try container.decode([VolumeMountData?]?.self, forKey: .volumeMounts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,12 +57,12 @@ internal struct ContainerPropertiesData : ContainerPropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.image, forKey: .image)
-    if self.command != nil {try container.encode(self.command as! [String]?, forKey: .command)}
-    if self.ports != nil {try container.encode(self.ports as! [ContainerPortData?]?, forKey: .ports)}
-    if self.environmentVariables != nil {try container.encode(self.environmentVariables as! [EnvironmentVariableData?]?, forKey: .environmentVariables)}
-    if self.instanceView != nil {try container.encode(self.instanceView as! ContainerPropertiesInstanceViewData?, forKey: .instanceView)}
+    if self.command != nil { try container.encode(self.command as! [String]?, forKey: .command) }
+    if self.ports != nil { try container.encode(self.ports as! [ContainerPortData?]?, forKey: .ports) }
+    if self.environmentVariables != nil { try container.encode(self.environmentVariables as! [EnvironmentVariableData?]?, forKey: .environmentVariables) }
+    if self.instanceView != nil { try container.encode(self.instanceView as! ContainerPropertiesInstanceViewData?, forKey: .instanceView) }
     try container.encode(self.resources as! ResourceRequirementsData, forKey: .resources)
-    if self.volumeMounts != nil {try container.encode(self.volumeMounts as! [VolumeMountData?]?, forKey: .volumeMounts)}
+    if self.volumeMounts != nil { try container.encode(self.volumeMounts as! [VolumeMountData?]?, forKey: .volumeMounts) }
   }
 }
 

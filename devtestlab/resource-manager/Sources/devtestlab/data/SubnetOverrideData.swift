@@ -20,7 +20,7 @@ internal struct SubnetOverrideData : SubnetOverrideProtocol {
         case virtualNetworkPoolName = "virtualNetworkPoolName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct SubnetOverrideData : SubnetOverrideProtocol {
     if container.contains(.virtualNetworkPoolName) {
         self.virtualNetworkPoolName = try container.decode(String?.self, forKey: .virtualNetworkPoolName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct SubnetOverrideData : SubnetOverrideProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.labSubnetName != nil {try container.encode(self.labSubnetName, forKey: .labSubnetName)}
-    if self.useInVmCreationPermission != nil {try container.encode(self.useInVmCreationPermission, forKey: .useInVmCreationPermission)}
-    if self.usePublicIpAddressPermission != nil {try container.encode(self.usePublicIpAddressPermission, forKey: .usePublicIpAddressPermission)}
-    if self.sharedPublicIpAddressConfiguration != nil {try container.encode(self.sharedPublicIpAddressConfiguration as! SubnetSharedPublicIpAddressConfigurationData?, forKey: .sharedPublicIpAddressConfiguration)}
-    if self.virtualNetworkPoolName != nil {try container.encode(self.virtualNetworkPoolName, forKey: .virtualNetworkPoolName)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.labSubnetName != nil { try container.encode(self.labSubnetName, forKey: .labSubnetName) }
+    if self.useInVmCreationPermission != nil { try container.encode(self.useInVmCreationPermission, forKey: .useInVmCreationPermission) }
+    if self.usePublicIpAddressPermission != nil { try container.encode(self.usePublicIpAddressPermission, forKey: .usePublicIpAddressPermission) }
+    if self.sharedPublicIpAddressConfiguration != nil { try container.encode(self.sharedPublicIpAddressConfiguration as! SubnetSharedPublicIpAddressConfigurationData?, forKey: .sharedPublicIpAddressConfiguration) }
+    if self.virtualNetworkPoolName != nil { try container.encode(self.virtualNetworkPoolName, forKey: .virtualNetworkPoolName) }
   }
 }
 

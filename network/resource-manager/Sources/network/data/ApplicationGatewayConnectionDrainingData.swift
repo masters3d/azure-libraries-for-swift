@@ -12,7 +12,7 @@ internal struct ApplicationGatewayConnectionDrainingData : ApplicationGatewayCon
         case drainTimeoutInSec = "drainTimeoutInSec"
         }
 
-  public init(enabled: Bool, drainTimeoutInSec: Int32)  {
+  public init(enabled: Bool, drainTimeoutInSec: Int32) {
     self.enabled = enabled
     self.drainTimeoutInSec = drainTimeoutInSec
   }
@@ -21,7 +21,7 @@ internal struct ApplicationGatewayConnectionDrainingData : ApplicationGatewayCon
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decode(Bool.self, forKey: .enabled)
     self.drainTimeoutInSec = try container.decode(Int32.self, forKey: .drainTimeoutInSec)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

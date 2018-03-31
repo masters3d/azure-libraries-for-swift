@@ -26,7 +26,7 @@ internal struct AS2MdnSettingsData : AS2MdnSettingsProtocol {
         case micHashingAlgorithm = "micHashingAlgorithm"
         }
 
-  public init(needMdn: Bool, signMdn: Bool, sendMdnAsynchronously: Bool, signOutboundMdnIfOptional: Bool, sendInboundMdnToMessageBox: Bool, micHashingAlgorithm: HashingAlgorithmEnum)  {
+  public init(needMdn: Bool, signMdn: Bool, sendMdnAsynchronously: Bool, signOutboundMdnIfOptional: Bool, sendInboundMdnToMessageBox: Bool, micHashingAlgorithm: HashingAlgorithmEnum) {
     self.needMdn = needMdn
     self.signMdn = signMdn
     self.sendMdnAsynchronously = sendMdnAsynchronously
@@ -52,7 +52,7 @@ internal struct AS2MdnSettingsData : AS2MdnSettingsProtocol {
     }
     self.sendInboundMdnToMessageBox = try container.decode(Bool.self, forKey: .sendInboundMdnToMessageBox)
     self.micHashingAlgorithm = try container.decode(HashingAlgorithmEnum.self, forKey: .micHashingAlgorithm)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -65,10 +65,10 @@ internal struct AS2MdnSettingsData : AS2MdnSettingsProtocol {
     try container.encode(self.needMdn, forKey: .needMdn)
     try container.encode(self.signMdn, forKey: .signMdn)
     try container.encode(self.sendMdnAsynchronously, forKey: .sendMdnAsynchronously)
-    if self.receiptDeliveryUrl != nil {try container.encode(self.receiptDeliveryUrl, forKey: .receiptDeliveryUrl)}
-    if self.dispositionNotificationTo != nil {try container.encode(self.dispositionNotificationTo, forKey: .dispositionNotificationTo)}
+    if self.receiptDeliveryUrl != nil { try container.encode(self.receiptDeliveryUrl, forKey: .receiptDeliveryUrl) }
+    if self.dispositionNotificationTo != nil { try container.encode(self.dispositionNotificationTo, forKey: .dispositionNotificationTo) }
     try container.encode(self.signOutboundMdnIfOptional, forKey: .signOutboundMdnIfOptional)
-    if self.mdnText != nil {try container.encode(self.mdnText, forKey: .mdnText)}
+    if self.mdnText != nil { try container.encode(self.mdnText, forKey: .mdnText) }
     try container.encode(self.sendInboundMdnToMessageBox, forKey: .sendInboundMdnToMessageBox)
     try container.encode(self.micHashingAlgorithm, forKey: .micHashingAlgorithm)
   }

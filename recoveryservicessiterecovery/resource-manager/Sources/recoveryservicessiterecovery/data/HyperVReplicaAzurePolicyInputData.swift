@@ -18,7 +18,7 @@ internal struct HyperVReplicaAzurePolicyInputData : HyperVReplicaAzurePolicyInpu
         case storageAccounts = "storageAccounts"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct HyperVReplicaAzurePolicyInputData : HyperVReplicaAzurePolicyInpu
     if container.contains(.storageAccounts) {
         self.storageAccounts = try container.decode([String]?.self, forKey: .storageAccounts)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct HyperVReplicaAzurePolicyInputData : HyperVReplicaAzurePolicyInpu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointHistoryDuration != nil {try container.encode(self.recoveryPointHistoryDuration, forKey: .recoveryPointHistoryDuration)}
-    if self.applicationConsistentSnapshotFrequencyInHours != nil {try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours)}
-    if self.replicationInterval != nil {try container.encode(self.replicationInterval, forKey: .replicationInterval)}
-    if self.onlineReplicationStartTime != nil {try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime)}
-    if self.storageAccounts != nil {try container.encode(self.storageAccounts as! [String]?, forKey: .storageAccounts)}
+    if self.recoveryPointHistoryDuration != nil { try container.encode(self.recoveryPointHistoryDuration, forKey: .recoveryPointHistoryDuration) }
+    if self.applicationConsistentSnapshotFrequencyInHours != nil { try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours) }
+    if self.replicationInterval != nil { try container.encode(self.replicationInterval, forKey: .replicationInterval) }
+    if self.onlineReplicationStartTime != nil { try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime) }
+    if self.storageAccounts != nil { try container.encode(self.storageAccounts as! [String]?, forKey: .storageAccounts) }
   }
 }
 

@@ -22,7 +22,7 @@ internal struct StartTaskData : StartTaskProtocol {
         case waitForSuccess = "waitForSuccess"
         }
 
-  public init(commandLine: String)  {
+  public init(commandLine: String) {
     self.commandLine = commandLine
   }
 
@@ -47,7 +47,7 @@ internal struct StartTaskData : StartTaskProtocol {
     if container.contains(.waitForSuccess) {
         self.waitForSuccess = try container.decode(Bool?.self, forKey: .waitForSuccess)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,12 +58,12 @@ internal struct StartTaskData : StartTaskProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.commandLine, forKey: .commandLine)
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings)}
-    if self.resourceFiles != nil {try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles)}
-    if self.environmentSettings != nil {try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings)}
-    if self.userIdentity != nil {try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity)}
-    if self.maxTaskRetryCount != nil {try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount)}
-    if self.waitForSuccess != nil {try container.encode(self.waitForSuccess, forKey: .waitForSuccess)}
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings) }
+    if self.resourceFiles != nil { try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles) }
+    if self.environmentSettings != nil { try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings) }
+    if self.userIdentity != nil { try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity) }
+    if self.maxTaskRetryCount != nil { try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount) }
+    if self.waitForSuccess != nil { try container.encode(self.waitForSuccess, forKey: .waitForSuccess) }
   }
 }
 

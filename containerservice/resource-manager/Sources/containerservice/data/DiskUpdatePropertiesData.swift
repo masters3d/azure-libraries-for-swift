@@ -14,7 +14,7 @@ internal struct DiskUpdatePropertiesData : DiskUpdatePropertiesProtocol {
         case encryptionSettings = "encryptionSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DiskUpdatePropertiesData : DiskUpdatePropertiesProtocol {
     if container.contains(.encryptionSettings) {
         self.encryptionSettings = try container.decode(EncryptionSettingsData?.self, forKey: .encryptionSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DiskUpdatePropertiesData : DiskUpdatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.diskSizeGB != nil {try container.encode(self.diskSizeGB, forKey: .diskSizeGB)}
-    if self.encryptionSettings != nil {try container.encode(self.encryptionSettings as! EncryptionSettingsData?, forKey: .encryptionSettings)}
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.diskSizeGB != nil { try container.encode(self.diskSizeGB, forKey: .diskSizeGB) }
+    if self.encryptionSettings != nil { try container.encode(self.encryptionSettings as! EncryptionSettingsData?, forKey: .encryptionSettings) }
   }
 }
 

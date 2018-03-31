@@ -90,7 +90,7 @@ internal struct EdifactEnvelopeSettingsData : EdifactEnvelopeSettingsProtocol {
         case receiverInternalSubIdentification = "receiverInternalSubIdentification"
         }
 
-  public init(applyDelimiterStringAdvice: Bool, createGroupingSegments: Bool, enableDefaultGroupHeaders: Bool, interchangeControlNumberLowerBound: Int64, interchangeControlNumberUpperBound: Int64, rolloverInterchangeControlNumber: Bool, groupControlNumberLowerBound: Int64, groupControlNumberUpperBound: Int64, rolloverGroupControlNumber: Bool, overwriteExistingTransactionSetControlNumber: Bool, transactionSetControlNumberLowerBound: Int64, transactionSetControlNumberUpperBound: Int64, rolloverTransactionSetControlNumber: Bool, isTestInterchange: Bool)  {
+  public init(applyDelimiterStringAdvice: Bool, createGroupingSegments: Bool, enableDefaultGroupHeaders: Bool, interchangeControlNumberLowerBound: Int64, interchangeControlNumberUpperBound: Int64, rolloverInterchangeControlNumber: Bool, groupControlNumberLowerBound: Int64, groupControlNumberUpperBound: Int64, rolloverGroupControlNumber: Bool, overwriteExistingTransactionSetControlNumber: Bool, transactionSetControlNumberLowerBound: Int64, transactionSetControlNumberUpperBound: Int64, rolloverTransactionSetControlNumber: Bool, isTestInterchange: Bool) {
     self.applyDelimiterStringAdvice = applyDelimiterStringAdvice
     self.createGroupingSegments = createGroupingSegments
     self.enableDefaultGroupHeaders = enableDefaultGroupHeaders
@@ -204,7 +204,7 @@ internal struct EdifactEnvelopeSettingsData : EdifactEnvelopeSettingsProtocol {
     if container.contains(.receiverInternalSubIdentification) {
         self.receiverInternalSubIdentification = try container.decode(String?.self, forKey: .receiverInternalSubIdentification)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -214,47 +214,47 @@ internal struct EdifactEnvelopeSettingsData : EdifactEnvelopeSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.groupAssociationAssignedCode != nil {try container.encode(self.groupAssociationAssignedCode, forKey: .groupAssociationAssignedCode)}
-    if self.communicationAgreementId != nil {try container.encode(self.communicationAgreementId, forKey: .communicationAgreementId)}
+    if self.groupAssociationAssignedCode != nil { try container.encode(self.groupAssociationAssignedCode, forKey: .groupAssociationAssignedCode) }
+    if self.communicationAgreementId != nil { try container.encode(self.communicationAgreementId, forKey: .communicationAgreementId) }
     try container.encode(self.applyDelimiterStringAdvice, forKey: .applyDelimiterStringAdvice)
     try container.encode(self.createGroupingSegments, forKey: .createGroupingSegments)
     try container.encode(self.enableDefaultGroupHeaders, forKey: .enableDefaultGroupHeaders)
-    if self.recipientReferencePasswordValue != nil {try container.encode(self.recipientReferencePasswordValue, forKey: .recipientReferencePasswordValue)}
-    if self.recipientReferencePasswordQualifier != nil {try container.encode(self.recipientReferencePasswordQualifier, forKey: .recipientReferencePasswordQualifier)}
-    if self.applicationReferenceId != nil {try container.encode(self.applicationReferenceId, forKey: .applicationReferenceId)}
-    if self.processingPriorityCode != nil {try container.encode(self.processingPriorityCode, forKey: .processingPriorityCode)}
+    if self.recipientReferencePasswordValue != nil { try container.encode(self.recipientReferencePasswordValue, forKey: .recipientReferencePasswordValue) }
+    if self.recipientReferencePasswordQualifier != nil { try container.encode(self.recipientReferencePasswordQualifier, forKey: .recipientReferencePasswordQualifier) }
+    if self.applicationReferenceId != nil { try container.encode(self.applicationReferenceId, forKey: .applicationReferenceId) }
+    if self.processingPriorityCode != nil { try container.encode(self.processingPriorityCode, forKey: .processingPriorityCode) }
     try container.encode(self.interchangeControlNumberLowerBound, forKey: .interchangeControlNumberLowerBound)
     try container.encode(self.interchangeControlNumberUpperBound, forKey: .interchangeControlNumberUpperBound)
     try container.encode(self.rolloverInterchangeControlNumber, forKey: .rolloverInterchangeControlNumber)
-    if self.interchangeControlNumberPrefix != nil {try container.encode(self.interchangeControlNumberPrefix, forKey: .interchangeControlNumberPrefix)}
-    if self.interchangeControlNumberSuffix != nil {try container.encode(self.interchangeControlNumberSuffix, forKey: .interchangeControlNumberSuffix)}
-    if self.senderReverseRoutingAddress != nil {try container.encode(self.senderReverseRoutingAddress, forKey: .senderReverseRoutingAddress)}
-    if self.receiverReverseRoutingAddress != nil {try container.encode(self.receiverReverseRoutingAddress, forKey: .receiverReverseRoutingAddress)}
-    if self.functionalGroupId != nil {try container.encode(self.functionalGroupId, forKey: .functionalGroupId)}
-    if self.groupControllingAgencyCode != nil {try container.encode(self.groupControllingAgencyCode, forKey: .groupControllingAgencyCode)}
-    if self.groupMessageVersion != nil {try container.encode(self.groupMessageVersion, forKey: .groupMessageVersion)}
-    if self.groupMessageRelease != nil {try container.encode(self.groupMessageRelease, forKey: .groupMessageRelease)}
+    if self.interchangeControlNumberPrefix != nil { try container.encode(self.interchangeControlNumberPrefix, forKey: .interchangeControlNumberPrefix) }
+    if self.interchangeControlNumberSuffix != nil { try container.encode(self.interchangeControlNumberSuffix, forKey: .interchangeControlNumberSuffix) }
+    if self.senderReverseRoutingAddress != nil { try container.encode(self.senderReverseRoutingAddress, forKey: .senderReverseRoutingAddress) }
+    if self.receiverReverseRoutingAddress != nil { try container.encode(self.receiverReverseRoutingAddress, forKey: .receiverReverseRoutingAddress) }
+    if self.functionalGroupId != nil { try container.encode(self.functionalGroupId, forKey: .functionalGroupId) }
+    if self.groupControllingAgencyCode != nil { try container.encode(self.groupControllingAgencyCode, forKey: .groupControllingAgencyCode) }
+    if self.groupMessageVersion != nil { try container.encode(self.groupMessageVersion, forKey: .groupMessageVersion) }
+    if self.groupMessageRelease != nil { try container.encode(self.groupMessageRelease, forKey: .groupMessageRelease) }
     try container.encode(self.groupControlNumberLowerBound, forKey: .groupControlNumberLowerBound)
     try container.encode(self.groupControlNumberUpperBound, forKey: .groupControlNumberUpperBound)
     try container.encode(self.rolloverGroupControlNumber, forKey: .rolloverGroupControlNumber)
-    if self.groupControlNumberPrefix != nil {try container.encode(self.groupControlNumberPrefix, forKey: .groupControlNumberPrefix)}
-    if self.groupControlNumberSuffix != nil {try container.encode(self.groupControlNumberSuffix, forKey: .groupControlNumberSuffix)}
-    if self.groupApplicationReceiverQualifier != nil {try container.encode(self.groupApplicationReceiverQualifier, forKey: .groupApplicationReceiverQualifier)}
-    if self.groupApplicationReceiverId != nil {try container.encode(self.groupApplicationReceiverId, forKey: .groupApplicationReceiverId)}
-    if self.groupApplicationSenderQualifier != nil {try container.encode(self.groupApplicationSenderQualifier, forKey: .groupApplicationSenderQualifier)}
-    if self.groupApplicationSenderId != nil {try container.encode(self.groupApplicationSenderId, forKey: .groupApplicationSenderId)}
-    if self.groupApplicationPassword != nil {try container.encode(self.groupApplicationPassword, forKey: .groupApplicationPassword)}
+    if self.groupControlNumberPrefix != nil { try container.encode(self.groupControlNumberPrefix, forKey: .groupControlNumberPrefix) }
+    if self.groupControlNumberSuffix != nil { try container.encode(self.groupControlNumberSuffix, forKey: .groupControlNumberSuffix) }
+    if self.groupApplicationReceiverQualifier != nil { try container.encode(self.groupApplicationReceiverQualifier, forKey: .groupApplicationReceiverQualifier) }
+    if self.groupApplicationReceiverId != nil { try container.encode(self.groupApplicationReceiverId, forKey: .groupApplicationReceiverId) }
+    if self.groupApplicationSenderQualifier != nil { try container.encode(self.groupApplicationSenderQualifier, forKey: .groupApplicationSenderQualifier) }
+    if self.groupApplicationSenderId != nil { try container.encode(self.groupApplicationSenderId, forKey: .groupApplicationSenderId) }
+    if self.groupApplicationPassword != nil { try container.encode(self.groupApplicationPassword, forKey: .groupApplicationPassword) }
     try container.encode(self.overwriteExistingTransactionSetControlNumber, forKey: .overwriteExistingTransactionSetControlNumber)
-    if self.transactionSetControlNumberPrefix != nil {try container.encode(self.transactionSetControlNumberPrefix, forKey: .transactionSetControlNumberPrefix)}
-    if self.transactionSetControlNumberSuffix != nil {try container.encode(self.transactionSetControlNumberSuffix, forKey: .transactionSetControlNumberSuffix)}
+    if self.transactionSetControlNumberPrefix != nil { try container.encode(self.transactionSetControlNumberPrefix, forKey: .transactionSetControlNumberPrefix) }
+    if self.transactionSetControlNumberSuffix != nil { try container.encode(self.transactionSetControlNumberSuffix, forKey: .transactionSetControlNumberSuffix) }
     try container.encode(self.transactionSetControlNumberLowerBound, forKey: .transactionSetControlNumberLowerBound)
     try container.encode(self.transactionSetControlNumberUpperBound, forKey: .transactionSetControlNumberUpperBound)
     try container.encode(self.rolloverTransactionSetControlNumber, forKey: .rolloverTransactionSetControlNumber)
     try container.encode(self.isTestInterchange, forKey: .isTestInterchange)
-    if self.senderInternalIdentification != nil {try container.encode(self.senderInternalIdentification, forKey: .senderInternalIdentification)}
-    if self.senderInternalSubIdentification != nil {try container.encode(self.senderInternalSubIdentification, forKey: .senderInternalSubIdentification)}
-    if self.receiverInternalIdentification != nil {try container.encode(self.receiverInternalIdentification, forKey: .receiverInternalIdentification)}
-    if self.receiverInternalSubIdentification != nil {try container.encode(self.receiverInternalSubIdentification, forKey: .receiverInternalSubIdentification)}
+    if self.senderInternalIdentification != nil { try container.encode(self.senderInternalIdentification, forKey: .senderInternalIdentification) }
+    if self.senderInternalSubIdentification != nil { try container.encode(self.senderInternalSubIdentification, forKey: .senderInternalSubIdentification) }
+    if self.receiverInternalIdentification != nil { try container.encode(self.receiverInternalIdentification, forKey: .receiverInternalIdentification) }
+    if self.receiverInternalSubIdentification != nil { try container.encode(self.receiverInternalSubIdentification, forKey: .receiverInternalSubIdentification) }
   }
 }
 

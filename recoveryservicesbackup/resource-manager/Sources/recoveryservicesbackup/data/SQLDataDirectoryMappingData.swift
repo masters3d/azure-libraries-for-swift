@@ -16,7 +16,7 @@ internal struct SQLDataDirectoryMappingData : SQLDataDirectoryMappingProtocol {
         case targetPath = "targetPath"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SQLDataDirectoryMappingData : SQLDataDirectoryMappingProtocol {
     if container.contains(.targetPath) {
         self.targetPath = try container.decode(String?.self, forKey: .targetPath)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SQLDataDirectoryMappingData : SQLDataDirectoryMappingProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.mappingType != nil {try container.encode(self.mappingType, forKey: .mappingType)}
-    if self.sourceLogicalName != nil {try container.encode(self.sourceLogicalName, forKey: .sourceLogicalName)}
-    if self.sourcePath != nil {try container.encode(self.sourcePath, forKey: .sourcePath)}
-    if self.targetPath != nil {try container.encode(self.targetPath, forKey: .targetPath)}
+    if self.mappingType != nil { try container.encode(self.mappingType, forKey: .mappingType) }
+    if self.sourceLogicalName != nil { try container.encode(self.sourceLogicalName, forKey: .sourceLogicalName) }
+    if self.sourcePath != nil { try container.encode(self.sourcePath, forKey: .sourcePath) }
+    if self.targetPath != nil { try container.encode(self.targetPath, forKey: .targetPath) }
   }
 }
 

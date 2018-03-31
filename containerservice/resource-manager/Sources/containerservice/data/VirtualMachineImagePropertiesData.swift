@@ -14,7 +14,7 @@ internal struct VirtualMachineImagePropertiesData : VirtualMachineImagePropertie
         case dataDiskImages = "dataDiskImages"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VirtualMachineImagePropertiesData : VirtualMachineImagePropertie
     if container.contains(.dataDiskImages) {
         self.dataDiskImages = try container.decode([DataDiskImageData?]?.self, forKey: .dataDiskImages)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VirtualMachineImagePropertiesData : VirtualMachineImagePropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.plan != nil {try container.encode(self.plan as! PurchasePlanData?, forKey: .plan)}
-    if self.osDiskImage != nil {try container.encode(self.osDiskImage as! OSDiskImageData?, forKey: .osDiskImage)}
-    if self.dataDiskImages != nil {try container.encode(self.dataDiskImages as! [DataDiskImageData?]?, forKey: .dataDiskImages)}
+    if self.plan != nil { try container.encode(self.plan as! PurchasePlanData?, forKey: .plan) }
+    if self.osDiskImage != nil { try container.encode(self.osDiskImage as! OSDiskImageData?, forKey: .osDiskImage) }
+    if self.dataDiskImages != nil { try container.encode(self.dataDiskImages as! [DataDiskImageData?]?, forKey: .dataDiskImages) }
   }
 }
 

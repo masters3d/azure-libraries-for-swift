@@ -14,7 +14,7 @@ internal struct ScheduleEntryData : ScheduleEntryProtocol {
         case maintenanceWindow = "maintenanceWindow"
         }
 
-  public init(dayOfWeek: DayOfWeekEnum, startHourUtc: Int32)  {
+  public init(dayOfWeek: DayOfWeekEnum, startHourUtc: Int32) {
     self.dayOfWeek = dayOfWeek
     self.startHourUtc = startHourUtc
   }
@@ -26,7 +26,7 @@ internal struct ScheduleEntryData : ScheduleEntryProtocol {
     if container.contains(.maintenanceWindow) {
         self.maintenanceWindow = try container.decode(String?.self, forKey: .maintenanceWindow)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct ScheduleEntryData : ScheduleEntryProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dayOfWeek, forKey: .dayOfWeek)
     try container.encode(self.startHourUtc, forKey: .startHourUtc)
-    if self.maintenanceWindow != nil {try container.encode(self.maintenanceWindow, forKey: .maintenanceWindow)}
+    if self.maintenanceWindow != nil { try container.encode(self.maintenanceWindow, forKey: .maintenanceWindow) }
   }
 }
 

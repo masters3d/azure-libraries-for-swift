@@ -12,7 +12,7 @@ internal struct ArmTemplateInfoData : ArmTemplateInfoProtocol {
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ArmTemplateInfoData : ArmTemplateInfoProtocol {
     if container.contains(.parameters) {
         self.parameters = try container.decode([String: String?]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ArmTemplateInfoData : ArmTemplateInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.template != nil {try container.encode(self.template, forKey: .template)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.template != nil { try container.encode(self.template, forKey: .template) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
   }
 }
 

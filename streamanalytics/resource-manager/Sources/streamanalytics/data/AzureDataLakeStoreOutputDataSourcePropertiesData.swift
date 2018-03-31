@@ -24,7 +24,7 @@ internal struct AzureDataLakeStoreOutputDataSourcePropertiesData : AzureDataLake
         case timeFormat = "timeFormat"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct AzureDataLakeStoreOutputDataSourcePropertiesData : AzureDataLake
     if container.contains(.timeFormat) {
         self.timeFormat = try container.decode(String?.self, forKey: .timeFormat)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct AzureDataLakeStoreOutputDataSourcePropertiesData : AzureDataLake
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.refreshToken != nil {try container.encode(self.refreshToken, forKey: .refreshToken)}
-    if self.tokenUserPrincipalName != nil {try container.encode(self.tokenUserPrincipalName, forKey: .tokenUserPrincipalName)}
-    if self.tokenUserDisplayName != nil {try container.encode(self.tokenUserDisplayName, forKey: .tokenUserDisplayName)}
-    if self.accountName != nil {try container.encode(self.accountName, forKey: .accountName)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.filePathPrefix != nil {try container.encode(self.filePathPrefix, forKey: .filePathPrefix)}
-    if self.dateFormat != nil {try container.encode(self.dateFormat, forKey: .dateFormat)}
-    if self.timeFormat != nil {try container.encode(self.timeFormat, forKey: .timeFormat)}
+    if self.refreshToken != nil { try container.encode(self.refreshToken, forKey: .refreshToken) }
+    if self.tokenUserPrincipalName != nil { try container.encode(self.tokenUserPrincipalName, forKey: .tokenUserPrincipalName) }
+    if self.tokenUserDisplayName != nil { try container.encode(self.tokenUserDisplayName, forKey: .tokenUserDisplayName) }
+    if self.accountName != nil { try container.encode(self.accountName, forKey: .accountName) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.filePathPrefix != nil { try container.encode(self.filePathPrefix, forKey: .filePathPrefix) }
+    if self.dateFormat != nil { try container.encode(self.dateFormat, forKey: .dateFormat) }
+    if self.timeFormat != nil { try container.encode(self.timeFormat, forKey: .timeFormat) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ApplicationGatewayAvailableSslOptionsPropertiesFormatData : Appl
         case availableProtocols = "availableProtocols"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ApplicationGatewayAvailableSslOptionsPropertiesFormatData : Appl
     if container.contains(.availableProtocols) {
         self.availableProtocols = try container.decode([ApplicationGatewaySslProtocolEnum?]?.self, forKey: .availableProtocols)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ApplicationGatewayAvailableSslOptionsPropertiesFormatData : Appl
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.predefinedPolicies != nil {try container.encode(self.predefinedPolicies as! [SubResourceData?]?, forKey: .predefinedPolicies)}
-    if self.defaultPolicy != nil {try container.encode(self.defaultPolicy, forKey: .defaultPolicy)}
-    if self.availableCipherSuites != nil {try container.encode(self.availableCipherSuites as! [ApplicationGatewaySslCipherSuiteEnum?]?, forKey: .availableCipherSuites)}
-    if self.availableProtocols != nil {try container.encode(self.availableProtocols as! [ApplicationGatewaySslProtocolEnum?]?, forKey: .availableProtocols)}
+    if self.predefinedPolicies != nil { try container.encode(self.predefinedPolicies as! [SubResourceData?]?, forKey: .predefinedPolicies) }
+    if self.defaultPolicy != nil { try container.encode(self.defaultPolicy, forKey: .defaultPolicy) }
+    if self.availableCipherSuites != nil { try container.encode(self.availableCipherSuites as! [ApplicationGatewaySslCipherSuiteEnum?]?, forKey: .availableCipherSuites) }
+    if self.availableProtocols != nil { try container.encode(self.availableProtocols as! [ApplicationGatewaySslProtocolEnum?]?, forKey: .availableProtocols) }
   }
 }
 

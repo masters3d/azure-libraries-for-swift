@@ -16,7 +16,7 @@ internal struct GenericRecoveryPointData : GenericRecoveryPointProtocol, Recover
         case recoveryPointAdditionalInfo = "recoveryPointAdditionalInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct GenericRecoveryPointData : GenericRecoveryPointProtocol, Recover
     if container.contains(.recoveryPointAdditionalInfo) {
         self.recoveryPointAdditionalInfo = try container.decode(String?.self, forKey: .recoveryPointAdditionalInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,12 +43,12 @@ internal struct GenericRecoveryPointData : GenericRecoveryPointProtocol, Recover
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.recoveryPointType != nil {try container.encode(self.recoveryPointType, forKey: .recoveryPointType)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.recoveryPointType != nil { try container.encode(self.recoveryPointType, forKey: .recoveryPointType) }
     if self.recoveryPointTime != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTime!, format: .dateTime), forKey: .recoveryPointTime)
     }
-    if self.recoveryPointAdditionalInfo != nil {try container.encode(self.recoveryPointAdditionalInfo, forKey: .recoveryPointAdditionalInfo)}
+    if self.recoveryPointAdditionalInfo != nil { try container.encode(self.recoveryPointAdditionalInfo, forKey: .recoveryPointAdditionalInfo) }
   }
 }
 

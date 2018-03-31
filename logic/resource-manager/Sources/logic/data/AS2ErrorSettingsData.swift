@@ -12,7 +12,7 @@ internal struct AS2ErrorSettingsData : AS2ErrorSettingsProtocol {
         case resendIfMdnNotReceived = "resendIfMdnNotReceived"
         }
 
-  public init(suspendDuplicateMessage: Bool, resendIfMdnNotReceived: Bool)  {
+  public init(suspendDuplicateMessage: Bool, resendIfMdnNotReceived: Bool) {
     self.suspendDuplicateMessage = suspendDuplicateMessage
     self.resendIfMdnNotReceived = resendIfMdnNotReceived
   }
@@ -21,7 +21,7 @@ internal struct AS2ErrorSettingsData : AS2ErrorSettingsProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.suspendDuplicateMessage = try container.decode(Bool.self, forKey: .suspendDuplicateMessage)
     self.resendIfMdnNotReceived = try container.decode(Bool.self, forKey: .resendIfMdnNotReceived)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

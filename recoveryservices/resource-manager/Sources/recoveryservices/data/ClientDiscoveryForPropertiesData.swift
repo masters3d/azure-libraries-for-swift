@@ -10,7 +10,7 @@ internal struct ClientDiscoveryForPropertiesData : ClientDiscoveryForPropertiesP
         enum CodingKeys: String, CodingKey {case serviceSpecification = "serviceSpecification"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ClientDiscoveryForPropertiesData : ClientDiscoveryForPropertiesP
       if container.contains(.serviceSpecification) {
         self.serviceSpecification = try container.decode(ClientDiscoveryForServiceSpecificationData?.self, forKey: .serviceSpecification)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ClientDiscoveryForPropertiesData : ClientDiscoveryForPropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceSpecification != nil {try container.encode(self.serviceSpecification as! ClientDiscoveryForServiceSpecificationData?, forKey: .serviceSpecification)}
+    if self.serviceSpecification != nil { try container.encode(self.serviceSpecification as! ClientDiscoveryForServiceSpecificationData?, forKey: .serviceSpecification) }
   }
 }
 

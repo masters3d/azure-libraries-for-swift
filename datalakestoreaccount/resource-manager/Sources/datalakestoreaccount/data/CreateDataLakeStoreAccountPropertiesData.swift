@@ -26,7 +26,7 @@ internal struct CreateDataLakeStoreAccountPropertiesData : CreateDataLakeStoreAc
         case newTier = "newTier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct CreateDataLakeStoreAccountPropertiesData : CreateDataLakeStoreAc
     if container.contains(.newTier) {
         self.newTier = try container.decode(TierTypeEnum?.self, forKey: .newTier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct CreateDataLakeStoreAccountPropertiesData : CreateDataLakeStoreAc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.defaultGroup != nil {try container.encode(self.defaultGroup, forKey: .defaultGroup)}
-    if self.encryptionConfig != nil {try container.encode(self.encryptionConfig as! EncryptionConfigData?, forKey: .encryptionConfig)}
-    if self.encryptionState != nil {try container.encode(self.encryptionState, forKey: .encryptionState)}
-    if self.firewallRules != nil {try container.encode(self.firewallRules as! [CreateFirewallRuleWithAccountParametersData?]?, forKey: .firewallRules)}
-    if self.firewallState != nil {try container.encode(self.firewallState, forKey: .firewallState)}
-    if self.firewallAllowAzureIps != nil {try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps)}
-    if self.trustedIdProviders != nil {try container.encode(self.trustedIdProviders as! [CreateTrustedIdProviderWithAccountParametersData?]?, forKey: .trustedIdProviders)}
-    if self.trustedIdProviderState != nil {try container.encode(self.trustedIdProviderState, forKey: .trustedIdProviderState)}
-    if self.newTier != nil {try container.encode(self.newTier, forKey: .newTier)}
+    if self.defaultGroup != nil { try container.encode(self.defaultGroup, forKey: .defaultGroup) }
+    if self.encryptionConfig != nil { try container.encode(self.encryptionConfig as! EncryptionConfigData?, forKey: .encryptionConfig) }
+    if self.encryptionState != nil { try container.encode(self.encryptionState, forKey: .encryptionState) }
+    if self.firewallRules != nil { try container.encode(self.firewallRules as! [CreateFirewallRuleWithAccountParametersData?]?, forKey: .firewallRules) }
+    if self.firewallState != nil { try container.encode(self.firewallState, forKey: .firewallState) }
+    if self.firewallAllowAzureIps != nil { try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps) }
+    if self.trustedIdProviders != nil { try container.encode(self.trustedIdProviders as! [CreateTrustedIdProviderWithAccountParametersData?]?, forKey: .trustedIdProviders) }
+    if self.trustedIdProviderState != nil { try container.encode(self.trustedIdProviderState, forKey: .trustedIdProviderState) }
+    if self.newTier != nil { try container.encode(self.newTier, forKey: .newTier) }
   }
 }
 

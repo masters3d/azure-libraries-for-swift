@@ -20,7 +20,7 @@ internal struct AddressData : AddressProtocol {
         case state = "state"
         }
 
-  public init(address1: String, city: String, country: String, postalCode: String, state: String)  {
+  public init(address1: String, city: String, country: String, postalCode: String, state: String) {
     self.address1 = address1
     self.city = city
     self.country = country
@@ -38,7 +38,7 @@ internal struct AddressData : AddressProtocol {
     self.country = try container.decode(String.self, forKey: .country)
     self.postalCode = try container.decode(String.self, forKey: .postalCode)
     self.state = try container.decode(String.self, forKey: .state)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,7 +49,7 @@ internal struct AddressData : AddressProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.address1, forKey: .address1)
-    if self.address2 != nil {try container.encode(self.address2, forKey: .address2)}
+    if self.address2 != nil { try container.encode(self.address2, forKey: .address2) }
     try container.encode(self.city, forKey: .city)
     try container.encode(self.country, forKey: .country)
     try container.encode(self.postalCode, forKey: .postalCode)

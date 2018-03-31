@@ -12,7 +12,7 @@ internal struct CidrIpAddressData : CidrIpAddressProtocol {
         case prefixLength = "prefixLength"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CidrIpAddressData : CidrIpAddressProtocol {
     if container.contains(.prefixLength) {
         self.prefixLength = try container.decode(Int32?.self, forKey: .prefixLength)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CidrIpAddressData : CidrIpAddressProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.baseIpAddress != nil {try container.encode(self.baseIpAddress, forKey: .baseIpAddress)}
-    if self.prefixLength != nil {try container.encode(self.prefixLength, forKey: .prefixLength)}
+    if self.baseIpAddress != nil { try container.encode(self.baseIpAddress, forKey: .baseIpAddress) }
+    if self.prefixLength != nil { try container.encode(self.prefixLength, forKey: .prefixLength) }
   }
 }
 

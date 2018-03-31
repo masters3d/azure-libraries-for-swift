@@ -10,14 +10,14 @@ internal struct PoolEndpointConfigurationData : PoolEndpointConfigurationProtoco
         enum CodingKeys: String, CodingKey {case inboundNatPools = "inboundNatPools"
         }
 
-  public init(inboundNatPools: [InboundNatPoolProtocol])  {
+  public init(inboundNatPools: [InboundNatPoolProtocol]) {
     self.inboundNatPools = inboundNatPools
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inboundNatPools = try container.decode([InboundNatPoolData].self, forKey: .inboundNatPools)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

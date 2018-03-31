@@ -22,7 +22,7 @@ internal struct ProfileData : ProfileProtocol, TrackedResourceProtocol, Resource
         case properties = "properties"
         }
 
-  public init(location: String, sku: SkuProtocol)  {
+  public init(location: String, sku: SkuProtocol) {
     self.location = location
     self.sku = sku
   }
@@ -46,7 +46,7 @@ internal struct ProfileData : ProfileProtocol, TrackedResourceProtocol, Resource
     if container.contains(.properties) {
         self.properties = try container.decode(ProfilePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,13 +56,13 @@ internal struct ProfileData : ProfileProtocol, TrackedResourceProtocol, Resource
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.sku as! SkuData, forKey: .sku)
-    if self.properties != nil {try container.encode(self.properties as! ProfilePropertiesData?, forKey: .properties)}
+    if self.properties != nil { try container.encode(self.properties as! ProfilePropertiesData?, forKey: .properties) }
   }
 }
 

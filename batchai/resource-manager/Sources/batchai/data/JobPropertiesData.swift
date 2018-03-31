@@ -54,7 +54,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
         case executionInfo = "executionInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -128,7 +128,7 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
     if container.contains(.executionInfo) {
         self.executionInfo = try container.decode(JobPropertiesExecutionInfoData?.self, forKey: .executionInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -138,35 +138,35 @@ internal struct JobPropertiesData : JobPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.experimentName != nil {try container.encode(self.experimentName, forKey: .experimentName)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.cluster != nil {try container.encode(self.cluster as! ResourceIdData?, forKey: .cluster)}
-    if self.nodeCount != nil {try container.encode(self.nodeCount, forKey: .nodeCount)}
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! ContainerSettingsData?, forKey: .containerSettings)}
-    if self.toolType != nil {try container.encode(self.toolType, forKey: .toolType)}
-    if self.cntkSettings != nil {try container.encode(self.cntkSettings as! CNTKsettingsData?, forKey: .cntkSettings)}
-    if self.tensorFlowSettings != nil {try container.encode(self.tensorFlowSettings as! TensorFlowSettingsData?, forKey: .tensorFlowSettings)}
-    if self.caffeSettings != nil {try container.encode(self.caffeSettings as! CaffeSettingsData?, forKey: .caffeSettings)}
-    if self.chainerSettings != nil {try container.encode(self.chainerSettings as! ChainerSettingsData?, forKey: .chainerSettings)}
-    if self.customToolkitSettings != nil {try container.encode(self.customToolkitSettings as! CustomToolkitSettingsData?, forKey: .customToolkitSettings)}
-    if self.jobPreparation != nil {try container.encode(self.jobPreparation as! JobPreparationData?, forKey: .jobPreparation)}
-    if self.stdOutErrPathPrefix != nil {try container.encode(self.stdOutErrPathPrefix, forKey: .stdOutErrPathPrefix)}
-    if self.inputDirectories != nil {try container.encode(self.inputDirectories as! [InputDirectoryData?]?, forKey: .inputDirectories)}
-    if self.outputDirectories != nil {try container.encode(self.outputDirectories as! [OutputDirectoryData?]?, forKey: .outputDirectories)}
-    if self.environmentVariables != nil {try container.encode(self.environmentVariables as! [EnvironmentSettingData?]?, forKey: .environmentVariables)}
-    if self.constraints != nil {try container.encode(self.constraints as! JobPropertiesConstraintsData?, forKey: .constraints)}
+    if self.experimentName != nil { try container.encode(self.experimentName, forKey: .experimentName) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.cluster != nil { try container.encode(self.cluster as! ResourceIdData?, forKey: .cluster) }
+    if self.nodeCount != nil { try container.encode(self.nodeCount, forKey: .nodeCount) }
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! ContainerSettingsData?, forKey: .containerSettings) }
+    if self.toolType != nil { try container.encode(self.toolType, forKey: .toolType) }
+    if self.cntkSettings != nil { try container.encode(self.cntkSettings as! CNTKsettingsData?, forKey: .cntkSettings) }
+    if self.tensorFlowSettings != nil { try container.encode(self.tensorFlowSettings as! TensorFlowSettingsData?, forKey: .tensorFlowSettings) }
+    if self.caffeSettings != nil { try container.encode(self.caffeSettings as! CaffeSettingsData?, forKey: .caffeSettings) }
+    if self.chainerSettings != nil { try container.encode(self.chainerSettings as! ChainerSettingsData?, forKey: .chainerSettings) }
+    if self.customToolkitSettings != nil { try container.encode(self.customToolkitSettings as! CustomToolkitSettingsData?, forKey: .customToolkitSettings) }
+    if self.jobPreparation != nil { try container.encode(self.jobPreparation as! JobPreparationData?, forKey: .jobPreparation) }
+    if self.stdOutErrPathPrefix != nil { try container.encode(self.stdOutErrPathPrefix, forKey: .stdOutErrPathPrefix) }
+    if self.inputDirectories != nil { try container.encode(self.inputDirectories as! [InputDirectoryData?]?, forKey: .inputDirectories) }
+    if self.outputDirectories != nil { try container.encode(self.outputDirectories as! [OutputDirectoryData?]?, forKey: .outputDirectories) }
+    if self.environmentVariables != nil { try container.encode(self.environmentVariables as! [EnvironmentSettingData?]?, forKey: .environmentVariables) }
+    if self.constraints != nil { try container.encode(self.constraints as! JobPropertiesConstraintsData?, forKey: .constraints) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.provisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.provisioningStateTransitionTime!, format: .dateTime), forKey: .provisioningStateTransitionTime)
     }
-    if self.executionState != nil {try container.encode(self.executionState, forKey: .executionState)}
+    if self.executionState != nil { try container.encode(self.executionState, forKey: .executionState) }
     if self.executionStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.executionStateTransitionTime!, format: .dateTime), forKey: .executionStateTransitionTime)
     }
-    if self.executionInfo != nil {try container.encode(self.executionInfo as! JobPropertiesExecutionInfoData?, forKey: .executionInfo)}
+    if self.executionInfo != nil { try container.encode(self.executionInfo as! JobPropertiesExecutionInfoData?, forKey: .executionInfo) }
   }
 }
 

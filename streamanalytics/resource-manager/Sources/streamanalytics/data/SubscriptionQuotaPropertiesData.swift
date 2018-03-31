@@ -12,7 +12,7 @@ internal struct SubscriptionQuotaPropertiesData : SubscriptionQuotaPropertiesPro
         case currentCount = "currentCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SubscriptionQuotaPropertiesData : SubscriptionQuotaPropertiesPro
     if container.contains(.currentCount) {
         self.currentCount = try container.decode(Int32?.self, forKey: .currentCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SubscriptionQuotaPropertiesData : SubscriptionQuotaPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxCount != nil {try container.encode(self.maxCount, forKey: .maxCount)}
-    if self.currentCount != nil {try container.encode(self.currentCount, forKey: .currentCount)}
+    if self.maxCount != nil { try container.encode(self.maxCount, forKey: .maxCount) }
+    if self.currentCount != nil { try container.encode(self.currentCount, forKey: .currentCount) }
   }
 }
 

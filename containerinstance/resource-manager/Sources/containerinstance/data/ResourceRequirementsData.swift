@@ -12,7 +12,7 @@ internal struct ResourceRequirementsData : ResourceRequirementsProtocol {
         case limits = "limits"
         }
 
-  public init(requests: ResourceRequestsProtocol)  {
+  public init(requests: ResourceRequestsProtocol) {
     self.requests = requests
   }
 
@@ -22,7 +22,7 @@ internal struct ResourceRequirementsData : ResourceRequirementsProtocol {
     if container.contains(.limits) {
         self.limits = try container.decode(ResourceLimitsData?.self, forKey: .limits)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct ResourceRequirementsData : ResourceRequirementsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.requests as! ResourceRequestsData, forKey: .requests)
-    if self.limits != nil {try container.encode(self.limits as! ResourceLimitsData?, forKey: .limits)}
+    if self.limits != nil { try container.encode(self.limits as! ResourceLimitsData?, forKey: .limits) }
   }
 }
 

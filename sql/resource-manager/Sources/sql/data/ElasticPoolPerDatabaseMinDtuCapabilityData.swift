@@ -12,7 +12,7 @@ internal struct ElasticPoolPerDatabaseMinDtuCapabilityData : ElasticPoolPerDatab
         case status = "status"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ElasticPoolPerDatabaseMinDtuCapabilityData : ElasticPoolPerDatab
     if container.contains(.status) {
         self.status = try container.decode(CapabilityStatusEnum?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ElasticPoolPerDatabaseMinDtuCapabilityData : ElasticPoolPerDatab
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

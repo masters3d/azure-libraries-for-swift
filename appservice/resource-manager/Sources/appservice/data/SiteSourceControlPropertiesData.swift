@@ -18,7 +18,7 @@ internal struct SiteSourceControlPropertiesData : SiteSourceControlPropertiesPro
         case isMercurial = "isMercurial"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct SiteSourceControlPropertiesData : SiteSourceControlPropertiesPro
     if container.contains(.isMercurial) {
         self.isMercurial = try container.decode(Bool?.self, forKey: .isMercurial)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct SiteSourceControlPropertiesData : SiteSourceControlPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.repoUrl != nil {try container.encode(self.repoUrl, forKey: .repoUrl)}
-    if self.branch != nil {try container.encode(self.branch, forKey: .branch)}
-    if self.isManualIntegration != nil {try container.encode(self.isManualIntegration, forKey: .isManualIntegration)}
-    if self.deploymentRollbackEnabled != nil {try container.encode(self.deploymentRollbackEnabled, forKey: .deploymentRollbackEnabled)}
-    if self.isMercurial != nil {try container.encode(self.isMercurial, forKey: .isMercurial)}
+    if self.repoUrl != nil { try container.encode(self.repoUrl, forKey: .repoUrl) }
+    if self.branch != nil { try container.encode(self.branch, forKey: .branch) }
+    if self.isManualIntegration != nil { try container.encode(self.isManualIntegration, forKey: .isManualIntegration) }
+    if self.deploymentRollbackEnabled != nil { try container.encode(self.deploymentRollbackEnabled, forKey: .deploymentRollbackEnabled) }
+    if self.isMercurial != nil { try container.encode(self.isMercurial, forKey: .isMercurial) }
   }
 }
 

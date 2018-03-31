@@ -18,7 +18,7 @@ internal struct UserIdentityFragmentData : UserIdentityFragmentProtocol {
         case appId = "appId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct UserIdentityFragmentData : UserIdentityFragmentProtocol {
     if container.contains(.appId) {
         self.appId = try container.decode(String?.self, forKey: .appId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct UserIdentityFragmentData : UserIdentityFragmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.principalName != nil {try container.encode(self.principalName, forKey: .principalName)}
-    if self.principalId != nil {try container.encode(self.principalId, forKey: .principalId)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
-    if self.appId != nil {try container.encode(self.appId, forKey: .appId)}
+    if self.principalName != nil { try container.encode(self.principalName, forKey: .principalName) }
+    if self.principalId != nil { try container.encode(self.principalId, forKey: .principalId) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
+    if self.appId != nil { try container.encode(self.appId, forKey: .appId) }
   }
 }
 

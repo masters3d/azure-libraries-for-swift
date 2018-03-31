@@ -1,7 +1,6 @@
 // LeaseAction1 enumerates the values for lease action 1.
 
-public enum LeaseAction1: String, Codable
-{
+public enum LeaseAction1: String, Codable {
 // LeaseAction1Acquire specifies the lease action 1 acquire state for lease action 1.
     case LeaseAction1Acquire = "acquire"
 // LeaseAction1Break specifies the lease action 1 break state for lease action 1.

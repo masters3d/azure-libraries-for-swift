@@ -14,7 +14,7 @@ internal struct PredictionSystemGeneratedEntitiesData : PredictionSystemGenerate
         case generatedKpis = "generatedKpis"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PredictionSystemGeneratedEntitiesData : PredictionSystemGenerate
     if container.contains(.generatedKpis) {
         self.generatedKpis = try container.decode([String:String]?.self, forKey: .generatedKpis)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PredictionSystemGeneratedEntitiesData : PredictionSystemGenerate
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.generatedInteractionTypes != nil {try container.encode(self.generatedInteractionTypes as! [String]?, forKey: .generatedInteractionTypes)}
-    if self.generatedLinks != nil {try container.encode(self.generatedLinks as! [String]?, forKey: .generatedLinks)}
-    if self.generatedKpis != nil {try container.encode(self.generatedKpis, forKey: .generatedKpis)}
+    if self.generatedInteractionTypes != nil { try container.encode(self.generatedInteractionTypes as! [String]?, forKey: .generatedInteractionTypes) }
+    if self.generatedLinks != nil { try container.encode(self.generatedLinks as! [String]?, forKey: .generatedLinks) }
+    if self.generatedKpis != nil { try container.encode(self.generatedKpis, forKey: .generatedKpis) }
   }
 }
 

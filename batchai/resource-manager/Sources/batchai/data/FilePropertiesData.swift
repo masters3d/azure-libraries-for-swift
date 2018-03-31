@@ -12,7 +12,7 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
         case contentLength = "contentLength"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
     if container.contains(.contentLength) {
         self.contentLength = try container.decode(Int64?.self, forKey: .contentLength)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct FilePropertiesData : FilePropertiesProtocol {
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
-    if self.contentLength != nil {try container.encode(self.contentLength, forKey: .contentLength)}
+    if self.contentLength != nil { try container.encode(self.contentLength, forKey: .contentLength) }
   }
 }
 

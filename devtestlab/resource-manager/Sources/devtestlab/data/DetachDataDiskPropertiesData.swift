@@ -10,7 +10,7 @@ internal struct DetachDataDiskPropertiesData : DetachDataDiskPropertiesProtocol 
         enum CodingKeys: String, CodingKey {case existingLabDiskId = "existingLabDiskId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DetachDataDiskPropertiesData : DetachDataDiskPropertiesProtocol 
       if container.contains(.existingLabDiskId) {
         self.existingLabDiskId = try container.decode(String?.self, forKey: .existingLabDiskId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DetachDataDiskPropertiesData : DetachDataDiskPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.existingLabDiskId != nil {try container.encode(self.existingLabDiskId, forKey: .existingLabDiskId)}
+    if self.existingLabDiskId != nil { try container.encode(self.existingLabDiskId, forKey: .existingLabDiskId) }
   }
 }
 

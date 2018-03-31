@@ -30,7 +30,7 @@ internal struct VirtualNetworkGatewayPropertiesFormatData : VirtualNetworkGatewa
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct VirtualNetworkGatewayPropertiesFormatData : VirtualNetworkGatewa
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct VirtualNetworkGatewayPropertiesFormatData : VirtualNetworkGatewa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ipConfigurations != nil {try container.encode(self.ipConfigurations as! [VirtualNetworkGatewayIPConfigurationData?]?, forKey: .ipConfigurations)}
-    if self.gatewayType != nil {try container.encode(self.gatewayType, forKey: .gatewayType)}
-    if self.vpnType != nil {try container.encode(self.vpnType, forKey: .vpnType)}
-    if self.enableBgp != nil {try container.encode(self.enableBgp, forKey: .enableBgp)}
-    if self.activeActive != nil {try container.encode(self.activeActive, forKey: .activeActive)}
-    if self.gatewayDefaultSite != nil {try container.encode(self.gatewayDefaultSite as! SubResourceData?, forKey: .gatewayDefaultSite)}
-    if self.sku != nil {try container.encode(self.sku as! VirtualNetworkGatewaySkuData?, forKey: .sku)}
-    if self.vpnClientConfiguration != nil {try container.encode(self.vpnClientConfiguration as! VpnClientConfigurationData?, forKey: .vpnClientConfiguration)}
-    if self.bgpSettings != nil {try container.encode(self.bgpSettings as! BgpSettingsData?, forKey: .bgpSettings)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.ipConfigurations != nil { try container.encode(self.ipConfigurations as! [VirtualNetworkGatewayIPConfigurationData?]?, forKey: .ipConfigurations) }
+    if self.gatewayType != nil { try container.encode(self.gatewayType, forKey: .gatewayType) }
+    if self.vpnType != nil { try container.encode(self.vpnType, forKey: .vpnType) }
+    if self.enableBgp != nil { try container.encode(self.enableBgp, forKey: .enableBgp) }
+    if self.activeActive != nil { try container.encode(self.activeActive, forKey: .activeActive) }
+    if self.gatewayDefaultSite != nil { try container.encode(self.gatewayDefaultSite as! SubResourceData?, forKey: .gatewayDefaultSite) }
+    if self.sku != nil { try container.encode(self.sku as! VirtualNetworkGatewaySkuData?, forKey: .sku) }
+    if self.vpnClientConfiguration != nil { try container.encode(self.vpnClientConfiguration as! VpnClientConfigurationData?, forKey: .vpnClientConfiguration) }
+    if self.bgpSettings != nil { try container.encode(self.bgpSettings as! BgpSettingsData?, forKey: .bgpSettings) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

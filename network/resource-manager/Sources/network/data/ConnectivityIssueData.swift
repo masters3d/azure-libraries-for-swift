@@ -16,7 +16,7 @@ internal struct ConnectivityIssueData : ConnectivityIssueProtocol {
         case context = "context"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ConnectivityIssueData : ConnectivityIssueProtocol {
     if container.contains(.context) {
         self.context = try container.decode([[String:String]?]?.self, forKey: .context)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ConnectivityIssueData : ConnectivityIssueProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.origin != nil {try container.encode(self.origin, forKey: .origin)}
-    if self.severity != nil {try container.encode(self.severity, forKey: .severity)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.context != nil {try container.encode(self.context as! [[String:String]?]?, forKey: .context)}
+    if self.origin != nil { try container.encode(self.origin, forKey: .origin) }
+    if self.severity != nil { try container.encode(self.severity, forKey: .severity) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.context != nil { try container.encode(self.context as! [[String:String]?]?, forKey: .context) }
   }
 }
 

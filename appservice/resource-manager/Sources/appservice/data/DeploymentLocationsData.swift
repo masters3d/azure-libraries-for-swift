@@ -14,7 +14,7 @@ internal struct DeploymentLocationsData : DeploymentLocationsProtocol {
         case hostingEnvironmentDeploymentInfos = "hostingEnvironmentDeploymentInfos"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DeploymentLocationsData : DeploymentLocationsProtocol {
     if container.contains(.hostingEnvironmentDeploymentInfos) {
         self.hostingEnvironmentDeploymentInfos = try container.decode([HostingEnvironmentDeploymentInfoData?]?.self, forKey: .hostingEnvironmentDeploymentInfos)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DeploymentLocationsData : DeploymentLocationsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.locations != nil {try container.encode(self.locations as! [GeoRegionData?]?, forKey: .locations)}
-    if self.hostingEnvironments != nil {try container.encode(self.hostingEnvironments as! [AppServiceEnvironmentData?]?, forKey: .hostingEnvironments)}
-    if self.hostingEnvironmentDeploymentInfos != nil {try container.encode(self.hostingEnvironmentDeploymentInfos as! [HostingEnvironmentDeploymentInfoData?]?, forKey: .hostingEnvironmentDeploymentInfos)}
+    if self.locations != nil { try container.encode(self.locations as! [GeoRegionData?]?, forKey: .locations) }
+    if self.hostingEnvironments != nil { try container.encode(self.hostingEnvironments as! [AppServiceEnvironmentData?]?, forKey: .hostingEnvironments) }
+    if self.hostingEnvironmentDeploymentInfos != nil { try container.encode(self.hostingEnvironmentDeploymentInfos as! [HostingEnvironmentDeploymentInfoData?]?, forKey: .hostingEnvironmentDeploymentInfos) }
   }
 }
 

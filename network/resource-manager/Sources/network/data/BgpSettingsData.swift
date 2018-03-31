@@ -14,7 +14,7 @@ internal struct BgpSettingsData : BgpSettingsProtocol {
         case peerWeight = "peerWeight"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BgpSettingsData : BgpSettingsProtocol {
     if container.contains(.peerWeight) {
         self.peerWeight = try container.decode(Int32?.self, forKey: .peerWeight)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BgpSettingsData : BgpSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.asn != nil {try container.encode(self.asn, forKey: .asn)}
-    if self.bgpPeeringAddress != nil {try container.encode(self.bgpPeeringAddress, forKey: .bgpPeeringAddress)}
-    if self.peerWeight != nil {try container.encode(self.peerWeight, forKey: .peerWeight)}
+    if self.asn != nil { try container.encode(self.asn, forKey: .asn) }
+    if self.bgpPeeringAddress != nil { try container.encode(self.bgpPeeringAddress, forKey: .bgpPeeringAddress) }
+    if self.peerWeight != nil { try container.encode(self.peerWeight, forKey: .peerWeight) }
   }
 }
 

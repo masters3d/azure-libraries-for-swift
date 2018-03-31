@@ -10,14 +10,14 @@ internal struct EdgeNodePropertiesData : EdgeNodePropertiesProtocol {
         enum CodingKeys: String, CodingKey {case ipAddressGroups = "ipAddressGroups"
         }
 
-  public init(ipAddressGroups: [IpAddressGroupProtocol])  {
+  public init(ipAddressGroups: [IpAddressGroupProtocol]) {
     self.ipAddressGroups = ipAddressGroups
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipAddressGroups = try container.decode([IpAddressGroupData].self, forKey: .ipAddressGroups)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

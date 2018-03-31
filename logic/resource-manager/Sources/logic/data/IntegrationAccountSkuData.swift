@@ -10,14 +10,14 @@ internal struct IntegrationAccountSkuData : IntegrationAccountSkuProtocol {
         enum CodingKeys: String, CodingKey {case name = "name"
         }
 
-  public init(name: IntegrationAccountSkuNameEnum)  {
+  public init(name: IntegrationAccountSkuNameEnum) {
     self.name = name
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(IntegrationAccountSkuNameEnum.self, forKey: .name)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

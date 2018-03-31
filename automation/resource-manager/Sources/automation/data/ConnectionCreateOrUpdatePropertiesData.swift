@@ -14,7 +14,7 @@ internal struct ConnectionCreateOrUpdatePropertiesData : ConnectionCreateOrUpdat
         case fieldDefinitionValues = "fieldDefinitionValues"
         }
 
-  public init(connectionType: ConnectionTypeAssociationPropertyProtocol)  {
+  public init(connectionType: ConnectionTypeAssociationPropertyProtocol) {
     self.connectionType = connectionType
   }
 
@@ -27,7 +27,7 @@ internal struct ConnectionCreateOrUpdatePropertiesData : ConnectionCreateOrUpdat
     if container.contains(.fieldDefinitionValues) {
         self.fieldDefinitionValues = try container.decode([String:String]?.self, forKey: .fieldDefinitionValues)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct ConnectionCreateOrUpdatePropertiesData : ConnectionCreateOrUpdat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.connectionType as! ConnectionTypeAssociationPropertyData, forKey: .connectionType)
-    if self.fieldDefinitionValues != nil {try container.encode(self.fieldDefinitionValues, forKey: .fieldDefinitionValues)}
+    if self.fieldDefinitionValues != nil { try container.encode(self.fieldDefinitionValues, forKey: .fieldDefinitionValues) }
   }
 }
 

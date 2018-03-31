@@ -16,7 +16,7 @@ internal struct ResourceSkuRestrictionsData : ResourceSkuRestrictionsProtocol {
         case reasonCode = "reasonCode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ResourceSkuRestrictionsData : ResourceSkuRestrictionsProtocol {
     if container.contains(.reasonCode) {
         self.reasonCode = try container.decode(ResourceSkuRestrictionsReasonCodeEnum?.self, forKey: .reasonCode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ResourceSkuRestrictionsData : ResourceSkuRestrictionsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.values != nil {try container.encode(self.values as! [String]?, forKey: .values)}
-    if self.restrictionInfo != nil {try container.encode(self.restrictionInfo as! ResourceSkuRestrictionInfoData?, forKey: .restrictionInfo)}
-    if self.reasonCode != nil {try container.encode(self.reasonCode, forKey: .reasonCode)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.values != nil { try container.encode(self.values as! [String]?, forKey: .values) }
+    if self.restrictionInfo != nil { try container.encode(self.restrictionInfo as! ResourceSkuRestrictionInfoData?, forKey: .restrictionInfo) }
+    if self.reasonCode != nil { try container.encode(self.reasonCode, forKey: .reasonCode) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ProtectedItemResourceListData : ProtectedItemResourceListProtoco
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ProtectedItemResourceListData : ProtectedItemResourceListProtoco
     if container.contains(.value) {
         self.value = try container.decode([ProtectedItemResourceData?]?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ProtectedItemResourceListData : ProtectedItemResourceListProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._nextLink != nil {try container.encode(self._nextLink, forKey: ._nextLink)}
-    if self.value != nil {try container.encode(self.value as! [ProtectedItemResourceData?]?, forKey: .value)}
+    if self._nextLink != nil { try container.encode(self._nextLink, forKey: ._nextLink) }
+    if self.value != nil { try container.encode(self.value as! [ProtectedItemResourceData?]?, forKey: .value) }
   }
 }
 

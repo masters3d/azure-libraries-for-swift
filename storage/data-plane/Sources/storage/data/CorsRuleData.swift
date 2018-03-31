@@ -16,7 +16,7 @@ internal struct CorsRuleData : CorsRuleProtocol {
         case maxAgeInSeconds = "MaxAgeInSeconds"
     }
 
-  public init(allowedOrigins: String, allowedMethods: String, allowedHeaders: String, exposedHeaders: String, maxAgeInSeconds: Int32)  {
+  public init(allowedOrigins: String, allowedMethods: String, allowedHeaders: String, exposedHeaders: String, maxAgeInSeconds: Int32) {
     self.allowedOrigins = allowedOrigins
     self.allowedMethods = allowedMethods
     self.allowedHeaders = allowedHeaders

@@ -1,7 +1,6 @@
 // SequenceNumberAction enumerates the values for sequence number action.
 
-public enum SequenceNumberAction: String, Codable
-{
+public enum SequenceNumberAction: String, Codable {
 // SequenceNumberActionIncrement specifies the sequence number action increment state for sequence number action.
     case SequenceNumberActionIncrement = "increment"
 // SequenceNumberActionMax specifies the sequence number action max state for sequence number action.

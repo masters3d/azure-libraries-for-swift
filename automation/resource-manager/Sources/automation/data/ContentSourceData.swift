@@ -16,7 +16,7 @@ internal struct ContentSourceData : ContentSourceProtocol {
         case version = "version"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ContentSourceData : ContentSourceProtocol {
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ContentSourceData : ContentSourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hash != nil {try container.encode(self.hash as! ContentHashData?, forKey: .hash)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.hash != nil { try container.encode(self.hash as! ContentHashData?, forKey: .hash) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

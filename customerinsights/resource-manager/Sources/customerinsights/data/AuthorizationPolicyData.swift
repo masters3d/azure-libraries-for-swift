@@ -16,7 +16,7 @@ internal struct AuthorizationPolicyData : AuthorizationPolicyProtocol {
         case secondaryKey = "secondaryKey"
         }
 
-  public init(permissions: [PermissionTypesEnum])  {
+  public init(permissions: [PermissionTypesEnum]) {
     self.permissions = permissions
   }
 
@@ -32,7 +32,7 @@ internal struct AuthorizationPolicyData : AuthorizationPolicyProtocol {
     if container.contains(.secondaryKey) {
         self.secondaryKey = try container.decode(String?.self, forKey: .secondaryKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct AuthorizationPolicyData : AuthorizationPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policyName != nil {try container.encode(self.policyName, forKey: .policyName)}
+    if self.policyName != nil { try container.encode(self.policyName, forKey: .policyName) }
     try container.encode(self.permissions as! [PermissionTypesEnum], forKey: .permissions)
-    if self.primaryKey != nil {try container.encode(self.primaryKey, forKey: .primaryKey)}
-    if self.secondaryKey != nil {try container.encode(self.secondaryKey, forKey: .secondaryKey)}
+    if self.primaryKey != nil { try container.encode(self.primaryKey, forKey: .primaryKey) }
+    if self.secondaryKey != nil { try container.encode(self.secondaryKey, forKey: .secondaryKey) }
   }
 }
 

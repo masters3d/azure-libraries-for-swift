@@ -14,7 +14,7 @@ internal struct StorageAccountKeyData : StorageAccountKeyProtocol {
         case permissions = "permissions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct StorageAccountKeyData : StorageAccountKeyProtocol {
     if container.contains(.permissions) {
         self.permissions = try container.decode(KeyPermissionEnum?.self, forKey: .permissions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct StorageAccountKeyData : StorageAccountKeyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyName != nil {try container.encode(self.keyName, forKey: .keyName)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.permissions != nil {try container.encode(self.permissions, forKey: .permissions)}
+    if self.keyName != nil { try container.encode(self.keyName, forKey: .keyName) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.permissions != nil { try container.encode(self.permissions, forKey: .permissions) }
   }
 }
 

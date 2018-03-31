@@ -16,7 +16,7 @@ internal struct CreateDataLakeStoreAccountParametersData : CreateDataLakeStoreAc
         case properties = "properties"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -32,7 +32,7 @@ internal struct CreateDataLakeStoreAccountParametersData : CreateDataLakeStoreAc
     if container.contains(.properties) {
         self.properties = try container.decode(CreateDataLakeStoreAccountPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct CreateDataLakeStoreAccountParametersData : CreateDataLakeStoreAc
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.identity != nil {try container.encode(self.identity as! EncryptionIdentityData?, forKey: .identity)}
-    if self.properties != nil {try container.encode(self.properties as! CreateDataLakeStoreAccountPropertiesData?, forKey: .properties)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.identity != nil { try container.encode(self.identity as! EncryptionIdentityData?, forKey: .identity) }
+    if self.properties != nil { try container.encode(self.properties as! CreateDataLakeStoreAccountPropertiesData?, forKey: .properties) }
   }
 }
 

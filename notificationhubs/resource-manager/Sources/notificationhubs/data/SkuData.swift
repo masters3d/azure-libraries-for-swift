@@ -18,7 +18,7 @@ internal struct SkuData : SkuProtocol {
         case capacity = "capacity"
         }
 
-  public init(name: SkuNameEnum)  {
+  public init(name: SkuNameEnum) {
     self.name = name
   }
 
@@ -37,7 +37,7 @@ internal struct SkuData : SkuProtocol {
     if container.contains(.capacity) {
         self.capacity = try container.decode(Int32?.self, forKey: .capacity)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct SkuData : SkuProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
-    if self.size != nil {try container.encode(self.size, forKey: .size)}
-    if self.family != nil {try container.encode(self.family, forKey: .family)}
-    if self.capacity != nil {try container.encode(self.capacity, forKey: .capacity)}
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
+    if self.size != nil { try container.encode(self.size, forKey: .size) }
+    if self.family != nil { try container.encode(self.family, forKey: .family) }
+    if self.capacity != nil { try container.encode(self.capacity, forKey: .capacity) }
   }
 }
 

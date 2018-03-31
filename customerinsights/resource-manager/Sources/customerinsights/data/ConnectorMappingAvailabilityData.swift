@@ -12,7 +12,7 @@ internal struct ConnectorMappingAvailabilityData : ConnectorMappingAvailabilityP
         case interval = "interval"
         }
 
-  public init(interval: Int32)  {
+  public init(interval: Int32) {
     self.interval = interval
   }
 
@@ -22,7 +22,7 @@ internal struct ConnectorMappingAvailabilityData : ConnectorMappingAvailabilityP
         self.frequency = try container.decode(FrequencyTypesEnum?.self, forKey: .frequency)
     }
     self.interval = try container.decode(Int32.self, forKey: .interval)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ConnectorMappingAvailabilityData : ConnectorMappingAvailabilityP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
     try container.encode(self.interval, forKey: .interval)
   }
 }

@@ -10,7 +10,7 @@ internal struct OSDiskData : OSDiskProtocol {
         enum CodingKeys: String, CodingKey {case caching = "caching"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct OSDiskData : OSDiskProtocol {
       if container.contains(.caching) {
         self.caching = try container.decode(CachingTypeEnum?.self, forKey: .caching)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct OSDiskData : OSDiskProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.caching != nil {try container.encode(self.caching, forKey: .caching)}
+    if self.caching != nil { try container.encode(self.caching, forKey: .caching) }
   }
 }
 

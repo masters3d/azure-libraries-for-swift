@@ -28,7 +28,7 @@ internal struct IntegrationAccountSchemaPropertiesData : IntegrationAccountSchem
         case contentLink = "contentLink"
         }
 
-  public init(schemaType: SchemaTypeEnum)  {
+  public init(schemaType: SchemaTypeEnum) {
     self.schemaType = schemaType
   }
 
@@ -62,7 +62,7 @@ internal struct IntegrationAccountSchemaPropertiesData : IntegrationAccountSchem
     if container.contains(.contentLink) {
         self.contentLink = try container.decode(ContentLinkData?.self, forKey: .contentLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,19 +73,19 @@ internal struct IntegrationAccountSchemaPropertiesData : IntegrationAccountSchem
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.schemaType, forKey: .schemaType)
-    if self.targetNamespace != nil {try container.encode(self.targetNamespace, forKey: .targetNamespace)}
-    if self.documentName != nil {try container.encode(self.documentName, forKey: .documentName)}
-    if self.fileName != nil {try container.encode(self.fileName, forKey: .fileName)}
+    if self.targetNamespace != nil { try container.encode(self.targetNamespace, forKey: .targetNamespace) }
+    if self.documentName != nil { try container.encode(self.documentName, forKey: .documentName) }
+    if self.fileName != nil { try container.encode(self.fileName, forKey: .fileName) }
     if self.createdTime != nil {
         try container.encode(DateConverter.toString(date: self.createdTime!, format: .dateTime), forKey: .createdTime)
     }
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
-    if self.content != nil {try container.encode(self.content, forKey: .content)}
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
-    if self.contentLink != nil {try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink)}
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
+    if self.content != nil { try container.encode(self.content, forKey: .content) }
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
+    if self.contentLink != nil { try container.encode(self.contentLink as! ContentLinkData?, forKey: .contentLink) }
   }
 }
 

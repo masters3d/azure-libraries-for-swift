@@ -10,7 +10,7 @@ internal struct JobStateFilterData : JobStateFilterProtocol {
         enum CodingKeys: String, CodingKey {case state = "state"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct JobStateFilterData : JobStateFilterProtocol {
       if container.contains(.state) {
         self.state = try container.decode(JobStateEnum?.self, forKey: .state)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct JobStateFilterData : JobStateFilterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
   }
 }
 

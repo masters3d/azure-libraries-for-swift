@@ -20,7 +20,7 @@ internal struct MetricValueData : MetricValueProtocol {
         case total = "total"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct MetricValueData : MetricValueProtocol {
     if container.contains(.total) {
         self.total = try container.decode(Double?.self, forKey: .total)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct MetricValueData : MetricValueProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.average != nil {try container.encode(self.average, forKey: .average)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
-    if self.minimum != nil {try container.encode(self.minimum, forKey: .minimum)}
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.average != nil { try container.encode(self.average, forKey: .average) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
+    if self.minimum != nil { try container.encode(self.minimum, forKey: .minimum) }
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.total != nil {try container.encode(self.total, forKey: .total)}
+    if self.total != nil { try container.encode(self.total, forKey: .total) }
   }
 }
 

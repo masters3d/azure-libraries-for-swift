@@ -10,14 +10,14 @@ internal struct ActivityLogAlertAllOfConditionData : ActivityLogAlertAllOfCondit
         enum CodingKeys: String, CodingKey {case allOf = "allOf"
         }
 
-  public init(allOf: [ActivityLogAlertLeafConditionProtocol])  {
+  public init(allOf: [ActivityLogAlertLeafConditionProtocol]) {
     self.allOf = allOf
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.allOf = try container.decode([ActivityLogAlertLeafConditionData].self, forKey: .allOf)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

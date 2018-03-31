@@ -10,7 +10,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
         enum CodingKeys: String, CodingKey {case imageReference = "imageReference"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
       if container.contains(.imageReference) {
         self.imageReference = try container.decode(ImageReferenceData?.self, forKey: .imageReference)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct VirtualMachineConfigurationData : VirtualMachineConfigurationPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.imageReference != nil {try container.encode(self.imageReference as! ImageReferenceData?, forKey: .imageReference)}
+    if self.imageReference != nil { try container.encode(self.imageReference as! ImageReferenceData?, forKey: .imageReference) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SoftwareUpdateConfigurationsDelete  {
+public protocol SoftwareUpdateConfigurationsDelete {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol SoftwareUpdateConfigurationsDelete  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.SoftwareUpdateConfigurations {
@@ -34,7 +34,7 @@ extension Commands.SoftwareUpdateConfigurations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -45,7 +45,7 @@ extension Commands.SoftwareUpdateConfigurations {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

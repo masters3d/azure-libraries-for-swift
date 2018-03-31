@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ExpressRouteCircuitsListArpTable  {
+public protocol ExpressRouteCircuitsListArpTable {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var circuitName : String { get set }
@@ -9,7 +9,7 @@ public protocol ExpressRouteCircuitsListArpTable  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ExpressRouteCircuitsArpTableListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ExpressRouteCircuitsArpTableListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.ExpressRouteCircuits {
@@ -37,7 +37,7 @@ extension Commands.ExpressRouteCircuits {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{circuitName}"] = String(describing: self.circuitName)
             self.pathParameters["{peeringName}"] = String(describing: self.peeringName)
@@ -52,12 +52,12 @@ extension Commands.ExpressRouteCircuits {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ExpressRouteCircuitsArpTableListResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ExpressRouteCircuitsArpTableListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ExpressRouteCircuitsArpTableListResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: ExpressRouteCircuitsArpTableListResultData?, error: Error?) in
                 completionHandler(result, error)

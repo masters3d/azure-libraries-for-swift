@@ -16,7 +16,7 @@ internal struct A2APolicyCreationInputData : A2APolicyCreationInputProtocol, Pol
         case multiVmSyncStatus = "multiVmSyncStatus"
         }
 
-  public init(multiVmSyncStatus: SetMultiVmSyncStatusEnum)  {
+  public init(multiVmSyncStatus: SetMultiVmSyncStatusEnum) {
     self.multiVmSyncStatus = multiVmSyncStatus
   }
 
@@ -32,7 +32,7 @@ internal struct A2APolicyCreationInputData : A2APolicyCreationInputProtocol, Pol
         self.appConsistentFrequencyInMinutes = try container.decode(Int32?.self, forKey: .appConsistentFrequencyInMinutes)
     }
     self.multiVmSyncStatus = try container.decode(SetMultiVmSyncStatusEnum.self, forKey: .multiVmSyncStatus)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct A2APolicyCreationInputData : A2APolicyCreationInputProtocol, Pol
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.recoveryPointHistory != nil {try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory)}
-    if self.crashConsistentFrequencyInMinutes != nil {try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes)}
-    if self.appConsistentFrequencyInMinutes != nil {try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes)}
+    if self.recoveryPointHistory != nil { try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory) }
+    if self.crashConsistentFrequencyInMinutes != nil { try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes) }
+    if self.appConsistentFrequencyInMinutes != nil { try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes) }
     try container.encode(self.multiVmSyncStatus, forKey: .multiVmSyncStatus)
   }
 }

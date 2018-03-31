@@ -18,7 +18,7 @@ internal struct ItsmReceiverData : ItsmReceiverProtocol {
         case region = "region"
         }
 
-  public init(name: String, workspaceId: String, connectionId: String, ticketConfiguration: String, region: String)  {
+  public init(name: String, workspaceId: String, connectionId: String, ticketConfiguration: String, region: String) {
     self.name = name
     self.workspaceId = workspaceId
     self.connectionId = connectionId
@@ -33,7 +33,7 @@ internal struct ItsmReceiverData : ItsmReceiverProtocol {
     self.connectionId = try container.decode(String.self, forKey: .connectionId)
     self.ticketConfiguration = try container.decode(String.self, forKey: .ticketConfiguration)
     self.region = try container.decode(String.self, forKey: .region)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

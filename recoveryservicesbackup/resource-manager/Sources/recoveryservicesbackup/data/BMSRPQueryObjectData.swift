@@ -16,7 +16,7 @@ internal struct BMSRPQueryObjectData : BMSRPQueryObjectProtocol {
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct BMSRPQueryObjectData : BMSRPQueryObjectProtocol {
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(Bool?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct BMSRPQueryObjectData : BMSRPQueryObjectProtocol {
     if self.endDate != nil {
         try container.encode(DateConverter.toString(date: self.endDate!, format: .dateTime), forKey: .endDate)
     }
-    if self.restorePointQueryType != nil {try container.encode(self.restorePointQueryType, forKey: .restorePointQueryType)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo, forKey: .extendedInfo)}
+    if self.restorePointQueryType != nil { try container.encode(self.restorePointQueryType, forKey: .restorePointQueryType) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo, forKey: .extendedInfo) }
   }
 }
 

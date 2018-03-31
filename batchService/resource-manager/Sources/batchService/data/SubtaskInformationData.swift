@@ -32,7 +32,7 @@ internal struct SubtaskInformationData : SubtaskInformationProtocol {
         case result = "result"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct SubtaskInformationData : SubtaskInformationProtocol {
     if container.contains(.result) {
         self.result = try container.decode(TaskExecutionResultEnum?.self, forKey: .result)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,26 +83,26 @@ internal struct SubtaskInformationData : SubtaskInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.nodeInfo != nil {try container.encode(self.nodeInfo as! ComputeNodeInformationData?, forKey: .nodeInfo)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.nodeInfo != nil { try container.encode(self.nodeInfo as! ComputeNodeInformationData?, forKey: .nodeInfo) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
-    if self.containerInfo != nil {try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo)}
-    if self.failureInfo != nil {try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
+    if self.containerInfo != nil { try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo) }
+    if self.failureInfo != nil { try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.stateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.stateTransitionTime!, format: .dateTime), forKey: .stateTransitionTime)
     }
-    if self.previousState != nil {try container.encode(self.previousState, forKey: .previousState)}
+    if self.previousState != nil { try container.encode(self.previousState, forKey: .previousState) }
     if self.previousStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.previousStateTransitionTime!, format: .dateTime), forKey: .previousStateTransitionTime)
     }
-    if self.result != nil {try container.encode(self.result, forKey: .result)}
+    if self.result != nil { try container.encode(self.result, forKey: .result) }
   }
 }
 

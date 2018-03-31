@@ -14,7 +14,7 @@ internal struct ServiceTypeHealthPolicyData : ServiceTypeHealthPolicyProtocol {
         case maxPercentUnhealthyServices = "MaxPercentUnhealthyServices"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ServiceTypeHealthPolicyData : ServiceTypeHealthPolicyProtocol {
     if container.contains(.maxPercentUnhealthyServices) {
         self.maxPercentUnhealthyServices = try container.decode(Int32?.self, forKey: .maxPercentUnhealthyServices)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ServiceTypeHealthPolicyData : ServiceTypeHealthPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxPercentUnhealthyPartitionsPerService != nil {try container.encode(self.maxPercentUnhealthyPartitionsPerService, forKey: .maxPercentUnhealthyPartitionsPerService)}
-    if self.maxPercentUnhealthyReplicasPerPartition != nil {try container.encode(self.maxPercentUnhealthyReplicasPerPartition, forKey: .maxPercentUnhealthyReplicasPerPartition)}
-    if self.maxPercentUnhealthyServices != nil {try container.encode(self.maxPercentUnhealthyServices, forKey: .maxPercentUnhealthyServices)}
+    if self.maxPercentUnhealthyPartitionsPerService != nil { try container.encode(self.maxPercentUnhealthyPartitionsPerService, forKey: .maxPercentUnhealthyPartitionsPerService) }
+    if self.maxPercentUnhealthyReplicasPerPartition != nil { try container.encode(self.maxPercentUnhealthyReplicasPerPartition, forKey: .maxPercentUnhealthyReplicasPerPartition) }
+    if self.maxPercentUnhealthyServices != nil { try container.encode(self.maxPercentUnhealthyServices, forKey: .maxPercentUnhealthyServices) }
   }
 }
 

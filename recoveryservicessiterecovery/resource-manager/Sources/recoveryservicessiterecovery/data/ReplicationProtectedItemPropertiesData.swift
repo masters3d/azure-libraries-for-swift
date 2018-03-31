@@ -62,7 +62,7 @@ internal struct ReplicationProtectedItemPropertiesData : ReplicationProtectedIte
         case recoveryContainerId = "recoveryContainerId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -148,7 +148,7 @@ internal struct ReplicationProtectedItemPropertiesData : ReplicationProtectedIte
     if container.contains(.recoveryContainerId) {
         self.recoveryContainerId = try container.decode(String?.self, forKey: .recoveryContainerId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -158,37 +158,37 @@ internal struct ReplicationProtectedItemPropertiesData : ReplicationProtectedIte
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.protectedItemType != nil {try container.encode(self.protectedItemType, forKey: .protectedItemType)}
-    if self.protectableItemId != nil {try container.encode(self.protectableItemId, forKey: .protectableItemId)}
-    if self.recoveryServicesProviderId != nil {try container.encode(self.recoveryServicesProviderId, forKey: .recoveryServicesProviderId)}
-    if self.primaryFabricFriendlyName != nil {try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName)}
-    if self.primaryFabricProvider != nil {try container.encode(self.primaryFabricProvider, forKey: .primaryFabricProvider)}
-    if self.recoveryFabricFriendlyName != nil {try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName)}
-    if self.recoveryFabricId != nil {try container.encode(self.recoveryFabricId, forKey: .recoveryFabricId)}
-    if self.primaryProtectionContainerFriendlyName != nil {try container.encode(self.primaryProtectionContainerFriendlyName, forKey: .primaryProtectionContainerFriendlyName)}
-    if self.recoveryProtectionContainerFriendlyName != nil {try container.encode(self.recoveryProtectionContainerFriendlyName, forKey: .recoveryProtectionContainerFriendlyName)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.protectionStateDescription != nil {try container.encode(self.protectionStateDescription, forKey: .protectionStateDescription)}
-    if self.activeLocation != nil {try container.encode(self.activeLocation, forKey: .activeLocation)}
-    if self.testFailoverState != nil {try container.encode(self.testFailoverState, forKey: .testFailoverState)}
-    if self.testFailoverStateDescription != nil {try container.encode(self.testFailoverStateDescription, forKey: .testFailoverStateDescription)}
-    if self.allowedOperations != nil {try container.encode(self.allowedOperations as! [String]?, forKey: .allowedOperations)}
-    if self.replicationHealth != nil {try container.encode(self.replicationHealth, forKey: .replicationHealth)}
-    if self.failoverHealth != nil {try container.encode(self.failoverHealth, forKey: .failoverHealth)}
-    if self.healthErrors != nil {try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.policyFriendlyName != nil {try container.encode(self.policyFriendlyName, forKey: .policyFriendlyName)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.protectedItemType != nil { try container.encode(self.protectedItemType, forKey: .protectedItemType) }
+    if self.protectableItemId != nil { try container.encode(self.protectableItemId, forKey: .protectableItemId) }
+    if self.recoveryServicesProviderId != nil { try container.encode(self.recoveryServicesProviderId, forKey: .recoveryServicesProviderId) }
+    if self.primaryFabricFriendlyName != nil { try container.encode(self.primaryFabricFriendlyName, forKey: .primaryFabricFriendlyName) }
+    if self.primaryFabricProvider != nil { try container.encode(self.primaryFabricProvider, forKey: .primaryFabricProvider) }
+    if self.recoveryFabricFriendlyName != nil { try container.encode(self.recoveryFabricFriendlyName, forKey: .recoveryFabricFriendlyName) }
+    if self.recoveryFabricId != nil { try container.encode(self.recoveryFabricId, forKey: .recoveryFabricId) }
+    if self.primaryProtectionContainerFriendlyName != nil { try container.encode(self.primaryProtectionContainerFriendlyName, forKey: .primaryProtectionContainerFriendlyName) }
+    if self.recoveryProtectionContainerFriendlyName != nil { try container.encode(self.recoveryProtectionContainerFriendlyName, forKey: .recoveryProtectionContainerFriendlyName) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.protectionStateDescription != nil { try container.encode(self.protectionStateDescription, forKey: .protectionStateDescription) }
+    if self.activeLocation != nil { try container.encode(self.activeLocation, forKey: .activeLocation) }
+    if self.testFailoverState != nil { try container.encode(self.testFailoverState, forKey: .testFailoverState) }
+    if self.testFailoverStateDescription != nil { try container.encode(self.testFailoverStateDescription, forKey: .testFailoverStateDescription) }
+    if self.allowedOperations != nil { try container.encode(self.allowedOperations as! [String]?, forKey: .allowedOperations) }
+    if self.replicationHealth != nil { try container.encode(self.replicationHealth, forKey: .replicationHealth) }
+    if self.failoverHealth != nil { try container.encode(self.failoverHealth, forKey: .failoverHealth) }
+    if self.healthErrors != nil { try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.policyFriendlyName != nil { try container.encode(self.policyFriendlyName, forKey: .policyFriendlyName) }
     if self.lastSuccessfulFailoverTime != nil {
         try container.encode(DateConverter.toString(date: self.lastSuccessfulFailoverTime!, format: .dateTime), forKey: .lastSuccessfulFailoverTime)
     }
     if self.lastSuccessfulTestFailoverTime != nil {
         try container.encode(DateConverter.toString(date: self.lastSuccessfulTestFailoverTime!, format: .dateTime), forKey: .lastSuccessfulTestFailoverTime)
     }
-    if self.currentScenario != nil {try container.encode(self.currentScenario as! CurrentScenarioDetailsData?, forKey: .currentScenario)}
-    if self.failoverRecoveryPointId != nil {try container.encode(self.failoverRecoveryPointId, forKey: .failoverRecoveryPointId)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! ReplicationProviderSpecificSettingsData?, forKey: .providerSpecificDetails)}
-    if self.recoveryContainerId != nil {try container.encode(self.recoveryContainerId, forKey: .recoveryContainerId)}
+    if self.currentScenario != nil { try container.encode(self.currentScenario as! CurrentScenarioDetailsData?, forKey: .currentScenario) }
+    if self.failoverRecoveryPointId != nil { try container.encode(self.failoverRecoveryPointId, forKey: .failoverRecoveryPointId) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! ReplicationProviderSpecificSettingsData?, forKey: .providerSpecificDetails) }
+    if self.recoveryContainerId != nil { try container.encode(self.recoveryContainerId, forKey: .recoveryContainerId) }
   }
 }
 

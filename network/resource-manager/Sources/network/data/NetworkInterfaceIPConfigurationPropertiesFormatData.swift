@@ -30,7 +30,7 @@ internal struct NetworkInterfaceIPConfigurationPropertiesFormatData : NetworkInt
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct NetworkInterfaceIPConfigurationPropertiesFormatData : NetworkInt
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct NetworkInterfaceIPConfigurationPropertiesFormatData : NetworkInt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.applicationGatewayBackendAddressPools != nil {try container.encode(self.applicationGatewayBackendAddressPools as! [ApplicationGatewayBackendAddressPoolData?]?, forKey: .applicationGatewayBackendAddressPools)}
-    if self.loadBalancerBackendAddressPools != nil {try container.encode(self.loadBalancerBackendAddressPools as! [BackendAddressPoolData?]?, forKey: .loadBalancerBackendAddressPools)}
-    if self.loadBalancerInboundNatRules != nil {try container.encode(self.loadBalancerInboundNatRules as! [InboundNatRuleData?]?, forKey: .loadBalancerInboundNatRules)}
-    if self.privateIPAddress != nil {try container.encode(self.privateIPAddress, forKey: .privateIPAddress)}
-    if self.privateIPAllocationMethod != nil {try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod)}
-    if self.privateIPAddressVersion != nil {try container.encode(self.privateIPAddressVersion, forKey: .privateIPAddressVersion)}
-    if self.subnet != nil {try container.encode(self.subnet as! SubnetData?, forKey: .subnet)}
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
-    if self.publicIPAddress != nil {try container.encode(self.publicIPAddress as! PublicIPAddressData?, forKey: .publicIPAddress)}
-    if self.applicationSecurityGroups != nil {try container.encode(self.applicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .applicationSecurityGroups)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.applicationGatewayBackendAddressPools != nil { try container.encode(self.applicationGatewayBackendAddressPools as! [ApplicationGatewayBackendAddressPoolData?]?, forKey: .applicationGatewayBackendAddressPools) }
+    if self.loadBalancerBackendAddressPools != nil { try container.encode(self.loadBalancerBackendAddressPools as! [BackendAddressPoolData?]?, forKey: .loadBalancerBackendAddressPools) }
+    if self.loadBalancerInboundNatRules != nil { try container.encode(self.loadBalancerInboundNatRules as! [InboundNatRuleData?]?, forKey: .loadBalancerInboundNatRules) }
+    if self.privateIPAddress != nil { try container.encode(self.privateIPAddress, forKey: .privateIPAddress) }
+    if self.privateIPAllocationMethod != nil { try container.encode(self.privateIPAllocationMethod, forKey: .privateIPAllocationMethod) }
+    if self.privateIPAddressVersion != nil { try container.encode(self.privateIPAddressVersion, forKey: .privateIPAddressVersion) }
+    if self.subnet != nil { try container.encode(self.subnet as! SubnetData?, forKey: .subnet) }
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
+    if self.publicIPAddress != nil { try container.encode(self.publicIPAddress as! PublicIPAddressData?, forKey: .publicIPAddress) }
+    if self.applicationSecurityGroups != nil { try container.encode(self.applicationSecurityGroups as! [ApplicationSecurityGroupData?]?, forKey: .applicationSecurityGroups) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

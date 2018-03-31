@@ -12,7 +12,7 @@ internal struct EffectiveNetworkSecurityGroupAssociationData : EffectiveNetworkS
         case networkInterface = "networkInterface"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct EffectiveNetworkSecurityGroupAssociationData : EffectiveNetworkS
     if container.contains(.networkInterface) {
         self.networkInterface = try container.decode(SubResourceData?.self, forKey: .networkInterface)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct EffectiveNetworkSecurityGroupAssociationData : EffectiveNetworkS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subnet != nil {try container.encode(self.subnet as! SubResourceData?, forKey: .subnet)}
-    if self.networkInterface != nil {try container.encode(self.networkInterface as! SubResourceData?, forKey: .networkInterface)}
+    if self.subnet != nil { try container.encode(self.subnet as! SubResourceData?, forKey: .subnet) }
+    if self.networkInterface != nil { try container.encode(self.networkInterface as! SubResourceData?, forKey: .networkInterface) }
   }
 }
 

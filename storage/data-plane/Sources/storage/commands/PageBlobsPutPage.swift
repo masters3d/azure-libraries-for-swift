@@ -1,27 +1,27 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PageBlobsPutPage  {
+public protocol PageBlobsPutPage {
     var headerParameters: [String: String] { get set }
     var accountName : String { get set }
     var container : String { get set }
     var blob : String { get set }
     var timeout : Int32? { get set }
     var comp : String { get set }
-    var range : String?  { get set }
-    var pageWrite : String?  { get set }
-    var leaseId : String?  { get set }
-    var ifSequenceNumberLessThanOrEqualTo : String?  { get set }
-    var ifSequenceNumberLessThan : String?  { get set }
-    var ifSequenceNumberEqualTo : String?  { get set }
-    var ifModifiedSince : String?  { get set }
-    var ifUnmodifiedSince : String?  { get set }
-    var ifMatches : String?  { get set }
-    var ifNoneMatch : String?  { get set }
-    var version : String?  { get set }
-    var requestId : String?  { get set }
-    var _body :  Data?  { get set }
+    var range : String? { get set }
+    var pageWrite : String? { get set }
+    var leaseId : String? { get set }
+    var ifSequenceNumberLessThanOrEqualTo : String? { get set }
+    var ifSequenceNumberLessThan : String? { get set }
+    var ifSequenceNumberEqualTo : String? { get set }
+    var ifModifiedSince : String? { get set }
+    var ifUnmodifiedSince : String? { get set }
+    var ifMatches : String? { get set }
+    var ifNoneMatch : String? { get set }
+    var version : String? { get set }
+    var requestId : String? { get set }
+    var _body :  Data? { get set }
     func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void;
+        completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.PageBlobs {
@@ -37,14 +37,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-range"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-range"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-range" }) {
                 return headerParameters["x-ms-range"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -54,14 +54,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-page-write"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-page-write"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-page-write" }) {
                 return headerParameters["x-ms-page-write"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -71,14 +71,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-lease-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-lease-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-lease-id" }) {
                 return headerParameters["x-ms-lease-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -88,14 +88,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-if-sequence-number-le"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-if-sequence-number-le"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-if-sequence-number-le" }) {
                 return headerParameters["x-ms-if-sequence-number-le"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -105,14 +105,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-if-sequence-number-lt"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-if-sequence-number-lt"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-if-sequence-number-lt" }) {
                 return headerParameters["x-ms-if-sequence-number-lt"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -122,14 +122,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-if-sequence-number-eq"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-if-sequence-number-eq"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-if-sequence-number-eq" }) {
                 return headerParameters["x-ms-if-sequence-number-eq"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -139,14 +139,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["If-Modified-Since"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Modified-Since"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Modified-Since" }) {
                 return headerParameters["If-Modified-Since"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -156,14 +156,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["If-Unmodified-Since"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Unmodified-Since"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Unmodified-Since" }) {
                 return headerParameters["If-Unmodified-Since"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -173,14 +173,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["If-Match"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-Match"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-Match" }) {
                 return headerParameters["If-Match"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -190,14 +190,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["If-None-Match"] = newValue!
-            }else {
+            } else {
                 headerParameters["If-None-Match"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "If-None-Match" }) {
                 return headerParameters["If-None-Match"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -207,14 +207,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-version"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-version"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-version" }) {
                 return headerParameters["x-ms-version"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -224,14 +224,14 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         set {
             if newValue != nil {
                 headerParameters["x-ms-client-request-id"] = newValue!
-            }else {
+            } else {
                 headerParameters["x-ms-client-request-id"] = nil
             }
         }
         get {
             if headerParameters.contains(where: { $0.key == "x-ms-client-request-id" }) {
                 return headerParameters["x-ms-client-request-id"]
-            }else {
+            } else {
                 return nil
             }
         }
@@ -252,7 +252,7 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
         self.headerParameters = ["Content-Type":"application/xml; charset=utf-8"]
     }
 
-    public override func preCall()  {
+    public override func preCall() {
         self.pathParameters["{accountName}"] = String(describing: self.accountName)
         self.pathParameters["{container}"] = String(describing: self.container)
         self.pathParameters["{blob}"] = String(describing: self.blob)
@@ -266,7 +266,7 @@ internal class PutPageCommand : BaseCommand, PageBlobsPutPage {
     }
 
     public func execute(client: RuntimeClient,
-        completionHandler: @escaping (Error?) -> Void) -> Void {
+        completionHandler: @escaping (Error?) -> Void) {
         client.executeAsync(command: self) {
             (error) in
             completionHandler(error)

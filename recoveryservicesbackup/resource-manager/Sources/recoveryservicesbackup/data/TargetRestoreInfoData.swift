@@ -14,7 +14,7 @@ internal struct TargetRestoreInfoData : TargetRestoreInfoProtocol {
         case databaseName = "databaseName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct TargetRestoreInfoData : TargetRestoreInfoProtocol {
     if container.contains(.databaseName) {
         self.databaseName = try container.decode(String?.self, forKey: .databaseName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct TargetRestoreInfoData : TargetRestoreInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.overwriteOption != nil {try container.encode(self.overwriteOption, forKey: .overwriteOption)}
-    if self.containerId != nil {try container.encode(self.containerId, forKey: .containerId)}
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
+    if self.overwriteOption != nil { try container.encode(self.overwriteOption, forKey: .overwriteOption) }
+    if self.containerId != nil { try container.encode(self.containerId, forKey: .containerId) }
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
   }
 }
 

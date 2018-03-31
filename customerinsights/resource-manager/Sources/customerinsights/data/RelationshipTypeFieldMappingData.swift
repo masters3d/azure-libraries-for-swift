@@ -12,7 +12,7 @@ internal struct RelationshipTypeFieldMappingData : RelationshipTypeFieldMappingP
         case relatedProfileKeyProperty = "relatedProfileKeyProperty"
         }
 
-  public init(profileFieldName: String, relatedProfileKeyProperty: String)  {
+  public init(profileFieldName: String, relatedProfileKeyProperty: String) {
     self.profileFieldName = profileFieldName
     self.relatedProfileKeyProperty = relatedProfileKeyProperty
   }
@@ -21,7 +21,7 @@ internal struct RelationshipTypeFieldMappingData : RelationshipTypeFieldMappingP
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.profileFieldName = try container.decode(String.self, forKey: .profileFieldName)
     self.relatedProfileKeyProperty = try container.decode(String.self, forKey: .relatedProfileKeyProperty)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

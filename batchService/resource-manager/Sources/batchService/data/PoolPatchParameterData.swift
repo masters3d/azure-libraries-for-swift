@@ -16,7 +16,7 @@ internal struct PoolPatchParameterData : PoolPatchParameterProtocol {
         case metadata = "metadata"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PoolPatchParameterData : PoolPatchParameterProtocol {
     if container.contains(.metadata) {
         self.metadata = try container.decode([MetadataItemData?]?.self, forKey: .metadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PoolPatchParameterData : PoolPatchParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.startTask != nil {try container.encode(self.startTask as! StartTaskData?, forKey: .startTask)}
-    if self.certificateReferences != nil {try container.encode(self.certificateReferences as! [CertificateReferenceData?]?, forKey: .certificateReferences)}
-    if self.applicationPackageReferences != nil {try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences)}
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
+    if self.startTask != nil { try container.encode(self.startTask as! StartTaskData?, forKey: .startTask) }
+    if self.certificateReferences != nil { try container.encode(self.certificateReferences as! [CertificateReferenceData?]?, forKey: .certificateReferences) }
+    if self.applicationPackageReferences != nil { try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences) }
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
   }
 }
 

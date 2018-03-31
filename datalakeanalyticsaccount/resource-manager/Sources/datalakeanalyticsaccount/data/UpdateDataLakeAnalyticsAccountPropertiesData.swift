@@ -32,7 +32,7 @@ internal struct UpdateDataLakeAnalyticsAccountPropertiesData : UpdateDataLakeAna
         case queryStoreRetention = "queryStoreRetention"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct UpdateDataLakeAnalyticsAccountPropertiesData : UpdateDataLakeAna
     if container.contains(.queryStoreRetention) {
         self.queryStoreRetention = try container.decode(Int32?.self, forKey: .queryStoreRetention)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,18 +83,18 @@ internal struct UpdateDataLakeAnalyticsAccountPropertiesData : UpdateDataLakeAna
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataLakeStoreAccounts != nil {try container.encode(self.dataLakeStoreAccounts as! [UpdateDataLakeStoreWithAccountParametersData?]?, forKey: .dataLakeStoreAccounts)}
-    if self.storageAccounts != nil {try container.encode(self.storageAccounts as! [UpdateStorageAccountWithAccountParametersData?]?, forKey: .storageAccounts)}
-    if self.computePolicies != nil {try container.encode(self.computePolicies as! [UpdateComputePolicyWithAccountParametersData?]?, forKey: .computePolicies)}
-    if self.firewallRules != nil {try container.encode(self.firewallRules as! [UpdateFirewallRuleWithAccountParametersData?]?, forKey: .firewallRules)}
-    if self.firewallState != nil {try container.encode(self.firewallState, forKey: .firewallState)}
-    if self.firewallAllowAzureIps != nil {try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps)}
-    if self.newTier != nil {try container.encode(self.newTier, forKey: .newTier)}
-    if self.maxJobCount != nil {try container.encode(self.maxJobCount, forKey: .maxJobCount)}
-    if self.maxDegreeOfParallelism != nil {try container.encode(self.maxDegreeOfParallelism, forKey: .maxDegreeOfParallelism)}
-    if self.maxDegreeOfParallelismPerJob != nil {try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob)}
-    if self.minPriorityPerJob != nil {try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob)}
-    if self.queryStoreRetention != nil {try container.encode(self.queryStoreRetention, forKey: .queryStoreRetention)}
+    if self.dataLakeStoreAccounts != nil { try container.encode(self.dataLakeStoreAccounts as! [UpdateDataLakeStoreWithAccountParametersData?]?, forKey: .dataLakeStoreAccounts) }
+    if self.storageAccounts != nil { try container.encode(self.storageAccounts as! [UpdateStorageAccountWithAccountParametersData?]?, forKey: .storageAccounts) }
+    if self.computePolicies != nil { try container.encode(self.computePolicies as! [UpdateComputePolicyWithAccountParametersData?]?, forKey: .computePolicies) }
+    if self.firewallRules != nil { try container.encode(self.firewallRules as! [UpdateFirewallRuleWithAccountParametersData?]?, forKey: .firewallRules) }
+    if self.firewallState != nil { try container.encode(self.firewallState, forKey: .firewallState) }
+    if self.firewallAllowAzureIps != nil { try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps) }
+    if self.newTier != nil { try container.encode(self.newTier, forKey: .newTier) }
+    if self.maxJobCount != nil { try container.encode(self.maxJobCount, forKey: .maxJobCount) }
+    if self.maxDegreeOfParallelism != nil { try container.encode(self.maxDegreeOfParallelism, forKey: .maxDegreeOfParallelism) }
+    if self.maxDegreeOfParallelismPerJob != nil { try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob) }
+    if self.minPriorityPerJob != nil { try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob) }
+    if self.queryStoreRetention != nil { try container.encode(self.queryStoreRetention, forKey: .queryStoreRetention) }
   }
 }
 

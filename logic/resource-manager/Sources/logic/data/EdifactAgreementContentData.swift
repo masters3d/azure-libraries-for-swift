@@ -12,7 +12,7 @@ internal struct EdifactAgreementContentData : EdifactAgreementContentProtocol {
         case sendAgreement = "sendAgreement"
         }
 
-  public init(receiveAgreement: EdifactOneWayAgreementProtocol, sendAgreement: EdifactOneWayAgreementProtocol)  {
+  public init(receiveAgreement: EdifactOneWayAgreementProtocol, sendAgreement: EdifactOneWayAgreementProtocol) {
     self.receiveAgreement = receiveAgreement
     self.sendAgreement = sendAgreement
   }
@@ -21,7 +21,7 @@ internal struct EdifactAgreementContentData : EdifactAgreementContentProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.receiveAgreement = try container.decode(EdifactOneWayAgreementData.self, forKey: .receiveAgreement)
     self.sendAgreement = try container.decode(EdifactOneWayAgreementData.self, forKey: .sendAgreement)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

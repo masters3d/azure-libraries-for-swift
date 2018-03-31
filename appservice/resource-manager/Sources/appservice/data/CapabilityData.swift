@@ -14,7 +14,7 @@ internal struct CapabilityData : CapabilityProtocol {
         case reason = "reason"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CapabilityData : CapabilityProtocol {
     if container.contains(.reason) {
         self.reason = try container.decode(String?.self, forKey: .reason)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CapabilityData : CapabilityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.reason != nil {try container.encode(self.reason, forKey: .reason)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.reason != nil { try container.encode(self.reason, forKey: .reason) }
   }
 }
 

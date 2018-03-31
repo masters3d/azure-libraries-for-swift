@@ -14,7 +14,7 @@ internal struct TaskContainerSettingsData : TaskContainerSettingsProtocol {
         case registry = "registry"
         }
 
-  public init(imageName: String)  {
+  public init(imageName: String) {
     self.imageName = imageName
   }
 
@@ -27,7 +27,7 @@ internal struct TaskContainerSettingsData : TaskContainerSettingsProtocol {
     if container.contains(.registry) {
         self.registry = try container.decode(ContainerRegistryData?.self, forKey: .registry)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct TaskContainerSettingsData : TaskContainerSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.containerRunOptions != nil {try container.encode(self.containerRunOptions, forKey: .containerRunOptions)}
+    if self.containerRunOptions != nil { try container.encode(self.containerRunOptions, forKey: .containerRunOptions) }
     try container.encode(self.imageName, forKey: .imageName)
-    if self.registry != nil {try container.encode(self.registry as! ContainerRegistryData?, forKey: .registry)}
+    if self.registry != nil { try container.encode(self.registry as! ContainerRegistryData?, forKey: .registry) }
   }
 }
 

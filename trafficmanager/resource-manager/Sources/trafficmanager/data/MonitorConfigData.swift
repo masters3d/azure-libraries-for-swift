@@ -22,7 +22,7 @@ internal struct MonitorConfigData : MonitorConfigProtocol {
         case toleratedNumberOfFailures = "toleratedNumberOfFailures"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct MonitorConfigData : MonitorConfigProtocol {
     if container.contains(.toleratedNumberOfFailures) {
         self.toleratedNumberOfFailures = try container.decode(Int64?.self, forKey: .toleratedNumberOfFailures)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct MonitorConfigData : MonitorConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.profileMonitorStatus != nil {try container.encode(self.profileMonitorStatus, forKey: .profileMonitorStatus)}
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.intervalInSeconds != nil {try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds)}
-    if self.timeoutInSeconds != nil {try container.encode(self.timeoutInSeconds, forKey: .timeoutInSeconds)}
-    if self.toleratedNumberOfFailures != nil {try container.encode(self.toleratedNumberOfFailures, forKey: .toleratedNumberOfFailures)}
+    if self.profileMonitorStatus != nil { try container.encode(self.profileMonitorStatus, forKey: .profileMonitorStatus) }
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.intervalInSeconds != nil { try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds) }
+    if self.timeoutInSeconds != nil { try container.encode(self.timeoutInSeconds, forKey: .timeoutInSeconds) }
+    if self.toleratedNumberOfFailures != nil { try container.encode(self.toleratedNumberOfFailures, forKey: .toleratedNumberOfFailures) }
   }
 }
 

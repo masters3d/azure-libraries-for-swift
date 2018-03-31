@@ -14,7 +14,7 @@ internal struct NetworkSecurityGroupRuleData : NetworkSecurityGroupRuleProtocol 
         case sourceAddressPrefix = "sourceAddressPrefix"
         }
 
-  public init(priority: Int32, access: NetworkSecurityGroupRuleAccessEnum, sourceAddressPrefix: String)  {
+  public init(priority: Int32, access: NetworkSecurityGroupRuleAccessEnum, sourceAddressPrefix: String) {
     self.priority = priority
     self.access = access
     self.sourceAddressPrefix = sourceAddressPrefix
@@ -25,7 +25,7 @@ internal struct NetworkSecurityGroupRuleData : NetworkSecurityGroupRuleProtocol 
       self.priority = try container.decode(Int32.self, forKey: .priority)
     self.access = try container.decode(NetworkSecurityGroupRuleAccessEnum.self, forKey: .access)
     self.sourceAddressPrefix = try container.decode(String.self, forKey: .sourceAddressPrefix)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -24,7 +24,7 @@ internal struct WebJobPropertiesData : WebJobPropertiesProtocol {
         case settings = "settings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct WebJobPropertiesData : WebJobPropertiesProtocol {
     if container.contains(.settings) {
         self.settings = try container.decode([String:[String: String?]]?.self, forKey: .settings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct WebJobPropertiesData : WebJobPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.runCommand != nil {try container.encode(self.runCommand, forKey: .runCommand)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.extraInfoUrl != nil {try container.encode(self.extraInfoUrl, forKey: .extraInfoUrl)}
-    if self.jobType != nil {try container.encode(self.jobType, forKey: .jobType)}
-    if self.error != nil {try container.encode(self.error, forKey: .error)}
-    if self.usingSdk != nil {try container.encode(self.usingSdk, forKey: .usingSdk)}
-    if self.settings != nil {try container.encode(self.settings, forKey: .settings)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.runCommand != nil { try container.encode(self.runCommand, forKey: .runCommand) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.extraInfoUrl != nil { try container.encode(self.extraInfoUrl, forKey: .extraInfoUrl) }
+    if self.jobType != nil { try container.encode(self.jobType, forKey: .jobType) }
+    if self.error != nil { try container.encode(self.error, forKey: .error) }
+    if self.usingSdk != nil { try container.encode(self.usingSdk, forKey: .usingSdk) }
+    if self.settings != nil { try container.encode(self.settings, forKey: .settings) }
   }
 }
 

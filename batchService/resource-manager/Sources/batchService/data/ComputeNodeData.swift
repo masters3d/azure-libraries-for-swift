@@ -48,7 +48,7 @@ internal struct ComputeNodeData : ComputeNodeProtocol {
         case endpointConfiguration = "endpointConfiguration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -113,7 +113,7 @@ internal struct ComputeNodeData : ComputeNodeProtocol {
     if container.contains(.endpointConfiguration) {
         self.endpointConfiguration = try container.decode(ComputeNodeEndpointConfigurationData?.self, forKey: .endpointConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -123,10 +123,10 @@ internal struct ComputeNodeData : ComputeNodeProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.schedulingState != nil {try container.encode(self.schedulingState, forKey: .schedulingState)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.schedulingState != nil { try container.encode(self.schedulingState, forKey: .schedulingState) }
     if self.stateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.stateTransitionTime!, format: .dateTime), forKey: .stateTransitionTime)
     }
@@ -136,19 +136,19 @@ internal struct ComputeNodeData : ComputeNodeProtocol {
     if self.allocationTime != nil {
         try container.encode(DateConverter.toString(date: self.allocationTime!, format: .dateTime), forKey: .allocationTime)
     }
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.affinityId != nil {try container.encode(self.affinityId, forKey: .affinityId)}
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.totalTasksRun != nil {try container.encode(self.totalTasksRun, forKey: .totalTasksRun)}
-    if self.runningTasksCount != nil {try container.encode(self.runningTasksCount, forKey: .runningTasksCount)}
-    if self.totalTasksSucceeded != nil {try container.encode(self.totalTasksSucceeded, forKey: .totalTasksSucceeded)}
-    if self.recentTasks != nil {try container.encode(self.recentTasks as! [TaskInformationData?]?, forKey: .recentTasks)}
-    if self.startTask != nil {try container.encode(self.startTask as! StartTaskData?, forKey: .startTask)}
-    if self.startTaskInfo != nil {try container.encode(self.startTaskInfo as! StartTaskInformationData?, forKey: .startTaskInfo)}
-    if self.certificateReferences != nil {try container.encode(self.certificateReferences as! [CertificateReferenceData?]?, forKey: .certificateReferences)}
-    if self.errors != nil {try container.encode(self.errors as! [ComputeNodeErrorData?]?, forKey: .errors)}
-    if self.isDedicated != nil {try container.encode(self.isDedicated, forKey: .isDedicated)}
-    if self.endpointConfiguration != nil {try container.encode(self.endpointConfiguration as! ComputeNodeEndpointConfigurationData?, forKey: .endpointConfiguration)}
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.affinityId != nil { try container.encode(self.affinityId, forKey: .affinityId) }
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.totalTasksRun != nil { try container.encode(self.totalTasksRun, forKey: .totalTasksRun) }
+    if self.runningTasksCount != nil { try container.encode(self.runningTasksCount, forKey: .runningTasksCount) }
+    if self.totalTasksSucceeded != nil { try container.encode(self.totalTasksSucceeded, forKey: .totalTasksSucceeded) }
+    if self.recentTasks != nil { try container.encode(self.recentTasks as! [TaskInformationData?]?, forKey: .recentTasks) }
+    if self.startTask != nil { try container.encode(self.startTask as! StartTaskData?, forKey: .startTask) }
+    if self.startTaskInfo != nil { try container.encode(self.startTaskInfo as! StartTaskInformationData?, forKey: .startTaskInfo) }
+    if self.certificateReferences != nil { try container.encode(self.certificateReferences as! [CertificateReferenceData?]?, forKey: .certificateReferences) }
+    if self.errors != nil { try container.encode(self.errors as! [ComputeNodeErrorData?]?, forKey: .errors) }
+    if self.isDedicated != nil { try container.encode(self.isDedicated, forKey: .isDedicated) }
+    if self.endpointConfiguration != nil { try container.encode(self.endpointConfiguration as! ComputeNodeEndpointConfigurationData?, forKey: .endpointConfiguration) }
   }
 }
 

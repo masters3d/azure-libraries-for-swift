@@ -12,7 +12,7 @@ internal struct OperationStatusJobsExtendedInfoData : OperationStatusJobsExtende
         case failedJobsError = "failedJobsError"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct OperationStatusJobsExtendedInfoData : OperationStatusJobsExtende
     if container.contains(.failedJobsError) {
         self.failedJobsError = try container.decode([String:String]?.self, forKey: .failedJobsError)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct OperationStatusJobsExtendedInfoData : OperationStatusJobsExtende
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobIds != nil {try container.encode(self.jobIds as! [String]?, forKey: .jobIds)}
-    if self.failedJobsError != nil {try container.encode(self.failedJobsError, forKey: .failedJobsError)}
+    if self.jobIds != nil { try container.encode(self.jobIds as! [String]?, forKey: .jobIds) }
+    if self.failedJobsError != nil { try container.encode(self.failedJobsError, forKey: .failedJobsError) }
   }
 }
 

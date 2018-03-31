@@ -14,7 +14,7 @@ internal struct VirtualMachineScaleSetStorageProfileData : VirtualMachineScaleSe
         case dataDisks = "dataDisks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VirtualMachineScaleSetStorageProfileData : VirtualMachineScaleSe
     if container.contains(.dataDisks) {
         self.dataDisks = try container.decode([VirtualMachineScaleSetDataDiskData?]?.self, forKey: .dataDisks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VirtualMachineScaleSetStorageProfileData : VirtualMachineScaleSe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.imageReference != nil {try container.encode(self.imageReference as! ImageReferenceData?, forKey: .imageReference)}
-    if self.osDisk != nil {try container.encode(self.osDisk as! VirtualMachineScaleSetOSDiskData?, forKey: .osDisk)}
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! [VirtualMachineScaleSetDataDiskData?]?, forKey: .dataDisks)}
+    if self.imageReference != nil { try container.encode(self.imageReference as! ImageReferenceData?, forKey: .imageReference) }
+    if self.osDisk != nil { try container.encode(self.osDisk as! VirtualMachineScaleSetOSDiskData?, forKey: .osDisk) }
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! [VirtualMachineScaleSetDataDiskData?]?, forKey: .dataDisks) }
   }
 }
 

@@ -26,7 +26,7 @@ internal struct PublicIPAddressPropertiesFormatData : PublicIPAddressPropertiesF
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct PublicIPAddressPropertiesFormatData : PublicIPAddressPropertiesF
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct PublicIPAddressPropertiesFormatData : PublicIPAddressPropertiesF
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.publicIPAllocationMethod != nil {try container.encode(self.publicIPAllocationMethod, forKey: .publicIPAllocationMethod)}
-    if self.publicIPAddressVersion != nil {try container.encode(self.publicIPAddressVersion, forKey: .publicIPAddressVersion)}
-    if self.ipConfiguration != nil {try container.encode(self.ipConfiguration as! IPConfigurationData?, forKey: .ipConfiguration)}
-    if self.dnsSettings != nil {try container.encode(self.dnsSettings as! PublicIPAddressDnsSettingsData?, forKey: .dnsSettings)}
-    if self.ipTags != nil {try container.encode(self.ipTags as! [IpTagData?]?, forKey: .ipTags)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.idleTimeoutInMinutes != nil {try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.publicIPAllocationMethod != nil { try container.encode(self.publicIPAllocationMethod, forKey: .publicIPAllocationMethod) }
+    if self.publicIPAddressVersion != nil { try container.encode(self.publicIPAddressVersion, forKey: .publicIPAddressVersion) }
+    if self.ipConfiguration != nil { try container.encode(self.ipConfiguration as! IPConfigurationData?, forKey: .ipConfiguration) }
+    if self.dnsSettings != nil { try container.encode(self.dnsSettings as! PublicIPAddressDnsSettingsData?, forKey: .dnsSettings) }
+    if self.ipTags != nil { try container.encode(self.ipTags as! [IpTagData?]?, forKey: .ipTags) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.idleTimeoutInMinutes != nil { try container.encode(self.idleTimeoutInMinutes, forKey: .idleTimeoutInMinutes) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LabsGenerateUploadUri  {
+public protocol LabsGenerateUploadUri {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
     var apiVersion : String { get set }
-    var generateUploadUriParameter :  GenerateUploadUriParameterProtocol?  { get set }
+    var generateUploadUriParameter :  GenerateUploadUriParameterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (GenerateUploadUriResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (GenerateUploadUriResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.Labs {
@@ -32,7 +32,7 @@ extension Commands.Labs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
@@ -55,12 +55,12 @@ extension Commands.Labs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(GenerateUploadUriResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (GenerateUploadUriResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (GenerateUploadUriResponseProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: GenerateUploadUriResponseData?, error: Error?) in
                 completionHandler(result, error)

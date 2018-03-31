@@ -12,7 +12,7 @@ internal struct AzureWorkloadSQLRecoveryPointExtendedInfoData : AzureWorkloadSQL
         case dataDirectoryPaths = "dataDirectoryPaths"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureWorkloadSQLRecoveryPointExtendedInfoData : AzureWorkloadSQL
     if container.contains(.dataDirectoryPaths) {
         self.dataDirectoryPaths = try container.decode([SQLDataDirectoryData?]?.self, forKey: .dataDirectoryPaths)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct AzureWorkloadSQLRecoveryPointExtendedInfoData : AzureWorkloadSQL
     if self.dataDirectoryTimeInUTC != nil {
         try container.encode(DateConverter.toString(date: self.dataDirectoryTimeInUTC!, format: .dateTime), forKey: .dataDirectoryTimeInUTC)
     }
-    if self.dataDirectoryPaths != nil {try container.encode(self.dataDirectoryPaths as! [SQLDataDirectoryData?]?, forKey: .dataDirectoryPaths)}
+    if self.dataDirectoryPaths != nil { try container.encode(self.dataDirectoryPaths as! [SQLDataDirectoryData?]?, forKey: .dataDirectoryPaths) }
   }
 }
 

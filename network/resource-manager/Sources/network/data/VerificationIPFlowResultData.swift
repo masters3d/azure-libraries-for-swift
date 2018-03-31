@@ -12,7 +12,7 @@ internal struct VerificationIPFlowResultData : VerificationIPFlowResultProtocol 
         case ruleName = "ruleName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VerificationIPFlowResultData : VerificationIPFlowResultProtocol 
     if container.contains(.ruleName) {
         self.ruleName = try container.decode(String?.self, forKey: .ruleName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VerificationIPFlowResultData : VerificationIPFlowResultProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.access != nil {try container.encode(self.access, forKey: .access)}
-    if self.ruleName != nil {try container.encode(self.ruleName, forKey: .ruleName)}
+    if self.access != nil { try container.encode(self.access, forKey: .access) }
+    if self.ruleName != nil { try container.encode(self.ruleName, forKey: .ruleName) }
   }
 }
 

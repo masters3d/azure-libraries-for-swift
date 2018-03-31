@@ -14,7 +14,7 @@ internal struct WnsCredentialPropertiesData : WnsCredentialPropertiesProtocol {
         case windowsLiveEndpoint = "windowsLiveEndpoint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct WnsCredentialPropertiesData : WnsCredentialPropertiesProtocol {
     if container.contains(.windowsLiveEndpoint) {
         self.windowsLiveEndpoint = try container.decode(String?.self, forKey: .windowsLiveEndpoint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct WnsCredentialPropertiesData : WnsCredentialPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.packageSid != nil {try container.encode(self.packageSid, forKey: .packageSid)}
-    if self.secretKey != nil {try container.encode(self.secretKey, forKey: .secretKey)}
-    if self.windowsLiveEndpoint != nil {try container.encode(self.windowsLiveEndpoint, forKey: .windowsLiveEndpoint)}
+    if self.packageSid != nil { try container.encode(self.packageSid, forKey: .packageSid) }
+    if self.secretKey != nil { try container.encode(self.secretKey, forKey: .secretKey) }
+    if self.windowsLiveEndpoint != nil { try container.encode(self.windowsLiveEndpoint, forKey: .windowsLiveEndpoint) }
   }
 }
 

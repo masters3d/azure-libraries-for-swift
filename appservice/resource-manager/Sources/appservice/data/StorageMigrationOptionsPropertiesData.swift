@@ -16,7 +16,7 @@ internal struct StorageMigrationOptionsPropertiesData : StorageMigrationOptionsP
         case blockWriteAccessToSite = "blockWriteAccessToSite"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct StorageMigrationOptionsPropertiesData : StorageMigrationOptionsP
     if container.contains(.blockWriteAccessToSite) {
         self.blockWriteAccessToSite = try container.decode(Bool?.self, forKey: .blockWriteAccessToSite)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct StorageMigrationOptionsPropertiesData : StorageMigrationOptionsP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azurefilesConnectionString != nil {try container.encode(self.azurefilesConnectionString, forKey: .azurefilesConnectionString)}
-    if self.azurefilesShare != nil {try container.encode(self.azurefilesShare, forKey: .azurefilesShare)}
-    if self.switchSiteAfterMigration != nil {try container.encode(self.switchSiteAfterMigration, forKey: .switchSiteAfterMigration)}
-    if self.blockWriteAccessToSite != nil {try container.encode(self.blockWriteAccessToSite, forKey: .blockWriteAccessToSite)}
+    if self.azurefilesConnectionString != nil { try container.encode(self.azurefilesConnectionString, forKey: .azurefilesConnectionString) }
+    if self.azurefilesShare != nil { try container.encode(self.azurefilesShare, forKey: .azurefilesShare) }
+    if self.switchSiteAfterMigration != nil { try container.encode(self.switchSiteAfterMigration, forKey: .switchSiteAfterMigration) }
+    if self.blockWriteAccessToSite != nil { try container.encode(self.blockWriteAccessToSite, forKey: .blockWriteAccessToSite) }
   }
 }
 

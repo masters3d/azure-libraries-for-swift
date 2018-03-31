@@ -48,7 +48,7 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
         case addOnFeatures = "addOnFeatures"
         }
 
-  public init(managementEndpoint: String, nodeTypes: [NodeTypeDescriptionProtocol])  {
+  public init(managementEndpoint: String, nodeTypes: [NodeTypeDescriptionProtocol]) {
     self.managementEndpoint = managementEndpoint
     self.nodeTypes = nodeTypes
   }
@@ -111,7 +111,7 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
     if container.contains(.addOnFeatures) {
         self.addOnFeatures = try container.decode([String?]?.self, forKey: .addOnFeatures)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -121,26 +121,26 @@ internal struct ClusterPropertiesData : ClusterPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.availableClusterVersions != nil {try container.encode(self.availableClusterVersions as! [ClusterVersionDetailsData?]?, forKey: .availableClusterVersions)}
-    if self.clusterId != nil {try container.encode(self.clusterId, forKey: .clusterId)}
-    if self.clusterState != nil {try container.encode(self.clusterState, forKey: .clusterState)}
-    if self.clusterEndpoint != nil {try container.encode(self.clusterEndpoint, forKey: .clusterEndpoint)}
-    if self.clusterCodeVersion != nil {try container.encode(self.clusterCodeVersion, forKey: .clusterCodeVersion)}
-    if self.certificate != nil {try container.encode(self.certificate as! CertificateDescriptionData?, forKey: .certificate)}
-    if self.reliabilityLevel != nil {try container.encode(self.reliabilityLevel, forKey: .reliabilityLevel)}
-    if self.upgradeMode != nil {try container.encode(self.upgradeMode, forKey: .upgradeMode)}
-    if self.clientCertificateThumbprints != nil {try container.encode(self.clientCertificateThumbprints as! [ClientCertificateThumbprintData?]?, forKey: .clientCertificateThumbprints)}
-    if self.clientCertificateCommonNames != nil {try container.encode(self.clientCertificateCommonNames as! [ClientCertificateCommonNameData?]?, forKey: .clientCertificateCommonNames)}
-    if self.fabricSettings != nil {try container.encode(self.fabricSettings as! [SettingsSectionDescriptionData?]?, forKey: .fabricSettings)}
-    if self.reverseProxyCertificate != nil {try container.encode(self.reverseProxyCertificate as! CertificateDescriptionData?, forKey: .reverseProxyCertificate)}
+    if self.availableClusterVersions != nil { try container.encode(self.availableClusterVersions as! [ClusterVersionDetailsData?]?, forKey: .availableClusterVersions) }
+    if self.clusterId != nil { try container.encode(self.clusterId, forKey: .clusterId) }
+    if self.clusterState != nil { try container.encode(self.clusterState, forKey: .clusterState) }
+    if self.clusterEndpoint != nil { try container.encode(self.clusterEndpoint, forKey: .clusterEndpoint) }
+    if self.clusterCodeVersion != nil { try container.encode(self.clusterCodeVersion, forKey: .clusterCodeVersion) }
+    if self.certificate != nil { try container.encode(self.certificate as! CertificateDescriptionData?, forKey: .certificate) }
+    if self.reliabilityLevel != nil { try container.encode(self.reliabilityLevel, forKey: .reliabilityLevel) }
+    if self.upgradeMode != nil { try container.encode(self.upgradeMode, forKey: .upgradeMode) }
+    if self.clientCertificateThumbprints != nil { try container.encode(self.clientCertificateThumbprints as! [ClientCertificateThumbprintData?]?, forKey: .clientCertificateThumbprints) }
+    if self.clientCertificateCommonNames != nil { try container.encode(self.clientCertificateCommonNames as! [ClientCertificateCommonNameData?]?, forKey: .clientCertificateCommonNames) }
+    if self.fabricSettings != nil { try container.encode(self.fabricSettings as! [SettingsSectionDescriptionData?]?, forKey: .fabricSettings) }
+    if self.reverseProxyCertificate != nil { try container.encode(self.reverseProxyCertificate as! CertificateDescriptionData?, forKey: .reverseProxyCertificate) }
     try container.encode(self.managementEndpoint, forKey: .managementEndpoint)
     try container.encode(self.nodeTypes as! [NodeTypeDescriptionData], forKey: .nodeTypes)
-    if self.azureActiveDirectory != nil {try container.encode(self.azureActiveDirectory as! AzureActiveDirectoryData?, forKey: .azureActiveDirectory)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.vmImage != nil {try container.encode(self.vmImage, forKey: .vmImage)}
-    if self.diagnosticsStorageAccountConfig != nil {try container.encode(self.diagnosticsStorageAccountConfig as! DiagnosticsStorageAccountConfigData?, forKey: .diagnosticsStorageAccountConfig)}
-    if self.upgradeDescription != nil {try container.encode(self.upgradeDescription as! ClusterUpgradePolicyData?, forKey: .upgradeDescription)}
-    if self.addOnFeatures != nil {try container.encode(self.addOnFeatures as! [String?]?, forKey: .addOnFeatures)}
+    if self.azureActiveDirectory != nil { try container.encode(self.azureActiveDirectory as! AzureActiveDirectoryData?, forKey: .azureActiveDirectory) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.vmImage != nil { try container.encode(self.vmImage, forKey: .vmImage) }
+    if self.diagnosticsStorageAccountConfig != nil { try container.encode(self.diagnosticsStorageAccountConfig as! DiagnosticsStorageAccountConfigData?, forKey: .diagnosticsStorageAccountConfig) }
+    if self.upgradeDescription != nil { try container.encode(self.upgradeDescription as! ClusterUpgradePolicyData?, forKey: .upgradeDescription) }
+    if self.addOnFeatures != nil { try container.encode(self.addOnFeatures as! [String?]?, forKey: .addOnFeatures) }
   }
 }
 

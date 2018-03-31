@@ -14,7 +14,7 @@ internal struct SlowRequestsBasedTriggerData : SlowRequestsBasedTriggerProtocol 
         case timeInterval = "timeInterval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SlowRequestsBasedTriggerData : SlowRequestsBasedTriggerProtocol 
     if container.contains(.timeInterval) {
         self.timeInterval = try container.decode(String?.self, forKey: .timeInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SlowRequestsBasedTriggerData : SlowRequestsBasedTriggerProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.timeTaken != nil {try container.encode(self.timeTaken, forKey: .timeTaken)}
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
-    if self.timeInterval != nil {try container.encode(self.timeInterval, forKey: .timeInterval)}
+    if self.timeTaken != nil { try container.encode(self.timeTaken, forKey: .timeTaken) }
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
+    if self.timeInterval != nil { try container.encode(self.timeInterval, forKey: .timeInterval) }
   }
 }
 

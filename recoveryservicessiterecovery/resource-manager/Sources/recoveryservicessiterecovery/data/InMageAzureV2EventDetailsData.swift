@@ -22,7 +22,7 @@ internal struct InMageAzureV2EventDetailsData : InMageAzureV2EventDetailsProtoco
         case siteName = "siteName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct InMageAzureV2EventDetailsData : InMageAzureV2EventDetailsProtoco
     if container.contains(.siteName) {
         self.siteName = try container.decode(String?.self, forKey: .siteName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct InMageAzureV2EventDetailsData : InMageAzureV2EventDetailsProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eventType != nil {try container.encode(self.eventType, forKey: .eventType)}
-    if self.category != nil {try container.encode(self.category, forKey: .category)}
-    if self.component != nil {try container.encode(self.component, forKey: .component)}
-    if self.correctiveAction != nil {try container.encode(self.correctiveAction, forKey: .correctiveAction)}
-    if self.details != nil {try container.encode(self.details, forKey: .details)}
-    if self.summary != nil {try container.encode(self.summary, forKey: .summary)}
-    if self.siteName != nil {try container.encode(self.siteName, forKey: .siteName)}
+    if self.eventType != nil { try container.encode(self.eventType, forKey: .eventType) }
+    if self.category != nil { try container.encode(self.category, forKey: .category) }
+    if self.component != nil { try container.encode(self.component, forKey: .component) }
+    if self.correctiveAction != nil { try container.encode(self.correctiveAction, forKey: .correctiveAction) }
+    if self.details != nil { try container.encode(self.details, forKey: .details) }
+    if self.summary != nil { try container.encode(self.summary, forKey: .summary) }
+    if self.siteName != nil { try container.encode(self.siteName, forKey: .siteName) }
   }
 }
 

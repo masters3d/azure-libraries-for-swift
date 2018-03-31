@@ -14,7 +14,7 @@ internal struct AssignmentPrincipalData : AssignmentPrincipalProtocol {
         case principalMetadata = "principalMetadata"
         }
 
-  public init(principalId: String, principalType: String)  {
+  public init(principalId: String, principalType: String) {
     self.principalId = principalId
     self.principalType = principalType
   }
@@ -26,7 +26,7 @@ internal struct AssignmentPrincipalData : AssignmentPrincipalProtocol {
     if container.contains(.principalMetadata) {
         self.principalMetadata = try container.decode([String:String]?.self, forKey: .principalMetadata)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct AssignmentPrincipalData : AssignmentPrincipalProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.principalId, forKey: .principalId)
     try container.encode(self.principalType, forKey: .principalType)
-    if self.principalMetadata != nil {try container.encode(self.principalMetadata, forKey: .principalMetadata)}
+    if self.principalMetadata != nil { try container.encode(self.principalMetadata, forKey: .principalMetadata) }
   }
 }
 

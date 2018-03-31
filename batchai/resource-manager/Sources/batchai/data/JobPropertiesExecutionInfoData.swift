@@ -16,7 +16,7 @@ internal struct JobPropertiesExecutionInfoData : JobPropertiesExecutionInfoProto
         case errors = "errors"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct JobPropertiesExecutionInfoData : JobPropertiesExecutionInfoProto
     if container.contains(.errors) {
         self.errors = try container.decode([BatchAIErrorData?]?.self, forKey: .errors)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct JobPropertiesExecutionInfoData : JobPropertiesExecutionInfoProto
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
-    if self.errors != nil {try container.encode(self.errors as! [BatchAIErrorData?]?, forKey: .errors)}
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
+    if self.errors != nil { try container.encode(self.errors as! [BatchAIErrorData?]?, forKey: .errors) }
   }
 }
 

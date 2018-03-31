@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol InteractionsGet  {
+public protocol InteractionsGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var hubName : String { get set }
@@ -9,7 +9,7 @@ public protocol InteractionsGet  {
     var localeCode : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (InteractionResourceFormatProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (InteractionResourceFormatProtocol?, Error?) -> Void)
 }
 
 extension Commands.Interactions {
@@ -34,7 +34,7 @@ extension Commands.Interactions {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{hubName}"] = String(describing: self.hubName)
             self.pathParameters["{interactionName}"] = String(describing: self.interactionName)
@@ -49,12 +49,12 @@ extension Commands.Interactions {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(InteractionResourceFormatData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (InteractionResourceFormatProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (InteractionResourceFormatProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: InteractionResourceFormatData?, error: Error?) in
                 completionHandler(result, error)

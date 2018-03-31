@@ -18,7 +18,7 @@ internal struct CapabilityInformationData : CapabilityInformationProtocol {
         case migrationState = "migrationState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct CapabilityInformationData : CapabilityInformationProtocol {
     if container.contains(.migrationState) {
         self.migrationState = try container.decode(Bool?.self, forKey: .migrationState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct CapabilityInformationData : CapabilityInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.maxAccountCount != nil {try container.encode(self.maxAccountCount, forKey: .maxAccountCount)}
-    if self.accountCount != nil {try container.encode(self.accountCount, forKey: .accountCount)}
-    if self.migrationState != nil {try container.encode(self.migrationState, forKey: .migrationState)}
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.maxAccountCount != nil { try container.encode(self.maxAccountCount, forKey: .maxAccountCount) }
+    if self.accountCount != nil { try container.encode(self.accountCount, forKey: .accountCount) }
+    if self.migrationState != nil { try container.encode(self.migrationState, forKey: .migrationState) }
   }
 }
 

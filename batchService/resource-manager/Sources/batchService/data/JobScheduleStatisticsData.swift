@@ -36,7 +36,7 @@ internal struct JobScheduleStatisticsData : JobScheduleStatisticsProtocol {
         case waitTime = "waitTime"
         }
 
-  public init(url: String, startTime: Date, lastUpdateTime: Date, userCPUTime: String, kernelCPUTime: String, wallClockTime: String, readIOps: Int64, writeIOps: Int64, readIOGiB: Double, writeIOGiB: Double, numSucceededTasks: Int64, numFailedTasks: Int64, numTaskRetries: Int64, waitTime: String)  {
+  public init(url: String, startTime: Date, lastUpdateTime: Date, userCPUTime: String, kernelCPUTime: String, wallClockTime: String, readIOps: Int64, writeIOps: Int64, readIOGiB: Double, writeIOGiB: Double, numSucceededTasks: Int64, numFailedTasks: Int64, numTaskRetries: Int64, waitTime: String) {
     self.url = url
     self.startTime = startTime
     self.lastUpdateTime = lastUpdateTime
@@ -69,7 +69,7 @@ internal struct JobScheduleStatisticsData : JobScheduleStatisticsProtocol {
     self.numFailedTasks = try container.decode(Int64.self, forKey: .numFailedTasks)
     self.numTaskRetries = try container.decode(Int64.self, forKey: .numTaskRetries)
     self.waitTime = try container.decode(String.self, forKey: .waitTime)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

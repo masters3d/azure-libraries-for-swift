@@ -12,7 +12,7 @@ internal struct RecoveryPlanProtectedItemData : RecoveryPlanProtectedItemProtoco
         case virtualMachineId = "virtualMachineId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RecoveryPlanProtectedItemData : RecoveryPlanProtectedItemProtoco
     if container.contains(.virtualMachineId) {
         self.virtualMachineId = try container.decode(String?.self, forKey: .virtualMachineId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RecoveryPlanProtectedItemData : RecoveryPlanProtectedItemProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.virtualMachineId != nil {try container.encode(self.virtualMachineId, forKey: .virtualMachineId)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.virtualMachineId != nil { try container.encode(self.virtualMachineId, forKey: .virtualMachineId) }
   }
 }
 

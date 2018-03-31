@@ -22,7 +22,7 @@ internal struct ClusterBasePropertiesData : ClusterBasePropertiesProtocol {
         case subnet = "subnet"
         }
 
-  public init(vmSize: String, userAccountSettings: UserAccountSettingsProtocol)  {
+  public init(vmSize: String, userAccountSettings: UserAccountSettingsProtocol) {
     self.vmSize = vmSize
     self.userAccountSettings = userAccountSettings
   }
@@ -46,7 +46,7 @@ internal struct ClusterBasePropertiesData : ClusterBasePropertiesProtocol {
     if container.contains(.subnet) {
         self.subnet = try container.decode(ResourceIdData?.self, forKey: .subnet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,12 +57,12 @@ internal struct ClusterBasePropertiesData : ClusterBasePropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vmSize, forKey: .vmSize)
-    if self.vmPriority != nil {try container.encode(self.vmPriority, forKey: .vmPriority)}
-    if self.scaleSettings != nil {try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings)}
-    if self.virtualMachineConfiguration != nil {try container.encode(self.virtualMachineConfiguration as! VirtualMachineConfigurationData?, forKey: .virtualMachineConfiguration)}
-    if self.nodeSetup != nil {try container.encode(self.nodeSetup as! NodeSetupData?, forKey: .nodeSetup)}
+    if self.vmPriority != nil { try container.encode(self.vmPriority, forKey: .vmPriority) }
+    if self.scaleSettings != nil { try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings) }
+    if self.virtualMachineConfiguration != nil { try container.encode(self.virtualMachineConfiguration as! VirtualMachineConfigurationData?, forKey: .virtualMachineConfiguration) }
+    if self.nodeSetup != nil { try container.encode(self.nodeSetup as! NodeSetupData?, forKey: .nodeSetup) }
     try container.encode(self.userAccountSettings as! UserAccountSettingsData, forKey: .userAccountSettings)
-    if self.subnet != nil {try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet)}
+    if self.subnet != nil { try container.encode(self.subnet as! ResourceIdData?, forKey: .subnet) }
   }
 }
 

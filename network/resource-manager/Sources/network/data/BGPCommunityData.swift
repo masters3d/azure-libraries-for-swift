@@ -20,7 +20,7 @@ internal struct BGPCommunityData : BGPCommunityProtocol {
         case serviceGroup = "serviceGroup"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct BGPCommunityData : BGPCommunityProtocol {
     if container.contains(.serviceGroup) {
         self.serviceGroup = try container.decode(String?.self, forKey: .serviceGroup)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct BGPCommunityData : BGPCommunityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceSupportedRegion != nil {try container.encode(self.serviceSupportedRegion, forKey: .serviceSupportedRegion)}
-    if self.communityName != nil {try container.encode(self.communityName, forKey: .communityName)}
-    if self.communityValue != nil {try container.encode(self.communityValue, forKey: .communityValue)}
-    if self.communityPrefixes != nil {try container.encode(self.communityPrefixes as! [String]?, forKey: .communityPrefixes)}
-    if self.isAuthorizedToUse != nil {try container.encode(self.isAuthorizedToUse, forKey: .isAuthorizedToUse)}
-    if self.serviceGroup != nil {try container.encode(self.serviceGroup, forKey: .serviceGroup)}
+    if self.serviceSupportedRegion != nil { try container.encode(self.serviceSupportedRegion, forKey: .serviceSupportedRegion) }
+    if self.communityName != nil { try container.encode(self.communityName, forKey: .communityName) }
+    if self.communityValue != nil { try container.encode(self.communityValue, forKey: .communityValue) }
+    if self.communityPrefixes != nil { try container.encode(self.communityPrefixes as! [String]?, forKey: .communityPrefixes) }
+    if self.isAuthorizedToUse != nil { try container.encode(self.isAuthorizedToUse, forKey: .isAuthorizedToUse) }
+    if self.serviceGroup != nil { try container.encode(self.serviceGroup, forKey: .serviceGroup) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct CredentialCreateOrUpdatePropertiesData : CredentialCreateOrUpdat
         case description = "description"
         }
 
-  public init(userName: String, password: String)  {
+  public init(userName: String, password: String) {
     self.userName = userName
     self.password = password
   }
@@ -26,7 +26,7 @@ internal struct CredentialCreateOrUpdatePropertiesData : CredentialCreateOrUpdat
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct CredentialCreateOrUpdatePropertiesData : CredentialCreateOrUpdat
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.userName, forKey: .userName)
     try container.encode(self.password, forKey: .password)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

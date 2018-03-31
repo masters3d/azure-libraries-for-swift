@@ -28,7 +28,7 @@ internal struct VirtualMachineData : VirtualMachineProtocol, ResourceProtocol {
         case zones = "zones"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -62,7 +62,7 @@ internal struct VirtualMachineData : VirtualMachineProtocol, ResourceProtocol {
     if container.contains(.zones) {
         self.zones = try container.decode([String]?.self, forKey: .zones)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -72,16 +72,16 @@ internal struct VirtualMachineData : VirtualMachineProtocol, ResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.plan != nil {try container.encode(self.plan as! PlanData?, forKey: .plan)}
-    if self.properties != nil {try container.encode(self.properties as! VirtualMachinePropertiesData?, forKey: .properties)}
-    if self.resources != nil {try container.encode(self.resources as! [VirtualMachineExtensionData?]?, forKey: .resources)}
-    if self.identity != nil {try container.encode(self.identity as! VirtualMachineIdentityData?, forKey: .identity)}
-    if self.zones != nil {try container.encode(self.zones as! [String]?, forKey: .zones)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.plan != nil { try container.encode(self.plan as! PlanData?, forKey: .plan) }
+    if self.properties != nil { try container.encode(self.properties as! VirtualMachinePropertiesData?, forKey: .properties) }
+    if self.resources != nil { try container.encode(self.resources as! [VirtualMachineExtensionData?]?, forKey: .resources) }
+    if self.identity != nil { try container.encode(self.identity as! VirtualMachineIdentityData?, forKey: .identity) }
+    if self.zones != nil { try container.encode(self.zones as! [String]?, forKey: .zones) }
   }
 }
 

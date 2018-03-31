@@ -1,11 +1,11 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServiceUpdatePublishingUser  {
+public protocol ServiceUpdatePublishingUser {
     var headerParameters: [String: String] { get set }
     var apiVersion : String { get set }
-    var userDetails :  UserProtocol?  { get set }
+    var userDetails :  UserProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (UserProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (UserProtocol?, Error?) -> Void)
 }
 
 extension Commands.Service {
@@ -23,7 +23,7 @@ extension Commands.Service {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = userDetails
 
@@ -43,12 +43,12 @@ extension Commands.Service {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(UserData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (UserProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (UserProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: UserData?, error: Error?) in
                 completionHandler(result, error)

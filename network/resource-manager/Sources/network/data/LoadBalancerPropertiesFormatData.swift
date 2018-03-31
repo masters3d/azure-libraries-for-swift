@@ -26,7 +26,7 @@ internal struct LoadBalancerPropertiesFormatData : LoadBalancerPropertiesFormatP
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct LoadBalancerPropertiesFormatData : LoadBalancerPropertiesFormatP
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct LoadBalancerPropertiesFormatData : LoadBalancerPropertiesFormatP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frontendIPConfigurations != nil {try container.encode(self.frontendIPConfigurations as! [FrontendIPConfigurationData?]?, forKey: .frontendIPConfigurations)}
-    if self.backendAddressPools != nil {try container.encode(self.backendAddressPools as! [BackendAddressPoolData?]?, forKey: .backendAddressPools)}
-    if self.loadBalancingRules != nil {try container.encode(self.loadBalancingRules as! [LoadBalancingRuleData?]?, forKey: .loadBalancingRules)}
-    if self.probes != nil {try container.encode(self.probes as! [ProbeData?]?, forKey: .probes)}
-    if self.inboundNatRules != nil {try container.encode(self.inboundNatRules as! [InboundNatRuleData?]?, forKey: .inboundNatRules)}
-    if self.inboundNatPools != nil {try container.encode(self.inboundNatPools as! [InboundNatPoolData?]?, forKey: .inboundNatPools)}
-    if self.outboundNatRules != nil {try container.encode(self.outboundNatRules as! [OutboundNatRuleData?]?, forKey: .outboundNatRules)}
-    if self.resourceGuid != nil {try container.encode(self.resourceGuid, forKey: .resourceGuid)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.frontendIPConfigurations != nil { try container.encode(self.frontendIPConfigurations as! [FrontendIPConfigurationData?]?, forKey: .frontendIPConfigurations) }
+    if self.backendAddressPools != nil { try container.encode(self.backendAddressPools as! [BackendAddressPoolData?]?, forKey: .backendAddressPools) }
+    if self.loadBalancingRules != nil { try container.encode(self.loadBalancingRules as! [LoadBalancingRuleData?]?, forKey: .loadBalancingRules) }
+    if self.probes != nil { try container.encode(self.probes as! [ProbeData?]?, forKey: .probes) }
+    if self.inboundNatRules != nil { try container.encode(self.inboundNatRules as! [InboundNatRuleData?]?, forKey: .inboundNatRules) }
+    if self.inboundNatPools != nil { try container.encode(self.inboundNatPools as! [InboundNatPoolData?]?, forKey: .inboundNatPools) }
+    if self.outboundNatRules != nil { try container.encode(self.outboundNatRules as! [OutboundNatRuleData?]?, forKey: .outboundNatRules) }
+    if self.resourceGuid != nil { try container.encode(self.resourceGuid, forKey: .resourceGuid) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct DscCompilationJobCreateParametersData : DscCompilationJobCreateP
         case tags = "tags"
         }
 
-  public init(properties: DscCompilationJobCreatePropertiesProtocol)  {
+  public init(properties: DscCompilationJobCreatePropertiesProtocol) {
     self.properties = properties
   }
 
@@ -32,7 +32,7 @@ internal struct DscCompilationJobCreateParametersData : DscCompilationJobCreateP
     if container.contains(.tags) {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct DscCompilationJobCreateParametersData : DscCompilationJobCreateP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.properties as! DscCompilationJobCreatePropertiesData, forKey: .properties)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
   }
 }
 

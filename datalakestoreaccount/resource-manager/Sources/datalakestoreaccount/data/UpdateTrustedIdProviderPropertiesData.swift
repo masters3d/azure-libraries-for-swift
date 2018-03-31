@@ -10,7 +10,7 @@ internal struct UpdateTrustedIdProviderPropertiesData : UpdateTrustedIdProviderP
         enum CodingKeys: String, CodingKey {case idProvider = "idProvider"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdateTrustedIdProviderPropertiesData : UpdateTrustedIdProviderP
       if container.contains(.idProvider) {
         self.idProvider = try container.decode(String?.self, forKey: .idProvider)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdateTrustedIdProviderPropertiesData : UpdateTrustedIdProviderP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.idProvider != nil {try container.encode(self.idProvider, forKey: .idProvider)}
+    if self.idProvider != nil { try container.encode(self.idProvider, forKey: .idProvider) }
   }
 }
 

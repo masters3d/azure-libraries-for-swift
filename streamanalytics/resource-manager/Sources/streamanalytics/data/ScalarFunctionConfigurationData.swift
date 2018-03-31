@@ -14,7 +14,7 @@ internal struct ScalarFunctionConfigurationData : ScalarFunctionConfigurationPro
         case binding = "binding"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ScalarFunctionConfigurationData : ScalarFunctionConfigurationPro
     if container.contains(.binding) {
         self.binding = try container.decode(FunctionBindingData?.self, forKey: .binding)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ScalarFunctionConfigurationData : ScalarFunctionConfigurationPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.inputs != nil {try container.encode(self.inputs as! [FunctionInputData?]?, forKey: .inputs)}
-    if self.output != nil {try container.encode(self.output as! FunctionOutputData?, forKey: .output)}
-    if self.binding != nil {try container.encode(self.binding as! FunctionBindingData?, forKey: .binding)}
+    if self.inputs != nil { try container.encode(self.inputs as! [FunctionInputData?]?, forKey: .inputs) }
+    if self.output != nil { try container.encode(self.output as! FunctionOutputData?, forKey: .output) }
+    if self.binding != nil { try container.encode(self.binding as! FunctionBindingData?, forKey: .binding) }
   }
 }
 

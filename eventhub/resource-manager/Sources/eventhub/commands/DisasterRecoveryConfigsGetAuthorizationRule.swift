@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DisasterRecoveryConfigsGetAuthorizationRule  {
+public protocol DisasterRecoveryConfigsGetAuthorizationRule {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
@@ -9,7 +9,7 @@ public protocol DisasterRecoveryConfigsGetAuthorizationRule  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AuthorizationRuleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AuthorizationRuleProtocol?, Error?) -> Void)
 }
 
 extension Commands.DisasterRecoveryConfigs {
@@ -35,7 +35,7 @@ extension Commands.DisasterRecoveryConfigs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{alias}"] = String(describing: self.alias)
@@ -50,12 +50,12 @@ extension Commands.DisasterRecoveryConfigs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AuthorizationRuleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AuthorizationRuleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AuthorizationRuleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AuthorizationRuleData?, error: Error?) in
                 completionHandler(result, error)

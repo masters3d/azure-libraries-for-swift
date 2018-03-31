@@ -14,7 +14,7 @@ internal struct KEKDetailsData : KEKDetailsProtocol {
         case keyBackupData = "keyBackupData"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct KEKDetailsData : KEKDetailsProtocol {
     if container.contains(.keyBackupData) {
         self.keyBackupData = try container.decode(String?.self, forKey: .keyBackupData)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct KEKDetailsData : KEKDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyUrl != nil {try container.encode(self.keyUrl, forKey: .keyUrl)}
-    if self.keyVaultId != nil {try container.encode(self.keyVaultId, forKey: .keyVaultId)}
-    if self.keyBackupData != nil {try container.encode(self.keyBackupData, forKey: .keyBackupData)}
+    if self.keyUrl != nil { try container.encode(self.keyUrl, forKey: .keyUrl) }
+    if self.keyVaultId != nil { try container.encode(self.keyVaultId, forKey: .keyVaultId) }
+    if self.keyBackupData != nil { try container.encode(self.keyBackupData, forKey: .keyBackupData) }
   }
 }
 

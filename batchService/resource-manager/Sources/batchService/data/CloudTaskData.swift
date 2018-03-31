@@ -60,7 +60,7 @@ internal struct CloudTaskData : CloudTaskProtocol {
         case authenticationTokenSettings = "authenticationTokenSettings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -143,7 +143,7 @@ internal struct CloudTaskData : CloudTaskProtocol {
     if container.contains(.authenticationTokenSettings) {
         self.authenticationTokenSettings = try container.decode(AuthenticationTokenSettingsData?.self, forKey: .authenticationTokenSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -153,40 +153,40 @@ internal struct CloudTaskData : CloudTaskProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.exitConditions != nil {try container.encode(self.exitConditions as! ExitConditionsData?, forKey: .exitConditions)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.exitConditions != nil { try container.encode(self.exitConditions as! ExitConditionsData?, forKey: .exitConditions) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.stateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.stateTransitionTime!, format: .dateTime), forKey: .stateTransitionTime)
     }
-    if self.previousState != nil {try container.encode(self.previousState, forKey: .previousState)}
+    if self.previousState != nil { try container.encode(self.previousState, forKey: .previousState) }
     if self.previousStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.previousStateTransitionTime!, format: .dateTime), forKey: .previousStateTransitionTime)
     }
-    if self.commandLine != nil {try container.encode(self.commandLine, forKey: .commandLine)}
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings)}
-    if self.resourceFiles != nil {try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles)}
-    if self.outputFiles != nil {try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles)}
-    if self.environmentSettings != nil {try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings)}
-    if self.affinityInfo != nil {try container.encode(self.affinityInfo as! AffinityInformationData?, forKey: .affinityInfo)}
-    if self.constraints != nil {try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints)}
-    if self.userIdentity != nil {try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity)}
-    if self.executionInfo != nil {try container.encode(self.executionInfo as! TaskExecutionInformationData?, forKey: .executionInfo)}
-    if self.nodeInfo != nil {try container.encode(self.nodeInfo as! ComputeNodeInformationData?, forKey: .nodeInfo)}
-    if self.multiInstanceSettings != nil {try container.encode(self.multiInstanceSettings as! MultiInstanceSettingsData?, forKey: .multiInstanceSettings)}
-    if self.stats != nil {try container.encode(self.stats as! TaskStatisticsData?, forKey: .stats)}
-    if self.dependsOn != nil {try container.encode(self.dependsOn as! TaskDependenciesData?, forKey: .dependsOn)}
-    if self.applicationPackageReferences != nil {try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences)}
-    if self.authenticationTokenSettings != nil {try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings)}
+    if self.commandLine != nil { try container.encode(self.commandLine, forKey: .commandLine) }
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings) }
+    if self.resourceFiles != nil { try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles) }
+    if self.outputFiles != nil { try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles) }
+    if self.environmentSettings != nil { try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings) }
+    if self.affinityInfo != nil { try container.encode(self.affinityInfo as! AffinityInformationData?, forKey: .affinityInfo) }
+    if self.constraints != nil { try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints) }
+    if self.userIdentity != nil { try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity) }
+    if self.executionInfo != nil { try container.encode(self.executionInfo as! TaskExecutionInformationData?, forKey: .executionInfo) }
+    if self.nodeInfo != nil { try container.encode(self.nodeInfo as! ComputeNodeInformationData?, forKey: .nodeInfo) }
+    if self.multiInstanceSettings != nil { try container.encode(self.multiInstanceSettings as! MultiInstanceSettingsData?, forKey: .multiInstanceSettings) }
+    if self.stats != nil { try container.encode(self.stats as! TaskStatisticsData?, forKey: .stats) }
+    if self.dependsOn != nil { try container.encode(self.dependsOn as! TaskDependenciesData?, forKey: .dependsOn) }
+    if self.applicationPackageReferences != nil { try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences) }
+    if self.authenticationTokenSettings != nil { try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings) }
   }
 }
 

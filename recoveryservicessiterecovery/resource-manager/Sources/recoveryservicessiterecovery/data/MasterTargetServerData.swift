@@ -44,7 +44,7 @@ internal struct MasterTargetServerData : MasterTargetServerProtocol {
         case marsAgentVersionDetails = "marsAgentVersionDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -103,7 +103,7 @@ internal struct MasterTargetServerData : MasterTargetServerProtocol {
     if container.contains(.marsAgentVersionDetails) {
         self.marsAgentVersionDetails = try container.decode(VersionDetailsData?.self, forKey: .marsAgentVersionDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -113,30 +113,30 @@ internal struct MasterTargetServerData : MasterTargetServerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.ipAddress != nil {try container.encode(self.ipAddress, forKey: .ipAddress)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.agentVersion != nil {try container.encode(self.agentVersion, forKey: .agentVersion)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.ipAddress != nil { try container.encode(self.ipAddress, forKey: .ipAddress) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.agentVersion != nil { try container.encode(self.agentVersion, forKey: .agentVersion) }
     if self.lastHeartbeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartbeat!, format: .dateTime), forKey: .lastHeartbeat)
     }
-    if self.versionStatus != nil {try container.encode(self.versionStatus, forKey: .versionStatus)}
-    if self.retentionVolumes != nil {try container.encode(self.retentionVolumes as! [RetentionVolumeData?]?, forKey: .retentionVolumes)}
-    if self.dataStores != nil {try container.encode(self.dataStores as! [DataStoreData?]?, forKey: .dataStores)}
-    if self.validationErrors != nil {try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors)}
-    if self.healthErrors != nil {try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors)}
-    if self.diskCount != nil {try container.encode(self.diskCount, forKey: .diskCount)}
-    if self.osVersion != nil {try container.encode(self.osVersion, forKey: .osVersion)}
+    if self.versionStatus != nil { try container.encode(self.versionStatus, forKey: .versionStatus) }
+    if self.retentionVolumes != nil { try container.encode(self.retentionVolumes as! [RetentionVolumeData?]?, forKey: .retentionVolumes) }
+    if self.dataStores != nil { try container.encode(self.dataStores as! [DataStoreData?]?, forKey: .dataStores) }
+    if self.validationErrors != nil { try container.encode(self.validationErrors as! [HealthErrorData?]?, forKey: .validationErrors) }
+    if self.healthErrors != nil { try container.encode(self.healthErrors as! [HealthErrorData?]?, forKey: .healthErrors) }
+    if self.diskCount != nil { try container.encode(self.diskCount, forKey: .diskCount) }
+    if self.osVersion != nil { try container.encode(self.osVersion, forKey: .osVersion) }
     if self.agentExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.agentExpiryDate!, format: .dateTime), forKey: .agentExpiryDate)
     }
-    if self.marsAgentVersion != nil {try container.encode(self.marsAgentVersion, forKey: .marsAgentVersion)}
+    if self.marsAgentVersion != nil { try container.encode(self.marsAgentVersion, forKey: .marsAgentVersion) }
     if self.marsAgentExpiryDate != nil {
         try container.encode(DateConverter.toString(date: self.marsAgentExpiryDate!, format: .dateTime), forKey: .marsAgentExpiryDate)
     }
-    if self.agentVersionDetails != nil {try container.encode(self.agentVersionDetails as! VersionDetailsData?, forKey: .agentVersionDetails)}
-    if self.marsAgentVersionDetails != nil {try container.encode(self.marsAgentVersionDetails as! VersionDetailsData?, forKey: .marsAgentVersionDetails)}
+    if self.agentVersionDetails != nil { try container.encode(self.agentVersionDetails as! VersionDetailsData?, forKey: .agentVersionDetails) }
+    if self.marsAgentVersionDetails != nil { try container.encode(self.marsAgentVersionDetails as! VersionDetailsData?, forKey: .marsAgentVersionDetails) }
   }
 }
 

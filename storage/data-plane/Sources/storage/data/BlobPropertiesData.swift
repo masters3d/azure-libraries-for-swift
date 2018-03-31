@@ -50,7 +50,7 @@ internal struct BlobPropertiesData : BlobPropertiesProtocol {
         case incrementalCopy = "IncrementalCopy"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -125,28 +125,28 @@ internal struct BlobPropertiesData : BlobPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.etag != nil {try container.encode(etag, forKey: .etag)}
-    if self.contentLength != nil {try container.encode(contentLength, forKey: .contentLength)}
-    if self.contentType != nil {try container.encode(contentType, forKey: .contentType)}
-    if self.contentEncoding != nil {try container.encode(contentEncoding, forKey: .contentEncoding)}
-    if self.contentLanguage != nil {try container.encode(contentLanguage, forKey: .contentLanguage)}
-    if self.contentMD5 != nil {try container.encode(contentMD5, forKey: .contentMD5)}
-    if self.contentDisposition != nil {try container.encode(contentDisposition, forKey: .contentDisposition)}
-    if self.cacheControl != nil {try container.encode(cacheControl, forKey: .cacheControl)}
-    if self.xMsBlobSequenceNumber != nil {try container.encode(xMsBlobSequenceNumber, forKey: .xMsBlobSequenceNumber)}
-    if self.blobType != nil {try container.encode(blobType, forKey: .blobType)}
-    if self.leaseStatus != nil {try container.encode(leaseStatus, forKey: .leaseStatus)}
-    if self.leaseState != nil {try container.encode(leaseState, forKey: .leaseState)}
-    if self.leaseDuration != nil {try container.encode(leaseDuration, forKey: .leaseDuration)}
-    if self.copyId != nil {try container.encode(copyId, forKey: .copyId)}
-    if self.copyStatus != nil {try container.encode(copyStatus, forKey: .copyStatus)}
-    if self.copySource != nil {try container.encode(copySource, forKey: .copySource)}
-    if self.copyProgress != nil {try container.encode(copyProgress, forKey: .copyProgress)}
-    if self.copyCompletionTime != nil {try container.encode(copyCompletionTime, forKey: .copyCompletionTime)}
-    if self.copyStatusDescription != nil {try container.encode(copyStatusDescription, forKey: .copyStatusDescription)}
-    if self.serverEncrypted != nil {try container.encode(serverEncrypted, forKey: .serverEncrypted)}
-    if self.incrementalCopy != nil {try container.encode(incrementalCopy, forKey: .incrementalCopy)}
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.etag != nil { try container.encode(etag, forKey: .etag) }
+    if self.contentLength != nil { try container.encode(contentLength, forKey: .contentLength) }
+    if self.contentType != nil { try container.encode(contentType, forKey: .contentType) }
+    if self.contentEncoding != nil { try container.encode(contentEncoding, forKey: .contentEncoding) }
+    if self.contentLanguage != nil { try container.encode(contentLanguage, forKey: .contentLanguage) }
+    if self.contentMD5 != nil { try container.encode(contentMD5, forKey: .contentMD5) }
+    if self.contentDisposition != nil { try container.encode(contentDisposition, forKey: .contentDisposition) }
+    if self.cacheControl != nil { try container.encode(cacheControl, forKey: .cacheControl) }
+    if self.xMsBlobSequenceNumber != nil { try container.encode(xMsBlobSequenceNumber, forKey: .xMsBlobSequenceNumber) }
+    if self.blobType != nil { try container.encode(blobType, forKey: .blobType) }
+    if self.leaseStatus != nil { try container.encode(leaseStatus, forKey: .leaseStatus) }
+    if self.leaseState != nil { try container.encode(leaseState, forKey: .leaseState) }
+    if self.leaseDuration != nil { try container.encode(leaseDuration, forKey: .leaseDuration) }
+    if self.copyId != nil { try container.encode(copyId, forKey: .copyId) }
+    if self.copyStatus != nil { try container.encode(copyStatus, forKey: .copyStatus) }
+    if self.copySource != nil { try container.encode(copySource, forKey: .copySource) }
+    if self.copyProgress != nil { try container.encode(copyProgress, forKey: .copyProgress) }
+    if self.copyCompletionTime != nil { try container.encode(copyCompletionTime, forKey: .copyCompletionTime) }
+    if self.copyStatusDescription != nil { try container.encode(copyStatusDescription, forKey: .copyStatusDescription) }
+    if self.serverEncrypted != nil { try container.encode(serverEncrypted, forKey: .serverEncrypted) }
+    if self.incrementalCopy != nil { try container.encode(incrementalCopy, forKey: .incrementalCopy) }
   }
 }
 

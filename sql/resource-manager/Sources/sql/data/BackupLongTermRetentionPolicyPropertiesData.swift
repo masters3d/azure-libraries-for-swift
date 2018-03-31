@@ -12,7 +12,7 @@ internal struct BackupLongTermRetentionPolicyPropertiesData : BackupLongTermRete
         case recoveryServicesBackupPolicyResourceId = "recoveryServicesBackupPolicyResourceId"
         }
 
-  public init(state: BackupLongTermRetentionPolicyStateEnum, recoveryServicesBackupPolicyResourceId: String)  {
+  public init(state: BackupLongTermRetentionPolicyStateEnum, recoveryServicesBackupPolicyResourceId: String) {
     self.state = state
     self.recoveryServicesBackupPolicyResourceId = recoveryServicesBackupPolicyResourceId
   }
@@ -21,7 +21,7 @@ internal struct BackupLongTermRetentionPolicyPropertiesData : BackupLongTermRete
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.state = try container.decode(BackupLongTermRetentionPolicyStateEnum.self, forKey: .state)
     self.recoveryServicesBackupPolicyResourceId = try container.decode(String.self, forKey: .recoveryServicesBackupPolicyResourceId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -20,7 +20,7 @@ internal struct ArtifactInstallPropertiesData : ArtifactInstallPropertiesProtoco
         case installTime = "installTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ArtifactInstallPropertiesData : ArtifactInstallPropertiesProtoco
     if container.contains(.installTime) {
         self.installTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .installTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,11 +53,11 @@ internal struct ArtifactInstallPropertiesData : ArtifactInstallPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.artifactId != nil {try container.encode(self.artifactId, forKey: .artifactId)}
-    if self.parameters != nil {try container.encode(self.parameters as! [ArtifactParameterPropertiesData?]?, forKey: .parameters)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.deploymentStatusMessage != nil {try container.encode(self.deploymentStatusMessage, forKey: .deploymentStatusMessage)}
-    if self.vmExtensionStatusMessage != nil {try container.encode(self.vmExtensionStatusMessage, forKey: .vmExtensionStatusMessage)}
+    if self.artifactId != nil { try container.encode(self.artifactId, forKey: .artifactId) }
+    if self.parameters != nil { try container.encode(self.parameters as! [ArtifactParameterPropertiesData?]?, forKey: .parameters) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.deploymentStatusMessage != nil { try container.encode(self.deploymentStatusMessage, forKey: .deploymentStatusMessage) }
+    if self.vmExtensionStatusMessage != nil { try container.encode(self.vmExtensionStatusMessage, forKey: .vmExtensionStatusMessage) }
     if self.installTime != nil {
         try container.encode(DateConverter.toString(date: self.installTime!, format: .dateTime), forKey: .installTime)
     }

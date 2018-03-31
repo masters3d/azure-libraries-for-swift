@@ -22,7 +22,7 @@ internal struct ImportExtensionPropertiesData : ImportExtensionPropertiesProtoco
         case operationMode = "operationMode"
         }
 
-  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String, operationMode: String)  {
+  public init(storageKeyType: StorageKeyTypeEnum, storageKey: String, storageUri: String, administratorLogin: String, administratorLoginPassword: String, operationMode: String) {
     self.storageKeyType = storageKeyType
     self.storageKey = storageKey
     self.storageUri = storageUri
@@ -42,7 +42,7 @@ internal struct ImportExtensionPropertiesData : ImportExtensionPropertiesProtoco
         self.authenticationType = try container.decode(AuthenticationTypeEnum?.self, forKey: .authenticationType)
     }
     self.operationMode = try container.decode(String.self, forKey: .operationMode)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,7 +57,7 @@ internal struct ImportExtensionPropertiesData : ImportExtensionPropertiesProtoco
     try container.encode(self.storageUri, forKey: .storageUri)
     try container.encode(self.administratorLogin, forKey: .administratorLogin)
     try container.encode(self.administratorLoginPassword, forKey: .administratorLoginPassword)
-    if self.authenticationType != nil {try container.encode(self.authenticationType, forKey: .authenticationType)}
+    if self.authenticationType != nil { try container.encode(self.authenticationType, forKey: .authenticationType) }
     try container.encode(self.operationMode, forKey: .operationMode)
   }
 }

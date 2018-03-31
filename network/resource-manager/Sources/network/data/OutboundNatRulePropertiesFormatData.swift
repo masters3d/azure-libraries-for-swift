@@ -16,7 +16,7 @@ internal struct OutboundNatRulePropertiesFormatData : OutboundNatRulePropertiesF
         case provisioningState = "provisioningState"
         }
 
-  public init(backendAddressPool: SubResourceProtocol)  {
+  public init(backendAddressPool: SubResourceProtocol) {
     self.backendAddressPool = backendAddressPool
   }
 
@@ -32,7 +32,7 @@ internal struct OutboundNatRulePropertiesFormatData : OutboundNatRulePropertiesF
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct OutboundNatRulePropertiesFormatData : OutboundNatRulePropertiesF
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allocatedOutboundPorts != nil {try container.encode(self.allocatedOutboundPorts, forKey: .allocatedOutboundPorts)}
-    if self.frontendIPConfigurations != nil {try container.encode(self.frontendIPConfigurations as! [SubResourceData?]?, forKey: .frontendIPConfigurations)}
+    if self.allocatedOutboundPorts != nil { try container.encode(self.allocatedOutboundPorts, forKey: .allocatedOutboundPorts) }
+    if self.frontendIPConfigurations != nil { try container.encode(self.frontendIPConfigurations as! [SubResourceData?]?, forKey: .frontendIPConfigurations) }
     try container.encode(self.backendAddressPool as! SubResourceData, forKey: .backendAddressPool)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

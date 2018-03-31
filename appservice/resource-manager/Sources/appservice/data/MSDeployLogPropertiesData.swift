@@ -10,7 +10,7 @@ internal struct MSDeployLogPropertiesData : MSDeployLogPropertiesProtocol {
         enum CodingKeys: String, CodingKey {case entries = "entries"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct MSDeployLogPropertiesData : MSDeployLogPropertiesProtocol {
       if container.contains(.entries) {
         self.entries = try container.decode([MSDeployLogEntryData?]?.self, forKey: .entries)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct MSDeployLogPropertiesData : MSDeployLogPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entries != nil {try container.encode(self.entries as! [MSDeployLogEntryData?]?, forKey: .entries)}
+    if self.entries != nil { try container.encode(self.entries as! [MSDeployLogEntryData?]?, forKey: .entries) }
   }
 }
 

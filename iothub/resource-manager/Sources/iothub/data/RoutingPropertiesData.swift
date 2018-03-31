@@ -14,7 +14,7 @@ internal struct RoutingPropertiesData : RoutingPropertiesProtocol {
         case fallbackRoute = "fallbackRoute"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RoutingPropertiesData : RoutingPropertiesProtocol {
     if container.contains(.fallbackRoute) {
         self.fallbackRoute = try container.decode(FallbackRoutePropertiesData?.self, forKey: .fallbackRoute)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RoutingPropertiesData : RoutingPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.endpoints != nil {try container.encode(self.endpoints as! RoutingEndpointsData?, forKey: .endpoints)}
-    if self.routes != nil {try container.encode(self.routes as! [RoutePropertiesData?]?, forKey: .routes)}
-    if self.fallbackRoute != nil {try container.encode(self.fallbackRoute as! FallbackRoutePropertiesData?, forKey: .fallbackRoute)}
+    if self.endpoints != nil { try container.encode(self.endpoints as! RoutingEndpointsData?, forKey: .endpoints) }
+    if self.routes != nil { try container.encode(self.routes as! [RoutePropertiesData?]?, forKey: .routes) }
+    if self.fallbackRoute != nil { try container.encode(self.fallbackRoute as! FallbackRoutePropertiesData?, forKey: .fallbackRoute) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationsListKeyCredentials  {
+public protocol ApplicationsListKeyCredentials {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol ApplicationsListKeyCredentials  {
     var tenantID : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (KeyCredentialListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (KeyCredentialListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Applications {
@@ -34,7 +34,7 @@ extension Commands.Applications {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{applicationObjectId}"] = String(describing: self.applicationObjectId)
             self.pathParameters["{tenantID}"] = String(describing: self.tenantID)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -53,15 +53,15 @@ extension Commands.Applications {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (KeyCredentialListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (KeyCredentialListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

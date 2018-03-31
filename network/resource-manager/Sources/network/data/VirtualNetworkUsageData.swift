@@ -18,7 +18,7 @@ internal struct VirtualNetworkUsageData : VirtualNetworkUsageProtocol {
         case unit = "unit"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct VirtualNetworkUsageData : VirtualNetworkUsageProtocol {
     if container.contains(.unit) {
         self.unit = try container.decode(String?.self, forKey: .unit)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct VirtualNetworkUsageData : VirtualNetworkUsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.name != nil {try container.encode(self.name as! VirtualNetworkUsageNameData?, forKey: .name)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.name != nil { try container.encode(self.name as! VirtualNetworkUsageNameData?, forKey: .name) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
   }
 }
 

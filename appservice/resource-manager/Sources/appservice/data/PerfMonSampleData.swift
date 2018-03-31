@@ -16,7 +16,7 @@ internal struct PerfMonSampleData : PerfMonSampleProtocol {
         case coreCount = "coreCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PerfMonSampleData : PerfMonSampleProtocol {
     if container.contains(.coreCount) {
         self.coreCount = try container.decode(Int32?.self, forKey: .coreCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,9 +46,9 @@ internal struct PerfMonSampleData : PerfMonSampleProtocol {
     if self.time != nil {
         try container.encode(DateConverter.toString(date: self.time!, format: .dateTime), forKey: .time)
     }
-    if self.instanceName != nil {try container.encode(self.instanceName, forKey: .instanceName)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.coreCount != nil {try container.encode(self.coreCount, forKey: .coreCount)}
+    if self.instanceName != nil { try container.encode(self.instanceName, forKey: .instanceName) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.coreCount != nil { try container.encode(self.coreCount, forKey: .coreCount) }
   }
 }
 

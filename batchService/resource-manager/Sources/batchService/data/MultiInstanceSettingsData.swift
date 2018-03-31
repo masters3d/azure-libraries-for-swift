@@ -14,7 +14,7 @@ internal struct MultiInstanceSettingsData : MultiInstanceSettingsProtocol {
         case commonResourceFiles = "commonResourceFiles"
         }
 
-  public init(coordinationCommandLine: String)  {
+  public init(coordinationCommandLine: String) {
     self.coordinationCommandLine = coordinationCommandLine
   }
 
@@ -27,7 +27,7 @@ internal struct MultiInstanceSettingsData : MultiInstanceSettingsProtocol {
     if container.contains(.commonResourceFiles) {
         self.commonResourceFiles = try container.decode([ResourceFileData?]?.self, forKey: .commonResourceFiles)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct MultiInstanceSettingsData : MultiInstanceSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.numberOfInstances != nil {try container.encode(self.numberOfInstances, forKey: .numberOfInstances)}
+    if self.numberOfInstances != nil { try container.encode(self.numberOfInstances, forKey: .numberOfInstances) }
     try container.encode(self.coordinationCommandLine, forKey: .coordinationCommandLine)
-    if self.commonResourceFiles != nil {try container.encode(self.commonResourceFiles as! [ResourceFileData?]?, forKey: .commonResourceFiles)}
+    if self.commonResourceFiles != nil { try container.encode(self.commonResourceFiles as! [ResourceFileData?]?, forKey: .commonResourceFiles) }
   }
 }
 

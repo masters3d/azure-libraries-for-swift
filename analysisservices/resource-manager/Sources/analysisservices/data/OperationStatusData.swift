@@ -20,7 +20,7 @@ internal struct OperationStatusData : OperationStatusProtocol {
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct OperationStatusData : OperationStatusProtocol {
     if container.contains(.error) {
         self.error = try container.decode(ErrorResponseData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct OperationStatusData : OperationStatusProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.startTime != nil {try container.encode(self.startTime, forKey: .startTime)}
-    if self.endTime != nil {try container.encode(self.endTime, forKey: .endTime)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.error != nil {try container.encode(self.error as! ErrorResponseData?, forKey: .error)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.startTime != nil { try container.encode(self.startTime, forKey: .startTime) }
+    if self.endTime != nil { try container.encode(self.endTime, forKey: .endTime) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.error != nil { try container.encode(self.error as! ErrorResponseData?, forKey: .error) }
   }
 }
 

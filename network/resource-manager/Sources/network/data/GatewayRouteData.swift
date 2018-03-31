@@ -22,7 +22,7 @@ internal struct GatewayRouteData : GatewayRouteProtocol {
         case weight = "weight"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct GatewayRouteData : GatewayRouteProtocol {
     if container.contains(.weight) {
         self.weight = try container.decode(Int32?.self, forKey: .weight)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct GatewayRouteData : GatewayRouteProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.localAddress != nil {try container.encode(self.localAddress, forKey: .localAddress)}
-    if self.network != nil {try container.encode(self.network, forKey: .network)}
-    if self.nextHop != nil {try container.encode(self.nextHop, forKey: .nextHop)}
-    if self.sourcePeer != nil {try container.encode(self.sourcePeer, forKey: .sourcePeer)}
-    if self.origin != nil {try container.encode(self.origin, forKey: .origin)}
-    if self.asPath != nil {try container.encode(self.asPath, forKey: .asPath)}
-    if self.weight != nil {try container.encode(self.weight, forKey: .weight)}
+    if self.localAddress != nil { try container.encode(self.localAddress, forKey: .localAddress) }
+    if self.network != nil { try container.encode(self.network, forKey: .network) }
+    if self.nextHop != nil { try container.encode(self.nextHop, forKey: .nextHop) }
+    if self.sourcePeer != nil { try container.encode(self.sourcePeer, forKey: .sourcePeer) }
+    if self.origin != nil { try container.encode(self.origin, forKey: .origin) }
+    if self.asPath != nil { try container.encode(self.asPath, forKey: .asPath) }
+    if self.weight != nil { try container.encode(self.weight, forKey: .weight) }
   }
 }
 

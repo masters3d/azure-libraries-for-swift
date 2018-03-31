@@ -14,7 +14,7 @@ internal struct AvailableProvidersListCountryData : AvailableProvidersListCountr
         case states = "states"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AvailableProvidersListCountryData : AvailableProvidersListCountr
     if container.contains(.states) {
         self.states = try container.decode([AvailableProvidersListStateData?]?.self, forKey: .states)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AvailableProvidersListCountryData : AvailableProvidersListCountr
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.countryName != nil {try container.encode(self.countryName, forKey: .countryName)}
-    if self.providers != nil {try container.encode(self.providers as! [String]?, forKey: .providers)}
-    if self.states != nil {try container.encode(self.states as! [AvailableProvidersListStateData?]?, forKey: .states)}
+    if self.countryName != nil { try container.encode(self.countryName, forKey: .countryName) }
+    if self.providers != nil { try container.encode(self.providers as! [String]?, forKey: .providers) }
+    if self.states != nil { try container.encode(self.states as! [AvailableProvidersListStateData?]?, forKey: .states) }
   }
 }
 

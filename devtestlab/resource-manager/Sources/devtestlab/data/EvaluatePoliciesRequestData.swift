@@ -10,7 +10,7 @@ internal struct EvaluatePoliciesRequestData : EvaluatePoliciesRequestProtocol {
         enum CodingKeys: String, CodingKey {case policies = "policies"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct EvaluatePoliciesRequestData : EvaluatePoliciesRequestProtocol {
       if container.contains(.policies) {
         self.policies = try container.decode([EvaluatePoliciesPropertiesData?]?.self, forKey: .policies)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct EvaluatePoliciesRequestData : EvaluatePoliciesRequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policies != nil {try container.encode(self.policies as! [EvaluatePoliciesPropertiesData?]?, forKey: .policies)}
+    if self.policies != nil { try container.encode(self.policies as! [EvaluatePoliciesPropertiesData?]?, forKey: .policies) }
   }
 }
 

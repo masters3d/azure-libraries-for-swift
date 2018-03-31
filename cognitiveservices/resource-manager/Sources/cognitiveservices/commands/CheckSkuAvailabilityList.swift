@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CheckSkuAvailabilityList  {
+public protocol CheckSkuAvailabilityList {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var location : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckSkuAvailabilityParameterProtocol?  { get set }
+    var parameters :  CheckSkuAvailabilityParameterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CheckSkuAvailabilityResultListProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CheckSkuAvailabilityResultListProtocol?, Error?) -> Void)
 }
 
 extension Commands.CheckSkuAvailability {
@@ -29,7 +29,7 @@ extension Commands.CheckSkuAvailability {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{location}"] = String(describing: self.location)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -51,12 +51,12 @@ extension Commands.CheckSkuAvailability {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CheckSkuAvailabilityResultListData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CheckSkuAvailabilityResultListProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CheckSkuAvailabilityResultListProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CheckSkuAvailabilityResultListData?, error: Error?) in
                 completionHandler(result, error)

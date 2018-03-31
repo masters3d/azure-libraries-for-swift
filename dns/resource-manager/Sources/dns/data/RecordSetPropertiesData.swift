@@ -34,7 +34,7 @@ internal struct RecordSetPropertiesData : RecordSetPropertiesProtocol {
         case caaRecords = "caaRecords"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct RecordSetPropertiesData : RecordSetPropertiesProtocol {
     if container.contains(.caaRecords) {
         self.caaRecords = try container.decode([CaaRecordData?]?.self, forKey: .caaRecords)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,19 +88,19 @@ internal struct RecordSetPropertiesData : RecordSetPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
-    if self.tTL != nil {try container.encode(self.tTL, forKey: .tTL)}
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
-    if self.aRecords != nil {try container.encode(self.aRecords as! [ARecordData?]?, forKey: .aRecords)}
-    if self.aaaaRecords != nil {try container.encode(self.aaaaRecords as! [AaaaRecordData?]?, forKey: .aaaaRecords)}
-    if self.mxRecords != nil {try container.encode(self.mxRecords as! [MxRecordData?]?, forKey: .mxRecords)}
-    if self.nsRecords != nil {try container.encode(self.nsRecords as! [NsRecordData?]?, forKey: .nsRecords)}
-    if self.ptrRecords != nil {try container.encode(self.ptrRecords as! [PtrRecordData?]?, forKey: .ptrRecords)}
-    if self.srvRecords != nil {try container.encode(self.srvRecords as! [SrvRecordData?]?, forKey: .srvRecords)}
-    if self.txtRecords != nil {try container.encode(self.txtRecords as! [TxtRecordData?]?, forKey: .txtRecords)}
-    if self.cnameRecord != nil {try container.encode(self.cnameRecord as! CnameRecordData?, forKey: .cnameRecord)}
-    if self.soaRecord != nil {try container.encode(self.soaRecord as! SoaRecordData?, forKey: .soaRecord)}
-    if self.caaRecords != nil {try container.encode(self.caaRecords as! [CaaRecordData?]?, forKey: .caaRecords)}
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
+    if self.tTL != nil { try container.encode(self.tTL, forKey: .tTL) }
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
+    if self.aRecords != nil { try container.encode(self.aRecords as! [ARecordData?]?, forKey: .aRecords) }
+    if self.aaaaRecords != nil { try container.encode(self.aaaaRecords as! [AaaaRecordData?]?, forKey: .aaaaRecords) }
+    if self.mxRecords != nil { try container.encode(self.mxRecords as! [MxRecordData?]?, forKey: .mxRecords) }
+    if self.nsRecords != nil { try container.encode(self.nsRecords as! [NsRecordData?]?, forKey: .nsRecords) }
+    if self.ptrRecords != nil { try container.encode(self.ptrRecords as! [PtrRecordData?]?, forKey: .ptrRecords) }
+    if self.srvRecords != nil { try container.encode(self.srvRecords as! [SrvRecordData?]?, forKey: .srvRecords) }
+    if self.txtRecords != nil { try container.encode(self.txtRecords as! [TxtRecordData?]?, forKey: .txtRecords) }
+    if self.cnameRecord != nil { try container.encode(self.cnameRecord as! CnameRecordData?, forKey: .cnameRecord) }
+    if self.soaRecord != nil { try container.encode(self.soaRecord as! SoaRecordData?, forKey: .soaRecord) }
+    if self.caaRecords != nil { try container.encode(self.caaRecords as! [CaaRecordData?]?, forKey: .caaRecords) }
   }
 }
 

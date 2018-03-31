@@ -38,7 +38,7 @@ internal struct CloudJobScheduleData : CloudJobScheduleProtocol {
         case stats = "stats"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct CloudJobScheduleData : CloudJobScheduleProtocol {
     if container.contains(.stats) {
         self.stats = try container.decode(JobScheduleStatisticsData?.self, forKey: .stats)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,29 +98,29 @@ internal struct CloudJobScheduleData : CloudJobScheduleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.stateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.stateTransitionTime!, format: .dateTime), forKey: .stateTransitionTime)
     }
-    if self.previousState != nil {try container.encode(self.previousState, forKey: .previousState)}
+    if self.previousState != nil { try container.encode(self.previousState, forKey: .previousState) }
     if self.previousStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.previousStateTransitionTime!, format: .dateTime), forKey: .previousStateTransitionTime)
     }
-    if self.schedule != nil {try container.encode(self.schedule as! ScheduleData?, forKey: .schedule)}
-    if self.jobSpecification != nil {try container.encode(self.jobSpecification as! JobSpecificationData?, forKey: .jobSpecification)}
-    if self.executionInfo != nil {try container.encode(self.executionInfo as! JobScheduleExecutionInformationData?, forKey: .executionInfo)}
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
-    if self.stats != nil {try container.encode(self.stats as! JobScheduleStatisticsData?, forKey: .stats)}
+    if self.schedule != nil { try container.encode(self.schedule as! ScheduleData?, forKey: .schedule) }
+    if self.jobSpecification != nil { try container.encode(self.jobSpecification as! JobSpecificationData?, forKey: .jobSpecification) }
+    if self.executionInfo != nil { try container.encode(self.executionInfo as! JobScheduleExecutionInformationData?, forKey: .executionInfo) }
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
+    if self.stats != nil { try container.encode(self.stats as! JobScheduleStatisticsData?, forKey: .stats) }
   }
 }
 

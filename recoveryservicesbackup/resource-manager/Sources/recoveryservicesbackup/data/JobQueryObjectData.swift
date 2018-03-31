@@ -20,7 +20,7 @@ internal struct JobQueryObjectData : JobQueryObjectProtocol {
         case endTime = "endTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct JobQueryObjectData : JobQueryObjectProtocol {
     if container.contains(.endTime) {
         self.endTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .endTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,10 +53,10 @@ internal struct JobQueryObjectData : JobQueryObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }

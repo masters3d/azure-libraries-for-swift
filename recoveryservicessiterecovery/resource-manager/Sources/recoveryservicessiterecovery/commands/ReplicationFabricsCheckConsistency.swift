@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationFabricsCheckConsistency  {
+public protocol ReplicationFabricsCheckConsistency {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol ReplicationFabricsCheckConsistency  {
     var fabricName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (FabricProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (FabricProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationFabrics {
@@ -34,7 +34,7 @@ extension Commands.ReplicationFabrics {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -48,12 +48,12 @@ extension Commands.ReplicationFabrics {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(FabricData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (FabricProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (FabricProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: FabricData?, error: Error?) in
                 completionHandler(result, error)

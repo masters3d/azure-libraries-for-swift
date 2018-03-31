@@ -16,7 +16,7 @@ internal struct ApplicationGatewayFirewallRuleSetPropertiesFormatData : Applicat
         case ruleGroups = "ruleGroups"
         }
 
-  public init(ruleSetType: String, ruleSetVersion: String, ruleGroups: [ApplicationGatewayFirewallRuleGroupProtocol])  {
+  public init(ruleSetType: String, ruleSetVersion: String, ruleGroups: [ApplicationGatewayFirewallRuleGroupProtocol]) {
     self.ruleSetType = ruleSetType
     self.ruleSetVersion = ruleSetVersion
     self.ruleGroups = ruleGroups
@@ -30,7 +30,7 @@ internal struct ApplicationGatewayFirewallRuleSetPropertiesFormatData : Applicat
     self.ruleSetType = try container.decode(String.self, forKey: .ruleSetType)
     self.ruleSetVersion = try container.decode(String.self, forKey: .ruleSetVersion)
     self.ruleGroups = try container.decode([ApplicationGatewayFirewallRuleGroupData].self, forKey: .ruleGroups)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -40,7 +40,7 @@ internal struct ApplicationGatewayFirewallRuleSetPropertiesFormatData : Applicat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     try container.encode(self.ruleSetType, forKey: .ruleSetType)
     try container.encode(self.ruleSetVersion, forKey: .ruleSetVersion)
     try container.encode(self.ruleGroups as! [ApplicationGatewayFirewallRuleGroupData], forKey: .ruleGroups)

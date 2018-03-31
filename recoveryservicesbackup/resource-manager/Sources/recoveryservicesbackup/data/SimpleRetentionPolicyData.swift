@@ -10,7 +10,7 @@ internal struct SimpleRetentionPolicyData : SimpleRetentionPolicyProtocol, Reten
         enum CodingKeys: String, CodingKey {case retentionDuration = "retentionDuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SimpleRetentionPolicyData : SimpleRetentionPolicyProtocol, Reten
       if container.contains(.retentionDuration) {
         self.retentionDuration = try container.decode(RetentionDurationData?.self, forKey: .retentionDuration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SimpleRetentionPolicyData : SimpleRetentionPolicyProtocol, Reten
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.retentionDuration != nil {try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration)}
+    if self.retentionDuration != nil { try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration) }
   }
 }
 

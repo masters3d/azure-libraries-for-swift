@@ -14,7 +14,7 @@ internal struct GitRepoVolumeData : GitRepoVolumeProtocol {
         case revision = "revision"
         }
 
-  public init(repository: String)  {
+  public init(repository: String) {
     self.repository = repository
   }
 
@@ -27,7 +27,7 @@ internal struct GitRepoVolumeData : GitRepoVolumeProtocol {
     if container.contains(.revision) {
         self.revision = try container.decode(String?.self, forKey: .revision)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,9 +37,9 @@ internal struct GitRepoVolumeData : GitRepoVolumeProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.directory != nil {try container.encode(self.directory, forKey: .directory)}
+    if self.directory != nil { try container.encode(self.directory, forKey: .directory) }
     try container.encode(self.repository, forKey: .repository)
-    if self.revision != nil {try container.encode(self.revision, forKey: .revision)}
+    if self.revision != nil { try container.encode(self.revision, forKey: .revision) }
   }
 }
 

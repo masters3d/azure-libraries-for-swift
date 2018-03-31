@@ -18,7 +18,7 @@ internal struct BMSPOQueryObjectData : BMSPOQueryObjectProtocol {
         case friendlyName = "friendlyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct BMSPOQueryObjectData : BMSPOQueryObjectProtocol {
     if container.contains(.friendlyName) {
         self.friendlyName = try container.decode(String?.self, forKey: .friendlyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct BMSPOQueryObjectData : BMSPOQueryObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
   }
 }
 

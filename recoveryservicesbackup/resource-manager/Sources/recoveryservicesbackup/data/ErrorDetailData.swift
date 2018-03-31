@@ -14,7 +14,7 @@ internal struct ErrorDetailData : ErrorDetailProtocol {
         case recommendations = "recommendations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ErrorDetailData : ErrorDetailProtocol {
     if container.contains(.recommendations) {
         self.recommendations = try container.decode([String]?.self, forKey: .recommendations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ErrorDetailData : ErrorDetailProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.recommendations != nil {try container.encode(self.recommendations as! [String]?, forKey: .recommendations)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.recommendations != nil { try container.encode(self.recommendations as! [String]?, forKey: .recommendations) }
   }
 }
 

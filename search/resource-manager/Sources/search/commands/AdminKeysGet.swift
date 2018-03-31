@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AdminKeysGet  {
+public protocol AdminKeysGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var searchServiceName : String { get set }
@@ -8,7 +8,7 @@ public protocol AdminKeysGet  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AdminKeyResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AdminKeyResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.AdminKeys {
@@ -31,7 +31,7 @@ extension Commands.AdminKeys {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -45,12 +45,12 @@ extension Commands.AdminKeys {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AdminKeyResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AdminKeyResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AdminKeyResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AdminKeyResultData?, error: Error?) in
                 completionHandler(result, error)

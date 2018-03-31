@@ -14,7 +14,7 @@ internal struct UnplannedFailoverInputPropertiesData : UnplannedFailoverInputPro
         case providerSpecificDetails = "providerSpecificDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct UnplannedFailoverInputPropertiesData : UnplannedFailoverInputPro
     if container.contains(.providerSpecificDetails) {
         self.providerSpecificDetails = try container.decode(ProviderSpecificFailoverInputData?.self, forKey: .providerSpecificDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct UnplannedFailoverInputPropertiesData : UnplannedFailoverInputPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.failoverDirection != nil {try container.encode(self.failoverDirection, forKey: .failoverDirection)}
-    if self.sourceSiteOperations != nil {try container.encode(self.sourceSiteOperations, forKey: .sourceSiteOperations)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! ProviderSpecificFailoverInputData?, forKey: .providerSpecificDetails)}
+    if self.failoverDirection != nil { try container.encode(self.failoverDirection, forKey: .failoverDirection) }
+    if self.sourceSiteOperations != nil { try container.encode(self.sourceSiteOperations, forKey: .sourceSiteOperations) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! ProviderSpecificFailoverInputData?, forKey: .providerSpecificDetails) }
   }
 }
 

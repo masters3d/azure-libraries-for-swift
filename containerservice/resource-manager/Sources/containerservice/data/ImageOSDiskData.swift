@@ -24,7 +24,7 @@ internal struct ImageOSDiskData : ImageOSDiskProtocol {
         case storageAccountType = "storageAccountType"
         }
 
-  public init(osType: OperatingSystemTypesEnum, osState: OperatingSystemStateTypesEnum)  {
+  public init(osType: OperatingSystemTypesEnum, osState: OperatingSystemStateTypesEnum) {
     self.osType = osType
     self.osState = osState
   }
@@ -51,7 +51,7 @@ internal struct ImageOSDiskData : ImageOSDiskProtocol {
     if container.contains(.storageAccountType) {
         self.storageAccountType = try container.decode(StorageAccountTypesEnum?.self, forKey: .storageAccountType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,12 +63,12 @@ internal struct ImageOSDiskData : ImageOSDiskProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osType, forKey: .osType)
     try container.encode(self.osState, forKey: .osState)
-    if self.snapshot != nil {try container.encode(self.snapshot as! SubResourceData?, forKey: .snapshot)}
-    if self.managedDisk != nil {try container.encode(self.managedDisk as! SubResourceData?, forKey: .managedDisk)}
-    if self.blobUri != nil {try container.encode(self.blobUri, forKey: .blobUri)}
-    if self.caching != nil {try container.encode(self.caching, forKey: .caching)}
-    if self.diskSizeGB != nil {try container.encode(self.diskSizeGB, forKey: .diskSizeGB)}
-    if self.storageAccountType != nil {try container.encode(self.storageAccountType, forKey: .storageAccountType)}
+    if self.snapshot != nil { try container.encode(self.snapshot as! SubResourceData?, forKey: .snapshot) }
+    if self.managedDisk != nil { try container.encode(self.managedDisk as! SubResourceData?, forKey: .managedDisk) }
+    if self.blobUri != nil { try container.encode(self.blobUri, forKey: .blobUri) }
+    if self.caching != nil { try container.encode(self.caching, forKey: .caching) }
+    if self.diskSizeGB != nil { try container.encode(self.diskSizeGB, forKey: .diskSizeGB) }
+    if self.storageAccountType != nil { try container.encode(self.storageAccountType, forKey: .storageAccountType) }
   }
 }
 

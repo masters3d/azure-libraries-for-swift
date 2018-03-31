@@ -20,7 +20,7 @@ internal struct GenericContainerData : GenericContainerProtocol, ProtectionConta
         case extendedInformation = "extendedInformation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct GenericContainerData : GenericContainerProtocol, ProtectionConta
     if container.contains(.extendedInformation) {
         self.extendedInformation = try container.decode(GenericContainerExtendedInfoData?.self, forKey: .extendedInformation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct GenericContainerData : GenericContainerProtocol, ProtectionConta
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.extendedInformation != nil {try container.encode(self.extendedInformation as! GenericContainerExtendedInfoData?, forKey: .extendedInformation)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.extendedInformation != nil { try container.encode(self.extendedInformation as! GenericContainerExtendedInfoData?, forKey: .extendedInformation) }
   }
 }
 

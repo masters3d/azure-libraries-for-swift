@@ -16,7 +16,7 @@ internal struct GetObjectsParametersData : GetObjectsParametersProtocol {
         case includeDirectoryObjectReferences = "includeDirectoryObjectReferences"
         }
 
-  public init(includeDirectoryObjectReferences: Bool)  {
+  public init(includeDirectoryObjectReferences: Bool) {
     self.includeDirectoryObjectReferences = includeDirectoryObjectReferences
   }
 
@@ -32,7 +32,7 @@ internal struct GetObjectsParametersData : GetObjectsParametersProtocol {
         self.types = try container.decode([String]?.self, forKey: .types)
     }
     self.includeDirectoryObjectReferences = try container.decode(Bool.self, forKey: .includeDirectoryObjectReferences)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct GetObjectsParametersData : GetObjectsParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.objectIds != nil {try container.encode(self.objectIds as! [String]?, forKey: .objectIds)}
-    if self.types != nil {try container.encode(self.types as! [String]?, forKey: .types)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.objectIds != nil { try container.encode(self.objectIds as! [String]?, forKey: .objectIds) }
+    if self.types != nil { try container.encode(self.types as! [String]?, forKey: .types) }
     try container.encode(self.includeDirectoryObjectReferences, forKey: .includeDirectoryObjectReferences)
   }
 }

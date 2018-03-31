@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkGatewaysCreateOrUpdate  {
+public protocol VirtualNetworkGatewaysCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkGatewayName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  VirtualNetworkGatewayProtocol?  { get set }
+    var parameters :  VirtualNetworkGatewayProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualNetworkGatewayProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualNetworkGatewayProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkGateways {
@@ -34,7 +34,7 @@ extension Commands.VirtualNetworkGateways {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkGatewayName}"] = String(describing: self.virtualNetworkGatewayName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.VirtualNetworkGateways {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(VirtualNetworkGatewayData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualNetworkGatewayProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualNetworkGatewayProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: VirtualNetworkGatewayData?, error: Error?) in
                 completionHandler(result, error)

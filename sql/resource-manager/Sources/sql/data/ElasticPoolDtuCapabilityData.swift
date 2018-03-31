@@ -22,7 +22,7 @@ internal struct ElasticPoolDtuCapabilityData : ElasticPoolDtuCapabilityProtocol 
         case supportedPerDatabaseMaxDtus = "supportedPerDatabaseMaxDtus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ElasticPoolDtuCapabilityData : ElasticPoolDtuCapabilityProtocol 
     if container.contains(.supportedPerDatabaseMaxDtus) {
         self.supportedPerDatabaseMaxDtus = try container.decode([ElasticPoolPerDatabaseMaxDtuCapabilityData?]?.self, forKey: .supportedPerDatabaseMaxDtus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ElasticPoolDtuCapabilityData : ElasticPoolDtuCapabilityProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.maxDatabaseCount != nil {try container.encode(self.maxDatabaseCount, forKey: .maxDatabaseCount)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportedMaxSizes != nil {try container.encode(self.supportedMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedMaxSizes)}
-    if self.includedMaxSize != nil {try container.encode(self.includedMaxSize as! MaxSizeCapabilityData?, forKey: .includedMaxSize)}
-    if self.supportedPerDatabaseMaxSizes != nil {try container.encode(self.supportedPerDatabaseMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedPerDatabaseMaxSizes)}
-    if self.supportedPerDatabaseMaxDtus != nil {try container.encode(self.supportedPerDatabaseMaxDtus as! [ElasticPoolPerDatabaseMaxDtuCapabilityData?]?, forKey: .supportedPerDatabaseMaxDtus)}
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.maxDatabaseCount != nil { try container.encode(self.maxDatabaseCount, forKey: .maxDatabaseCount) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportedMaxSizes != nil { try container.encode(self.supportedMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedMaxSizes) }
+    if self.includedMaxSize != nil { try container.encode(self.includedMaxSize as! MaxSizeCapabilityData?, forKey: .includedMaxSize) }
+    if self.supportedPerDatabaseMaxSizes != nil { try container.encode(self.supportedPerDatabaseMaxSizes as! [MaxSizeCapabilityData?]?, forKey: .supportedPerDatabaseMaxSizes) }
+    if self.supportedPerDatabaseMaxDtus != nil { try container.encode(self.supportedPerDatabaseMaxDtus as! [ElasticPoolPerDatabaseMaxDtuCapabilityData?]?, forKey: .supportedPerDatabaseMaxDtus) }
   }
 }
 

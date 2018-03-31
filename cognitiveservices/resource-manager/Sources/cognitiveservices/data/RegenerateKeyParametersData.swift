@@ -10,14 +10,14 @@ internal struct RegenerateKeyParametersData : RegenerateKeyParametersProtocol {
         enum CodingKeys: String, CodingKey {case keyName = "keyName"
         }
 
-  public init(keyName: KeyNameEnum)  {
+  public init(keyName: KeyNameEnum) {
     self.keyName = keyName
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyName = try container.decode(KeyNameEnum.self, forKey: .keyName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

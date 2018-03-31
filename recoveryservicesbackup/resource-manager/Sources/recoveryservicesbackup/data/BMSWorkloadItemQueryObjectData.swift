@@ -16,7 +16,7 @@ internal struct BMSWorkloadItemQueryObjectData : BMSWorkloadItemQueryObjectProto
         case protectionStatus = "protectionStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct BMSWorkloadItemQueryObjectData : BMSWorkloadItemQueryObjectProto
     if container.contains(.protectionStatus) {
         self.protectionStatus = try container.decode(ProtectionStatusEnum?.self, forKey: .protectionStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct BMSWorkloadItemQueryObjectData : BMSWorkloadItemQueryObjectProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadItemType != nil {try container.encode(self.workloadItemType, forKey: .workloadItemType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadItemType != nil { try container.encode(self.workloadItemType, forKey: .workloadItemType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
   }
 }
 

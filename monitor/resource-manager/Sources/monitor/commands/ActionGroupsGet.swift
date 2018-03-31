@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ActionGroupsGet  {
+public protocol ActionGroupsGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var actionGroupName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ActionGroupResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ActionGroupResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.ActionGroups {
@@ -29,7 +29,7 @@ extension Commands.ActionGroups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{actionGroupName}"] = String(describing: self.actionGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -42,12 +42,12 @@ extension Commands.ActionGroups {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ActionGroupResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ActionGroupResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ActionGroupResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ActionGroupResourceData?, error: Error?) in
                 completionHandler(result, error)

@@ -16,7 +16,7 @@ internal struct AzureFileVolumeData : AzureFileVolumeProtocol {
         case storageAccountKey = "storageAccountKey"
         }
 
-  public init(shareName: String, storageAccountName: String)  {
+  public init(shareName: String, storageAccountName: String) {
     self.shareName = shareName
     self.storageAccountName = storageAccountName
   }
@@ -31,7 +31,7 @@ internal struct AzureFileVolumeData : AzureFileVolumeProtocol {
     if container.contains(.storageAccountKey) {
         self.storageAccountKey = try container.decode(String?.self, forKey: .storageAccountKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct AzureFileVolumeData : AzureFileVolumeProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.shareName, forKey: .shareName)
-    if self.readOnly != nil {try container.encode(self.readOnly, forKey: .readOnly)}
+    if self.readOnly != nil { try container.encode(self.readOnly, forKey: .readOnly) }
     try container.encode(self.storageAccountName, forKey: .storageAccountName)
-    if self.storageAccountKey != nil {try container.encode(self.storageAccountKey, forKey: .storageAccountKey)}
+    if self.storageAccountKey != nil { try container.encode(self.storageAccountKey, forKey: .storageAccountKey) }
   }
 }
 

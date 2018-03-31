@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AccountsRegenerateKey  {
+public protocol AccountsRegenerateKey {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RegenerateKeyParametersProtocol?  { get set }
+    var parameters :  RegenerateKeyParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CognitiveServicesAccountKeysProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CognitiveServicesAccountKeysProtocol?, Error?) -> Void)
 }
 
 extension Commands.Accounts {
@@ -32,7 +32,7 @@ extension Commands.Accounts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -55,12 +55,12 @@ extension Commands.Accounts {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CognitiveServicesAccountKeysData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CognitiveServicesAccountKeysProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CognitiveServicesAccountKeysProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CognitiveServicesAccountKeysData?, error: Error?) in
                 completionHandler(result, error)

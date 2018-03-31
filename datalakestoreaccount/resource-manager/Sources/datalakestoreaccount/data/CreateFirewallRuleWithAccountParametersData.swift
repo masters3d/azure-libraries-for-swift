@@ -12,7 +12,7 @@ internal struct CreateFirewallRuleWithAccountParametersData : CreateFirewallRule
         case properties = "properties"
         }
 
-  public init(name: String, properties: CreateOrUpdateFirewallRulePropertiesProtocol)  {
+  public init(name: String, properties: CreateOrUpdateFirewallRulePropertiesProtocol) {
     self.name = name
     self.properties = properties
   }
@@ -21,7 +21,7 @@ internal struct CreateFirewallRuleWithAccountParametersData : CreateFirewallRule
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(String.self, forKey: .name)
     self.properties = try container.decode(CreateOrUpdateFirewallRulePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

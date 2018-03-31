@@ -36,7 +36,7 @@ internal struct JobManagerTaskData : JobManagerTaskProtocol {
         case allowLowPriorityNode = "allowLowPriorityNode"
         }
 
-  public init(id: String, commandLine: String)  {
+  public init(id: String, commandLine: String) {
     self.id = id
     self.commandLine = commandLine
   }
@@ -81,7 +81,7 @@ internal struct JobManagerTaskData : JobManagerTaskProtocol {
     if container.contains(.allowLowPriorityNode) {
         self.allowLowPriorityNode = try container.decode(Bool?.self, forKey: .allowLowPriorityNode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -92,19 +92,19 @@ internal struct JobManagerTaskData : JobManagerTaskProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
     try container.encode(self.commandLine, forKey: .commandLine)
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings)}
-    if self.resourceFiles != nil {try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles)}
-    if self.outputFiles != nil {try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles)}
-    if self.environmentSettings != nil {try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings)}
-    if self.constraints != nil {try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints)}
-    if self.killJobOnCompletion != nil {try container.encode(self.killJobOnCompletion, forKey: .killJobOnCompletion)}
-    if self.userIdentity != nil {try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity)}
-    if self.runExclusive != nil {try container.encode(self.runExclusive, forKey: .runExclusive)}
-    if self.applicationPackageReferences != nil {try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences)}
-    if self.authenticationTokenSettings != nil {try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings)}
-    if self.allowLowPriorityNode != nil {try container.encode(self.allowLowPriorityNode, forKey: .allowLowPriorityNode)}
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings) }
+    if self.resourceFiles != nil { try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles) }
+    if self.outputFiles != nil { try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles) }
+    if self.environmentSettings != nil { try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings) }
+    if self.constraints != nil { try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints) }
+    if self.killJobOnCompletion != nil { try container.encode(self.killJobOnCompletion, forKey: .killJobOnCompletion) }
+    if self.userIdentity != nil { try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity) }
+    if self.runExclusive != nil { try container.encode(self.runExclusive, forKey: .runExclusive) }
+    if self.applicationPackageReferences != nil { try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences) }
+    if self.authenticationTokenSettings != nil { try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings) }
+    if self.allowLowPriorityNode != nil { try container.encode(self.allowLowPriorityNode, forKey: .allowLowPriorityNode) }
   }
 }
 

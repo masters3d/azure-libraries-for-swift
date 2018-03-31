@@ -20,7 +20,7 @@ internal struct GeoBackupPolicyData : GeoBackupPolicyProtocol, ProxyResourceProt
         case location = "location"
         }
 
-  public init(properties: GeoBackupPolicyPropertiesProtocol)  {
+  public init(properties: GeoBackupPolicyPropertiesProtocol) {
     self.properties = properties
   }
 
@@ -42,7 +42,7 @@ internal struct GeoBackupPolicyData : GeoBackupPolicyProtocol, ProxyResourceProt
     if container.contains(.location) {
         self.location = try container.decode(String?.self, forKey: .location)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -52,12 +52,12 @@ internal struct GeoBackupPolicyData : GeoBackupPolicyProtocol, ProxyResourceProt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.properties as! GeoBackupPolicyPropertiesData, forKey: .properties)
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
   }
 }
 

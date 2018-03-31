@@ -10,7 +10,7 @@ internal struct ApplicationGatewayBackendHealthData : ApplicationGatewayBackendH
         enum CodingKeys: String, CodingKey {case backendAddressPools = "backendAddressPools"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ApplicationGatewayBackendHealthData : ApplicationGatewayBackendH
       if container.contains(.backendAddressPools) {
         self.backendAddressPools = try container.decode([ApplicationGatewayBackendHealthPoolData?]?.self, forKey: .backendAddressPools)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ApplicationGatewayBackendHealthData : ApplicationGatewayBackendH
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backendAddressPools != nil {try container.encode(self.backendAddressPools as! [ApplicationGatewayBackendHealthPoolData?]?, forKey: .backendAddressPools)}
+    if self.backendAddressPools != nil { try container.encode(self.backendAddressPools as! [ApplicationGatewayBackendHealthPoolData?]?, forKey: .backendAddressPools) }
   }
 }
 

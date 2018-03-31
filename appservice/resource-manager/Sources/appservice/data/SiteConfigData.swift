@@ -98,7 +98,7 @@ internal struct SiteConfigData : SiteConfigProtocol {
         case minTlsVersion = "minTlsVersion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -238,7 +238,7 @@ internal struct SiteConfigData : SiteConfigProtocol {
     if container.contains(.minTlsVersion) {
         self.minTlsVersion = try container.decode(SupportedTlsVersionsEnum?.self, forKey: .minTlsVersion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -248,53 +248,53 @@ internal struct SiteConfigData : SiteConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.numberOfWorkers != nil {try container.encode(self.numberOfWorkers, forKey: .numberOfWorkers)}
-    if self.defaultDocuments != nil {try container.encode(self.defaultDocuments as! [String]?, forKey: .defaultDocuments)}
-    if self.netFrameworkVersion != nil {try container.encode(self.netFrameworkVersion, forKey: .netFrameworkVersion)}
-    if self.phpVersion != nil {try container.encode(self.phpVersion, forKey: .phpVersion)}
-    if self.pythonVersion != nil {try container.encode(self.pythonVersion, forKey: .pythonVersion)}
-    if self.nodeVersion != nil {try container.encode(self.nodeVersion, forKey: .nodeVersion)}
-    if self.linuxFxVersion != nil {try container.encode(self.linuxFxVersion, forKey: .linuxFxVersion)}
-    if self.requestTracingEnabled != nil {try container.encode(self.requestTracingEnabled, forKey: .requestTracingEnabled)}
+    if self.numberOfWorkers != nil { try container.encode(self.numberOfWorkers, forKey: .numberOfWorkers) }
+    if self.defaultDocuments != nil { try container.encode(self.defaultDocuments as! [String]?, forKey: .defaultDocuments) }
+    if self.netFrameworkVersion != nil { try container.encode(self.netFrameworkVersion, forKey: .netFrameworkVersion) }
+    if self.phpVersion != nil { try container.encode(self.phpVersion, forKey: .phpVersion) }
+    if self.pythonVersion != nil { try container.encode(self.pythonVersion, forKey: .pythonVersion) }
+    if self.nodeVersion != nil { try container.encode(self.nodeVersion, forKey: .nodeVersion) }
+    if self.linuxFxVersion != nil { try container.encode(self.linuxFxVersion, forKey: .linuxFxVersion) }
+    if self.requestTracingEnabled != nil { try container.encode(self.requestTracingEnabled, forKey: .requestTracingEnabled) }
     if self.requestTracingExpirationTime != nil {
         try container.encode(DateConverter.toString(date: self.requestTracingExpirationTime!, format: .dateTime), forKey: .requestTracingExpirationTime)
     }
-    if self.remoteDebuggingEnabled != nil {try container.encode(self.remoteDebuggingEnabled, forKey: .remoteDebuggingEnabled)}
-    if self.remoteDebuggingVersion != nil {try container.encode(self.remoteDebuggingVersion, forKey: .remoteDebuggingVersion)}
-    if self.httpLoggingEnabled != nil {try container.encode(self.httpLoggingEnabled, forKey: .httpLoggingEnabled)}
-    if self.logsDirectorySizeLimit != nil {try container.encode(self.logsDirectorySizeLimit, forKey: .logsDirectorySizeLimit)}
-    if self.detailedErrorLoggingEnabled != nil {try container.encode(self.detailedErrorLoggingEnabled, forKey: .detailedErrorLoggingEnabled)}
-    if self.publishingUsername != nil {try container.encode(self.publishingUsername, forKey: .publishingUsername)}
-    if self.appSettings != nil {try container.encode(self.appSettings as! [NameValuePairData?]?, forKey: .appSettings)}
-    if self.connectionStrings != nil {try container.encode(self.connectionStrings as! [ConnStringInfoData?]?, forKey: .connectionStrings)}
-    if self.machineKey != nil {try container.encode(self.machineKey as! SiteMachineKeyData?, forKey: .machineKey)}
-    if self.handlerMappings != nil {try container.encode(self.handlerMappings as! [HandlerMappingData?]?, forKey: .handlerMappings)}
-    if self.documentRoot != nil {try container.encode(self.documentRoot, forKey: .documentRoot)}
-    if self.scmType != nil {try container.encode(self.scmType, forKey: .scmType)}
-    if self.use32BitWorkerProcess != nil {try container.encode(self.use32BitWorkerProcess, forKey: .use32BitWorkerProcess)}
-    if self.webSocketsEnabled != nil {try container.encode(self.webSocketsEnabled, forKey: .webSocketsEnabled)}
-    if self.alwaysOn != nil {try container.encode(self.alwaysOn, forKey: .alwaysOn)}
-    if self.javaVersion != nil {try container.encode(self.javaVersion, forKey: .javaVersion)}
-    if self.javaContainer != nil {try container.encode(self.javaContainer, forKey: .javaContainer)}
-    if self.javaContainerVersion != nil {try container.encode(self.javaContainerVersion, forKey: .javaContainerVersion)}
-    if self.appCommandLine != nil {try container.encode(self.appCommandLine, forKey: .appCommandLine)}
-    if self.managedPipelineMode != nil {try container.encode(self.managedPipelineMode, forKey: .managedPipelineMode)}
-    if self.virtualApplications != nil {try container.encode(self.virtualApplications as! [VirtualApplicationData?]?, forKey: .virtualApplications)}
-    if self.loadBalancing != nil {try container.encode(self.loadBalancing, forKey: .loadBalancing)}
-    if self.experiments != nil {try container.encode(self.experiments as! ExperimentsData?, forKey: .experiments)}
-    if self.limits != nil {try container.encode(self.limits as! SiteLimitsData?, forKey: .limits)}
-    if self.autoHealEnabled != nil {try container.encode(self.autoHealEnabled, forKey: .autoHealEnabled)}
-    if self.autoHealRules != nil {try container.encode(self.autoHealRules as! AutoHealRulesData?, forKey: .autoHealRules)}
-    if self.tracingOptions != nil {try container.encode(self.tracingOptions, forKey: .tracingOptions)}
-    if self.vnetName != nil {try container.encode(self.vnetName, forKey: .vnetName)}
-    if self.cors != nil {try container.encode(self.cors as! CorsSettingsData?, forKey: .cors)}
-    if self.push != nil {try container.encode(self.push as! PushSettingsData?, forKey: .push)}
-    if self.apiDefinition != nil {try container.encode(self.apiDefinition as! ApiDefinitionInfoData?, forKey: .apiDefinition)}
-    if self.autoSwapSlotName != nil {try container.encode(self.autoSwapSlotName, forKey: .autoSwapSlotName)}
-    if self.localMySqlEnabled != nil {try container.encode(self.localMySqlEnabled, forKey: .localMySqlEnabled)}
-    if self.ipSecurityRestrictions != nil {try container.encode(self.ipSecurityRestrictions as! [IpSecurityRestrictionData?]?, forKey: .ipSecurityRestrictions)}
-    if self.http20Enabled != nil {try container.encode(self.http20Enabled, forKey: .http20Enabled)}
-    if self.minTlsVersion != nil {try container.encode(self.minTlsVersion, forKey: .minTlsVersion)}
+    if self.remoteDebuggingEnabled != nil { try container.encode(self.remoteDebuggingEnabled, forKey: .remoteDebuggingEnabled) }
+    if self.remoteDebuggingVersion != nil { try container.encode(self.remoteDebuggingVersion, forKey: .remoteDebuggingVersion) }
+    if self.httpLoggingEnabled != nil { try container.encode(self.httpLoggingEnabled, forKey: .httpLoggingEnabled) }
+    if self.logsDirectorySizeLimit != nil { try container.encode(self.logsDirectorySizeLimit, forKey: .logsDirectorySizeLimit) }
+    if self.detailedErrorLoggingEnabled != nil { try container.encode(self.detailedErrorLoggingEnabled, forKey: .detailedErrorLoggingEnabled) }
+    if self.publishingUsername != nil { try container.encode(self.publishingUsername, forKey: .publishingUsername) }
+    if self.appSettings != nil { try container.encode(self.appSettings as! [NameValuePairData?]?, forKey: .appSettings) }
+    if self.connectionStrings != nil { try container.encode(self.connectionStrings as! [ConnStringInfoData?]?, forKey: .connectionStrings) }
+    if self.machineKey != nil { try container.encode(self.machineKey as! SiteMachineKeyData?, forKey: .machineKey) }
+    if self.handlerMappings != nil { try container.encode(self.handlerMappings as! [HandlerMappingData?]?, forKey: .handlerMappings) }
+    if self.documentRoot != nil { try container.encode(self.documentRoot, forKey: .documentRoot) }
+    if self.scmType != nil { try container.encode(self.scmType, forKey: .scmType) }
+    if self.use32BitWorkerProcess != nil { try container.encode(self.use32BitWorkerProcess, forKey: .use32BitWorkerProcess) }
+    if self.webSocketsEnabled != nil { try container.encode(self.webSocketsEnabled, forKey: .webSocketsEnabled) }
+    if self.alwaysOn != nil { try container.encode(self.alwaysOn, forKey: .alwaysOn) }
+    if self.javaVersion != nil { try container.encode(self.javaVersion, forKey: .javaVersion) }
+    if self.javaContainer != nil { try container.encode(self.javaContainer, forKey: .javaContainer) }
+    if self.javaContainerVersion != nil { try container.encode(self.javaContainerVersion, forKey: .javaContainerVersion) }
+    if self.appCommandLine != nil { try container.encode(self.appCommandLine, forKey: .appCommandLine) }
+    if self.managedPipelineMode != nil { try container.encode(self.managedPipelineMode, forKey: .managedPipelineMode) }
+    if self.virtualApplications != nil { try container.encode(self.virtualApplications as! [VirtualApplicationData?]?, forKey: .virtualApplications) }
+    if self.loadBalancing != nil { try container.encode(self.loadBalancing, forKey: .loadBalancing) }
+    if self.experiments != nil { try container.encode(self.experiments as! ExperimentsData?, forKey: .experiments) }
+    if self.limits != nil { try container.encode(self.limits as! SiteLimitsData?, forKey: .limits) }
+    if self.autoHealEnabled != nil { try container.encode(self.autoHealEnabled, forKey: .autoHealEnabled) }
+    if self.autoHealRules != nil { try container.encode(self.autoHealRules as! AutoHealRulesData?, forKey: .autoHealRules) }
+    if self.tracingOptions != nil { try container.encode(self.tracingOptions, forKey: .tracingOptions) }
+    if self.vnetName != nil { try container.encode(self.vnetName, forKey: .vnetName) }
+    if self.cors != nil { try container.encode(self.cors as! CorsSettingsData?, forKey: .cors) }
+    if self.push != nil { try container.encode(self.push as! PushSettingsData?, forKey: .push) }
+    if self.apiDefinition != nil { try container.encode(self.apiDefinition as! ApiDefinitionInfoData?, forKey: .apiDefinition) }
+    if self.autoSwapSlotName != nil { try container.encode(self.autoSwapSlotName, forKey: .autoSwapSlotName) }
+    if self.localMySqlEnabled != nil { try container.encode(self.localMySqlEnabled, forKey: .localMySqlEnabled) }
+    if self.ipSecurityRestrictions != nil { try container.encode(self.ipSecurityRestrictions as! [IpSecurityRestrictionData?]?, forKey: .ipSecurityRestrictions) }
+    if self.http20Enabled != nil { try container.encode(self.http20Enabled, forKey: .http20Enabled) }
+    if self.minTlsVersion != nil { try container.encode(self.minTlsVersion, forKey: .minTlsVersion) }
   }
 }
 

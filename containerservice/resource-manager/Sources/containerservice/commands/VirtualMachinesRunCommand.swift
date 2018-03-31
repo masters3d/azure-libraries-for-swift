@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualMachinesRunCommand  {
+public protocol VirtualMachinesRunCommand {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var vmName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  RunCommandInputProtocol?  { get set }
+    var parameters :  RunCommandInputProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RunCommandResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RunCommandResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualMachines {
@@ -33,7 +33,7 @@ extension Commands.VirtualMachines {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{vmName}"] = String(describing: self.vmName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -56,12 +56,12 @@ extension Commands.VirtualMachines {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RunCommandResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RunCommandResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RunCommandResultProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RunCommandResultData?, error: Error?) in
                 completionHandler(result, error)

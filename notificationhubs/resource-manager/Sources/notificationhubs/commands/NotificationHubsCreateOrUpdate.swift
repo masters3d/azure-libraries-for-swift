@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NotificationHubsCreateOrUpdate  {
+public protocol NotificationHubsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
     var notificationHubName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  NotificationHubCreateOrUpdateParametersProtocol?  { get set }
+    var parameters :  NotificationHubCreateOrUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NotificationHubResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NotificationHubResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.NotificationHubs {
@@ -35,7 +35,7 @@ extension Commands.NotificationHubs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{notificationHubName}"] = String(describing: self.notificationHubName)
@@ -59,12 +59,12 @@ extension Commands.NotificationHubs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NotificationHubResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NotificationHubResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NotificationHubResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: NotificationHubResourceData?, error: Error?) in
                 completionHandler(result, error)

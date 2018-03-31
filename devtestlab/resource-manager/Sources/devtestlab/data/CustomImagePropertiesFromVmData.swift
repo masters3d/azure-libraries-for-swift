@@ -14,7 +14,7 @@ internal struct CustomImagePropertiesFromVmData : CustomImagePropertiesFromVmPro
         case linuxOsInfo = "linuxOsInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CustomImagePropertiesFromVmData : CustomImagePropertiesFromVmPro
     if container.contains(.linuxOsInfo) {
         self.linuxOsInfo = try container.decode(LinuxOsInfoData?.self, forKey: .linuxOsInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CustomImagePropertiesFromVmData : CustomImagePropertiesFromVmPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sourceVmId != nil {try container.encode(self.sourceVmId, forKey: .sourceVmId)}
-    if self.windowsOsInfo != nil {try container.encode(self.windowsOsInfo as! WindowsOsInfoData?, forKey: .windowsOsInfo)}
-    if self.linuxOsInfo != nil {try container.encode(self.linuxOsInfo as! LinuxOsInfoData?, forKey: .linuxOsInfo)}
+    if self.sourceVmId != nil { try container.encode(self.sourceVmId, forKey: .sourceVmId) }
+    if self.windowsOsInfo != nil { try container.encode(self.windowsOsInfo as! WindowsOsInfoData?, forKey: .windowsOsInfo) }
+    if self.linuxOsInfo != nil { try container.encode(self.linuxOsInfo as! LinuxOsInfoData?, forKey: .linuxOsInfo) }
   }
 }
 

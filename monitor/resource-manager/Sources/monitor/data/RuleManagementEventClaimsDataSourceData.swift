@@ -10,7 +10,7 @@ internal struct RuleManagementEventClaimsDataSourceData : RuleManagementEventCla
         enum CodingKeys: String, CodingKey {case emailAddress = "emailAddress"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RuleManagementEventClaimsDataSourceData : RuleManagementEventCla
       if container.contains(.emailAddress) {
         self.emailAddress = try container.decode(String?.self, forKey: .emailAddress)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RuleManagementEventClaimsDataSourceData : RuleManagementEventCla
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.emailAddress != nil {try container.encode(self.emailAddress, forKey: .emailAddress)}
+    if self.emailAddress != nil { try container.encode(self.emailAddress, forKey: .emailAddress) }
   }
 }
 

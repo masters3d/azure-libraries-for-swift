@@ -22,7 +22,7 @@ internal struct ProbePropertiesFormatData : ProbePropertiesFormatProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(_protocol: ProbeProtocolEnum, port: Int32)  {
+  public init(_protocol: ProbeProtocolEnum, port: Int32) {
     self._protocol = _protocol
     self.port = port
   }
@@ -46,7 +46,7 @@ internal struct ProbePropertiesFormatData : ProbePropertiesFormatProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -56,13 +56,13 @@ internal struct ProbePropertiesFormatData : ProbePropertiesFormatProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.loadBalancingRules != nil {try container.encode(self.loadBalancingRules as! [SubResourceData?]?, forKey: .loadBalancingRules)}
+    if self.loadBalancingRules != nil { try container.encode(self.loadBalancingRules as! [SubResourceData?]?, forKey: .loadBalancingRules) }
     try container.encode(self._protocol, forKey: ._protocol)
     try container.encode(self.port, forKey: .port)
-    if self.intervalInSeconds != nil {try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds)}
-    if self.numberOfProbes != nil {try container.encode(self.numberOfProbes, forKey: .numberOfProbes)}
-    if self.requestPath != nil {try container.encode(self.requestPath, forKey: .requestPath)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.intervalInSeconds != nil { try container.encode(self.intervalInSeconds, forKey: .intervalInSeconds) }
+    if self.numberOfProbes != nil { try container.encode(self.numberOfProbes, forKey: .numberOfProbes) }
+    if self.requestPath != nil { try container.encode(self.requestPath, forKey: .requestPath) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

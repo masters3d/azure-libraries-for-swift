@@ -34,7 +34,7 @@ internal struct ResourceCertificateAndAadDetailsData : ResourceCertificateAndAad
         case azureManagementEndpointAudience = "azureManagementEndpointAudience"
         }
 
-  public init(aadAuthority: String, aadTenantId: String, servicePrincipalClientId: String, servicePrincipalObjectId: String, azureManagementEndpointAudience: String)  {
+  public init(aadAuthority: String, aadTenantId: String, servicePrincipalClientId: String, servicePrincipalObjectId: String, azureManagementEndpointAudience: String) {
     self.aadAuthority = aadAuthority
     self.aadTenantId = aadTenantId
     self.servicePrincipalClientId = servicePrincipalClientId
@@ -73,7 +73,7 @@ internal struct ResourceCertificateAndAadDetailsData : ResourceCertificateAndAad
     self.servicePrincipalClientId = try container.decode(String.self, forKey: .servicePrincipalClientId)
     self.servicePrincipalObjectId = try container.decode(String.self, forKey: .servicePrincipalObjectId)
     self.azureManagementEndpointAudience = try container.decode(String.self, forKey: .azureManagementEndpointAudience)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,12 +83,12 @@ internal struct ResourceCertificateAndAadDetailsData : ResourceCertificateAndAad
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.certificate != nil {try container.encode(self.certificate, forKey: .certificate)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.issuer != nil {try container.encode(self.issuer, forKey: .issuer)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.subject != nil {try container.encode(self.subject, forKey: .subject)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.certificate != nil { try container.encode(self.certificate, forKey: .certificate) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.issuer != nil { try container.encode(self.issuer, forKey: .issuer) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.subject != nil { try container.encode(self.subject, forKey: .subject) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
     if self.validFrom != nil {
         try container.encode(DateConverter.toString(date: self.validFrom!, format: .dateTime), forKey: .validFrom)
     }

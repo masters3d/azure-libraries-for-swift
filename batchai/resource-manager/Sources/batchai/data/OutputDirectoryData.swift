@@ -18,7 +18,7 @@ internal struct OutputDirectoryData : OutputDirectoryProtocol {
         case createNew = "createNew"
         }
 
-  public init(id: String, pathPrefix: String)  {
+  public init(id: String, pathPrefix: String) {
     self.id = id
     self.pathPrefix = pathPrefix
   }
@@ -36,7 +36,7 @@ internal struct OutputDirectoryData : OutputDirectoryProtocol {
     if container.contains(.createNew) {
         self.createNew = try container.decode(Bool?.self, forKey: .createNew)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,9 +48,9 @@ internal struct OutputDirectoryData : OutputDirectoryProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.pathPrefix, forKey: .pathPrefix)
-    if self.pathSuffix != nil {try container.encode(self.pathSuffix, forKey: .pathSuffix)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.createNew != nil {try container.encode(self.createNew, forKey: .createNew)}
+    if self.pathSuffix != nil { try container.encode(self.pathSuffix, forKey: .pathSuffix) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.createNew != nil { try container.encode(self.createNew, forKey: .createNew) }
   }
 }
 

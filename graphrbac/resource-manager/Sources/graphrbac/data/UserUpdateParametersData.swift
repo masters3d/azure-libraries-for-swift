@@ -30,7 +30,7 @@ internal struct UserUpdateParametersData : UserUpdateParametersProtocol, UserBas
         case mailNickname = "mailNickname"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct UserUpdateParametersData : UserUpdateParametersProtocol, UserBas
     if container.contains(.mailNickname) {
         self.mailNickname = try container.decode(String?.self, forKey: .mailNickname)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct UserUpdateParametersData : UserUpdateParametersProtocol, UserBas
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.immutableId != nil {try container.encode(self.immutableId, forKey: .immutableId)}
-    if self.usageLocation != nil {try container.encode(self.usageLocation, forKey: .usageLocation)}
-    if self.givenName != nil {try container.encode(self.givenName, forKey: .givenName)}
-    if self.surname != nil {try container.encode(self.surname, forKey: .surname)}
-    if self.userType != nil {try container.encode(self.userType, forKey: .userType)}
-    if self.accountEnabled != nil {try container.encode(self.accountEnabled, forKey: .accountEnabled)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.passwordProfile != nil {try container.encode(self.passwordProfile as! PasswordProfileData?, forKey: .passwordProfile)}
-    if self.userPrincipalName != nil {try container.encode(self.userPrincipalName, forKey: .userPrincipalName)}
-    if self.mailNickname != nil {try container.encode(self.mailNickname, forKey: .mailNickname)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.immutableId != nil { try container.encode(self.immutableId, forKey: .immutableId) }
+    if self.usageLocation != nil { try container.encode(self.usageLocation, forKey: .usageLocation) }
+    if self.givenName != nil { try container.encode(self.givenName, forKey: .givenName) }
+    if self.surname != nil { try container.encode(self.surname, forKey: .surname) }
+    if self.userType != nil { try container.encode(self.userType, forKey: .userType) }
+    if self.accountEnabled != nil { try container.encode(self.accountEnabled, forKey: .accountEnabled) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.passwordProfile != nil { try container.encode(self.passwordProfile as! PasswordProfileData?, forKey: .passwordProfile) }
+    if self.userPrincipalName != nil { try container.encode(self.userPrincipalName, forKey: .userPrincipalName) }
+    if self.mailNickname != nil { try container.encode(self.mailNickname, forKey: .mailNickname) }
   }
 }
 

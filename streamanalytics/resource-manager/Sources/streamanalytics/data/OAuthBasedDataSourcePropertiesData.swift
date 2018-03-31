@@ -14,7 +14,7 @@ internal struct OAuthBasedDataSourcePropertiesData : OAuthBasedDataSourcePropert
         case tokenUserDisplayName = "tokenUserDisplayName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct OAuthBasedDataSourcePropertiesData : OAuthBasedDataSourcePropert
     if container.contains(.tokenUserDisplayName) {
         self.tokenUserDisplayName = try container.decode(String?.self, forKey: .tokenUserDisplayName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct OAuthBasedDataSourcePropertiesData : OAuthBasedDataSourcePropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.refreshToken != nil {try container.encode(self.refreshToken, forKey: .refreshToken)}
-    if self.tokenUserPrincipalName != nil {try container.encode(self.tokenUserPrincipalName, forKey: .tokenUserPrincipalName)}
-    if self.tokenUserDisplayName != nil {try container.encode(self.tokenUserDisplayName, forKey: .tokenUserDisplayName)}
+    if self.refreshToken != nil { try container.encode(self.refreshToken, forKey: .refreshToken) }
+    if self.tokenUserPrincipalName != nil { try container.encode(self.tokenUserPrincipalName, forKey: .tokenUserPrincipalName) }
+    if self.tokenUserDisplayName != nil { try container.encode(self.tokenUserDisplayName, forKey: .tokenUserDisplayName) }
   }
 }
 

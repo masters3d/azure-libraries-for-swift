@@ -10,14 +10,14 @@ internal struct CreateOrUpdateTrustedIdProviderPropertiesData : CreateOrUpdateTr
         enum CodingKeys: String, CodingKey {case idProvider = "idProvider"
         }
 
-  public init(idProvider: String)  {
+  public init(idProvider: String) {
     self.idProvider = idProvider
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.idProvider = try container.decode(String.self, forKey: .idProvider)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

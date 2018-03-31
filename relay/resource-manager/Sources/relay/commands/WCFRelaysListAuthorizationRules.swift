@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WCFRelaysListAuthorizationRules  {
+public protocol WCFRelaysListAuthorizationRules {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol WCFRelaysListAuthorizationRules  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AuthorizationRuleListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AuthorizationRuleListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.WCFRelays {
@@ -40,7 +40,7 @@ extension Commands.WCFRelays {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{relayName}"] = String(describing: self.relayName)
@@ -61,15 +61,15 @@ extension Commands.WCFRelays {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AuthorizationRuleListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AuthorizationRuleListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

@@ -16,7 +16,7 @@ internal struct AvailabilitySetPropertiesData : AvailabilitySetPropertiesProtoco
         case statuses = "statuses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AvailabilitySetPropertiesData : AvailabilitySetPropertiesProtoco
     if container.contains(.statuses) {
         self.statuses = try container.decode([InstanceViewStatusData?]?.self, forKey: .statuses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AvailabilitySetPropertiesData : AvailabilitySetPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.platformUpdateDomainCount != nil {try container.encode(self.platformUpdateDomainCount, forKey: .platformUpdateDomainCount)}
-    if self.platformFaultDomainCount != nil {try container.encode(self.platformFaultDomainCount, forKey: .platformFaultDomainCount)}
-    if self.virtualMachines != nil {try container.encode(self.virtualMachines as! [SubResourceData?]?, forKey: .virtualMachines)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
+    if self.platformUpdateDomainCount != nil { try container.encode(self.platformUpdateDomainCount, forKey: .platformUpdateDomainCount) }
+    if self.platformFaultDomainCount != nil { try container.encode(self.platformFaultDomainCount, forKey: .platformFaultDomainCount) }
+    if self.virtualMachines != nil { try container.encode(self.virtualMachines as! [SubResourceData?]?, forKey: .virtualMachines) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
   }
 }
 

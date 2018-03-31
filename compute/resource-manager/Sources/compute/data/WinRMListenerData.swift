@@ -12,7 +12,7 @@ internal struct WinRMListenerData : WinRMListenerProtocol {
         case certificateUrl = "certificateUrl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct WinRMListenerData : WinRMListenerProtocol {
     if container.contains(.certificateUrl) {
         self.certificateUrl = try container.decode(String?.self, forKey: .certificateUrl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct WinRMListenerData : WinRMListenerProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.certificateUrl != nil {try container.encode(self.certificateUrl, forKey: .certificateUrl)}
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.certificateUrl != nil { try container.encode(self.certificateUrl, forKey: .certificateUrl) }
   }
 }
 

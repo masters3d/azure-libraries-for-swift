@@ -34,7 +34,7 @@ internal struct RecommendationRulePropertiesData : RecommendationRulePropertiesP
         case forwardLink = "forwardLink"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct RecommendationRulePropertiesData : RecommendationRulePropertiesP
     if container.contains(.forwardLink) {
         self.forwardLink = try container.decode(String?.self, forKey: .forwardLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,19 +88,19 @@ internal struct RecommendationRulePropertiesData : RecommendationRulePropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.recommendationId != nil {try container.encode(self.recommendationId, forKey: .recommendationId)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.actionName != nil {try container.encode(self.actionName, forKey: .actionName)}
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
-    if self.channels != nil {try container.encode(self.channels, forKey: .channels)}
-    if self.tags != nil {try container.encode(self.tags as! [String]?, forKey: .tags)}
-    if self.isDynamic != nil {try container.encode(self.isDynamic, forKey: .isDynamic)}
-    if self.extensionName != nil {try container.encode(self.extensionName, forKey: .extensionName)}
-    if self.bladeName != nil {try container.encode(self.bladeName, forKey: .bladeName)}
-    if self.forwardLink != nil {try container.encode(self.forwardLink, forKey: .forwardLink)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.recommendationId != nil { try container.encode(self.recommendationId, forKey: .recommendationId) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.actionName != nil { try container.encode(self.actionName, forKey: .actionName) }
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
+    if self.channels != nil { try container.encode(self.channels, forKey: .channels) }
+    if self.tags != nil { try container.encode(self.tags as! [String]?, forKey: .tags) }
+    if self.isDynamic != nil { try container.encode(self.isDynamic, forKey: .isDynamic) }
+    if self.extensionName != nil { try container.encode(self.extensionName, forKey: .extensionName) }
+    if self.bladeName != nil { try container.encode(self.bladeName, forKey: .bladeName) }
+    if self.forwardLink != nil { try container.encode(self.forwardLink, forKey: .forwardLink) }
   }
 }
 

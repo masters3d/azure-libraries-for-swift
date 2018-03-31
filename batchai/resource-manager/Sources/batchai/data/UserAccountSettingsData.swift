@@ -14,7 +14,7 @@ internal struct UserAccountSettingsData : UserAccountSettingsProtocol {
         case adminUserPassword = "adminUserPassword"
         }
 
-  public init(adminUserName: String)  {
+  public init(adminUserName: String) {
     self.adminUserName = adminUserName
   }
 
@@ -27,7 +27,7 @@ internal struct UserAccountSettingsData : UserAccountSettingsProtocol {
     if container.contains(.adminUserPassword) {
         self.adminUserPassword = try container.decode(String?.self, forKey: .adminUserPassword)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct UserAccountSettingsData : UserAccountSettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.adminUserName, forKey: .adminUserName)
-    if self.adminUserSshPublicKey != nil {try container.encode(self.adminUserSshPublicKey, forKey: .adminUserSshPublicKey)}
-    if self.adminUserPassword != nil {try container.encode(self.adminUserPassword, forKey: .adminUserPassword)}
+    if self.adminUserSshPublicKey != nil { try container.encode(self.adminUserSshPublicKey, forKey: .adminUserSshPublicKey) }
+    if self.adminUserPassword != nil { try container.encode(self.adminUserPassword, forKey: .adminUserPassword) }
   }
 }
 

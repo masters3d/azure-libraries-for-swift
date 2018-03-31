@@ -22,7 +22,7 @@ internal struct ProtectedItemData : ProtectedItemProtocol {
         case backupSetName = "backupSetName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ProtectedItemData : ProtectedItemProtocol {
     if container.contains(.backupSetName) {
         self.backupSetName = try container.decode(String?.self, forKey: .backupSetName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,15 +58,15 @@ internal struct ProtectedItemData : ProtectedItemProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
     if self.lastRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.lastRecoveryPoint!, format: .dateTime), forKey: .lastRecoveryPoint)
     }
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
   }
 }
 

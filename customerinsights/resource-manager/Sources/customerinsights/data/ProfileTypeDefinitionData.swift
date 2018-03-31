@@ -44,7 +44,7 @@ internal struct ProfileTypeDefinitionData : ProfileTypeDefinitionProtocol, Entit
         case strongIds = "strongIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -103,7 +103,7 @@ internal struct ProfileTypeDefinitionData : ProfileTypeDefinitionProtocol, Entit
     if container.contains(.strongIds) {
         self.strongIds = try container.decode([StrongIdData?]?.self, forKey: .strongIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -113,26 +113,26 @@ internal struct ProfileTypeDefinitionData : ProfileTypeDefinitionProtocol, Entit
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.attributes != nil {try container.encode(self.attributes, forKey: .attributes)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.localizedAttributes != nil {try container.encode(self.localizedAttributes, forKey: .localizedAttributes)}
-    if self.smallImage != nil {try container.encode(self.smallImage, forKey: .smallImage)}
-    if self.mediumImage != nil {try container.encode(self.mediumImage, forKey: .mediumImage)}
-    if self.largeImage != nil {try container.encode(self.largeImage, forKey: .largeImage)}
-    if self.apiEntitySetName != nil {try container.encode(self.apiEntitySetName, forKey: .apiEntitySetName)}
-    if self.entityType != nil {try container.encode(self.entityType, forKey: .entityType)}
-    if self.fields != nil {try container.encode(self.fields as! [PropertyDefinitionData?]?, forKey: .fields)}
-    if self.instancesCount != nil {try container.encode(self.instancesCount, forKey: .instancesCount)}
+    if self.attributes != nil { try container.encode(self.attributes, forKey: .attributes) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.localizedAttributes != nil { try container.encode(self.localizedAttributes, forKey: .localizedAttributes) }
+    if self.smallImage != nil { try container.encode(self.smallImage, forKey: .smallImage) }
+    if self.mediumImage != nil { try container.encode(self.mediumImage, forKey: .mediumImage) }
+    if self.largeImage != nil { try container.encode(self.largeImage, forKey: .largeImage) }
+    if self.apiEntitySetName != nil { try container.encode(self.apiEntitySetName, forKey: .apiEntitySetName) }
+    if self.entityType != nil { try container.encode(self.entityType, forKey: .entityType) }
+    if self.fields != nil { try container.encode(self.fields as! [PropertyDefinitionData?]?, forKey: .fields) }
+    if self.instancesCount != nil { try container.encode(self.instancesCount, forKey: .instancesCount) }
     if self.lastChangedUtc != nil {
         try container.encode(DateConverter.toString(date: self.lastChangedUtc!, format: .dateTime), forKey: .lastChangedUtc)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.schemaItemTypeLink != nil {try container.encode(self.schemaItemTypeLink, forKey: .schemaItemTypeLink)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.timestampFieldName != nil {try container.encode(self.timestampFieldName, forKey: .timestampFieldName)}
-    if self.typeName != nil {try container.encode(self.typeName, forKey: .typeName)}
-    if self.strongIds != nil {try container.encode(self.strongIds as! [StrongIdData?]?, forKey: .strongIds)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.schemaItemTypeLink != nil { try container.encode(self.schemaItemTypeLink, forKey: .schemaItemTypeLink) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.timestampFieldName != nil { try container.encode(self.timestampFieldName, forKey: .timestampFieldName) }
+    if self.typeName != nil { try container.encode(self.typeName, forKey: .typeName) }
+    if self.strongIds != nil { try container.encode(self.strongIds as! [StrongIdData?]?, forKey: .strongIds) }
   }
 }
 

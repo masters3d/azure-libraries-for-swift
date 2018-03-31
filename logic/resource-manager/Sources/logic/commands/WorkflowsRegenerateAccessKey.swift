@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WorkflowsRegenerateAccessKey  {
+public protocol WorkflowsRegenerateAccessKey {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var workflowName : String { get set }
     var apiVersion : String { get set }
-    var keyType :  RegenerateActionParameterProtocol?  { get set }
+    var keyType :  RegenerateActionParameterProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Workflows {
@@ -32,7 +32,7 @@ extension Commands.Workflows {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{workflowName}"] = String(describing: self.workflowName)
@@ -51,7 +51,7 @@ extension Commands.Workflows {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

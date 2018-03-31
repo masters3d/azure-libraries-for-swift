@@ -30,7 +30,7 @@ internal struct WorkflowRunPropertiesData : WorkflowRunPropertiesProtocol {
         case response = "response"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct WorkflowRunPropertiesData : WorkflowRunPropertiesProtocol {
     if container.contains(.response) {
         self.response = try container.decode(WorkflowRunTriggerData?.self, forKey: .response)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -84,15 +84,15 @@ internal struct WorkflowRunPropertiesData : WorkflowRunPropertiesProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.error != nil {try container.encode(self.error, forKey: .error)}
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.correlation != nil {try container.encode(self.correlation as! CorrelationData?, forKey: .correlation)}
-    if self.workflow != nil {try container.encode(self.workflow as! ResourceReferenceData?, forKey: .workflow)}
-    if self.trigger != nil {try container.encode(self.trigger as! WorkflowRunTriggerData?, forKey: .trigger)}
-    if self.outputs != nil {try container.encode(self.outputs, forKey: .outputs)}
-    if self.response != nil {try container.encode(self.response as! WorkflowRunTriggerData?, forKey: .response)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.error != nil { try container.encode(self.error, forKey: .error) }
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.correlation != nil { try container.encode(self.correlation as! CorrelationData?, forKey: .correlation) }
+    if self.workflow != nil { try container.encode(self.workflow as! ResourceReferenceData?, forKey: .workflow) }
+    if self.trigger != nil { try container.encode(self.trigger as! WorkflowRunTriggerData?, forKey: .trigger) }
+    if self.outputs != nil { try container.encode(self.outputs, forKey: .outputs) }
+    if self.response != nil { try container.encode(self.response as! WorkflowRunTriggerData?, forKey: .response) }
   }
 }
 

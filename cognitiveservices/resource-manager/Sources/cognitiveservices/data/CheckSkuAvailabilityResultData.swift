@@ -20,7 +20,7 @@ internal struct CheckSkuAvailabilityResultData : CheckSkuAvailabilityResultProto
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct CheckSkuAvailabilityResultData : CheckSkuAvailabilityResultProto
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct CheckSkuAvailabilityResultData : CheckSkuAvailabilityResultProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.skuName != nil {try container.encode(self.skuName, forKey: .skuName)}
-    if self.skuAvailable != nil {try container.encode(self.skuAvailable, forKey: .skuAvailable)}
-    if self.reason != nil {try container.encode(self.reason, forKey: .reason)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.skuName != nil { try container.encode(self.skuName, forKey: .skuName) }
+    if self.skuAvailable != nil { try container.encode(self.skuAvailable, forKey: .skuAvailable) }
+    if self.reason != nil { try container.encode(self.reason, forKey: .reason) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RunbookDraftReplaceContent  {
+public protocol RunbookDraftReplaceContent {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var runbookName : String { get set }
     var apiVersion : String { get set }
-    var runbookContent :  String?  { get set }
+    var runbookContent :  String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.RunbookDraft {
@@ -36,7 +36,7 @@ extension Commands.RunbookDraft {
             self.headerParameters = ["Content-Type":"text/powershell"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -56,7 +56,7 @@ extension Commands.RunbookDraft {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

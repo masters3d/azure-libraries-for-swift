@@ -36,7 +36,7 @@ internal struct RedisPropertiesData : RedisPropertiesProtocol, RedisCreateProper
         case linkedServers = "linkedServers"
         }
 
-  public init(sku: SkuProtocol)  {
+  public init(sku: SkuProtocol) {
     self.sku = sku
   }
 
@@ -82,7 +82,7 @@ internal struct RedisPropertiesData : RedisPropertiesProtocol, RedisCreateProper
     if container.contains(.linkedServers) {
         self.linkedServers = try container.decode([RedisLinkedServerData?]?.self, forKey: .linkedServers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -92,20 +92,20 @@ internal struct RedisPropertiesData : RedisPropertiesProtocol, RedisCreateProper
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.redisConfiguration != nil {try container.encode(self.redisConfiguration, forKey: .redisConfiguration)}
-    if self.enableNonSslPort != nil {try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort)}
-    if self.tenantSettings != nil {try container.encode(self.tenantSettings, forKey: .tenantSettings)}
-    if self.shardCount != nil {try container.encode(self.shardCount, forKey: .shardCount)}
+    if self.redisConfiguration != nil { try container.encode(self.redisConfiguration, forKey: .redisConfiguration) }
+    if self.enableNonSslPort != nil { try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort) }
+    if self.tenantSettings != nil { try container.encode(self.tenantSettings, forKey: .tenantSettings) }
+    if self.shardCount != nil { try container.encode(self.shardCount, forKey: .shardCount) }
     try container.encode(self.sku as! SkuData, forKey: .sku)
-    if self.subnetId != nil {try container.encode(self.subnetId, forKey: .subnetId)}
-    if self.staticIP != nil {try container.encode(self.staticIP, forKey: .staticIP)}
-    if self.redisVersion != nil {try container.encode(self.redisVersion, forKey: .redisVersion)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.sslPort != nil {try container.encode(self.sslPort, forKey: .sslPort)}
-    if self.accessKeys != nil {try container.encode(self.accessKeys as! RedisAccessKeysData?, forKey: .accessKeys)}
-    if self.linkedServers != nil {try container.encode(self.linkedServers as! [RedisLinkedServerData?]?, forKey: .linkedServers)}
+    if self.subnetId != nil { try container.encode(self.subnetId, forKey: .subnetId) }
+    if self.staticIP != nil { try container.encode(self.staticIP, forKey: .staticIP) }
+    if self.redisVersion != nil { try container.encode(self.redisVersion, forKey: .redisVersion) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.sslPort != nil { try container.encode(self.sslPort, forKey: .sslPort) }
+    if self.accessKeys != nil { try container.encode(self.accessKeys as! RedisAccessKeysData?, forKey: .accessKeys) }
+    if self.linkedServers != nil { try container.encode(self.linkedServers as! [RedisLinkedServerData?]?, forKey: .linkedServers) }
   }
 }
 

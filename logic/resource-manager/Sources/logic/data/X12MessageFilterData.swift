@@ -10,14 +10,14 @@ internal struct X12MessageFilterData : X12MessageFilterProtocol {
         enum CodingKeys: String, CodingKey {case messageFilterType = "messageFilterType"
         }
 
-  public init(messageFilterType: MessageFilterTypeEnum)  {
+  public init(messageFilterType: MessageFilterTypeEnum) {
     self.messageFilterType = messageFilterType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.messageFilterType = try container.decode(MessageFilterTypeEnum.self, forKey: .messageFilterType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -12,7 +12,7 @@ internal struct ApplicableSchedulePropertiesFragmentData : ApplicableSchedulePro
         case labVmsStartup = "labVmsStartup"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ApplicableSchedulePropertiesFragmentData : ApplicableSchedulePro
     if container.contains(.labVmsStartup) {
         self.labVmsStartup = try container.decode(ScheduleFragmentData?.self, forKey: .labVmsStartup)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ApplicableSchedulePropertiesFragmentData : ApplicableSchedulePro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.labVmsShutdown != nil {try container.encode(self.labVmsShutdown as! ScheduleFragmentData?, forKey: .labVmsShutdown)}
-    if self.labVmsStartup != nil {try container.encode(self.labVmsStartup as! ScheduleFragmentData?, forKey: .labVmsStartup)}
+    if self.labVmsShutdown != nil { try container.encode(self.labVmsShutdown as! ScheduleFragmentData?, forKey: .labVmsShutdown) }
+    if self.labVmsStartup != nil { try container.encode(self.labVmsStartup as! ScheduleFragmentData?, forKey: .labVmsStartup) }
   }
 }
 

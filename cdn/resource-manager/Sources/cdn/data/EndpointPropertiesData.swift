@@ -36,7 +36,7 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol, EndpointPro
         case provisioningState = "provisioningState"
         }
 
-  public init(origins: [DeepCreatedOriginProtocol])  {
+  public init(origins: [DeepCreatedOriginProtocol]) {
     self.origins = origins
   }
 
@@ -82,7 +82,7 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol, EndpointPro
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -92,20 +92,20 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol, EndpointPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.originHostHeader != nil {try container.encode(self.originHostHeader, forKey: .originHostHeader)}
-    if self.originPath != nil {try container.encode(self.originPath, forKey: .originPath)}
-    if self.contentTypesToCompress != nil {try container.encode(self.contentTypesToCompress as! [String]?, forKey: .contentTypesToCompress)}
-    if self.isCompressionEnabled != nil {try container.encode(self.isCompressionEnabled, forKey: .isCompressionEnabled)}
-    if self.isHttpAllowed != nil {try container.encode(self.isHttpAllowed, forKey: .isHttpAllowed)}
-    if self.isHttpsAllowed != nil {try container.encode(self.isHttpsAllowed, forKey: .isHttpsAllowed)}
-    if self.queryStringCachingBehavior != nil {try container.encode(self.queryStringCachingBehavior, forKey: .queryStringCachingBehavior)}
-    if self.optimizationType != nil {try container.encode(self.optimizationType, forKey: .optimizationType)}
-    if self.probePath != nil {try container.encode(self.probePath, forKey: .probePath)}
-    if self.geoFilters != nil {try container.encode(self.geoFilters as! [GeoFilterData?]?, forKey: .geoFilters)}
-    if self.hostName != nil {try container.encode(self.hostName, forKey: .hostName)}
+    if self.originHostHeader != nil { try container.encode(self.originHostHeader, forKey: .originHostHeader) }
+    if self.originPath != nil { try container.encode(self.originPath, forKey: .originPath) }
+    if self.contentTypesToCompress != nil { try container.encode(self.contentTypesToCompress as! [String]?, forKey: .contentTypesToCompress) }
+    if self.isCompressionEnabled != nil { try container.encode(self.isCompressionEnabled, forKey: .isCompressionEnabled) }
+    if self.isHttpAllowed != nil { try container.encode(self.isHttpAllowed, forKey: .isHttpAllowed) }
+    if self.isHttpsAllowed != nil { try container.encode(self.isHttpsAllowed, forKey: .isHttpsAllowed) }
+    if self.queryStringCachingBehavior != nil { try container.encode(self.queryStringCachingBehavior, forKey: .queryStringCachingBehavior) }
+    if self.optimizationType != nil { try container.encode(self.optimizationType, forKey: .optimizationType) }
+    if self.probePath != nil { try container.encode(self.probePath, forKey: .probePath) }
+    if self.geoFilters != nil { try container.encode(self.geoFilters as! [GeoFilterData?]?, forKey: .geoFilters) }
+    if self.hostName != nil { try container.encode(self.hostName, forKey: .hostName) }
     try container.encode(self.origins as! [DeepCreatedOriginData], forKey: .origins)
-    if self.resourceState != nil {try container.encode(self.resourceState, forKey: .resourceState)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.resourceState != nil { try container.encode(self.resourceState, forKey: .resourceState) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

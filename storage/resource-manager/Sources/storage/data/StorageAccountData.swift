@@ -26,7 +26,7 @@ internal struct StorageAccountData : StorageAccountProtocol, ResourceProtocol {
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct StorageAccountData : StorageAccountProtocol, ResourceProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode(StorageAccountPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct StorageAccountData : StorageAccountProtocol, ResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.identity != nil {try container.encode(self.identity as! IdentityData?, forKey: .identity)}
-    if self.properties != nil {try container.encode(self.properties as! StorageAccountPropertiesData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.identity != nil { try container.encode(self.identity as! IdentityData?, forKey: .identity) }
+    if self.properties != nil { try container.encode(self.properties as! StorageAccountPropertiesData?, forKey: .properties) }
   }
 }
 

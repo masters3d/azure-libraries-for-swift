@@ -16,7 +16,7 @@ internal struct DataMaskingPolicyPropertiesData : DataMaskingPolicyPropertiesPro
         case maskingLevel = "maskingLevel"
         }
 
-  public init(dataMaskingState: DataMaskingStateEnum)  {
+  public init(dataMaskingState: DataMaskingStateEnum) {
     self.dataMaskingState = dataMaskingState
   }
 
@@ -32,7 +32,7 @@ internal struct DataMaskingPolicyPropertiesData : DataMaskingPolicyPropertiesPro
     if container.contains(.maskingLevel) {
         self.maskingLevel = try container.decode(String?.self, forKey: .maskingLevel)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct DataMaskingPolicyPropertiesData : DataMaskingPolicyPropertiesPro
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataMaskingState, forKey: .dataMaskingState)
-    if self.exemptPrincipals != nil {try container.encode(self.exemptPrincipals, forKey: .exemptPrincipals)}
-    if self.applicationPrincipals != nil {try container.encode(self.applicationPrincipals, forKey: .applicationPrincipals)}
-    if self.maskingLevel != nil {try container.encode(self.maskingLevel, forKey: .maskingLevel)}
+    if self.exemptPrincipals != nil { try container.encode(self.exemptPrincipals, forKey: .exemptPrincipals) }
+    if self.applicationPrincipals != nil { try container.encode(self.applicationPrincipals, forKey: .applicationPrincipals) }
+    if self.maskingLevel != nil { try container.encode(self.maskingLevel, forKey: .maskingLevel) }
   }
 }
 

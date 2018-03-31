@@ -18,7 +18,7 @@ internal struct AzureReachabilityReportParametersData : AzureReachabilityReportP
         case endTime = "endTime"
         }
 
-  public init(providerLocation: AzureReachabilityReportLocationProtocol, startTime: Date, endTime: Date)  {
+  public init(providerLocation: AzureReachabilityReportLocationProtocol, startTime: Date, endTime: Date) {
     self.providerLocation = providerLocation
     self.startTime = startTime
     self.endTime = endTime
@@ -35,7 +35,7 @@ internal struct AzureReachabilityReportParametersData : AzureReachabilityReportP
     }
         self.startTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .startTime)), format: .dateTime)!
         self.endTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .endTime)), format: .dateTime)!
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,8 +46,8 @@ internal struct AzureReachabilityReportParametersData : AzureReachabilityReportP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.providerLocation as! AzureReachabilityReportLocationData, forKey: .providerLocation)
-    if self.providers != nil {try container.encode(self.providers as! [String]?, forKey: .providers)}
-    if self.azureLocations != nil {try container.encode(self.azureLocations as! [String]?, forKey: .azureLocations)}
+    if self.providers != nil { try container.encode(self.providers as! [String]?, forKey: .providers) }
+    if self.azureLocations != nil { try container.encode(self.azureLocations as! [String]?, forKey: .azureLocations) }
     try container.encode(DateConverter.toString(date: self.startTime, format: .dateTime), forKey: .startTime)
     try container.encode(DateConverter.toString(date: self.endTime, format: .dateTime), forKey: .endTime)
   }

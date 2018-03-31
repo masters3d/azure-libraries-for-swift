@@ -30,7 +30,7 @@ internal struct EdifactFramingSettingsData : EdifactFramingSettingsProtocol {
         case segmentTerminatorSuffix = "segmentTerminatorSuffix"
         }
 
-  public init(protocolVersion: Int32, dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, releaseIndicator: Int32, repetitionSeparator: Int32, characterSet: EdifactCharacterSetEnum, decimalPointIndicator: EdifactDecimalIndicatorEnum, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum)  {
+  public init(protocolVersion: Int32, dataElementSeparator: Int32, componentSeparator: Int32, segmentTerminator: Int32, releaseIndicator: Int32, repetitionSeparator: Int32, characterSet: EdifactCharacterSetEnum, decimalPointIndicator: EdifactDecimalIndicatorEnum, segmentTerminatorSuffix: SegmentTerminatorSuffixEnum) {
     self.protocolVersion = protocolVersion
     self.dataElementSeparator = dataElementSeparator
     self.componentSeparator = componentSeparator
@@ -59,7 +59,7 @@ internal struct EdifactFramingSettingsData : EdifactFramingSettingsProtocol {
     self.characterSet = try container.decode(EdifactCharacterSetEnum.self, forKey: .characterSet)
     self.decimalPointIndicator = try container.decode(EdifactDecimalIndicatorEnum.self, forKey: .decimalPointIndicator)
     self.segmentTerminatorSuffix = try container.decode(SegmentTerminatorSuffixEnum.self, forKey: .segmentTerminatorSuffix)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -69,8 +69,8 @@ internal struct EdifactFramingSettingsData : EdifactFramingSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceCodeListDirectoryVersion != nil {try container.encode(self.serviceCodeListDirectoryVersion, forKey: .serviceCodeListDirectoryVersion)}
-    if self.characterEncoding != nil {try container.encode(self.characterEncoding, forKey: .characterEncoding)}
+    if self.serviceCodeListDirectoryVersion != nil { try container.encode(self.serviceCodeListDirectoryVersion, forKey: .serviceCodeListDirectoryVersion) }
+    if self.characterEncoding != nil { try container.encode(self.characterEncoding, forKey: .characterEncoding) }
     try container.encode(self.protocolVersion, forKey: .protocolVersion)
     try container.encode(self.dataElementSeparator, forKey: .dataElementSeparator)
     try container.encode(self.componentSeparator, forKey: .componentSeparator)

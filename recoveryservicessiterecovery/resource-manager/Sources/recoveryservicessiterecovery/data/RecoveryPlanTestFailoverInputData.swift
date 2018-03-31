@@ -10,14 +10,14 @@ internal struct RecoveryPlanTestFailoverInputData : RecoveryPlanTestFailoverInpu
         enum CodingKeys: String, CodingKey {case properties = "properties"
         }
 
-  public init(properties: RecoveryPlanTestFailoverInputPropertiesProtocol)  {
+  public init(properties: RecoveryPlanTestFailoverInputPropertiesProtocol) {
     self.properties = properties
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.properties = try container.decode(RecoveryPlanTestFailoverInputPropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

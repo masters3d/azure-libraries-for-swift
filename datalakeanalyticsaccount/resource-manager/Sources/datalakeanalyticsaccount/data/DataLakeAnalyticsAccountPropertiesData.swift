@@ -52,7 +52,7 @@ internal struct DataLakeAnalyticsAccountPropertiesData : DataLakeAnalyticsAccoun
         case queryStoreRetention = "queryStoreRetention"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -123,7 +123,7 @@ internal struct DataLakeAnalyticsAccountPropertiesData : DataLakeAnalyticsAccoun
     if container.contains(.queryStoreRetention) {
         self.queryStoreRetention = try container.decode(Int32?.self, forKey: .queryStoreRetention)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -133,32 +133,32 @@ internal struct DataLakeAnalyticsAccountPropertiesData : DataLakeAnalyticsAccoun
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
-    if self.defaultDataLakeStoreAccount != nil {try container.encode(self.defaultDataLakeStoreAccount, forKey: .defaultDataLakeStoreAccount)}
-    if self.dataLakeStoreAccounts != nil {try container.encode(self.dataLakeStoreAccounts as! [DataLakeStoreAccountInformationData?]?, forKey: .dataLakeStoreAccounts)}
-    if self.storageAccounts != nil {try container.encode(self.storageAccounts as! [StorageAccountInformationData?]?, forKey: .storageAccounts)}
-    if self.computePolicies != nil {try container.encode(self.computePolicies as! [ComputePolicyData?]?, forKey: .computePolicies)}
-    if self.firewallRules != nil {try container.encode(self.firewallRules as! [FirewallRuleData?]?, forKey: .firewallRules)}
-    if self.firewallState != nil {try container.encode(self.firewallState, forKey: .firewallState)}
-    if self.firewallAllowAzureIps != nil {try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps)}
-    if self.newTier != nil {try container.encode(self.newTier, forKey: .newTier)}
-    if self.currentTier != nil {try container.encode(self.currentTier, forKey: .currentTier)}
-    if self.maxJobCount != nil {try container.encode(self.maxJobCount, forKey: .maxJobCount)}
-    if self.systemMaxJobCount != nil {try container.encode(self.systemMaxJobCount, forKey: .systemMaxJobCount)}
-    if self.maxDegreeOfParallelism != nil {try container.encode(self.maxDegreeOfParallelism, forKey: .maxDegreeOfParallelism)}
-    if self.systemMaxDegreeOfParallelism != nil {try container.encode(self.systemMaxDegreeOfParallelism, forKey: .systemMaxDegreeOfParallelism)}
-    if self.maxDegreeOfParallelismPerJob != nil {try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob)}
-    if self.minPriorityPerJob != nil {try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob)}
-    if self.queryStoreRetention != nil {try container.encode(self.queryStoreRetention, forKey: .queryStoreRetention)}
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
+    if self.defaultDataLakeStoreAccount != nil { try container.encode(self.defaultDataLakeStoreAccount, forKey: .defaultDataLakeStoreAccount) }
+    if self.dataLakeStoreAccounts != nil { try container.encode(self.dataLakeStoreAccounts as! [DataLakeStoreAccountInformationData?]?, forKey: .dataLakeStoreAccounts) }
+    if self.storageAccounts != nil { try container.encode(self.storageAccounts as! [StorageAccountInformationData?]?, forKey: .storageAccounts) }
+    if self.computePolicies != nil { try container.encode(self.computePolicies as! [ComputePolicyData?]?, forKey: .computePolicies) }
+    if self.firewallRules != nil { try container.encode(self.firewallRules as! [FirewallRuleData?]?, forKey: .firewallRules) }
+    if self.firewallState != nil { try container.encode(self.firewallState, forKey: .firewallState) }
+    if self.firewallAllowAzureIps != nil { try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps) }
+    if self.newTier != nil { try container.encode(self.newTier, forKey: .newTier) }
+    if self.currentTier != nil { try container.encode(self.currentTier, forKey: .currentTier) }
+    if self.maxJobCount != nil { try container.encode(self.maxJobCount, forKey: .maxJobCount) }
+    if self.systemMaxJobCount != nil { try container.encode(self.systemMaxJobCount, forKey: .systemMaxJobCount) }
+    if self.maxDegreeOfParallelism != nil { try container.encode(self.maxDegreeOfParallelism, forKey: .maxDegreeOfParallelism) }
+    if self.systemMaxDegreeOfParallelism != nil { try container.encode(self.systemMaxDegreeOfParallelism, forKey: .systemMaxDegreeOfParallelism) }
+    if self.maxDegreeOfParallelismPerJob != nil { try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob) }
+    if self.minPriorityPerJob != nil { try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob) }
+    if self.queryStoreRetention != nil { try container.encode(self.queryStoreRetention, forKey: .queryStoreRetention) }
   }
 }
 

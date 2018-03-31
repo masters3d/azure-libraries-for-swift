@@ -26,7 +26,7 @@ internal struct WorkflowVersionPropertiesData : WorkflowVersionPropertiesProtoco
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct WorkflowVersionPropertiesData : WorkflowVersionPropertiesProtoco
     if container.contains(.parameters) {
         self.parameters = try container.decode([String:WorkflowParameterData?]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -74,13 +74,13 @@ internal struct WorkflowVersionPropertiesData : WorkflowVersionPropertiesProtoco
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.accessEndpoint != nil {try container.encode(self.accessEndpoint, forKey: .accessEndpoint)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.integrationAccount != nil {try container.encode(self.integrationAccount as! ResourceReferenceData?, forKey: .integrationAccount)}
-    if self.definition != nil {try container.encode(self.definition, forKey: .definition)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.accessEndpoint != nil { try container.encode(self.accessEndpoint, forKey: .accessEndpoint) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.integrationAccount != nil { try container.encode(self.integrationAccount as! ResourceReferenceData?, forKey: .integrationAccount) }
+    if self.definition != nil { try container.encode(self.definition, forKey: .definition) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
   }
 }
 

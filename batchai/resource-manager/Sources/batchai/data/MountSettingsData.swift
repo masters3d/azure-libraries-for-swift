@@ -16,7 +16,7 @@ internal struct MountSettingsData : MountSettingsProtocol {
         case fileServerType = "fileServerType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct MountSettingsData : MountSettingsProtocol {
     if container.contains(.fileServerType) {
         self.fileServerType = try container.decode(FileServerTypeEnum?.self, forKey: .fileServerType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct MountSettingsData : MountSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.mountPoint != nil {try container.encode(self.mountPoint, forKey: .mountPoint)}
-    if self.fileServerPublicIP != nil {try container.encode(self.fileServerPublicIP, forKey: .fileServerPublicIP)}
-    if self.fileServerInternalIP != nil {try container.encode(self.fileServerInternalIP, forKey: .fileServerInternalIP)}
-    if self.fileServerType != nil {try container.encode(self.fileServerType, forKey: .fileServerType)}
+    if self.mountPoint != nil { try container.encode(self.mountPoint, forKey: .mountPoint) }
+    if self.fileServerPublicIP != nil { try container.encode(self.fileServerPublicIP, forKey: .fileServerPublicIP) }
+    if self.fileServerInternalIP != nil { try container.encode(self.fileServerInternalIP, forKey: .fileServerInternalIP) }
+    if self.fileServerType != nil { try container.encode(self.fileServerType, forKey: .fileServerType) }
   }
 }
 

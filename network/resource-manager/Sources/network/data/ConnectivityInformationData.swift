@@ -22,7 +22,7 @@ internal struct ConnectivityInformationData : ConnectivityInformationProtocol {
         case probesFailed = "probesFailed"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ConnectivityInformationData : ConnectivityInformationProtocol {
     if container.contains(.probesFailed) {
         self.probesFailed = try container.decode(Int32?.self, forKey: .probesFailed)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ConnectivityInformationData : ConnectivityInformationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.hops != nil {try container.encode(self.hops as! [ConnectivityHopData?]?, forKey: .hops)}
-    if self.connectionStatus != nil {try container.encode(self.connectionStatus, forKey: .connectionStatus)}
-    if self.avgLatencyInMs != nil {try container.encode(self.avgLatencyInMs, forKey: .avgLatencyInMs)}
-    if self.minLatencyInMs != nil {try container.encode(self.minLatencyInMs, forKey: .minLatencyInMs)}
-    if self.maxLatencyInMs != nil {try container.encode(self.maxLatencyInMs, forKey: .maxLatencyInMs)}
-    if self.probesSent != nil {try container.encode(self.probesSent, forKey: .probesSent)}
-    if self.probesFailed != nil {try container.encode(self.probesFailed, forKey: .probesFailed)}
+    if self.hops != nil { try container.encode(self.hops as! [ConnectivityHopData?]?, forKey: .hops) }
+    if self.connectionStatus != nil { try container.encode(self.connectionStatus, forKey: .connectionStatus) }
+    if self.avgLatencyInMs != nil { try container.encode(self.avgLatencyInMs, forKey: .avgLatencyInMs) }
+    if self.minLatencyInMs != nil { try container.encode(self.minLatencyInMs, forKey: .minLatencyInMs) }
+    if self.maxLatencyInMs != nil { try container.encode(self.maxLatencyInMs, forKey: .maxLatencyInMs) }
+    if self.probesSent != nil { try container.encode(self.probesSent, forKey: .probesSent) }
+    if self.probesFailed != nil { try container.encode(self.probesFailed, forKey: .probesFailed) }
   }
 }
 

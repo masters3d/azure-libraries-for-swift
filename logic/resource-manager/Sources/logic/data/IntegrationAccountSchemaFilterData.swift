@@ -10,14 +10,14 @@ internal struct IntegrationAccountSchemaFilterData : IntegrationAccountSchemaFil
         enum CodingKeys: String, CodingKey {case schemaType = "schemaType"
         }
 
-  public init(schemaType: SchemaTypeEnum)  {
+  public init(schemaType: SchemaTypeEnum) {
     self.schemaType = schemaType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.schemaType = try container.decode(SchemaTypeEnum.self, forKey: .schemaType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

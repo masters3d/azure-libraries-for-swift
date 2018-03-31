@@ -16,7 +16,7 @@ internal struct PowerShellCommandResultsData : PowerShellCommandResultsProtocol 
         case completed = "completed"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PowerShellCommandResultsData : PowerShellCommandResultsProtocol 
     if container.contains(.completed) {
         self.completed = try container.decode(Bool?.self, forKey: .completed)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PowerShellCommandResultsData : PowerShellCommandResultsProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.results != nil {try container.encode(self.results as! [PowerShellCommandResultData?]?, forKey: .results)}
-    if self.pssession != nil {try container.encode(self.pssession, forKey: .pssession)}
-    if self.command != nil {try container.encode(self.command, forKey: .command)}
-    if self.completed != nil {try container.encode(self.completed, forKey: .completed)}
+    if self.results != nil { try container.encode(self.results as! [PowerShellCommandResultData?]?, forKey: .results) }
+    if self.pssession != nil { try container.encode(self.pssession, forKey: .pssession) }
+    if self.command != nil { try container.encode(self.command, forKey: .command) }
+    if self.completed != nil { try container.encode(self.completed, forKey: .completed) }
   }
 }
 

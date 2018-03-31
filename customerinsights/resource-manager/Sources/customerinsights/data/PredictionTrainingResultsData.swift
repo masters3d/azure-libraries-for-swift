@@ -18,7 +18,7 @@ internal struct PredictionTrainingResultsData : PredictionTrainingResultsProtoco
         case primaryProfileInstanceCount = "primaryProfileInstanceCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct PredictionTrainingResultsData : PredictionTrainingResultsProtoco
     if container.contains(.primaryProfileInstanceCount) {
         self.primaryProfileInstanceCount = try container.decode(Int64?.self, forKey: .primaryProfileInstanceCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct PredictionTrainingResultsData : PredictionTrainingResultsProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
-    if self.scoreName != nil {try container.encode(self.scoreName, forKey: .scoreName)}
-    if self.predictionDistribution != nil {try container.encode(self.predictionDistribution as! PredictionDistributionDefinitionData?, forKey: .predictionDistribution)}
-    if self.canonicalProfiles != nil {try container.encode(self.canonicalProfiles as! [CanonicalProfileDefinitionData?]?, forKey: .canonicalProfiles)}
-    if self.primaryProfileInstanceCount != nil {try container.encode(self.primaryProfileInstanceCount, forKey: .primaryProfileInstanceCount)}
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
+    if self.scoreName != nil { try container.encode(self.scoreName, forKey: .scoreName) }
+    if self.predictionDistribution != nil { try container.encode(self.predictionDistribution as! PredictionDistributionDefinitionData?, forKey: .predictionDistribution) }
+    if self.canonicalProfiles != nil { try container.encode(self.canonicalProfiles as! [CanonicalProfileDefinitionData?]?, forKey: .canonicalProfiles) }
+    if self.primaryProfileInstanceCount != nil { try container.encode(self.primaryProfileInstanceCount, forKey: .primaryProfileInstanceCount) }
   }
 }
 

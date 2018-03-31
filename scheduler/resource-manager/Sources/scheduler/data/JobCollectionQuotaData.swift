@@ -14,7 +14,7 @@ internal struct JobCollectionQuotaData : JobCollectionQuotaProtocol {
         case maxRecurrence = "maxRecurrence"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct JobCollectionQuotaData : JobCollectionQuotaProtocol {
     if container.contains(.maxRecurrence) {
         self.maxRecurrence = try container.decode(JobMaxRecurrenceData?.self, forKey: .maxRecurrence)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct JobCollectionQuotaData : JobCollectionQuotaProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxJobCount != nil {try container.encode(self.maxJobCount, forKey: .maxJobCount)}
-    if self.maxJobOccurrence != nil {try container.encode(self.maxJobOccurrence, forKey: .maxJobOccurrence)}
-    if self.maxRecurrence != nil {try container.encode(self.maxRecurrence as! JobMaxRecurrenceData?, forKey: .maxRecurrence)}
+    if self.maxJobCount != nil { try container.encode(self.maxJobCount, forKey: .maxJobCount) }
+    if self.maxJobOccurrence != nil { try container.encode(self.maxJobOccurrence, forKey: .maxJobOccurrence) }
+    if self.maxRecurrence != nil { try container.encode(self.maxRecurrence as! JobMaxRecurrenceData?, forKey: .maxRecurrence) }
   }
 }
 

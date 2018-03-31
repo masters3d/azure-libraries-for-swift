@@ -14,7 +14,7 @@ internal struct WeeklyRetentionScheduleData : WeeklyRetentionScheduleProtocol {
         case retentionDuration = "retentionDuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct WeeklyRetentionScheduleData : WeeklyRetentionScheduleProtocol {
     if container.contains(.retentionDuration) {
         self.retentionDuration = try container.decode(RetentionDurationData?.self, forKey: .retentionDuration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct WeeklyRetentionScheduleData : WeeklyRetentionScheduleProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.daysOfTheWeek != nil {try container.encode(self.daysOfTheWeek as! [DayOfWeekEnum?]?, forKey: .daysOfTheWeek)}
-    if self.retentionTimes != nil {try container.encode(self.retentionTimes as! [Date]?, forKey: .retentionTimes)}
-    if self.retentionDuration != nil {try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration)}
+    if self.daysOfTheWeek != nil { try container.encode(self.daysOfTheWeek as! [DayOfWeekEnum?]?, forKey: .daysOfTheWeek) }
+    if self.retentionTimes != nil { try container.encode(self.retentionTimes as! [Date]?, forKey: .retentionTimes) }
+    if self.retentionDuration != nil { try container.encode(self.retentionDuration as! RetentionDurationData?, forKey: .retentionDuration) }
   }
 }
 

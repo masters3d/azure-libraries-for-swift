@@ -12,7 +12,7 @@ internal struct NetworkConfigurationData : NetworkConfigurationProtocol {
         case endpointConfiguration = "endpointConfiguration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct NetworkConfigurationData : NetworkConfigurationProtocol {
     if container.contains(.endpointConfiguration) {
         self.endpointConfiguration = try container.decode(PoolEndpointConfigurationData?.self, forKey: .endpointConfiguration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct NetworkConfigurationData : NetworkConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subnetId != nil {try container.encode(self.subnetId, forKey: .subnetId)}
-    if self.endpointConfiguration != nil {try container.encode(self.endpointConfiguration as! PoolEndpointConfigurationData?, forKey: .endpointConfiguration)}
+    if self.subnetId != nil { try container.encode(self.subnetId, forKey: .subnetId) }
+    if self.endpointConfiguration != nil { try container.encode(self.endpointConfiguration as! PoolEndpointConfigurationData?, forKey: .endpointConfiguration) }
   }
 }
 

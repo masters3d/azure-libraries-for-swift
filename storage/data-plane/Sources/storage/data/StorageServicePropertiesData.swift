@@ -16,7 +16,7 @@ internal struct StorageServicePropertiesData : StorageServicePropertiesProtocol 
         case defaultServiceVersion = "DefaultServiceVersion"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -40,11 +40,11 @@ internal struct StorageServicePropertiesData : StorageServicePropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.logging != nil {try container.encode(logging as! LoggingData?, forKey: .logging)}
-    if self.hourMetrics != nil {try container.encode(hourMetrics as! MetricsData?, forKey: .hourMetrics)}
-    if self.minuteMetrics != nil {try container.encode(minuteMetrics as! MetricsData?, forKey: .minuteMetrics)}
-    if self.cors != nil {try container.encode(cors as! [CorsRuleData?]?, forKey: .cors)}
-    if self.defaultServiceVersion != nil {try container.encode(defaultServiceVersion, forKey: .defaultServiceVersion)}
+    if self.logging != nil { try container.encode(logging as! LoggingData?, forKey: .logging) }
+    if self.hourMetrics != nil { try container.encode(hourMetrics as! MetricsData?, forKey: .hourMetrics) }
+    if self.minuteMetrics != nil { try container.encode(minuteMetrics as! MetricsData?, forKey: .minuteMetrics) }
+    if self.cors != nil { try container.encode(cors as! [CorsRuleData?]?, forKey: .cors) }
+    if self.defaultServiceVersion != nil { try container.encode(defaultServiceVersion, forKey: .defaultServiceVersion) }
   }
 }
 

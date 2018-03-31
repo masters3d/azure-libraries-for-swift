@@ -24,7 +24,7 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
         case serviceBusSuffix = "serviceBusSuffix"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
     if container.contains(.serviceBusSuffix) {
         self.serviceBusSuffix = try container.decode(String?.self, forKey: .serviceBusSuffix)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct HybridConnectionPropertiesData : HybridConnectionPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusNamespace != nil {try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace)}
-    if self.relayName != nil {try container.encode(self.relayName, forKey: .relayName)}
-    if self.relayArmUri != nil {try container.encode(self.relayArmUri, forKey: .relayArmUri)}
-    if self.hostname != nil {try container.encode(self.hostname, forKey: .hostname)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.sendKeyName != nil {try container.encode(self.sendKeyName, forKey: .sendKeyName)}
-    if self.sendKeyValue != nil {try container.encode(self.sendKeyValue, forKey: .sendKeyValue)}
-    if self.serviceBusSuffix != nil {try container.encode(self.serviceBusSuffix, forKey: .serviceBusSuffix)}
+    if self.serviceBusNamespace != nil { try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace) }
+    if self.relayName != nil { try container.encode(self.relayName, forKey: .relayName) }
+    if self.relayArmUri != nil { try container.encode(self.relayArmUri, forKey: .relayArmUri) }
+    if self.hostname != nil { try container.encode(self.hostname, forKey: .hostname) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.sendKeyName != nil { try container.encode(self.sendKeyName, forKey: .sendKeyName) }
+    if self.sendKeyValue != nil { try container.encode(self.sendKeyValue, forKey: .sendKeyValue) }
+    if self.serviceBusSuffix != nil { try container.encode(self.serviceBusSuffix, forKey: .serviceBusSuffix) }
   }
 }
 

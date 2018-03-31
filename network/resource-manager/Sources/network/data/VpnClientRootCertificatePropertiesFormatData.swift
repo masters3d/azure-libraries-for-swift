@@ -12,7 +12,7 @@ internal struct VpnClientRootCertificatePropertiesFormatData : VpnClientRootCert
         case provisioningState = "provisioningState"
         }
 
-  public init(publicCertData: String)  {
+  public init(publicCertData: String) {
     self.publicCertData = publicCertData
   }
 
@@ -22,7 +22,7 @@ internal struct VpnClientRootCertificatePropertiesFormatData : VpnClientRootCert
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct VpnClientRootCertificatePropertiesFormatData : VpnClientRootCert
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.publicCertData, forKey: .publicCertData)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

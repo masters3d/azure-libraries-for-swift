@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol TrustedIdProvidersCreateOrUpdate  {
+public protocol TrustedIdProvidersCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var trustedIdProviderName : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CreateOrUpdateTrustedIdProviderParametersProtocol?  { get set }
+    var parameters :  CreateOrUpdateTrustedIdProviderParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (TrustedIdProviderProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (TrustedIdProviderProtocol?, Error?) -> Void)
 }
 
 extension Commands.TrustedIdProviders {
@@ -36,7 +36,7 @@ extension Commands.TrustedIdProviders {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
@@ -60,12 +60,12 @@ extension Commands.TrustedIdProviders {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(TrustedIdProviderData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (TrustedIdProviderProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (TrustedIdProviderProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: TrustedIdProviderData?, error: Error?) in
                 completionHandler(result, error)

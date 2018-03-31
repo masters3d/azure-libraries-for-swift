@@ -56,7 +56,7 @@ internal struct MarketplacePropertiesData : MarketplacePropertiesProtocol {
         case planName = "planName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -133,7 +133,7 @@ internal struct MarketplacePropertiesData : MarketplacePropertiesProtocol {
     if container.contains(.planName) {
         self.planName = try container.decode(String?.self, forKey: .planName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -143,34 +143,34 @@ internal struct MarketplacePropertiesData : MarketplacePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.billingPeriodId != nil {try container.encode(self.billingPeriodId, forKey: .billingPeriodId)}
+    if self.billingPeriodId != nil { try container.encode(self.billingPeriodId, forKey: .billingPeriodId) }
     if self.usageStart != nil {
         try container.encode(DateConverter.toString(date: self.usageStart!, format: .dateTime), forKey: .usageStart)
     }
     if self.usageEnd != nil {
         try container.encode(DateConverter.toString(date: self.usageEnd!, format: .dateTime), forKey: .usageEnd)
     }
-    if self.resourceRate != nil {try container.encode(self.resourceRate, forKey: .resourceRate)}
-    if self.offerName != nil {try container.encode(self.offerName, forKey: .offerName)}
-    if self.resourceGroup != nil {try container.encode(self.resourceGroup, forKey: .resourceGroup)}
-    if self.orderNumber != nil {try container.encode(self.orderNumber, forKey: .orderNumber)}
-    if self.instanceName != nil {try container.encode(self.instanceName, forKey: .instanceName)}
-    if self.instanceId != nil {try container.encode(self.instanceId, forKey: .instanceId)}
-    if self.currency != nil {try container.encode(self.currency, forKey: .currency)}
-    if self.consumedQuantity != nil {try container.encode(self.consumedQuantity, forKey: .consumedQuantity)}
-    if self.unitOfMeasure != nil {try container.encode(self.unitOfMeasure, forKey: .unitOfMeasure)}
-    if self.pretaxCost != nil {try container.encode(self.pretaxCost, forKey: .pretaxCost)}
-    if self.isEstimated != nil {try container.encode(self.isEstimated, forKey: .isEstimated)}
-    if self.meterId != nil {try container.encode(self.meterId, forKey: .meterId)}
-    if self.subscriptionGuid != nil {try container.encode(self.subscriptionGuid, forKey: .subscriptionGuid)}
-    if self.subscriptionName != nil {try container.encode(self.subscriptionName, forKey: .subscriptionName)}
-    if self.accountName != nil {try container.encode(self.accountName, forKey: .accountName)}
-    if self.departmentName != nil {try container.encode(self.departmentName, forKey: .departmentName)}
-    if self.consumedService != nil {try container.encode(self.consumedService, forKey: .consumedService)}
-    if self.costCenter != nil {try container.encode(self.costCenter, forKey: .costCenter)}
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.publisherName != nil {try container.encode(self.publisherName, forKey: .publisherName)}
-    if self.planName != nil {try container.encode(self.planName, forKey: .planName)}
+    if self.resourceRate != nil { try container.encode(self.resourceRate, forKey: .resourceRate) }
+    if self.offerName != nil { try container.encode(self.offerName, forKey: .offerName) }
+    if self.resourceGroup != nil { try container.encode(self.resourceGroup, forKey: .resourceGroup) }
+    if self.orderNumber != nil { try container.encode(self.orderNumber, forKey: .orderNumber) }
+    if self.instanceName != nil { try container.encode(self.instanceName, forKey: .instanceName) }
+    if self.instanceId != nil { try container.encode(self.instanceId, forKey: .instanceId) }
+    if self.currency != nil { try container.encode(self.currency, forKey: .currency) }
+    if self.consumedQuantity != nil { try container.encode(self.consumedQuantity, forKey: .consumedQuantity) }
+    if self.unitOfMeasure != nil { try container.encode(self.unitOfMeasure, forKey: .unitOfMeasure) }
+    if self.pretaxCost != nil { try container.encode(self.pretaxCost, forKey: .pretaxCost) }
+    if self.isEstimated != nil { try container.encode(self.isEstimated, forKey: .isEstimated) }
+    if self.meterId != nil { try container.encode(self.meterId, forKey: .meterId) }
+    if self.subscriptionGuid != nil { try container.encode(self.subscriptionGuid, forKey: .subscriptionGuid) }
+    if self.subscriptionName != nil { try container.encode(self.subscriptionName, forKey: .subscriptionName) }
+    if self.accountName != nil { try container.encode(self.accountName, forKey: .accountName) }
+    if self.departmentName != nil { try container.encode(self.departmentName, forKey: .departmentName) }
+    if self.consumedService != nil { try container.encode(self.consumedService, forKey: .consumedService) }
+    if self.costCenter != nil { try container.encode(self.costCenter, forKey: .costCenter) }
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.publisherName != nil { try container.encode(self.publisherName, forKey: .publisherName) }
+    if self.planName != nil { try container.encode(self.planName, forKey: .planName) }
   }
 }
 

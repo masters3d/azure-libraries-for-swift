@@ -26,7 +26,7 @@ internal struct BatchAccountPropertiesData : BatchAccountPropertiesProtocol {
         case activeJobAndJobScheduleQuota = "activeJobAndJobScheduleQuota"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct BatchAccountPropertiesData : BatchAccountPropertiesProtocol {
     if container.contains(.activeJobAndJobScheduleQuota) {
         self.activeJobAndJobScheduleQuota = try container.decode(Int32?.self, forKey: .activeJobAndJobScheduleQuota)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct BatchAccountPropertiesData : BatchAccountPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountEndpoint != nil {try container.encode(self.accountEndpoint, forKey: .accountEndpoint)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.poolAllocationMode != nil {try container.encode(self.poolAllocationMode, forKey: .poolAllocationMode)}
-    if self.keyVaultReference != nil {try container.encode(self.keyVaultReference as! KeyVaultReferenceData?, forKey: .keyVaultReference)}
-    if self.autoStorage != nil {try container.encode(self.autoStorage as! AutoStoragePropertiesData?, forKey: .autoStorage)}
-    if self.dedicatedCoreQuota != nil {try container.encode(self.dedicatedCoreQuota, forKey: .dedicatedCoreQuota)}
-    if self.lowPriorityCoreQuota != nil {try container.encode(self.lowPriorityCoreQuota, forKey: .lowPriorityCoreQuota)}
-    if self.poolQuota != nil {try container.encode(self.poolQuota, forKey: .poolQuota)}
-    if self.activeJobAndJobScheduleQuota != nil {try container.encode(self.activeJobAndJobScheduleQuota, forKey: .activeJobAndJobScheduleQuota)}
+    if self.accountEndpoint != nil { try container.encode(self.accountEndpoint, forKey: .accountEndpoint) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.poolAllocationMode != nil { try container.encode(self.poolAllocationMode, forKey: .poolAllocationMode) }
+    if self.keyVaultReference != nil { try container.encode(self.keyVaultReference as! KeyVaultReferenceData?, forKey: .keyVaultReference) }
+    if self.autoStorage != nil { try container.encode(self.autoStorage as! AutoStoragePropertiesData?, forKey: .autoStorage) }
+    if self.dedicatedCoreQuota != nil { try container.encode(self.dedicatedCoreQuota, forKey: .dedicatedCoreQuota) }
+    if self.lowPriorityCoreQuota != nil { try container.encode(self.lowPriorityCoreQuota, forKey: .lowPriorityCoreQuota) }
+    if self.poolQuota != nil { try container.encode(self.poolQuota, forKey: .poolQuota) }
+    if self.activeJobAndJobScheduleQuota != nil { try container.encode(self.activeJobAndJobScheduleQuota, forKey: .activeJobAndJobScheduleQuota) }
   }
 }
 

@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AccountsCheckNameAvailability  {
+public protocol AccountsCheckNameAvailability {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var location : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CheckNameAvailabilityParametersProtocol?  { get set }
+    var parameters :  CheckNameAvailabilityParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NameAvailabilityInformationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NameAvailabilityInformationProtocol?, Error?) -> Void)
 }
 
 extension Commands.Accounts {
@@ -29,7 +29,7 @@ extension Commands.Accounts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{location}"] = String(describing: self.location)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -51,12 +51,12 @@ extension Commands.Accounts {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NameAvailabilityInformationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NameAvailabilityInformationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NameAvailabilityInformationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: NameAvailabilityInformationData?, error: Error?) in
                 completionHandler(result, error)

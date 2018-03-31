@@ -18,7 +18,7 @@ internal struct AutoscaleProfileData : AutoscaleProfileProtocol {
         case recurrence = "recurrence"
         }
 
-  public init(name: String, capacity: ScaleCapacityProtocol, rules: [ScaleRuleProtocol])  {
+  public init(name: String, capacity: ScaleCapacityProtocol, rules: [ScaleRuleProtocol]) {
     self.name = name
     self.capacity = capacity
     self.rules = rules
@@ -35,7 +35,7 @@ internal struct AutoscaleProfileData : AutoscaleProfileProtocol {
     if container.contains(.recurrence) {
         self.recurrence = try container.decode(RecurrenceData?.self, forKey: .recurrence)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,8 +48,8 @@ internal struct AutoscaleProfileData : AutoscaleProfileProtocol {
     try container.encode(self.name, forKey: .name)
     try container.encode(self.capacity as! ScaleCapacityData, forKey: .capacity)
     try container.encode(self.rules as! [ScaleRuleData], forKey: .rules)
-    if self.fixedDate != nil {try container.encode(self.fixedDate as! TimeWindowData?, forKey: .fixedDate)}
-    if self.recurrence != nil {try container.encode(self.recurrence as! RecurrenceData?, forKey: .recurrence)}
+    if self.fixedDate != nil { try container.encode(self.fixedDate as! TimeWindowData?, forKey: .fixedDate) }
+    if self.recurrence != nil { try container.encode(self.recurrence as! RecurrenceData?, forKey: .recurrence) }
   }
 }
 

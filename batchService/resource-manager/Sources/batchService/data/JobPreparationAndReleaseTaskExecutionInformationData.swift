@@ -18,7 +18,7 @@ internal struct JobPreparationAndReleaseTaskExecutionInformationData : JobPrepar
         case jobReleaseTaskExecutionInfo = "jobReleaseTaskExecutionInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobPreparationAndReleaseTaskExecutionInformationData : JobPrepar
     if container.contains(.jobReleaseTaskExecutionInfo) {
         self.jobReleaseTaskExecutionInfo = try container.decode(JobReleaseTaskExecutionInformationData?.self, forKey: .jobReleaseTaskExecutionInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct JobPreparationAndReleaseTaskExecutionInformationData : JobPrepar
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.poolId != nil {try container.encode(self.poolId, forKey: .poolId)}
-    if self.nodeId != nil {try container.encode(self.nodeId, forKey: .nodeId)}
-    if self.nodeUrl != nil {try container.encode(self.nodeUrl, forKey: .nodeUrl)}
-    if self.jobPreparationTaskExecutionInfo != nil {try container.encode(self.jobPreparationTaskExecutionInfo as! JobPreparationTaskExecutionInformationData?, forKey: .jobPreparationTaskExecutionInfo)}
-    if self.jobReleaseTaskExecutionInfo != nil {try container.encode(self.jobReleaseTaskExecutionInfo as! JobReleaseTaskExecutionInformationData?, forKey: .jobReleaseTaskExecutionInfo)}
+    if self.poolId != nil { try container.encode(self.poolId, forKey: .poolId) }
+    if self.nodeId != nil { try container.encode(self.nodeId, forKey: .nodeId) }
+    if self.nodeUrl != nil { try container.encode(self.nodeUrl, forKey: .nodeUrl) }
+    if self.jobPreparationTaskExecutionInfo != nil { try container.encode(self.jobPreparationTaskExecutionInfo as! JobPreparationTaskExecutionInformationData?, forKey: .jobPreparationTaskExecutionInfo) }
+    if self.jobReleaseTaskExecutionInfo != nil { try container.encode(self.jobReleaseTaskExecutionInfo as! JobReleaseTaskExecutionInformationData?, forKey: .jobReleaseTaskExecutionInfo) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct HeatMapEndpointData : HeatMapEndpointProtocol {
         case endpointId = "endpointId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct HeatMapEndpointData : HeatMapEndpointProtocol {
     if container.contains(.endpointId) {
         self.endpointId = try container.decode(Int32?.self, forKey: .endpointId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct HeatMapEndpointData : HeatMapEndpointProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.endpointId != nil {try container.encode(self.endpointId, forKey: .endpointId)}
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.endpointId != nil { try container.encode(self.endpointId, forKey: .endpointId) }
   }
 }
 

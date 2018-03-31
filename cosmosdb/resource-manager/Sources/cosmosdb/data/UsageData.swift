@@ -18,7 +18,7 @@ internal struct UsageData : UsageProtocol {
         case currentValue = "currentValue"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct UsageData : UsageProtocol {
     if container.contains(.currentValue) {
         self.currentValue = try container.decode(Int32?.self, forKey: .currentValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct UsageData : UsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.name != nil {try container.encode(self.name as! MetricNameData?, forKey: .name)}
-    if self.quotaPeriod != nil {try container.encode(self.quotaPeriod, forKey: .quotaPeriod)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.name != nil { try container.encode(self.name as! MetricNameData?, forKey: .name) }
+    if self.quotaPeriod != nil { try container.encode(self.quotaPeriod, forKey: .quotaPeriod) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
   }
 }
 

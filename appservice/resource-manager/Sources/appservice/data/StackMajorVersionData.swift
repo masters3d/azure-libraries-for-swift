@@ -16,7 +16,7 @@ internal struct StackMajorVersionData : StackMajorVersionProtocol {
         case minorVersions = "minorVersions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct StackMajorVersionData : StackMajorVersionProtocol {
     if container.contains(.minorVersions) {
         self.minorVersions = try container.decode([StackMinorVersionData?]?.self, forKey: .minorVersions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct StackMajorVersionData : StackMajorVersionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayVersion != nil {try container.encode(self.displayVersion, forKey: .displayVersion)}
-    if self.runtimeVersion != nil {try container.encode(self.runtimeVersion, forKey: .runtimeVersion)}
-    if self.isDefault != nil {try container.encode(self.isDefault, forKey: .isDefault)}
-    if self.minorVersions != nil {try container.encode(self.minorVersions as! [StackMinorVersionData?]?, forKey: .minorVersions)}
+    if self.displayVersion != nil { try container.encode(self.displayVersion, forKey: .displayVersion) }
+    if self.runtimeVersion != nil { try container.encode(self.runtimeVersion, forKey: .runtimeVersion) }
+    if self.isDefault != nil { try container.encode(self.isDefault, forKey: .isDefault) }
+    if self.minorVersions != nil { try container.encode(self.minorVersions as! [StackMinorVersionData?]?, forKey: .minorVersions) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct ProcessModuleInfoPropertiesData : ProcessModuleInfoPropertiesPro
         case language = "language"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct ProcessModuleInfoPropertiesData : ProcessModuleInfoPropertiesPro
     if container.contains(.language) {
         self.language = try container.decode(String?.self, forKey: .language)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct ProcessModuleInfoPropertiesData : ProcessModuleInfoPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.baseAddress != nil {try container.encode(self.baseAddress, forKey: .baseAddress)}
-    if self.fileName != nil {try container.encode(self.fileName, forKey: .fileName)}
-    if self.href != nil {try container.encode(self.href, forKey: .href)}
-    if self.filePath != nil {try container.encode(self.filePath, forKey: .filePath)}
-    if self.moduleMemorySize != nil {try container.encode(self.moduleMemorySize, forKey: .moduleMemorySize)}
-    if self.fileVersion != nil {try container.encode(self.fileVersion, forKey: .fileVersion)}
-    if self.fileDescription != nil {try container.encode(self.fileDescription, forKey: .fileDescription)}
-    if self.product != nil {try container.encode(self.product, forKey: .product)}
-    if self.productVersion != nil {try container.encode(self.productVersion, forKey: .productVersion)}
-    if self.isDebug != nil {try container.encode(self.isDebug, forKey: .isDebug)}
-    if self.language != nil {try container.encode(self.language, forKey: .language)}
+    if self.baseAddress != nil { try container.encode(self.baseAddress, forKey: .baseAddress) }
+    if self.fileName != nil { try container.encode(self.fileName, forKey: .fileName) }
+    if self.href != nil { try container.encode(self.href, forKey: .href) }
+    if self.filePath != nil { try container.encode(self.filePath, forKey: .filePath) }
+    if self.moduleMemorySize != nil { try container.encode(self.moduleMemorySize, forKey: .moduleMemorySize) }
+    if self.fileVersion != nil { try container.encode(self.fileVersion, forKey: .fileVersion) }
+    if self.fileDescription != nil { try container.encode(self.fileDescription, forKey: .fileDescription) }
+    if self.product != nil { try container.encode(self.product, forKey: .product) }
+    if self.productVersion != nil { try container.encode(self.productVersion, forKey: .productVersion) }
+    if self.isDebug != nil { try container.encode(self.isDebug, forKey: .isDebug) }
+    if self.language != nil { try container.encode(self.language, forKey: .language) }
   }
 }
 

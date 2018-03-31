@@ -20,7 +20,7 @@ internal struct DscReportErrorData : DscReportErrorProtocol {
         case errorDetails = "errorDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DscReportErrorData : DscReportErrorProtocol {
     if container.contains(.errorDetails) {
         self.errorDetails = try container.decode(String?.self, forKey: .errorDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct DscReportErrorData : DscReportErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.errorSource != nil {try container.encode(self.errorSource, forKey: .errorSource)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.locale != nil {try container.encode(self.locale, forKey: .locale)}
-    if self.errorDetails != nil {try container.encode(self.errorDetails, forKey: .errorDetails)}
+    if self.errorSource != nil { try container.encode(self.errorSource, forKey: .errorSource) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.locale != nil { try container.encode(self.locale, forKey: .locale) }
+    if self.errorDetails != nil { try container.encode(self.errorDetails, forKey: .errorDetails) }
   }
 }
 

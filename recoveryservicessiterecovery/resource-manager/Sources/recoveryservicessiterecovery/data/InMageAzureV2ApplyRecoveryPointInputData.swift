@@ -10,7 +10,7 @@ internal struct InMageAzureV2ApplyRecoveryPointInputData : InMageAzureV2ApplyRec
         enum CodingKeys: String, CodingKey {case vaultLocation = "vaultLocation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct InMageAzureV2ApplyRecoveryPointInputData : InMageAzureV2ApplyRec
       if container.contains(.vaultLocation) {
         self.vaultLocation = try container.decode(String?.self, forKey: .vaultLocation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct InMageAzureV2ApplyRecoveryPointInputData : InMageAzureV2ApplyRec
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vaultLocation != nil {try container.encode(self.vaultLocation, forKey: .vaultLocation)}
+    if self.vaultLocation != nil { try container.encode(self.vaultLocation, forKey: .vaultLocation) }
   }
 }
 

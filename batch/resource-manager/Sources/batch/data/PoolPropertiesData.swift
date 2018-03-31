@@ -56,7 +56,7 @@ internal struct PoolPropertiesData : PoolPropertiesProtocol {
         case resizeOperationStatus = "resizeOperationStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -133,7 +133,7 @@ internal struct PoolPropertiesData : PoolPropertiesProtocol {
     if container.contains(.resizeOperationStatus) {
         self.resizeOperationStatus = try container.decode(ResizeOperationStatusData?.self, forKey: .resizeOperationStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -143,38 +143,38 @@ internal struct PoolPropertiesData : PoolPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.provisioningStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.provisioningStateTransitionTime!, format: .dateTime), forKey: .provisioningStateTransitionTime)
     }
-    if self.allocationState != nil {try container.encode(self.allocationState, forKey: .allocationState)}
+    if self.allocationState != nil { try container.encode(self.allocationState, forKey: .allocationState) }
     if self.allocationStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.allocationStateTransitionTime!, format: .dateTime), forKey: .allocationStateTransitionTime)
     }
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.deploymentConfiguration != nil {try container.encode(self.deploymentConfiguration as! DeploymentConfigurationData?, forKey: .deploymentConfiguration)}
-    if self.currentDedicatedNodes != nil {try container.encode(self.currentDedicatedNodes, forKey: .currentDedicatedNodes)}
-    if self.currentLowPriorityNodes != nil {try container.encode(self.currentLowPriorityNodes, forKey: .currentLowPriorityNodes)}
-    if self.scaleSettings != nil {try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings)}
-    if self.autoScaleRun != nil {try container.encode(self.autoScaleRun as! AutoScaleRunData?, forKey: .autoScaleRun)}
-    if self.interNodeCommunication != nil {try container.encode(self.interNodeCommunication, forKey: .interNodeCommunication)}
-    if self.networkConfiguration != nil {try container.encode(self.networkConfiguration as! NetworkConfigurationData?, forKey: .networkConfiguration)}
-    if self.maxTasksPerNode != nil {try container.encode(self.maxTasksPerNode, forKey: .maxTasksPerNode)}
-    if self.taskSchedulingPolicy != nil {try container.encode(self.taskSchedulingPolicy as! TaskSchedulingPolicyData?, forKey: .taskSchedulingPolicy)}
-    if self.userAccounts != nil {try container.encode(self.userAccounts as! [UserAccountData?]?, forKey: .userAccounts)}
-    if self.metadata != nil {try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata)}
-    if self.startTask != nil {try container.encode(self.startTask as! StartTaskData?, forKey: .startTask)}
-    if self.certificates != nil {try container.encode(self.certificates as! [CertificateReferenceData?]?, forKey: .certificates)}
-    if self.applicationPackages != nil {try container.encode(self.applicationPackages as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackages)}
-    if self.applicationLicenses != nil {try container.encode(self.applicationLicenses as! [String]?, forKey: .applicationLicenses)}
-    if self.resizeOperationStatus != nil {try container.encode(self.resizeOperationStatus as! ResizeOperationStatusData?, forKey: .resizeOperationStatus)}
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.deploymentConfiguration != nil { try container.encode(self.deploymentConfiguration as! DeploymentConfigurationData?, forKey: .deploymentConfiguration) }
+    if self.currentDedicatedNodes != nil { try container.encode(self.currentDedicatedNodes, forKey: .currentDedicatedNodes) }
+    if self.currentLowPriorityNodes != nil { try container.encode(self.currentLowPriorityNodes, forKey: .currentLowPriorityNodes) }
+    if self.scaleSettings != nil { try container.encode(self.scaleSettings as! ScaleSettingsData?, forKey: .scaleSettings) }
+    if self.autoScaleRun != nil { try container.encode(self.autoScaleRun as! AutoScaleRunData?, forKey: .autoScaleRun) }
+    if self.interNodeCommunication != nil { try container.encode(self.interNodeCommunication, forKey: .interNodeCommunication) }
+    if self.networkConfiguration != nil { try container.encode(self.networkConfiguration as! NetworkConfigurationData?, forKey: .networkConfiguration) }
+    if self.maxTasksPerNode != nil { try container.encode(self.maxTasksPerNode, forKey: .maxTasksPerNode) }
+    if self.taskSchedulingPolicy != nil { try container.encode(self.taskSchedulingPolicy as! TaskSchedulingPolicyData?, forKey: .taskSchedulingPolicy) }
+    if self.userAccounts != nil { try container.encode(self.userAccounts as! [UserAccountData?]?, forKey: .userAccounts) }
+    if self.metadata != nil { try container.encode(self.metadata as! [MetadataItemData?]?, forKey: .metadata) }
+    if self.startTask != nil { try container.encode(self.startTask as! StartTaskData?, forKey: .startTask) }
+    if self.certificates != nil { try container.encode(self.certificates as! [CertificateReferenceData?]?, forKey: .certificates) }
+    if self.applicationPackages != nil { try container.encode(self.applicationPackages as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackages) }
+    if self.applicationLicenses != nil { try container.encode(self.applicationLicenses as! [String]?, forKey: .applicationLicenses) }
+    if self.resizeOperationStatus != nil { try container.encode(self.resizeOperationStatus as! ResizeOperationStatusData?, forKey: .resizeOperationStatus) }
   }
 }
 

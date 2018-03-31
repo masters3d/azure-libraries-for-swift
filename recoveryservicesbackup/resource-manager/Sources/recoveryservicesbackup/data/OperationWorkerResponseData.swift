@@ -12,7 +12,7 @@ internal struct OperationWorkerResponseData : OperationWorkerResponseProtocol {
         case headers = "headers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct OperationWorkerResponseData : OperationWorkerResponseProtocol {
     if container.contains(.headers) {
         self.headers = try container.decode([String:[String]?]?.self, forKey: .headers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct OperationWorkerResponseData : OperationWorkerResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.statusCode != nil {try container.encode(self.statusCode, forKey: .statusCode)}
-    if self.headers != nil {try container.encode(self.headers, forKey: .headers)}
+    if self.statusCode != nil { try container.encode(self.statusCode, forKey: .statusCode) }
+    if self.headers != nil { try container.encode(self.headers, forKey: .headers) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct InnerErrorData : InnerErrorProtocol {
         case errordetail = "errordetail"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct InnerErrorData : InnerErrorProtocol {
     if container.contains(.errordetail) {
         self.errordetail = try container.decode(String?.self, forKey: .errordetail)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct InnerErrorData : InnerErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.exceptiontype != nil {try container.encode(self.exceptiontype, forKey: .exceptiontype)}
-    if self.errordetail != nil {try container.encode(self.errordetail, forKey: .errordetail)}
+    if self.exceptiontype != nil { try container.encode(self.exceptiontype, forKey: .exceptiontype) }
+    if self.errordetail != nil { try container.encode(self.errordetail, forKey: .errordetail) }
   }
 }
 

@@ -30,7 +30,7 @@ internal struct NodeTypeDescriptionData : NodeTypeDescriptionProtocol {
         case reverseProxyEndpointPort = "reverseProxyEndpointPort"
         }
 
-  public init(name: String, clientConnectionEndpointPort: Int32, httpGatewayEndpointPort: Int32, isPrimary: Bool, vmInstanceCount: Int32)  {
+  public init(name: String, clientConnectionEndpointPort: Int32, httpGatewayEndpointPort: Int32, isPrimary: Bool, vmInstanceCount: Int32) {
     self.name = name
     self.clientConnectionEndpointPort = clientConnectionEndpointPort
     self.httpGatewayEndpointPort = httpGatewayEndpointPort
@@ -63,7 +63,7 @@ internal struct NodeTypeDescriptionData : NodeTypeDescriptionProtocol {
     if container.contains(.reverseProxyEndpointPort) {
         self.reverseProxyEndpointPort = try container.decode(Int32?.self, forKey: .reverseProxyEndpointPort)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -74,16 +74,16 @@ internal struct NodeTypeDescriptionData : NodeTypeDescriptionProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.placementProperties != nil {try container.encode(self.placementProperties, forKey: .placementProperties)}
-    if self.capacities != nil {try container.encode(self.capacities, forKey: .capacities)}
+    if self.placementProperties != nil { try container.encode(self.placementProperties, forKey: .placementProperties) }
+    if self.capacities != nil { try container.encode(self.capacities, forKey: .capacities) }
     try container.encode(self.clientConnectionEndpointPort, forKey: .clientConnectionEndpointPort)
     try container.encode(self.httpGatewayEndpointPort, forKey: .httpGatewayEndpointPort)
-    if self.durabilityLevel != nil {try container.encode(self.durabilityLevel, forKey: .durabilityLevel)}
-    if self.applicationPorts != nil {try container.encode(self.applicationPorts as! EndpointRangeDescriptionData?, forKey: .applicationPorts)}
-    if self.ephemeralPorts != nil {try container.encode(self.ephemeralPorts as! EndpointRangeDescriptionData?, forKey: .ephemeralPorts)}
+    if self.durabilityLevel != nil { try container.encode(self.durabilityLevel, forKey: .durabilityLevel) }
+    if self.applicationPorts != nil { try container.encode(self.applicationPorts as! EndpointRangeDescriptionData?, forKey: .applicationPorts) }
+    if self.ephemeralPorts != nil { try container.encode(self.ephemeralPorts as! EndpointRangeDescriptionData?, forKey: .ephemeralPorts) }
     try container.encode(self.isPrimary, forKey: .isPrimary)
     try container.encode(self.vmInstanceCount, forKey: .vmInstanceCount)
-    if self.reverseProxyEndpointPort != nil {try container.encode(self.reverseProxyEndpointPort, forKey: .reverseProxyEndpointPort)}
+    if self.reverseProxyEndpointPort != nil { try container.encode(self.reverseProxyEndpointPort, forKey: .reverseProxyEndpointPort) }
   }
 }
 

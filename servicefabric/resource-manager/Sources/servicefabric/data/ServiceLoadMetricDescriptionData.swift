@@ -18,7 +18,7 @@ internal struct ServiceLoadMetricDescriptionData : ServiceLoadMetricDescriptionP
         case defaultLoad = "DefaultLoad"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -37,7 +37,7 @@ internal struct ServiceLoadMetricDescriptionData : ServiceLoadMetricDescriptionP
     if container.contains(.defaultLoad) {
         self.defaultLoad = try container.decode(Int32?.self, forKey: .defaultLoad)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct ServiceLoadMetricDescriptionData : ServiceLoadMetricDescriptionP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.weight != nil {try container.encode(self.weight, forKey: .weight)}
-    if self.primaryDefaultLoad != nil {try container.encode(self.primaryDefaultLoad, forKey: .primaryDefaultLoad)}
-    if self.secondaryDefaultLoad != nil {try container.encode(self.secondaryDefaultLoad, forKey: .secondaryDefaultLoad)}
-    if self.defaultLoad != nil {try container.encode(self.defaultLoad, forKey: .defaultLoad)}
+    if self.weight != nil { try container.encode(self.weight, forKey: .weight) }
+    if self.primaryDefaultLoad != nil { try container.encode(self.primaryDefaultLoad, forKey: .primaryDefaultLoad) }
+    if self.secondaryDefaultLoad != nil { try container.encode(self.secondaryDefaultLoad, forKey: .secondaryDefaultLoad) }
+    if self.defaultLoad != nil { try container.encode(self.defaultLoad, forKey: .defaultLoad) }
   }
 }
 

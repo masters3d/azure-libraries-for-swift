@@ -34,7 +34,7 @@ internal struct PercentileMetricValueData : PercentileMetricValueProtocol, Metri
         case p99 = "P99"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct PercentileMetricValueData : PercentileMetricValueProtocol, Metri
     if container.contains(.p99) {
         self.p99 = try container.decode(Double?.self, forKey: .p99)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,21 +88,21 @@ internal struct PercentileMetricValueData : PercentileMetricValueProtocol, Metri
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._count != nil {try container.encode(self._count, forKey: ._count)}
-    if self.average != nil {try container.encode(self.average, forKey: .average)}
-    if self.maximum != nil {try container.encode(self.maximum, forKey: .maximum)}
-    if self.minimum != nil {try container.encode(self.minimum, forKey: .minimum)}
+    if self._count != nil { try container.encode(self._count, forKey: ._count) }
+    if self.average != nil { try container.encode(self.average, forKey: .average) }
+    if self.maximum != nil { try container.encode(self.maximum, forKey: .maximum) }
+    if self.minimum != nil { try container.encode(self.minimum, forKey: .minimum) }
     if self.timestamp != nil {
         try container.encode(DateConverter.toString(date: self.timestamp!, format: .dateTime), forKey: .timestamp)
     }
-    if self.total != nil {try container.encode(self.total, forKey: .total)}
-    if self.p10 != nil {try container.encode(self.p10, forKey: .p10)}
-    if self.p25 != nil {try container.encode(self.p25, forKey: .p25)}
-    if self.p50 != nil {try container.encode(self.p50, forKey: .p50)}
-    if self.p75 != nil {try container.encode(self.p75, forKey: .p75)}
-    if self.p90 != nil {try container.encode(self.p90, forKey: .p90)}
-    if self.p95 != nil {try container.encode(self.p95, forKey: .p95)}
-    if self.p99 != nil {try container.encode(self.p99, forKey: .p99)}
+    if self.total != nil { try container.encode(self.total, forKey: .total) }
+    if self.p10 != nil { try container.encode(self.p10, forKey: .p10) }
+    if self.p25 != nil { try container.encode(self.p25, forKey: .p25) }
+    if self.p50 != nil { try container.encode(self.p50, forKey: .p50) }
+    if self.p75 != nil { try container.encode(self.p75, forKey: .p75) }
+    if self.p90 != nil { try container.encode(self.p90, forKey: .p90) }
+    if self.p95 != nil { try container.encode(self.p95, forKey: .p95) }
+    if self.p99 != nil { try container.encode(self.p99, forKey: .p99) }
   }
 }
 

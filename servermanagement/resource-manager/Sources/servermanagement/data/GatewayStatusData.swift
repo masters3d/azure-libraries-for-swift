@@ -50,7 +50,7 @@ internal struct GatewayStatusData : GatewayStatusProtocol {
         case publishedTimeUtc = "publishedTimeUtc"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -118,7 +118,7 @@ internal struct GatewayStatusData : GatewayStatusProtocol {
     if container.contains(.publishedTimeUtc) {
         self.publishedTimeUtc = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .publishedTimeUtc)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -128,30 +128,30 @@ internal struct GatewayStatusData : GatewayStatusProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.availableMemoryMByte != nil {try container.encode(self.availableMemoryMByte, forKey: .availableMemoryMByte)}
-    if self.gatewayCpuUtilizationPercent != nil {try container.encode(self.gatewayCpuUtilizationPercent, forKey: .gatewayCpuUtilizationPercent)}
-    if self.totalCpuUtilizationPercent != nil {try container.encode(self.totalCpuUtilizationPercent, forKey: .totalCpuUtilizationPercent)}
-    if self.gatewayVersion != nil {try container.encode(self.gatewayVersion, forKey: .gatewayVersion)}
-    if self.friendlyOsName != nil {try container.encode(self.friendlyOsName, forKey: .friendlyOsName)}
+    if self.availableMemoryMByte != nil { try container.encode(self.availableMemoryMByte, forKey: .availableMemoryMByte) }
+    if self.gatewayCpuUtilizationPercent != nil { try container.encode(self.gatewayCpuUtilizationPercent, forKey: .gatewayCpuUtilizationPercent) }
+    if self.totalCpuUtilizationPercent != nil { try container.encode(self.totalCpuUtilizationPercent, forKey: .totalCpuUtilizationPercent) }
+    if self.gatewayVersion != nil { try container.encode(self.gatewayVersion, forKey: .gatewayVersion) }
+    if self.friendlyOsName != nil { try container.encode(self.friendlyOsName, forKey: .friendlyOsName) }
     if self.installedDate != nil {
         try container.encode(DateConverter.toString(date: self.installedDate!, format: .dateTime), forKey: .installedDate)
     }
-    if self.logicalProcessorCount != nil {try container.encode(self.logicalProcessorCount, forKey: .logicalProcessorCount)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.gatewayId != nil {try container.encode(self.gatewayId, forKey: .gatewayId)}
-    if self.gatewayWorkingSetMByte != nil {try container.encode(self.gatewayWorkingSetMByte, forKey: .gatewayWorkingSetMByte)}
+    if self.logicalProcessorCount != nil { try container.encode(self.logicalProcessorCount, forKey: .logicalProcessorCount) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.gatewayId != nil { try container.encode(self.gatewayId, forKey: .gatewayId) }
+    if self.gatewayWorkingSetMByte != nil { try container.encode(self.gatewayWorkingSetMByte, forKey: .gatewayWorkingSetMByte) }
     if self.statusUpdated != nil {
         try container.encode(DateConverter.toString(date: self.statusUpdated!, format: .dateTime), forKey: .statusUpdated)
     }
-    if self.groupPolicyError != nil {try container.encode(self.groupPolicyError, forKey: .groupPolicyError)}
-    if self.allowGatewayGroupPolicyStatus != nil {try container.encode(self.allowGatewayGroupPolicyStatus, forKey: .allowGatewayGroupPolicyStatus)}
-    if self.requireMfaGroupPolicyStatus != nil {try container.encode(self.requireMfaGroupPolicyStatus, forKey: .requireMfaGroupPolicyStatus)}
-    if self.encryptionCertificateThumbprint != nil {try container.encode(self.encryptionCertificateThumbprint, forKey: .encryptionCertificateThumbprint)}
-    if self.secondaryEncryptionCertificateThumbprint != nil {try container.encode(self.secondaryEncryptionCertificateThumbprint, forKey: .secondaryEncryptionCertificateThumbprint)}
-    if self.encryptionJwk != nil {try container.encode(self.encryptionJwk as! EncryptionJwkResourceData?, forKey: .encryptionJwk)}
-    if self.secondaryEncryptionJwk != nil {try container.encode(self.secondaryEncryptionJwk as! EncryptionJwkResourceData?, forKey: .secondaryEncryptionJwk)}
-    if self.activeMessageCount != nil {try container.encode(self.activeMessageCount, forKey: .activeMessageCount)}
-    if self.latestPublishedMsiVersion != nil {try container.encode(self.latestPublishedMsiVersion, forKey: .latestPublishedMsiVersion)}
+    if self.groupPolicyError != nil { try container.encode(self.groupPolicyError, forKey: .groupPolicyError) }
+    if self.allowGatewayGroupPolicyStatus != nil { try container.encode(self.allowGatewayGroupPolicyStatus, forKey: .allowGatewayGroupPolicyStatus) }
+    if self.requireMfaGroupPolicyStatus != nil { try container.encode(self.requireMfaGroupPolicyStatus, forKey: .requireMfaGroupPolicyStatus) }
+    if self.encryptionCertificateThumbprint != nil { try container.encode(self.encryptionCertificateThumbprint, forKey: .encryptionCertificateThumbprint) }
+    if self.secondaryEncryptionCertificateThumbprint != nil { try container.encode(self.secondaryEncryptionCertificateThumbprint, forKey: .secondaryEncryptionCertificateThumbprint) }
+    if self.encryptionJwk != nil { try container.encode(self.encryptionJwk as! EncryptionJwkResourceData?, forKey: .encryptionJwk) }
+    if self.secondaryEncryptionJwk != nil { try container.encode(self.secondaryEncryptionJwk as! EncryptionJwkResourceData?, forKey: .secondaryEncryptionJwk) }
+    if self.activeMessageCount != nil { try container.encode(self.activeMessageCount, forKey: .activeMessageCount) }
+    if self.latestPublishedMsiVersion != nil { try container.encode(self.latestPublishedMsiVersion, forKey: .latestPublishedMsiVersion) }
     if self.publishedTimeUtc != nil {
         try container.encode(DateConverter.toString(date: self.publishedTimeUtc!, format: .dateTime), forKey: .publishedTimeUtc)
     }

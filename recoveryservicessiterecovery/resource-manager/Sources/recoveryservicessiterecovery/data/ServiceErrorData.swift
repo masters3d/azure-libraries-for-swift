@@ -18,7 +18,7 @@ internal struct ServiceErrorData : ServiceErrorProtocol {
         case activityId = "activityId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ServiceErrorData : ServiceErrorProtocol {
     if container.contains(.activityId) {
         self.activityId = try container.decode(String?.self, forKey: .activityId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ServiceErrorData : ServiceErrorProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.possibleCauses != nil {try container.encode(self.possibleCauses, forKey: .possibleCauses)}
-    if self.recommendedAction != nil {try container.encode(self.recommendedAction, forKey: .recommendedAction)}
-    if self.activityId != nil {try container.encode(self.activityId, forKey: .activityId)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.possibleCauses != nil { try container.encode(self.possibleCauses, forKey: .possibleCauses) }
+    if self.recommendedAction != nil { try container.encode(self.recommendedAction, forKey: .recommendedAction) }
+    if self.activityId != nil { try container.encode(self.activityId, forKey: .activityId) }
   }
 }
 

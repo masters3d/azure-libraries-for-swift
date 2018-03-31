@@ -18,7 +18,7 @@ internal struct IoTHubStreamInputDataSourcePropertiesData : IoTHubStreamInputDat
         case endpoint = "endpoint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct IoTHubStreamInputDataSourcePropertiesData : IoTHubStreamInputDat
     if container.contains(.endpoint) {
         self.endpoint = try container.decode(String?.self, forKey: .endpoint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct IoTHubStreamInputDataSourcePropertiesData : IoTHubStreamInputDat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.iotHubNamespace != nil {try container.encode(self.iotHubNamespace, forKey: .iotHubNamespace)}
-    if self.sharedAccessPolicyName != nil {try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName)}
-    if self.sharedAccessPolicyKey != nil {try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey)}
-    if self.consumerGroupName != nil {try container.encode(self.consumerGroupName, forKey: .consumerGroupName)}
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
+    if self.iotHubNamespace != nil { try container.encode(self.iotHubNamespace, forKey: .iotHubNamespace) }
+    if self.sharedAccessPolicyName != nil { try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName) }
+    if self.sharedAccessPolicyKey != nil { try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey) }
+    if self.consumerGroupName != nil { try container.encode(self.consumerGroupName, forKey: .consumerGroupName) }
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
   }
 }
 

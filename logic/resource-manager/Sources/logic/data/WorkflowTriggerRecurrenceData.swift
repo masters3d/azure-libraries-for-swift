@@ -20,7 +20,7 @@ internal struct WorkflowTriggerRecurrenceData : WorkflowTriggerRecurrenceProtoco
         case schedule = "schedule"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct WorkflowTriggerRecurrenceData : WorkflowTriggerRecurrenceProtoco
     if container.contains(.schedule) {
         self.schedule = try container.decode(RecurrenceScheduleData?.self, forKey: .schedule)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct WorkflowTriggerRecurrenceData : WorkflowTriggerRecurrenceProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.schedule != nil {try container.encode(self.schedule as! RecurrenceScheduleData?, forKey: .schedule)}
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.schedule != nil { try container.encode(self.schedule as! RecurrenceScheduleData?, forKey: .schedule) }
   }
 }
 

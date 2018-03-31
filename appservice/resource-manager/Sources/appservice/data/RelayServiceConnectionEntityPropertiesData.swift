@@ -22,7 +22,7 @@ internal struct RelayServiceConnectionEntityPropertiesData : RelayServiceConnect
         case biztalkUri = "biztalkUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct RelayServiceConnectionEntityPropertiesData : RelayServiceConnect
     if container.contains(.biztalkUri) {
         self.biztalkUri = try container.decode(String?.self, forKey: .biztalkUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct RelayServiceConnectionEntityPropertiesData : RelayServiceConnect
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.entityName != nil {try container.encode(self.entityName, forKey: .entityName)}
-    if self.entityConnectionString != nil {try container.encode(self.entityConnectionString, forKey: .entityConnectionString)}
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.resourceConnectionString != nil {try container.encode(self.resourceConnectionString, forKey: .resourceConnectionString)}
-    if self.hostname != nil {try container.encode(self.hostname, forKey: .hostname)}
-    if self.port != nil {try container.encode(self.port, forKey: .port)}
-    if self.biztalkUri != nil {try container.encode(self.biztalkUri, forKey: .biztalkUri)}
+    if self.entityName != nil { try container.encode(self.entityName, forKey: .entityName) }
+    if self.entityConnectionString != nil { try container.encode(self.entityConnectionString, forKey: .entityConnectionString) }
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.resourceConnectionString != nil { try container.encode(self.resourceConnectionString, forKey: .resourceConnectionString) }
+    if self.hostname != nil { try container.encode(self.hostname, forKey: .hostname) }
+    if self.port != nil { try container.encode(self.port, forKey: .port) }
+    if self.biztalkUri != nil { try container.encode(self.biztalkUri, forKey: .biztalkUri) }
   }
 }
 

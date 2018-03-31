@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol QueuesCreateOrUpdate  {
+public protocol QueuesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var namespaceName : String { get set }
     var queueName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  SBQueueProtocol?  { get set }
+    var parameters :  SBQueueProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SBQueueProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SBQueueProtocol?, Error?) -> Void)
 }
 
 extension Commands.Queues {
@@ -35,7 +35,7 @@ extension Commands.Queues {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{namespaceName}"] = String(describing: self.namespaceName)
             self.pathParameters["{queueName}"] = String(describing: self.queueName)
@@ -59,12 +59,12 @@ extension Commands.Queues {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SBQueueData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SBQueueProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SBQueueProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SBQueueData?, error: Error?) in
                 completionHandler(result, error)

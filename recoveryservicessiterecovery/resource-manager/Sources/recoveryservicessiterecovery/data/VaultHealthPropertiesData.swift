@@ -14,7 +14,7 @@ internal struct VaultHealthPropertiesData : VaultHealthPropertiesProtocol {
         case fabricsHealth = "fabricsHealth"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VaultHealthPropertiesData : VaultHealthPropertiesProtocol {
     if container.contains(.fabricsHealth) {
         self.fabricsHealth = try container.decode(ResourceHealthSummaryData?.self, forKey: .fabricsHealth)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VaultHealthPropertiesData : VaultHealthPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vaultErrors != nil {try container.encode(self.vaultErrors as! [HealthErrorData?]?, forKey: .vaultErrors)}
-    if self.protectedItemsHealth != nil {try container.encode(self.protectedItemsHealth as! ResourceHealthSummaryData?, forKey: .protectedItemsHealth)}
-    if self.fabricsHealth != nil {try container.encode(self.fabricsHealth as! ResourceHealthSummaryData?, forKey: .fabricsHealth)}
+    if self.vaultErrors != nil { try container.encode(self.vaultErrors as! [HealthErrorData?]?, forKey: .vaultErrors) }
+    if self.protectedItemsHealth != nil { try container.encode(self.protectedItemsHealth as! ResourceHealthSummaryData?, forKey: .protectedItemsHealth) }
+    if self.fabricsHealth != nil { try container.encode(self.fabricsHealth as! ResourceHealthSummaryData?, forKey: .fabricsHealth) }
   }
 }
 

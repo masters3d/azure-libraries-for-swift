@@ -18,7 +18,7 @@ internal struct PoolStatisticsData : PoolStatisticsProtocol {
         case resourceStats = "resourceStats"
         }
 
-  public init(url: String, startTime: Date, lastUpdateTime: Date)  {
+  public init(url: String, startTime: Date, lastUpdateTime: Date) {
     self.url = url
     self.startTime = startTime
     self.lastUpdateTime = lastUpdateTime
@@ -35,7 +35,7 @@ internal struct PoolStatisticsData : PoolStatisticsProtocol {
     if container.contains(.resourceStats) {
         self.resourceStats = try container.decode(ResourceStatisticsData?.self, forKey: .resourceStats)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,8 +48,8 @@ internal struct PoolStatisticsData : PoolStatisticsProtocol {
     try container.encode(self.url, forKey: .url)
     try container.encode(DateConverter.toString(date: self.startTime, format: .dateTime), forKey: .startTime)
     try container.encode(DateConverter.toString(date: self.lastUpdateTime, format: .dateTime), forKey: .lastUpdateTime)
-    if self.usageStats != nil {try container.encode(self.usageStats as! UsageStatisticsData?, forKey: .usageStats)}
-    if self.resourceStats != nil {try container.encode(self.resourceStats as! ResourceStatisticsData?, forKey: .resourceStats)}
+    if self.usageStats != nil { try container.encode(self.usageStats as! UsageStatisticsData?, forKey: .usageStats) }
+    if self.resourceStats != nil { try container.encode(self.resourceStats as! ResourceStatisticsData?, forKey: .resourceStats) }
   }
 }
 

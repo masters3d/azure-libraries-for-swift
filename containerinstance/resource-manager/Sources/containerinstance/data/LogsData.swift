@@ -10,7 +10,7 @@ internal struct LogsData : LogsProtocol {
         enum CodingKeys: String, CodingKey {case content = "content"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct LogsData : LogsProtocol {
       if container.contains(.content) {
         self.content = try container.decode(String?.self, forKey: .content)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct LogsData : LogsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.content != nil {try container.encode(self.content, forKey: .content)}
+    if self.content != nil { try container.encode(self.content, forKey: .content) }
   }
 }
 

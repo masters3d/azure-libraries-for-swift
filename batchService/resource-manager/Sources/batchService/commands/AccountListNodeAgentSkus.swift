@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AccountListNodeAgentSkus  {
+public protocol AccountListNodeAgentSkus {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -12,7 +12,7 @@ public protocol AccountListNodeAgentSkus  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AccountListNodeAgentSkusResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AccountListNodeAgentSkusResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Account {
@@ -40,7 +40,7 @@ extension Commands.Account {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
             if self.maxResults != nil { queryParameters["maxresults"] = String(describing: self.maxResults!) }
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
@@ -63,15 +63,15 @@ extension Commands.Account {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AccountListNodeAgentSkusResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AccountListNodeAgentSkusResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

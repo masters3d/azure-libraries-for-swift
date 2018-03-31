@@ -30,7 +30,7 @@ internal struct HyperVReplicaBluePolicyInputData : HyperVReplicaBluePolicyInputP
         case replicaDeletion = "replicaDeletion"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct HyperVReplicaBluePolicyInputData : HyperVReplicaBluePolicyInputP
     if container.contains(.replicaDeletion) {
         self.replicaDeletion = try container.decode(String?.self, forKey: .replicaDeletion)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct HyperVReplicaBluePolicyInputData : HyperVReplicaBluePolicyInputP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.replicationFrequencyInSeconds != nil {try container.encode(self.replicationFrequencyInSeconds, forKey: .replicationFrequencyInSeconds)}
-    if self.recoveryPoints != nil {try container.encode(self.recoveryPoints, forKey: .recoveryPoints)}
-    if self.applicationConsistentSnapshotFrequencyInHours != nil {try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours)}
-    if self.compression != nil {try container.encode(self.compression, forKey: .compression)}
-    if self.initialReplicationMethod != nil {try container.encode(self.initialReplicationMethod, forKey: .initialReplicationMethod)}
-    if self.onlineReplicationStartTime != nil {try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime)}
-    if self.offlineReplicationImportPath != nil {try container.encode(self.offlineReplicationImportPath, forKey: .offlineReplicationImportPath)}
-    if self.offlineReplicationExportPath != nil {try container.encode(self.offlineReplicationExportPath, forKey: .offlineReplicationExportPath)}
-    if self.replicationPort != nil {try container.encode(self.replicationPort, forKey: .replicationPort)}
-    if self.allowedAuthenticationType != nil {try container.encode(self.allowedAuthenticationType, forKey: .allowedAuthenticationType)}
-    if self.replicaDeletion != nil {try container.encode(self.replicaDeletion, forKey: .replicaDeletion)}
+    if self.replicationFrequencyInSeconds != nil { try container.encode(self.replicationFrequencyInSeconds, forKey: .replicationFrequencyInSeconds) }
+    if self.recoveryPoints != nil { try container.encode(self.recoveryPoints, forKey: .recoveryPoints) }
+    if self.applicationConsistentSnapshotFrequencyInHours != nil { try container.encode(self.applicationConsistentSnapshotFrequencyInHours, forKey: .applicationConsistentSnapshotFrequencyInHours) }
+    if self.compression != nil { try container.encode(self.compression, forKey: .compression) }
+    if self.initialReplicationMethod != nil { try container.encode(self.initialReplicationMethod, forKey: .initialReplicationMethod) }
+    if self.onlineReplicationStartTime != nil { try container.encode(self.onlineReplicationStartTime, forKey: .onlineReplicationStartTime) }
+    if self.offlineReplicationImportPath != nil { try container.encode(self.offlineReplicationImportPath, forKey: .offlineReplicationImportPath) }
+    if self.offlineReplicationExportPath != nil { try container.encode(self.offlineReplicationExportPath, forKey: .offlineReplicationExportPath) }
+    if self.replicationPort != nil { try container.encode(self.replicationPort, forKey: .replicationPort) }
+    if self.allowedAuthenticationType != nil { try container.encode(self.allowedAuthenticationType, forKey: .allowedAuthenticationType) }
+    if self.replicaDeletion != nil { try container.encode(self.replicaDeletion, forKey: .replicaDeletion) }
   }
 }
 

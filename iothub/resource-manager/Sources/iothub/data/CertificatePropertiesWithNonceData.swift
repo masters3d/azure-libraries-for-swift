@@ -22,7 +22,7 @@ internal struct CertificatePropertiesWithNonceData : CertificatePropertiesWithNo
         case verificationCode = "verificationCode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct CertificatePropertiesWithNonceData : CertificatePropertiesWithNo
     if container.contains(.verificationCode) {
         self.verificationCode = try container.decode(String?.self, forKey: .verificationCode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,19 +58,19 @@ internal struct CertificatePropertiesWithNonceData : CertificatePropertiesWithNo
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.subject != nil {try container.encode(self.subject, forKey: .subject)}
+    if self.subject != nil { try container.encode(self.subject, forKey: .subject) }
     if self.expiry != nil {
         try container.encode(DateConverter.toString(date: self.expiry!, format: .dateTimeRfc1123), forKey: .expiry)
     }
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.isVerified != nil {try container.encode(self.isVerified, forKey: .isVerified)}
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.isVerified != nil { try container.encode(self.isVerified, forKey: .isVerified) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTimeRfc1123), forKey: .created)
     }
     if self.updated != nil {
         try container.encode(DateConverter.toString(date: self.updated!, format: .dateTimeRfc1123), forKey: .updated)
     }
-    if self.verificationCode != nil {try container.encode(self.verificationCode, forKey: .verificationCode)}
+    if self.verificationCode != nil { try container.encode(self.verificationCode, forKey: .verificationCode) }
   }
 }
 

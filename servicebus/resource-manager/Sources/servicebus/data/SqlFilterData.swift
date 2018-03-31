@@ -14,7 +14,7 @@ internal struct SqlFilterData : SqlFilterProtocol {
         case requiresPreprocessing = "requiresPreprocessing"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SqlFilterData : SqlFilterProtocol {
     if container.contains(.requiresPreprocessing) {
         self.requiresPreprocessing = try container.decode(Bool?.self, forKey: .requiresPreprocessing)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SqlFilterData : SqlFilterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sqlExpression != nil {try container.encode(self.sqlExpression, forKey: .sqlExpression)}
-    if self.compatibilityLevel != nil {try container.encode(self.compatibilityLevel, forKey: .compatibilityLevel)}
-    if self.requiresPreprocessing != nil {try container.encode(self.requiresPreprocessing, forKey: .requiresPreprocessing)}
+    if self.sqlExpression != nil { try container.encode(self.sqlExpression, forKey: .sqlExpression) }
+    if self.compatibilityLevel != nil { try container.encode(self.compatibilityLevel, forKey: .compatibilityLevel) }
+    if self.requiresPreprocessing != nil { try container.encode(self.requiresPreprocessing, forKey: .requiresPreprocessing) }
   }
 }
 

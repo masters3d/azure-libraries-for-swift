@@ -16,7 +16,7 @@ internal struct RedisLinkedServerPropertiesData : RedisLinkedServerPropertiesPro
         case provisioningState = "provisioningState"
         }
 
-  public init(linkedRedisCacheId: String, linkedRedisCacheLocation: String, serverRole: ReplicationRoleEnum)  {
+  public init(linkedRedisCacheId: String, linkedRedisCacheLocation: String, serverRole: ReplicationRoleEnum) {
     self.linkedRedisCacheId = linkedRedisCacheId
     self.linkedRedisCacheLocation = linkedRedisCacheLocation
     self.serverRole = serverRole
@@ -30,7 +30,7 @@ internal struct RedisLinkedServerPropertiesData : RedisLinkedServerPropertiesPro
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,7 +43,7 @@ internal struct RedisLinkedServerPropertiesData : RedisLinkedServerPropertiesPro
     try container.encode(self.linkedRedisCacheId, forKey: .linkedRedisCacheId)
     try container.encode(self.linkedRedisCacheLocation, forKey: .linkedRedisCacheLocation)
     try container.encode(self.serverRole, forKey: .serverRole)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

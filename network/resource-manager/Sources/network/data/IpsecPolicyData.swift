@@ -24,7 +24,7 @@ internal struct IpsecPolicyData : IpsecPolicyProtocol {
         case pfsGroup = "pfsGroup"
         }
 
-  public init(saLifeTimeSeconds: Int32, saDataSizeKilobytes: Int32, ipsecEncryption: IpsecEncryptionEnum, ipsecIntegrity: IpsecIntegrityEnum, ikeEncryption: IkeEncryptionEnum, ikeIntegrity: IkeIntegrityEnum, dhGroup: DhGroupEnum, pfsGroup: PfsGroupEnum)  {
+  public init(saLifeTimeSeconds: Int32, saDataSizeKilobytes: Int32, ipsecEncryption: IpsecEncryptionEnum, ipsecIntegrity: IpsecIntegrityEnum, ikeEncryption: IkeEncryptionEnum, ikeIntegrity: IkeIntegrityEnum, dhGroup: DhGroupEnum, pfsGroup: PfsGroupEnum) {
     self.saLifeTimeSeconds = saLifeTimeSeconds
     self.saDataSizeKilobytes = saDataSizeKilobytes
     self.ipsecEncryption = ipsecEncryption
@@ -45,7 +45,7 @@ internal struct IpsecPolicyData : IpsecPolicyProtocol {
     self.ikeIntegrity = try container.decode(IkeIntegrityEnum.self, forKey: .ikeIntegrity)
     self.dhGroup = try container.decode(DhGroupEnum.self, forKey: .dhGroup)
     self.pfsGroup = try container.decode(PfsGroupEnum.self, forKey: .pfsGroup)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

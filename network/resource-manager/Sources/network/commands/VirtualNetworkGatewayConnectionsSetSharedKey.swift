@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworkGatewayConnectionsSetSharedKey  {
+public protocol VirtualNetworkGatewayConnectionsSetSharedKey {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkGatewayConnectionName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ConnectionSharedKeyProtocol?  { get set }
+    var parameters :  ConnectionSharedKeyProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ConnectionSharedKeyProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ConnectionSharedKeyProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworkGatewayConnections {
@@ -35,7 +35,7 @@ extension Commands.VirtualNetworkGatewayConnections {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkGatewayConnectionName}"] = String(describing: self.virtualNetworkGatewayConnectionName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -58,12 +58,12 @@ extension Commands.VirtualNetworkGatewayConnections {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ConnectionSharedKeyData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ConnectionSharedKeyProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ConnectionSharedKeyProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: ConnectionSharedKeyData?, error: Error?) in
                 completionHandler(result, error)

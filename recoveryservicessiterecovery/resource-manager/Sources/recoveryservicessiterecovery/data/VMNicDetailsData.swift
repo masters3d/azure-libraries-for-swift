@@ -32,7 +32,7 @@ internal struct VMNicDetailsData : VMNicDetailsProtocol {
         case recoveryNicIpAddressType = "recoveryNicIpAddressType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct VMNicDetailsData : VMNicDetailsProtocol {
     if container.contains(.recoveryNicIpAddressType) {
         self.recoveryNicIpAddressType = try container.decode(String?.self, forKey: .recoveryNicIpAddressType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,18 +83,18 @@ internal struct VMNicDetailsData : VMNicDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.nicId != nil {try container.encode(self.nicId, forKey: .nicId)}
-    if self.replicaNicId != nil {try container.encode(self.replicaNicId, forKey: .replicaNicId)}
-    if self.sourceNicArmId != nil {try container.encode(self.sourceNicArmId, forKey: .sourceNicArmId)}
-    if self.vMSubnetName != nil {try container.encode(self.vMSubnetName, forKey: .vMSubnetName)}
-    if self.vMNetworkName != nil {try container.encode(self.vMNetworkName, forKey: .vMNetworkName)}
-    if self.recoveryVMNetworkId != nil {try container.encode(self.recoveryVMNetworkId, forKey: .recoveryVMNetworkId)}
-    if self.recoveryVMSubnetName != nil {try container.encode(self.recoveryVMSubnetName, forKey: .recoveryVMSubnetName)}
-    if self.ipAddressType != nil {try container.encode(self.ipAddressType, forKey: .ipAddressType)}
-    if self.primaryNicStaticIPAddress != nil {try container.encode(self.primaryNicStaticIPAddress, forKey: .primaryNicStaticIPAddress)}
-    if self.replicaNicStaticIPAddress != nil {try container.encode(self.replicaNicStaticIPAddress, forKey: .replicaNicStaticIPAddress)}
-    if self.selectionType != nil {try container.encode(self.selectionType, forKey: .selectionType)}
-    if self.recoveryNicIpAddressType != nil {try container.encode(self.recoveryNicIpAddressType, forKey: .recoveryNicIpAddressType)}
+    if self.nicId != nil { try container.encode(self.nicId, forKey: .nicId) }
+    if self.replicaNicId != nil { try container.encode(self.replicaNicId, forKey: .replicaNicId) }
+    if self.sourceNicArmId != nil { try container.encode(self.sourceNicArmId, forKey: .sourceNicArmId) }
+    if self.vMSubnetName != nil { try container.encode(self.vMSubnetName, forKey: .vMSubnetName) }
+    if self.vMNetworkName != nil { try container.encode(self.vMNetworkName, forKey: .vMNetworkName) }
+    if self.recoveryVMNetworkId != nil { try container.encode(self.recoveryVMNetworkId, forKey: .recoveryVMNetworkId) }
+    if self.recoveryVMSubnetName != nil { try container.encode(self.recoveryVMSubnetName, forKey: .recoveryVMSubnetName) }
+    if self.ipAddressType != nil { try container.encode(self.ipAddressType, forKey: .ipAddressType) }
+    if self.primaryNicStaticIPAddress != nil { try container.encode(self.primaryNicStaticIPAddress, forKey: .primaryNicStaticIPAddress) }
+    if self.replicaNicStaticIPAddress != nil { try container.encode(self.replicaNicStaticIPAddress, forKey: .replicaNicStaticIPAddress) }
+    if self.selectionType != nil { try container.encode(self.selectionType, forKey: .selectionType) }
+    if self.recoveryNicIpAddressType != nil { try container.encode(self.recoveryNicIpAddressType, forKey: .recoveryNicIpAddressType) }
   }
 }
 

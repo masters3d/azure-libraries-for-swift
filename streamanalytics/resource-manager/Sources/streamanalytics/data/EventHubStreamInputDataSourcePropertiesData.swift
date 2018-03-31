@@ -18,7 +18,7 @@ internal struct EventHubStreamInputDataSourcePropertiesData : EventHubStreamInpu
         case consumerGroupName = "consumerGroupName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct EventHubStreamInputDataSourcePropertiesData : EventHubStreamInpu
     if container.contains(.consumerGroupName) {
         self.consumerGroupName = try container.decode(String?.self, forKey: .consumerGroupName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct EventHubStreamInputDataSourcePropertiesData : EventHubStreamInpu
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceBusNamespace != nil {try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace)}
-    if self.sharedAccessPolicyName != nil {try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName)}
-    if self.sharedAccessPolicyKey != nil {try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey)}
-    if self.eventHubName != nil {try container.encode(self.eventHubName, forKey: .eventHubName)}
-    if self.consumerGroupName != nil {try container.encode(self.consumerGroupName, forKey: .consumerGroupName)}
+    if self.serviceBusNamespace != nil { try container.encode(self.serviceBusNamespace, forKey: .serviceBusNamespace) }
+    if self.sharedAccessPolicyName != nil { try container.encode(self.sharedAccessPolicyName, forKey: .sharedAccessPolicyName) }
+    if self.sharedAccessPolicyKey != nil { try container.encode(self.sharedAccessPolicyKey, forKey: .sharedAccessPolicyKey) }
+    if self.eventHubName != nil { try container.encode(self.eventHubName, forKey: .eventHubName) }
+    if self.consumerGroupName != nil { try container.encode(self.consumerGroupName, forKey: .consumerGroupName) }
   }
 }
 

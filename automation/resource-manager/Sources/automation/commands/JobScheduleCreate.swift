@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobScheduleCreate  {
+public protocol JobScheduleCreate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var jobScheduleId : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  JobScheduleCreateParametersProtocol?  { get set }
+    var parameters :  JobScheduleCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobScheduleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobScheduleProtocol?, Error?) -> Void)
 }
 
 extension Commands.JobSchedule {
@@ -35,7 +35,7 @@ extension Commands.JobSchedule {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{jobScheduleId}"] = String(describing: self.jobScheduleId)
@@ -59,12 +59,12 @@ extension Commands.JobSchedule {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(JobScheduleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobScheduleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobScheduleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: JobScheduleData?, error: Error?) in
                 completionHandler(result, error)

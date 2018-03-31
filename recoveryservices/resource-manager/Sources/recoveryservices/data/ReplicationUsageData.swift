@@ -20,7 +20,7 @@ internal struct ReplicationUsageData : ReplicationUsageProtocol {
         case recoveryServicesProviderAuthType = "recoveryServicesProviderAuthType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ReplicationUsageData : ReplicationUsageProtocol {
     if container.contains(.recoveryServicesProviderAuthType) {
         self.recoveryServicesProviderAuthType = try container.decode(Int32?.self, forKey: .recoveryServicesProviderAuthType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct ReplicationUsageData : ReplicationUsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.monitoringSummary != nil {try container.encode(self.monitoringSummary as! MonitoringSummaryData?, forKey: .monitoringSummary)}
-    if self.jobsSummary != nil {try container.encode(self.jobsSummary as! JobsSummaryData?, forKey: .jobsSummary)}
-    if self.protectedItemCount != nil {try container.encode(self.protectedItemCount, forKey: .protectedItemCount)}
-    if self.recoveryPlanCount != nil {try container.encode(self.recoveryPlanCount, forKey: .recoveryPlanCount)}
-    if self.registeredServersCount != nil {try container.encode(self.registeredServersCount, forKey: .registeredServersCount)}
-    if self.recoveryServicesProviderAuthType != nil {try container.encode(self.recoveryServicesProviderAuthType, forKey: .recoveryServicesProviderAuthType)}
+    if self.monitoringSummary != nil { try container.encode(self.monitoringSummary as! MonitoringSummaryData?, forKey: .monitoringSummary) }
+    if self.jobsSummary != nil { try container.encode(self.jobsSummary as! JobsSummaryData?, forKey: .jobsSummary) }
+    if self.protectedItemCount != nil { try container.encode(self.protectedItemCount, forKey: .protectedItemCount) }
+    if self.recoveryPlanCount != nil { try container.encode(self.recoveryPlanCount, forKey: .recoveryPlanCount) }
+    if self.registeredServersCount != nil { try container.encode(self.registeredServersCount, forKey: .registeredServersCount) }
+    if self.recoveryServicesProviderAuthType != nil { try container.encode(self.recoveryServicesProviderAuthType, forKey: .recoveryServicesProviderAuthType) }
   }
 }
 

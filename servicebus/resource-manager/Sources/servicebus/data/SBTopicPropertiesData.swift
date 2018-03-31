@@ -40,7 +40,7 @@ internal struct SBTopicPropertiesData : SBTopicPropertiesProtocol {
         case enableExpress = "enableExpress"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,7 +93,7 @@ internal struct SBTopicPropertiesData : SBTopicPropertiesProtocol {
     if container.contains(.enableExpress) {
         self.enableExpress = try container.decode(Bool?.self, forKey: .enableExpress)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -103,7 +103,7 @@ internal struct SBTopicPropertiesData : SBTopicPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sizeInBytes != nil {try container.encode(self.sizeInBytes, forKey: .sizeInBytes)}
+    if self.sizeInBytes != nil { try container.encode(self.sizeInBytes, forKey: .sizeInBytes) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
@@ -113,18 +113,18 @@ internal struct SBTopicPropertiesData : SBTopicPropertiesProtocol {
     if self.accessedAt != nil {
         try container.encode(DateConverter.toString(date: self.accessedAt!, format: .dateTime), forKey: .accessedAt)
     }
-    if self.subscriptionCount != nil {try container.encode(self.subscriptionCount, forKey: .subscriptionCount)}
-    if self.countDetails != nil {try container.encode(self.countDetails as! MessageCountDetailsData?, forKey: .countDetails)}
-    if self.defaultMessageTimeToLive != nil {try container.encode(self.defaultMessageTimeToLive, forKey: .defaultMessageTimeToLive)}
-    if self.maxSizeInMegabytes != nil {try container.encode(self.maxSizeInMegabytes, forKey: .maxSizeInMegabytes)}
-    if self.requiresDuplicateDetection != nil {try container.encode(self.requiresDuplicateDetection, forKey: .requiresDuplicateDetection)}
-    if self.duplicateDetectionHistoryTimeWindow != nil {try container.encode(self.duplicateDetectionHistoryTimeWindow, forKey: .duplicateDetectionHistoryTimeWindow)}
-    if self.enableBatchedOperations != nil {try container.encode(self.enableBatchedOperations, forKey: .enableBatchedOperations)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportOrdering != nil {try container.encode(self.supportOrdering, forKey: .supportOrdering)}
-    if self.autoDeleteOnIdle != nil {try container.encode(self.autoDeleteOnIdle, forKey: .autoDeleteOnIdle)}
-    if self.enablePartitioning != nil {try container.encode(self.enablePartitioning, forKey: .enablePartitioning)}
-    if self.enableExpress != nil {try container.encode(self.enableExpress, forKey: .enableExpress)}
+    if self.subscriptionCount != nil { try container.encode(self.subscriptionCount, forKey: .subscriptionCount) }
+    if self.countDetails != nil { try container.encode(self.countDetails as! MessageCountDetailsData?, forKey: .countDetails) }
+    if self.defaultMessageTimeToLive != nil { try container.encode(self.defaultMessageTimeToLive, forKey: .defaultMessageTimeToLive) }
+    if self.maxSizeInMegabytes != nil { try container.encode(self.maxSizeInMegabytes, forKey: .maxSizeInMegabytes) }
+    if self.requiresDuplicateDetection != nil { try container.encode(self.requiresDuplicateDetection, forKey: .requiresDuplicateDetection) }
+    if self.duplicateDetectionHistoryTimeWindow != nil { try container.encode(self.duplicateDetectionHistoryTimeWindow, forKey: .duplicateDetectionHistoryTimeWindow) }
+    if self.enableBatchedOperations != nil { try container.encode(self.enableBatchedOperations, forKey: .enableBatchedOperations) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportOrdering != nil { try container.encode(self.supportOrdering, forKey: .supportOrdering) }
+    if self.autoDeleteOnIdle != nil { try container.encode(self.autoDeleteOnIdle, forKey: .autoDeleteOnIdle) }
+    if self.enablePartitioning != nil { try container.encode(self.enablePartitioning, forKey: .enablePartitioning) }
+    if self.enableExpress != nil { try container.encode(self.enableExpress, forKey: .enableExpress) }
   }
 }
 

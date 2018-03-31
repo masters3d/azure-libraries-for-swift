@@ -24,7 +24,7 @@ internal struct OperationData : OperationProtocol {
         case geoMasterOperationId = "geoMasterOperationId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct OperationData : OperationProtocol {
     if container.contains(.geoMasterOperationId) {
         self.geoMasterOperationId = try container.decode(String?.self, forKey: .geoMasterOperationId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,10 +63,10 @@ internal struct OperationData : OperationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.errors != nil {try container.encode(self.errors as! [ErrorEntityData?]?, forKey: .errors)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.errors != nil { try container.encode(self.errors as! [ErrorEntityData?]?, forKey: .errors) }
     if self.createdTime != nil {
         try container.encode(DateConverter.toString(date: self.createdTime!, format: .dateTime), forKey: .createdTime)
     }
@@ -76,7 +76,7 @@ internal struct OperationData : OperationProtocol {
     if self.expirationTime != nil {
         try container.encode(DateConverter.toString(date: self.expirationTime!, format: .dateTime), forKey: .expirationTime)
     }
-    if self.geoMasterOperationId != nil {try container.encode(self.geoMasterOperationId, forKey: .geoMasterOperationId)}
+    if self.geoMasterOperationId != nil { try container.encode(self.geoMasterOperationId, forKey: .geoMasterOperationId) }
   }
 }
 

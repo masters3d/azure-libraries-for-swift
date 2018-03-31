@@ -20,7 +20,7 @@ internal struct AlertRuleData : AlertRuleProtocol {
         case lastUpdatedTime = "lastUpdatedTime"
         }
 
-  public init(name: String, isEnabled: Bool, condition: RuleConditionProtocol)  {
+  public init(name: String, isEnabled: Bool, condition: RuleConditionProtocol) {
     self.name = name
     self.isEnabled = isEnabled
     self.condition = condition
@@ -40,7 +40,7 @@ internal struct AlertRuleData : AlertRuleProtocol {
     if container.contains(.lastUpdatedTime) {
         self.lastUpdatedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastUpdatedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,10 +51,10 @@ internal struct AlertRuleData : AlertRuleProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
     try container.encode(self.isEnabled, forKey: .isEnabled)
     try container.encode(self.condition as! RuleConditionData, forKey: .condition)
-    if self.actions != nil {try container.encode(self.actions as! [RuleActionData?]?, forKey: .actions)}
+    if self.actions != nil { try container.encode(self.actions as! [RuleActionData?]?, forKey: .actions) }
     if self.lastUpdatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastUpdatedTime!, format: .dateTime), forKey: .lastUpdatedTime)
     }

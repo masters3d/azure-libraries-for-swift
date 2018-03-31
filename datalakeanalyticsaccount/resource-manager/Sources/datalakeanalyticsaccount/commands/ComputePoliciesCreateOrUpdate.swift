@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ComputePoliciesCreateOrUpdate  {
+public protocol ComputePoliciesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var accountName : String { get set }
     var computePolicyName : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CreateOrUpdateComputePolicyParametersProtocol?  { get set }
+    var parameters :  CreateOrUpdateComputePolicyParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ComputePolicyProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ComputePolicyProtocol?, Error?) -> Void)
 }
 
 extension Commands.ComputePolicies {
@@ -36,7 +36,7 @@ extension Commands.ComputePolicies {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{accountName}"] = String(describing: self.accountName)
@@ -60,12 +60,12 @@ extension Commands.ComputePolicies {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ComputePolicyData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ComputePolicyProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ComputePolicyProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ComputePolicyData?, error: Error?) in
                 completionHandler(result, error)

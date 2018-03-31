@@ -20,7 +20,7 @@ internal struct GalleryImagePropertiesData : GalleryImagePropertiesProtocol {
         case enabled = "enabled"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct GalleryImagePropertiesData : GalleryImagePropertiesProtocol {
     if container.contains(.enabled) {
         self.enabled = try container.decode(Bool?.self, forKey: .enabled)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct GalleryImagePropertiesData : GalleryImagePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.author != nil {try container.encode(self.author, forKey: .author)}
+    if self.author != nil { try container.encode(self.author, forKey: .author) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.imageReference != nil {try container.encode(self.imageReference as! GalleryImageReferenceData?, forKey: .imageReference)}
-    if self.icon != nil {try container.encode(self.icon, forKey: .icon)}
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.imageReference != nil { try container.encode(self.imageReference as! GalleryImageReferenceData?, forKey: .imageReference) }
+    if self.icon != nil { try container.encode(self.icon, forKey: .icon) }
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
   }
 }
 

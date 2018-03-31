@@ -12,7 +12,7 @@ internal struct RegistryListCredentialsResultData : RegistryListCredentialsResul
         case passwords = "passwords"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct RegistryListCredentialsResultData : RegistryListCredentialsResul
     if container.contains(.passwords) {
         self.passwords = try container.decode([RegistryPasswordData?]?.self, forKey: .passwords)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct RegistryListCredentialsResultData : RegistryListCredentialsResul
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.username != nil {try container.encode(self.username, forKey: .username)}
-    if self.passwords != nil {try container.encode(self.passwords as! [RegistryPasswordData?]?, forKey: .passwords)}
+    if self.username != nil { try container.encode(self.username, forKey: .username) }
+    if self.passwords != nil { try container.encode(self.passwords as! [RegistryPasswordData?]?, forKey: .passwords) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ApplicationGatewayBackendHealthHttpSettingsData : ApplicationGat
         case servers = "servers"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ApplicationGatewayBackendHealthHttpSettingsData : ApplicationGat
     if container.contains(.servers) {
         self.servers = try container.decode([ApplicationGatewayBackendHealthServerData?]?.self, forKey: .servers)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ApplicationGatewayBackendHealthHttpSettingsData : ApplicationGat
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backendHttpSettings != nil {try container.encode(self.backendHttpSettings as! ApplicationGatewayBackendHttpSettingsData?, forKey: .backendHttpSettings)}
-    if self.servers != nil {try container.encode(self.servers as! [ApplicationGatewayBackendHealthServerData?]?, forKey: .servers)}
+    if self.backendHttpSettings != nil { try container.encode(self.backendHttpSettings as! ApplicationGatewayBackendHttpSettingsData?, forKey: .backendHttpSettings) }
+    if self.servers != nil { try container.encode(self.servers as! [ApplicationGatewayBackendHealthServerData?]?, forKey: .servers) }
   }
 }
 

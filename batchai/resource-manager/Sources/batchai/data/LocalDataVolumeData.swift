@@ -12,7 +12,7 @@ internal struct LocalDataVolumeData : LocalDataVolumeProtocol {
         case localPath = "localPath"
         }
 
-  public init(hostPath: String, localPath: String)  {
+  public init(hostPath: String, localPath: String) {
     self.hostPath = hostPath
     self.localPath = localPath
   }
@@ -21,7 +21,7 @@ internal struct LocalDataVolumeData : LocalDataVolumeProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hostPath = try container.decode(String.self, forKey: .hostPath)
     self.localPath = try container.decode(String.self, forKey: .localPath)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

@@ -18,7 +18,7 @@ internal struct TrackedResourceData : TrackedResourceProtocol, ResourceProtocol 
         case location = "location"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -37,7 +37,7 @@ internal struct TrackedResourceData : TrackedResourceProtocol, ResourceProtocol 
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
     self.location = try container.decode(String.self, forKey: .location)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -47,10 +47,10 @@ internal struct TrackedResourceData : TrackedResourceProtocol, ResourceProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.location, forKey: .location)
   }
 }

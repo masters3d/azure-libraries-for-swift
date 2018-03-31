@@ -14,7 +14,7 @@ internal struct OutputFileData : OutputFileProtocol {
         case uploadOptions = "uploadOptions"
         }
 
-  public init(filePattern: String, destination: OutputFileDestinationProtocol, uploadOptions: OutputFileUploadOptionsProtocol)  {
+  public init(filePattern: String, destination: OutputFileDestinationProtocol, uploadOptions: OutputFileUploadOptionsProtocol) {
     self.filePattern = filePattern
     self.destination = destination
     self.uploadOptions = uploadOptions
@@ -25,7 +25,7 @@ internal struct OutputFileData : OutputFileProtocol {
       self.filePattern = try container.decode(String.self, forKey: .filePattern)
     self.destination = try container.decode(OutputFileDestinationData.self, forKey: .destination)
     self.uploadOptions = try container.decode(OutputFileUploadOptionsData.self, forKey: .uploadOptions)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

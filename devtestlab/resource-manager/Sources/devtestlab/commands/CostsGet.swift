@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CostsGet  {
+public protocol CostsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol CostsGet  {
     var expand : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LabCostProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LabCostProtocol?, Error?) -> Void)
 }
 
 extension Commands.Costs {
@@ -34,7 +34,7 @@ extension Commands.Costs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{labName}"] = String(describing: self.labName)
@@ -49,12 +49,12 @@ extension Commands.Costs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LabCostData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LabCostProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LabCostProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: LabCostData?, error: Error?) in
                 completionHandler(result, error)

@@ -20,7 +20,7 @@ internal struct TaskCountsData : TaskCountsProtocol {
         case validationStatus = "validationStatus"
         }
 
-  public init(active: Int32, running: Int32, completed: Int32, succeeded: Int32, failed: Int32, validationStatus: TaskCountValidationStatusEnum)  {
+  public init(active: Int32, running: Int32, completed: Int32, succeeded: Int32, failed: Int32, validationStatus: TaskCountValidationStatusEnum) {
     self.active = active
     self.running = running
     self.completed = completed
@@ -37,7 +37,7 @@ internal struct TaskCountsData : TaskCountsProtocol {
     self.succeeded = try container.decode(Int32.self, forKey: .succeeded)
     self.failed = try container.decode(Int32.self, forKey: .failed)
     self.validationStatus = try container.decode(TaskCountValidationStatusEnum.self, forKey: .validationStatus)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

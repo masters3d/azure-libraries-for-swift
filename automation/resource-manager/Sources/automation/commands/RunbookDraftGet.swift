@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RunbookDraftGet  {
+public protocol RunbookDraftGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol RunbookDraftGet  {
     var runbookName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RunbookDraftProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RunbookDraftProtocol?, Error?) -> Void)
 }
 
 extension Commands.RunbookDraft {
@@ -32,7 +32,7 @@ extension Commands.RunbookDraft {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -46,12 +46,12 @@ extension Commands.RunbookDraft {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RunbookDraftData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RunbookDraftProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RunbookDraftProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RunbookDraftData?, error: Error?) in
                 completionHandler(result, error)

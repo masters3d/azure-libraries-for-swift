@@ -30,7 +30,7 @@ internal struct ClusterPropertiesUpdateParametersData : ClusterPropertiesUpdateP
         case addOnFeatures = "addOnFeatures"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct ClusterPropertiesUpdateParametersData : ClusterPropertiesUpdateP
     if container.contains(.addOnFeatures) {
         self.addOnFeatures = try container.decode([String?]?.self, forKey: .addOnFeatures)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct ClusterPropertiesUpdateParametersData : ClusterPropertiesUpdateP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.reliabilityLevel != nil {try container.encode(self.reliabilityLevel, forKey: .reliabilityLevel)}
-    if self.upgradeMode != nil {try container.encode(self.upgradeMode, forKey: .upgradeMode)}
-    if self.clusterCodeVersion != nil {try container.encode(self.clusterCodeVersion, forKey: .clusterCodeVersion)}
-    if self.certificate != nil {try container.encode(self.certificate as! CertificateDescriptionData?, forKey: .certificate)}
-    if self.clientCertificateThumbprints != nil {try container.encode(self.clientCertificateThumbprints as! [ClientCertificateThumbprintData?]?, forKey: .clientCertificateThumbprints)}
-    if self.clientCertificateCommonNames != nil {try container.encode(self.clientCertificateCommonNames as! [ClientCertificateCommonNameData?]?, forKey: .clientCertificateCommonNames)}
-    if self.fabricSettings != nil {try container.encode(self.fabricSettings as! [SettingsSectionDescriptionData?]?, forKey: .fabricSettings)}
-    if self.reverseProxyCertificate != nil {try container.encode(self.reverseProxyCertificate as! CertificateDescriptionData?, forKey: .reverseProxyCertificate)}
-    if self.nodeTypes != nil {try container.encode(self.nodeTypes as! [NodeTypeDescriptionData?]?, forKey: .nodeTypes)}
-    if self.upgradeDescription != nil {try container.encode(self.upgradeDescription as! ClusterUpgradePolicyData?, forKey: .upgradeDescription)}
-    if self.addOnFeatures != nil {try container.encode(self.addOnFeatures as! [String?]?, forKey: .addOnFeatures)}
+    if self.reliabilityLevel != nil { try container.encode(self.reliabilityLevel, forKey: .reliabilityLevel) }
+    if self.upgradeMode != nil { try container.encode(self.upgradeMode, forKey: .upgradeMode) }
+    if self.clusterCodeVersion != nil { try container.encode(self.clusterCodeVersion, forKey: .clusterCodeVersion) }
+    if self.certificate != nil { try container.encode(self.certificate as! CertificateDescriptionData?, forKey: .certificate) }
+    if self.clientCertificateThumbprints != nil { try container.encode(self.clientCertificateThumbprints as! [ClientCertificateThumbprintData?]?, forKey: .clientCertificateThumbprints) }
+    if self.clientCertificateCommonNames != nil { try container.encode(self.clientCertificateCommonNames as! [ClientCertificateCommonNameData?]?, forKey: .clientCertificateCommonNames) }
+    if self.fabricSettings != nil { try container.encode(self.fabricSettings as! [SettingsSectionDescriptionData?]?, forKey: .fabricSettings) }
+    if self.reverseProxyCertificate != nil { try container.encode(self.reverseProxyCertificate as! CertificateDescriptionData?, forKey: .reverseProxyCertificate) }
+    if self.nodeTypes != nil { try container.encode(self.nodeTypes as! [NodeTypeDescriptionData?]?, forKey: .nodeTypes) }
+    if self.upgradeDescription != nil { try container.encode(self.upgradeDescription as! ClusterUpgradePolicyData?, forKey: .upgradeDescription) }
+    if self.addOnFeatures != nil { try container.encode(self.addOnFeatures as! [String?]?, forKey: .addOnFeatures) }
   }
 }
 

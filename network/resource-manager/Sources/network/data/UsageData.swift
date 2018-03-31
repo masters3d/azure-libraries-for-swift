@@ -18,7 +18,7 @@ internal struct UsageData : UsageProtocol {
         case name = "name"
         }
 
-  public init(unit: String, currentValue: Int64, limit: Int64, name: UsageNameProtocol)  {
+  public init(unit: String, currentValue: Int64, limit: Int64, name: UsageNameProtocol) {
     self.unit = unit
     self.currentValue = currentValue
     self.limit = limit
@@ -34,7 +34,7 @@ internal struct UsageData : UsageProtocol {
     self.currentValue = try container.decode(Int64.self, forKey: .currentValue)
     self.limit = try container.decode(Int64.self, forKey: .limit)
     self.name = try container.decode(UsageNameData.self, forKey: .name)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -44,7 +44,7 @@ internal struct UsageData : UsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
     try container.encode(self.unit, forKey: .unit)
     try container.encode(self.currentValue, forKey: .currentValue)
     try container.encode(self.limit, forKey: .limit)

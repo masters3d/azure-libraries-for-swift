@@ -24,7 +24,7 @@ internal struct SnapshotData : SnapshotProtocol, ResourceProtocol {
         case properties = "properties"
         }
 
-  public init(location: String)  {
+  public init(location: String) {
     self.location = location
   }
 
@@ -52,7 +52,7 @@ internal struct SnapshotData : SnapshotProtocol, ResourceProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode(DiskPropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -62,14 +62,14 @@ internal struct SnapshotData : SnapshotProtocol, ResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     try container.encode(self.location, forKey: .location)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.managedBy != nil {try container.encode(self.managedBy, forKey: .managedBy)}
-    if self.sku != nil {try container.encode(self.sku as! DiskSkuData?, forKey: .sku)}
-    if self.properties != nil {try container.encode(self.properties as! DiskPropertiesData?, forKey: .properties)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.managedBy != nil { try container.encode(self.managedBy, forKey: .managedBy) }
+    if self.sku != nil { try container.encode(self.sku as! DiskSkuData?, forKey: .sku) }
+    if self.properties != nil { try container.encode(self.properties as! DiskPropertiesData?, forKey: .properties) }
   }
 }
 

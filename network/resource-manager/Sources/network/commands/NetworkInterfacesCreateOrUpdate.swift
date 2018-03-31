@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkInterfacesCreateOrUpdate  {
+public protocol NetworkInterfacesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var networkInterfaceName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  NetworkInterfaceProtocol?  { get set }
+    var parameters :  NetworkInterfaceProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkInterfaces {
@@ -34,7 +34,7 @@ extension Commands.NetworkInterfaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{networkInterfaceName}"] = String(describing: self.networkInterfaceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,12 +57,12 @@ extension Commands.NetworkInterfaces {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(NetworkInterfaceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkInterfaceProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: NetworkInterfaceData?, error: Error?) in
                 completionHandler(result, error)

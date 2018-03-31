@@ -12,7 +12,7 @@ internal struct AgentRegistrationKeysData : AgentRegistrationKeysProtocol {
         case secondary = "secondary"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AgentRegistrationKeysData : AgentRegistrationKeysProtocol {
     if container.contains(.secondary) {
         self.secondary = try container.decode(String?.self, forKey: .secondary)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AgentRegistrationKeysData : AgentRegistrationKeysProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primary != nil {try container.encode(self.primary, forKey: .primary)}
-    if self.secondary != nil {try container.encode(self.secondary, forKey: .secondary)}
+    if self.primary != nil { try container.encode(self.primary, forKey: .primary) }
+    if self.secondary != nil { try container.encode(self.secondary, forKey: .secondary) }
   }
 }
 

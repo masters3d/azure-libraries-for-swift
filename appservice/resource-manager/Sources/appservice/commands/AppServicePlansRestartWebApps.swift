@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AppServicePlansRestartWebApps  {
+public protocol AppServicePlansRestartWebApps {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
@@ -8,7 +8,7 @@ public protocol AppServicePlansRestartWebApps  {
     var softRestart : Bool? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.AppServicePlans {
@@ -31,7 +31,7 @@ extension Commands.AppServicePlans {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -41,7 +41,7 @@ extension Commands.AppServicePlans {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

@@ -16,7 +16,7 @@ internal struct AddressResponseData : AddressResponseProtocol {
         case vipMappings = "vipMappings"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AddressResponseData : AddressResponseProtocol {
     if container.contains(.vipMappings) {
         self.vipMappings = try container.decode([VirtualIPMappingData?]?.self, forKey: .vipMappings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AddressResponseData : AddressResponseProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serviceIpAddress != nil {try container.encode(self.serviceIpAddress, forKey: .serviceIpAddress)}
-    if self.internalIpAddress != nil {try container.encode(self.internalIpAddress, forKey: .internalIpAddress)}
-    if self.outboundIpAddresses != nil {try container.encode(self.outboundIpAddresses as! [String]?, forKey: .outboundIpAddresses)}
-    if self.vipMappings != nil {try container.encode(self.vipMappings as! [VirtualIPMappingData?]?, forKey: .vipMappings)}
+    if self.serviceIpAddress != nil { try container.encode(self.serviceIpAddress, forKey: .serviceIpAddress) }
+    if self.internalIpAddress != nil { try container.encode(self.internalIpAddress, forKey: .internalIpAddress) }
+    if self.outboundIpAddresses != nil { try container.encode(self.outboundIpAddresses as! [String]?, forKey: .outboundIpAddresses) }
+    if self.vipMappings != nil { try container.encode(self.vipMappings as! [VirtualIPMappingData?]?, forKey: .vipMappings) }
   }
 }
 

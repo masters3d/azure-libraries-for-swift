@@ -12,7 +12,7 @@ internal struct UserIdentityData : UserIdentityProtocol {
         case autoUser = "autoUser"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct UserIdentityData : UserIdentityProtocol {
     if container.contains(.autoUser) {
         self.autoUser = try container.decode(AutoUserSpecificationData?.self, forKey: .autoUser)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct UserIdentityData : UserIdentityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.autoUser != nil {try container.encode(self.autoUser as! AutoUserSpecificationData?, forKey: .autoUser)}
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.autoUser != nil { try container.encode(self.autoUser as! AutoUserSpecificationData?, forKey: .autoUser) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct BMSRefreshContainersQueryObjectData : BMSRefreshContainersQueryO
         enum CodingKeys: String, CodingKey {case backupManagementType = "backupManagementType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct BMSRefreshContainersQueryObjectData : BMSRefreshContainersQueryO
       if container.contains(.backupManagementType) {
         self.backupManagementType = try container.decode(BackupManagementTypeEnum?.self, forKey: .backupManagementType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct BMSRefreshContainersQueryObjectData : BMSRefreshContainersQueryO
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
   }
 }
 

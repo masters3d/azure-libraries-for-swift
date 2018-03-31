@@ -38,7 +38,7 @@ internal struct InMageProtectedDiskDetailsData : InMageProtectedDiskDetailsProto
         case lastRpoCalculatedTime = "lastRpoCalculatedTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct InMageProtectedDiskDetailsData : InMageProtectedDiskDetailsProto
     if container.contains(.lastRpoCalculatedTime) {
         self.lastRpoCalculatedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastRpoCalculatedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,20 +98,20 @@ internal struct InMageProtectedDiskDetailsData : InMageProtectedDiskDetailsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskId != nil {try container.encode(self.diskId, forKey: .diskId)}
-    if self.diskName != nil {try container.encode(self.diskName, forKey: .diskName)}
-    if self.protectionStage != nil {try container.encode(self.protectionStage, forKey: .protectionStage)}
-    if self.healthErrorCode != nil {try container.encode(self.healthErrorCode, forKey: .healthErrorCode)}
-    if self.rpoInSeconds != nil {try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds)}
-    if self.resyncRequired != nil {try container.encode(self.resyncRequired, forKey: .resyncRequired)}
-    if self.resyncProgressPercentage != nil {try container.encode(self.resyncProgressPercentage, forKey: .resyncProgressPercentage)}
-    if self.resyncDurationInSeconds != nil {try container.encode(self.resyncDurationInSeconds, forKey: .resyncDurationInSeconds)}
-    if self.diskCapacityInBytes != nil {try container.encode(self.diskCapacityInBytes, forKey: .diskCapacityInBytes)}
-    if self.fileSystemCapacityInBytes != nil {try container.encode(self.fileSystemCapacityInBytes, forKey: .fileSystemCapacityInBytes)}
-    if self.sourceDataInMB != nil {try container.encode(self.sourceDataInMB, forKey: .sourceDataInMB)}
-    if self.psDataInMB != nil {try container.encode(self.psDataInMB, forKey: .psDataInMB)}
-    if self.targetDataInMB != nil {try container.encode(self.targetDataInMB, forKey: .targetDataInMB)}
-    if self.diskResized != nil {try container.encode(self.diskResized, forKey: .diskResized)}
+    if self.diskId != nil { try container.encode(self.diskId, forKey: .diskId) }
+    if self.diskName != nil { try container.encode(self.diskName, forKey: .diskName) }
+    if self.protectionStage != nil { try container.encode(self.protectionStage, forKey: .protectionStage) }
+    if self.healthErrorCode != nil { try container.encode(self.healthErrorCode, forKey: .healthErrorCode) }
+    if self.rpoInSeconds != nil { try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds) }
+    if self.resyncRequired != nil { try container.encode(self.resyncRequired, forKey: .resyncRequired) }
+    if self.resyncProgressPercentage != nil { try container.encode(self.resyncProgressPercentage, forKey: .resyncProgressPercentage) }
+    if self.resyncDurationInSeconds != nil { try container.encode(self.resyncDurationInSeconds, forKey: .resyncDurationInSeconds) }
+    if self.diskCapacityInBytes != nil { try container.encode(self.diskCapacityInBytes, forKey: .diskCapacityInBytes) }
+    if self.fileSystemCapacityInBytes != nil { try container.encode(self.fileSystemCapacityInBytes, forKey: .fileSystemCapacityInBytes) }
+    if self.sourceDataInMB != nil { try container.encode(self.sourceDataInMB, forKey: .sourceDataInMB) }
+    if self.psDataInMB != nil { try container.encode(self.psDataInMB, forKey: .psDataInMB) }
+    if self.targetDataInMB != nil { try container.encode(self.targetDataInMB, forKey: .targetDataInMB) }
+    if self.diskResized != nil { try container.encode(self.diskResized, forKey: .diskResized) }
     if self.lastRpoCalculatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRpoCalculatedTime!, format: .dateTime), forKey: .lastRpoCalculatedTime)
     }

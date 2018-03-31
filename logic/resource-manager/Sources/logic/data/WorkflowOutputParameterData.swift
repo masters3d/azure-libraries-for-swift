@@ -18,7 +18,7 @@ internal struct WorkflowOutputParameterData : WorkflowOutputParameterProtocol, W
         case error = "error"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct WorkflowOutputParameterData : WorkflowOutputParameterProtocol, W
     if container.contains(.error) {
         self.error = try container.decode([String: String?]?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct WorkflowOutputParameterData : WorkflowOutputParameterProtocol, W
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.error != nil {try container.encode(self.error, forKey: .error)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.error != nil { try container.encode(self.error, forKey: .error) }
   }
 }
 

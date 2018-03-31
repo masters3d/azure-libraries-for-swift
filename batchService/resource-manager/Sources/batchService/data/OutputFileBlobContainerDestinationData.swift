@@ -12,7 +12,7 @@ internal struct OutputFileBlobContainerDestinationData : OutputFileBlobContainer
         case containerUrl = "containerUrl"
         }
 
-  public init(containerUrl: String)  {
+  public init(containerUrl: String) {
     self.containerUrl = containerUrl
   }
 
@@ -22,7 +22,7 @@ internal struct OutputFileBlobContainerDestinationData : OutputFileBlobContainer
         self.path = try container.decode(String?.self, forKey: .path)
     }
     self.containerUrl = try container.decode(String.self, forKey: .containerUrl)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct OutputFileBlobContainerDestinationData : OutputFileBlobContainer
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
     try container.encode(self.containerUrl, forKey: .containerUrl)
   }
 }

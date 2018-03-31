@@ -16,7 +16,7 @@ internal struct ComputeDataDiskFragmentData : ComputeDataDiskFragmentProtocol {
         case diskSizeGiB = "diskSizeGiB"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ComputeDataDiskFragmentData : ComputeDataDiskFragmentProtocol {
     if container.contains(.diskSizeGiB) {
         self.diskSizeGiB = try container.decode(Int32?.self, forKey: .diskSizeGiB)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ComputeDataDiskFragmentData : ComputeDataDiskFragmentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.diskUri != nil {try container.encode(self.diskUri, forKey: .diskUri)}
-    if self.managedDiskId != nil {try container.encode(self.managedDiskId, forKey: .managedDiskId)}
-    if self.diskSizeGiB != nil {try container.encode(self.diskSizeGiB, forKey: .diskSizeGiB)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.diskUri != nil { try container.encode(self.diskUri, forKey: .diskUri) }
+    if self.managedDiskId != nil { try container.encode(self.managedDiskId, forKey: .managedDiskId) }
+    if self.diskSizeGiB != nil { try container.encode(self.diskSizeGiB, forKey: .diskSizeGiB) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct FiltersData : FiltersProtocol {
         case meters = "meters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct FiltersData : FiltersProtocol {
     if container.contains(.meters) {
         self.meters = try container.decode([String]?.self, forKey: .meters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct FiltersData : FiltersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceGroups != nil {try container.encode(self.resourceGroups as! [String]?, forKey: .resourceGroups)}
-    if self.resources != nil {try container.encode(self.resources as! [String]?, forKey: .resources)}
-    if self.meters != nil {try container.encode(self.meters as! [String]?, forKey: .meters)}
+    if self.resourceGroups != nil { try container.encode(self.resourceGroups as! [String]?, forKey: .resourceGroups) }
+    if self.resources != nil { try container.encode(self.resources as! [String]?, forKey: .resources) }
+    if self.meters != nil { try container.encode(self.meters as! [String]?, forKey: .meters) }
   }
 }
 

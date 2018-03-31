@@ -10,14 +10,14 @@ internal struct FlowLogStatusParametersData : FlowLogStatusParametersProtocol {
         enum CodingKeys: String, CodingKey {case targetResourceId = "targetResourceId"
         }
 
-  public init(targetResourceId: String)  {
+  public init(targetResourceId: String) {
     self.targetResourceId = targetResourceId
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.targetResourceId = try container.decode(String.self, forKey: .targetResourceId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

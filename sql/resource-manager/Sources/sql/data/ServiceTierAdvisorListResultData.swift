@@ -10,14 +10,14 @@ internal struct ServiceTierAdvisorListResultData : ServiceTierAdvisorListResultP
         enum CodingKeys: String, CodingKey {case value = "value"
         }
 
-  public init(value: [ServiceTierAdvisorProtocol])  {
+  public init(value: [ServiceTierAdvisorProtocol]) {
     self.value = value
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.value = try container.decode([ServiceTierAdvisorData].self, forKey: .value)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

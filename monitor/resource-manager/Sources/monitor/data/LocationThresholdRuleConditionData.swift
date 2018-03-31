@@ -14,7 +14,7 @@ internal struct LocationThresholdRuleConditionData : LocationThresholdRuleCondit
         case failedLocationCount = "failedLocationCount"
         }
 
-  public init(failedLocationCount: Int32)  {
+  public init(failedLocationCount: Int32) {
     self.failedLocationCount = failedLocationCount
   }
 
@@ -27,7 +27,7 @@ internal struct LocationThresholdRuleConditionData : LocationThresholdRuleCondit
         self.windowSize = try container.decode(String?.self, forKey: .windowSize)
     }
     self.failedLocationCount = try container.decode(Int32.self, forKey: .failedLocationCount)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,8 +37,8 @@ internal struct LocationThresholdRuleConditionData : LocationThresholdRuleCondit
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSource != nil {try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource)}
-    if self.windowSize != nil {try container.encode(self.windowSize, forKey: .windowSize)}
+    if self.dataSource != nil { try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource) }
+    if self.windowSize != nil { try container.encode(self.windowSize, forKey: .windowSize) }
     try container.encode(self.failedLocationCount, forKey: .failedLocationCount)
   }
 }

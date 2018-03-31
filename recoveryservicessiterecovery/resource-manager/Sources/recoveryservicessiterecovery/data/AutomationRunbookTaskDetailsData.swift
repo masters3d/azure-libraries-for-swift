@@ -26,7 +26,7 @@ internal struct AutomationRunbookTaskDetailsData : AutomationRunbookTaskDetailsP
         case isPrimarySideScript = "isPrimarySideScript"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct AutomationRunbookTaskDetailsData : AutomationRunbookTaskDetailsP
     if container.contains(.isPrimarySideScript) {
         self.isPrimarySideScript = try container.decode(Bool?.self, forKey: .isPrimarySideScript)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct AutomationRunbookTaskDetailsData : AutomationRunbookTaskDetailsP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.cloudServiceName != nil {try container.encode(self.cloudServiceName, forKey: .cloudServiceName)}
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.accountName != nil {try container.encode(self.accountName, forKey: .accountName)}
-    if self.runbookId != nil {try container.encode(self.runbookId, forKey: .runbookId)}
-    if self.runbookName != nil {try container.encode(self.runbookName, forKey: .runbookName)}
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
-    if self.jobOutput != nil {try container.encode(self.jobOutput, forKey: .jobOutput)}
-    if self.isPrimarySideScript != nil {try container.encode(self.isPrimarySideScript, forKey: .isPrimarySideScript)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.cloudServiceName != nil { try container.encode(self.cloudServiceName, forKey: .cloudServiceName) }
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.accountName != nil { try container.encode(self.accountName, forKey: .accountName) }
+    if self.runbookId != nil { try container.encode(self.runbookId, forKey: .runbookId) }
+    if self.runbookName != nil { try container.encode(self.runbookName, forKey: .runbookName) }
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
+    if self.jobOutput != nil { try container.encode(self.jobOutput, forKey: .jobOutput) }
+    if self.isPrimarySideScript != nil { try container.encode(self.isPrimarySideScript, forKey: .isPrimarySideScript) }
   }
 }
 

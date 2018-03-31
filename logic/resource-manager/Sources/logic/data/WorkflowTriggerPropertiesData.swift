@@ -26,7 +26,7 @@ internal struct WorkflowTriggerPropertiesData : WorkflowTriggerPropertiesProtoco
         case workflow = "workflow"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct WorkflowTriggerPropertiesData : WorkflowTriggerPropertiesProtoco
     if container.contains(.workflow) {
         self.workflow = try container.decode(ResourceReferenceData?.self, forKey: .workflow)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,23 +68,23 @@ internal struct WorkflowTriggerPropertiesData : WorkflowTriggerPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.createdTime != nil {
         try container.encode(DateConverter.toString(date: self.createdTime!, format: .dateTime), forKey: .createdTime)
     }
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.lastExecutionTime != nil {
         try container.encode(DateConverter.toString(date: self.lastExecutionTime!, format: .dateTime), forKey: .lastExecutionTime)
     }
     if self.nextExecutionTime != nil {
         try container.encode(DateConverter.toString(date: self.nextExecutionTime!, format: .dateTime), forKey: .nextExecutionTime)
     }
-    if self.recurrence != nil {try container.encode(self.recurrence as! WorkflowTriggerRecurrenceData?, forKey: .recurrence)}
-    if self.workflow != nil {try container.encode(self.workflow as! ResourceReferenceData?, forKey: .workflow)}
+    if self.recurrence != nil { try container.encode(self.recurrence as! WorkflowTriggerRecurrenceData?, forKey: .recurrence) }
+    if self.workflow != nil { try container.encode(self.workflow as! ResourceReferenceData?, forKey: .workflow) }
   }
 }
 

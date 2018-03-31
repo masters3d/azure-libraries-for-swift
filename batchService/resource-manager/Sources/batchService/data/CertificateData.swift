@@ -26,7 +26,7 @@ internal struct CertificateData : CertificateProtocol {
         case deleteCertificateError = "deleteCertificateError"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct CertificateData : CertificateProtocol {
     if container.contains(.deleteCertificateError) {
         self.deleteCertificateError = try container.decode(DeleteCertificateErrorData?.self, forKey: .deleteCertificateError)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,19 +68,19 @@ internal struct CertificateData : CertificateProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.thumbprintAlgorithm != nil {try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)}
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.thumbprintAlgorithm != nil { try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm) }
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.stateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.stateTransitionTime!, format: .dateTime), forKey: .stateTransitionTime)
     }
-    if self.previousState != nil {try container.encode(self.previousState, forKey: .previousState)}
+    if self.previousState != nil { try container.encode(self.previousState, forKey: .previousState) }
     if self.previousStateTransitionTime != nil {
         try container.encode(DateConverter.toString(date: self.previousStateTransitionTime!, format: .dateTime), forKey: .previousStateTransitionTime)
     }
-    if self.publicData != nil {try container.encode(self.publicData, forKey: .publicData)}
-    if self.deleteCertificateError != nil {try container.encode(self.deleteCertificateError as! DeleteCertificateErrorData?, forKey: .deleteCertificateError)}
+    if self.publicData != nil { try container.encode(self.publicData, forKey: .publicData) }
+    if self.deleteCertificateError != nil { try container.encode(self.deleteCertificateError as! DeleteCertificateErrorData?, forKey: .deleteCertificateError) }
   }
 }
 

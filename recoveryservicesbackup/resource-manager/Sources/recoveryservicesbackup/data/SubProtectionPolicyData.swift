@@ -14,7 +14,7 @@ internal struct SubProtectionPolicyData : SubProtectionPolicyProtocol {
         case retentionPolicy = "retentionPolicy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SubProtectionPolicyData : SubProtectionPolicyProtocol {
     if container.contains(.retentionPolicy) {
         self.retentionPolicy = try container.decode(RetentionPolicyData?.self, forKey: .retentionPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SubProtectionPolicyData : SubProtectionPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policyType != nil {try container.encode(self.policyType, forKey: .policyType)}
-    if self.schedulePolicy != nil {try container.encode(self.schedulePolicy as! SchedulePolicyData?, forKey: .schedulePolicy)}
-    if self.retentionPolicy != nil {try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy)}
+    if self.policyType != nil { try container.encode(self.policyType, forKey: .policyType) }
+    if self.schedulePolicy != nil { try container.encode(self.schedulePolicy as! SchedulePolicyData?, forKey: .schedulePolicy) }
+    if self.retentionPolicy != nil { try container.encode(self.retentionPolicy as! RetentionPolicyData?, forKey: .retentionPolicy) }
   }
 }
 

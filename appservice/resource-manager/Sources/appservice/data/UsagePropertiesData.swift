@@ -26,7 +26,7 @@ internal struct UsagePropertiesData : UsagePropertiesProtocol {
         case siteMode = "siteMode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct UsagePropertiesData : UsagePropertiesProtocol {
     if container.contains(.siteMode) {
         self.siteMode = try container.decode(String?.self, forKey: .siteMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,17 +68,17 @@ internal struct UsagePropertiesData : UsagePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.resourceName != nil {try container.encode(self.resourceName, forKey: .resourceName)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.resourceName != nil { try container.encode(self.resourceName, forKey: .resourceName) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
     if self.nextResetTime != nil {
         try container.encode(DateConverter.toString(date: self.nextResetTime!, format: .dateTime), forKey: .nextResetTime)
     }
-    if self.computeMode != nil {try container.encode(self.computeMode, forKey: .computeMode)}
-    if self.siteMode != nil {try container.encode(self.siteMode, forKey: .siteMode)}
+    if self.computeMode != nil { try container.encode(self.computeMode, forKey: .computeMode) }
+    if self.siteMode != nil { try container.encode(self.siteMode, forKey: .siteMode) }
   }
 }
 

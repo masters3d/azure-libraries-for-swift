@@ -22,7 +22,7 @@ internal struct BudgetPropertiesData : BudgetPropertiesProtocol {
         case notifications = "notifications"
         }
 
-  public init(category: CategoryTypeEnum, amount: Decimal, timeGrain: TimeGrainTypeEnum, timePeriod: BudgetTimePeriodProtocol)  {
+  public init(category: CategoryTypeEnum, amount: Decimal, timeGrain: TimeGrainTypeEnum, timePeriod: BudgetTimePeriodProtocol) {
     self.category = category
     self.amount = amount
     self.timeGrain = timeGrain
@@ -44,7 +44,7 @@ internal struct BudgetPropertiesData : BudgetPropertiesProtocol {
     if container.contains(.notifications) {
         self.notifications = try container.decode([String:NotificationData?]?.self, forKey: .notifications)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,9 +58,9 @@ internal struct BudgetPropertiesData : BudgetPropertiesProtocol {
     try container.encode(self.amount, forKey: .amount)
     try container.encode(self.timeGrain, forKey: .timeGrain)
     try container.encode(self.timePeriod as! BudgetTimePeriodData, forKey: .timePeriod)
-    if self.filters != nil {try container.encode(self.filters as! FiltersData?, forKey: .filters)}
-    if self.currentSpend != nil {try container.encode(self.currentSpend as! CurrentSpendData?, forKey: .currentSpend)}
-    if self.notifications != nil {try container.encode(self.notifications, forKey: .notifications)}
+    if self.filters != nil { try container.encode(self.filters as! FiltersData?, forKey: .filters) }
+    if self.currentSpend != nil { try container.encode(self.currentSpend as! CurrentSpendData?, forKey: .currentSpend) }
+    if self.notifications != nil { try container.encode(self.notifications, forKey: .notifications) }
   }
 }
 

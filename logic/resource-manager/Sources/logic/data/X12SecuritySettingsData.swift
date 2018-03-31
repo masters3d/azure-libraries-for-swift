@@ -16,7 +16,7 @@ internal struct X12SecuritySettingsData : X12SecuritySettingsProtocol {
         case passwordValue = "passwordValue"
         }
 
-  public init(authorizationQualifier: String, securityQualifier: String)  {
+  public init(authorizationQualifier: String, securityQualifier: String) {
     self.authorizationQualifier = authorizationQualifier
     self.securityQualifier = securityQualifier
   }
@@ -31,7 +31,7 @@ internal struct X12SecuritySettingsData : X12SecuritySettingsProtocol {
     if container.contains(.passwordValue) {
         self.passwordValue = try container.decode(String?.self, forKey: .passwordValue)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,9 +42,9 @@ internal struct X12SecuritySettingsData : X12SecuritySettingsProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.authorizationQualifier, forKey: .authorizationQualifier)
-    if self.authorizationValue != nil {try container.encode(self.authorizationValue, forKey: .authorizationValue)}
+    if self.authorizationValue != nil { try container.encode(self.authorizationValue, forKey: .authorizationValue) }
     try container.encode(self.securityQualifier, forKey: .securityQualifier)
-    if self.passwordValue != nil {try container.encode(self.passwordValue, forKey: .passwordValue)}
+    if self.passwordValue != nil { try container.encode(self.passwordValue, forKey: .passwordValue) }
   }
 }
 

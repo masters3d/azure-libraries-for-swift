@@ -12,7 +12,7 @@ internal struct SecurityGroupNetworkInterfaceData : SecurityGroupNetworkInterfac
         case securityRuleAssociations = "securityRuleAssociations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SecurityGroupNetworkInterfaceData : SecurityGroupNetworkInterfac
     if container.contains(.securityRuleAssociations) {
         self.securityRuleAssociations = try container.decode(SecurityRuleAssociationsData?.self, forKey: .securityRuleAssociations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SecurityGroupNetworkInterfaceData : SecurityGroupNetworkInterfac
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.securityRuleAssociations != nil {try container.encode(self.securityRuleAssociations as! SecurityRuleAssociationsData?, forKey: .securityRuleAssociations)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.securityRuleAssociations != nil { try container.encode(self.securityRuleAssociations as! SecurityRuleAssociationsData?, forKey: .securityRuleAssociations) }
   }
 }
 

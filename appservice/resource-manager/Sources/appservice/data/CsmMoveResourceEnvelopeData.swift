@@ -12,7 +12,7 @@ internal struct CsmMoveResourceEnvelopeData : CsmMoveResourceEnvelopeProtocol {
         case resources = "resources"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CsmMoveResourceEnvelopeData : CsmMoveResourceEnvelopeProtocol {
     if container.contains(.resources) {
         self.resources = try container.decode([String]?.self, forKey: .resources)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CsmMoveResourceEnvelopeData : CsmMoveResourceEnvelopeProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetResourceGroup != nil {try container.encode(self.targetResourceGroup, forKey: .targetResourceGroup)}
-    if self.resources != nil {try container.encode(self.resources as! [String]?, forKey: .resources)}
+    if self.targetResourceGroup != nil { try container.encode(self.targetResourceGroup, forKey: .targetResourceGroup) }
+    if self.resources != nil { try container.encode(self.resources as! [String]?, forKey: .resources) }
   }
 }
 

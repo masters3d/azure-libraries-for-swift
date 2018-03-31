@@ -18,7 +18,7 @@ internal struct InMageAzureV2PolicyDetailsData : InMageAzureV2PolicyDetailsProto
         case multiVmSyncStatus = "multiVmSyncStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct InMageAzureV2PolicyDetailsData : InMageAzureV2PolicyDetailsProto
     if container.contains(.multiVmSyncStatus) {
         self.multiVmSyncStatus = try container.decode(String?.self, forKey: .multiVmSyncStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct InMageAzureV2PolicyDetailsData : InMageAzureV2PolicyDetailsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.crashConsistentFrequencyInMinutes != nil {try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes)}
-    if self.recoveryPointThresholdInMinutes != nil {try container.encode(self.recoveryPointThresholdInMinutes, forKey: .recoveryPointThresholdInMinutes)}
-    if self.recoveryPointHistory != nil {try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory)}
-    if self.appConsistentFrequencyInMinutes != nil {try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes)}
-    if self.multiVmSyncStatus != nil {try container.encode(self.multiVmSyncStatus, forKey: .multiVmSyncStatus)}
+    if self.crashConsistentFrequencyInMinutes != nil { try container.encode(self.crashConsistentFrequencyInMinutes, forKey: .crashConsistentFrequencyInMinutes) }
+    if self.recoveryPointThresholdInMinutes != nil { try container.encode(self.recoveryPointThresholdInMinutes, forKey: .recoveryPointThresholdInMinutes) }
+    if self.recoveryPointHistory != nil { try container.encode(self.recoveryPointHistory, forKey: .recoveryPointHistory) }
+    if self.appConsistentFrequencyInMinutes != nil { try container.encode(self.appConsistentFrequencyInMinutes, forKey: .appConsistentFrequencyInMinutes) }
+    if self.multiVmSyncStatus != nil { try container.encode(self.multiVmSyncStatus, forKey: .multiVmSyncStatus) }
   }
 }
 

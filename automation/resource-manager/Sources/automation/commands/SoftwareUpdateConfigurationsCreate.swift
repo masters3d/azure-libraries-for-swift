@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SoftwareUpdateConfigurationsCreate  {
+public protocol SoftwareUpdateConfigurationsCreate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,9 +8,9 @@ public protocol SoftwareUpdateConfigurationsCreate  {
     var softwareUpdateConfigurationName : String { get set }
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
-    var parameters :  SoftwareUpdateConfigurationProtocol?  { get set }
+    var parameters :  SoftwareUpdateConfigurationProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SoftwareUpdateConfigurationProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SoftwareUpdateConfigurationProtocol?, Error?) -> Void)
 }
 
 extension Commands.SoftwareUpdateConfigurations {
@@ -37,7 +37,7 @@ extension Commands.SoftwareUpdateConfigurations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
@@ -62,12 +62,12 @@ extension Commands.SoftwareUpdateConfigurations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SoftwareUpdateConfigurationData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SoftwareUpdateConfigurationProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SoftwareUpdateConfigurationProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SoftwareUpdateConfigurationData?, error: Error?) in
                 completionHandler(result, error)

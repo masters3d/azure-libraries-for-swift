@@ -18,7 +18,7 @@ internal struct VirtualMachineExtensionImagePropertiesData : VirtualMachineExten
         case supportsMultipleExtensions = "supportsMultipleExtensions"
         }
 
-  public init(operatingSystem: String, computeRole: String, handlerSchema: String)  {
+  public init(operatingSystem: String, computeRole: String, handlerSchema: String) {
     self.operatingSystem = operatingSystem
     self.computeRole = computeRole
     self.handlerSchema = handlerSchema
@@ -35,7 +35,7 @@ internal struct VirtualMachineExtensionImagePropertiesData : VirtualMachineExten
     if container.contains(.supportsMultipleExtensions) {
         self.supportsMultipleExtensions = try container.decode(Bool?.self, forKey: .supportsMultipleExtensions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,8 +48,8 @@ internal struct VirtualMachineExtensionImagePropertiesData : VirtualMachineExten
     try container.encode(self.operatingSystem, forKey: .operatingSystem)
     try container.encode(self.computeRole, forKey: .computeRole)
     try container.encode(self.handlerSchema, forKey: .handlerSchema)
-    if self.vmScaleSetEnabled != nil {try container.encode(self.vmScaleSetEnabled, forKey: .vmScaleSetEnabled)}
-    if self.supportsMultipleExtensions != nil {try container.encode(self.supportsMultipleExtensions, forKey: .supportsMultipleExtensions)}
+    if self.vmScaleSetEnabled != nil { try container.encode(self.vmScaleSetEnabled, forKey: .vmScaleSetEnabled) }
+    if self.supportsMultipleExtensions != nil { try container.encode(self.supportsMultipleExtensions, forKey: .supportsMultipleExtensions) }
   }
 }
 

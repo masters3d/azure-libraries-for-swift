@@ -10,7 +10,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
         enum CodingKeys: String, CodingKey {case publicKeys = "publicKeys"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
       if container.contains(.publicKeys) {
         self.publicKeys = try container.decode([SshPublicKeyData?]?.self, forKey: .publicKeys)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SshConfigurationData : SshConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.publicKeys != nil {try container.encode(self.publicKeys as! [SshPublicKeyData?]?, forKey: .publicKeys)}
+    if self.publicKeys != nil { try container.encode(self.publicKeys as! [SshPublicKeyData?]?, forKey: .publicKeys) }
   }
 }
 

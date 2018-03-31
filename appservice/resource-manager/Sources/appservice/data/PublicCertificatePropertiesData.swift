@@ -14,7 +14,7 @@ internal struct PublicCertificatePropertiesData : PublicCertificatePropertiesPro
         case thumbprint = "thumbprint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PublicCertificatePropertiesData : PublicCertificatePropertiesPro
     if container.contains(.thumbprint) {
         self.thumbprint = try container.decode(String?.self, forKey: .thumbprint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PublicCertificatePropertiesData : PublicCertificatePropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.blob != nil {try container.encode(self.blob, forKey: .blob)}
-    if self.publicCertificateLocation != nil {try container.encode(self.publicCertificateLocation, forKey: .publicCertificateLocation)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
+    if self.blob != nil { try container.encode(self.blob, forKey: .blob) }
+    if self.publicCertificateLocation != nil { try container.encode(self.publicCertificateLocation, forKey: .publicCertificateLocation) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
   }
 }
 

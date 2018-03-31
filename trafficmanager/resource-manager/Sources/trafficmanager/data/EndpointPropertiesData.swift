@@ -26,7 +26,7 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol {
         case geoMapping = "geoMapping"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol {
     if container.contains(.geoMapping) {
         self.geoMapping = try container.decode([String]?.self, forKey: .geoMapping)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct EndpointPropertiesData : EndpointPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetResourceId != nil {try container.encode(self.targetResourceId, forKey: .targetResourceId)}
-    if self.target != nil {try container.encode(self.target, forKey: .target)}
-    if self.endpointStatus != nil {try container.encode(self.endpointStatus, forKey: .endpointStatus)}
-    if self.weight != nil {try container.encode(self.weight, forKey: .weight)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.endpointLocation != nil {try container.encode(self.endpointLocation, forKey: .endpointLocation)}
-    if self.endpointMonitorStatus != nil {try container.encode(self.endpointMonitorStatus, forKey: .endpointMonitorStatus)}
-    if self.minChildEndpoints != nil {try container.encode(self.minChildEndpoints, forKey: .minChildEndpoints)}
-    if self.geoMapping != nil {try container.encode(self.geoMapping as! [String]?, forKey: .geoMapping)}
+    if self.targetResourceId != nil { try container.encode(self.targetResourceId, forKey: .targetResourceId) }
+    if self.target != nil { try container.encode(self.target, forKey: .target) }
+    if self.endpointStatus != nil { try container.encode(self.endpointStatus, forKey: .endpointStatus) }
+    if self.weight != nil { try container.encode(self.weight, forKey: .weight) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.endpointLocation != nil { try container.encode(self.endpointLocation, forKey: .endpointLocation) }
+    if self.endpointMonitorStatus != nil { try container.encode(self.endpointMonitorStatus, forKey: .endpointMonitorStatus) }
+    if self.minChildEndpoints != nil { try container.encode(self.minChildEndpoints, forKey: .minChildEndpoints) }
+    if self.geoMapping != nil { try container.encode(self.geoMapping as! [String]?, forKey: .geoMapping) }
   }
 }
 

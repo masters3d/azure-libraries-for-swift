@@ -22,7 +22,7 @@ internal struct RedisCreatePropertiesData : RedisCreatePropertiesProtocol, Redis
         case staticIP = "staticIP"
         }
 
-  public init(sku: SkuProtocol)  {
+  public init(sku: SkuProtocol) {
     self.sku = sku
   }
 
@@ -47,7 +47,7 @@ internal struct RedisCreatePropertiesData : RedisCreatePropertiesProtocol, Redis
     if container.contains(.staticIP) {
         self.staticIP = try container.decode(String?.self, forKey: .staticIP)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,13 +57,13 @@ internal struct RedisCreatePropertiesData : RedisCreatePropertiesProtocol, Redis
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.redisConfiguration != nil {try container.encode(self.redisConfiguration, forKey: .redisConfiguration)}
-    if self.enableNonSslPort != nil {try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort)}
-    if self.tenantSettings != nil {try container.encode(self.tenantSettings, forKey: .tenantSettings)}
-    if self.shardCount != nil {try container.encode(self.shardCount, forKey: .shardCount)}
+    if self.redisConfiguration != nil { try container.encode(self.redisConfiguration, forKey: .redisConfiguration) }
+    if self.enableNonSslPort != nil { try container.encode(self.enableNonSslPort, forKey: .enableNonSslPort) }
+    if self.tenantSettings != nil { try container.encode(self.tenantSettings, forKey: .tenantSettings) }
+    if self.shardCount != nil { try container.encode(self.shardCount, forKey: .shardCount) }
     try container.encode(self.sku as! SkuData, forKey: .sku)
-    if self.subnetId != nil {try container.encode(self.subnetId, forKey: .subnetId)}
-    if self.staticIP != nil {try container.encode(self.staticIP, forKey: .staticIP)}
+    if self.subnetId != nil { try container.encode(self.subnetId, forKey: .subnetId) }
+    if self.staticIP != nil { try container.encode(self.staticIP, forKey: .staticIP) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct FlowLogPropertiesData : FlowLogPropertiesProtocol {
         case retentionPolicy = "retentionPolicy"
         }
 
-  public init(storageId: String, enabled: Bool)  {
+  public init(storageId: String, enabled: Bool) {
     self.storageId = storageId
     self.enabled = enabled
   }
@@ -26,7 +26,7 @@ internal struct FlowLogPropertiesData : FlowLogPropertiesProtocol {
     if container.contains(.retentionPolicy) {
         self.retentionPolicy = try container.decode(RetentionPolicyParametersData?.self, forKey: .retentionPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct FlowLogPropertiesData : FlowLogPropertiesProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.storageId, forKey: .storageId)
     try container.encode(self.enabled, forKey: .enabled)
-    if self.retentionPolicy != nil {try container.encode(self.retentionPolicy as! RetentionPolicyParametersData?, forKey: .retentionPolicy)}
+    if self.retentionPolicy != nil { try container.encode(self.retentionPolicy as! RetentionPolicyParametersData?, forKey: .retentionPolicy) }
   }
 }
 

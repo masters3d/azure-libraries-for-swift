@@ -22,7 +22,7 @@ internal struct VirtualNetworkGatewayData : VirtualNetworkGatewayProtocol, Resou
         case etag = "etag"
         }
 
-  public init(properties: VirtualNetworkGatewayPropertiesFormatProtocol)  {
+  public init(properties: VirtualNetworkGatewayPropertiesFormatProtocol) {
     self.properties = properties
   }
 
@@ -47,7 +47,7 @@ internal struct VirtualNetworkGatewayData : VirtualNetworkGatewayProtocol, Resou
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -57,13 +57,13 @@ internal struct VirtualNetworkGatewayData : VirtualNetworkGatewayProtocol, Resou
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
     try container.encode(self.properties as! VirtualNetworkGatewayPropertiesFormatData, forKey: .properties)
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

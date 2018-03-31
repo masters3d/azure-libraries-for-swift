@@ -16,7 +16,7 @@ internal struct RecoverableDatabasePropertiesData : RecoverableDatabasePropertie
         case lastAvailableBackupDate = "lastAvailableBackupDate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RecoverableDatabasePropertiesData : RecoverableDatabasePropertie
     if container.contains(.lastAvailableBackupDate) {
         self.lastAvailableBackupDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastAvailableBackupDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,9 +43,9 @@ internal struct RecoverableDatabasePropertiesData : RecoverableDatabasePropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.edition != nil {try container.encode(self.edition, forKey: .edition)}
-    if self.serviceLevelObjective != nil {try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective)}
-    if self.elasticPoolName != nil {try container.encode(self.elasticPoolName, forKey: .elasticPoolName)}
+    if self.edition != nil { try container.encode(self.edition, forKey: .edition) }
+    if self.serviceLevelObjective != nil { try container.encode(self.serviceLevelObjective, forKey: .serviceLevelObjective) }
+    if self.elasticPoolName != nil { try container.encode(self.elasticPoolName, forKey: .elasticPoolName) }
     if self.lastAvailableBackupDate != nil {
         try container.encode(DateConverter.toString(date: self.lastAvailableBackupDate!, format: .dateTime), forKey: .lastAvailableBackupDate)
     }

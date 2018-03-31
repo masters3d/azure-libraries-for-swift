@@ -16,7 +16,7 @@ internal struct RecoveryPlanActionData : RecoveryPlanActionProtocol {
         case customDetails = "customDetails"
         }
 
-  public init(actionName: String, failoverTypes: [ReplicationProtectedItemOperationEnum], failoverDirections: [PossibleOperationsDirectionsEnum], customDetails: RecoveryPlanActionDetailsProtocol)  {
+  public init(actionName: String, failoverTypes: [ReplicationProtectedItemOperationEnum], failoverDirections: [PossibleOperationsDirectionsEnum], customDetails: RecoveryPlanActionDetailsProtocol) {
     self.actionName = actionName
     self.failoverTypes = failoverTypes
     self.failoverDirections = failoverDirections
@@ -29,7 +29,7 @@ internal struct RecoveryPlanActionData : RecoveryPlanActionProtocol {
     self.failoverTypes = try container.decode([ReplicationProtectedItemOperationEnum].self, forKey: .failoverTypes)
     self.failoverDirections = try container.decode([PossibleOperationsDirectionsEnum].self, forKey: .failoverDirections)
     self.customDetails = try container.decode(RecoveryPlanActionDetailsData.self, forKey: .customDetails)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

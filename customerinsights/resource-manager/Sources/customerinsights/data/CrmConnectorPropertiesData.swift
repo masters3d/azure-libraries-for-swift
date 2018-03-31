@@ -18,7 +18,7 @@ internal struct CrmConnectorPropertiesData : CrmConnectorPropertiesProtocol {
         case accessToken = "accessToken"
         }
 
-  public init(organizationId: String, organizationUrl: String, entities: [CrmConnectorEntitiesProtocol])  {
+  public init(organizationId: String, organizationUrl: String, entities: [CrmConnectorEntitiesProtocol]) {
     self.organizationId = organizationId
     self.organizationUrl = organizationUrl
     self.entities = entities
@@ -35,7 +35,7 @@ internal struct CrmConnectorPropertiesData : CrmConnectorPropertiesProtocol {
     if container.contains(.accessToken) {
         self.accessToken = try container.decode(String?.self, forKey: .accessToken)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -45,11 +45,11 @@ internal struct CrmConnectorPropertiesData : CrmConnectorPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectionString != nil {try container.encode(self.connectionString, forKey: .connectionString)}
+    if self.connectionString != nil { try container.encode(self.connectionString, forKey: .connectionString) }
     try container.encode(self.organizationId, forKey: .organizationId)
     try container.encode(self.organizationUrl, forKey: .organizationUrl)
     try container.encode(self.entities as! [CrmConnectorEntitiesData], forKey: .entities)
-    if self.accessToken != nil {try container.encode(self.accessToken, forKey: .accessToken)}
+    if self.accessToken != nil { try container.encode(self.accessToken, forKey: .accessToken) }
   }
 }
 

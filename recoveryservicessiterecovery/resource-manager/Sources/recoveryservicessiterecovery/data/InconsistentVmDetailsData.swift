@@ -16,7 +16,7 @@ internal struct InconsistentVmDetailsData : InconsistentVmDetailsProtocol {
         case errorIds = "errorIds"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct InconsistentVmDetailsData : InconsistentVmDetailsProtocol {
     if container.contains(.errorIds) {
         self.errorIds = try container.decode([String]?.self, forKey: .errorIds)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct InconsistentVmDetailsData : InconsistentVmDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vmName != nil {try container.encode(self.vmName, forKey: .vmName)}
-    if self.cloudName != nil {try container.encode(self.cloudName, forKey: .cloudName)}
-    if self.details != nil {try container.encode(self.details as! [String]?, forKey: .details)}
-    if self.errorIds != nil {try container.encode(self.errorIds as! [String]?, forKey: .errorIds)}
+    if self.vmName != nil { try container.encode(self.vmName, forKey: .vmName) }
+    if self.cloudName != nil { try container.encode(self.cloudName, forKey: .cloudName) }
+    if self.details != nil { try container.encode(self.details as! [String]?, forKey: .details) }
+    if self.errorIds != nil { try container.encode(self.errorIds as! [String]?, forKey: .errorIds) }
   }
 }
 

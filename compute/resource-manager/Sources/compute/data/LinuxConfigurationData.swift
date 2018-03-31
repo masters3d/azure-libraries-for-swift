@@ -12,7 +12,7 @@ internal struct LinuxConfigurationData : LinuxConfigurationProtocol {
         case ssh = "ssh"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct LinuxConfigurationData : LinuxConfigurationProtocol {
     if container.contains(.ssh) {
         self.ssh = try container.decode(SshConfigurationData?.self, forKey: .ssh)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct LinuxConfigurationData : LinuxConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.disablePasswordAuthentication != nil {try container.encode(self.disablePasswordAuthentication, forKey: .disablePasswordAuthentication)}
-    if self.ssh != nil {try container.encode(self.ssh as! SshConfigurationData?, forKey: .ssh)}
+    if self.disablePasswordAuthentication != nil { try container.encode(self.disablePasswordAuthentication, forKey: .disablePasswordAuthentication) }
+    if self.ssh != nil { try container.encode(self.ssh as! SshConfigurationData?, forKey: .ssh) }
   }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SchemasDelete  {
+public protocol SchemasDelete {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,7 +8,7 @@ public protocol SchemasDelete  {
     var schemaName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Schemas {
@@ -32,7 +32,7 @@ extension Commands.Schemas {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{integrationAccountName}"] = String(describing: self.integrationAccountName)
@@ -42,7 +42,7 @@ extension Commands.Schemas {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

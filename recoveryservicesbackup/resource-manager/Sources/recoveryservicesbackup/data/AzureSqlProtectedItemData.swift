@@ -28,7 +28,7 @@ internal struct AzureSqlProtectedItemData : AzureSqlProtectedItemProtocol, Prote
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct AzureSqlProtectedItemData : AzureSqlProtectedItemProtocol, Prote
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(AzureSqlProtectedItemExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,18 +73,18 @@ internal struct AzureSqlProtectedItemData : AzureSqlProtectedItemProtocol, Prote
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.workloadType != nil {try container.encode(self.workloadType, forKey: .workloadType)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.sourceResourceId != nil {try container.encode(self.sourceResourceId, forKey: .sourceResourceId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.workloadType != nil { try container.encode(self.workloadType, forKey: .workloadType) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.sourceResourceId != nil { try container.encode(self.sourceResourceId, forKey: .sourceResourceId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
     if self.lastRecoveryPoint != nil {
         try container.encode(DateConverter.toString(date: self.lastRecoveryPoint!, format: .dateTime), forKey: .lastRecoveryPoint)
     }
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
-    if self.protectedItemDataId != nil {try container.encode(self.protectedItemDataId, forKey: .protectedItemDataId)}
-    if self.protectionState != nil {try container.encode(self.protectionState, forKey: .protectionState)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! AzureSqlProtectedItemExtendedInfoData?, forKey: .extendedInfo)}
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
+    if self.protectedItemDataId != nil { try container.encode(self.protectedItemDataId, forKey: .protectedItemDataId) }
+    if self.protectionState != nil { try container.encode(self.protectionState, forKey: .protectionState) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! AzureSqlProtectedItemExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

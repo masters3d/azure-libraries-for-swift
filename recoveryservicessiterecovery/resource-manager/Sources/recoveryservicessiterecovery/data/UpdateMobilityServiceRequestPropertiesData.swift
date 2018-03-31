@@ -10,7 +10,7 @@ internal struct UpdateMobilityServiceRequestPropertiesData : UpdateMobilityServi
         enum CodingKeys: String, CodingKey {case runAsAccountId = "runAsAccountId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdateMobilityServiceRequestPropertiesData : UpdateMobilityServi
       if container.contains(.runAsAccountId) {
         self.runAsAccountId = try container.decode(String?.self, forKey: .runAsAccountId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdateMobilityServiceRequestPropertiesData : UpdateMobilityServi
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.runAsAccountId != nil {try container.encode(self.runAsAccountId, forKey: .runAsAccountId)}
+    if self.runAsAccountId != nil { try container.encode(self.runAsAccountId, forKey: .runAsAccountId) }
   }
 }
 

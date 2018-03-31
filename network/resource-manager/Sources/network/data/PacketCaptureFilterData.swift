@@ -18,7 +18,7 @@ internal struct PacketCaptureFilterData : PacketCaptureFilterProtocol {
         case remotePort = "remotePort"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct PacketCaptureFilterData : PacketCaptureFilterProtocol {
     if container.contains(.remotePort) {
         self.remotePort = try container.decode(String?.self, forKey: .remotePort)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct PacketCaptureFilterData : PacketCaptureFilterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.localIPAddress != nil {try container.encode(self.localIPAddress, forKey: .localIPAddress)}
-    if self.remoteIPAddress != nil {try container.encode(self.remoteIPAddress, forKey: .remoteIPAddress)}
-    if self.localPort != nil {try container.encode(self.localPort, forKey: .localPort)}
-    if self.remotePort != nil {try container.encode(self.remotePort, forKey: .remotePort)}
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.localIPAddress != nil { try container.encode(self.localIPAddress, forKey: .localIPAddress) }
+    if self.remoteIPAddress != nil { try container.encode(self.remoteIPAddress, forKey: .remoteIPAddress) }
+    if self.localPort != nil { try container.encode(self.localPort, forKey: .localPort) }
+    if self.remotePort != nil { try container.encode(self.remotePort, forKey: .remotePort) }
   }
 }
 

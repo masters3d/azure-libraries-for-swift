@@ -16,7 +16,7 @@ internal struct ScriptActionTaskDetailsData : ScriptActionTaskDetailsProtocol, T
         case isPrimarySideScript = "isPrimarySideScript"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ScriptActionTaskDetailsData : ScriptActionTaskDetailsProtocol, T
     if container.contains(.isPrimarySideScript) {
         self.isPrimarySideScript = try container.decode(Bool?.self, forKey: .isPrimarySideScript)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ScriptActionTaskDetailsData : ScriptActionTaskDetailsProtocol, T
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.path != nil {try container.encode(self.path, forKey: .path)}
-    if self.output != nil {try container.encode(self.output, forKey: .output)}
-    if self.isPrimarySideScript != nil {try container.encode(self.isPrimarySideScript, forKey: .isPrimarySideScript)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.path != nil { try container.encode(self.path, forKey: .path) }
+    if self.output != nil { try container.encode(self.output, forKey: .output) }
+    if self.isPrimarySideScript != nil { try container.encode(self.isPrimarySideScript, forKey: .isPrimarySideScript) }
   }
 }
 

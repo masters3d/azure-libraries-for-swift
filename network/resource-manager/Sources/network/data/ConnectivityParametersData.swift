@@ -12,7 +12,7 @@ internal struct ConnectivityParametersData : ConnectivityParametersProtocol {
         case destination = "destination"
         }
 
-  public init(source: ConnectivitySourceProtocol, destination: ConnectivityDestinationProtocol)  {
+  public init(source: ConnectivitySourceProtocol, destination: ConnectivityDestinationProtocol) {
     self.source = source
     self.destination = destination
   }
@@ -21,7 +21,7 @@ internal struct ConnectivityParametersData : ConnectivityParametersProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.source = try container.decode(ConnectivitySourceData.self, forKey: .source)
     self.destination = try container.decode(ConnectivityDestinationData.self, forKey: .destination)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

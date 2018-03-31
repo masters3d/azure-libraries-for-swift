@@ -22,7 +22,7 @@ internal struct ImageDataDiskData : ImageDataDiskProtocol {
         case storageAccountType = "storageAccountType"
         }
 
-  public init(lun: Int32)  {
+  public init(lun: Int32) {
     self.lun = lun
   }
 
@@ -47,7 +47,7 @@ internal struct ImageDataDiskData : ImageDataDiskProtocol {
     if container.contains(.storageAccountType) {
         self.storageAccountType = try container.decode(StorageAccountTypesEnum?.self, forKey: .storageAccountType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,12 +58,12 @@ internal struct ImageDataDiskData : ImageDataDiskProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.lun, forKey: .lun)
-    if self.snapshot != nil {try container.encode(self.snapshot as! SubResourceData?, forKey: .snapshot)}
-    if self.managedDisk != nil {try container.encode(self.managedDisk as! SubResourceData?, forKey: .managedDisk)}
-    if self.blobUri != nil {try container.encode(self.blobUri, forKey: .blobUri)}
-    if self.caching != nil {try container.encode(self.caching, forKey: .caching)}
-    if self.diskSizeGB != nil {try container.encode(self.diskSizeGB, forKey: .diskSizeGB)}
-    if self.storageAccountType != nil {try container.encode(self.storageAccountType, forKey: .storageAccountType)}
+    if self.snapshot != nil { try container.encode(self.snapshot as! SubResourceData?, forKey: .snapshot) }
+    if self.managedDisk != nil { try container.encode(self.managedDisk as! SubResourceData?, forKey: .managedDisk) }
+    if self.blobUri != nil { try container.encode(self.blobUri, forKey: .blobUri) }
+    if self.caching != nil { try container.encode(self.caching, forKey: .caching) }
+    if self.diskSizeGB != nil { try container.encode(self.diskSizeGB, forKey: .diskSizeGB) }
+    if self.storageAccountType != nil { try container.encode(self.storageAccountType, forKey: .storageAccountType) }
   }
 }
 

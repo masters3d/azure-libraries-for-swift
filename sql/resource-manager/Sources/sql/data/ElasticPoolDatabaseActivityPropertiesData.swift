@@ -38,7 +38,7 @@ internal struct ElasticPoolDatabaseActivityPropertiesData : ElasticPoolDatabaseA
         case state = "state"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct ElasticPoolDatabaseActivityPropertiesData : ElasticPoolDatabaseA
     if container.contains(.state) {
         self.state = try container.decode(String?.self, forKey: .state)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,25 +98,25 @@ internal struct ElasticPoolDatabaseActivityPropertiesData : ElasticPoolDatabaseA
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseName != nil {try container.encode(self.databaseName, forKey: .databaseName)}
+    if self.databaseName != nil { try container.encode(self.databaseName, forKey: .databaseName) }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.errorCode != nil {try container.encode(self.errorCode, forKey: .errorCode)}
-    if self.errorMessage != nil {try container.encode(self.errorMessage, forKey: .errorMessage)}
-    if self.errorSeverity != nil {try container.encode(self.errorSeverity, forKey: .errorSeverity)}
-    if self.operation != nil {try container.encode(self.operation, forKey: .operation)}
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
-    if self.percentComplete != nil {try container.encode(self.percentComplete, forKey: .percentComplete)}
-    if self.requestedElasticPoolName != nil {try container.encode(self.requestedElasticPoolName, forKey: .requestedElasticPoolName)}
-    if self.currentElasticPoolName != nil {try container.encode(self.currentElasticPoolName, forKey: .currentElasticPoolName)}
-    if self.currentServiceObjective != nil {try container.encode(self.currentServiceObjective, forKey: .currentServiceObjective)}
-    if self.requestedServiceObjective != nil {try container.encode(self.requestedServiceObjective, forKey: .requestedServiceObjective)}
-    if self.serverName != nil {try container.encode(self.serverName, forKey: .serverName)}
+    if self.errorCode != nil { try container.encode(self.errorCode, forKey: .errorCode) }
+    if self.errorMessage != nil { try container.encode(self.errorMessage, forKey: .errorMessage) }
+    if self.errorSeverity != nil { try container.encode(self.errorSeverity, forKey: .errorSeverity) }
+    if self.operation != nil { try container.encode(self.operation, forKey: .operation) }
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
+    if self.percentComplete != nil { try container.encode(self.percentComplete, forKey: .percentComplete) }
+    if self.requestedElasticPoolName != nil { try container.encode(self.requestedElasticPoolName, forKey: .requestedElasticPoolName) }
+    if self.currentElasticPoolName != nil { try container.encode(self.currentElasticPoolName, forKey: .currentElasticPoolName) }
+    if self.currentServiceObjective != nil { try container.encode(self.currentServiceObjective, forKey: .currentServiceObjective) }
+    if self.requestedServiceObjective != nil { try container.encode(self.requestedServiceObjective, forKey: .requestedServiceObjective) }
+    if self.serverName != nil { try container.encode(self.serverName, forKey: .serverName) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
   }
 }
 

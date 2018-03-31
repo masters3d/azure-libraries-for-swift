@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VaultsPurgeDeleted  {
+public protocol VaultsPurgeDeleted {
     var headerParameters: [String: String] { get set }
     var vaultName : String { get set }
     var location : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Vaults {
@@ -31,7 +31,7 @@ extension Commands.Vaults {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{vaultName}"] = String(describing: self.vaultName)
             self.pathParameters["{location}"] = String(describing: self.location)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -40,7 +40,7 @@ extension Commands.Vaults {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

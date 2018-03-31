@@ -16,7 +16,7 @@ internal struct DeleteCertificateErrorData : DeleteCertificateErrorProtocol {
         case details = "details"
         }
 
-  public init(code: String, message: String)  {
+  public init(code: String, message: String) {
     self.code = code
     self.message = message
   }
@@ -31,7 +31,7 @@ internal struct DeleteCertificateErrorData : DeleteCertificateErrorProtocol {
     if container.contains(.details) {
         self.details = try container.decode([DeleteCertificateErrorData?]?.self, forKey: .details)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct DeleteCertificateErrorData : DeleteCertificateErrorProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.code, forKey: .code)
     try container.encode(self.message, forKey: .message)
-    if self.target != nil {try container.encode(self.target, forKey: .target)}
-    if self.details != nil {try container.encode(self.details as! [DeleteCertificateErrorData?]?, forKey: .details)}
+    if self.target != nil { try container.encode(self.target, forKey: .target) }
+    if self.details != nil { try container.encode(self.details as! [DeleteCertificateErrorData?]?, forKey: .details) }
   }
 }
 

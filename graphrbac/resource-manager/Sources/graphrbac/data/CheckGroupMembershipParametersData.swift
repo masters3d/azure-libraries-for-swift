@@ -14,7 +14,7 @@ internal struct CheckGroupMembershipParametersData : CheckGroupMembershipParamet
         case memberId = "memberId"
         }
 
-  public init(groupId: String, memberId: String)  {
+  public init(groupId: String, memberId: String) {
     self.groupId = groupId
     self.memberId = memberId
   }
@@ -26,7 +26,7 @@ internal struct CheckGroupMembershipParametersData : CheckGroupMembershipParamet
     }
     self.groupId = try container.decode(String.self, forKey: .groupId)
     self.memberId = try container.decode(String.self, forKey: .memberId)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct CheckGroupMembershipParametersData : CheckGroupMembershipParamet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.groupId, forKey: .groupId)
     try container.encode(self.memberId, forKey: .memberId)
   }

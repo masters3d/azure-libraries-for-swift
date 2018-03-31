@@ -12,7 +12,7 @@ internal struct BootDiagnosticsData : BootDiagnosticsProtocol {
         case storageUri = "storageUri"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct BootDiagnosticsData : BootDiagnosticsProtocol {
     if container.contains(.storageUri) {
         self.storageUri = try container.decode(String?.self, forKey: .storageUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct BootDiagnosticsData : BootDiagnosticsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.storageUri != nil {try container.encode(self.storageUri, forKey: .storageUri)}
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.storageUri != nil { try container.encode(self.storageUri, forKey: .storageUri) }
   }
 }
 

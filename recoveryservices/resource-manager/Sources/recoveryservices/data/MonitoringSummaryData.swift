@@ -20,7 +20,7 @@ internal struct MonitoringSummaryData : MonitoringSummaryProtocol {
         case unsupportedProviderCount = "unsupportedProviderCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct MonitoringSummaryData : MonitoringSummaryProtocol {
     if container.contains(.unsupportedProviderCount) {
         self.unsupportedProviderCount = try container.decode(Int32?.self, forKey: .unsupportedProviderCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct MonitoringSummaryData : MonitoringSummaryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.unHealthyVmCount != nil {try container.encode(self.unHealthyVmCount, forKey: .unHealthyVmCount)}
-    if self.unHealthyProviderCount != nil {try container.encode(self.unHealthyProviderCount, forKey: .unHealthyProviderCount)}
-    if self.eventsCount != nil {try container.encode(self.eventsCount, forKey: .eventsCount)}
-    if self.deprecatedProviderCount != nil {try container.encode(self.deprecatedProviderCount, forKey: .deprecatedProviderCount)}
-    if self.supportedProviderCount != nil {try container.encode(self.supportedProviderCount, forKey: .supportedProviderCount)}
-    if self.unsupportedProviderCount != nil {try container.encode(self.unsupportedProviderCount, forKey: .unsupportedProviderCount)}
+    if self.unHealthyVmCount != nil { try container.encode(self.unHealthyVmCount, forKey: .unHealthyVmCount) }
+    if self.unHealthyProviderCount != nil { try container.encode(self.unHealthyProviderCount, forKey: .unHealthyProviderCount) }
+    if self.eventsCount != nil { try container.encode(self.eventsCount, forKey: .eventsCount) }
+    if self.deprecatedProviderCount != nil { try container.encode(self.deprecatedProviderCount, forKey: .deprecatedProviderCount) }
+    if self.supportedProviderCount != nil { try container.encode(self.supportedProviderCount, forKey: .supportedProviderCount) }
+    if self.unsupportedProviderCount != nil { try container.encode(self.unsupportedProviderCount, forKey: .unsupportedProviderCount) }
   }
 }
 

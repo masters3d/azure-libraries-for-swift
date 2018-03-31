@@ -14,7 +14,7 @@ internal struct CreateProtectionContainerMappingInputPropertiesData : CreateProt
         case providerSpecificInput = "providerSpecificInput"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CreateProtectionContainerMappingInputPropertiesData : CreateProt
     if container.contains(.providerSpecificInput) {
         self.providerSpecificInput = try container.decode(ReplicationProviderSpecificContainerMappingInputData?.self, forKey: .providerSpecificInput)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CreateProtectionContainerMappingInputPropertiesData : CreateProt
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetProtectionContainerId != nil {try container.encode(self.targetProtectionContainerId, forKey: .targetProtectionContainerId)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.providerSpecificInput != nil {try container.encode(self.providerSpecificInput as! ReplicationProviderSpecificContainerMappingInputData?, forKey: .providerSpecificInput)}
+    if self.targetProtectionContainerId != nil { try container.encode(self.targetProtectionContainerId, forKey: .targetProtectionContainerId) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.providerSpecificInput != nil { try container.encode(self.providerSpecificInput as! ReplicationProviderSpecificContainerMappingInputData?, forKey: .providerSpecificInput) }
   }
 }
 

@@ -20,7 +20,7 @@ internal struct WorkflowTriggerCallbackUrlData : WorkflowTriggerCallbackUrlProto
         case queries = "queries"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct WorkflowTriggerCallbackUrlData : WorkflowTriggerCallbackUrlProto
     if container.contains(.queries) {
         self.queries = try container.decode(WorkflowTriggerListCallbackUrlQueriesData?.self, forKey: .queries)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct WorkflowTriggerCallbackUrlData : WorkflowTriggerCallbackUrlProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
-    if self.method != nil {try container.encode(self.method, forKey: .method)}
-    if self.basePath != nil {try container.encode(self.basePath, forKey: .basePath)}
-    if self.relativePath != nil {try container.encode(self.relativePath, forKey: .relativePath)}
-    if self.relativePathParameters != nil {try container.encode(self.relativePathParameters as! [String]?, forKey: .relativePathParameters)}
-    if self.queries != nil {try container.encode(self.queries as! WorkflowTriggerListCallbackUrlQueriesData?, forKey: .queries)}
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
+    if self.method != nil { try container.encode(self.method, forKey: .method) }
+    if self.basePath != nil { try container.encode(self.basePath, forKey: .basePath) }
+    if self.relativePath != nil { try container.encode(self.relativePath, forKey: .relativePath) }
+    if self.relativePathParameters != nil { try container.encode(self.relativePathParameters as! [String]?, forKey: .relativePathParameters) }
+    if self.queries != nil { try container.encode(self.queries as! WorkflowTriggerListCallbackUrlQueriesData?, forKey: .queries) }
   }
 }
 

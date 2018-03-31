@@ -10,7 +10,7 @@ internal struct ApiDefinitionInfoData : ApiDefinitionInfoProtocol {
         enum CodingKeys: String, CodingKey {case url = "url"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ApiDefinitionInfoData : ApiDefinitionInfoProtocol {
       if container.contains(.url) {
         self.url = try container.decode(String?.self, forKey: .url)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ApiDefinitionInfoData : ApiDefinitionInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.url != nil {try container.encode(self.url, forKey: .url)}
+    if self.url != nil { try container.encode(self.url, forKey: .url) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct B2BPartnerContentData : B2BPartnerContentProtocol {
         enum CodingKeys: String, CodingKey {case businessIdentities = "businessIdentities"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct B2BPartnerContentData : B2BPartnerContentProtocol {
       if container.contains(.businessIdentities) {
         self.businessIdentities = try container.decode([BusinessIdentityData?]?.self, forKey: .businessIdentities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct B2BPartnerContentData : B2BPartnerContentProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.businessIdentities != nil {try container.encode(self.businessIdentities as! [BusinessIdentityData?]?, forKey: .businessIdentities)}
+    if self.businessIdentities != nil { try container.encode(self.businessIdentities as! [BusinessIdentityData?]?, forKey: .businessIdentities) }
   }
 }
 

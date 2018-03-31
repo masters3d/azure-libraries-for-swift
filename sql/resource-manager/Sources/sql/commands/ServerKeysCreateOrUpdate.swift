@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServerKeysCreateOrUpdate  {
+public protocol ServerKeysCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var serverName : String { get set }
     var keyName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ServerKeyProtocol?  { get set }
+    var parameters :  ServerKeyProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ServerKeyProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ServerKeyProtocol?, Error?) -> Void)
 }
 
 extension Commands.ServerKeys {
@@ -36,7 +36,7 @@ extension Commands.ServerKeys {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{serverName}"] = String(describing: self.serverName)
             self.pathParameters["{keyName}"] = String(describing: self.keyName)
@@ -60,12 +60,12 @@ extension Commands.ServerKeys {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ServerKeyData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ServerKeyProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ServerKeyProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: ServerKeyData?, error: Error?) in
                 completionHandler(result, error)

@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationList  {
+public protocol ApplicationList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -11,7 +11,7 @@ public protocol ApplicationList  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ApplicationListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ApplicationListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Application {
@@ -40,7 +40,7 @@ extension Commands.Application {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             if self.maxResults != nil { queryParameters["maxresults"] = String(describing: self.maxResults!) }
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -62,15 +62,15 @@ extension Commands.Application {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ApplicationListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ApplicationListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

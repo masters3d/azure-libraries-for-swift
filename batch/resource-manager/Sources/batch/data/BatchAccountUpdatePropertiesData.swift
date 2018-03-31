@@ -10,7 +10,7 @@ internal struct BatchAccountUpdatePropertiesData : BatchAccountUpdatePropertiesP
         enum CodingKeys: String, CodingKey {case autoStorage = "autoStorage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct BatchAccountUpdatePropertiesData : BatchAccountUpdatePropertiesP
       if container.contains(.autoStorage) {
         self.autoStorage = try container.decode(AutoStorageBasePropertiesData?.self, forKey: .autoStorage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct BatchAccountUpdatePropertiesData : BatchAccountUpdatePropertiesP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.autoStorage != nil {try container.encode(self.autoStorage as! AutoStorageBasePropertiesData?, forKey: .autoStorage)}
+    if self.autoStorage != nil { try container.encode(self.autoStorage as! AutoStorageBasePropertiesData?, forKey: .autoStorage) }
   }
 }
 

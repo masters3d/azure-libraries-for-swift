@@ -12,7 +12,7 @@ internal struct DomainRecommendationSearchParametersData : DomainRecommendationS
         case maxDomainRecommendations = "maxDomainRecommendations"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct DomainRecommendationSearchParametersData : DomainRecommendationS
     if container.contains(.maxDomainRecommendations) {
         self.maxDomainRecommendations = try container.decode(Int32?.self, forKey: .maxDomainRecommendations)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct DomainRecommendationSearchParametersData : DomainRecommendationS
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keywords != nil {try container.encode(self.keywords, forKey: .keywords)}
-    if self.maxDomainRecommendations != nil {try container.encode(self.maxDomainRecommendations, forKey: .maxDomainRecommendations)}
+    if self.keywords != nil { try container.encode(self.keywords, forKey: .keywords) }
+    if self.maxDomainRecommendations != nil { try container.encode(self.maxDomainRecommendations, forKey: .maxDomainRecommendations) }
   }
 }
 

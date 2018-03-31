@@ -38,7 +38,7 @@ internal struct ConnectorMappingData : ConnectorMappingProtocol {
         case tenantId = "tenantId"
         }
 
-  public init(entityType: EntityTypesEnum, entityTypeName: String, mappingProperties: ConnectorMappingPropertiesProtocol)  {
+  public init(entityType: EntityTypesEnum, entityTypeName: String, mappingProperties: ConnectorMappingPropertiesProtocol) {
     self.entityType = entityType
     self.entityTypeName = entityTypeName
     self.mappingProperties = mappingProperties
@@ -85,7 +85,7 @@ internal struct ConnectorMappingData : ConnectorMappingProtocol {
     if container.contains(.tenantId) {
         self.tenantId = try container.decode(String?.self, forKey: .tenantId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -95,8 +95,8 @@ internal struct ConnectorMappingData : ConnectorMappingProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectorName != nil {try container.encode(self.connectorName, forKey: .connectorName)}
-    if self.connectorType != nil {try container.encode(self.connectorType, forKey: .connectorType)}
+    if self.connectorName != nil { try container.encode(self.connectorName, forKey: .connectorName) }
+    if self.connectorType != nil { try container.encode(self.connectorType, forKey: .connectorType) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTime), forKey: .created)
     }
@@ -105,17 +105,17 @@ internal struct ConnectorMappingData : ConnectorMappingProtocol {
     }
     try container.encode(self.entityType, forKey: .entityType)
     try container.encode(self.entityTypeName, forKey: .entityTypeName)
-    if self.connectorMappingName != nil {try container.encode(self.connectorMappingName, forKey: .connectorMappingName)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.dataFormatId != nil {try container.encode(self.dataFormatId, forKey: .dataFormatId)}
+    if self.connectorMappingName != nil { try container.encode(self.connectorMappingName, forKey: .connectorMappingName) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.dataFormatId != nil { try container.encode(self.dataFormatId, forKey: .dataFormatId) }
     try container.encode(self.mappingProperties as! ConnectorMappingPropertiesData, forKey: .mappingProperties)
     if self.nextRunTime != nil {
         try container.encode(DateConverter.toString(date: self.nextRunTime!, format: .dateTime), forKey: .nextRunTime)
     }
-    if self.runId != nil {try container.encode(self.runId, forKey: .runId)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.runId != nil { try container.encode(self.runId, forKey: .runId) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
   }
 }
 

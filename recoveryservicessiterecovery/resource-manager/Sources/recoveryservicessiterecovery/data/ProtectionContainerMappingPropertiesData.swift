@@ -30,7 +30,7 @@ internal struct ProtectionContainerMappingPropertiesData : ProtectionContainerMa
         case policyFriendlyName = "policyFriendlyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct ProtectionContainerMappingPropertiesData : ProtectionContainerMa
     if container.contains(.policyFriendlyName) {
         self.policyFriendlyName = try container.decode(String?.self, forKey: .policyFriendlyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,17 +78,17 @@ internal struct ProtectionContainerMappingPropertiesData : ProtectionContainerMa
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetProtectionContainerId != nil {try container.encode(self.targetProtectionContainerId, forKey: .targetProtectionContainerId)}
-    if self.targetProtectionContainerFriendlyName != nil {try container.encode(self.targetProtectionContainerFriendlyName, forKey: .targetProtectionContainerFriendlyName)}
-    if self.providerSpecificDetails != nil {try container.encode(self.providerSpecificDetails as! ProtectionContainerMappingProviderSpecificDetailsData?, forKey: .providerSpecificDetails)}
-    if self.health != nil {try container.encode(self.health, forKey: .health)}
-    if self.healthErrorDetails != nil {try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails)}
-    if self.policyId != nil {try container.encode(self.policyId, forKey: .policyId)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.sourceProtectionContainerFriendlyName != nil {try container.encode(self.sourceProtectionContainerFriendlyName, forKey: .sourceProtectionContainerFriendlyName)}
-    if self.sourceFabricFriendlyName != nil {try container.encode(self.sourceFabricFriendlyName, forKey: .sourceFabricFriendlyName)}
-    if self.targetFabricFriendlyName != nil {try container.encode(self.targetFabricFriendlyName, forKey: .targetFabricFriendlyName)}
-    if self.policyFriendlyName != nil {try container.encode(self.policyFriendlyName, forKey: .policyFriendlyName)}
+    if self.targetProtectionContainerId != nil { try container.encode(self.targetProtectionContainerId, forKey: .targetProtectionContainerId) }
+    if self.targetProtectionContainerFriendlyName != nil { try container.encode(self.targetProtectionContainerFriendlyName, forKey: .targetProtectionContainerFriendlyName) }
+    if self.providerSpecificDetails != nil { try container.encode(self.providerSpecificDetails as! ProtectionContainerMappingProviderSpecificDetailsData?, forKey: .providerSpecificDetails) }
+    if self.health != nil { try container.encode(self.health, forKey: .health) }
+    if self.healthErrorDetails != nil { try container.encode(self.healthErrorDetails as! [HealthErrorData?]?, forKey: .healthErrorDetails) }
+    if self.policyId != nil { try container.encode(self.policyId, forKey: .policyId) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.sourceProtectionContainerFriendlyName != nil { try container.encode(self.sourceProtectionContainerFriendlyName, forKey: .sourceProtectionContainerFriendlyName) }
+    if self.sourceFabricFriendlyName != nil { try container.encode(self.sourceFabricFriendlyName, forKey: .sourceFabricFriendlyName) }
+    if self.targetFabricFriendlyName != nil { try container.encode(self.targetFabricFriendlyName, forKey: .targetFabricFriendlyName) }
+    if self.policyFriendlyName != nil { try container.encode(self.policyFriendlyName, forKey: .policyFriendlyName) }
   }
 }
 

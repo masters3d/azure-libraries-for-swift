@@ -22,7 +22,7 @@ internal struct VirtualNetworkPropertiesFragmentData : VirtualNetworkPropertiesF
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct VirtualNetworkPropertiesFragmentData : VirtualNetworkPropertiesF
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct VirtualNetworkPropertiesFragmentData : VirtualNetworkPropertiesF
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allowedSubnets != nil {try container.encode(self.allowedSubnets as! [SubnetFragmentData?]?, forKey: .allowedSubnets)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.externalProviderResourceId != nil {try container.encode(self.externalProviderResourceId, forKey: .externalProviderResourceId)}
-    if self.externalSubnets != nil {try container.encode(self.externalSubnets as! [ExternalSubnetFragmentData?]?, forKey: .externalSubnets)}
-    if self.subnetOverrides != nil {try container.encode(self.subnetOverrides as! [SubnetOverrideFragmentData?]?, forKey: .subnetOverrides)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.allowedSubnets != nil { try container.encode(self.allowedSubnets as! [SubnetFragmentData?]?, forKey: .allowedSubnets) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.externalProviderResourceId != nil { try container.encode(self.externalProviderResourceId, forKey: .externalProviderResourceId) }
+    if self.externalSubnets != nil { try container.encode(self.externalSubnets as! [ExternalSubnetFragmentData?]?, forKey: .externalSubnets) }
+    if self.subnetOverrides != nil { try container.encode(self.subnetOverrides as! [SubnetOverrideFragmentData?]?, forKey: .subnetOverrides) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

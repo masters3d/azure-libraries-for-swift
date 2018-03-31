@@ -14,7 +14,7 @@ internal struct ElasticPoolPerDatabaseMaxDtuCapabilityData : ElasticPoolPerDatab
         case supportedPerDatabaseMinDtus = "supportedPerDatabaseMinDtus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ElasticPoolPerDatabaseMaxDtuCapabilityData : ElasticPoolPerDatab
     if container.contains(.supportedPerDatabaseMinDtus) {
         self.supportedPerDatabaseMinDtus = try container.decode([ElasticPoolPerDatabaseMinDtuCapabilityData?]?.self, forKey: .supportedPerDatabaseMinDtus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ElasticPoolPerDatabaseMaxDtuCapabilityData : ElasticPoolPerDatab
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportedPerDatabaseMinDtus != nil {try container.encode(self.supportedPerDatabaseMinDtus as! [ElasticPoolPerDatabaseMinDtuCapabilityData?]?, forKey: .supportedPerDatabaseMinDtus)}
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportedPerDatabaseMinDtus != nil { try container.encode(self.supportedPerDatabaseMinDtus as! [ElasticPoolPerDatabaseMinDtuCapabilityData?]?, forKey: .supportedPerDatabaseMinDtus) }
   }
 }
 

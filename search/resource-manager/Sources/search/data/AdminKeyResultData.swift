@@ -12,7 +12,7 @@ internal struct AdminKeyResultData : AdminKeyResultProtocol {
         case secondaryKey = "secondaryKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AdminKeyResultData : AdminKeyResultProtocol {
     if container.contains(.secondaryKey) {
         self.secondaryKey = try container.decode(String?.self, forKey: .secondaryKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AdminKeyResultData : AdminKeyResultProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primaryKey != nil {try container.encode(self.primaryKey, forKey: .primaryKey)}
-    if self.secondaryKey != nil {try container.encode(self.secondaryKey, forKey: .secondaryKey)}
+    if self.primaryKey != nil { try container.encode(self.primaryKey, forKey: .primaryKey) }
+    if self.secondaryKey != nil { try container.encode(self.secondaryKey, forKey: .secondaryKey) }
   }
 }
 

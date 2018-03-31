@@ -20,7 +20,7 @@ internal struct BackupScheduleData : BackupScheduleProtocol {
         case lastExecutionTime = "lastExecutionTime"
         }
 
-  public init(frequencyInterval: Int32, frequencyUnit: FrequencyUnitEnum, keepAtLeastOneBackup: Bool, retentionPeriodInDays: Int32)  {
+  public init(frequencyInterval: Int32, frequencyUnit: FrequencyUnitEnum, keepAtLeastOneBackup: Bool, retentionPeriodInDays: Int32) {
     self.frequencyInterval = frequencyInterval
     self.frequencyUnit = frequencyUnit
     self.keepAtLeastOneBackup = keepAtLeastOneBackup
@@ -39,7 +39,7 @@ internal struct BackupScheduleData : BackupScheduleProtocol {
     if container.contains(.lastExecutionTime) {
         self.lastExecutionTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastExecutionTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

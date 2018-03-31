@@ -16,7 +16,7 @@ internal struct AzureVmWorkloadProtectionPolicyData : AzureVmWorkloadProtectionP
         case subProtectionPolicy = "subProtectionPolicy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AzureVmWorkloadProtectionPolicyData : AzureVmWorkloadProtectionP
     if container.contains(.subProtectionPolicy) {
         self.subProtectionPolicy = try container.decode([SubProtectionPolicyData?]?.self, forKey: .subProtectionPolicy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AzureVmWorkloadProtectionPolicyData : AzureVmWorkloadProtectionP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.protectedItemsCount != nil {try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount)}
-    if self.workLoadType != nil {try container.encode(self.workLoadType, forKey: .workLoadType)}
-    if self.settings != nil {try container.encode(self.settings as! SettingsData?, forKey: .settings)}
-    if self.subProtectionPolicy != nil {try container.encode(self.subProtectionPolicy as! [SubProtectionPolicyData?]?, forKey: .subProtectionPolicy)}
+    if self.protectedItemsCount != nil { try container.encode(self.protectedItemsCount, forKey: .protectedItemsCount) }
+    if self.workLoadType != nil { try container.encode(self.workLoadType, forKey: .workLoadType) }
+    if self.settings != nil { try container.encode(self.settings as! SettingsData?, forKey: .settings) }
+    if self.subProtectionPolicy != nil { try container.encode(self.subProtectionPolicy as! [SubProtectionPolicyData?]?, forKey: .subProtectionPolicy) }
   }
 }
 

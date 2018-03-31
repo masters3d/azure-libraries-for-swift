@@ -26,7 +26,7 @@ internal struct IntegrationAccountAgreementPropertiesData : IntegrationAccountAg
         case content = "content"
         }
 
-  public init(agreementType: AgreementTypeEnum, hostPartner: String, guestPartner: String, hostIdentity: BusinessIdentityProtocol, guestIdentity: BusinessIdentityProtocol, content: AgreementContentProtocol)  {
+  public init(agreementType: AgreementTypeEnum, hostPartner: String, guestPartner: String, hostIdentity: BusinessIdentityProtocol, guestIdentity: BusinessIdentityProtocol, content: AgreementContentProtocol) {
     self.agreementType = agreementType
     self.hostPartner = hostPartner
     self.guestPartner = guestPartner
@@ -52,7 +52,7 @@ internal struct IntegrationAccountAgreementPropertiesData : IntegrationAccountAg
     self.hostIdentity = try container.decode(BusinessIdentityData.self, forKey: .hostIdentity)
     self.guestIdentity = try container.decode(BusinessIdentityData.self, forKey: .guestIdentity)
     self.content = try container.decode(AgreementContentData.self, forKey: .content)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,7 +68,7 @@ internal struct IntegrationAccountAgreementPropertiesData : IntegrationAccountAg
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
     try container.encode(self.agreementType, forKey: .agreementType)
     try container.encode(self.hostPartner, forKey: .hostPartner)
     try container.encode(self.guestPartner, forKey: .guestPartner)

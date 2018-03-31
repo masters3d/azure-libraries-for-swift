@@ -16,7 +16,7 @@ internal struct ContainerPropertiesInstanceViewData : ContainerPropertiesInstanc
         case events = "events"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ContainerPropertiesInstanceViewData : ContainerPropertiesInstanc
     if container.contains(.events) {
         self.events = try container.decode([EventData?]?.self, forKey: .events)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ContainerPropertiesInstanceViewData : ContainerPropertiesInstanc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.restartCount != nil {try container.encode(self.restartCount, forKey: .restartCount)}
-    if self.currentState != nil {try container.encode(self.currentState as! ContainerStateData?, forKey: .currentState)}
-    if self.previousState != nil {try container.encode(self.previousState as! ContainerStateData?, forKey: .previousState)}
-    if self.events != nil {try container.encode(self.events as! [EventData?]?, forKey: .events)}
+    if self.restartCount != nil { try container.encode(self.restartCount, forKey: .restartCount) }
+    if self.currentState != nil { try container.encode(self.currentState as! ContainerStateData?, forKey: .currentState) }
+    if self.previousState != nil { try container.encode(self.previousState as! ContainerStateData?, forKey: .previousState) }
+    if self.events != nil { try container.encode(self.events as! [EventData?]?, forKey: .events) }
   }
 }
 

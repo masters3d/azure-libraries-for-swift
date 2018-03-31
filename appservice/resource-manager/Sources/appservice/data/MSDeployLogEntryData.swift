@@ -14,7 +14,7 @@ internal struct MSDeployLogEntryData : MSDeployLogEntryProtocol {
         case message = "message"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct MSDeployLogEntryData : MSDeployLogEntryProtocol {
     if container.contains(.message) {
         self.message = try container.decode(String?.self, forKey: .message)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,8 +41,8 @@ internal struct MSDeployLogEntryData : MSDeployLogEntryProtocol {
     if self.time != nil {
         try container.encode(DateConverter.toString(date: self.time!, format: .dateTime), forKey: .time)
     }
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
   }
 }
 

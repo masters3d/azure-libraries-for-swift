@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CapabilitiesListByLocation  {
+public protocol CapabilitiesListByLocation {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var locationId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LocationCapabilitiesProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LocationCapabilitiesProtocol?, Error?) -> Void)
 }
 
 extension Commands.Capabilities {
@@ -26,7 +26,7 @@ extension Commands.Capabilities {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{locationId}"] = String(describing: self.locationId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -38,12 +38,12 @@ extension Commands.Capabilities {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LocationCapabilitiesData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LocationCapabilitiesProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LocationCapabilitiesProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: LocationCapabilitiesData?, error: Error?) in
                 completionHandler(result, error)

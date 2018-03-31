@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol CertificateUpdate  {
+public protocol CertificateUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var automationAccountName : String { get set }
     var certificateName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  CertificateUpdateParametersProtocol?  { get set }
+    var parameters :  CertificateUpdateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (CertificateProtocol?, Error?) -> Void)
 }
 
 extension Commands.Certificate {
@@ -35,7 +35,7 @@ extension Commands.Certificate {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{automationAccountName}"] = String(describing: self.automationAccountName)
             self.pathParameters["{certificateName}"] = String(describing: self.certificateName)
@@ -59,12 +59,12 @@ extension Commands.Certificate {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(CertificateData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (CertificateProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: CertificateData?, error: Error?) in
                 completionHandler(result, error)

@@ -12,7 +12,7 @@ internal struct AzureReachabilityReportLatencyInfoData : AzureReachabilityReport
         case score = "score"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AzureReachabilityReportLatencyInfoData : AzureReachabilityReport
     if container.contains(.score) {
         self.score = try container.decode(Int32?.self, forKey: .score)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct AzureReachabilityReportLatencyInfoData : AzureReachabilityReport
     if self.timeStamp != nil {
         try container.encode(DateConverter.toString(date: self.timeStamp!, format: .dateTime), forKey: .timeStamp)
     }
-    if self.score != nil {try container.encode(self.score, forKey: .score)}
+    if self.score != nil { try container.encode(self.score, forKey: .score) }
   }
 }
 

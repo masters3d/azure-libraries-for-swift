@@ -24,7 +24,7 @@ internal struct ConnectorMappingPropertiesData : ConnectorMappingPropertiesProto
         case completeOperation = "completeOperation"
         }
 
-  public init(errorManagement: ConnectorMappingErrorManagementProtocol, format: ConnectorMappingFormatProtocol, availability: ConnectorMappingAvailabilityProtocol, structure: [ConnectorMappingStructureProtocol], completeOperation: ConnectorMappingCompleteOperationProtocol)  {
+  public init(errorManagement: ConnectorMappingErrorManagementProtocol, format: ConnectorMappingFormatProtocol, availability: ConnectorMappingAvailabilityProtocol, structure: [ConnectorMappingStructureProtocol], completeOperation: ConnectorMappingCompleteOperationProtocol) {
     self.errorManagement = errorManagement
     self.format = format
     self.availability = availability
@@ -48,7 +48,7 @@ internal struct ConnectorMappingPropertiesData : ConnectorMappingPropertiesProto
     self.availability = try container.decode(ConnectorMappingAvailabilityData.self, forKey: .availability)
     self.structure = try container.decode([ConnectorMappingStructureData].self, forKey: .structure)
     self.completeOperation = try container.decode(ConnectorMappingCompleteOperationData.self, forKey: .completeOperation)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,9 +58,9 @@ internal struct ConnectorMappingPropertiesData : ConnectorMappingPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.folderPath != nil {try container.encode(self.folderPath, forKey: .folderPath)}
-    if self.fileFilter != nil {try container.encode(self.fileFilter, forKey: .fileFilter)}
-    if self.hasHeader != nil {try container.encode(self.hasHeader, forKey: .hasHeader)}
+    if self.folderPath != nil { try container.encode(self.folderPath, forKey: .folderPath) }
+    if self.fileFilter != nil { try container.encode(self.fileFilter, forKey: .fileFilter) }
+    if self.hasHeader != nil { try container.encode(self.hasHeader, forKey: .hasHeader) }
     try container.encode(self.errorManagement as! ConnectorMappingErrorManagementData, forKey: .errorManagement)
     try container.encode(self.format as! ConnectorMappingFormatData, forKey: .format)
     try container.encode(self.availability as! ConnectorMappingAvailabilityData, forKey: .availability)

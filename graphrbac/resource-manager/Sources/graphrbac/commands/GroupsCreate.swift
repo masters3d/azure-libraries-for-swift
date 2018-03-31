@@ -1,12 +1,12 @@
 import Foundation
 import azureSwiftRuntime
-public protocol GroupsCreate  {
+public protocol GroupsCreate {
     var headerParameters: [String: String] { get set }
     var tenantID : String { get set }
     var apiVersion : String { get set }
-    var parameters :  GroupCreateParametersProtocol?  { get set }
+    var parameters :  GroupCreateParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ADGroupProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ADGroupProtocol?, Error?) -> Void)
 }
 
 extension Commands.Groups {
@@ -26,7 +26,7 @@ extension Commands.Groups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{tenantID}"] = String(describing: self.tenantID)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             self.body = parameters
@@ -47,12 +47,12 @@ extension Commands.Groups {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ADGroupData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ADGroupProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ADGroupProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ADGroupData?, error: Error?) in
                 completionHandler(result, error)

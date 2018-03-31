@@ -14,7 +14,7 @@ internal struct ClusterUpgradeDeltaHealthPolicyData : ClusterUpgradeDeltaHealthP
         case maxPercentDeltaUnhealthyApplications = "maxPercentDeltaUnhealthyApplications"
         }
 
-  public init(maxPercentDeltaUnhealthyNodes: Int32, maxPercentUpgradeDomainDeltaUnhealthyNodes: Int32, maxPercentDeltaUnhealthyApplications: Int32)  {
+  public init(maxPercentDeltaUnhealthyNodes: Int32, maxPercentUpgradeDomainDeltaUnhealthyNodes: Int32, maxPercentDeltaUnhealthyApplications: Int32) {
     self.maxPercentDeltaUnhealthyNodes = maxPercentDeltaUnhealthyNodes
     self.maxPercentUpgradeDomainDeltaUnhealthyNodes = maxPercentUpgradeDomainDeltaUnhealthyNodes
     self.maxPercentDeltaUnhealthyApplications = maxPercentDeltaUnhealthyApplications
@@ -25,7 +25,7 @@ internal struct ClusterUpgradeDeltaHealthPolicyData : ClusterUpgradeDeltaHealthP
       self.maxPercentDeltaUnhealthyNodes = try container.decode(Int32.self, forKey: .maxPercentDeltaUnhealthyNodes)
     self.maxPercentUpgradeDomainDeltaUnhealthyNodes = try container.decode(Int32.self, forKey: .maxPercentUpgradeDomainDeltaUnhealthyNodes)
     self.maxPercentDeltaUnhealthyApplications = try container.decode(Int32.self, forKey: .maxPercentDeltaUnhealthyApplications)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

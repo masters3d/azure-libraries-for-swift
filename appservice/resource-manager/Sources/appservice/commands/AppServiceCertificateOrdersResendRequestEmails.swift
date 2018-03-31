@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol AppServiceCertificateOrdersResendRequestEmails  {
+public protocol AppServiceCertificateOrdersResendRequestEmails {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var certificateOrderName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var nameIdentifier :  NameIdentifierProtocol?  { get set }
+    var nameIdentifier :  NameIdentifierProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.AppServiceCertificateOrders {
@@ -32,7 +32,7 @@ extension Commands.AppServiceCertificateOrders {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{certificateOrderName}"] = String(describing: self.certificateOrderName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -51,7 +51,7 @@ extension Commands.AppServiceCertificateOrders {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsync(command: self) {
                 (error) in
                 completionHandler(error)

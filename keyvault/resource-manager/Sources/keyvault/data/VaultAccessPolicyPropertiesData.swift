@@ -10,14 +10,14 @@ internal struct VaultAccessPolicyPropertiesData : VaultAccessPolicyPropertiesPro
         enum CodingKeys: String, CodingKey {case accessPolicies = "accessPolicies"
         }
 
-  public init(accessPolicies: [AccessPolicyEntryProtocol])  {
+  public init(accessPolicies: [AccessPolicyEntryProtocol]) {
     self.accessPolicies = accessPolicies
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.accessPolicies = try container.decode([AccessPolicyEntryData].self, forKey: .accessPolicies)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

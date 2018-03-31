@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol EndpointsLoadContent  {
+public protocol EndpointsLoadContent {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var profileName : String { get set }
     var endpointName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var contentFilePaths :  LoadParametersProtocol?  { get set }
+    var contentFilePaths :  LoadParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.Endpoints {
@@ -37,7 +37,7 @@ extension Commands.Endpoints {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{profileName}"] = String(describing: self.profileName)
             self.pathParameters["{endpointName}"] = String(describing: self.endpointName)
@@ -57,7 +57,7 @@ extension Commands.Endpoints {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

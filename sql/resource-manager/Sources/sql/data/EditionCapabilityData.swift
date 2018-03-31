@@ -16,7 +16,7 @@ internal struct EditionCapabilityData : EditionCapabilityProtocol {
         case zoneRedundant = "zoneRedundant"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct EditionCapabilityData : EditionCapabilityProtocol {
     if container.contains(.zoneRedundant) {
         self.zoneRedundant = try container.decode(Bool?.self, forKey: .zoneRedundant)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct EditionCapabilityData : EditionCapabilityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.supportedServiceLevelObjectives != nil {try container.encode(self.supportedServiceLevelObjectives as! [ServiceObjectiveCapabilityData?]?, forKey: .supportedServiceLevelObjectives)}
-    if self.zoneRedundant != nil {try container.encode(self.zoneRedundant, forKey: .zoneRedundant)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.supportedServiceLevelObjectives != nil { try container.encode(self.supportedServiceLevelObjectives as! [ServiceObjectiveCapabilityData?]?, forKey: .supportedServiceLevelObjectives) }
+    if self.zoneRedundant != nil { try container.encode(self.zoneRedundant, forKey: .zoneRedundant) }
   }
 }
 

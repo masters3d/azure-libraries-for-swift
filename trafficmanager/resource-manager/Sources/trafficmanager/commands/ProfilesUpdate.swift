@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ProfilesUpdate  {
+public protocol ProfilesUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var profileName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  ProfileProtocol?  { get set }
+    var parameters :  ProfileProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ProfileProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ProfileProtocol?, Error?) -> Void)
 }
 
 extension Commands.Profiles {
@@ -32,7 +32,7 @@ extension Commands.Profiles {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{profileName}"] = String(describing: self.profileName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -55,12 +55,12 @@ extension Commands.Profiles {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ProfileData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ProfileProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ProfileProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ProfileData?, error: Error?) in
                 completionHandler(result, error)

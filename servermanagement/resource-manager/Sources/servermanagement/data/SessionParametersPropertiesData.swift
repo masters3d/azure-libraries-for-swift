@@ -18,7 +18,7 @@ internal struct SessionParametersPropertiesData : SessionParametersPropertiesPro
         case encryptionCertificateThumbprint = "EncryptionCertificateThumbprint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct SessionParametersPropertiesData : SessionParametersPropertiesPro
     if container.contains(.encryptionCertificateThumbprint) {
         self.encryptionCertificateThumbprint = try container.decode(String?.self, forKey: .encryptionCertificateThumbprint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct SessionParametersPropertiesData : SessionParametersPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.retentionPeriod != nil {try container.encode(self.retentionPeriod, forKey: .retentionPeriod)}
-    if self.credentialDataFormat != nil {try container.encode(self.credentialDataFormat, forKey: .credentialDataFormat)}
-    if self.encryptionCertificateThumbprint != nil {try container.encode(self.encryptionCertificateThumbprint, forKey: .encryptionCertificateThumbprint)}
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.retentionPeriod != nil { try container.encode(self.retentionPeriod, forKey: .retentionPeriod) }
+    if self.credentialDataFormat != nil { try container.encode(self.credentialDataFormat, forKey: .credentialDataFormat) }
+    if self.encryptionCertificateThumbprint != nil { try container.encode(self.encryptionCertificateThumbprint, forKey: .encryptionCertificateThumbprint) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ScaleSettingsData : ScaleSettingsProtocol {
         case autoScale = "autoScale"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ScaleSettingsData : ScaleSettingsProtocol {
     if container.contains(.autoScale) {
         self.autoScale = try container.decode(AutoScaleSettingsData?.self, forKey: .autoScale)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ScaleSettingsData : ScaleSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fixedScale != nil {try container.encode(self.fixedScale as! FixedScaleSettingsData?, forKey: .fixedScale)}
-    if self.autoScale != nil {try container.encode(self.autoScale as! AutoScaleSettingsData?, forKey: .autoScale)}
+    if self.fixedScale != nil { try container.encode(self.fixedScale as! FixedScaleSettingsData?, forKey: .fixedScale) }
+    if self.autoScale != nil { try container.encode(self.autoScale as! AutoScaleSettingsData?, forKey: .autoScale) }
   }
 }
 

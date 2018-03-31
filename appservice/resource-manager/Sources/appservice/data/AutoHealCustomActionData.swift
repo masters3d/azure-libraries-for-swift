@@ -12,7 +12,7 @@ internal struct AutoHealCustomActionData : AutoHealCustomActionProtocol {
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct AutoHealCustomActionData : AutoHealCustomActionProtocol {
     if container.contains(.parameters) {
         self.parameters = try container.decode(String?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct AutoHealCustomActionData : AutoHealCustomActionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.exe != nil {try container.encode(self.exe, forKey: .exe)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.exe != nil { try container.encode(self.exe, forKey: .exe) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
   }
 }
 

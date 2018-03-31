@@ -36,7 +36,7 @@ internal struct StorageAccountPropertiesData : StorageAccountPropertiesProtocol 
         case networkRuleSet = "networkAcls"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct StorageAccountPropertiesData : StorageAccountPropertiesProtocol 
     if container.contains(.networkRuleSet) {
         self.networkRuleSet = try container.decode(NetworkRuleSetData?.self, forKey: .networkRuleSet)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -93,24 +93,24 @@ internal struct StorageAccountPropertiesData : StorageAccountPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.primaryEndpoints != nil {try container.encode(self.primaryEndpoints as! EndpointsData?, forKey: .primaryEndpoints)}
-    if self.primaryLocation != nil {try container.encode(self.primaryLocation, forKey: .primaryLocation)}
-    if self.statusOfPrimary != nil {try container.encode(self.statusOfPrimary, forKey: .statusOfPrimary)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.primaryEndpoints != nil { try container.encode(self.primaryEndpoints as! EndpointsData?, forKey: .primaryEndpoints) }
+    if self.primaryLocation != nil { try container.encode(self.primaryLocation, forKey: .primaryLocation) }
+    if self.statusOfPrimary != nil { try container.encode(self.statusOfPrimary, forKey: .statusOfPrimary) }
     if self.lastGeoFailoverTime != nil {
         try container.encode(DateConverter.toString(date: self.lastGeoFailoverTime!, format: .dateTime), forKey: .lastGeoFailoverTime)
     }
-    if self.secondaryLocation != nil {try container.encode(self.secondaryLocation, forKey: .secondaryLocation)}
-    if self.statusOfSecondary != nil {try container.encode(self.statusOfSecondary, forKey: .statusOfSecondary)}
+    if self.secondaryLocation != nil { try container.encode(self.secondaryLocation, forKey: .secondaryLocation) }
+    if self.statusOfSecondary != nil { try container.encode(self.statusOfSecondary, forKey: .statusOfSecondary) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.customDomain != nil {try container.encode(self.customDomain as! CustomDomainData?, forKey: .customDomain)}
-    if self.secondaryEndpoints != nil {try container.encode(self.secondaryEndpoints as! EndpointsData?, forKey: .secondaryEndpoints)}
-    if self.encryption != nil {try container.encode(self.encryption as! EncryptionData?, forKey: .encryption)}
-    if self.accessTier != nil {try container.encode(self.accessTier, forKey: .accessTier)}
-    if self.enableHttpsTrafficOnly != nil {try container.encode(self.enableHttpsTrafficOnly, forKey: .enableHttpsTrafficOnly)}
-    if self.networkRuleSet != nil {try container.encode(self.networkRuleSet as! NetworkRuleSetData?, forKey: .networkRuleSet)}
+    if self.customDomain != nil { try container.encode(self.customDomain as! CustomDomainData?, forKey: .customDomain) }
+    if self.secondaryEndpoints != nil { try container.encode(self.secondaryEndpoints as! EndpointsData?, forKey: .secondaryEndpoints) }
+    if self.encryption != nil { try container.encode(self.encryption as! EncryptionData?, forKey: .encryption) }
+    if self.accessTier != nil { try container.encode(self.accessTier, forKey: .accessTier) }
+    if self.enableHttpsTrafficOnly != nil { try container.encode(self.enableHttpsTrafficOnly, forKey: .enableHttpsTrafficOnly) }
+    if self.networkRuleSet != nil { try container.encode(self.networkRuleSet as! NetworkRuleSetData?, forKey: .networkRuleSet) }
   }
 }
 

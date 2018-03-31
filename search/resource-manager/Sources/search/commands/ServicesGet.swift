@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ServicesGet  {
+public protocol ServicesGet {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var searchServiceName : String { get set }
@@ -8,7 +8,7 @@ public protocol ServicesGet  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SearchServiceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SearchServiceProtocol?, Error?) -> Void)
 }
 
 extension Commands.Services {
@@ -31,7 +31,7 @@ extension Commands.Services {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -45,12 +45,12 @@ extension Commands.Services {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SearchServiceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SearchServiceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SearchServiceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: SearchServiceData?, error: Error?) in
                 completionHandler(result, error)

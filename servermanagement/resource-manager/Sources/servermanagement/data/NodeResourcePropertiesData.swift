@@ -16,7 +16,7 @@ internal struct NodeResourcePropertiesData : NodeResourcePropertiesProtocol {
         case updated = "updated"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct NodeResourcePropertiesData : NodeResourcePropertiesProtocol {
     if container.contains(.updated) {
         self.updated = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .updated)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,8 +43,8 @@ internal struct NodeResourcePropertiesData : NodeResourcePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.gatewayId != nil {try container.encode(self.gatewayId, forKey: .gatewayId)}
-    if self.connectionName != nil {try container.encode(self.connectionName, forKey: .connectionName)}
+    if self.gatewayId != nil { try container.encode(self.gatewayId, forKey: .gatewayId) }
+    if self.connectionName != nil { try container.encode(self.connectionName, forKey: .connectionName) }
     if self.created != nil {
         try container.encode(DateConverter.toString(date: self.created!, format: .dateTime), forKey: .created)
     }

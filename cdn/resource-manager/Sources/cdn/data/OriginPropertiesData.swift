@@ -18,7 +18,7 @@ internal struct OriginPropertiesData : OriginPropertiesProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(hostName: String)  {
+  public init(hostName: String) {
     self.hostName = hostName
   }
 
@@ -37,7 +37,7 @@ internal struct OriginPropertiesData : OriginPropertiesProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,10 +48,10 @@ internal struct OriginPropertiesData : OriginPropertiesProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.hostName, forKey: .hostName)
-    if self.httpPort != nil {try container.encode(self.httpPort, forKey: .httpPort)}
-    if self.httpsPort != nil {try container.encode(self.httpsPort, forKey: .httpsPort)}
-    if self.resourceState != nil {try container.encode(self.resourceState, forKey: .resourceState)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.httpPort != nil { try container.encode(self.httpPort, forKey: .httpPort) }
+    if self.httpsPort != nil { try container.encode(self.httpsPort, forKey: .httpsPort) }
+    if self.resourceState != nil { try container.encode(self.resourceState, forKey: .resourceState) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

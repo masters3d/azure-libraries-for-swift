@@ -38,7 +38,7 @@ internal struct TaskAddParameterData : TaskAddParameterProtocol {
         case authenticationTokenSettings = "authenticationTokenSettings"
         }
 
-  public init(id: String, commandLine: String)  {
+  public init(id: String, commandLine: String) {
     self.id = id
     self.commandLine = commandLine
   }
@@ -86,7 +86,7 @@ internal struct TaskAddParameterData : TaskAddParameterProtocol {
     if container.contains(.authenticationTokenSettings) {
         self.authenticationTokenSettings = try container.decode(AuthenticationTokenSettingsData?.self, forKey: .authenticationTokenSettings)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -97,20 +97,20 @@ internal struct TaskAddParameterData : TaskAddParameterProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
     try container.encode(self.commandLine, forKey: .commandLine)
-    if self.containerSettings != nil {try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings)}
-    if self.exitConditions != nil {try container.encode(self.exitConditions as! ExitConditionsData?, forKey: .exitConditions)}
-    if self.resourceFiles != nil {try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles)}
-    if self.outputFiles != nil {try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles)}
-    if self.environmentSettings != nil {try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings)}
-    if self.affinityInfo != nil {try container.encode(self.affinityInfo as! AffinityInformationData?, forKey: .affinityInfo)}
-    if self.constraints != nil {try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints)}
-    if self.userIdentity != nil {try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity)}
-    if self.multiInstanceSettings != nil {try container.encode(self.multiInstanceSettings as! MultiInstanceSettingsData?, forKey: .multiInstanceSettings)}
-    if self.dependsOn != nil {try container.encode(self.dependsOn as! TaskDependenciesData?, forKey: .dependsOn)}
-    if self.applicationPackageReferences != nil {try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences)}
-    if self.authenticationTokenSettings != nil {try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings)}
+    if self.containerSettings != nil { try container.encode(self.containerSettings as! TaskContainerSettingsData?, forKey: .containerSettings) }
+    if self.exitConditions != nil { try container.encode(self.exitConditions as! ExitConditionsData?, forKey: .exitConditions) }
+    if self.resourceFiles != nil { try container.encode(self.resourceFiles as! [ResourceFileData?]?, forKey: .resourceFiles) }
+    if self.outputFiles != nil { try container.encode(self.outputFiles as! [OutputFileData?]?, forKey: .outputFiles) }
+    if self.environmentSettings != nil { try container.encode(self.environmentSettings as! [EnvironmentSettingData?]?, forKey: .environmentSettings) }
+    if self.affinityInfo != nil { try container.encode(self.affinityInfo as! AffinityInformationData?, forKey: .affinityInfo) }
+    if self.constraints != nil { try container.encode(self.constraints as! TaskConstraintsData?, forKey: .constraints) }
+    if self.userIdentity != nil { try container.encode(self.userIdentity as! UserIdentityData?, forKey: .userIdentity) }
+    if self.multiInstanceSettings != nil { try container.encode(self.multiInstanceSettings as! MultiInstanceSettingsData?, forKey: .multiInstanceSettings) }
+    if self.dependsOn != nil { try container.encode(self.dependsOn as! TaskDependenciesData?, forKey: .dependsOn) }
+    if self.applicationPackageReferences != nil { try container.encode(self.applicationPackageReferences as! [ApplicationPackageReferenceData?]?, forKey: .applicationPackageReferences) }
+    if self.authenticationTokenSettings != nil { try container.encode(self.authenticationTokenSettings as! AuthenticationTokenSettingsData?, forKey: .authenticationTokenSettings) }
   }
 }
 

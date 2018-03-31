@@ -28,7 +28,7 @@ internal struct StampCapacityData : StampCapacityProtocol {
         case siteMode = "siteMode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct StampCapacityData : StampCapacityProtocol {
     if container.contains(.siteMode) {
         self.siteMode = try container.decode(String?.self, forKey: .siteMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct StampCapacityData : StampCapacityProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.availableCapacity != nil {try container.encode(self.availableCapacity, forKey: .availableCapacity)}
-    if self.totalCapacity != nil {try container.encode(self.totalCapacity, forKey: .totalCapacity)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.computeMode != nil {try container.encode(self.computeMode, forKey: .computeMode)}
-    if self.workerSize != nil {try container.encode(self.workerSize, forKey: .workerSize)}
-    if self.workerSizeId != nil {try container.encode(self.workerSizeId, forKey: .workerSizeId)}
-    if self.excludeFromCapacityAllocation != nil {try container.encode(self.excludeFromCapacityAllocation, forKey: .excludeFromCapacityAllocation)}
-    if self.isApplicableForAllComputeModes != nil {try container.encode(self.isApplicableForAllComputeModes, forKey: .isApplicableForAllComputeModes)}
-    if self.siteMode != nil {try container.encode(self.siteMode, forKey: .siteMode)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.availableCapacity != nil { try container.encode(self.availableCapacity, forKey: .availableCapacity) }
+    if self.totalCapacity != nil { try container.encode(self.totalCapacity, forKey: .totalCapacity) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.computeMode != nil { try container.encode(self.computeMode, forKey: .computeMode) }
+    if self.workerSize != nil { try container.encode(self.workerSize, forKey: .workerSize) }
+    if self.workerSizeId != nil { try container.encode(self.workerSizeId, forKey: .workerSizeId) }
+    if self.excludeFromCapacityAllocation != nil { try container.encode(self.excludeFromCapacityAllocation, forKey: .excludeFromCapacityAllocation) }
+    if self.isApplicableForAllComputeModes != nil { try container.encode(self.isApplicableForAllComputeModes, forKey: .isApplicableForAllComputeModes) }
+    if self.siteMode != nil { try container.encode(self.siteMode, forKey: .siteMode) }
   }
 }
 

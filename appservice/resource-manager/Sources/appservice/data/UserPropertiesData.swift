@@ -18,7 +18,7 @@ internal struct UserPropertiesData : UserPropertiesProtocol {
         case publishingPasswordHashSalt = "publishingPasswordHashSalt"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct UserPropertiesData : UserPropertiesProtocol {
     if container.contains(.publishingPasswordHashSalt) {
         self.publishingPasswordHashSalt = try container.decode(String?.self, forKey: .publishingPasswordHashSalt)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct UserPropertiesData : UserPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.publishingUserName != nil {try container.encode(self.publishingUserName, forKey: .publishingUserName)}
-    if self.publishingPassword != nil {try container.encode(self.publishingPassword, forKey: .publishingPassword)}
-    if self.publishingPasswordHash != nil {try container.encode(self.publishingPasswordHash, forKey: .publishingPasswordHash)}
-    if self.publishingPasswordHashSalt != nil {try container.encode(self.publishingPasswordHashSalt, forKey: .publishingPasswordHashSalt)}
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.publishingUserName != nil { try container.encode(self.publishingUserName, forKey: .publishingUserName) }
+    if self.publishingPassword != nil { try container.encode(self.publishingPassword, forKey: .publishingPassword) }
+    if self.publishingPasswordHash != nil { try container.encode(self.publishingPasswordHash, forKey: .publishingPasswordHash) }
+    if self.publishingPasswordHashSalt != nil { try container.encode(self.publishingPasswordHashSalt, forKey: .publishingPasswordHashSalt) }
   }
 }
 

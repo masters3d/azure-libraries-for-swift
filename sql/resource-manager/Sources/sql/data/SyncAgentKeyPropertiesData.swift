@@ -10,7 +10,7 @@ internal struct SyncAgentKeyPropertiesData : SyncAgentKeyPropertiesProtocol {
         enum CodingKeys: String, CodingKey {case syncAgentKey = "syncAgentKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SyncAgentKeyPropertiesData : SyncAgentKeyPropertiesProtocol {
       if container.contains(.syncAgentKey) {
         self.syncAgentKey = try container.decode(String?.self, forKey: .syncAgentKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SyncAgentKeyPropertiesData : SyncAgentKeyPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.syncAgentKey != nil {try container.encode(self.syncAgentKey, forKey: .syncAgentKey)}
+    if self.syncAgentKey != nil { try container.encode(self.syncAgentKey, forKey: .syncAgentKey) }
   }
 }
 

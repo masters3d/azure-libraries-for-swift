@@ -22,7 +22,7 @@ internal struct DscMetaConfigurationData : DscMetaConfigurationProtocol {
         case allowModuleOverwrite = "allowModuleOverwrite"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct DscMetaConfigurationData : DscMetaConfigurationProtocol {
     if container.contains(.allowModuleOverwrite) {
         self.allowModuleOverwrite = try container.decode(Bool?.self, forKey: .allowModuleOverwrite)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct DscMetaConfigurationData : DscMetaConfigurationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.configurationModeFrequencyMins != nil {try container.encode(self.configurationModeFrequencyMins, forKey: .configurationModeFrequencyMins)}
-    if self.rebootNodeIfNeeded != nil {try container.encode(self.rebootNodeIfNeeded, forKey: .rebootNodeIfNeeded)}
-    if self.configurationMode != nil {try container.encode(self.configurationMode, forKey: .configurationMode)}
-    if self.actionAfterReboot != nil {try container.encode(self.actionAfterReboot, forKey: .actionAfterReboot)}
-    if self.certificateId != nil {try container.encode(self.certificateId, forKey: .certificateId)}
-    if self.refreshFrequencyMins != nil {try container.encode(self.refreshFrequencyMins, forKey: .refreshFrequencyMins)}
-    if self.allowModuleOverwrite != nil {try container.encode(self.allowModuleOverwrite, forKey: .allowModuleOverwrite)}
+    if self.configurationModeFrequencyMins != nil { try container.encode(self.configurationModeFrequencyMins, forKey: .configurationModeFrequencyMins) }
+    if self.rebootNodeIfNeeded != nil { try container.encode(self.rebootNodeIfNeeded, forKey: .rebootNodeIfNeeded) }
+    if self.configurationMode != nil { try container.encode(self.configurationMode, forKey: .configurationMode) }
+    if self.actionAfterReboot != nil { try container.encode(self.actionAfterReboot, forKey: .actionAfterReboot) }
+    if self.certificateId != nil { try container.encode(self.certificateId, forKey: .certificateId) }
+    if self.refreshFrequencyMins != nil { try container.encode(self.refreshFrequencyMins, forKey: .refreshFrequencyMins) }
+    if self.allowModuleOverwrite != nil { try container.encode(self.allowModuleOverwrite, forKey: .allowModuleOverwrite) }
   }
 }
 

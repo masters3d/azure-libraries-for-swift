@@ -10,14 +10,14 @@ internal struct JobPreparationData : JobPreparationProtocol {
         enum CodingKeys: String, CodingKey {case commandLine = "commandLine"
         }
 
-  public init(commandLine: String)  {
+  public init(commandLine: String) {
     self.commandLine = commandLine
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.commandLine = try container.decode(String.self, forKey: .commandLine)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

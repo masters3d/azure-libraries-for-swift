@@ -18,7 +18,7 @@ internal struct MabContainerExtendedInfoData : MabContainerExtendedInfoProtocol 
         case lastBackupStatus = "lastBackupStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct MabContainerExtendedInfoData : MabContainerExtendedInfoProtocol 
     if container.contains(.lastBackupStatus) {
         self.lastBackupStatus = try container.decode(String?.self, forKey: .lastBackupStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -51,10 +51,10 @@ internal struct MabContainerExtendedInfoData : MabContainerExtendedInfoProtocol 
     if self.lastRefreshedAt != nil {
         try container.encode(DateConverter.toString(date: self.lastRefreshedAt!, format: .dateTime), forKey: .lastRefreshedAt)
     }
-    if self.backupItemType != nil {try container.encode(self.backupItemType, forKey: .backupItemType)}
-    if self.backupItems != nil {try container.encode(self.backupItems as! [String]?, forKey: .backupItems)}
-    if self.policyName != nil {try container.encode(self.policyName, forKey: .policyName)}
-    if self.lastBackupStatus != nil {try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus)}
+    if self.backupItemType != nil { try container.encode(self.backupItemType, forKey: .backupItemType) }
+    if self.backupItems != nil { try container.encode(self.backupItems as! [String]?, forKey: .backupItems) }
+    if self.policyName != nil { try container.encode(self.policyName, forKey: .policyName) }
+    if self.lastBackupStatus != nil { try container.encode(self.lastBackupStatus, forKey: .lastBackupStatus) }
   }
 }
 

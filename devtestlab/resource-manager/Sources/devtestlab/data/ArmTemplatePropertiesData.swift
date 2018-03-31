@@ -22,7 +22,7 @@ internal struct ArmTemplatePropertiesData : ArmTemplatePropertiesProtocol {
         case parametersValueFilesInfo = "parametersValueFilesInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ArmTemplatePropertiesData : ArmTemplatePropertiesProtocol {
     if container.contains(.parametersValueFilesInfo) {
         self.parametersValueFilesInfo = try container.decode([ParametersValueFileInfoData?]?.self, forKey: .parametersValueFilesInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,15 +58,15 @@ internal struct ArmTemplatePropertiesData : ArmTemplatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.publisher != nil {try container.encode(self.publisher, forKey: .publisher)}
-    if self.icon != nil {try container.encode(self.icon, forKey: .icon)}
-    if self.contents != nil {try container.encode(self.contents, forKey: .contents)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.publisher != nil { try container.encode(self.publisher, forKey: .publisher) }
+    if self.icon != nil { try container.encode(self.icon, forKey: .icon) }
+    if self.contents != nil { try container.encode(self.contents, forKey: .contents) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.parametersValueFilesInfo != nil {try container.encode(self.parametersValueFilesInfo as! [ParametersValueFileInfoData?]?, forKey: .parametersValueFilesInfo)}
+    if self.parametersValueFilesInfo != nil { try container.encode(self.parametersValueFilesInfo as! [ParametersValueFileInfoData?]?, forKey: .parametersValueFilesInfo) }
   }
 }
 

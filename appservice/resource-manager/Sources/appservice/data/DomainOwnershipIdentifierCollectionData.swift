@@ -12,7 +12,7 @@ internal struct DomainOwnershipIdentifierCollectionData : DomainOwnershipIdentif
         case _nextLink = "nextLink"
         }
 
-  public init(value: [DomainOwnershipIdentifierProtocol])  {
+  public init(value: [DomainOwnershipIdentifierProtocol]) {
     self.value = value
   }
 
@@ -22,7 +22,7 @@ internal struct DomainOwnershipIdentifierCollectionData : DomainOwnershipIdentif
     if container.contains(._nextLink) {
         self._nextLink = try container.decode(String?.self, forKey: ._nextLink)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,7 +33,7 @@ internal struct DomainOwnershipIdentifierCollectionData : DomainOwnershipIdentif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.value as! [DomainOwnershipIdentifierData], forKey: .value)
-    if self._nextLink != nil {try container.encode(self._nextLink, forKey: ._nextLink)}
+    if self._nextLink != nil { try container.encode(self._nextLink, forKey: ._nextLink) }
   }
 }
 

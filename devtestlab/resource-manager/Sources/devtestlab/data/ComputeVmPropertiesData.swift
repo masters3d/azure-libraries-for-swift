@@ -22,7 +22,7 @@ internal struct ComputeVmPropertiesData : ComputeVmPropertiesProtocol {
         case dataDisks = "dataDisks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ComputeVmPropertiesData : ComputeVmPropertiesProtocol {
     if container.contains(.dataDisks) {
         self.dataDisks = try container.decode([ComputeDataDiskData?]?.self, forKey: .dataDisks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ComputeVmPropertiesData : ComputeVmPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.statuses != nil {try container.encode(self.statuses as! [ComputeVmInstanceViewStatusData?]?, forKey: .statuses)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.vmSize != nil {try container.encode(self.vmSize, forKey: .vmSize)}
-    if self.networkInterfaceId != nil {try container.encode(self.networkInterfaceId, forKey: .networkInterfaceId)}
-    if self.osDiskId != nil {try container.encode(self.osDiskId, forKey: .osDiskId)}
-    if self.dataDiskIds != nil {try container.encode(self.dataDiskIds as! [String]?, forKey: .dataDiskIds)}
-    if self.dataDisks != nil {try container.encode(self.dataDisks as! [ComputeDataDiskData?]?, forKey: .dataDisks)}
+    if self.statuses != nil { try container.encode(self.statuses as! [ComputeVmInstanceViewStatusData?]?, forKey: .statuses) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.vmSize != nil { try container.encode(self.vmSize, forKey: .vmSize) }
+    if self.networkInterfaceId != nil { try container.encode(self.networkInterfaceId, forKey: .networkInterfaceId) }
+    if self.osDiskId != nil { try container.encode(self.osDiskId, forKey: .osDiskId) }
+    if self.dataDiskIds != nil { try container.encode(self.dataDiskIds as! [String]?, forKey: .dataDiskIds) }
+    if self.dataDisks != nil { try container.encode(self.dataDisks as! [ComputeDataDiskData?]?, forKey: .dataDisks) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct RegistryUpdateParametersData : RegistryUpdateParametersProtocol 
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RegistryUpdateParametersData : RegistryUpdateParametersProtocol 
     if container.contains(.properties) {
         self.properties = try container.decode(RegistryPropertiesUpdateParametersData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RegistryUpdateParametersData : RegistryUpdateParametersProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.sku != nil {try container.encode(self.sku as! SkuData?, forKey: .sku)}
-    if self.properties != nil {try container.encode(self.properties as! RegistryPropertiesUpdateParametersData?, forKey: .properties)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.sku != nil { try container.encode(self.sku as! SkuData?, forKey: .sku) }
+    if self.properties != nil { try container.encode(self.properties as! RegistryPropertiesUpdateParametersData?, forKey: .properties) }
   }
 }
 

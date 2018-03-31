@@ -28,7 +28,7 @@ internal struct GatewayProfileData : GatewayProfileProtocol {
         case statusBlobSignature = "statusBlobSignature"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct GatewayProfileData : GatewayProfileProtocol {
     if container.contains(.statusBlobSignature) {
         self.statusBlobSignature = try container.decode(String?.self, forKey: .statusBlobSignature)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,16 +73,16 @@ internal struct GatewayProfileData : GatewayProfileProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataPlaneServiceBaseAddress != nil {try container.encode(self.dataPlaneServiceBaseAddress, forKey: .dataPlaneServiceBaseAddress)}
-    if self.gatewayId != nil {try container.encode(self.gatewayId, forKey: .gatewayId)}
-    if self.environment != nil {try container.encode(self.environment, forKey: .environment)}
-    if self.upgradeManifestUrl != nil {try container.encode(self.upgradeManifestUrl, forKey: .upgradeManifestUrl)}
-    if self.messagingNamespace != nil {try container.encode(self.messagingNamespace, forKey: .messagingNamespace)}
-    if self.messagingAccount != nil {try container.encode(self.messagingAccount, forKey: .messagingAccount)}
-    if self.messagingKey != nil {try container.encode(self.messagingKey, forKey: .messagingKey)}
-    if self.requestQueue != nil {try container.encode(self.requestQueue, forKey: .requestQueue)}
-    if self.responseTopic != nil {try container.encode(self.responseTopic, forKey: .responseTopic)}
-    if self.statusBlobSignature != nil {try container.encode(self.statusBlobSignature, forKey: .statusBlobSignature)}
+    if self.dataPlaneServiceBaseAddress != nil { try container.encode(self.dataPlaneServiceBaseAddress, forKey: .dataPlaneServiceBaseAddress) }
+    if self.gatewayId != nil { try container.encode(self.gatewayId, forKey: .gatewayId) }
+    if self.environment != nil { try container.encode(self.environment, forKey: .environment) }
+    if self.upgradeManifestUrl != nil { try container.encode(self.upgradeManifestUrl, forKey: .upgradeManifestUrl) }
+    if self.messagingNamespace != nil { try container.encode(self.messagingNamespace, forKey: .messagingNamespace) }
+    if self.messagingAccount != nil { try container.encode(self.messagingAccount, forKey: .messagingAccount) }
+    if self.messagingKey != nil { try container.encode(self.messagingKey, forKey: .messagingKey) }
+    if self.requestQueue != nil { try container.encode(self.requestQueue, forKey: .requestQueue) }
+    if self.responseTopic != nil { try container.encode(self.responseTopic, forKey: .responseTopic) }
+    if self.statusBlobSignature != nil { try container.encode(self.statusBlobSignature, forKey: .statusBlobSignature) }
   }
 }
 

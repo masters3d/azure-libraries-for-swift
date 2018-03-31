@@ -10,14 +10,14 @@ internal struct TaskSchedulingPolicyData : TaskSchedulingPolicyProtocol {
         enum CodingKeys: String, CodingKey {case nodeFillType = "nodeFillType"
         }
 
-  public init(nodeFillType: ComputeNodeFillTypeEnum)  {
+  public init(nodeFillType: ComputeNodeFillTypeEnum) {
     self.nodeFillType = nodeFillType
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.nodeFillType = try container.decode(ComputeNodeFillTypeEnum.self, forKey: .nodeFillType)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

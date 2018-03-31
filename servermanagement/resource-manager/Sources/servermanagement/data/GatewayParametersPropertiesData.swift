@@ -10,7 +10,7 @@ internal struct GatewayParametersPropertiesData : GatewayParametersPropertiesPro
         enum CodingKeys: String, CodingKey {case upgradeMode = "upgradeMode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GatewayParametersPropertiesData : GatewayParametersPropertiesPro
       if container.contains(.upgradeMode) {
         self.upgradeMode = try container.decode(UpgradeModeEnum?.self, forKey: .upgradeMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GatewayParametersPropertiesData : GatewayParametersPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.upgradeMode != nil {try container.encode(self.upgradeMode, forKey: .upgradeMode)}
+    if self.upgradeMode != nil { try container.encode(self.upgradeMode, forKey: .upgradeMode) }
   }
 }
 

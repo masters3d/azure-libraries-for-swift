@@ -22,7 +22,7 @@ internal struct EdifactValidationOverrideData : EdifactValidationOverrideProtoco
         case trimLeadingAndTrailingSpacesAndZeroes = "trimLeadingAndTrailingSpacesAndZeroes"
         }
 
-  public init(messageId: String, enforceCharacterSet: Bool, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum, trimLeadingAndTrailingSpacesAndZeroes: Bool)  {
+  public init(messageId: String, enforceCharacterSet: Bool, validateEdiTypes: Bool, validateXsdTypes: Bool, allowLeadingAndTrailingSpacesAndZeroes: Bool, trailingSeparatorPolicy: TrailingSeparatorPolicyEnum, trimLeadingAndTrailingSpacesAndZeroes: Bool) {
     self.messageId = messageId
     self.enforceCharacterSet = enforceCharacterSet
     self.validateEdiTypes = validateEdiTypes
@@ -41,7 +41,7 @@ internal struct EdifactValidationOverrideData : EdifactValidationOverrideProtoco
     self.allowLeadingAndTrailingSpacesAndZeroes = try container.decode(Bool.self, forKey: .allowLeadingAndTrailingSpacesAndZeroes)
     self.trailingSeparatorPolicy = try container.decode(TrailingSeparatorPolicyEnum.self, forKey: .trailingSeparatorPolicy)
     self.trimLeadingAndTrailingSpacesAndZeroes = try container.decode(Bool.self, forKey: .trimLeadingAndTrailingSpacesAndZeroes)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

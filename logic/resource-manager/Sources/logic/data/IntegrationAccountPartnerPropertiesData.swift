@@ -18,7 +18,7 @@ internal struct IntegrationAccountPartnerPropertiesData : IntegrationAccountPart
         case content = "content"
         }
 
-  public init(partnerType: PartnerTypeEnum, content: PartnerContentProtocol)  {
+  public init(partnerType: PartnerTypeEnum, content: PartnerContentProtocol) {
     self.partnerType = partnerType
     self.content = content
   }
@@ -36,7 +36,7 @@ internal struct IntegrationAccountPartnerPropertiesData : IntegrationAccountPart
         self.metadata = try container.decode([String: String?]?.self, forKey: .metadata)
     }
     self.content = try container.decode(PartnerContentData.self, forKey: .content)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,7 +53,7 @@ internal struct IntegrationAccountPartnerPropertiesData : IntegrationAccountPart
     if self.changedTime != nil {
         try container.encode(DateConverter.toString(date: self.changedTime!, format: .dateTime), forKey: .changedTime)
     }
-    if self.metadata != nil {try container.encode(self.metadata, forKey: .metadata)}
+    if self.metadata != nil { try container.encode(self.metadata, forKey: .metadata) }
     try container.encode(self.content as! PartnerContentData, forKey: .content)
   }
 }

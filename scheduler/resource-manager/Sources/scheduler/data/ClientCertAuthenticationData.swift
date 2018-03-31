@@ -18,7 +18,7 @@ internal struct ClientCertAuthenticationData : ClientCertAuthenticationProtocol,
         case certificateSubjectName = "certificateSubjectName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ClientCertAuthenticationData : ClientCertAuthenticationProtocol,
     if container.contains(.certificateSubjectName) {
         self.certificateSubjectName = try container.decode(String?.self, forKey: .certificateSubjectName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,13 +48,13 @@ internal struct ClientCertAuthenticationData : ClientCertAuthenticationProtocol,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.pfx != nil {try container.encode(self.pfx, forKey: .pfx)}
-    if self.certificateThumbprint != nil {try container.encode(self.certificateThumbprint, forKey: .certificateThumbprint)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.pfx != nil { try container.encode(self.pfx, forKey: .pfx) }
+    if self.certificateThumbprint != nil { try container.encode(self.certificateThumbprint, forKey: .certificateThumbprint) }
     if self.certificateExpirationDate != nil {
         try container.encode(DateConverter.toString(date: self.certificateExpirationDate!, format: .dateTime), forKey: .certificateExpirationDate)
     }
-    if self.certificateSubjectName != nil {try container.encode(self.certificateSubjectName, forKey: .certificateSubjectName)}
+    if self.certificateSubjectName != nil { try container.encode(self.certificateSubjectName, forKey: .certificateSubjectName) }
   }
 }
 

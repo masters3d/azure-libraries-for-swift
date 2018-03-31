@@ -12,7 +12,7 @@ internal struct JobConstraintsData : JobConstraintsProtocol {
         case maxTaskRetryCount = "maxTaskRetryCount"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct JobConstraintsData : JobConstraintsProtocol {
     if container.contains(.maxTaskRetryCount) {
         self.maxTaskRetryCount = try container.decode(Int32?.self, forKey: .maxTaskRetryCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct JobConstraintsData : JobConstraintsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.maxWallClockTime != nil {try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime)}
-    if self.maxTaskRetryCount != nil {try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount)}
+    if self.maxWallClockTime != nil { try container.encode(self.maxWallClockTime, forKey: .maxWallClockTime) }
+    if self.maxTaskRetryCount != nil { try container.encode(self.maxTaskRetryCount, forKey: .maxTaskRetryCount) }
   }
 }
 

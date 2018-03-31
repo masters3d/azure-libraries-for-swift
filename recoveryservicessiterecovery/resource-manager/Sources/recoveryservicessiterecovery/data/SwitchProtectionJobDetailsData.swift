@@ -12,7 +12,7 @@ internal struct SwitchProtectionJobDetailsData : SwitchProtectionJobDetailsProto
         case newReplicationProtectedItemId = "newReplicationProtectedItemId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SwitchProtectionJobDetailsData : SwitchProtectionJobDetailsProto
     if container.contains(.newReplicationProtectedItemId) {
         self.newReplicationProtectedItemId = try container.decode(String?.self, forKey: .newReplicationProtectedItemId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SwitchProtectionJobDetailsData : SwitchProtectionJobDetailsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.affectedObjectDetails != nil {try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails)}
-    if self.newReplicationProtectedItemId != nil {try container.encode(self.newReplicationProtectedItemId, forKey: .newReplicationProtectedItemId)}
+    if self.affectedObjectDetails != nil { try container.encode(self.affectedObjectDetails, forKey: .affectedObjectDetails) }
+    if self.newReplicationProtectedItemId != nil { try container.encode(self.newReplicationProtectedItemId, forKey: .newReplicationProtectedItemId) }
   }
 }
 

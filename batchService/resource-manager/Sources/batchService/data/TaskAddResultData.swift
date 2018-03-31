@@ -20,7 +20,7 @@ internal struct TaskAddResultData : TaskAddResultProtocol {
         case error = "error"
         }
 
-  public init(status: TaskAddStatusEnum, taskId: String)  {
+  public init(status: TaskAddStatusEnum, taskId: String) {
     self.status = status
     self.taskId = taskId
   }
@@ -41,7 +41,7 @@ internal struct TaskAddResultData : TaskAddResultProtocol {
     if container.contains(.error) {
         self.error = try container.decode(BatchErrorData?.self, forKey: .error)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct TaskAddResultData : TaskAddResultProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.status, forKey: .status)
     try container.encode(self.taskId, forKey: .taskId)
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTime), forKey: .lastModified)
     }
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.error != nil {try container.encode(self.error as! BatchErrorData?, forKey: .error)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.error != nil { try container.encode(self.error as! BatchErrorData?, forKey: .error) }
   }
 }
 

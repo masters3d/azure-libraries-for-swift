@@ -16,7 +16,7 @@ internal struct NetworkFeaturesPropertiesData : NetworkFeaturesPropertiesProtoco
         case hybridConnectionsV2 = "hybridConnectionsV2"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct NetworkFeaturesPropertiesData : NetworkFeaturesPropertiesProtoco
     if container.contains(.hybridConnectionsV2) {
         self.hybridConnectionsV2 = try container.decode([HybridConnectionData?]?.self, forKey: .hybridConnectionsV2)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct NetworkFeaturesPropertiesData : NetworkFeaturesPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualNetworkName != nil {try container.encode(self.virtualNetworkName, forKey: .virtualNetworkName)}
-    if self.virtualNetworkConnection != nil {try container.encode(self.virtualNetworkConnection as! VnetInfoData?, forKey: .virtualNetworkConnection)}
-    if self.hybridConnections != nil {try container.encode(self.hybridConnections as! [RelayServiceConnectionEntityData?]?, forKey: .hybridConnections)}
-    if self.hybridConnectionsV2 != nil {try container.encode(self.hybridConnectionsV2 as! [HybridConnectionData?]?, forKey: .hybridConnectionsV2)}
+    if self.virtualNetworkName != nil { try container.encode(self.virtualNetworkName, forKey: .virtualNetworkName) }
+    if self.virtualNetworkConnection != nil { try container.encode(self.virtualNetworkConnection as! VnetInfoData?, forKey: .virtualNetworkConnection) }
+    if self.hybridConnections != nil { try container.encode(self.hybridConnections as! [RelayServiceConnectionEntityData?]?, forKey: .hybridConnections) }
+    if self.hybridConnectionsV2 != nil { try container.encode(self.hybridConnectionsV2 as! [HybridConnectionData?]?, forKey: .hybridConnectionsV2) }
   }
 }
 

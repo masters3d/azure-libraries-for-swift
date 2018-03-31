@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LocalNetworkGatewaysDelete  {
+public protocol LocalNetworkGatewaysDelete {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var localNetworkGatewayName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (Error?) -> Void) -> Void;
+    completionHandler: @escaping (Error?) -> Void)
 }
 
 extension Commands.LocalNetworkGateways {
@@ -30,7 +30,7 @@ extension Commands.LocalNetworkGateways {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{localNetworkGatewayName}"] = String(describing: self.localNetworkGatewayName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -39,7 +39,7 @@ extension Commands.LocalNetworkGateways {
         }
 
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (Error?) -> Void) -> Void {
+            completionHandler: @escaping (Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (error) in
                 completionHandler(error)

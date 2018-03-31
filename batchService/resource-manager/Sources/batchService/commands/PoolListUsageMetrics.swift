@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PoolListUsageMetrics  {
+public protocol PoolListUsageMetrics {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -14,7 +14,7 @@ public protocol PoolListUsageMetrics  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PoolListUsageMetricsResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PoolListUsageMetricsResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Pool {
@@ -47,7 +47,7 @@ extension Commands.Pool {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             if self.startTime != nil { queryParameters["starttime"] = String(describing: self.startTime!) }
             if self.endTime != nil { queryParameters["endtime"] = String(describing: self.endTime!) }
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
@@ -72,15 +72,15 @@ extension Commands.Pool {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PoolListUsageMetricsResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PoolListUsageMetricsResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

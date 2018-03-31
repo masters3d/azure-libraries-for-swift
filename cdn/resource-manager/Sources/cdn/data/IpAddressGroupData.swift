@@ -14,7 +14,7 @@ internal struct IpAddressGroupData : IpAddressGroupProtocol {
         case ipv6Addresses = "ipv6Addresses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct IpAddressGroupData : IpAddressGroupProtocol {
     if container.contains(.ipv6Addresses) {
         self.ipv6Addresses = try container.decode([CidrIpAddressData?]?.self, forKey: .ipv6Addresses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct IpAddressGroupData : IpAddressGroupProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.deliveryRegion != nil {try container.encode(self.deliveryRegion, forKey: .deliveryRegion)}
-    if self.ipv4Addresses != nil {try container.encode(self.ipv4Addresses as! [CidrIpAddressData?]?, forKey: .ipv4Addresses)}
-    if self.ipv6Addresses != nil {try container.encode(self.ipv6Addresses as! [CidrIpAddressData?]?, forKey: .ipv6Addresses)}
+    if self.deliveryRegion != nil { try container.encode(self.deliveryRegion, forKey: .deliveryRegion) }
+    if self.ipv4Addresses != nil { try container.encode(self.ipv4Addresses as! [CidrIpAddressData?]?, forKey: .ipv4Addresses) }
+    if self.ipv6Addresses != nil { try container.encode(self.ipv6Addresses as! [CidrIpAddressData?]?, forKey: .ipv6Addresses) }
   }
 }
 

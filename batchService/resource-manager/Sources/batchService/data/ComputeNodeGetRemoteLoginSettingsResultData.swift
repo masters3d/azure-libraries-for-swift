@@ -12,7 +12,7 @@ internal struct ComputeNodeGetRemoteLoginSettingsResultData : ComputeNodeGetRemo
         case remoteLoginPort = "remoteLoginPort"
         }
 
-  public init(remoteLoginIPAddress: String, remoteLoginPort: Int32)  {
+  public init(remoteLoginIPAddress: String, remoteLoginPort: Int32) {
     self.remoteLoginIPAddress = remoteLoginIPAddress
     self.remoteLoginPort = remoteLoginPort
   }
@@ -21,7 +21,7 @@ internal struct ComputeNodeGetRemoteLoginSettingsResultData : ComputeNodeGetRemo
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.remoteLoginIPAddress = try container.decode(String.self, forKey: .remoteLoginIPAddress)
     self.remoteLoginPort = try container.decode(Int32.self, forKey: .remoteLoginPort)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

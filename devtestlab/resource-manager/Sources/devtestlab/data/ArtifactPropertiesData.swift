@@ -24,7 +24,7 @@ internal struct ArtifactPropertiesData : ArtifactPropertiesProtocol {
         case createdDate = "createdDate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ArtifactPropertiesData : ArtifactPropertiesProtocol {
     if container.contains(.createdDate) {
         self.createdDate = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .createdDate)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,13 +63,13 @@ internal struct ArtifactPropertiesData : ArtifactPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.title != nil {try container.encode(self.title, forKey: .title)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.publisher != nil {try container.encode(self.publisher, forKey: .publisher)}
-    if self.filePath != nil {try container.encode(self.filePath, forKey: .filePath)}
-    if self.icon != nil {try container.encode(self.icon, forKey: .icon)}
-    if self.targetOsType != nil {try container.encode(self.targetOsType, forKey: .targetOsType)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
+    if self.title != nil { try container.encode(self.title, forKey: .title) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.publisher != nil { try container.encode(self.publisher, forKey: .publisher) }
+    if self.filePath != nil { try container.encode(self.filePath, forKey: .filePath) }
+    if self.icon != nil { try container.encode(self.icon, forKey: .icon) }
+    if self.targetOsType != nil { try container.encode(self.targetOsType, forKey: .targetOsType) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }

@@ -1,10 +1,10 @@
 import Foundation
 import azureSwiftRuntime
-public protocol OperationsList  {
+public protocol OperationsList {
     var headerParameters: [String: String] { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (OperationListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (OperationListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Operations {
@@ -20,7 +20,7 @@ extension Commands.Operations {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
 
         }
@@ -30,12 +30,12 @@ extension Commands.Operations {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(OperationListResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (OperationListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (OperationListResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: OperationListResultData?, error: Error?) in
                 completionHandler(result, error)

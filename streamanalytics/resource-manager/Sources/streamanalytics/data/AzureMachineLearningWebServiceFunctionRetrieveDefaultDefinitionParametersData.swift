@@ -10,7 +10,7 @@ internal struct AzureMachineLearningWebServiceFunctionRetrieveDefaultDefinitionP
         enum CodingKeys: String, CodingKey {case bindingRetrievalProperties = "bindingRetrievalProperties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AzureMachineLearningWebServiceFunctionRetrieveDefaultDefinitionP
       if container.contains(.bindingRetrievalProperties) {
         self.bindingRetrievalProperties = try container.decode(AzureMachineLearningWebServiceFunctionBindingRetrievalPropertiesData?.self, forKey: .bindingRetrievalProperties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AzureMachineLearningWebServiceFunctionRetrieveDefaultDefinitionP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.bindingRetrievalProperties != nil {try container.encode(self.bindingRetrievalProperties as! AzureMachineLearningWebServiceFunctionBindingRetrievalPropertiesData?, forKey: .bindingRetrievalProperties)}
+    if self.bindingRetrievalProperties != nil { try container.encode(self.bindingRetrievalProperties as! AzureMachineLearningWebServiceFunctionBindingRetrievalPropertiesData?, forKey: .bindingRetrievalProperties) }
   }
 }
 

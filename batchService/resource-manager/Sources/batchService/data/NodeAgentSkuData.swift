@@ -14,7 +14,7 @@ internal struct NodeAgentSkuData : NodeAgentSkuProtocol {
         case osType = "osType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct NodeAgentSkuData : NodeAgentSkuProtocol {
     if container.contains(.osType) {
         self.osType = try container.decode(OSTypeEnum?.self, forKey: .osType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct NodeAgentSkuData : NodeAgentSkuProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.verifiedImageReferences != nil {try container.encode(self.verifiedImageReferences as! [ImageReferenceData?]?, forKey: .verifiedImageReferences)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.verifiedImageReferences != nil { try container.encode(self.verifiedImageReferences as! [ImageReferenceData?]?, forKey: .verifiedImageReferences) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
   }
 }
 

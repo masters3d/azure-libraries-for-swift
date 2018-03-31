@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworksListUsage  {
+public protocol VirtualNetworksListUsage {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -9,7 +9,7 @@ public protocol VirtualNetworksListUsage  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (VirtualNetworkListUsageResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (VirtualNetworkListUsageResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworks {
@@ -37,7 +37,7 @@ extension Commands.VirtualNetworks {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkName}"] = String(describing: self.virtualNetworkName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -57,15 +57,15 @@ extension Commands.VirtualNetworks {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (VirtualNetworkListUsageResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (VirtualNetworkListUsageResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

@@ -16,7 +16,7 @@ internal struct AbnormalTimePeriodData : AbnormalTimePeriodProtocol {
         case solutions = "solutions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AbnormalTimePeriodData : AbnormalTimePeriodProtocol {
     if container.contains(.solutions) {
         self.solutions = try container.decode([SolutionData?]?.self, forKey: .solutions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct AbnormalTimePeriodData : AbnormalTimePeriodProtocol {
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.events != nil {try container.encode(self.events as! [DetectorAbnormalTimePeriodData?]?, forKey: .events)}
-    if self.solutions != nil {try container.encode(self.solutions as! [SolutionData?]?, forKey: .solutions)}
+    if self.events != nil { try container.encode(self.events as! [DetectorAbnormalTimePeriodData?]?, forKey: .events) }
+    if self.solutions != nil { try container.encode(self.solutions as! [SolutionData?]?, forKey: .solutions) }
   }
 }
 

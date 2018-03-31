@@ -28,7 +28,7 @@ internal struct FileGetFromTaskHeadersData : FileGetFromTaskHeadersProtocol {
         case contentLength = "Content-Length"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ internal struct FileGetFromTaskHeadersData : FileGetFromTaskHeadersProtocol {
     if container.contains(.contentLength) {
         self.contentLength = try container.decode(Int64?.self, forKey: .contentLength)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -73,20 +73,20 @@ internal struct FileGetFromTaskHeadersData : FileGetFromTaskHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientRequestId != nil {try container.encode(self.clientRequestId, forKey: .clientRequestId)}
-    if self.requestId != nil {try container.encode(self.requestId, forKey: .requestId)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.clientRequestId != nil { try container.encode(self.clientRequestId, forKey: .clientRequestId) }
+    if self.requestId != nil { try container.encode(self.requestId, forKey: .requestId) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTimeRfc1123), forKey: .lastModified)
     }
     if self.ocpCreationTime != nil {
         try container.encode(DateConverter.toString(date: self.ocpCreationTime!, format: .dateTimeRfc1123), forKey: .ocpCreationTime)
     }
-    if self.ocpBatchFileIsdirectory != nil {try container.encode(self.ocpBatchFileIsdirectory, forKey: .ocpBatchFileIsdirectory)}
-    if self.ocpBatchFileUrl != nil {try container.encode(self.ocpBatchFileUrl, forKey: .ocpBatchFileUrl)}
-    if self.ocpBatchFileMode != nil {try container.encode(self.ocpBatchFileMode, forKey: .ocpBatchFileMode)}
-    if self.contentType != nil {try container.encode(self.contentType, forKey: .contentType)}
-    if self.contentLength != nil {try container.encode(self.contentLength, forKey: .contentLength)}
+    if self.ocpBatchFileIsdirectory != nil { try container.encode(self.ocpBatchFileIsdirectory, forKey: .ocpBatchFileIsdirectory) }
+    if self.ocpBatchFileUrl != nil { try container.encode(self.ocpBatchFileUrl, forKey: .ocpBatchFileUrl) }
+    if self.ocpBatchFileMode != nil { try container.encode(self.ocpBatchFileMode, forKey: .ocpBatchFileMode) }
+    if self.contentType != nil { try container.encode(self.contentType, forKey: .contentType) }
+    if self.contentLength != nil { try container.encode(self.contentLength, forKey: .contentLength) }
   }
 }
 

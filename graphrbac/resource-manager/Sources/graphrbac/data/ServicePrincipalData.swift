@@ -20,7 +20,7 @@ internal struct ServicePrincipalData : ServicePrincipalProtocol, DirectoryObject
         case servicePrincipalNames = "servicePrincipalNames"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct ServicePrincipalData : ServicePrincipalProtocol, DirectoryObject
     if container.contains(.servicePrincipalNames) {
         self.servicePrincipalNames = try container.decode([String]?.self, forKey: .servicePrincipalNames)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,14 +53,14 @@ internal struct ServicePrincipalData : ServicePrincipalProtocol, DirectoryObject
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
     if self.deletionTimestamp != nil {
         try container.encode(DateConverter.toString(date: self.deletionTimestamp!, format: .dateTime), forKey: .deletionTimestamp)
     }
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.appId != nil {try container.encode(self.appId, forKey: .appId)}
-    if self.servicePrincipalNames != nil {try container.encode(self.servicePrincipalNames as! [String]?, forKey: .servicePrincipalNames)}
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.appId != nil { try container.encode(self.appId, forKey: .appId) }
+    if self.servicePrincipalNames != nil { try container.encode(self.servicePrincipalNames as! [String]?, forKey: .servicePrincipalNames) }
   }
 }
 

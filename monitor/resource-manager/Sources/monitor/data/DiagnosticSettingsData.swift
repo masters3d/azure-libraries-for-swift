@@ -20,7 +20,7 @@ internal struct DiagnosticSettingsData : DiagnosticSettingsProtocol {
         case workspaceId = "workspaceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DiagnosticSettingsData : DiagnosticSettingsProtocol {
     if container.contains(.workspaceId) {
         self.workspaceId = try container.decode(String?.self, forKey: .workspaceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct DiagnosticSettingsData : DiagnosticSettingsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.eventHubAuthorizationRuleId != nil {try container.encode(self.eventHubAuthorizationRuleId, forKey: .eventHubAuthorizationRuleId)}
-    if self.eventHubName != nil {try container.encode(self.eventHubName, forKey: .eventHubName)}
-    if self.metrics != nil {try container.encode(self.metrics as! [MetricSettingsData?]?, forKey: .metrics)}
-    if self.logs != nil {try container.encode(self.logs as! [LogSettingsData?]?, forKey: .logs)}
-    if self.workspaceId != nil {try container.encode(self.workspaceId, forKey: .workspaceId)}
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.eventHubAuthorizationRuleId != nil { try container.encode(self.eventHubAuthorizationRuleId, forKey: .eventHubAuthorizationRuleId) }
+    if self.eventHubName != nil { try container.encode(self.eventHubName, forKey: .eventHubName) }
+    if self.metrics != nil { try container.encode(self.metrics as! [MetricSettingsData?]?, forKey: .metrics) }
+    if self.logs != nil { try container.encode(self.logs as! [LogSettingsData?]?, forKey: .logs) }
+    if self.workspaceId != nil { try container.encode(self.workspaceId, forKey: .workspaceId) }
   }
 }
 

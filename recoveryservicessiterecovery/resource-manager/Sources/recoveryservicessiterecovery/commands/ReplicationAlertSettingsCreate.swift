@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationAlertSettingsCreate  {
+public protocol ReplicationAlertSettingsCreate {
     var headerParameters: [String: String] { get set }
     var resourceName : String { get set }
     var resourceGroupName : String { get set }
     var subscriptionId : String { get set }
     var alertSettingName : String { get set }
     var apiVersion : String { get set }
-    var request :  ConfigureAlertRequestProtocol?  { get set }
+    var request :  ConfigureAlertRequestProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (AlertProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (AlertProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationAlertSettings {
@@ -35,7 +35,7 @@ extension Commands.ReplicationAlertSettings {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -59,12 +59,12 @@ extension Commands.ReplicationAlertSettings {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(AlertData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (AlertProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (AlertProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: AlertData?, error: Error?) in
                 completionHandler(result, error)

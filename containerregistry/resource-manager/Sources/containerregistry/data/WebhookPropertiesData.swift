@@ -16,7 +16,7 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init(actions: [WebhookActionEnum])  {
+  public init(actions: [WebhookActionEnum]) {
     self.actions = actions
   }
 
@@ -32,7 +32,7 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(ProvisioningStateEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -42,10 +42,10 @@ internal struct WebhookPropertiesData : WebhookPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.scope != nil {try container.encode(self.scope, forKey: .scope)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.scope != nil { try container.encode(self.scope, forKey: .scope) }
     try container.encode(self.actions as! [WebhookActionEnum], forKey: .actions)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

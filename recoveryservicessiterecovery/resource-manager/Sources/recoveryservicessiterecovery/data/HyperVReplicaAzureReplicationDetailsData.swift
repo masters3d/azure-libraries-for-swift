@@ -56,7 +56,7 @@ internal struct HyperVReplicaAzureReplicationDetailsData : HyperVReplicaAzureRep
         case licenseType = "licenseType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -133,7 +133,7 @@ internal struct HyperVReplicaAzureReplicationDetailsData : HyperVReplicaAzureRep
     if container.contains(.licenseType) {
         self.licenseType = try container.decode(String?.self, forKey: .licenseType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -143,34 +143,34 @@ internal struct HyperVReplicaAzureReplicationDetailsData : HyperVReplicaAzureRep
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azureVmDiskDetails != nil {try container.encode(self.azureVmDiskDetails as! [AzureVmDiskDetailsData?]?, forKey: .azureVmDiskDetails)}
-    if self.recoveryAzureVmName != nil {try container.encode(self.recoveryAzureVmName, forKey: .recoveryAzureVmName)}
-    if self.recoveryAzureVMSize != nil {try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize)}
-    if self.recoveryAzureStorageAccount != nil {try container.encode(self.recoveryAzureStorageAccount, forKey: .recoveryAzureStorageAccount)}
-    if self.recoveryAzureLogStorageAccountId != nil {try container.encode(self.recoveryAzureLogStorageAccountId, forKey: .recoveryAzureLogStorageAccountId)}
+    if self.azureVmDiskDetails != nil { try container.encode(self.azureVmDiskDetails as! [AzureVmDiskDetailsData?]?, forKey: .azureVmDiskDetails) }
+    if self.recoveryAzureVmName != nil { try container.encode(self.recoveryAzureVmName, forKey: .recoveryAzureVmName) }
+    if self.recoveryAzureVMSize != nil { try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize) }
+    if self.recoveryAzureStorageAccount != nil { try container.encode(self.recoveryAzureStorageAccount, forKey: .recoveryAzureStorageAccount) }
+    if self.recoveryAzureLogStorageAccountId != nil { try container.encode(self.recoveryAzureLogStorageAccountId, forKey: .recoveryAzureLogStorageAccountId) }
     if self.lastReplicatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastReplicatedTime!, format: .dateTime), forKey: .lastReplicatedTime)
     }
-    if self.rpoInSeconds != nil {try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds)}
+    if self.rpoInSeconds != nil { try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds) }
     if self.lastRpoCalculatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRpoCalculatedTime!, format: .dateTime), forKey: .lastRpoCalculatedTime)
     }
-    if self.vmId != nil {try container.encode(self.vmId, forKey: .vmId)}
-    if self.vmProtectionState != nil {try container.encode(self.vmProtectionState, forKey: .vmProtectionState)}
-    if self.vmProtectionStateDescription != nil {try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription)}
-    if self.initialReplicationDetails != nil {try container.encode(self.initialReplicationDetails as! InitialReplicationDetailsData?, forKey: .initialReplicationDetails)}
-    if self.vmNics != nil {try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics)}
-    if self.selectedRecoveryAzureNetworkId != nil {try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId)}
-    if self.selectedSourceNicId != nil {try container.encode(self.selectedSourceNicId, forKey: .selectedSourceNicId)}
-    if self.encryption != nil {try container.encode(self.encryption, forKey: .encryption)}
-    if self.oSDetails != nil {try container.encode(self.oSDetails as! OSDetailsData?, forKey: .oSDetails)}
-    if self.sourceVmRamSizeInMB != nil {try container.encode(self.sourceVmRamSizeInMB, forKey: .sourceVmRamSizeInMB)}
-    if self.sourceVmCpuCount != nil {try container.encode(self.sourceVmCpuCount, forKey: .sourceVmCpuCount)}
-    if self.enableRdpOnTargetOption != nil {try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption)}
-    if self.recoveryAzureResourceGroupId != nil {try container.encode(self.recoveryAzureResourceGroupId, forKey: .recoveryAzureResourceGroupId)}
-    if self.recoveryAvailabilitySetId != nil {try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId)}
-    if self.useManagedDisks != nil {try container.encode(self.useManagedDisks, forKey: .useManagedDisks)}
-    if self.licenseType != nil {try container.encode(self.licenseType, forKey: .licenseType)}
+    if self.vmId != nil { try container.encode(self.vmId, forKey: .vmId) }
+    if self.vmProtectionState != nil { try container.encode(self.vmProtectionState, forKey: .vmProtectionState) }
+    if self.vmProtectionStateDescription != nil { try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription) }
+    if self.initialReplicationDetails != nil { try container.encode(self.initialReplicationDetails as! InitialReplicationDetailsData?, forKey: .initialReplicationDetails) }
+    if self.vmNics != nil { try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics) }
+    if self.selectedRecoveryAzureNetworkId != nil { try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId) }
+    if self.selectedSourceNicId != nil { try container.encode(self.selectedSourceNicId, forKey: .selectedSourceNicId) }
+    if self.encryption != nil { try container.encode(self.encryption, forKey: .encryption) }
+    if self.oSDetails != nil { try container.encode(self.oSDetails as! OSDetailsData?, forKey: .oSDetails) }
+    if self.sourceVmRamSizeInMB != nil { try container.encode(self.sourceVmRamSizeInMB, forKey: .sourceVmRamSizeInMB) }
+    if self.sourceVmCpuCount != nil { try container.encode(self.sourceVmCpuCount, forKey: .sourceVmCpuCount) }
+    if self.enableRdpOnTargetOption != nil { try container.encode(self.enableRdpOnTargetOption, forKey: .enableRdpOnTargetOption) }
+    if self.recoveryAzureResourceGroupId != nil { try container.encode(self.recoveryAzureResourceGroupId, forKey: .recoveryAzureResourceGroupId) }
+    if self.recoveryAvailabilitySetId != nil { try container.encode(self.recoveryAvailabilitySetId, forKey: .recoveryAvailabilitySetId) }
+    if self.useManagedDisks != nil { try container.encode(self.useManagedDisks, forKey: .useManagedDisks) }
+    if self.licenseType != nil { try container.encode(self.licenseType, forKey: .licenseType) }
   }
 }
 

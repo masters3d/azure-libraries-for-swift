@@ -12,7 +12,7 @@ internal struct ExportJobsOperationResultInfoData : ExportJobsOperationResultInf
         case blobSasKey = "blobSasKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ExportJobsOperationResultInfoData : ExportJobsOperationResultInf
     if container.contains(.blobSasKey) {
         self.blobSasKey = try container.decode(String?.self, forKey: .blobSasKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ExportJobsOperationResultInfoData : ExportJobsOperationResultInf
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.blobUrl != nil {try container.encode(self.blobUrl, forKey: .blobUrl)}
-    if self.blobSasKey != nil {try container.encode(self.blobSasKey, forKey: .blobSasKey)}
+    if self.blobUrl != nil { try container.encode(self.blobUrl, forKey: .blobUrl) }
+    if self.blobSasKey != nil { try container.encode(self.blobSasKey, forKey: .blobSasKey) }
   }
 }
 

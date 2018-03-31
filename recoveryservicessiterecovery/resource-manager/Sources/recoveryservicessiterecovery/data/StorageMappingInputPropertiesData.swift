@@ -10,7 +10,7 @@ internal struct StorageMappingInputPropertiesData : StorageMappingInputPropertie
         enum CodingKeys: String, CodingKey {case targetStorageClassificationId = "targetStorageClassificationId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct StorageMappingInputPropertiesData : StorageMappingInputPropertie
       if container.contains(.targetStorageClassificationId) {
         self.targetStorageClassificationId = try container.decode(String?.self, forKey: .targetStorageClassificationId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct StorageMappingInputPropertiesData : StorageMappingInputPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.targetStorageClassificationId != nil {try container.encode(self.targetStorageClassificationId, forKey: .targetStorageClassificationId)}
+    if self.targetStorageClassificationId != nil { try container.encode(self.targetStorageClassificationId, forKey: .targetStorageClassificationId) }
   }
 }
 

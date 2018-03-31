@@ -16,7 +16,7 @@ internal struct WebhookUpdatePropertiesData : WebhookUpdatePropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct WebhookUpdatePropertiesData : WebhookUpdatePropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct WebhookUpdatePropertiesData : WebhookUpdatePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isEnabled != nil {try container.encode(self.isEnabled, forKey: .isEnabled)}
-    if self.runOn != nil {try container.encode(self.runOn, forKey: .runOn)}
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.isEnabled != nil { try container.encode(self.isEnabled, forKey: .isEnabled) }
+    if self.runOn != nil { try container.encode(self.runOn, forKey: .runOn) }
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

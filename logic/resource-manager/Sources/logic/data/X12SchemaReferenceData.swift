@@ -16,7 +16,7 @@ internal struct X12SchemaReferenceData : X12SchemaReferenceProtocol {
         case schemaName = "schemaName"
         }
 
-  public init(messageId: String, schemaVersion: String, schemaName: String)  {
+  public init(messageId: String, schemaVersion: String, schemaName: String) {
     self.messageId = messageId
     self.schemaVersion = schemaVersion
     self.schemaName = schemaName
@@ -30,7 +30,7 @@ internal struct X12SchemaReferenceData : X12SchemaReferenceProtocol {
     }
     self.schemaVersion = try container.decode(String.self, forKey: .schemaVersion)
     self.schemaName = try container.decode(String.self, forKey: .schemaName)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -41,7 +41,7 @@ internal struct X12SchemaReferenceData : X12SchemaReferenceProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.messageId, forKey: .messageId)
-    if self.senderApplicationId != nil {try container.encode(self.senderApplicationId, forKey: .senderApplicationId)}
+    if self.senderApplicationId != nil { try container.encode(self.senderApplicationId, forKey: .senderApplicationId) }
     try container.encode(self.schemaVersion, forKey: .schemaVersion)
     try container.encode(self.schemaName, forKey: .schemaName)
   }

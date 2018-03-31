@@ -12,7 +12,7 @@ internal struct SourceData : SourceProtocol {
         case instanceID = "instanceID"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SourceData : SourceProtocol {
     if container.contains(.instanceID) {
         self.instanceID = try container.decode(String?.self, forKey: .instanceID)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct SourceData : SourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.addr != nil {try container.encode(self.addr, forKey: .addr)}
-    if self.instanceID != nil {try container.encode(self.instanceID, forKey: .instanceID)}
+    if self.addr != nil { try container.encode(self.addr, forKey: .addr) }
+    if self.instanceID != nil { try container.encode(self.instanceID, forKey: .instanceID) }
   }
 }
 

@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol DomainsCreateOrUpdate  {
+public protocol DomainsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var domainName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var domain :  DomainProtocol?  { get set }
+    var domain :  DomainProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (DomainProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (DomainProtocol?, Error?) -> Void)
 }
 
 extension Commands.Domains {
@@ -33,7 +33,7 @@ extension Commands.Domains {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{domainName}"] = String(describing: self.domainName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -56,12 +56,12 @@ extension Commands.Domains {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(DomainData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (DomainProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (DomainProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: DomainData?, error: Error?) in
                 completionHandler(result, error)

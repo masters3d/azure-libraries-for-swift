@@ -22,7 +22,7 @@ internal struct ApplicationGatewayRequestRoutingRulePropertiesFormatData : Appli
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ApplicationGatewayRequestRoutingRulePropertiesFormatData : Appli
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ApplicationGatewayRequestRoutingRulePropertiesFormatData : Appli
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ruleType != nil {try container.encode(self.ruleType, forKey: .ruleType)}
-    if self.backendAddressPool != nil {try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool)}
-    if self.backendHttpSettings != nil {try container.encode(self.backendHttpSettings as! SubResourceData?, forKey: .backendHttpSettings)}
-    if self.httpListener != nil {try container.encode(self.httpListener as! SubResourceData?, forKey: .httpListener)}
-    if self.urlPathMap != nil {try container.encode(self.urlPathMap as! SubResourceData?, forKey: .urlPathMap)}
-    if self.redirectConfiguration != nil {try container.encode(self.redirectConfiguration as! SubResourceData?, forKey: .redirectConfiguration)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.ruleType != nil { try container.encode(self.ruleType, forKey: .ruleType) }
+    if self.backendAddressPool != nil { try container.encode(self.backendAddressPool as! SubResourceData?, forKey: .backendAddressPool) }
+    if self.backendHttpSettings != nil { try container.encode(self.backendHttpSettings as! SubResourceData?, forKey: .backendHttpSettings) }
+    if self.httpListener != nil { try container.encode(self.httpListener as! SubResourceData?, forKey: .httpListener) }
+    if self.urlPathMap != nil { try container.encode(self.urlPathMap as! SubResourceData?, forKey: .urlPathMap) }
+    if self.redirectConfiguration != nil { try container.encode(self.redirectConfiguration as! SubResourceData?, forKey: .redirectConfiguration) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

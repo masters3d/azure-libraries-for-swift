@@ -12,7 +12,7 @@ internal struct SiteConfigurationSnapshotInfoPropertiesData : SiteConfigurationS
         case id = "id"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct SiteConfigurationSnapshotInfoPropertiesData : SiteConfigurationS
     if container.contains(.id) {
         self.id = try container.decode(Int32?.self, forKey: .id)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -36,7 +36,7 @@ internal struct SiteConfigurationSnapshotInfoPropertiesData : SiteConfigurationS
     if self.time != nil {
         try container.encode(DateConverter.toString(date: self.time!, format: .dateTime), forKey: .time)
     }
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
   }
 }
 

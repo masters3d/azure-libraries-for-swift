@@ -17,9 +17,9 @@ extension BaseCommand {
                 uriPath = uriPath!.replacingOccurrences(of: key, with: value)
             }
         }
-        
+
         let cl = (self.body as? Data?)??.bytes.count
-        
+
         do {
             try StorageAuth.signRequest(storageKey: azureStorageKey,
                 storageAccountName: storageAccountName,
@@ -32,5 +32,5 @@ extension BaseCommand {
             print("=== Error:", error)
         }
     }
-    
+
 }

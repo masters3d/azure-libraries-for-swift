@@ -30,7 +30,7 @@ internal struct NamespacePropertiesData : NamespacePropertiesProtocol {
         case namespaceType = "namespaceType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct NamespacePropertiesData : NamespacePropertiesProtocol {
     if container.contains(.namespaceType) {
         self.namespaceType = try container.decode(NamespaceTypeEnum?.self, forKey: .namespaceType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,19 +78,19 @@ internal struct NamespacePropertiesData : NamespacePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.region != nil {try container.encode(self.region, forKey: .region)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.region != nil { try container.encode(self.region, forKey: .region) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
-    if self.serviceBusEndpoint != nil {try container.encode(self.serviceBusEndpoint, forKey: .serviceBusEndpoint)}
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.scaleUnit != nil {try container.encode(self.scaleUnit, forKey: .scaleUnit)}
-    if self.enabled != nil {try container.encode(self.enabled, forKey: .enabled)}
-    if self.critical != nil {try container.encode(self.critical, forKey: .critical)}
-    if self.namespaceType != nil {try container.encode(self.namespaceType, forKey: .namespaceType)}
+    if self.serviceBusEndpoint != nil { try container.encode(self.serviceBusEndpoint, forKey: .serviceBusEndpoint) }
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.scaleUnit != nil { try container.encode(self.scaleUnit, forKey: .scaleUnit) }
+    if self.enabled != nil { try container.encode(self.enabled, forKey: .enabled) }
+    if self.critical != nil { try container.encode(self.critical, forKey: .critical) }
+    if self.namespaceType != nil { try container.encode(self.namespaceType, forKey: .namespaceType) }
   }
 }
 

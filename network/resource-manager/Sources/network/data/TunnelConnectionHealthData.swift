@@ -18,7 +18,7 @@ internal struct TunnelConnectionHealthData : TunnelConnectionHealthProtocol {
         case lastConnectionEstablishedUtcTime = "lastConnectionEstablishedUtcTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct TunnelConnectionHealthData : TunnelConnectionHealthProtocol {
     if container.contains(.lastConnectionEstablishedUtcTime) {
         self.lastConnectionEstablishedUtcTime = try container.decode(String?.self, forKey: .lastConnectionEstablishedUtcTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct TunnelConnectionHealthData : TunnelConnectionHealthProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.tunnel != nil {try container.encode(self.tunnel, forKey: .tunnel)}
-    if self.connectionStatus != nil {try container.encode(self.connectionStatus, forKey: .connectionStatus)}
-    if self.ingressBytesTransferred != nil {try container.encode(self.ingressBytesTransferred, forKey: .ingressBytesTransferred)}
-    if self.egressBytesTransferred != nil {try container.encode(self.egressBytesTransferred, forKey: .egressBytesTransferred)}
-    if self.lastConnectionEstablishedUtcTime != nil {try container.encode(self.lastConnectionEstablishedUtcTime, forKey: .lastConnectionEstablishedUtcTime)}
+    if self.tunnel != nil { try container.encode(self.tunnel, forKey: .tunnel) }
+    if self.connectionStatus != nil { try container.encode(self.connectionStatus, forKey: .connectionStatus) }
+    if self.ingressBytesTransferred != nil { try container.encode(self.ingressBytesTransferred, forKey: .ingressBytesTransferred) }
+    if self.egressBytesTransferred != nil { try container.encode(self.egressBytesTransferred, forKey: .egressBytesTransferred) }
+    if self.lastConnectionEstablishedUtcTime != nil { try container.encode(self.lastConnectionEstablishedUtcTime, forKey: .lastConnectionEstablishedUtcTime) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct ResumeJobParamsPropertiesData : ResumeJobParamsPropertiesProtoco
         enum CodingKeys: String, CodingKey {case comments = "comments"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ResumeJobParamsPropertiesData : ResumeJobParamsPropertiesProtoco
       if container.contains(.comments) {
         self.comments = try container.decode(String?.self, forKey: .comments)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ResumeJobParamsPropertiesData : ResumeJobParamsPropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.comments != nil {try container.encode(self.comments, forKey: .comments)}
+    if self.comments != nil { try container.encode(self.comments, forKey: .comments) }
   }
 }
 

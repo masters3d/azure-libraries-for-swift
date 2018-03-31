@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RoutesCreateOrUpdate  {
+public protocol RoutesCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var routeTableName : String { get set }
     var routeName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var routeParameters :  RouteProtocol?  { get set }
+    var routeParameters :  RouteProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RouteProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RouteProtocol?, Error?) -> Void)
 }
 
 extension Commands.Routes {
@@ -37,7 +37,7 @@ extension Commands.Routes {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{routeTableName}"] = String(describing: self.routeTableName)
             self.pathParameters["{routeName}"] = String(describing: self.routeName)
@@ -61,12 +61,12 @@ extension Commands.Routes {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RouteData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RouteProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RouteProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RouteData?, error: Error?) in
                 completionHandler(result, error)

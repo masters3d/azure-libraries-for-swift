@@ -10,7 +10,7 @@ internal struct GeoReplicationData : GeoReplicationProtocol {
         case lastSyncTime = "LastSyncTime"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -25,8 +25,8 @@ internal struct GeoReplicationData : GeoReplicationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(status, forKey: .status)}
-    if self.lastSyncTime != nil {try container.encode(lastSyncTime, forKey: .lastSyncTime)}
+    if self.status != nil { try container.encode(status, forKey: .status) }
+    if self.lastSyncTime != nil { try container.encode(lastSyncTime, forKey: .lastSyncTime) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ConnectorMappingCompleteOperationData : ConnectorMappingComplete
         case destinationFolder = "destinationFolder"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ConnectorMappingCompleteOperationData : ConnectorMappingComplete
     if container.contains(.destinationFolder) {
         self.destinationFolder = try container.decode(String?.self, forKey: .destinationFolder)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ConnectorMappingCompleteOperationData : ConnectorMappingComplete
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.completionOperationType != nil {try container.encode(self.completionOperationType, forKey: .completionOperationType)}
-    if self.destinationFolder != nil {try container.encode(self.destinationFolder, forKey: .destinationFolder)}
+    if self.completionOperationType != nil { try container.encode(self.completionOperationType, forKey: .completionOperationType) }
+    if self.destinationFolder != nil { try container.encode(self.destinationFolder, forKey: .destinationFolder) }
   }
 }
 

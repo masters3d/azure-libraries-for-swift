@@ -10,7 +10,7 @@ internal struct BatchLocationQuotaData : BatchLocationQuotaProtocol {
         enum CodingKeys: String, CodingKey {case accountQuota = "accountQuota"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct BatchLocationQuotaData : BatchLocationQuotaProtocol {
       if container.contains(.accountQuota) {
         self.accountQuota = try container.decode(Int32?.self, forKey: .accountQuota)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct BatchLocationQuotaData : BatchLocationQuotaProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountQuota != nil {try container.encode(self.accountQuota, forKey: .accountQuota)}
+    if self.accountQuota != nil { try container.encode(self.accountQuota, forKey: .accountQuota) }
   }
 }
 

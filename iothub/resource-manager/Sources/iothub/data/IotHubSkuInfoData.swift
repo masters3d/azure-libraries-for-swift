@@ -14,7 +14,7 @@ internal struct IotHubSkuInfoData : IotHubSkuInfoProtocol {
         case capacity = "capacity"
         }
 
-  public init(name: IotHubSkuEnum, capacity: Int64)  {
+  public init(name: IotHubSkuEnum, capacity: Int64) {
     self.name = name
     self.capacity = capacity
   }
@@ -26,7 +26,7 @@ internal struct IotHubSkuInfoData : IotHubSkuInfoProtocol {
         self.tier = try container.decode(IotHubSkuTierEnum?.self, forKey: .tier)
     }
     self.capacity = try container.decode(Int64.self, forKey: .capacity)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,7 +37,7 @@ internal struct IotHubSkuInfoData : IotHubSkuInfoProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
     try container.encode(self.capacity, forKey: .capacity)
   }
 }

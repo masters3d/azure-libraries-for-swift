@@ -18,7 +18,7 @@ internal struct LogProfilePropertiesData : LogProfilePropertiesProtocol {
         case retentionPolicy = "retentionPolicy"
         }
 
-  public init(locations: [String], categories: [String], retentionPolicy: RetentionPolicyProtocol)  {
+  public init(locations: [String], categories: [String], retentionPolicy: RetentionPolicyProtocol) {
     self.locations = locations
     self.categories = categories
     self.retentionPolicy = retentionPolicy
@@ -35,7 +35,7 @@ internal struct LogProfilePropertiesData : LogProfilePropertiesProtocol {
     self.locations = try container.decode([String].self, forKey: .locations)
     self.categories = try container.decode([String].self, forKey: .categories)
     self.retentionPolicy = try container.decode(RetentionPolicyData.self, forKey: .retentionPolicy)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -45,8 +45,8 @@ internal struct LogProfilePropertiesData : LogProfilePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageAccountId != nil {try container.encode(self.storageAccountId, forKey: .storageAccountId)}
-    if self.serviceBusRuleId != nil {try container.encode(self.serviceBusRuleId, forKey: .serviceBusRuleId)}
+    if self.storageAccountId != nil { try container.encode(self.storageAccountId, forKey: .storageAccountId) }
+    if self.serviceBusRuleId != nil { try container.encode(self.serviceBusRuleId, forKey: .serviceBusRuleId) }
     try container.encode(self.locations as! [String], forKey: .locations)
     try container.encode(self.categories as! [String], forKey: .categories)
     try container.encode(self.retentionPolicy as! RetentionPolicyData, forKey: .retentionPolicy)

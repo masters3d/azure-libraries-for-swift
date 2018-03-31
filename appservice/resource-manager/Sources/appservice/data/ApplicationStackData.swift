@@ -18,7 +18,7 @@ internal struct ApplicationStackData : ApplicationStackProtocol {
         case frameworks = "frameworks"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ApplicationStackData : ApplicationStackProtocol {
     if container.contains(.frameworks) {
         self.frameworks = try container.decode([ApplicationStackData?]?.self, forKey: .frameworks)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ApplicationStackData : ApplicationStackProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.display != nil {try container.encode(self.display, forKey: .display)}
-    if self.dependency != nil {try container.encode(self.dependency, forKey: .dependency)}
-    if self.majorVersions != nil {try container.encode(self.majorVersions as! [StackMajorVersionData?]?, forKey: .majorVersions)}
-    if self.frameworks != nil {try container.encode(self.frameworks as! [ApplicationStackData?]?, forKey: .frameworks)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.display != nil { try container.encode(self.display, forKey: .display) }
+    if self.dependency != nil { try container.encode(self.dependency, forKey: .dependency) }
+    if self.majorVersions != nil { try container.encode(self.majorVersions as! [StackMajorVersionData?]?, forKey: .majorVersions) }
+    if self.frameworks != nil { try container.encode(self.frameworks as! [ApplicationStackData?]?, forKey: .frameworks) }
   }
 }
 

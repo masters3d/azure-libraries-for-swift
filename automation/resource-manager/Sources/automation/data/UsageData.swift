@@ -20,7 +20,7 @@ internal struct UsageData : UsageProtocol {
         case throttleStatus = "throttleStatus"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct UsageData : UsageProtocol {
     if container.contains(.throttleStatus) {
         self.throttleStatus = try container.decode(String?.self, forKey: .throttleStatus)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct UsageData : UsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name as! UsageCounterNameData?, forKey: .name)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.throttleStatus != nil {try container.encode(self.throttleStatus, forKey: .throttleStatus)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name as! UsageCounterNameData?, forKey: .name) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.throttleStatus != nil { try container.encode(self.throttleStatus, forKey: .throttleStatus) }
   }
 }
 

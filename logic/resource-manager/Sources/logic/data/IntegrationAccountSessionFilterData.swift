@@ -10,14 +10,14 @@ internal struct IntegrationAccountSessionFilterData : IntegrationAccountSessionF
         enum CodingKeys: String, CodingKey {case changedTime = "changedTime"
         }
 
-  public init(changedTime: Date)  {
+  public init(changedTime: Date) {
     self.changedTime = changedTime
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
           self.changedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .changedTime)), format: .dateTime)!
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

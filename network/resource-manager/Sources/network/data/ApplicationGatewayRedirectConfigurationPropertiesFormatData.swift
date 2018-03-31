@@ -24,7 +24,7 @@ internal struct ApplicationGatewayRedirectConfigurationPropertiesFormatData : Ap
         case pathRules = "pathRules"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct ApplicationGatewayRedirectConfigurationPropertiesFormatData : Ap
     if container.contains(.pathRules) {
         self.pathRules = try container.decode([SubResourceData?]?.self, forKey: .pathRules)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct ApplicationGatewayRedirectConfigurationPropertiesFormatData : Ap
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.redirectType != nil {try container.encode(self.redirectType, forKey: .redirectType)}
-    if self.targetListener != nil {try container.encode(self.targetListener as! SubResourceData?, forKey: .targetListener)}
-    if self.targetUrl != nil {try container.encode(self.targetUrl, forKey: .targetUrl)}
-    if self.includePath != nil {try container.encode(self.includePath, forKey: .includePath)}
-    if self.includeQueryString != nil {try container.encode(self.includeQueryString, forKey: .includeQueryString)}
-    if self.requestRoutingRules != nil {try container.encode(self.requestRoutingRules as! [SubResourceData?]?, forKey: .requestRoutingRules)}
-    if self.urlPathMaps != nil {try container.encode(self.urlPathMaps as! [SubResourceData?]?, forKey: .urlPathMaps)}
-    if self.pathRules != nil {try container.encode(self.pathRules as! [SubResourceData?]?, forKey: .pathRules)}
+    if self.redirectType != nil { try container.encode(self.redirectType, forKey: .redirectType) }
+    if self.targetListener != nil { try container.encode(self.targetListener as! SubResourceData?, forKey: .targetListener) }
+    if self.targetUrl != nil { try container.encode(self.targetUrl, forKey: .targetUrl) }
+    if self.includePath != nil { try container.encode(self.includePath, forKey: .includePath) }
+    if self.includeQueryString != nil { try container.encode(self.includeQueryString, forKey: .includeQueryString) }
+    if self.requestRoutingRules != nil { try container.encode(self.requestRoutingRules as! [SubResourceData?]?, forKey: .requestRoutingRules) }
+    if self.urlPathMaps != nil { try container.encode(self.urlPathMaps as! [SubResourceData?]?, forKey: .urlPathMaps) }
+    if self.pathRules != nil { try container.encode(self.pathRules as! [SubResourceData?]?, forKey: .pathRules) }
   }
 }
 

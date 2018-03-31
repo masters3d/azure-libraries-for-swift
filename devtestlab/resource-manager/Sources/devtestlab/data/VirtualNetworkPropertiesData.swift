@@ -24,7 +24,7 @@ internal struct VirtualNetworkPropertiesData : VirtualNetworkPropertiesProtocol 
         case uniqueIdentifier = "uniqueIdentifier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct VirtualNetworkPropertiesData : VirtualNetworkPropertiesProtocol 
     if container.contains(.uniqueIdentifier) {
         self.uniqueIdentifier = try container.decode(String?.self, forKey: .uniqueIdentifier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,16 +63,16 @@ internal struct VirtualNetworkPropertiesData : VirtualNetworkPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.allowedSubnets != nil {try container.encode(self.allowedSubnets as! [SubnetData?]?, forKey: .allowedSubnets)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.externalProviderResourceId != nil {try container.encode(self.externalProviderResourceId, forKey: .externalProviderResourceId)}
-    if self.externalSubnets != nil {try container.encode(self.externalSubnets as! [ExternalSubnetData?]?, forKey: .externalSubnets)}
-    if self.subnetOverrides != nil {try container.encode(self.subnetOverrides as! [SubnetOverrideData?]?, forKey: .subnetOverrides)}
+    if self.allowedSubnets != nil { try container.encode(self.allowedSubnets as! [SubnetData?]?, forKey: .allowedSubnets) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.externalProviderResourceId != nil { try container.encode(self.externalProviderResourceId, forKey: .externalProviderResourceId) }
+    if self.externalSubnets != nil { try container.encode(self.externalSubnets as! [ExternalSubnetData?]?, forKey: .externalSubnets) }
+    if self.subnetOverrides != nil { try container.encode(self.subnetOverrides as! [SubnetOverrideData?]?, forKey: .subnetOverrides) }
     if self.createdDate != nil {
         try container.encode(DateConverter.toString(date: self.createdDate!, format: .dateTime), forKey: .createdDate)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.uniqueIdentifier != nil {try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.uniqueIdentifier != nil { try container.encode(self.uniqueIdentifier, forKey: .uniqueIdentifier) }
   }
 }
 

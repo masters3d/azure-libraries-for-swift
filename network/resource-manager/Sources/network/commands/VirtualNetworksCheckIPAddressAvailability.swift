@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol VirtualNetworksCheckIPAddressAvailability  {
+public protocol VirtualNetworksCheckIPAddressAvailability {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var virtualNetworkName : String { get set }
@@ -8,7 +8,7 @@ public protocol VirtualNetworksCheckIPAddressAvailability  {
     var ipAddress : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (IPAddressAvailabilityResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (IPAddressAvailabilityResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.VirtualNetworks {
@@ -31,7 +31,7 @@ extension Commands.VirtualNetworks {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{virtualNetworkName}"] = String(describing: self.virtualNetworkName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -45,12 +45,12 @@ extension Commands.VirtualNetworks {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(IPAddressAvailabilityResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (IPAddressAvailabilityResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (IPAddressAvailabilityResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: IPAddressAvailabilityResultData?, error: Error?) in
                 completionHandler(result, error)

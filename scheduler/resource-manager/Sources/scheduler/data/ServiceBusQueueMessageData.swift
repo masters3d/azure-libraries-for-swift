@@ -22,7 +22,7 @@ internal struct ServiceBusQueueMessageData : ServiceBusQueueMessageProtocol, Ser
         case queueName = "queueName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct ServiceBusQueueMessageData : ServiceBusQueueMessageProtocol, Ser
     if container.contains(.queueName) {
         self.queueName = try container.decode(String?.self, forKey: .queueName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,13 +58,13 @@ internal struct ServiceBusQueueMessageData : ServiceBusQueueMessageProtocol, Ser
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authentication != nil {try container.encode(self.authentication as! ServiceBusAuthenticationData?, forKey: .authentication)}
-    if self.brokeredMessageProperties != nil {try container.encode(self.brokeredMessageProperties as! ServiceBusBrokeredMessagePropertiesData?, forKey: .brokeredMessageProperties)}
-    if self.customMessageProperties != nil {try container.encode(self.customMessageProperties, forKey: .customMessageProperties)}
-    if self.message != nil {try container.encode(self.message, forKey: .message)}
-    if self.namespace != nil {try container.encode(self.namespace, forKey: .namespace)}
-    if self.transportType != nil {try container.encode(self.transportType, forKey: .transportType)}
-    if self.queueName != nil {try container.encode(self.queueName, forKey: .queueName)}
+    if self.authentication != nil { try container.encode(self.authentication as! ServiceBusAuthenticationData?, forKey: .authentication) }
+    if self.brokeredMessageProperties != nil { try container.encode(self.brokeredMessageProperties as! ServiceBusBrokeredMessagePropertiesData?, forKey: .brokeredMessageProperties) }
+    if self.customMessageProperties != nil { try container.encode(self.customMessageProperties, forKey: .customMessageProperties) }
+    if self.message != nil { try container.encode(self.message, forKey: .message) }
+    if self.namespace != nil { try container.encode(self.namespace, forKey: .namespace) }
+    if self.transportType != nil { try container.encode(self.transportType, forKey: .transportType) }
+    if self.queueName != nil { try container.encode(self.queueName, forKey: .queueName) }
   }
 }
 

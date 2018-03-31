@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SessionCreate  {
+public protocol SessionCreate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var nodeName : String { get set }
     var session : String { get set }
     var apiVersion : String { get set }
-    var sessionParameters :  SessionParametersProtocol?  { get set }
+    var sessionParameters :  SessionParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (SessionResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (SessionResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.Session {
@@ -36,7 +36,7 @@ extension Commands.Session {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{nodeName}"] = String(describing: self.nodeName)
@@ -60,12 +60,12 @@ extension Commands.Session {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(SessionResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (SessionResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (SessionResourceProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: SessionResourceData?, error: Error?) in
                 completionHandler(result, error)

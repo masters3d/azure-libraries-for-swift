@@ -14,7 +14,7 @@ internal struct ApplicationGatewayBackendAddressPoolPropertiesFormatData : Appli
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ApplicationGatewayBackendAddressPoolPropertiesFormatData : Appli
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(String?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ApplicationGatewayBackendAddressPoolPropertiesFormatData : Appli
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.backendIPConfigurations != nil {try container.encode(self.backendIPConfigurations as! [NetworkInterfaceIPConfigurationData?]?, forKey: .backendIPConfigurations)}
-    if self.backendAddresses != nil {try container.encode(self.backendAddresses as! [ApplicationGatewayBackendAddressData?]?, forKey: .backendAddresses)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.backendIPConfigurations != nil { try container.encode(self.backendIPConfigurations as! [NetworkInterfaceIPConfigurationData?]?, forKey: .backendIPConfigurations) }
+    if self.backendAddresses != nil { try container.encode(self.backendAddresses as! [ApplicationGatewayBackendAddressData?]?, forKey: .backendAddresses) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

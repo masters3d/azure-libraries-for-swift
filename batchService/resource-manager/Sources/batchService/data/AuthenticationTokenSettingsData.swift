@@ -10,7 +10,7 @@ internal struct AuthenticationTokenSettingsData : AuthenticationTokenSettingsPro
         enum CodingKeys: String, CodingKey {case access = "access"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct AuthenticationTokenSettingsData : AuthenticationTokenSettingsPro
       if container.contains(.access) {
         self.access = try container.decode([AccessScopeEnum?]?.self, forKey: .access)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct AuthenticationTokenSettingsData : AuthenticationTokenSettingsPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.access != nil {try container.encode(self.access as! [AccessScopeEnum?]?, forKey: .access)}
+    if self.access != nil { try container.encode(self.access as! [AccessScopeEnum?]?, forKey: .access) }
   }
 }
 

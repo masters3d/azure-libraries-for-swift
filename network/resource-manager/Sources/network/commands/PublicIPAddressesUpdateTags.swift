@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PublicIPAddressesUpdateTags  {
+public protocol PublicIPAddressesUpdateTags {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var publicIpAddressName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  TagsObjectProtocol?  { get set }
+    var parameters :  TagsObjectProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void)
 }
 
 extension Commands.PublicIPAddresses {
@@ -33,7 +33,7 @@ extension Commands.PublicIPAddresses {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{publicIpAddressName}"] = String(describing: self.publicIpAddressName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -56,12 +56,12 @@ extension Commands.PublicIPAddresses {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PublicIPAddressData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PublicIPAddressProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: PublicIPAddressData?, error: Error?) in
                 completionHandler(result, error)

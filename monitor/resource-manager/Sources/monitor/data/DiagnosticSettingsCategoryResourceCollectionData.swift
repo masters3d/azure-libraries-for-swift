@@ -10,7 +10,7 @@ internal struct DiagnosticSettingsCategoryResourceCollectionData : DiagnosticSet
         enum CodingKeys: String, CodingKey {case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct DiagnosticSettingsCategoryResourceCollectionData : DiagnosticSet
       if container.contains(.value) {
         self.value = try container.decode([DiagnosticSettingsCategoryResourceData?]?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct DiagnosticSettingsCategoryResourceCollectionData : DiagnosticSet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.value != nil {try container.encode(self.value as! [DiagnosticSettingsCategoryResourceData?]?, forKey: .value)}
+    if self.value != nil { try container.encode(self.value as! [DiagnosticSettingsCategoryResourceData?]?, forKey: .value) }
   }
 }
 

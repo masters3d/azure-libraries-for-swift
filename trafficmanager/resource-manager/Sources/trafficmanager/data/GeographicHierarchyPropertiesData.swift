@@ -10,7 +10,7 @@ internal struct GeographicHierarchyPropertiesData : GeographicHierarchyPropertie
         enum CodingKeys: String, CodingKey {case geographicHierarchy = "geographicHierarchy"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct GeographicHierarchyPropertiesData : GeographicHierarchyPropertie
       if container.contains(.geographicHierarchy) {
         self.geographicHierarchy = try container.decode(RegionData?.self, forKey: .geographicHierarchy)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct GeographicHierarchyPropertiesData : GeographicHierarchyPropertie
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.geographicHierarchy != nil {try container.encode(self.geographicHierarchy as! RegionData?, forKey: .geographicHierarchy)}
+    if self.geographicHierarchy != nil { try container.encode(self.geographicHierarchy as! RegionData?, forKey: .geographicHierarchy) }
   }
 }
 

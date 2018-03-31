@@ -46,7 +46,7 @@ internal struct AppServiceCertificateOrderPropertiesData : AppServiceCertificate
         case nextAutoRenewalTimeStamp = "nextAutoRenewalTimeStamp"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct AppServiceCertificateOrderPropertiesData : AppServiceCertificate
     if container.contains(.nextAutoRenewalTimeStamp) {
         self.nextAutoRenewalTimeStamp = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .nextAutoRenewalTimeStamp)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -118,28 +118,28 @@ internal struct AppServiceCertificateOrderPropertiesData : AppServiceCertificate
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.certificates != nil {try container.encode(self.certificates, forKey: .certificates)}
-    if self.distinguishedName != nil {try container.encode(self.distinguishedName, forKey: .distinguishedName)}
-    if self.domainVerificationToken != nil {try container.encode(self.domainVerificationToken, forKey: .domainVerificationToken)}
-    if self.validityInYears != nil {try container.encode(self.validityInYears, forKey: .validityInYears)}
-    if self.keySize != nil {try container.encode(self.keySize, forKey: .keySize)}
-    if self.productType != nil {try container.encode(self.productType, forKey: .productType)}
-    if self.autoRenew != nil {try container.encode(self.autoRenew, forKey: .autoRenew)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.signedCertificate != nil {try container.encode(self.signedCertificate as! CertificateDetailsData?, forKey: .signedCertificate)}
-    if self.csr != nil {try container.encode(self.csr, forKey: .csr)}
-    if self.intermediate != nil {try container.encode(self.intermediate as! CertificateDetailsData?, forKey: .intermediate)}
-    if self.root != nil {try container.encode(self.root as! CertificateDetailsData?, forKey: .root)}
-    if self.serialNumber != nil {try container.encode(self.serialNumber, forKey: .serialNumber)}
+    if self.certificates != nil { try container.encode(self.certificates, forKey: .certificates) }
+    if self.distinguishedName != nil { try container.encode(self.distinguishedName, forKey: .distinguishedName) }
+    if self.domainVerificationToken != nil { try container.encode(self.domainVerificationToken, forKey: .domainVerificationToken) }
+    if self.validityInYears != nil { try container.encode(self.validityInYears, forKey: .validityInYears) }
+    if self.keySize != nil { try container.encode(self.keySize, forKey: .keySize) }
+    if self.productType != nil { try container.encode(self.productType, forKey: .productType) }
+    if self.autoRenew != nil { try container.encode(self.autoRenew, forKey: .autoRenew) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.signedCertificate != nil { try container.encode(self.signedCertificate as! CertificateDetailsData?, forKey: .signedCertificate) }
+    if self.csr != nil { try container.encode(self.csr, forKey: .csr) }
+    if self.intermediate != nil { try container.encode(self.intermediate as! CertificateDetailsData?, forKey: .intermediate) }
+    if self.root != nil { try container.encode(self.root as! CertificateDetailsData?, forKey: .root) }
+    if self.serialNumber != nil { try container.encode(self.serialNumber, forKey: .serialNumber) }
     if self.lastCertificateIssuanceTime != nil {
         try container.encode(DateConverter.toString(date: self.lastCertificateIssuanceTime!, format: .dateTime), forKey: .lastCertificateIssuanceTime)
     }
     if self.expirationTime != nil {
         try container.encode(DateConverter.toString(date: self.expirationTime!, format: .dateTime), forKey: .expirationTime)
     }
-    if self.isPrivateKeyExternal != nil {try container.encode(self.isPrivateKeyExternal, forKey: .isPrivateKeyExternal)}
-    if self.appServiceCertificateNotRenewableReasons != nil {try container.encode(self.appServiceCertificateNotRenewableReasons as! [String?]?, forKey: .appServiceCertificateNotRenewableReasons)}
+    if self.isPrivateKeyExternal != nil { try container.encode(self.isPrivateKeyExternal, forKey: .isPrivateKeyExternal) }
+    if self.appServiceCertificateNotRenewableReasons != nil { try container.encode(self.appServiceCertificateNotRenewableReasons as! [String?]?, forKey: .appServiceCertificateNotRenewableReasons) }
     if self.nextAutoRenewalTimeStamp != nil {
         try container.encode(DateConverter.toString(date: self.nextAutoRenewalTimeStamp!, format: .dateTime), forKey: .nextAutoRenewalTimeStamp)
     }

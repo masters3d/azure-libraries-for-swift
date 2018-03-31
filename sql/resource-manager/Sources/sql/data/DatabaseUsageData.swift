@@ -22,7 +22,7 @@ internal struct DatabaseUsageData : DatabaseUsageProtocol {
         case nextResetTime = "nextResetTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct DatabaseUsageData : DatabaseUsageProtocol {
     if container.contains(.nextResetTime) {
         self.nextResetTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .nextResetTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,12 +58,12 @@ internal struct DatabaseUsageData : DatabaseUsageProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.resourceName != nil {try container.encode(self.resourceName, forKey: .resourceName)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.currentValue != nil {try container.encode(self.currentValue, forKey: .currentValue)}
-    if self.limit != nil {try container.encode(self.limit, forKey: .limit)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.resourceName != nil { try container.encode(self.resourceName, forKey: .resourceName) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.currentValue != nil { try container.encode(self.currentValue, forKey: .currentValue) }
+    if self.limit != nil { try container.encode(self.limit, forKey: .limit) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
     if self.nextResetTime != nil {
         try container.encode(DateConverter.toString(date: self.nextResetTime!, format: .dateTime), forKey: .nextResetTime)
     }

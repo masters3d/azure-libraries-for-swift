@@ -30,7 +30,7 @@ internal struct JobPreparationTaskExecutionInformationData : JobPreparationTaskE
         case result = "result"
         }
 
-  public init(startTime: Date, state: JobPreparationTaskStateEnum, retryCount: Int32)  {
+  public init(startTime: Date, state: JobPreparationTaskStateEnum, retryCount: Int32) {
     self.startTime = startTime
     self.state = state
     self.retryCount = retryCount
@@ -65,7 +65,7 @@ internal struct JobPreparationTaskExecutionInformationData : JobPreparationTaskE
     if container.contains(.result) {
         self.result = try container.decode(TaskExecutionResultEnum?.self, forKey: .result)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -80,16 +80,16 @@ internal struct JobPreparationTaskExecutionInformationData : JobPreparationTaskE
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
     try container.encode(self.state, forKey: .state)
-    if self.taskRootDirectory != nil {try container.encode(self.taskRootDirectory, forKey: .taskRootDirectory)}
-    if self.taskRootDirectoryUrl != nil {try container.encode(self.taskRootDirectoryUrl, forKey: .taskRootDirectoryUrl)}
-    if self.exitCode != nil {try container.encode(self.exitCode, forKey: .exitCode)}
-    if self.containerInfo != nil {try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo)}
-    if self.failureInfo != nil {try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo)}
+    if self.taskRootDirectory != nil { try container.encode(self.taskRootDirectory, forKey: .taskRootDirectory) }
+    if self.taskRootDirectoryUrl != nil { try container.encode(self.taskRootDirectoryUrl, forKey: .taskRootDirectoryUrl) }
+    if self.exitCode != nil { try container.encode(self.exitCode, forKey: .exitCode) }
+    if self.containerInfo != nil { try container.encode(self.containerInfo as! TaskContainerExecutionInformationData?, forKey: .containerInfo) }
+    if self.failureInfo != nil { try container.encode(self.failureInfo as! TaskFailureInformationData?, forKey: .failureInfo) }
     try container.encode(self.retryCount, forKey: .retryCount)
     if self.lastRetryTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRetryTime!, format: .dateTime), forKey: .lastRetryTime)
     }
-    if self.result != nil {try container.encode(self.result, forKey: .result)}
+    if self.result != nil { try container.encode(self.result, forKey: .result) }
   }
 }
 

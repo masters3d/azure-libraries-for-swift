@@ -22,7 +22,7 @@ internal struct EHNamespacePropertiesData : EHNamespacePropertiesProtocol {
         case maximumThroughputUnits = "maximumThroughputUnits"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct EHNamespacePropertiesData : EHNamespacePropertiesProtocol {
     if container.contains(.maximumThroughputUnits) {
         self.maximumThroughputUnits = try container.decode(Int32?.self, forKey: .maximumThroughputUnits)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,17 +58,17 @@ internal struct EHNamespacePropertiesData : EHNamespacePropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
     if self.createdAt != nil {
         try container.encode(DateConverter.toString(date: self.createdAt!, format: .dateTime), forKey: .createdAt)
     }
     if self.updatedAt != nil {
         try container.encode(DateConverter.toString(date: self.updatedAt!, format: .dateTime), forKey: .updatedAt)
     }
-    if self.serviceBusEndpoint != nil {try container.encode(self.serviceBusEndpoint, forKey: .serviceBusEndpoint)}
-    if self.metricId != nil {try container.encode(self.metricId, forKey: .metricId)}
-    if self.isAutoInflateEnabled != nil {try container.encode(self.isAutoInflateEnabled, forKey: .isAutoInflateEnabled)}
-    if self.maximumThroughputUnits != nil {try container.encode(self.maximumThroughputUnits, forKey: .maximumThroughputUnits)}
+    if self.serviceBusEndpoint != nil { try container.encode(self.serviceBusEndpoint, forKey: .serviceBusEndpoint) }
+    if self.metricId != nil { try container.encode(self.metricId, forKey: .metricId) }
+    if self.isAutoInflateEnabled != nil { try container.encode(self.isAutoInflateEnabled, forKey: .isAutoInflateEnabled) }
+    if self.maximumThroughputUnits != nil { try container.encode(self.maximumThroughputUnits, forKey: .maximumThroughputUnits) }
   }
 }
 

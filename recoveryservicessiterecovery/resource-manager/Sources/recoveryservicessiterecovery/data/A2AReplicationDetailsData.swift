@@ -70,7 +70,7 @@ internal struct A2AReplicationDetailsData : A2AReplicationDetailsProtocol, Repli
         case lastRpoCalculatedTime = "lastRpoCalculatedTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -168,7 +168,7 @@ internal struct A2AReplicationDetailsData : A2AReplicationDetailsProtocol, Repli
     if container.contains(.lastRpoCalculatedTime) {
         self.lastRpoCalculatedTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .lastRpoCalculatedTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -178,38 +178,38 @@ internal struct A2AReplicationDetailsData : A2AReplicationDetailsProtocol, Repli
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fabricObjectId != nil {try container.encode(self.fabricObjectId, forKey: .fabricObjectId)}
-    if self.multiVmGroupId != nil {try container.encode(self.multiVmGroupId, forKey: .multiVmGroupId)}
-    if self.multiVmGroupName != nil {try container.encode(self.multiVmGroupName, forKey: .multiVmGroupName)}
-    if self.multiVmGroupCreateOption != nil {try container.encode(self.multiVmGroupCreateOption, forKey: .multiVmGroupCreateOption)}
-    if self.managementId != nil {try container.encode(self.managementId, forKey: .managementId)}
-    if self.protectedDisks != nil {try container.encode(self.protectedDisks as! [A2AProtectedDiskDetailsData?]?, forKey: .protectedDisks)}
-    if self.protectedManagedDisks != nil {try container.encode(self.protectedManagedDisks as! [A2AProtectedManagedDiskDetailsData?]?, forKey: .protectedManagedDisks)}
-    if self.recoveryBootDiagStorageAccountId != nil {try container.encode(self.recoveryBootDiagStorageAccountId, forKey: .recoveryBootDiagStorageAccountId)}
-    if self.primaryFabricLocation != nil {try container.encode(self.primaryFabricLocation, forKey: .primaryFabricLocation)}
-    if self.recoveryFabricLocation != nil {try container.encode(self.recoveryFabricLocation, forKey: .recoveryFabricLocation)}
-    if self.osType != nil {try container.encode(self.osType, forKey: .osType)}
-    if self.recoveryAzureVMSize != nil {try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize)}
-    if self.recoveryAzureVMName != nil {try container.encode(self.recoveryAzureVMName, forKey: .recoveryAzureVMName)}
-    if self.recoveryAzureResourceGroupId != nil {try container.encode(self.recoveryAzureResourceGroupId, forKey: .recoveryAzureResourceGroupId)}
-    if self.recoveryCloudService != nil {try container.encode(self.recoveryCloudService, forKey: .recoveryCloudService)}
-    if self.recoveryAvailabilitySet != nil {try container.encode(self.recoveryAvailabilitySet, forKey: .recoveryAvailabilitySet)}
-    if self.selectedRecoveryAzureNetworkId != nil {try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId)}
-    if self.vmNics != nil {try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics)}
-    if self.vmSyncedConfigDetails != nil {try container.encode(self.vmSyncedConfigDetails as! AzureToAzureVmSyncedConfigDetailsData?, forKey: .vmSyncedConfigDetails)}
-    if self.monitoringPercentageCompletion != nil {try container.encode(self.monitoringPercentageCompletion, forKey: .monitoringPercentageCompletion)}
-    if self.monitoringJobType != nil {try container.encode(self.monitoringJobType, forKey: .monitoringJobType)}
+    if self.fabricObjectId != nil { try container.encode(self.fabricObjectId, forKey: .fabricObjectId) }
+    if self.multiVmGroupId != nil { try container.encode(self.multiVmGroupId, forKey: .multiVmGroupId) }
+    if self.multiVmGroupName != nil { try container.encode(self.multiVmGroupName, forKey: .multiVmGroupName) }
+    if self.multiVmGroupCreateOption != nil { try container.encode(self.multiVmGroupCreateOption, forKey: .multiVmGroupCreateOption) }
+    if self.managementId != nil { try container.encode(self.managementId, forKey: .managementId) }
+    if self.protectedDisks != nil { try container.encode(self.protectedDisks as! [A2AProtectedDiskDetailsData?]?, forKey: .protectedDisks) }
+    if self.protectedManagedDisks != nil { try container.encode(self.protectedManagedDisks as! [A2AProtectedManagedDiskDetailsData?]?, forKey: .protectedManagedDisks) }
+    if self.recoveryBootDiagStorageAccountId != nil { try container.encode(self.recoveryBootDiagStorageAccountId, forKey: .recoveryBootDiagStorageAccountId) }
+    if self.primaryFabricLocation != nil { try container.encode(self.primaryFabricLocation, forKey: .primaryFabricLocation) }
+    if self.recoveryFabricLocation != nil { try container.encode(self.recoveryFabricLocation, forKey: .recoveryFabricLocation) }
+    if self.osType != nil { try container.encode(self.osType, forKey: .osType) }
+    if self.recoveryAzureVMSize != nil { try container.encode(self.recoveryAzureVMSize, forKey: .recoveryAzureVMSize) }
+    if self.recoveryAzureVMName != nil { try container.encode(self.recoveryAzureVMName, forKey: .recoveryAzureVMName) }
+    if self.recoveryAzureResourceGroupId != nil { try container.encode(self.recoveryAzureResourceGroupId, forKey: .recoveryAzureResourceGroupId) }
+    if self.recoveryCloudService != nil { try container.encode(self.recoveryCloudService, forKey: .recoveryCloudService) }
+    if self.recoveryAvailabilitySet != nil { try container.encode(self.recoveryAvailabilitySet, forKey: .recoveryAvailabilitySet) }
+    if self.selectedRecoveryAzureNetworkId != nil { try container.encode(self.selectedRecoveryAzureNetworkId, forKey: .selectedRecoveryAzureNetworkId) }
+    if self.vmNics != nil { try container.encode(self.vmNics as! [VMNicDetailsData?]?, forKey: .vmNics) }
+    if self.vmSyncedConfigDetails != nil { try container.encode(self.vmSyncedConfigDetails as! AzureToAzureVmSyncedConfigDetailsData?, forKey: .vmSyncedConfigDetails) }
+    if self.monitoringPercentageCompletion != nil { try container.encode(self.monitoringPercentageCompletion, forKey: .monitoringPercentageCompletion) }
+    if self.monitoringJobType != nil { try container.encode(self.monitoringJobType, forKey: .monitoringJobType) }
     if self.lastHeartbeat != nil {
         try container.encode(DateConverter.toString(date: self.lastHeartbeat!, format: .dateTime), forKey: .lastHeartbeat)
     }
-    if self.agentVersion != nil {try container.encode(self.agentVersion, forKey: .agentVersion)}
-    if self.isReplicationAgentUpdateRequired != nil {try container.encode(self.isReplicationAgentUpdateRequired, forKey: .isReplicationAgentUpdateRequired)}
-    if self.recoveryFabricObjectId != nil {try container.encode(self.recoveryFabricObjectId, forKey: .recoveryFabricObjectId)}
-    if self.vmProtectionState != nil {try container.encode(self.vmProtectionState, forKey: .vmProtectionState)}
-    if self.vmProtectionStateDescription != nil {try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription)}
-    if self.lifecycleId != nil {try container.encode(self.lifecycleId, forKey: .lifecycleId)}
-    if self.testFailoverRecoveryFabricObjectId != nil {try container.encode(self.testFailoverRecoveryFabricObjectId, forKey: .testFailoverRecoveryFabricObjectId)}
-    if self.rpoInSeconds != nil {try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds)}
+    if self.agentVersion != nil { try container.encode(self.agentVersion, forKey: .agentVersion) }
+    if self.isReplicationAgentUpdateRequired != nil { try container.encode(self.isReplicationAgentUpdateRequired, forKey: .isReplicationAgentUpdateRequired) }
+    if self.recoveryFabricObjectId != nil { try container.encode(self.recoveryFabricObjectId, forKey: .recoveryFabricObjectId) }
+    if self.vmProtectionState != nil { try container.encode(self.vmProtectionState, forKey: .vmProtectionState) }
+    if self.vmProtectionStateDescription != nil { try container.encode(self.vmProtectionStateDescription, forKey: .vmProtectionStateDescription) }
+    if self.lifecycleId != nil { try container.encode(self.lifecycleId, forKey: .lifecycleId) }
+    if self.testFailoverRecoveryFabricObjectId != nil { try container.encode(self.testFailoverRecoveryFabricObjectId, forKey: .testFailoverRecoveryFabricObjectId) }
+    if self.rpoInSeconds != nil { try container.encode(self.rpoInSeconds, forKey: .rpoInSeconds) }
     if self.lastRpoCalculatedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastRpoCalculatedTime!, format: .dateTime), forKey: .lastRpoCalculatedTime)
     }

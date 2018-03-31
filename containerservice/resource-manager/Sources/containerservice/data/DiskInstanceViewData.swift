@@ -14,7 +14,7 @@ internal struct DiskInstanceViewData : DiskInstanceViewProtocol {
         case statuses = "statuses"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct DiskInstanceViewData : DiskInstanceViewProtocol {
     if container.contains(.statuses) {
         self.statuses = try container.decode([InstanceViewStatusData?]?.self, forKey: .statuses)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct DiskInstanceViewData : DiskInstanceViewProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.encryptionSettings != nil {try container.encode(self.encryptionSettings as! [DiskEncryptionSettingsData?]?, forKey: .encryptionSettings)}
-    if self.statuses != nil {try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.encryptionSettings != nil { try container.encode(self.encryptionSettings as! [DiskEncryptionSettingsData?]?, forKey: .encryptionSettings) }
+    if self.statuses != nil { try container.encode(self.statuses as! [InstanceViewStatusData?]?, forKey: .statuses) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct PacketCaptureStorageLocationData : PacketCaptureStorageLocationP
         case filePath = "filePath"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PacketCaptureStorageLocationData : PacketCaptureStorageLocationP
     if container.contains(.filePath) {
         self.filePath = try container.decode(String?.self, forKey: .filePath)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PacketCaptureStorageLocationData : PacketCaptureStorageLocationP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageId != nil {try container.encode(self.storageId, forKey: .storageId)}
-    if self.storagePath != nil {try container.encode(self.storagePath, forKey: .storagePath)}
-    if self.filePath != nil {try container.encode(self.filePath, forKey: .filePath)}
+    if self.storageId != nil { try container.encode(self.storageId, forKey: .storageId) }
+    if self.storagePath != nil { try container.encode(self.storagePath, forKey: .storagePath) }
+    if self.filePath != nil { try container.encode(self.filePath, forKey: .filePath) }
   }
 }
 

@@ -24,7 +24,7 @@ internal struct PremierAddOnPropertiesData : PremierAddOnPropertiesProtocol {
         case marketplaceOffer = "marketplaceOffer"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ internal struct PremierAddOnPropertiesData : PremierAddOnPropertiesProtocol {
     if container.contains(.marketplaceOffer) {
         self.marketplaceOffer = try container.decode(String?.self, forKey: .marketplaceOffer)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,14 +63,14 @@ internal struct PremierAddOnPropertiesData : PremierAddOnPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku, forKey: .sku)}
-    if self.product != nil {try container.encode(self.product, forKey: .product)}
-    if self.vendor != nil {try container.encode(self.vendor, forKey: .vendor)}
-    if self.premierAddOnName != nil {try container.encode(self.premierAddOnName, forKey: .premierAddOnName)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
-    if self.marketplacePublisher != nil {try container.encode(self.marketplacePublisher, forKey: .marketplacePublisher)}
-    if self.marketplaceOffer != nil {try container.encode(self.marketplaceOffer, forKey: .marketplaceOffer)}
+    if self.sku != nil { try container.encode(self.sku, forKey: .sku) }
+    if self.product != nil { try container.encode(self.product, forKey: .product) }
+    if self.vendor != nil { try container.encode(self.vendor, forKey: .vendor) }
+    if self.premierAddOnName != nil { try container.encode(self.premierAddOnName, forKey: .premierAddOnName) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
+    if self.marketplacePublisher != nil { try container.encode(self.marketplacePublisher, forKey: .marketplacePublisher) }
+    if self.marketplaceOffer != nil { try container.encode(self.marketplaceOffer, forKey: .marketplaceOffer) }
   }
 }
 

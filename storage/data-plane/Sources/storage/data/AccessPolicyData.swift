@@ -12,7 +12,7 @@ public  struct AccessPolicyData : AccessPolicyProtocol {
         case permission = "Permission"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -30,9 +30,9 @@ public  struct AccessPolicyData : AccessPolicyProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.start != nil {try container.encode(start, forKey: .start)}
-    if self.expiry != nil {try container.encode(expiry, forKey: .expiry)}
-    if self.permission != nil {try container.encode(permission, forKey: .permission)}
+    if self.start != nil { try container.encode(start, forKey: .start) }
+    if self.expiry != nil { try container.encode(expiry, forKey: .expiry) }
+    if self.permission != nil { try container.encode(permission, forKey: .permission) }
   }
 }
 

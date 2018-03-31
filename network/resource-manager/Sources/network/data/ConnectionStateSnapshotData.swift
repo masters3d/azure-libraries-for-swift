@@ -18,7 +18,7 @@ internal struct ConnectionStateSnapshotData : ConnectionStateSnapshotProtocol {
         case hops = "hops"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ConnectionStateSnapshotData : ConnectionStateSnapshotProtocol {
     if container.contains(.hops) {
         self.hops = try container.decode([ConnectivityHopData?]?.self, forKey: .hops)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct ConnectionStateSnapshotData : ConnectionStateSnapshotProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.connectionState != nil {try container.encode(self.connectionState, forKey: .connectionState)}
+    if self.connectionState != nil { try container.encode(self.connectionState, forKey: .connectionState) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.evaluationState != nil {try container.encode(self.evaluationState, forKey: .evaluationState)}
-    if self.hops != nil {try container.encode(self.hops as! [ConnectivityHopData?]?, forKey: .hops)}
+    if self.evaluationState != nil { try container.encode(self.evaluationState, forKey: .evaluationState) }
+    if self.hops != nil { try container.encode(self.hops as! [ConnectivityHopData?]?, forKey: .hops) }
   }
 }
 

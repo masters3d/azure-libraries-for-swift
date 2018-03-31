@@ -12,7 +12,7 @@ internal struct AzureTableStorageApplicationLogsConfigData : AzureTableStorageAp
         case sasUrl = "sasUrl"
         }
 
-  public init(sasUrl: String)  {
+  public init(sasUrl: String) {
     self.sasUrl = sasUrl
   }
 
@@ -22,7 +22,7 @@ internal struct AzureTableStorageApplicationLogsConfigData : AzureTableStorageAp
         self.level = try container.decode(LogLevelEnum?.self, forKey: .level)
     }
     self.sasUrl = try container.decode(String.self, forKey: .sasUrl)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct AzureTableStorageApplicationLogsConfigData : AzureTableStorageAp
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
     try container.encode(self.sasUrl, forKey: .sasUrl)
   }
 }

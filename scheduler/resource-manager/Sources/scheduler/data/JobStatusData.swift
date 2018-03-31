@@ -18,7 +18,7 @@ internal struct JobStatusData : JobStatusProtocol {
         case nextExecutionTime = "nextExecutionTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobStatusData : JobStatusProtocol {
     if container.contains(.nextExecutionTime) {
         self.nextExecutionTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .nextExecutionTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,9 +48,9 @@ internal struct JobStatusData : JobStatusProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.executionCount != nil {try container.encode(self.executionCount, forKey: .executionCount)}
-    if self.failureCount != nil {try container.encode(self.failureCount, forKey: .failureCount)}
-    if self.faultedCount != nil {try container.encode(self.faultedCount, forKey: .faultedCount)}
+    if self.executionCount != nil { try container.encode(self.executionCount, forKey: .executionCount) }
+    if self.failureCount != nil { try container.encode(self.failureCount, forKey: .failureCount) }
+    if self.faultedCount != nil { try container.encode(self.faultedCount, forKey: .faultedCount) }
     if self.lastExecutionTime != nil {
         try container.encode(DateConverter.toString(date: self.lastExecutionTime!, format: .dateTime), forKey: .lastExecutionTime)
     }

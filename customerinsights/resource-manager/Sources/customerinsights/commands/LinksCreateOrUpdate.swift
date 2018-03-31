@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol LinksCreateOrUpdate  {
+public protocol LinksCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var hubName : String { get set }
     var linkName : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var parameters :  LinkResourceFormatProtocol?  { get set }
+    var parameters :  LinkResourceFormatProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (LinkResourceFormatProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (LinkResourceFormatProtocol?, Error?) -> Void)
 }
 
 extension Commands.Links {
@@ -37,7 +37,7 @@ extension Commands.Links {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{hubName}"] = String(describing: self.hubName)
             self.pathParameters["{linkName}"] = String(describing: self.linkName)
@@ -61,12 +61,12 @@ extension Commands.Links {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(LinkResourceFormatData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (LinkResourceFormatProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (LinkResourceFormatProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: LinkResourceFormatData?, error: Error?) in
                 completionHandler(result, error)

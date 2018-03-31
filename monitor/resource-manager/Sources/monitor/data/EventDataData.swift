@@ -56,7 +56,7 @@ internal struct EventDataData : EventDataProtocol {
         case tenantId = "tenantId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -133,7 +133,7 @@ internal struct EventDataData : EventDataProtocol {
     if container.contains(.tenantId) {
         self.tenantId = try container.decode(String?.self, forKey: .tenantId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -143,34 +143,34 @@ internal struct EventDataData : EventDataProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.authorization != nil {try container.encode(self.authorization as! SenderAuthorizationData?, forKey: .authorization)}
-    if self.claims != nil {try container.encode(self.claims, forKey: .claims)}
-    if self.caller != nil {try container.encode(self.caller, forKey: .caller)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.eventDataId != nil {try container.encode(self.eventDataId, forKey: .eventDataId)}
-    if self.correlationId != nil {try container.encode(self.correlationId, forKey: .correlationId)}
-    if self.eventName != nil {try container.encode(self.eventName as! LocalizableStringData?, forKey: .eventName)}
-    if self.category != nil {try container.encode(self.category as! LocalizableStringData?, forKey: .category)}
-    if self.httpRequest != nil {try container.encode(self.httpRequest as! HttpRequestInfoData?, forKey: .httpRequest)}
-    if self.level != nil {try container.encode(self.level, forKey: .level)}
-    if self.resourceGroupName != nil {try container.encode(self.resourceGroupName, forKey: .resourceGroupName)}
-    if self.resourceProviderName != nil {try container.encode(self.resourceProviderName as! LocalizableStringData?, forKey: .resourceProviderName)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.resourceType != nil {try container.encode(self.resourceType as! LocalizableStringData?, forKey: .resourceType)}
-    if self.operationId != nil {try container.encode(self.operationId, forKey: .operationId)}
-    if self.operationName != nil {try container.encode(self.operationName as! LocalizableStringData?, forKey: .operationName)}
-    if self.properties != nil {try container.encode(self.properties, forKey: .properties)}
-    if self.status != nil {try container.encode(self.status as! LocalizableStringData?, forKey: .status)}
-    if self.subStatus != nil {try container.encode(self.subStatus as! LocalizableStringData?, forKey: .subStatus)}
+    if self.authorization != nil { try container.encode(self.authorization as! SenderAuthorizationData?, forKey: .authorization) }
+    if self.claims != nil { try container.encode(self.claims, forKey: .claims) }
+    if self.caller != nil { try container.encode(self.caller, forKey: .caller) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.eventDataId != nil { try container.encode(self.eventDataId, forKey: .eventDataId) }
+    if self.correlationId != nil { try container.encode(self.correlationId, forKey: .correlationId) }
+    if self.eventName != nil { try container.encode(self.eventName as! LocalizableStringData?, forKey: .eventName) }
+    if self.category != nil { try container.encode(self.category as! LocalizableStringData?, forKey: .category) }
+    if self.httpRequest != nil { try container.encode(self.httpRequest as! HttpRequestInfoData?, forKey: .httpRequest) }
+    if self.level != nil { try container.encode(self.level, forKey: .level) }
+    if self.resourceGroupName != nil { try container.encode(self.resourceGroupName, forKey: .resourceGroupName) }
+    if self.resourceProviderName != nil { try container.encode(self.resourceProviderName as! LocalizableStringData?, forKey: .resourceProviderName) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.resourceType != nil { try container.encode(self.resourceType as! LocalizableStringData?, forKey: .resourceType) }
+    if self.operationId != nil { try container.encode(self.operationId, forKey: .operationId) }
+    if self.operationName != nil { try container.encode(self.operationName as! LocalizableStringData?, forKey: .operationName) }
+    if self.properties != nil { try container.encode(self.properties, forKey: .properties) }
+    if self.status != nil { try container.encode(self.status as! LocalizableStringData?, forKey: .status) }
+    if self.subStatus != nil { try container.encode(self.subStatus as! LocalizableStringData?, forKey: .subStatus) }
     if self.eventTimestamp != nil {
         try container.encode(DateConverter.toString(date: self.eventTimestamp!, format: .dateTime), forKey: .eventTimestamp)
     }
     if self.submissionTimestamp != nil {
         try container.encode(DateConverter.toString(date: self.submissionTimestamp!, format: .dateTime), forKey: .submissionTimestamp)
     }
-    if self.subscriptionId != nil {try container.encode(self.subscriptionId, forKey: .subscriptionId)}
-    if self.tenantId != nil {try container.encode(self.tenantId, forKey: .tenantId)}
+    if self.subscriptionId != nil { try container.encode(self.subscriptionId, forKey: .subscriptionId) }
+    if self.tenantId != nil { try container.encode(self.tenantId, forKey: .tenantId) }
   }
 }
 

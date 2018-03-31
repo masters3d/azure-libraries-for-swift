@@ -14,7 +14,7 @@ internal struct VirtualMachineTaskDetailsData : VirtualMachineTaskDetailsProtoco
         case jobTask = "jobTask"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VirtualMachineTaskDetailsData : VirtualMachineTaskDetailsProtoco
     if container.contains(.jobTask) {
         self.jobTask = try container.decode(JobEntityData?.self, forKey: .jobTask)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct VirtualMachineTaskDetailsData : VirtualMachineTaskDetailsProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.skippedReason != nil {try container.encode(self.skippedReason, forKey: .skippedReason)}
-    if self.skippedReasonString != nil {try container.encode(self.skippedReasonString, forKey: .skippedReasonString)}
-    if self.jobTask != nil {try container.encode(self.jobTask as! JobEntityData?, forKey: .jobTask)}
+    if self.skippedReason != nil { try container.encode(self.skippedReason, forKey: .skippedReason) }
+    if self.skippedReasonString != nil { try container.encode(self.skippedReasonString, forKey: .skippedReasonString) }
+    if self.jobTask != nil { try container.encode(self.jobTask as! JobEntityData?, forKey: .jobTask) }
   }
 }
 

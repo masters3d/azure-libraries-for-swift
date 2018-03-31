@@ -38,7 +38,7 @@ internal struct EffectiveNetworkSecurityRuleData : EffectiveNetworkSecurityRuleP
         case direction = "direction"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct EffectiveNetworkSecurityRuleData : EffectiveNetworkSecurityRuleP
     if container.contains(.direction) {
         self.direction = try container.decode(SecurityRuleDirectionEnum?.self, forKey: .direction)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,21 +98,21 @@ internal struct EffectiveNetworkSecurityRuleData : EffectiveNetworkSecurityRuleP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self._protocol != nil {try container.encode(self._protocol, forKey: ._protocol)}
-    if self.sourcePortRange != nil {try container.encode(self.sourcePortRange, forKey: .sourcePortRange)}
-    if self.destinationPortRange != nil {try container.encode(self.destinationPortRange, forKey: .destinationPortRange)}
-    if self.sourcePortRanges != nil {try container.encode(self.sourcePortRanges as! [String]?, forKey: .sourcePortRanges)}
-    if self.destinationPortRanges != nil {try container.encode(self.destinationPortRanges as! [String]?, forKey: .destinationPortRanges)}
-    if self.sourceAddressPrefix != nil {try container.encode(self.sourceAddressPrefix, forKey: .sourceAddressPrefix)}
-    if self.destinationAddressPrefix != nil {try container.encode(self.destinationAddressPrefix, forKey: .destinationAddressPrefix)}
-    if self.sourceAddressPrefixes != nil {try container.encode(self.sourceAddressPrefixes as! [String]?, forKey: .sourceAddressPrefixes)}
-    if self.destinationAddressPrefixes != nil {try container.encode(self.destinationAddressPrefixes as! [String]?, forKey: .destinationAddressPrefixes)}
-    if self.expandedSourceAddressPrefix != nil {try container.encode(self.expandedSourceAddressPrefix as! [String]?, forKey: .expandedSourceAddressPrefix)}
-    if self.expandedDestinationAddressPrefix != nil {try container.encode(self.expandedDestinationAddressPrefix as! [String]?, forKey: .expandedDestinationAddressPrefix)}
-    if self.access != nil {try container.encode(self.access, forKey: .access)}
-    if self.priority != nil {try container.encode(self.priority, forKey: .priority)}
-    if self.direction != nil {try container.encode(self.direction, forKey: .direction)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self._protocol != nil { try container.encode(self._protocol, forKey: ._protocol) }
+    if self.sourcePortRange != nil { try container.encode(self.sourcePortRange, forKey: .sourcePortRange) }
+    if self.destinationPortRange != nil { try container.encode(self.destinationPortRange, forKey: .destinationPortRange) }
+    if self.sourcePortRanges != nil { try container.encode(self.sourcePortRanges as! [String]?, forKey: .sourcePortRanges) }
+    if self.destinationPortRanges != nil { try container.encode(self.destinationPortRanges as! [String]?, forKey: .destinationPortRanges) }
+    if self.sourceAddressPrefix != nil { try container.encode(self.sourceAddressPrefix, forKey: .sourceAddressPrefix) }
+    if self.destinationAddressPrefix != nil { try container.encode(self.destinationAddressPrefix, forKey: .destinationAddressPrefix) }
+    if self.sourceAddressPrefixes != nil { try container.encode(self.sourceAddressPrefixes as! [String]?, forKey: .sourceAddressPrefixes) }
+    if self.destinationAddressPrefixes != nil { try container.encode(self.destinationAddressPrefixes as! [String]?, forKey: .destinationAddressPrefixes) }
+    if self.expandedSourceAddressPrefix != nil { try container.encode(self.expandedSourceAddressPrefix as! [String]?, forKey: .expandedSourceAddressPrefix) }
+    if self.expandedDestinationAddressPrefix != nil { try container.encode(self.expandedDestinationAddressPrefix as! [String]?, forKey: .expandedDestinationAddressPrefix) }
+    if self.access != nil { try container.encode(self.access, forKey: .access) }
+    if self.priority != nil { try container.encode(self.priority, forKey: .priority) }
+    if self.direction != nil { try container.encode(self.direction, forKey: .direction) }
   }
 }
 

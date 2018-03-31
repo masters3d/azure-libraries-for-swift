@@ -16,7 +16,7 @@ internal struct ScheduleData : ScheduleProtocol {
         case recurrenceInterval = "recurrenceInterval"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ScheduleData : ScheduleProtocol {
     if container.contains(.recurrenceInterval) {
         self.recurrenceInterval = try container.decode(String?.self, forKey: .recurrenceInterval)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -49,8 +49,8 @@ internal struct ScheduleData : ScheduleProtocol {
     if self.doNotRunAfter != nil {
         try container.encode(DateConverter.toString(date: self.doNotRunAfter!, format: .dateTime), forKey: .doNotRunAfter)
     }
-    if self.startWindow != nil {try container.encode(self.startWindow, forKey: .startWindow)}
-    if self.recurrenceInterval != nil {try container.encode(self.recurrenceInterval, forKey: .recurrenceInterval)}
+    if self.startWindow != nil { try container.encode(self.startWindow, forKey: .startWindow) }
+    if self.recurrenceInterval != nil { try container.encode(self.recurrenceInterval, forKey: .recurrenceInterval) }
   }
 }
 

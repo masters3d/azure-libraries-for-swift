@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ReplicationJobsList  {
+public protocol ReplicationJobsList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol ReplicationJobsList  {
     var apiVersion : String { get set }
     var filter : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobCollectionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobCollectionProtocol?, Error?) -> Void)
 }
 
 extension Commands.ReplicationJobs {
@@ -39,7 +39,7 @@ extension Commands.ReplicationJobs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceName}"] = String(describing: self.resourceName)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -60,15 +60,15 @@ extension Commands.ReplicationJobs {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobCollectionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobCollectionProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

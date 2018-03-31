@@ -18,7 +18,7 @@ internal struct DataStoreData : DataStoreProtocol {
         case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DataStoreData : DataStoreProtocol {
     if container.contains(.type) {
         self.type = try container.decode(String?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct DataStoreData : DataStoreProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.symbolicName != nil {try container.encode(self.symbolicName, forKey: .symbolicName)}
-    if self.uuid != nil {try container.encode(self.uuid, forKey: .uuid)}
-    if self.capacity != nil {try container.encode(self.capacity, forKey: .capacity)}
-    if self.freeSpace != nil {try container.encode(self.freeSpace, forKey: .freeSpace)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.symbolicName != nil { try container.encode(self.symbolicName, forKey: .symbolicName) }
+    if self.uuid != nil { try container.encode(self.uuid, forKey: .uuid) }
+    if self.capacity != nil { try container.encode(self.capacity, forKey: .capacity) }
+    if self.freeSpace != nil { try container.encode(self.freeSpace, forKey: .freeSpace) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 

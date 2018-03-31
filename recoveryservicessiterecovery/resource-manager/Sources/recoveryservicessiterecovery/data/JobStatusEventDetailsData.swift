@@ -16,7 +16,7 @@ internal struct JobStatusEventDetailsData : JobStatusEventDetailsProtocol, Event
         case affectedObjectType = "affectedObjectType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct JobStatusEventDetailsData : JobStatusEventDetailsProtocol, Event
     if container.contains(.affectedObjectType) {
         self.affectedObjectType = try container.decode(String?.self, forKey: .affectedObjectType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct JobStatusEventDetailsData : JobStatusEventDetailsProtocol, Event
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.jobId != nil {try container.encode(self.jobId, forKey: .jobId)}
-    if self.jobFriendlyName != nil {try container.encode(self.jobFriendlyName, forKey: .jobFriendlyName)}
-    if self.jobStatus != nil {try container.encode(self.jobStatus, forKey: .jobStatus)}
-    if self.affectedObjectType != nil {try container.encode(self.affectedObjectType, forKey: .affectedObjectType)}
+    if self.jobId != nil { try container.encode(self.jobId, forKey: .jobId) }
+    if self.jobFriendlyName != nil { try container.encode(self.jobFriendlyName, forKey: .jobFriendlyName) }
+    if self.jobStatus != nil { try container.encode(self.jobStatus, forKey: .jobStatus) }
+    if self.affectedObjectType != nil { try container.encode(self.affectedObjectType, forKey: .affectedObjectType) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct RegionData : RegionProtocol {
         case regions = "regions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct RegionData : RegionProtocol {
     if container.contains(.regions) {
         self.regions = try container.decode([RegionData?]?.self, forKey: .regions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct RegionData : RegionProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.code != nil {try container.encode(self.code, forKey: .code)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.regions != nil {try container.encode(self.regions as! [RegionData?]?, forKey: .regions)}
+    if self.code != nil { try container.encode(self.code, forKey: .code) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.regions != nil { try container.encode(self.regions as! [RegionData?]?, forKey: .regions) }
   }
 }
 

@@ -22,7 +22,7 @@ internal struct SkuData : SkuProtocol {
         case restrictions = "restrictions"
         }
 
-  public init(name: SkuNameEnum)  {
+  public init(name: SkuNameEnum) {
     self.name = name
   }
 
@@ -47,7 +47,7 @@ internal struct SkuData : SkuProtocol {
     if container.contains(.restrictions) {
         self.restrictions = try container.decode([RestrictionData?]?.self, forKey: .restrictions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,12 +58,12 @@ internal struct SkuData : SkuProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.locations != nil {try container.encode(self.locations as! [String]?, forKey: .locations)}
-    if self.capabilities != nil {try container.encode(self.capabilities as! [SKUCapabilityData?]?, forKey: .capabilities)}
-    if self.restrictions != nil {try container.encode(self.restrictions as! [RestrictionData?]?, forKey: .restrictions)}
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.locations != nil { try container.encode(self.locations as! [String]?, forKey: .locations) }
+    if self.capabilities != nil { try container.encode(self.capabilities as! [SKUCapabilityData?]?, forKey: .capabilities) }
+    if self.restrictions != nil { try container.encode(self.restrictions as! [RestrictionData?]?, forKey: .restrictions) }
   }
 }
 

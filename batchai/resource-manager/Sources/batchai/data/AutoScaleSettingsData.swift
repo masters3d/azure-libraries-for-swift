@@ -14,7 +14,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
         case initialNodeCount = "initialNodeCount"
         }
 
-  public init(minimumNodeCount: Int32, maximumNodeCount: Int32)  {
+  public init(minimumNodeCount: Int32, maximumNodeCount: Int32) {
     self.minimumNodeCount = minimumNodeCount
     self.maximumNodeCount = maximumNodeCount
   }
@@ -26,7 +26,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
     if container.contains(.initialNodeCount) {
         self.initialNodeCount = try container.decode(Int32?.self, forKey: .initialNodeCount)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,7 +38,7 @@ internal struct AutoScaleSettingsData : AutoScaleSettingsProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.minimumNodeCount, forKey: .minimumNodeCount)
     try container.encode(self.maximumNodeCount, forKey: .maximumNodeCount)
-    if self.initialNodeCount != nil {try container.encode(self.initialNodeCount, forKey: .initialNodeCount)}
+    if self.initialNodeCount != nil { try container.encode(self.initialNodeCount, forKey: .initialNodeCount) }
   }
 }
 

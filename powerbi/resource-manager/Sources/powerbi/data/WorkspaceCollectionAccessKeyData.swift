@@ -10,7 +10,7 @@ internal struct WorkspaceCollectionAccessKeyData : WorkspaceCollectionAccessKeyP
         enum CodingKeys: String, CodingKey {case keyName = "keyName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct WorkspaceCollectionAccessKeyData : WorkspaceCollectionAccessKeyP
       if container.contains(.keyName) {
         self.keyName = try container.decode(AccessKeyNameEnum?.self, forKey: .keyName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct WorkspaceCollectionAccessKeyData : WorkspaceCollectionAccessKeyP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyName != nil {try container.encode(self.keyName, forKey: .keyName)}
+    if self.keyName != nil { try container.encode(self.keyName, forKey: .keyName) }
   }
 }
 

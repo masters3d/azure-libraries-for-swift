@@ -16,7 +16,7 @@ internal struct PlanData : PlanProtocol {
         case promotionCode = "promotionCode"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct PlanData : PlanProtocol {
     if container.contains(.promotionCode) {
         self.promotionCode = try container.decode(String?.self, forKey: .promotionCode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct PlanData : PlanProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.publisher != nil {try container.encode(self.publisher, forKey: .publisher)}
-    if self.product != nil {try container.encode(self.product, forKey: .product)}
-    if self.promotionCode != nil {try container.encode(self.promotionCode, forKey: .promotionCode)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.publisher != nil { try container.encode(self.publisher, forKey: .publisher) }
+    if self.product != nil { try container.encode(self.product, forKey: .product) }
+    if self.promotionCode != nil { try container.encode(self.promotionCode, forKey: .promotionCode) }
   }
 }
 

@@ -10,7 +10,7 @@ internal struct RegenerateActionParameterData : RegenerateActionParameterProtoco
         enum CodingKeys: String, CodingKey {case keyType = "keyType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RegenerateActionParameterData : RegenerateActionParameterProtoco
       if container.contains(.keyType) {
         self.keyType = try container.decode(KeyTypeEnum?.self, forKey: .keyType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RegenerateActionParameterData : RegenerateActionParameterProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyType != nil {try container.encode(self.keyType, forKey: .keyType)}
+    if self.keyType != nil { try container.encode(self.keyType, forKey: .keyType) }
   }
 }
 

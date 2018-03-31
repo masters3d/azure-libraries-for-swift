@@ -16,7 +16,7 @@ internal struct VirtualApplicationData : VirtualApplicationProtocol {
         case virtualDirectories = "virtualDirectories"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VirtualApplicationData : VirtualApplicationProtocol {
     if container.contains(.virtualDirectories) {
         self.virtualDirectories = try container.decode([VirtualDirectoryData?]?.self, forKey: .virtualDirectories)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VirtualApplicationData : VirtualApplicationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.virtualPath != nil {try container.encode(self.virtualPath, forKey: .virtualPath)}
-    if self.physicalPath != nil {try container.encode(self.physicalPath, forKey: .physicalPath)}
-    if self.preloadEnabled != nil {try container.encode(self.preloadEnabled, forKey: .preloadEnabled)}
-    if self.virtualDirectories != nil {try container.encode(self.virtualDirectories as! [VirtualDirectoryData?]?, forKey: .virtualDirectories)}
+    if self.virtualPath != nil { try container.encode(self.virtualPath, forKey: .virtualPath) }
+    if self.physicalPath != nil { try container.encode(self.physicalPath, forKey: .physicalPath) }
+    if self.preloadEnabled != nil { try container.encode(self.preloadEnabled, forKey: .preloadEnabled) }
+    if self.virtualDirectories != nil { try container.encode(self.virtualDirectories as! [VirtualDirectoryData?]?, forKey: .virtualDirectories) }
   }
 }
 

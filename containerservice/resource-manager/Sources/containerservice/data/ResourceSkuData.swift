@@ -34,7 +34,7 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
         case restrictions = "restrictions"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
     if container.contains(.restrictions) {
         self.restrictions = try container.decode([ResourceSkuRestrictionsData?]?.self, forKey: .restrictions)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,19 +88,19 @@ internal struct ResourceSkuData : ResourceSkuProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.tier != nil {try container.encode(self.tier, forKey: .tier)}
-    if self.size != nil {try container.encode(self.size, forKey: .size)}
-    if self.family != nil {try container.encode(self.family, forKey: .family)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.capacity != nil {try container.encode(self.capacity as! ResourceSkuCapacityData?, forKey: .capacity)}
-    if self.locations != nil {try container.encode(self.locations as! [String]?, forKey: .locations)}
-    if self.locationInfo != nil {try container.encode(self.locationInfo as! [ResourceSkuLocationInfoData?]?, forKey: .locationInfo)}
-    if self.apiVersions != nil {try container.encode(self.apiVersions as! [String]?, forKey: .apiVersions)}
-    if self.costs != nil {try container.encode(self.costs as! [ResourceSkuCostsData?]?, forKey: .costs)}
-    if self.capabilities != nil {try container.encode(self.capabilities as! [ResourceSkuCapabilitiesData?]?, forKey: .capabilities)}
-    if self.restrictions != nil {try container.encode(self.restrictions as! [ResourceSkuRestrictionsData?]?, forKey: .restrictions)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.tier != nil { try container.encode(self.tier, forKey: .tier) }
+    if self.size != nil { try container.encode(self.size, forKey: .size) }
+    if self.family != nil { try container.encode(self.family, forKey: .family) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.capacity != nil { try container.encode(self.capacity as! ResourceSkuCapacityData?, forKey: .capacity) }
+    if self.locations != nil { try container.encode(self.locations as! [String]?, forKey: .locations) }
+    if self.locationInfo != nil { try container.encode(self.locationInfo as! [ResourceSkuLocationInfoData?]?, forKey: .locationInfo) }
+    if self.apiVersions != nil { try container.encode(self.apiVersions as! [String]?, forKey: .apiVersions) }
+    if self.costs != nil { try container.encode(self.costs as! [ResourceSkuCostsData?]?, forKey: .costs) }
+    if self.capabilities != nil { try container.encode(self.capabilities as! [ResourceSkuCapabilitiesData?]?, forKey: .capabilities) }
+    if self.restrictions != nil { try container.encode(self.restrictions as! [ResourceSkuRestrictionsData?]?, forKey: .restrictions) }
   }
 }
 

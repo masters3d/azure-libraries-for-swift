@@ -20,7 +20,7 @@ internal struct AzureFileShareReferenceData : AzureFileShareReferenceProtocol {
         case directoryMode = "directoryMode"
         }
 
-  public init(accountName: String, azureFileUrl: String, credentials: AzureStorageCredentialsInfoProtocol, relativeMountPath: String)  {
+  public init(accountName: String, azureFileUrl: String, credentials: AzureStorageCredentialsInfoProtocol, relativeMountPath: String) {
     self.accountName = accountName
     self.azureFileUrl = azureFileUrl
     self.credentials = credentials
@@ -39,7 +39,7 @@ internal struct AzureFileShareReferenceData : AzureFileShareReferenceProtocol {
     if container.contains(.directoryMode) {
         self.directoryMode = try container.decode(String?.self, forKey: .directoryMode)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,8 +53,8 @@ internal struct AzureFileShareReferenceData : AzureFileShareReferenceProtocol {
     try container.encode(self.azureFileUrl, forKey: .azureFileUrl)
     try container.encode(self.credentials as! AzureStorageCredentialsInfoData, forKey: .credentials)
     try container.encode(self.relativeMountPath, forKey: .relativeMountPath)
-    if self.fileMode != nil {try container.encode(self.fileMode, forKey: .fileMode)}
-    if self.directoryMode != nil {try container.encode(self.directoryMode, forKey: .directoryMode)}
+    if self.fileMode != nil { try container.encode(self.fileMode, forKey: .fileMode) }
+    if self.directoryMode != nil { try container.encode(self.directoryMode, forKey: .directoryMode) }
   }
 }
 

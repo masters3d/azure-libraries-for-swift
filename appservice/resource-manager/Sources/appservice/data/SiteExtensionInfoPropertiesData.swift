@@ -48,7 +48,7 @@ internal struct SiteExtensionInfoPropertiesData : SiteExtensionInfoPropertiesPro
         case comment = "comment"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -113,7 +113,7 @@ internal struct SiteExtensionInfoPropertiesData : SiteExtensionInfoPropertiesPro
     if container.contains(.comment) {
         self.comment = try container.decode(String?.self, forKey: .comment)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -123,30 +123,30 @@ internal struct SiteExtensionInfoPropertiesData : SiteExtensionInfoPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.title != nil {try container.encode(self.title, forKey: .title)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.summary != nil {try container.encode(self.summary, forKey: .summary)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.extensionUrl != nil {try container.encode(self.extensionUrl, forKey: .extensionUrl)}
-    if self.projectUrl != nil {try container.encode(self.projectUrl, forKey: .projectUrl)}
-    if self.iconUrl != nil {try container.encode(self.iconUrl, forKey: .iconUrl)}
-    if self.licenseUrl != nil {try container.encode(self.licenseUrl, forKey: .licenseUrl)}
-    if self.feedUrl != nil {try container.encode(self.feedUrl, forKey: .feedUrl)}
-    if self.authors != nil {try container.encode(self.authors as! [String]?, forKey: .authors)}
-    if self.installationArgs != nil {try container.encode(self.installationArgs, forKey: .installationArgs)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.title != nil { try container.encode(self.title, forKey: .title) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.summary != nil { try container.encode(self.summary, forKey: .summary) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.extensionUrl != nil { try container.encode(self.extensionUrl, forKey: .extensionUrl) }
+    if self.projectUrl != nil { try container.encode(self.projectUrl, forKey: .projectUrl) }
+    if self.iconUrl != nil { try container.encode(self.iconUrl, forKey: .iconUrl) }
+    if self.licenseUrl != nil { try container.encode(self.licenseUrl, forKey: .licenseUrl) }
+    if self.feedUrl != nil { try container.encode(self.feedUrl, forKey: .feedUrl) }
+    if self.authors != nil { try container.encode(self.authors as! [String]?, forKey: .authors) }
+    if self.installationArgs != nil { try container.encode(self.installationArgs, forKey: .installationArgs) }
     if self.publishedDateTime != nil {
         try container.encode(DateConverter.toString(date: self.publishedDateTime!, format: .dateTime), forKey: .publishedDateTime)
     }
-    if self.downloadCount != nil {try container.encode(self.downloadCount, forKey: .downloadCount)}
-    if self.localIsLatestVersion != nil {try container.encode(self.localIsLatestVersion, forKey: .localIsLatestVersion)}
-    if self.localPath != nil {try container.encode(self.localPath, forKey: .localPath)}
+    if self.downloadCount != nil { try container.encode(self.downloadCount, forKey: .downloadCount) }
+    if self.localIsLatestVersion != nil { try container.encode(self.localIsLatestVersion, forKey: .localIsLatestVersion) }
+    if self.localPath != nil { try container.encode(self.localPath, forKey: .localPath) }
     if self.installedDateTime != nil {
         try container.encode(DateConverter.toString(date: self.installedDateTime!, format: .dateTime), forKey: .installedDateTime)
     }
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.comment != nil {try container.encode(self.comment, forKey: .comment)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.comment != nil { try container.encode(self.comment, forKey: .comment) }
   }
 }
 

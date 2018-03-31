@@ -26,7 +26,7 @@ internal struct ProtectedItemQueryObjectData : ProtectedItemQueryObjectProtocol 
         case backupSetName = "backupSetName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct ProtectedItemQueryObjectData : ProtectedItemQueryObjectProtocol 
     if container.contains(.backupSetName) {
         self.backupSetName = try container.decode(String?.self, forKey: .backupSetName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,15 +68,15 @@ internal struct ProtectedItemQueryObjectData : ProtectedItemQueryObjectProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.healthState != nil {try container.encode(self.healthState, forKey: .healthState)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.itemType != nil {try container.encode(self.itemType, forKey: .itemType)}
-    if self.policyName != nil {try container.encode(self.policyName, forKey: .policyName)}
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.backupEngineName != nil {try container.encode(self.backupEngineName, forKey: .backupEngineName)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.backupSetName != nil {try container.encode(self.backupSetName, forKey: .backupSetName)}
+    if self.healthState != nil { try container.encode(self.healthState, forKey: .healthState) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.itemType != nil { try container.encode(self.itemType, forKey: .itemType) }
+    if self.policyName != nil { try container.encode(self.policyName, forKey: .policyName) }
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.backupEngineName != nil { try container.encode(self.backupEngineName, forKey: .backupEngineName) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.backupSetName != nil { try container.encode(self.backupSetName, forKey: .backupSetName) }
   }
 }
 

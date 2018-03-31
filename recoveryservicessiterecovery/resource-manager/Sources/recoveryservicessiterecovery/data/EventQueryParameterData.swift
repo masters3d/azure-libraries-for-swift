@@ -22,7 +22,7 @@ internal struct EventQueryParameterData : EventQueryParameterProtocol {
         case endTime = "endTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct EventQueryParameterData : EventQueryParameterProtocol {
     if container.contains(.endTime) {
         self.endTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .endTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,11 +58,11 @@ internal struct EventQueryParameterData : EventQueryParameterProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.eventCode != nil {try container.encode(self.eventCode, forKey: .eventCode)}
-    if self.severity != nil {try container.encode(self.severity, forKey: .severity)}
-    if self.eventType != nil {try container.encode(self.eventType, forKey: .eventType)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.affectedObjectFriendlyName != nil {try container.encode(self.affectedObjectFriendlyName, forKey: .affectedObjectFriendlyName)}
+    if self.eventCode != nil { try container.encode(self.eventCode, forKey: .eventCode) }
+    if self.severity != nil { try container.encode(self.severity, forKey: .severity) }
+    if self.eventType != nil { try container.encode(self.eventType, forKey: .eventType) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.affectedObjectFriendlyName != nil { try container.encode(self.affectedObjectFriendlyName, forKey: .affectedObjectFriendlyName) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }

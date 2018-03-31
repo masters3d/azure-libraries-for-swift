@@ -14,7 +14,7 @@ internal struct EvaluatePoliciesPropertiesData : EvaluatePoliciesPropertiesProto
         case valueOffset = "valueOffset"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct EvaluatePoliciesPropertiesData : EvaluatePoliciesPropertiesProto
     if container.contains(.valueOffset) {
         self.valueOffset = try container.decode(String?.self, forKey: .valueOffset)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct EvaluatePoliciesPropertiesData : EvaluatePoliciesPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.factName != nil {try container.encode(self.factName, forKey: .factName)}
-    if self.factData != nil {try container.encode(self.factData, forKey: .factData)}
-    if self.valueOffset != nil {try container.encode(self.valueOffset, forKey: .valueOffset)}
+    if self.factName != nil { try container.encode(self.factName, forKey: .factName) }
+    if self.factData != nil { try container.encode(self.factData, forKey: .factData) }
+    if self.valueOffset != nil { try container.encode(self.valueOffset, forKey: .valueOffset) }
   }
 }
 

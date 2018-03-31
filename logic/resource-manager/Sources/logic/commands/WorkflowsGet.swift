@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WorkflowsGet  {
+public protocol WorkflowsGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var workflowName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (WorkflowProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (WorkflowProtocol?, Error?) -> Void)
 }
 
 extension Commands.Workflows {
@@ -29,7 +29,7 @@ extension Commands.Workflows {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{workflowName}"] = String(describing: self.workflowName)
@@ -42,12 +42,12 @@ extension Commands.Workflows {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(WorkflowData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (WorkflowProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (WorkflowProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: WorkflowData?, error: Error?) in
                 completionHandler(result, error)

@@ -18,7 +18,7 @@ internal struct PasswordCredentialData : PasswordCredentialProtocol {
         case value = "value"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct PasswordCredentialData : PasswordCredentialProtocol {
     if container.contains(.value) {
         self.value = try container.decode(String?.self, forKey: .value)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct PasswordCredentialData : PasswordCredentialProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     if self.startDate != nil {
         try container.encode(DateConverter.toString(date: self.startDate!, format: .dateTime), forKey: .startDate)
     }
     if self.endDate != nil {
         try container.encode(DateConverter.toString(date: self.endDate!, format: .dateTime), forKey: .endDate)
     }
-    if self.keyId != nil {try container.encode(self.keyId, forKey: .keyId)}
-    if self.value != nil {try container.encode(self.value, forKey: .value)}
+    if self.keyId != nil { try container.encode(self.keyId, forKey: .keyId) }
+    if self.value != nil { try container.encode(self.value, forKey: .value) }
   }
 }
 

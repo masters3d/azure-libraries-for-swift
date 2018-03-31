@@ -10,7 +10,7 @@ internal struct PolicykeyResourceData : PolicykeyResourceProtocol {
         enum CodingKeys: String, CodingKey {case policyKey = "policyKey"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct PolicykeyResourceData : PolicykeyResourceProtocol {
       if container.contains(.policyKey) {
         self.policyKey = try container.decode(String?.self, forKey: .policyKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct PolicykeyResourceData : PolicykeyResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.policyKey != nil {try container.encode(self.policyKey, forKey: .policyKey)}
+    if self.policyKey != nil { try container.encode(self.policyKey, forKey: .policyKey) }
   }
 }
 

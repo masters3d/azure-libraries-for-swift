@@ -18,7 +18,7 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
         case virtualMachineImageId = "virtualMachineImageId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
     if container.contains(.virtualMachineImageId) {
         self.virtualMachineImageId = try container.decode(String?.self, forKey: .virtualMachineImageId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct ImageReferenceData : ImageReferenceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.publisher != nil {try container.encode(self.publisher, forKey: .publisher)}
-    if self.offer != nil {try container.encode(self.offer, forKey: .offer)}
-    if self.sku != nil {try container.encode(self.sku, forKey: .sku)}
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
-    if self.virtualMachineImageId != nil {try container.encode(self.virtualMachineImageId, forKey: .virtualMachineImageId)}
+    if self.publisher != nil { try container.encode(self.publisher, forKey: .publisher) }
+    if self.offer != nil { try container.encode(self.offer, forKey: .offer) }
+    if self.sku != nil { try container.encode(self.sku, forKey: .sku) }
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
+    if self.virtualMachineImageId != nil { try container.encode(self.virtualMachineImageId, forKey: .virtualMachineImageId) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct ExpressRouteCircuitStatsData : ExpressRouteCircuitStatsProtocol 
         case secondarybytesOut = "secondarybytesOut"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ExpressRouteCircuitStatsData : ExpressRouteCircuitStatsProtocol 
     if container.contains(.secondarybytesOut) {
         self.secondarybytesOut = try container.decode(Int64?.self, forKey: .secondarybytesOut)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ExpressRouteCircuitStatsData : ExpressRouteCircuitStatsProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.primarybytesIn != nil {try container.encode(self.primarybytesIn, forKey: .primarybytesIn)}
-    if self.primarybytesOut != nil {try container.encode(self.primarybytesOut, forKey: .primarybytesOut)}
-    if self.secondarybytesIn != nil {try container.encode(self.secondarybytesIn, forKey: .secondarybytesIn)}
-    if self.secondarybytesOut != nil {try container.encode(self.secondarybytesOut, forKey: .secondarybytesOut)}
+    if self.primarybytesIn != nil { try container.encode(self.primarybytesIn, forKey: .primarybytesIn) }
+    if self.primarybytesOut != nil { try container.encode(self.primarybytesOut, forKey: .primarybytesOut) }
+    if self.secondarybytesIn != nil { try container.encode(self.secondarybytesIn, forKey: .secondarybytesIn) }
+    if self.secondarybytesOut != nil { try container.encode(self.secondarybytesOut, forKey: .secondarybytesOut) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct ResourceRequestsData : ResourceRequestsProtocol {
         case cpu = "cpu"
         }
 
-  public init(memoryInGB: Double, cpu: Double)  {
+  public init(memoryInGB: Double, cpu: Double) {
     self.memoryInGB = memoryInGB
     self.cpu = cpu
   }
@@ -21,7 +21,7 @@ internal struct ResourceRequestsData : ResourceRequestsProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.memoryInGB = try container.decode(Double.self, forKey: .memoryInGB)
     self.cpu = try container.decode(Double.self, forKey: .cpu)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

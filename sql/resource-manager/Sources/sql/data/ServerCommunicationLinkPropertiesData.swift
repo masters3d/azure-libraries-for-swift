@@ -12,7 +12,7 @@ internal struct ServerCommunicationLinkPropertiesData : ServerCommunicationLinkP
         case partnerServer = "partnerServer"
         }
 
-  public init(partnerServer: String)  {
+  public init(partnerServer: String) {
     self.partnerServer = partnerServer
   }
 
@@ -22,7 +22,7 @@ internal struct ServerCommunicationLinkPropertiesData : ServerCommunicationLinkP
         self.state = try container.decode(String?.self, forKey: .state)
     }
     self.partnerServer = try container.decode(String.self, forKey: .partnerServer)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct ServerCommunicationLinkPropertiesData : ServerCommunicationLinkP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     try container.encode(self.partnerServer, forKey: .partnerServer)
   }
 }

@@ -16,7 +16,7 @@ internal struct OperationData : OperationProtocol {
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct OperationData : OperationProtocol {
     if container.contains(.properties) {
         self.properties = try container.decode([String: String?]?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct OperationData : OperationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.display != nil {try container.encode(self.display as! OperationDisplayData?, forKey: .display)}
-    if self.origin != nil {try container.encode(self.origin, forKey: .origin)}
-    if self.properties != nil {try container.encode(self.properties, forKey: .properties)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.display != nil { try container.encode(self.display as! OperationDisplayData?, forKey: .display) }
+    if self.origin != nil { try container.encode(self.origin, forKey: .origin) }
+    if self.properties != nil { try container.encode(self.properties, forKey: .properties) }
   }
 }
 

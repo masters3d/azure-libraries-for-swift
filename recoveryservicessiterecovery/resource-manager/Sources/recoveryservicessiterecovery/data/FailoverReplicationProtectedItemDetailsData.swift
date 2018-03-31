@@ -26,7 +26,7 @@ internal struct FailoverReplicationProtectedItemDetailsData : FailoverReplicatio
         case recoveryPointTime = "recoveryPointTime"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ internal struct FailoverReplicationProtectedItemDetailsData : FailoverReplicatio
     if container.contains(.recoveryPointTime) {
         self.recoveryPointTime = DateConverter.fromString(dateStr: (try container.decode(String?.self, forKey: .recoveryPointTime)), format: .dateTime)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -68,14 +68,14 @@ internal struct FailoverReplicationProtectedItemDetailsData : FailoverReplicatio
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.testVmName != nil {try container.encode(self.testVmName, forKey: .testVmName)}
-    if self.testVmFriendlyName != nil {try container.encode(self.testVmFriendlyName, forKey: .testVmFriendlyName)}
-    if self.networkConnectionStatus != nil {try container.encode(self.networkConnectionStatus, forKey: .networkConnectionStatus)}
-    if self.networkFriendlyName != nil {try container.encode(self.networkFriendlyName, forKey: .networkFriendlyName)}
-    if self.subnet != nil {try container.encode(self.subnet, forKey: .subnet)}
-    if self.recoveryPointId != nil {try container.encode(self.recoveryPointId, forKey: .recoveryPointId)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.testVmName != nil { try container.encode(self.testVmName, forKey: .testVmName) }
+    if self.testVmFriendlyName != nil { try container.encode(self.testVmFriendlyName, forKey: .testVmFriendlyName) }
+    if self.networkConnectionStatus != nil { try container.encode(self.networkConnectionStatus, forKey: .networkConnectionStatus) }
+    if self.networkFriendlyName != nil { try container.encode(self.networkFriendlyName, forKey: .networkFriendlyName) }
+    if self.subnet != nil { try container.encode(self.subnet, forKey: .subnet) }
+    if self.recoveryPointId != nil { try container.encode(self.recoveryPointId, forKey: .recoveryPointId) }
     if self.recoveryPointTime != nil {
         try container.encode(DateConverter.toString(date: self.recoveryPointTime!, format: .dateTime), forKey: .recoveryPointTime)
     }

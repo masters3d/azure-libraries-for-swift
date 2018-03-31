@@ -34,7 +34,7 @@ internal struct ProcessThreadInfoPropertiesData : ProcessThreadInfoPropertiesPro
         case waitReason = "waitReason"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,7 +78,7 @@ internal struct ProcessThreadInfoPropertiesData : ProcessThreadInfoPropertiesPro
     if container.contains(.waitReason) {
         self.waitReason = try container.decode(String?.self, forKey: .waitReason)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -88,21 +88,21 @@ internal struct ProcessThreadInfoPropertiesData : ProcessThreadInfoPropertiesPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.href != nil {try container.encode(self.href, forKey: .href)}
-    if self.process != nil {try container.encode(self.process, forKey: .process)}
-    if self.startAddress != nil {try container.encode(self.startAddress, forKey: .startAddress)}
-    if self.currentPriority != nil {try container.encode(self.currentPriority, forKey: .currentPriority)}
-    if self.priorityLevel != nil {try container.encode(self.priorityLevel, forKey: .priorityLevel)}
-    if self.basePriority != nil {try container.encode(self.basePriority, forKey: .basePriority)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.href != nil { try container.encode(self.href, forKey: .href) }
+    if self.process != nil { try container.encode(self.process, forKey: .process) }
+    if self.startAddress != nil { try container.encode(self.startAddress, forKey: .startAddress) }
+    if self.currentPriority != nil { try container.encode(self.currentPriority, forKey: .currentPriority) }
+    if self.priorityLevel != nil { try container.encode(self.priorityLevel, forKey: .priorityLevel) }
+    if self.basePriority != nil { try container.encode(self.basePriority, forKey: .basePriority) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.totalProcessorTime != nil {try container.encode(self.totalProcessorTime, forKey: .totalProcessorTime)}
-    if self.userProcessorTime != nil {try container.encode(self.userProcessorTime, forKey: .userProcessorTime)}
-    if self.priviledgedProcessorTime != nil {try container.encode(self.priviledgedProcessorTime, forKey: .priviledgedProcessorTime)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.waitReason != nil {try container.encode(self.waitReason, forKey: .waitReason)}
+    if self.totalProcessorTime != nil { try container.encode(self.totalProcessorTime, forKey: .totalProcessorTime) }
+    if self.userProcessorTime != nil { try container.encode(self.userProcessorTime, forKey: .userProcessorTime) }
+    if self.priviledgedProcessorTime != nil { try container.encode(self.priviledgedProcessorTime, forKey: .priviledgedProcessorTime) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.waitReason != nil { try container.encode(self.waitReason, forKey: .waitReason) }
   }
 }
 

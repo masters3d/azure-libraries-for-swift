@@ -14,7 +14,7 @@ internal struct VersionDetailsData : VersionDetailsProtocol {
         case status = "status"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct VersionDetailsData : VersionDetailsProtocol {
     if container.contains(.status) {
         self.status = try container.decode(AgentVersionStatusEnum?.self, forKey: .status)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,11 +38,11 @@ internal struct VersionDetailsData : VersionDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
     if self.expiryDate != nil {
         try container.encode(DateConverter.toString(date: self.expiryDate!, format: .dateTime), forKey: .expiryDate)
     }
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
   }
 }
 

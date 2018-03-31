@@ -10,7 +10,7 @@ internal struct UpdateRecoveryPlanInputPropertiesData : UpdateRecoveryPlanInputP
         enum CodingKeys: String, CodingKey {case groups = "groups"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct UpdateRecoveryPlanInputPropertiesData : UpdateRecoveryPlanInputP
       if container.contains(.groups) {
         self.groups = try container.decode([RecoveryPlanGroupData?]?.self, forKey: .groups)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct UpdateRecoveryPlanInputPropertiesData : UpdateRecoveryPlanInputP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.groups != nil {try container.encode(self.groups as! [RecoveryPlanGroupData?]?, forKey: .groups)}
+    if self.groups != nil { try container.encode(self.groups as! [RecoveryPlanGroupData?]?, forKey: .groups) }
   }
 }
 

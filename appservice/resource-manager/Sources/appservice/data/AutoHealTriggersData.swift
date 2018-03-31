@@ -16,7 +16,7 @@ internal struct AutoHealTriggersData : AutoHealTriggersProtocol {
         case slowRequests = "slowRequests"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct AutoHealTriggersData : AutoHealTriggersProtocol {
     if container.contains(.slowRequests) {
         self.slowRequests = try container.decode(SlowRequestsBasedTriggerData?.self, forKey: .slowRequests)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct AutoHealTriggersData : AutoHealTriggersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.requests != nil {try container.encode(self.requests as! RequestsBasedTriggerData?, forKey: .requests)}
-    if self.privateBytesInKB != nil {try container.encode(self.privateBytesInKB, forKey: .privateBytesInKB)}
-    if self.statusCodes != nil {try container.encode(self.statusCodes as! [StatusCodesBasedTriggerData?]?, forKey: .statusCodes)}
-    if self.slowRequests != nil {try container.encode(self.slowRequests as! SlowRequestsBasedTriggerData?, forKey: .slowRequests)}
+    if self.requests != nil { try container.encode(self.requests as! RequestsBasedTriggerData?, forKey: .requests) }
+    if self.privateBytesInKB != nil { try container.encode(self.privateBytesInKB, forKey: .privateBytesInKB) }
+    if self.statusCodes != nil { try container.encode(self.statusCodes as! [StatusCodesBasedTriggerData?]?, forKey: .statusCodes) }
+    if self.slowRequests != nil { try container.encode(self.slowRequests as! SlowRequestsBasedTriggerData?, forKey: .slowRequests) }
   }
 }
 

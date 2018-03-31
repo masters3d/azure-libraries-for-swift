@@ -32,7 +32,7 @@ internal struct AzureBackupServerContainerData : AzureBackupServerContainerProto
         case extendedInfo = "extendedInfo"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ internal struct AzureBackupServerContainerData : AzureBackupServerContainerProto
     if container.contains(.extendedInfo) {
         self.extendedInfo = try container.decode(DPMContainerExtendedInfoData?.self, forKey: .extendedInfo)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -83,18 +83,18 @@ internal struct AzureBackupServerContainerData : AzureBackupServerContainerProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.friendlyName != nil {try container.encode(self.friendlyName, forKey: .friendlyName)}
-    if self.backupManagementType != nil {try container.encode(self.backupManagementType, forKey: .backupManagementType)}
-    if self.registrationStatus != nil {try container.encode(self.registrationStatus, forKey: .registrationStatus)}
-    if self.healthStatus != nil {try container.encode(self.healthStatus, forKey: .healthStatus)}
-    if self.canReRegister != nil {try container.encode(self.canReRegister, forKey: .canReRegister)}
-    if self.containerId != nil {try container.encode(self.containerId, forKey: .containerId)}
-    if self.protectedItemCount != nil {try container.encode(self.protectedItemCount, forKey: .protectedItemCount)}
-    if self.dpmAgentVersion != nil {try container.encode(self.dpmAgentVersion, forKey: .dpmAgentVersion)}
-    if self.dpmServers != nil {try container.encode(self.dpmServers as! [String]?, forKey: .dpmServers)}
-    if self.upgradeAvailable != nil {try container.encode(self.upgradeAvailable, forKey: .upgradeAvailable)}
-    if self.protectionStatus != nil {try container.encode(self.protectionStatus, forKey: .protectionStatus)}
-    if self.extendedInfo != nil {try container.encode(self.extendedInfo as! DPMContainerExtendedInfoData?, forKey: .extendedInfo)}
+    if self.friendlyName != nil { try container.encode(self.friendlyName, forKey: .friendlyName) }
+    if self.backupManagementType != nil { try container.encode(self.backupManagementType, forKey: .backupManagementType) }
+    if self.registrationStatus != nil { try container.encode(self.registrationStatus, forKey: .registrationStatus) }
+    if self.healthStatus != nil { try container.encode(self.healthStatus, forKey: .healthStatus) }
+    if self.canReRegister != nil { try container.encode(self.canReRegister, forKey: .canReRegister) }
+    if self.containerId != nil { try container.encode(self.containerId, forKey: .containerId) }
+    if self.protectedItemCount != nil { try container.encode(self.protectedItemCount, forKey: .protectedItemCount) }
+    if self.dpmAgentVersion != nil { try container.encode(self.dpmAgentVersion, forKey: .dpmAgentVersion) }
+    if self.dpmServers != nil { try container.encode(self.dpmServers as! [String]?, forKey: .dpmServers) }
+    if self.upgradeAvailable != nil { try container.encode(self.upgradeAvailable, forKey: .upgradeAvailable) }
+    if self.protectionStatus != nil { try container.encode(self.protectionStatus, forKey: .protectionStatus) }
+    if self.extendedInfo != nil { try container.encode(self.extendedInfo as! DPMContainerExtendedInfoData?, forKey: .extendedInfo) }
   }
 }
 

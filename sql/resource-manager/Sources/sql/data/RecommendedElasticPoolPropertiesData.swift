@@ -30,7 +30,7 @@ internal struct RecommendedElasticPoolPropertiesData : RecommendedElasticPoolPro
         case metrics = "metrics"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ internal struct RecommendedElasticPoolPropertiesData : RecommendedElasticPoolPro
     if container.contains(.metrics) {
         self.metrics = try container.decode([RecommendedElasticPoolMetricData?]?.self, forKey: .metrics)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -78,21 +78,21 @@ internal struct RecommendedElasticPoolPropertiesData : RecommendedElasticPoolPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.databaseEdition != nil {try container.encode(self.databaseEdition, forKey: .databaseEdition)}
-    if self.dtu != nil {try container.encode(self.dtu, forKey: .dtu)}
-    if self.databaseDtuMin != nil {try container.encode(self.databaseDtuMin, forKey: .databaseDtuMin)}
-    if self.databaseDtuMax != nil {try container.encode(self.databaseDtuMax, forKey: .databaseDtuMax)}
-    if self.storageMB != nil {try container.encode(self.storageMB, forKey: .storageMB)}
+    if self.databaseEdition != nil { try container.encode(self.databaseEdition, forKey: .databaseEdition) }
+    if self.dtu != nil { try container.encode(self.dtu, forKey: .dtu) }
+    if self.databaseDtuMin != nil { try container.encode(self.databaseDtuMin, forKey: .databaseDtuMin) }
+    if self.databaseDtuMax != nil { try container.encode(self.databaseDtuMax, forKey: .databaseDtuMax) }
+    if self.storageMB != nil { try container.encode(self.storageMB, forKey: .storageMB) }
     if self.observationPeriodStart != nil {
         try container.encode(DateConverter.toString(date: self.observationPeriodStart!, format: .dateTime), forKey: .observationPeriodStart)
     }
     if self.observationPeriodEnd != nil {
         try container.encode(DateConverter.toString(date: self.observationPeriodEnd!, format: .dateTime), forKey: .observationPeriodEnd)
     }
-    if self.maxObservedDtu != nil {try container.encode(self.maxObservedDtu, forKey: .maxObservedDtu)}
-    if self.maxObservedStorageMB != nil {try container.encode(self.maxObservedStorageMB, forKey: .maxObservedStorageMB)}
-    if self.databases != nil {try container.encode(self.databases as! [DatabaseData?]?, forKey: .databases)}
-    if self.metrics != nil {try container.encode(self.metrics as! [RecommendedElasticPoolMetricData?]?, forKey: .metrics)}
+    if self.maxObservedDtu != nil { try container.encode(self.maxObservedDtu, forKey: .maxObservedDtu) }
+    if self.maxObservedStorageMB != nil { try container.encode(self.maxObservedStorageMB, forKey: .maxObservedStorageMB) }
+    if self.databases != nil { try container.encode(self.databases as! [DatabaseData?]?, forKey: .databases) }
+    if self.metrics != nil { try container.encode(self.metrics as! [RecommendedElasticPoolMetricData?]?, forKey: .metrics) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct CsmSlotEntityData : CsmSlotEntityProtocol {
         case preserveVnet = "preserveVnet"
         }
 
-  public init(targetSlot: String, preserveVnet: Bool)  {
+  public init(targetSlot: String, preserveVnet: Bool) {
     self.targetSlot = targetSlot
     self.preserveVnet = preserveVnet
   }
@@ -21,7 +21,7 @@ internal struct CsmSlotEntityData : CsmSlotEntityProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.targetSlot = try container.decode(String.self, forKey: .targetSlot)
     self.preserveVnet = try container.decode(Bool.self, forKey: .preserveVnet)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

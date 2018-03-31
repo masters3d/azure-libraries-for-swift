@@ -14,7 +14,7 @@ internal struct DscCompilationJobCreatePropertiesData : DscCompilationJobCreateP
         case newNodeConfigurationBuildVersionRequired = "newNodeConfigurationBuildVersionRequired"
         }
 
-  public init(configuration: DscConfigurationAssociationPropertyProtocol)  {
+  public init(configuration: DscConfigurationAssociationPropertyProtocol) {
     self.configuration = configuration
   }
 
@@ -27,7 +27,7 @@ internal struct DscCompilationJobCreatePropertiesData : DscCompilationJobCreateP
     if container.contains(.newNodeConfigurationBuildVersionRequired) {
         self.newNodeConfigurationBuildVersionRequired = try container.decode(Bool?.self, forKey: .newNodeConfigurationBuildVersionRequired)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,8 +38,8 @@ internal struct DscCompilationJobCreatePropertiesData : DscCompilationJobCreateP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.configuration as! DscConfigurationAssociationPropertyData, forKey: .configuration)
-    if self.parameters != nil {try container.encode(self.parameters, forKey: .parameters)}
-    if self.newNodeConfigurationBuildVersionRequired != nil {try container.encode(self.newNodeConfigurationBuildVersionRequired, forKey: .newNodeConfigurationBuildVersionRequired)}
+    if self.parameters != nil { try container.encode(self.parameters, forKey: .parameters) }
+    if self.newNodeConfigurationBuildVersionRequired != nil { try container.encode(self.newNodeConfigurationBuildVersionRequired, forKey: .newNodeConfigurationBuildVersionRequired) }
   }
 }
 

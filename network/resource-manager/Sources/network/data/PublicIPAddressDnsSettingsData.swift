@@ -14,7 +14,7 @@ internal struct PublicIPAddressDnsSettingsData : PublicIPAddressDnsSettingsProto
         case reverseFqdn = "reverseFqdn"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct PublicIPAddressDnsSettingsData : PublicIPAddressDnsSettingsProto
     if container.contains(.reverseFqdn) {
         self.reverseFqdn = try container.decode(String?.self, forKey: .reverseFqdn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct PublicIPAddressDnsSettingsData : PublicIPAddressDnsSettingsProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.domainNameLabel != nil {try container.encode(self.domainNameLabel, forKey: .domainNameLabel)}
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
-    if self.reverseFqdn != nil {try container.encode(self.reverseFqdn, forKey: .reverseFqdn)}
+    if self.domainNameLabel != nil { try container.encode(self.domainNameLabel, forKey: .domainNameLabel) }
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
+    if self.reverseFqdn != nil { try container.encode(self.reverseFqdn, forKey: .reverseFqdn) }
   }
 }
 

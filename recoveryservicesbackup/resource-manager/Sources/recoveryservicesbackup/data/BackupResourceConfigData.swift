@@ -14,7 +14,7 @@ internal struct BackupResourceConfigData : BackupResourceConfigProtocol {
         case storageTypeState = "storageTypeState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BackupResourceConfigData : BackupResourceConfigProtocol {
     if container.contains(.storageTypeState) {
         self.storageTypeState = try container.decode(StorageTypeStateEnum?.self, forKey: .storageTypeState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BackupResourceConfigData : BackupResourceConfigProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.storageModelType != nil {try container.encode(self.storageModelType, forKey: .storageModelType)}
-    if self.storageType != nil {try container.encode(self.storageType, forKey: .storageType)}
-    if self.storageTypeState != nil {try container.encode(self.storageTypeState, forKey: .storageTypeState)}
+    if self.storageModelType != nil { try container.encode(self.storageModelType, forKey: .storageModelType) }
+    if self.storageType != nil { try container.encode(self.storageType, forKey: .storageType) }
+    if self.storageTypeState != nil { try container.encode(self.storageTypeState, forKey: .storageTypeState) }
   }
 }
 

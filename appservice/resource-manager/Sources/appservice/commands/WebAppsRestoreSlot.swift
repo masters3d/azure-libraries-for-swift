@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol WebAppsRestoreSlot  {
+public protocol WebAppsRestoreSlot {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var name : String { get set }
@@ -8,9 +8,9 @@ public protocol WebAppsRestoreSlot  {
     var slot : String { get set }
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
-    var request :  RestoreRequestProtocol?  { get set }
+    var request :  RestoreRequestProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RestoreResponseProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RestoreResponseProtocol?, Error?) -> Void)
 }
 
 extension Commands.WebApps {
@@ -40,7 +40,7 @@ extension Commands.WebApps {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{name}"] = String(describing: self.name)
             self.pathParameters["{backupId}"] = String(describing: self.backupId)
@@ -65,12 +65,12 @@ extension Commands.WebApps {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RestoreResponseData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RestoreResponseProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RestoreResponseProtocol?, Error?) -> Void) {
             client.executeAsyncLRO(command: self) {
                 (result: RestoreResponseData?, error: Error?) in
                 completionHandler(result, error)

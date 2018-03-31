@@ -16,7 +16,7 @@ internal struct ValidateRequestData : ValidateRequestProtocol {
         case properties = "properties"
         }
 
-  public init(name: String, type: ValidateResourceTypesEnum, location: String, properties: ValidatePropertiesProtocol)  {
+  public init(name: String, type: ValidateResourceTypesEnum, location: String, properties: ValidatePropertiesProtocol) {
     self.name = name
     self.type = type
     self.location = location
@@ -29,7 +29,7 @@ internal struct ValidateRequestData : ValidateRequestProtocol {
     self.type = try container.decode(ValidateResourceTypesEnum.self, forKey: .type)
     self.location = try container.decode(String.self, forKey: .location)
     self.properties = try container.decode(ValidatePropertiesData.self, forKey: .properties)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

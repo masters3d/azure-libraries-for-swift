@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol MarketplacesList  {
+public protocol MarketplacesList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol MarketplacesList  {
     var skiptoken : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (MarketplacesListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (MarketplacesListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.Marketplaces {
@@ -38,7 +38,7 @@ extension Commands.Marketplaces {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             if self.filter != nil { queryParameters["$filter"] = String(describing: self.filter!) }
             if self.top != nil { queryParameters["$top"] = String(describing: self.top!) }
@@ -59,15 +59,15 @@ extension Commands.Marketplaces {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (MarketplacesListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (MarketplacesListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

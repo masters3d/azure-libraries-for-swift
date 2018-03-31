@@ -12,7 +12,7 @@ internal struct EnvironmentDeploymentPropertiesData : EnvironmentDeploymentPrope
         case parameters = "parameters"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct EnvironmentDeploymentPropertiesData : EnvironmentDeploymentPrope
     if container.contains(.parameters) {
         self.parameters = try container.decode([ArmTemplateParameterPropertiesData?]?.self, forKey: .parameters)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct EnvironmentDeploymentPropertiesData : EnvironmentDeploymentPrope
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.armTemplateId != nil {try container.encode(self.armTemplateId, forKey: .armTemplateId)}
-    if self.parameters != nil {try container.encode(self.parameters as! [ArmTemplateParameterPropertiesData?]?, forKey: .parameters)}
+    if self.armTemplateId != nil { try container.encode(self.armTemplateId, forKey: .armTemplateId) }
+    if self.parameters != nil { try container.encode(self.parameters as! [ArmTemplateParameterPropertiesData?]?, forKey: .parameters) }
   }
 }
 

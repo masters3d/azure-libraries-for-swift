@@ -18,7 +18,7 @@ internal struct ComputeNodeUserData : ComputeNodeUserProtocol {
         case sshPublicKey = "sshPublicKey"
         }
 
-  public init(name: String)  {
+  public init(name: String) {
     self.name = name
   }
 
@@ -37,7 +37,7 @@ internal struct ComputeNodeUserData : ComputeNodeUserProtocol {
     if container.contains(.sshPublicKey) {
         self.sshPublicKey = try container.decode(String?.self, forKey: .sshPublicKey)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,12 +48,12 @@ internal struct ComputeNodeUserData : ComputeNodeUserProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    if self.isAdmin != nil {try container.encode(self.isAdmin, forKey: .isAdmin)}
+    if self.isAdmin != nil { try container.encode(self.isAdmin, forKey: .isAdmin) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.password != nil {try container.encode(self.password, forKey: .password)}
-    if self.sshPublicKey != nil {try container.encode(self.sshPublicKey, forKey: .sshPublicKey)}
+    if self.password != nil { try container.encode(self.password, forKey: .password) }
+    if self.sshPublicKey != nil { try container.encode(self.sshPublicKey, forKey: .sshPublicKey) }
   }
 }
 

@@ -16,7 +16,7 @@ internal struct VpnClientParametersData : VpnClientParametersProtocol {
         case clientRootCertificates = "clientRootCertificates"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct VpnClientParametersData : VpnClientParametersProtocol {
     if container.contains(.clientRootCertificates) {
         self.clientRootCertificates = try container.decode([String]?.self, forKey: .clientRootCertificates)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct VpnClientParametersData : VpnClientParametersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.processorArchitecture != nil {try container.encode(self.processorArchitecture, forKey: .processorArchitecture)}
-    if self.authenticationMethod != nil {try container.encode(self.authenticationMethod, forKey: .authenticationMethod)}
-    if self.radiusServerAuthCertificate != nil {try container.encode(self.radiusServerAuthCertificate, forKey: .radiusServerAuthCertificate)}
-    if self.clientRootCertificates != nil {try container.encode(self.clientRootCertificates as! [String]?, forKey: .clientRootCertificates)}
+    if self.processorArchitecture != nil { try container.encode(self.processorArchitecture, forKey: .processorArchitecture) }
+    if self.authenticationMethod != nil { try container.encode(self.authenticationMethod, forKey: .authenticationMethod) }
+    if self.radiusServerAuthCertificate != nil { try container.encode(self.radiusServerAuthCertificate, forKey: .radiusServerAuthCertificate) }
+    if self.clientRootCertificates != nil { try container.encode(self.clientRootCertificates as! [String]?, forKey: .clientRootCertificates) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct CertificateBasePropertiesData : CertificateBasePropertiesProtoco
         case format = "format"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct CertificateBasePropertiesData : CertificateBasePropertiesProtoco
     if container.contains(.format) {
         self.format = try container.decode(CertificateFormatEnum?.self, forKey: .format)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct CertificateBasePropertiesData : CertificateBasePropertiesProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.thumbprintAlgorithm != nil {try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm)}
-    if self.thumbprint != nil {try container.encode(self.thumbprint, forKey: .thumbprint)}
-    if self.format != nil {try container.encode(self.format, forKey: .format)}
+    if self.thumbprintAlgorithm != nil { try container.encode(self.thumbprintAlgorithm, forKey: .thumbprintAlgorithm) }
+    if self.thumbprint != nil { try container.encode(self.thumbprint, forKey: .thumbprint) }
+    if self.format != nil { try container.encode(self.format, forKey: .format) }
   }
 }
 

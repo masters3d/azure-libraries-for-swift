@@ -38,7 +38,7 @@ internal struct A2AProtectedManagedDiskDetailsData : A2AProtectedManagedDiskDeta
         case dataPendingAtSourceAgentInMB = "dataPendingAtSourceAgentInMB"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct A2AProtectedManagedDiskDetailsData : A2AProtectedManagedDiskDeta
     if container.contains(.dataPendingAtSourceAgentInMB) {
         self.dataPendingAtSourceAgentInMB = try container.decode(Double?.self, forKey: .dataPendingAtSourceAgentInMB)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,21 +98,21 @@ internal struct A2AProtectedManagedDiskDetailsData : A2AProtectedManagedDiskDeta
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.diskId != nil {try container.encode(self.diskId, forKey: .diskId)}
-    if self.recoveryResourceGroupId != nil {try container.encode(self.recoveryResourceGroupId, forKey: .recoveryResourceGroupId)}
-    if self.recoveryTargetDiskId != nil {try container.encode(self.recoveryTargetDiskId, forKey: .recoveryTargetDiskId)}
-    if self.recoveryReplicaDiskId != nil {try container.encode(self.recoveryReplicaDiskId, forKey: .recoveryReplicaDiskId)}
-    if self.recoveryReplicaDiskAccountType != nil {try container.encode(self.recoveryReplicaDiskAccountType, forKey: .recoveryReplicaDiskAccountType)}
-    if self.recoveryTargetDiskAccountType != nil {try container.encode(self.recoveryTargetDiskAccountType, forKey: .recoveryTargetDiskAccountType)}
-    if self.diskName != nil {try container.encode(self.diskName, forKey: .diskName)}
-    if self.diskCapacityInBytes != nil {try container.encode(self.diskCapacityInBytes, forKey: .diskCapacityInBytes)}
-    if self.primaryStagingAzureStorageAccountId != nil {try container.encode(self.primaryStagingAzureStorageAccountId, forKey: .primaryStagingAzureStorageAccountId)}
-    if self.diskType != nil {try container.encode(self.diskType, forKey: .diskType)}
-    if self.resyncRequired != nil {try container.encode(self.resyncRequired, forKey: .resyncRequired)}
-    if self.monitoringPercentageCompletion != nil {try container.encode(self.monitoringPercentageCompletion, forKey: .monitoringPercentageCompletion)}
-    if self.monitoringJobType != nil {try container.encode(self.monitoringJobType, forKey: .monitoringJobType)}
-    if self.dataPendingInStagingStorageAccountInMB != nil {try container.encode(self.dataPendingInStagingStorageAccountInMB, forKey: .dataPendingInStagingStorageAccountInMB)}
-    if self.dataPendingAtSourceAgentInMB != nil {try container.encode(self.dataPendingAtSourceAgentInMB, forKey: .dataPendingAtSourceAgentInMB)}
+    if self.diskId != nil { try container.encode(self.diskId, forKey: .diskId) }
+    if self.recoveryResourceGroupId != nil { try container.encode(self.recoveryResourceGroupId, forKey: .recoveryResourceGroupId) }
+    if self.recoveryTargetDiskId != nil { try container.encode(self.recoveryTargetDiskId, forKey: .recoveryTargetDiskId) }
+    if self.recoveryReplicaDiskId != nil { try container.encode(self.recoveryReplicaDiskId, forKey: .recoveryReplicaDiskId) }
+    if self.recoveryReplicaDiskAccountType != nil { try container.encode(self.recoveryReplicaDiskAccountType, forKey: .recoveryReplicaDiskAccountType) }
+    if self.recoveryTargetDiskAccountType != nil { try container.encode(self.recoveryTargetDiskAccountType, forKey: .recoveryTargetDiskAccountType) }
+    if self.diskName != nil { try container.encode(self.diskName, forKey: .diskName) }
+    if self.diskCapacityInBytes != nil { try container.encode(self.diskCapacityInBytes, forKey: .diskCapacityInBytes) }
+    if self.primaryStagingAzureStorageAccountId != nil { try container.encode(self.primaryStagingAzureStorageAccountId, forKey: .primaryStagingAzureStorageAccountId) }
+    if self.diskType != nil { try container.encode(self.diskType, forKey: .diskType) }
+    if self.resyncRequired != nil { try container.encode(self.resyncRequired, forKey: .resyncRequired) }
+    if self.monitoringPercentageCompletion != nil { try container.encode(self.monitoringPercentageCompletion, forKey: .monitoringPercentageCompletion) }
+    if self.monitoringJobType != nil { try container.encode(self.monitoringJobType, forKey: .monitoringJobType) }
+    if self.dataPendingInStagingStorageAccountInMB != nil { try container.encode(self.dataPendingInStagingStorageAccountInMB, forKey: .dataPendingInStagingStorageAccountInMB) }
+    if self.dataPendingAtSourceAgentInMB != nil { try container.encode(self.dataPendingAtSourceAgentInMB, forKey: .dataPendingAtSourceAgentInMB) }
   }
 }
 

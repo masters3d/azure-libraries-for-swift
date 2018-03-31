@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol SchedulesGet  {
+public protocol SchedulesGet {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -9,7 +9,7 @@ public protocol SchedulesGet  {
     var expand : String? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ScheduleProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ScheduleProtocol?, Error?) -> Void)
 }
 
 extension Commands.Schedules {
@@ -34,7 +34,7 @@ extension Commands.Schedules {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{labName}"] = String(describing: self.labName)
@@ -49,12 +49,12 @@ extension Commands.Schedules {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ScheduleData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ScheduleProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ScheduleProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ScheduleData?, error: Error?) in
                 completionHandler(result, error)

@@ -1,15 +1,15 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobsCreateOrUpdate  {
+public protocol JobsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var jobCollectionName : String { get set }
     var jobName : String { get set }
     var apiVersion : String { get set }
-    var job :  JobDefinitionProtocol?  { get set }
+    var job :  JobDefinitionProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobDefinitionProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobDefinitionProtocol?, Error?) -> Void)
 }
 
 extension Commands.Jobs {
@@ -35,7 +35,7 @@ extension Commands.Jobs {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{jobCollectionName}"] = String(describing: self.jobCollectionName)
@@ -59,12 +59,12 @@ extension Commands.Jobs {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(JobDefinitionData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobDefinitionProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobDefinitionProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: JobDefinitionData?, error: Error?) in
                 completionHandler(result, error)

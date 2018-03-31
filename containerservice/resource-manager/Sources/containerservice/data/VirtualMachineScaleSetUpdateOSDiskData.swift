@@ -18,7 +18,7 @@ internal struct VirtualMachineScaleSetUpdateOSDiskData : VirtualMachineScaleSetU
         case managedDisk = "managedDisk"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct VirtualMachineScaleSetUpdateOSDiskData : VirtualMachineScaleSetU
     if container.contains(.managedDisk) {
         self.managedDisk = try container.decode(VirtualMachineScaleSetManagedDiskParametersData?.self, forKey: .managedDisk)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,11 +48,11 @@ internal struct VirtualMachineScaleSetUpdateOSDiskData : VirtualMachineScaleSetU
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.caching != nil {try container.encode(self.caching, forKey: .caching)}
-    if self.writeAcceleratorEnabled != nil {try container.encode(self.writeAcceleratorEnabled, forKey: .writeAcceleratorEnabled)}
-    if self.image != nil {try container.encode(self.image as! VirtualHardDiskData?, forKey: .image)}
-    if self.vhdContainers != nil {try container.encode(self.vhdContainers as! [String]?, forKey: .vhdContainers)}
-    if self.managedDisk != nil {try container.encode(self.managedDisk as! VirtualMachineScaleSetManagedDiskParametersData?, forKey: .managedDisk)}
+    if self.caching != nil { try container.encode(self.caching, forKey: .caching) }
+    if self.writeAcceleratorEnabled != nil { try container.encode(self.writeAcceleratorEnabled, forKey: .writeAcceleratorEnabled) }
+    if self.image != nil { try container.encode(self.image as! VirtualHardDiskData?, forKey: .image) }
+    if self.vhdContainers != nil { try container.encode(self.vhdContainers as! [String]?, forKey: .vhdContainers) }
+    if self.managedDisk != nil { try container.encode(self.managedDisk as! VirtualMachineScaleSetManagedDiskParametersData?, forKey: .managedDisk) }
   }
 }
 

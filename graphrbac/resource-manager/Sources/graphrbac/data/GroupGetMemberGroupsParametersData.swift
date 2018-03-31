@@ -12,7 +12,7 @@ internal struct GroupGetMemberGroupsParametersData : GroupGetMemberGroupsParamet
         case securityEnabledOnly = "securityEnabledOnly"
         }
 
-  public init(securityEnabledOnly: Bool)  {
+  public init(securityEnabledOnly: Bool) {
     self.securityEnabledOnly = securityEnabledOnly
   }
 
@@ -22,7 +22,7 @@ internal struct GroupGetMemberGroupsParametersData : GroupGetMemberGroupsParamet
         self.additionalProperties = try container.decode([String:[String: String?]]?.self, forKey: .additionalProperties)
     }
     self.securityEnabledOnly = try container.decode(Bool.self, forKey: .securityEnabledOnly)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -32,7 +32,7 @@ internal struct GroupGetMemberGroupsParametersData : GroupGetMemberGroupsParamet
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
     try container.encode(self.securityEnabledOnly, forKey: .securityEnabledOnly)
   }
 }

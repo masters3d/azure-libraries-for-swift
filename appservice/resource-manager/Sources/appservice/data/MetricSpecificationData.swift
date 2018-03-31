@@ -38,7 +38,7 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
         case availabilities = "availabilities"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -88,7 +88,7 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
     if container.contains(.availabilities) {
         self.availabilities = try container.decode([MetricAvailabilityData?]?.self, forKey: .availabilities)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -98,21 +98,21 @@ internal struct MetricSpecificationData : MetricSpecificationProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.displayDescription != nil {try container.encode(self.displayDescription, forKey: .displayDescription)}
-    if self.unit != nil {try container.encode(self.unit, forKey: .unit)}
-    if self.aggregationType != nil {try container.encode(self.aggregationType, forKey: .aggregationType)}
-    if self.supportsInstanceLevelAggregation != nil {try container.encode(self.supportsInstanceLevelAggregation, forKey: .supportsInstanceLevelAggregation)}
-    if self.enableRegionalMdmAccount != nil {try container.encode(self.enableRegionalMdmAccount, forKey: .enableRegionalMdmAccount)}
-    if self.sourceMdmAccount != nil {try container.encode(self.sourceMdmAccount, forKey: .sourceMdmAccount)}
-    if self.sourceMdmNamespace != nil {try container.encode(self.sourceMdmNamespace, forKey: .sourceMdmNamespace)}
-    if self.metricFilterPattern != nil {try container.encode(self.metricFilterPattern, forKey: .metricFilterPattern)}
-    if self.fillGapWithZero != nil {try container.encode(self.fillGapWithZero, forKey: .fillGapWithZero)}
-    if self.isInternal != nil {try container.encode(self.isInternal, forKey: .isInternal)}
-    if self.dimensions != nil {try container.encode(self.dimensions as! [DimensionData?]?, forKey: .dimensions)}
-    if self.category != nil {try container.encode(self.category, forKey: .category)}
-    if self.availabilities != nil {try container.encode(self.availabilities as! [MetricAvailabilityData?]?, forKey: .availabilities)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.displayDescription != nil { try container.encode(self.displayDescription, forKey: .displayDescription) }
+    if self.unit != nil { try container.encode(self.unit, forKey: .unit) }
+    if self.aggregationType != nil { try container.encode(self.aggregationType, forKey: .aggregationType) }
+    if self.supportsInstanceLevelAggregation != nil { try container.encode(self.supportsInstanceLevelAggregation, forKey: .supportsInstanceLevelAggregation) }
+    if self.enableRegionalMdmAccount != nil { try container.encode(self.enableRegionalMdmAccount, forKey: .enableRegionalMdmAccount) }
+    if self.sourceMdmAccount != nil { try container.encode(self.sourceMdmAccount, forKey: .sourceMdmAccount) }
+    if self.sourceMdmNamespace != nil { try container.encode(self.sourceMdmNamespace, forKey: .sourceMdmNamespace) }
+    if self.metricFilterPattern != nil { try container.encode(self.metricFilterPattern, forKey: .metricFilterPattern) }
+    if self.fillGapWithZero != nil { try container.encode(self.fillGapWithZero, forKey: .fillGapWithZero) }
+    if self.isInternal != nil { try container.encode(self.isInternal, forKey: .isInternal) }
+    if self.dimensions != nil { try container.encode(self.dimensions as! [DimensionData?]?, forKey: .dimensions) }
+    if self.category != nil { try container.encode(self.category, forKey: .category) }
+    if self.availabilities != nil { try container.encode(self.availabilities as! [MetricAvailabilityData?]?, forKey: .availabilities) }
   }
 }
 

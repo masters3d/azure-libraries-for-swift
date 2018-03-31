@@ -1,14 +1,14 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ActivityLogAlertsCreateOrUpdate  {
+public protocol ActivityLogAlertsCreateOrUpdate {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var activityLogAlertName : String { get set }
     var apiVersion : String { get set }
-    var activityLogAlert :  ActivityLogAlertResourceProtocol?  { get set }
+    var activityLogAlert :  ActivityLogAlertResourceProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ActivityLogAlertResourceProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ActivityLogAlertResourceProtocol?, Error?) -> Void)
 }
 
 extension Commands.ActivityLogAlerts {
@@ -32,7 +32,7 @@ extension Commands.ActivityLogAlerts {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{activityLogAlertName}"] = String(describing: self.activityLogAlertName)
@@ -55,12 +55,12 @@ extension Commands.ActivityLogAlerts {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ActivityLogAlertResourceData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ActivityLogAlertResourceProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ActivityLogAlertResourceProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ActivityLogAlertResourceData?, error: Error?) in
                 completionHandler(result, error)

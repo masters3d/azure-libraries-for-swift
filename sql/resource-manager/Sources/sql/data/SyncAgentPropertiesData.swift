@@ -22,7 +22,7 @@ internal struct SyncAgentPropertiesData : SyncAgentPropertiesProtocol {
         case version = "version"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct SyncAgentPropertiesData : SyncAgentPropertiesProtocol {
     if container.contains(.version) {
         self.version = try container.decode(String?.self, forKey: .version)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,17 +58,17 @@ internal struct SyncAgentPropertiesData : SyncAgentPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.syncDatabaseId != nil {try container.encode(self.syncDatabaseId, forKey: .syncDatabaseId)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.syncDatabaseId != nil { try container.encode(self.syncDatabaseId, forKey: .syncDatabaseId) }
     if self.lastAliveTime != nil {
         try container.encode(DateConverter.toString(date: self.lastAliveTime!, format: .dateTime), forKey: .lastAliveTime)
     }
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
-    if self.isUpToDate != nil {try container.encode(self.isUpToDate, forKey: .isUpToDate)}
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
+    if self.isUpToDate != nil { try container.encode(self.isUpToDate, forKey: .isUpToDate) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.version != nil {try container.encode(self.version, forKey: .version)}
+    if self.version != nil { try container.encode(self.version, forKey: .version) }
   }
 }
 

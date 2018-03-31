@@ -14,7 +14,7 @@ internal struct NotificationSettingsFragmentData : NotificationSettingsFragmentP
         case webhookUrl = "webhookUrl"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct NotificationSettingsFragmentData : NotificationSettingsFragmentP
     if container.contains(.webhookUrl) {
         self.webhookUrl = try container.decode(String?.self, forKey: .webhookUrl)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct NotificationSettingsFragmentData : NotificationSettingsFragmentP
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.status != nil {try container.encode(self.status, forKey: .status)}
-    if self.timeInMinutes != nil {try container.encode(self.timeInMinutes, forKey: .timeInMinutes)}
-    if self.webhookUrl != nil {try container.encode(self.webhookUrl, forKey: .webhookUrl)}
+    if self.status != nil { try container.encode(self.status, forKey: .status) }
+    if self.timeInMinutes != nil { try container.encode(self.timeInMinutes, forKey: .timeInMinutes) }
+    if self.webhookUrl != nil { try container.encode(self.webhookUrl, forKey: .webhookUrl) }
   }
 }
 

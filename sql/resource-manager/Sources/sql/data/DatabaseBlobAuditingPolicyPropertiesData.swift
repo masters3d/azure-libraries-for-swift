@@ -22,7 +22,7 @@ internal struct DatabaseBlobAuditingPolicyPropertiesData : DatabaseBlobAuditingP
         case isStorageSecondaryKeyInUse = "isStorageSecondaryKeyInUse"
         }
 
-  public init(state: BlobAuditingPolicyStateEnum)  {
+  public init(state: BlobAuditingPolicyStateEnum) {
     self.state = state
   }
 
@@ -47,7 +47,7 @@ internal struct DatabaseBlobAuditingPolicyPropertiesData : DatabaseBlobAuditingP
     if container.contains(.isStorageSecondaryKeyInUse) {
         self.isStorageSecondaryKeyInUse = try container.decode(Bool?.self, forKey: .isStorageSecondaryKeyInUse)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,12 +58,12 @@ internal struct DatabaseBlobAuditingPolicyPropertiesData : DatabaseBlobAuditingP
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
-    if self.storageEndpoint != nil {try container.encode(self.storageEndpoint, forKey: .storageEndpoint)}
-    if self.storageAccountAccessKey != nil {try container.encode(self.storageAccountAccessKey, forKey: .storageAccountAccessKey)}
-    if self.retentionDays != nil {try container.encode(self.retentionDays, forKey: .retentionDays)}
-    if self.auditActionsAndGroups != nil {try container.encode(self.auditActionsAndGroups as! [String]?, forKey: .auditActionsAndGroups)}
-    if self.storageAccountSubscriptionId != nil {try container.encode(self.storageAccountSubscriptionId, forKey: .storageAccountSubscriptionId)}
-    if self.isStorageSecondaryKeyInUse != nil {try container.encode(self.isStorageSecondaryKeyInUse, forKey: .isStorageSecondaryKeyInUse)}
+    if self.storageEndpoint != nil { try container.encode(self.storageEndpoint, forKey: .storageEndpoint) }
+    if self.storageAccountAccessKey != nil { try container.encode(self.storageAccountAccessKey, forKey: .storageAccountAccessKey) }
+    if self.retentionDays != nil { try container.encode(self.retentionDays, forKey: .retentionDays) }
+    if self.auditActionsAndGroups != nil { try container.encode(self.auditActionsAndGroups as! [String]?, forKey: .auditActionsAndGroups) }
+    if self.storageAccountSubscriptionId != nil { try container.encode(self.storageAccountSubscriptionId, forKey: .storageAccountSubscriptionId) }
+    if self.isStorageSecondaryKeyInUse != nil { try container.encode(self.isStorageSecondaryKeyInUse, forKey: .isStorageSecondaryKeyInUse) }
   }
 }
 

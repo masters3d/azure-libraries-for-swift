@@ -10,14 +10,14 @@ internal struct PurgeParametersData : PurgeParametersProtocol {
         enum CodingKeys: String, CodingKey {case contentPaths = "contentPaths"
         }
 
-  public init(contentPaths: [String])  {
+  public init(contentPaths: [String]) {
     self.contentPaths = contentPaths
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.contentPaths = try container.decode([String].self, forKey: .contentPaths)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

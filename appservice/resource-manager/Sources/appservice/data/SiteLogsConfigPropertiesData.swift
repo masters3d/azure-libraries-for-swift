@@ -16,7 +16,7 @@ internal struct SiteLogsConfigPropertiesData : SiteLogsConfigPropertiesProtocol 
         case detailedErrorMessages = "detailedErrorMessages"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct SiteLogsConfigPropertiesData : SiteLogsConfigPropertiesProtocol 
     if container.contains(.detailedErrorMessages) {
         self.detailedErrorMessages = try container.decode(EnabledConfigData?.self, forKey: .detailedErrorMessages)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct SiteLogsConfigPropertiesData : SiteLogsConfigPropertiesProtocol 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.applicationLogs != nil {try container.encode(self.applicationLogs as! ApplicationLogsConfigData?, forKey: .applicationLogs)}
-    if self.httpLogs != nil {try container.encode(self.httpLogs as! HttpLogsConfigData?, forKey: .httpLogs)}
-    if self.failedRequestsTracing != nil {try container.encode(self.failedRequestsTracing as! EnabledConfigData?, forKey: .failedRequestsTracing)}
-    if self.detailedErrorMessages != nil {try container.encode(self.detailedErrorMessages as! EnabledConfigData?, forKey: .detailedErrorMessages)}
+    if self.applicationLogs != nil { try container.encode(self.applicationLogs as! ApplicationLogsConfigData?, forKey: .applicationLogs) }
+    if self.httpLogs != nil { try container.encode(self.httpLogs as! HttpLogsConfigData?, forKey: .httpLogs) }
+    if self.failedRequestsTracing != nil { try container.encode(self.failedRequestsTracing as! EnabledConfigData?, forKey: .failedRequestsTracing) }
+    if self.detailedErrorMessages != nil { try container.encode(self.detailedErrorMessages as! EnabledConfigData?, forKey: .detailedErrorMessages) }
   }
 }
 

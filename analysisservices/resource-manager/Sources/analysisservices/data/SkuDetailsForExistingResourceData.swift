@@ -10,7 +10,7 @@ internal struct SkuDetailsForExistingResourceData : SkuDetailsForExistingResourc
         enum CodingKeys: String, CodingKey {case sku = "sku"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct SkuDetailsForExistingResourceData : SkuDetailsForExistingResourc
       if container.contains(.sku) {
         self.sku = try container.decode(ResourceSkuData?.self, forKey: .sku)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct SkuDetailsForExistingResourceData : SkuDetailsForExistingResourc
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.sku != nil {try container.encode(self.sku as! ResourceSkuData?, forKey: .sku)}
+    if self.sku != nil { try container.encode(self.sku as! ResourceSkuData?, forKey: .sku) }
   }
 }
 

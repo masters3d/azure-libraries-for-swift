@@ -16,7 +16,7 @@ internal struct RouteData : RouteProtocol, SubResourceProtocol {
         case etag = "etag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct RouteData : RouteProtocol, SubResourceProtocol {
     if container.contains(.etag) {
         self.etag = try container.decode(String?.self, forKey: .etag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct RouteData : RouteProtocol, SubResourceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.properties != nil {try container.encode(self.properties as! RoutePropertiesFormatData?, forKey: .properties)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.properties != nil { try container.encode(self.properties as! RoutePropertiesFormatData?, forKey: .properties) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
   }
 }
 

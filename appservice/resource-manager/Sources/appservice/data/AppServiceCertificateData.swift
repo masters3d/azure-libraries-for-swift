@@ -14,7 +14,7 @@ internal struct AppServiceCertificateData : AppServiceCertificateProtocol {
         case provisioningState = "provisioningState"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct AppServiceCertificateData : AppServiceCertificateProtocol {
     if container.contains(.provisioningState) {
         self.provisioningState = try container.decode(KeyVaultSecretStatusEnum?.self, forKey: .provisioningState)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct AppServiceCertificateData : AppServiceCertificateProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyVaultId != nil {try container.encode(self.keyVaultId, forKey: .keyVaultId)}
-    if self.keyVaultSecretName != nil {try container.encode(self.keyVaultSecretName, forKey: .keyVaultSecretName)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
+    if self.keyVaultId != nil { try container.encode(self.keyVaultId, forKey: .keyVaultId) }
+    if self.keyVaultSecretName != nil { try container.encode(self.keyVaultSecretName, forKey: .keyVaultSecretName) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
   }
 }
 

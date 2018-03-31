@@ -12,7 +12,7 @@ internal struct ExportDevicesRequestData : ExportDevicesRequestProtocol {
         case excludeKeys = "ExcludeKeys"
         }
 
-  public init(exportBlobContainerUri: String, excludeKeys: Bool)  {
+  public init(exportBlobContainerUri: String, excludeKeys: Bool) {
     self.exportBlobContainerUri = exportBlobContainerUri
     self.excludeKeys = excludeKeys
   }
@@ -21,7 +21,7 @@ internal struct ExportDevicesRequestData : ExportDevicesRequestProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.exportBlobContainerUri = try container.decode(String.self, forKey: .exportBlobContainerUri)
     self.excludeKeys = try container.decode(Bool.self, forKey: .excludeKeys)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

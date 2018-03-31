@@ -38,7 +38,7 @@ internal struct X12AcknowledgementSettingsData : X12AcknowledgementSettingsProto
         case rolloverAcknowledgementControlNumber = "rolloverAcknowledgementControlNumber"
         }
 
-  public init(needTechnicalAcknowledgement: Bool, batchTechnicalAcknowledgements: Bool, needFunctionalAcknowledgement: Bool, batchFunctionalAcknowledgements: Bool, needImplementationAcknowledgement: Bool, batchImplementationAcknowledgements: Bool, needLoopForValidMessages: Bool, sendSynchronousAcknowledgement: Bool, acknowledgementControlNumberLowerBound: Int32, acknowledgementControlNumberUpperBound: Int32, rolloverAcknowledgementControlNumber: Bool)  {
+  public init(needTechnicalAcknowledgement: Bool, batchTechnicalAcknowledgements: Bool, needFunctionalAcknowledgement: Bool, batchFunctionalAcknowledgements: Bool, needImplementationAcknowledgement: Bool, batchImplementationAcknowledgements: Bool, needLoopForValidMessages: Bool, sendSynchronousAcknowledgement: Bool, acknowledgementControlNumberLowerBound: Int32, acknowledgementControlNumberUpperBound: Int32, rolloverAcknowledgementControlNumber: Bool) {
     self.needTechnicalAcknowledgement = needTechnicalAcknowledgement
     self.batchTechnicalAcknowledgements = batchTechnicalAcknowledgements
     self.needFunctionalAcknowledgement = needFunctionalAcknowledgement
@@ -77,7 +77,7 @@ internal struct X12AcknowledgementSettingsData : X12AcknowledgementSettingsProto
     self.acknowledgementControlNumberLowerBound = try container.decode(Int32.self, forKey: .acknowledgementControlNumberLowerBound)
     self.acknowledgementControlNumberUpperBound = try container.decode(Int32.self, forKey: .acknowledgementControlNumberUpperBound)
     self.rolloverAcknowledgementControlNumber = try container.decode(Bool.self, forKey: .rolloverAcknowledgementControlNumber)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -90,15 +90,15 @@ internal struct X12AcknowledgementSettingsData : X12AcknowledgementSettingsProto
     try container.encode(self.needTechnicalAcknowledgement, forKey: .needTechnicalAcknowledgement)
     try container.encode(self.batchTechnicalAcknowledgements, forKey: .batchTechnicalAcknowledgements)
     try container.encode(self.needFunctionalAcknowledgement, forKey: .needFunctionalAcknowledgement)
-    if self.functionalAcknowledgementVersion != nil {try container.encode(self.functionalAcknowledgementVersion, forKey: .functionalAcknowledgementVersion)}
+    if self.functionalAcknowledgementVersion != nil { try container.encode(self.functionalAcknowledgementVersion, forKey: .functionalAcknowledgementVersion) }
     try container.encode(self.batchFunctionalAcknowledgements, forKey: .batchFunctionalAcknowledgements)
     try container.encode(self.needImplementationAcknowledgement, forKey: .needImplementationAcknowledgement)
-    if self.implementationAcknowledgementVersion != nil {try container.encode(self.implementationAcknowledgementVersion, forKey: .implementationAcknowledgementVersion)}
+    if self.implementationAcknowledgementVersion != nil { try container.encode(self.implementationAcknowledgementVersion, forKey: .implementationAcknowledgementVersion) }
     try container.encode(self.batchImplementationAcknowledgements, forKey: .batchImplementationAcknowledgements)
     try container.encode(self.needLoopForValidMessages, forKey: .needLoopForValidMessages)
     try container.encode(self.sendSynchronousAcknowledgement, forKey: .sendSynchronousAcknowledgement)
-    if self.acknowledgementControlNumberPrefix != nil {try container.encode(self.acknowledgementControlNumberPrefix, forKey: .acknowledgementControlNumberPrefix)}
-    if self.acknowledgementControlNumberSuffix != nil {try container.encode(self.acknowledgementControlNumberSuffix, forKey: .acknowledgementControlNumberSuffix)}
+    if self.acknowledgementControlNumberPrefix != nil { try container.encode(self.acknowledgementControlNumberPrefix, forKey: .acknowledgementControlNumberPrefix) }
+    if self.acknowledgementControlNumberSuffix != nil { try container.encode(self.acknowledgementControlNumberSuffix, forKey: .acknowledgementControlNumberSuffix) }
     try container.encode(self.acknowledgementControlNumberLowerBound, forKey: .acknowledgementControlNumberLowerBound)
     try container.encode(self.acknowledgementControlNumberUpperBound, forKey: .acknowledgementControlNumberUpperBound)
     try container.encode(self.rolloverAcknowledgementControlNumber, forKey: .rolloverAcknowledgementControlNumber)

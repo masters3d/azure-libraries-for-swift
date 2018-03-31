@@ -20,7 +20,7 @@ internal struct DataLakeStoreAccountPropertiesBasicData : DataLakeStoreAccountPr
         case endpoint = "endpoint"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DataLakeStoreAccountPropertiesBasicData : DataLakeStoreAccountPr
     if container.contains(.endpoint) {
         self.endpoint = try container.decode(String?.self, forKey: .endpoint)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct DataLakeStoreAccountPropertiesBasicData : DataLakeStoreAccountPr
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
   }
 }
 

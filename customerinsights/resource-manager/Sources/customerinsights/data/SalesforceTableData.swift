@@ -18,7 +18,7 @@ internal struct SalesforceTableData : SalesforceTableProtocol {
         case tableSchema = "tableSchema"
         }
 
-  public init(tableCategory: String, tableName: String, tableSchema: String)  {
+  public init(tableCategory: String, tableName: String, tableSchema: String) {
     self.tableCategory = tableCategory
     self.tableName = tableName
     self.tableSchema = tableSchema
@@ -35,7 +35,7 @@ internal struct SalesforceTableData : SalesforceTableProtocol {
         self.tableRemarks = try container.decode(String?.self, forKey: .tableRemarks)
     }
     self.tableSchema = try container.decode(String.self, forKey: .tableSchema)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -45,10 +45,10 @@ internal struct SalesforceTableData : SalesforceTableProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isProfile != nil {try container.encode(self.isProfile, forKey: .isProfile)}
+    if self.isProfile != nil { try container.encode(self.isProfile, forKey: .isProfile) }
     try container.encode(self.tableCategory, forKey: .tableCategory)
     try container.encode(self.tableName, forKey: .tableName)
-    if self.tableRemarks != nil {try container.encode(self.tableRemarks, forKey: .tableRemarks)}
+    if self.tableRemarks != nil { try container.encode(self.tableRemarks, forKey: .tableRemarks) }
     try container.encode(self.tableSchema, forKey: .tableSchema)
   }
 }

@@ -16,7 +16,7 @@ internal struct ComputePolicyPropertiesData : ComputePolicyPropertiesProtocol {
         case minPriorityPerJob = "minPriorityPerJob"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct ComputePolicyPropertiesData : ComputePolicyPropertiesProtocol {
     if container.contains(.minPriorityPerJob) {
         self.minPriorityPerJob = try container.decode(Int32?.self, forKey: .minPriorityPerJob)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct ComputePolicyPropertiesData : ComputePolicyPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
-    if self.objectType != nil {try container.encode(self.objectType, forKey: .objectType)}
-    if self.maxDegreeOfParallelismPerJob != nil {try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob)}
-    if self.minPriorityPerJob != nil {try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob)}
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
+    if self.objectType != nil { try container.encode(self.objectType, forKey: .objectType) }
+    if self.maxDegreeOfParallelismPerJob != nil { try container.encode(self.maxDegreeOfParallelismPerJob, forKey: .maxDegreeOfParallelismPerJob) }
+    if self.minPriorityPerJob != nil { try container.encode(self.minPriorityPerJob, forKey: .minPriorityPerJob) }
   }
 }
 

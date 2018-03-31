@@ -1,13 +1,13 @@
 import Foundation
 import azureSwiftRuntime
-public protocol ApplicationTypeList  {
+public protocol ApplicationTypeList {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
     var clusterName : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ApplicationTypeResourceListProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ApplicationTypeResourceListProtocol?, Error?) -> Void)
 }
 
 extension Commands.ApplicationType {
@@ -29,7 +29,7 @@ extension Commands.ApplicationType {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{clusterName}"] = String(describing: self.clusterName)
@@ -42,12 +42,12 @@ extension Commands.ApplicationType {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(ApplicationTypeResourceListData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ApplicationTypeResourceListProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ApplicationTypeResourceListProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: ApplicationTypeResourceListData?, error: Error?) in
                 completionHandler(result, error)

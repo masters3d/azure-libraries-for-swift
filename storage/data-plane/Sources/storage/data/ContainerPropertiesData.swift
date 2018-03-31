@@ -18,7 +18,7 @@ internal struct ContainerPropertiesData : ContainerPropertiesProtocol {
         case publicAccess = "PublicAccess"
     }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -45,12 +45,12 @@ internal struct ContainerPropertiesData : ContainerPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.lastModified != nil {try container.encode(lastModified, forKey: .lastModified)}
-    if self.etag != nil {try container.encode(etag, forKey: .etag)}
-    if self.leaseStatus != nil {try container.encode(leaseStatus, forKey: .leaseStatus)}
-    if self.leaseState != nil {try container.encode(leaseState, forKey: .leaseState)}
-    if self.leaseDuration != nil {try container.encode(leaseDuration, forKey: .leaseDuration)}
-    if self.publicAccess != nil {try container.encode(publicAccess, forKey: .publicAccess)}
+    if self.lastModified != nil { try container.encode(lastModified, forKey: .lastModified) }
+    if self.etag != nil { try container.encode(etag, forKey: .etag) }
+    if self.leaseStatus != nil { try container.encode(leaseStatus, forKey: .leaseStatus) }
+    if self.leaseState != nil { try container.encode(leaseState, forKey: .leaseState) }
+    if self.leaseDuration != nil { try container.encode(leaseDuration, forKey: .leaseDuration) }
+    if self.publicAccess != nil { try container.encode(publicAccess, forKey: .publicAccess) }
   }
 }
 

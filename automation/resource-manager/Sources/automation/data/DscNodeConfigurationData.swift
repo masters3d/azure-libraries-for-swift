@@ -20,7 +20,7 @@ internal struct DscNodeConfigurationData : DscNodeConfigurationProtocol, ProxyRe
         case configuration = "configuration"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct DscNodeConfigurationData : DscNodeConfigurationProtocol, ProxyRe
     if container.contains(.configuration) {
         self.configuration = try container.decode(DscConfigurationAssociationPropertyData?.self, forKey: .configuration)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,16 +53,16 @@ internal struct DscNodeConfigurationData : DscNodeConfigurationProtocol, ProxyRe
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
-    if self.configuration != nil {try container.encode(self.configuration as! DscConfigurationAssociationPropertyData?, forKey: .configuration)}
+    if self.configuration != nil { try container.encode(self.configuration as! DscConfigurationAssociationPropertyData?, forKey: .configuration) }
   }
 }
 

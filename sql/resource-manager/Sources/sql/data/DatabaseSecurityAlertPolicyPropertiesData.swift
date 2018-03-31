@@ -24,7 +24,7 @@ internal struct DatabaseSecurityAlertPolicyPropertiesData : DatabaseSecurityAler
         case useServerDefault = "useServerDefault"
         }
 
-  public init(state: SecurityAlertPolicyStateEnum)  {
+  public init(state: SecurityAlertPolicyStateEnum) {
     self.state = state
   }
 
@@ -52,7 +52,7 @@ internal struct DatabaseSecurityAlertPolicyPropertiesData : DatabaseSecurityAler
     if container.contains(.useServerDefault) {
         self.useServerDefault = try container.decode(SecurityAlertPolicyUseServerDefaultEnum?.self, forKey: .useServerDefault)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -63,13 +63,13 @@ internal struct DatabaseSecurityAlertPolicyPropertiesData : DatabaseSecurityAler
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
-    if self.disabledAlerts != nil {try container.encode(self.disabledAlerts, forKey: .disabledAlerts)}
-    if self.emailAddresses != nil {try container.encode(self.emailAddresses, forKey: .emailAddresses)}
-    if self.emailAccountAdmins != nil {try container.encode(self.emailAccountAdmins, forKey: .emailAccountAdmins)}
-    if self.storageEndpoint != nil {try container.encode(self.storageEndpoint, forKey: .storageEndpoint)}
-    if self.storageAccountAccessKey != nil {try container.encode(self.storageAccountAccessKey, forKey: .storageAccountAccessKey)}
-    if self.retentionDays != nil {try container.encode(self.retentionDays, forKey: .retentionDays)}
-    if self.useServerDefault != nil {try container.encode(self.useServerDefault, forKey: .useServerDefault)}
+    if self.disabledAlerts != nil { try container.encode(self.disabledAlerts, forKey: .disabledAlerts) }
+    if self.emailAddresses != nil { try container.encode(self.emailAddresses, forKey: .emailAddresses) }
+    if self.emailAccountAdmins != nil { try container.encode(self.emailAccountAdmins, forKey: .emailAccountAdmins) }
+    if self.storageEndpoint != nil { try container.encode(self.storageEndpoint, forKey: .storageEndpoint) }
+    if self.storageAccountAccessKey != nil { try container.encode(self.storageAccountAccessKey, forKey: .storageAccountAccessKey) }
+    if self.retentionDays != nil { try container.encode(self.retentionDays, forKey: .retentionDays) }
+    if self.useServerDefault != nil { try container.encode(self.useServerDefault, forKey: .useServerDefault) }
   }
 }
 

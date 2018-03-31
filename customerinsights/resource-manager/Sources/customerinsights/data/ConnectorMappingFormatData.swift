@@ -20,7 +20,7 @@ internal struct ConnectorMappingFormatData : ConnectorMappingFormatProtocol {
         case arraySeparator = "arraySeparator"
         }
 
-  public init(formatType: String)  {
+  public init(formatType: String) {
     self.formatType = formatType
   }
 
@@ -42,7 +42,7 @@ internal struct ConnectorMappingFormatData : ConnectorMappingFormatProtocol {
     if container.contains(.arraySeparator) {
         self.arraySeparator = try container.decode(String?.self, forKey: .arraySeparator)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,11 +53,11 @@ internal struct ConnectorMappingFormatData : ConnectorMappingFormatProtocol {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.formatType, forKey: .formatType)
-    if self.columnDelimiter != nil {try container.encode(self.columnDelimiter, forKey: .columnDelimiter)}
-    if self.acceptLanguage != nil {try container.encode(self.acceptLanguage, forKey: .acceptLanguage)}
-    if self.quoteCharacter != nil {try container.encode(self.quoteCharacter, forKey: .quoteCharacter)}
-    if self.quoteEscapeCharacter != nil {try container.encode(self.quoteEscapeCharacter, forKey: .quoteEscapeCharacter)}
-    if self.arraySeparator != nil {try container.encode(self.arraySeparator, forKey: .arraySeparator)}
+    if self.columnDelimiter != nil { try container.encode(self.columnDelimiter, forKey: .columnDelimiter) }
+    if self.acceptLanguage != nil { try container.encode(self.acceptLanguage, forKey: .acceptLanguage) }
+    if self.quoteCharacter != nil { try container.encode(self.quoteCharacter, forKey: .quoteCharacter) }
+    if self.quoteEscapeCharacter != nil { try container.encode(self.quoteEscapeCharacter, forKey: .quoteEscapeCharacter) }
+    if self.arraySeparator != nil { try container.encode(self.arraySeparator, forKey: .arraySeparator) }
   }
 }
 

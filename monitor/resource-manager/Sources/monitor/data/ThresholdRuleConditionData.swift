@@ -18,7 +18,7 @@ internal struct ThresholdRuleConditionData : ThresholdRuleConditionProtocol, Rul
         case timeAggregation = "timeAggregation"
         }
 
-  public init(_operator: ConditionOperatorEnum, threshold: Double)  {
+  public init(_operator: ConditionOperatorEnum, threshold: Double) {
     self._operator = _operator
     self.threshold = threshold
   }
@@ -36,7 +36,7 @@ internal struct ThresholdRuleConditionData : ThresholdRuleConditionProtocol, Rul
     if container.contains(.timeAggregation) {
         self.timeAggregation = try container.decode(TimeAggregationOperatorEnum?.self, forKey: .timeAggregation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -46,11 +46,11 @@ internal struct ThresholdRuleConditionData : ThresholdRuleConditionProtocol, Rul
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.dataSource != nil {try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource)}
+    if self.dataSource != nil { try container.encode(self.dataSource as! RuleDataSourceData?, forKey: .dataSource) }
     try container.encode(self._operator, forKey: ._operator)
     try container.encode(self.threshold, forKey: .threshold)
-    if self.windowSize != nil {try container.encode(self.windowSize, forKey: .windowSize)}
-    if self.timeAggregation != nil {try container.encode(self.timeAggregation, forKey: .timeAggregation)}
+    if self.windowSize != nil { try container.encode(self.windowSize, forKey: .windowSize) }
+    if self.timeAggregation != nil { try container.encode(self.timeAggregation, forKey: .timeAggregation) }
   }
 }
 

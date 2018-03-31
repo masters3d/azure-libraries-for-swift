@@ -14,7 +14,7 @@ internal struct ManagementEventAggregationConditionData : ManagementEventAggrega
         case windowSize = "windowSize"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ManagementEventAggregationConditionData : ManagementEventAggrega
     if container.contains(.windowSize) {
         self.windowSize = try container.decode(String?.self, forKey: .windowSize)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ManagementEventAggregationConditionData : ManagementEventAggrega
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self._operator != nil {try container.encode(self._operator, forKey: ._operator)}
-    if self.threshold != nil {try container.encode(self.threshold, forKey: .threshold)}
-    if self.windowSize != nil {try container.encode(self.windowSize, forKey: .windowSize)}
+    if self._operator != nil { try container.encode(self._operator, forKey: ._operator) }
+    if self.threshold != nil { try container.encode(self.threshold, forKey: .threshold) }
+    if self.windowSize != nil { try container.encode(self.windowSize, forKey: .windowSize) }
   }
 }
 

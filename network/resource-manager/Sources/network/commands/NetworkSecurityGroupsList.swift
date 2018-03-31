@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol NetworkSecurityGroupsList  {
+public protocol NetworkSecurityGroupsList {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -8,7 +8,7 @@ public protocol NetworkSecurityGroupsList  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (NetworkSecurityGroupListResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (NetworkSecurityGroupListResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.NetworkSecurityGroups {
@@ -34,7 +34,7 @@ extension Commands.NetworkSecurityGroups {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
@@ -53,15 +53,15 @@ extension Commands.NetworkSecurityGroups {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (NetworkSecurityGroupListResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (NetworkSecurityGroupListResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

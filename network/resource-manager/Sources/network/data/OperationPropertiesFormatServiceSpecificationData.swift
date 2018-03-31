@@ -12,7 +12,7 @@ internal struct OperationPropertiesFormatServiceSpecificationData : OperationPro
         case logSpecifications = "logSpecifications"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct OperationPropertiesFormatServiceSpecificationData : OperationPro
     if container.contains(.logSpecifications) {
         self.logSpecifications = try container.decode([LogSpecificationData?]?.self, forKey: .logSpecifications)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct OperationPropertiesFormatServiceSpecificationData : OperationPro
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.metricSpecifications != nil {try container.encode(self.metricSpecifications as! [MetricSpecificationData?]?, forKey: .metricSpecifications)}
-    if self.logSpecifications != nil {try container.encode(self.logSpecifications as! [LogSpecificationData?]?, forKey: .logSpecifications)}
+    if self.metricSpecifications != nil { try container.encode(self.metricSpecifications as! [MetricSpecificationData?]?, forKey: .metricSpecifications) }
+    if self.logSpecifications != nil { try container.encode(self.logSpecifications as! [LogSpecificationData?]?, forKey: .logSpecifications) }
   }
 }
 

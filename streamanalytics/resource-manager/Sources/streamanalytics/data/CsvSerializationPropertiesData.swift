@@ -12,7 +12,7 @@ internal struct CsvSerializationPropertiesData : CsvSerializationPropertiesProto
         case encoding = "encoding"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct CsvSerializationPropertiesData : CsvSerializationPropertiesProto
     if container.contains(.encoding) {
         self.encoding = try container.decode(EncodingEnum?.self, forKey: .encoding)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct CsvSerializationPropertiesData : CsvSerializationPropertiesProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.fieldDelimiter != nil {try container.encode(self.fieldDelimiter, forKey: .fieldDelimiter)}
-    if self.encoding != nil {try container.encode(self.encoding, forKey: .encoding)}
+    if self.fieldDelimiter != nil { try container.encode(self.fieldDelimiter, forKey: .fieldDelimiter) }
+    if self.encoding != nil { try container.encode(self.encoding, forKey: .encoding) }
   }
 }
 

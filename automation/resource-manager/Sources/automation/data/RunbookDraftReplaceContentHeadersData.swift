@@ -10,7 +10,7 @@ internal struct RunbookDraftReplaceContentHeadersData : RunbookDraftReplaceConte
         enum CodingKeys: String, CodingKey {case location = "location"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct RunbookDraftReplaceContentHeadersData : RunbookDraftReplaceConte
       if container.contains(.location) {
         self.location = try container.decode(String?.self, forKey: .location)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct RunbookDraftReplaceContentHeadersData : RunbookDraftReplaceConte
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
   }
 }
 

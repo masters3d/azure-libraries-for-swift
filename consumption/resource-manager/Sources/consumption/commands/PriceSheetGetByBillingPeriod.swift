@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PriceSheetGetByBillingPeriod  {
+public protocol PriceSheetGetByBillingPeriod {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var billingPeriodName : String { get set }
@@ -9,7 +9,7 @@ public protocol PriceSheetGetByBillingPeriod  {
     var top : Int32? { get set }
     var apiVersion : String { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PriceSheetResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PriceSheetResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.PriceSheet {
@@ -33,7 +33,7 @@ extension Commands.PriceSheet {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{billingPeriodName}"] = String(describing: self.billingPeriodName)
             if self.expand != nil { queryParameters["$expand"] = String(describing: self.expand!) }
@@ -48,12 +48,12 @@ extension Commands.PriceSheet {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PriceSheetResultData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PriceSheetResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PriceSheetResultProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: PriceSheetResultData?, error: Error?) in
                 completionHandler(result, error)

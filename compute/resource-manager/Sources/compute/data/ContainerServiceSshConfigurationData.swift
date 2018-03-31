@@ -10,14 +10,14 @@ internal struct ContainerServiceSshConfigurationData : ContainerServiceSshConfig
         enum CodingKeys: String, CodingKey {case publicKeys = "publicKeys"
         }
 
-  public init(publicKeys: [ContainerServiceSshPublicKeyProtocol])  {
+  public init(publicKeys: [ContainerServiceSshPublicKeyProtocol]) {
     self.publicKeys = publicKeys
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.publicKeys = try container.decode([ContainerServiceSshPublicKeyData].self, forKey: .publicKeys)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

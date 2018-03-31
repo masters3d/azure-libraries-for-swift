@@ -14,7 +14,7 @@ internal struct ResourceSkuCostsData : ResourceSkuCostsProtocol {
         case extendedUnit = "extendedUnit"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ResourceSkuCostsData : ResourceSkuCostsProtocol {
     if container.contains(.extendedUnit) {
         self.extendedUnit = try container.decode(String?.self, forKey: .extendedUnit)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ResourceSkuCostsData : ResourceSkuCostsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.meterID != nil {try container.encode(self.meterID, forKey: .meterID)}
-    if self.quantity != nil {try container.encode(self.quantity, forKey: .quantity)}
-    if self.extendedUnit != nil {try container.encode(self.extendedUnit, forKey: .extendedUnit)}
+    if self.meterID != nil { try container.encode(self.meterID, forKey: .meterID) }
+    if self.quantity != nil { try container.encode(self.quantity, forKey: .quantity) }
+    if self.extendedUnit != nil { try container.encode(self.extendedUnit, forKey: .extendedUnit) }
   }
 }
 

@@ -12,7 +12,7 @@ internal struct IpTagData : IpTagProtocol {
         case tag = "tag"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct IpTagData : IpTagProtocol {
     if container.contains(.tag) {
         self.tag = try container.decode(String?.self, forKey: .tag)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct IpTagData : IpTagProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.ipTagType != nil {try container.encode(self.ipTagType, forKey: .ipTagType)}
-    if self.tag != nil {try container.encode(self.tag, forKey: .tag)}
+    if self.ipTagType != nil { try container.encode(self.ipTagType, forKey: .ipTagType) }
+    if self.tag != nil { try container.encode(self.tag, forKey: .tag) }
   }
 }
 

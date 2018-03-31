@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol RecordSetsUpdate  {
+public protocol RecordSetsUpdate {
     var headerParameters: [String: String] { get set }
     var resourceGroupName : String { get set }
     var zoneName : String { get set }
@@ -9,9 +9,9 @@ public protocol RecordSetsUpdate  {
     var subscriptionId : String { get set }
     var apiVersion : String { get set }
     var ifMatch : String? { get set }
-    var parameters :  RecordSetProtocol?  { get set }
+    var parameters :  RecordSetProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (RecordSetProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (RecordSetProtocol?, Error?) -> Void)
 }
 
 extension Commands.RecordSets {
@@ -40,7 +40,7 @@ extension Commands.RecordSets {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{zoneName}"] = String(describing: self.zoneName)
             self.pathParameters["{relativeRecordSetName}"] = String(describing: self.relativeRecordSetName)
@@ -66,12 +66,12 @@ extension Commands.RecordSets {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(RecordSetData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (RecordSetProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (RecordSetProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: RecordSetData?, error: Error?) in
                 completionHandler(result, error)

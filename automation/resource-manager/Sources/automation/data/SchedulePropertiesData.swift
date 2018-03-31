@@ -36,7 +36,7 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -96,27 +96,27 @@ internal struct SchedulePropertiesData : SchedulePropertiesProtocol {
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.startTimeOffsetMinutes != nil {try container.encode(self.startTimeOffsetMinutes, forKey: .startTimeOffsetMinutes)}
+    if self.startTimeOffsetMinutes != nil { try container.encode(self.startTimeOffsetMinutes, forKey: .startTimeOffsetMinutes) }
     if self.expiryTime != nil {
         try container.encode(DateConverter.toString(date: self.expiryTime!, format: .dateTime), forKey: .expiryTime)
     }
-    if self.expiryTimeOffsetMinutes != nil {try container.encode(self.expiryTimeOffsetMinutes, forKey: .expiryTimeOffsetMinutes)}
-    if self.isEnabled != nil {try container.encode(self.isEnabled, forKey: .isEnabled)}
+    if self.expiryTimeOffsetMinutes != nil { try container.encode(self.expiryTimeOffsetMinutes, forKey: .expiryTimeOffsetMinutes) }
+    if self.isEnabled != nil { try container.encode(self.isEnabled, forKey: .isEnabled) }
     if self.nextRun != nil {
         try container.encode(DateConverter.toString(date: self.nextRun!, format: .dateTime), forKey: .nextRun)
     }
-    if self.nextRunOffsetMinutes != nil {try container.encode(self.nextRunOffsetMinutes, forKey: .nextRunOffsetMinutes)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
-    if self.timeZone != nil {try container.encode(self.timeZone, forKey: .timeZone)}
-    if self.advancedSchedule != nil {try container.encode(self.advancedSchedule as! AdvancedScheduleData?, forKey: .advancedSchedule)}
+    if self.nextRunOffsetMinutes != nil { try container.encode(self.nextRunOffsetMinutes, forKey: .nextRunOffsetMinutes) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
+    if self.timeZone != nil { try container.encode(self.timeZone, forKey: .timeZone) }
+    if self.advancedSchedule != nil { try container.encode(self.advancedSchedule as! AdvancedScheduleData?, forKey: .advancedSchedule) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

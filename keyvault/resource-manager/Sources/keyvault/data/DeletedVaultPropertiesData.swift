@@ -18,7 +18,7 @@ internal struct DeletedVaultPropertiesData : DeletedVaultPropertiesProtocol {
         case tags = "tags"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct DeletedVaultPropertiesData : DeletedVaultPropertiesProtocol {
     if container.contains(.tags) {
         self.tags = try container.decode([String:String]?.self, forKey: .tags)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,15 +48,15 @@ internal struct DeletedVaultPropertiesData : DeletedVaultPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.vaultId != nil {try container.encode(self.vaultId, forKey: .vaultId)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
+    if self.vaultId != nil { try container.encode(self.vaultId, forKey: .vaultId) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
     if self.deletionDate != nil {
         try container.encode(DateConverter.toString(date: self.deletionDate!, format: .dateTime), forKey: .deletionDate)
     }
     if self.scheduledPurgeDate != nil {
         try container.encode(DateConverter.toString(date: self.scheduledPurgeDate!, format: .dateTime), forKey: .scheduledPurgeDate)
     }
-    if self.tags != nil {try container.encode(self.tags, forKey: .tags)}
+    if self.tags != nil { try container.encode(self.tags, forKey: .tags) }
   }
 }
 

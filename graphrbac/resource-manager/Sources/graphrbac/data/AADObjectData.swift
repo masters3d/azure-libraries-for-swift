@@ -46,7 +46,7 @@ internal struct AADObjectData : AADObjectProtocol {
         case homepage = "homepage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -108,7 +108,7 @@ internal struct AADObjectData : AADObjectProtocol {
     if container.contains(.homepage) {
         self.homepage = try container.decode(String?.self, forKey: .homepage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -118,25 +118,25 @@ internal struct AADObjectData : AADObjectProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.additionalProperties != nil {try container.encode(self.additionalProperties, forKey: .additionalProperties)}
-    if self.objectId != nil {try container.encode(self.objectId, forKey: .objectId)}
-    if self.objectType != nil {try container.encode(self.objectType, forKey: .objectType)}
-    if self.displayName != nil {try container.encode(self.displayName, forKey: .displayName)}
-    if self.userPrincipalName != nil {try container.encode(self.userPrincipalName, forKey: .userPrincipalName)}
-    if self.mail != nil {try container.encode(self.mail, forKey: .mail)}
-    if self.mailEnabled != nil {try container.encode(self.mailEnabled, forKey: .mailEnabled)}
-    if self.mailNickname != nil {try container.encode(self.mailNickname, forKey: .mailNickname)}
-    if self.securityEnabled != nil {try container.encode(self.securityEnabled, forKey: .securityEnabled)}
-    if self.signInName != nil {try container.encode(self.signInName, forKey: .signInName)}
-    if self.servicePrincipalNames != nil {try container.encode(self.servicePrincipalNames as! [String]?, forKey: .servicePrincipalNames)}
-    if self.userType != nil {try container.encode(self.userType, forKey: .userType)}
-    if self.usageLocation != nil {try container.encode(self.usageLocation, forKey: .usageLocation)}
-    if self.appId != nil {try container.encode(self.appId, forKey: .appId)}
-    if self.appPermissions != nil {try container.encode(self.appPermissions as! [String]?, forKey: .appPermissions)}
-    if self.availableToOtherTenants != nil {try container.encode(self.availableToOtherTenants, forKey: .availableToOtherTenants)}
-    if self.identifierUris != nil {try container.encode(self.identifierUris as! [String]?, forKey: .identifierUris)}
-    if self.replyUrls != nil {try container.encode(self.replyUrls as! [String]?, forKey: .replyUrls)}
-    if self.homepage != nil {try container.encode(self.homepage, forKey: .homepage)}
+    if self.additionalProperties != nil { try container.encode(self.additionalProperties, forKey: .additionalProperties) }
+    if self.objectId != nil { try container.encode(self.objectId, forKey: .objectId) }
+    if self.objectType != nil { try container.encode(self.objectType, forKey: .objectType) }
+    if self.displayName != nil { try container.encode(self.displayName, forKey: .displayName) }
+    if self.userPrincipalName != nil { try container.encode(self.userPrincipalName, forKey: .userPrincipalName) }
+    if self.mail != nil { try container.encode(self.mail, forKey: .mail) }
+    if self.mailEnabled != nil { try container.encode(self.mailEnabled, forKey: .mailEnabled) }
+    if self.mailNickname != nil { try container.encode(self.mailNickname, forKey: .mailNickname) }
+    if self.securityEnabled != nil { try container.encode(self.securityEnabled, forKey: .securityEnabled) }
+    if self.signInName != nil { try container.encode(self.signInName, forKey: .signInName) }
+    if self.servicePrincipalNames != nil { try container.encode(self.servicePrincipalNames as! [String]?, forKey: .servicePrincipalNames) }
+    if self.userType != nil { try container.encode(self.userType, forKey: .userType) }
+    if self.usageLocation != nil { try container.encode(self.usageLocation, forKey: .usageLocation) }
+    if self.appId != nil { try container.encode(self.appId, forKey: .appId) }
+    if self.appPermissions != nil { try container.encode(self.appPermissions as! [String]?, forKey: .appPermissions) }
+    if self.availableToOtherTenants != nil { try container.encode(self.availableToOtherTenants, forKey: .availableToOtherTenants) }
+    if self.identifierUris != nil { try container.encode(self.identifierUris as! [String]?, forKey: .identifierUris) }
+    if self.replyUrls != nil { try container.encode(self.replyUrls as! [String]?, forKey: .replyUrls) }
+    if self.homepage != nil { try container.encode(self.homepage, forKey: .homepage) }
   }
 }
 

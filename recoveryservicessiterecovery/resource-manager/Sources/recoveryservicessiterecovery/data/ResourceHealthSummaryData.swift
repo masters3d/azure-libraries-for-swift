@@ -12,7 +12,7 @@ internal struct ResourceHealthSummaryData : ResourceHealthSummaryProtocol {
         case issues = "issues"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct ResourceHealthSummaryData : ResourceHealthSummaryProtocol {
     if container.contains(.issues) {
         self.issues = try container.decode([HealthErrorSummaryData?]?.self, forKey: .issues)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct ResourceHealthSummaryData : ResourceHealthSummaryProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceCount != nil {try container.encode(self.resourceCount, forKey: .resourceCount)}
-    if self.issues != nil {try container.encode(self.issues as! [HealthErrorSummaryData?]?, forKey: .issues)}
+    if self.resourceCount != nil { try container.encode(self.resourceCount, forKey: .resourceCount) }
+    if self.issues != nil { try container.encode(self.issues as! [HealthErrorSummaryData?]?, forKey: .issues) }
   }
 }
 

@@ -14,7 +14,7 @@ internal struct SyncGroupSchemaTableColumnData : SyncGroupSchemaTableColumnProto
         case dataType = "dataType"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct SyncGroupSchemaTableColumnData : SyncGroupSchemaTableColumnProto
     if container.contains(.dataType) {
         self.dataType = try container.decode(String?.self, forKey: .dataType)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct SyncGroupSchemaTableColumnData : SyncGroupSchemaTableColumnProto
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.quotedName != nil {try container.encode(self.quotedName, forKey: .quotedName)}
-    if self.dataSize != nil {try container.encode(self.dataSize, forKey: .dataSize)}
-    if self.dataType != nil {try container.encode(self.dataType, forKey: .dataType)}
+    if self.quotedName != nil { try container.encode(self.quotedName, forKey: .quotedName) }
+    if self.dataSize != nil { try container.encode(self.dataSize, forKey: .dataSize) }
+    if self.dataType != nil { try container.encode(self.dataType, forKey: .dataType) }
   }
 }
 

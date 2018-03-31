@@ -14,7 +14,7 @@ internal struct RecoveryPlanAutomationRunbookActionDetailsData : RecoveryPlanAut
         case fabricLocation = "fabricLocation"
         }
 
-  public init(fabricLocation: RecoveryPlanActionLocationEnum)  {
+  public init(fabricLocation: RecoveryPlanActionLocationEnum) {
     self.fabricLocation = fabricLocation
   }
 
@@ -27,7 +27,7 @@ internal struct RecoveryPlanAutomationRunbookActionDetailsData : RecoveryPlanAut
         self.timeout = try container.decode(String?.self, forKey: .timeout)
     }
     self.fabricLocation = try container.decode(RecoveryPlanActionLocationEnum.self, forKey: .fabricLocation)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -37,8 +37,8 @@ internal struct RecoveryPlanAutomationRunbookActionDetailsData : RecoveryPlanAut
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.runbookId != nil {try container.encode(self.runbookId, forKey: .runbookId)}
-    if self.timeout != nil {try container.encode(self.timeout, forKey: .timeout)}
+    if self.runbookId != nil { try container.encode(self.runbookId, forKey: .runbookId) }
+    if self.timeout != nil { try container.encode(self.timeout, forKey: .timeout) }
     try container.encode(self.fabricLocation, forKey: .fabricLocation)
   }
 }

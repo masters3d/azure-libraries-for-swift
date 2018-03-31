@@ -18,7 +18,7 @@ internal struct IpAddressData : IpAddressProtocol {
         case fqdn = "fqdn"
         }
 
-  public init(ports: [PortProtocol], type: String)  {
+  public init(ports: [PortProtocol], type: String) {
     self.ports = ports
     self.type = type
   }
@@ -36,7 +36,7 @@ internal struct IpAddressData : IpAddressProtocol {
     if container.contains(.fqdn) {
         self.fqdn = try container.decode(String?.self, forKey: .fqdn)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,9 +48,9 @@ internal struct IpAddressData : IpAddressProtocol {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ports as! [PortData], forKey: .ports)
     try container.encode(self.type, forKey: .type)
-    if self.ip != nil {try container.encode(self.ip, forKey: .ip)}
-    if self.dnsNameLabel != nil {try container.encode(self.dnsNameLabel, forKey: .dnsNameLabel)}
-    if self.fqdn != nil {try container.encode(self.fqdn, forKey: .fqdn)}
+    if self.ip != nil { try container.encode(self.ip, forKey: .ip) }
+    if self.dnsNameLabel != nil { try container.encode(self.dnsNameLabel, forKey: .dnsNameLabel) }
+    if self.fqdn != nil { try container.encode(self.fqdn, forKey: .fqdn) }
   }
 }
 

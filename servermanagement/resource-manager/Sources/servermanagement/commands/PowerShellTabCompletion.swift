@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol PowerShellTabCompletion  {
+public protocol PowerShellTabCompletion {
     var headerParameters: [String: String] { get set }
     var subscriptionId : String { get set }
     var resourceGroupName : String { get set }
@@ -8,9 +8,9 @@ public protocol PowerShellTabCompletion  {
     var session : String { get set }
     var pssession : String { get set }
     var apiVersion : String { get set }
-    var powerShellTabCompletionParamters :  PowerShellTabCompletionParametersProtocol?  { get set }
+    var powerShellTabCompletionParamters :  PowerShellTabCompletionParametersProtocol? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (PowerShellTabCompletionResultsProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (PowerShellTabCompletionResultsProtocol?, Error?) -> Void)
 }
 
 extension Commands.PowerShell {
@@ -38,7 +38,7 @@ extension Commands.PowerShell {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{nodeName}"] = String(describing: self.nodeName)
@@ -63,12 +63,12 @@ extension Commands.PowerShell {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(PowerShellTabCompletionResultsData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (PowerShellTabCompletionResultsProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (PowerShellTabCompletionResultsProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: PowerShellTabCompletionResultsData?, error: Error?) in
                 completionHandler(result, error)

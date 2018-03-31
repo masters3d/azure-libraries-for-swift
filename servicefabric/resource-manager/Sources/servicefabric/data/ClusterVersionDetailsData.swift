@@ -14,7 +14,7 @@ internal struct ClusterVersionDetailsData : ClusterVersionDetailsProtocol {
         case environment = "environment"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ClusterVersionDetailsData : ClusterVersionDetailsProtocol {
     if container.contains(.environment) {
         self.environment = try container.decode(EnvironmentEnum?.self, forKey: .environment)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ClusterVersionDetailsData : ClusterVersionDetailsProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.codeVersion != nil {try container.encode(self.codeVersion, forKey: .codeVersion)}
-    if self.supportExpiryUtc != nil {try container.encode(self.supportExpiryUtc, forKey: .supportExpiryUtc)}
-    if self.environment != nil {try container.encode(self.environment, forKey: .environment)}
+    if self.codeVersion != nil { try container.encode(self.codeVersion, forKey: .codeVersion) }
+    if self.supportExpiryUtc != nil { try container.encode(self.supportExpiryUtc, forKey: .supportExpiryUtc) }
+    if self.environment != nil { try container.encode(self.environment, forKey: .environment) }
   }
 }
 

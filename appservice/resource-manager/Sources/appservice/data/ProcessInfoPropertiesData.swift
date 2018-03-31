@@ -80,7 +80,7 @@ internal struct ProcessInfoPropertiesData : ProcessInfoPropertiesProtocol {
         case description = "description"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -193,7 +193,7 @@ internal struct ProcessInfoPropertiesData : ProcessInfoPropertiesProtocol {
     if container.contains(.description) {
         self.description = try container.decode(String?.self, forKey: .description)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -203,46 +203,46 @@ internal struct ProcessInfoPropertiesData : ProcessInfoPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.href != nil {try container.encode(self.href, forKey: .href)}
-    if self.miniDump != nil {try container.encode(self.miniDump, forKey: .miniDump)}
-    if self.isProfileRunning != nil {try container.encode(self.isProfileRunning, forKey: .isProfileRunning)}
-    if self.isIisProfileRunning != nil {try container.encode(self.isIisProfileRunning, forKey: .isIisProfileRunning)}
-    if self.iisProfileTimeoutInSeconds != nil {try container.encode(self.iisProfileTimeoutInSeconds, forKey: .iisProfileTimeoutInSeconds)}
-    if self.parent != nil {try container.encode(self.parent, forKey: .parent)}
-    if self.children != nil {try container.encode(self.children as! [String]?, forKey: .children)}
-    if self.threads != nil {try container.encode(self.threads as! [ProcessThreadInfoData?]?, forKey: .threads)}
-    if self.openFileHandles != nil {try container.encode(self.openFileHandles as! [String]?, forKey: .openFileHandles)}
-    if self.modules != nil {try container.encode(self.modules as! [ProcessModuleInfoData?]?, forKey: .modules)}
-    if self.fileName != nil {try container.encode(self.fileName, forKey: .fileName)}
-    if self.commandLine != nil {try container.encode(self.commandLine, forKey: .commandLine)}
-    if self.userName != nil {try container.encode(self.userName, forKey: .userName)}
-    if self.handleCount != nil {try container.encode(self.handleCount, forKey: .handleCount)}
-    if self.moduleCount != nil {try container.encode(self.moduleCount, forKey: .moduleCount)}
-    if self.threadCount != nil {try container.encode(self.threadCount, forKey: .threadCount)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.href != nil { try container.encode(self.href, forKey: .href) }
+    if self.miniDump != nil { try container.encode(self.miniDump, forKey: .miniDump) }
+    if self.isProfileRunning != nil { try container.encode(self.isProfileRunning, forKey: .isProfileRunning) }
+    if self.isIisProfileRunning != nil { try container.encode(self.isIisProfileRunning, forKey: .isIisProfileRunning) }
+    if self.iisProfileTimeoutInSeconds != nil { try container.encode(self.iisProfileTimeoutInSeconds, forKey: .iisProfileTimeoutInSeconds) }
+    if self.parent != nil { try container.encode(self.parent, forKey: .parent) }
+    if self.children != nil { try container.encode(self.children as! [String]?, forKey: .children) }
+    if self.threads != nil { try container.encode(self.threads as! [ProcessThreadInfoData?]?, forKey: .threads) }
+    if self.openFileHandles != nil { try container.encode(self.openFileHandles as! [String]?, forKey: .openFileHandles) }
+    if self.modules != nil { try container.encode(self.modules as! [ProcessModuleInfoData?]?, forKey: .modules) }
+    if self.fileName != nil { try container.encode(self.fileName, forKey: .fileName) }
+    if self.commandLine != nil { try container.encode(self.commandLine, forKey: .commandLine) }
+    if self.userName != nil { try container.encode(self.userName, forKey: .userName) }
+    if self.handleCount != nil { try container.encode(self.handleCount, forKey: .handleCount) }
+    if self.moduleCount != nil { try container.encode(self.moduleCount, forKey: .moduleCount) }
+    if self.threadCount != nil { try container.encode(self.threadCount, forKey: .threadCount) }
     if self.startTime != nil {
         try container.encode(DateConverter.toString(date: self.startTime!, format: .dateTime), forKey: .startTime)
     }
-    if self.totalProcessorTime != nil {try container.encode(self.totalProcessorTime, forKey: .totalProcessorTime)}
-    if self.userProcessorTime != nil {try container.encode(self.userProcessorTime, forKey: .userProcessorTime)}
-    if self.privilegedProcessorTime != nil {try container.encode(self.privilegedProcessorTime, forKey: .privilegedProcessorTime)}
-    if self.workingSet64 != nil {try container.encode(self.workingSet64, forKey: .workingSet64)}
-    if self.peakWorkingSet64 != nil {try container.encode(self.peakWorkingSet64, forKey: .peakWorkingSet64)}
-    if self.privateMemorySize64 != nil {try container.encode(self.privateMemorySize64, forKey: .privateMemorySize64)}
-    if self.virtualMemorySize64 != nil {try container.encode(self.virtualMemorySize64, forKey: .virtualMemorySize64)}
-    if self.peakVirtualMemorySize64 != nil {try container.encode(self.peakVirtualMemorySize64, forKey: .peakVirtualMemorySize64)}
-    if self.pagedSystemMemorySize64 != nil {try container.encode(self.pagedSystemMemorySize64, forKey: .pagedSystemMemorySize64)}
-    if self.nonpagedSystemMemorySize64 != nil {try container.encode(self.nonpagedSystemMemorySize64, forKey: .nonpagedSystemMemorySize64)}
-    if self.pagedMemorySize64 != nil {try container.encode(self.pagedMemorySize64, forKey: .pagedMemorySize64)}
-    if self.peakPagedMemorySize64 != nil {try container.encode(self.peakPagedMemorySize64, forKey: .peakPagedMemorySize64)}
+    if self.totalProcessorTime != nil { try container.encode(self.totalProcessorTime, forKey: .totalProcessorTime) }
+    if self.userProcessorTime != nil { try container.encode(self.userProcessorTime, forKey: .userProcessorTime) }
+    if self.privilegedProcessorTime != nil { try container.encode(self.privilegedProcessorTime, forKey: .privilegedProcessorTime) }
+    if self.workingSet64 != nil { try container.encode(self.workingSet64, forKey: .workingSet64) }
+    if self.peakWorkingSet64 != nil { try container.encode(self.peakWorkingSet64, forKey: .peakWorkingSet64) }
+    if self.privateMemorySize64 != nil { try container.encode(self.privateMemorySize64, forKey: .privateMemorySize64) }
+    if self.virtualMemorySize64 != nil { try container.encode(self.virtualMemorySize64, forKey: .virtualMemorySize64) }
+    if self.peakVirtualMemorySize64 != nil { try container.encode(self.peakVirtualMemorySize64, forKey: .peakVirtualMemorySize64) }
+    if self.pagedSystemMemorySize64 != nil { try container.encode(self.pagedSystemMemorySize64, forKey: .pagedSystemMemorySize64) }
+    if self.nonpagedSystemMemorySize64 != nil { try container.encode(self.nonpagedSystemMemorySize64, forKey: .nonpagedSystemMemorySize64) }
+    if self.pagedMemorySize64 != nil { try container.encode(self.pagedMemorySize64, forKey: .pagedMemorySize64) }
+    if self.peakPagedMemorySize64 != nil { try container.encode(self.peakPagedMemorySize64, forKey: .peakPagedMemorySize64) }
     if self.timeStamp != nil {
         try container.encode(DateConverter.toString(date: self.timeStamp!, format: .dateTime), forKey: .timeStamp)
     }
-    if self.environmentVariables != nil {try container.encode(self.environmentVariables, forKey: .environmentVariables)}
-    if self.isScmSite != nil {try container.encode(self.isScmSite, forKey: .isScmSite)}
-    if self.isWebJob != nil {try container.encode(self.isWebJob, forKey: .isWebJob)}
-    if self.description != nil {try container.encode(self.description, forKey: .description)}
+    if self.environmentVariables != nil { try container.encode(self.environmentVariables, forKey: .environmentVariables) }
+    if self.isScmSite != nil { try container.encode(self.isScmSite, forKey: .isScmSite) }
+    if self.isWebJob != nil { try container.encode(self.isWebJob, forKey: .isWebJob) }
+    if self.description != nil { try container.encode(self.description, forKey: .description) }
   }
 }
 

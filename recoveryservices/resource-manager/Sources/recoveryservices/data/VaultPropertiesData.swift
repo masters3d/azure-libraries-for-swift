@@ -12,7 +12,7 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
         case upgradeDetails = "upgradeDetails"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
     if container.contains(.upgradeDetails) {
         self.upgradeDetails = try container.decode(UpgradeDetailsData?.self, forKey: .upgradeDetails)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -33,8 +33,8 @@ internal struct VaultPropertiesData : VaultPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.upgradeDetails != nil {try container.encode(self.upgradeDetails as! UpgradeDetailsData?, forKey: .upgradeDetails)}
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.upgradeDetails != nil { try container.encode(self.upgradeDetails as! UpgradeDetailsData?, forKey: .upgradeDetails) }
   }
 }
 

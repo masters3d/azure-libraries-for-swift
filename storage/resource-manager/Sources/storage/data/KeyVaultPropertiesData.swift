@@ -14,7 +14,7 @@ internal struct KeyVaultPropertiesData : KeyVaultPropertiesProtocol {
         case keyVaultUri = "keyvaulturi"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct KeyVaultPropertiesData : KeyVaultPropertiesProtocol {
     if container.contains(.keyVaultUri) {
         self.keyVaultUri = try container.decode(String?.self, forKey: .keyVaultUri)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct KeyVaultPropertiesData : KeyVaultPropertiesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.keyName != nil {try container.encode(self.keyName, forKey: .keyName)}
-    if self.keyVersion != nil {try container.encode(self.keyVersion, forKey: .keyVersion)}
-    if self.keyVaultUri != nil {try container.encode(self.keyVaultUri, forKey: .keyVaultUri)}
+    if self.keyName != nil { try container.encode(self.keyName, forKey: .keyName) }
+    if self.keyVersion != nil { try container.encode(self.keyVersion, forKey: .keyVersion) }
+    if self.keyVaultUri != nil { try container.encode(self.keyVaultUri, forKey: .keyVaultUri) }
   }
 }
 

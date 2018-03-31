@@ -14,7 +14,7 @@ internal struct OperationResultInfoBaseResourceData : OperationResultInfoBaseRes
         case operation = "operation"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct OperationResultInfoBaseResourceData : OperationResultInfoBaseRes
     if container.contains(.operation) {
         self.operation = try container.decode(OperationResultInfoBaseData?.self, forKey: .operation)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct OperationResultInfoBaseResourceData : OperationResultInfoBaseRes
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.statusCode != nil {try container.encode(self.statusCode, forKey: .statusCode)}
-    if self.headers != nil {try container.encode(self.headers, forKey: .headers)}
-    if self.operation != nil {try container.encode(self.operation as! OperationResultInfoBaseData?, forKey: .operation)}
+    if self.statusCode != nil { try container.encode(self.statusCode, forKey: .statusCode) }
+    if self.headers != nil { try container.encode(self.headers, forKey: .headers) }
+    if self.operation != nil { try container.encode(self.operation as! OperationResultInfoBaseData?, forKey: .operation) }
   }
 }
 

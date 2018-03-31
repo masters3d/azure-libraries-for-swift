@@ -14,7 +14,7 @@ internal struct HyperVReplicaAzureEventDetailsData : HyperVReplicaAzureEventDeta
         case remoteContainerName = "remoteContainerName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct HyperVReplicaAzureEventDetailsData : HyperVReplicaAzureEventDeta
     if container.contains(.remoteContainerName) {
         self.remoteContainerName = try container.decode(String?.self, forKey: .remoteContainerName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct HyperVReplicaAzureEventDetailsData : HyperVReplicaAzureEventDeta
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.containerName != nil {try container.encode(self.containerName, forKey: .containerName)}
-    if self.fabricName != nil {try container.encode(self.fabricName, forKey: .fabricName)}
-    if self.remoteContainerName != nil {try container.encode(self.remoteContainerName, forKey: .remoteContainerName)}
+    if self.containerName != nil { try container.encode(self.containerName, forKey: .containerName) }
+    if self.fabricName != nil { try container.encode(self.fabricName, forKey: .fabricName) }
+    if self.remoteContainerName != nil { try container.encode(self.remoteContainerName, forKey: .remoteContainerName) }
   }
 }
 

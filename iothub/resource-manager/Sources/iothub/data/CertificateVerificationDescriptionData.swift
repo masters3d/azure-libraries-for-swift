@@ -10,7 +10,7 @@ internal struct CertificateVerificationDescriptionData : CertificateVerification
         enum CodingKeys: String, CodingKey {case certificate = "certificate"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct CertificateVerificationDescriptionData : CertificateVerification
       if container.contains(.certificate) {
         self.certificate = try container.decode(String?.self, forKey: .certificate)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct CertificateVerificationDescriptionData : CertificateVerification
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.certificate != nil {try container.encode(self.certificate, forKey: .certificate)}
+    if self.certificate != nil { try container.encode(self.certificate, forKey: .certificate) }
   }
 }
 

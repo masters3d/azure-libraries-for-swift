@@ -18,7 +18,7 @@ internal struct TaskUpdateHeadersData : TaskUpdateHeadersProtocol {
         case dataServiceId = "DataServiceId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct TaskUpdateHeadersData : TaskUpdateHeadersProtocol {
     if container.contains(.dataServiceId) {
         self.dataServiceId = try container.decode(String?.self, forKey: .dataServiceId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,13 +48,13 @@ internal struct TaskUpdateHeadersData : TaskUpdateHeadersProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.clientRequestId != nil {try container.encode(self.clientRequestId, forKey: .clientRequestId)}
-    if self.requestId != nil {try container.encode(self.requestId, forKey: .requestId)}
-    if self.eTag != nil {try container.encode(self.eTag, forKey: .eTag)}
+    if self.clientRequestId != nil { try container.encode(self.clientRequestId, forKey: .clientRequestId) }
+    if self.requestId != nil { try container.encode(self.requestId, forKey: .requestId) }
+    if self.eTag != nil { try container.encode(self.eTag, forKey: .eTag) }
     if self.lastModified != nil {
         try container.encode(DateConverter.toString(date: self.lastModified!, format: .dateTimeRfc1123), forKey: .lastModified)
     }
-    if self.dataServiceId != nil {try container.encode(self.dataServiceId, forKey: .dataServiceId)}
+    if self.dataServiceId != nil { try container.encode(self.dataServiceId, forKey: .dataServiceId) }
   }
 }
 

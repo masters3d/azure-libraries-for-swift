@@ -16,7 +16,7 @@ internal struct StreamInputPropertiesData : StreamInputPropertiesProtocol, Input
         case datasource = "datasource"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct StreamInputPropertiesData : StreamInputPropertiesProtocol, Input
     if container.contains(.datasource) {
         self.datasource = try container.decode(StreamInputDataSourceData?.self, forKey: .datasource)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct StreamInputPropertiesData : StreamInputPropertiesProtocol, Input
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.serialization != nil {try container.encode(self.serialization as! SerializationData?, forKey: .serialization)}
-    if self.diagnostics != nil {try container.encode(self.diagnostics as! DiagnosticsData?, forKey: .diagnostics)}
-    if self.etag != nil {try container.encode(self.etag, forKey: .etag)}
-    if self.datasource != nil {try container.encode(self.datasource as! StreamInputDataSourceData?, forKey: .datasource)}
+    if self.serialization != nil { try container.encode(self.serialization as! SerializationData?, forKey: .serialization) }
+    if self.diagnostics != nil { try container.encode(self.diagnostics as! DiagnosticsData?, forKey: .diagnostics) }
+    if self.etag != nil { try container.encode(self.etag, forKey: .etag) }
+    if self.datasource != nil { try container.encode(self.datasource as! StreamInputDataSourceData?, forKey: .datasource) }
   }
 }
 

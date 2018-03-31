@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol QueryKeysListBySearchService  {
+public protocol QueryKeysListBySearchService {
     var nextLink: String? { get }
     var hasAdditionalPages : Bool { get }
     var headerParameters: [String: String] { get set }
@@ -10,7 +10,7 @@ public protocol QueryKeysListBySearchService  {
     var apiVersion : String { get set }
     var clientRequestId : String? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (ListQueryKeysResultProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (ListQueryKeysResultProtocol?, Error?) -> Void)
 }
 
 extension Commands.QueryKeys {
@@ -39,7 +39,7 @@ extension Commands.QueryKeys {
             self.headerParameters = ["Content-Type":"application/json; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             self.pathParameters["{resourceGroupName}"] = String(describing: self.resourceGroupName)
             self.pathParameters["{searchServiceName}"] = String(describing: self.searchServiceName)
             self.pathParameters["{subscriptionId}"] = String(describing: self.subscriptionId)
@@ -60,15 +60,15 @@ extension Commands.QueryKeys {
                 if var pageDecoder = decoder as? PageDecoder {
                     self.nextLink = pageDecoder.nextLink
                 }
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (ListQueryKeysResultProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (ListQueryKeysResultProtocol?, Error?) -> Void) {
             if self.nextLink != nil {
                 self.path = nextLink!
-                self.nextLink = nil;
+                self.nextLink = nil
                 self.pathType = .absolute
             }
             client.executeAsync(command: self) {

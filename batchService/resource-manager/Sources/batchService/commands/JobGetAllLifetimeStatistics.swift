@@ -1,6 +1,6 @@
 import Foundation
 import azureSwiftRuntime
-public protocol JobGetAllLifetimeStatistics  {
+public protocol JobGetAllLifetimeStatistics {
     var headerParameters: [String: String] { get set }
     var timeout : Int32? { get set }
     var apiVersion : String { get set }
@@ -8,7 +8,7 @@ public protocol JobGetAllLifetimeStatistics  {
     var returnClientRequestId : Bool? { get set }
     var ocpDate : Date? { get set }
     func execute(client: RuntimeClient,
-    completionHandler: @escaping (JobStatisticsProtocol?, Error?) -> Void) -> Void ;
+    completionHandler: @escaping (JobStatisticsProtocol?, Error?) -> Void)
 }
 
 extension Commands.Job {
@@ -29,7 +29,7 @@ extension Commands.Job {
             self.headerParameters = ["Content-Type":"application/json; odata=minimalmetadata; charset=utf-8"]
         }
 
-        public override func preCall()  {
+        public override func preCall() {
             if self.timeout != nil { queryParameters["timeout"] = String(describing: self.timeout!) }
             self.queryParameters["api-version"] = String(describing: self.apiVersion)
             if self.clientRequestId != nil { headerParameters["client-request-id"] = String(describing: self.clientRequestId!) }
@@ -43,12 +43,12 @@ extension Commands.Job {
             if let mimeType = MimeType.getType(forStr: contentType) {
                 let decoder = try CoderFactory.decoder(for: mimeType)
                 let result = try decoder.decode(JobStatisticsData?.self, from: data)
-                return result;
+                return result
             }
             throw DecodeError.unknownMimeType
         }
         public func execute(client: RuntimeClient,
-            completionHandler: @escaping (JobStatisticsProtocol?, Error?) -> Void) -> Void {
+            completionHandler: @escaping (JobStatisticsProtocol?, Error?) -> Void) {
             client.executeAsync(command: self) {
                 (result: JobStatisticsData?, error: Error?) in
                 completionHandler(result, error)

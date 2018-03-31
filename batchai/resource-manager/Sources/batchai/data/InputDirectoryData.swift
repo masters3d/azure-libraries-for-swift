@@ -12,7 +12,7 @@ internal struct InputDirectoryData : InputDirectoryProtocol {
         case path = "path"
         }
 
-  public init(id: String, path: String)  {
+  public init(id: String, path: String) {
     self.id = id
     self.path = path
   }
@@ -21,7 +21,7 @@ internal struct InputDirectoryData : InputDirectoryProtocol {
     let container = try decoder.container(keyedBy: CodingKeys.self)
       self.id = try container.decode(String.self, forKey: .id)
     self.path = try container.decode(String.self, forKey: .path)
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)

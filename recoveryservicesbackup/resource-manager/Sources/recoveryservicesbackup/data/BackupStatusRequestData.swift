@@ -14,7 +14,7 @@ internal struct BackupStatusRequestData : BackupStatusRequestProtocol {
         case poLogicalName = "poLogicalName"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct BackupStatusRequestData : BackupStatusRequestProtocol {
     if container.contains(.poLogicalName) {
         self.poLogicalName = try container.decode(String?.self, forKey: .poLogicalName)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct BackupStatusRequestData : BackupStatusRequestProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.resourceType != nil {try container.encode(self.resourceType, forKey: .resourceType)}
-    if self.resourceId != nil {try container.encode(self.resourceId, forKey: .resourceId)}
-    if self.poLogicalName != nil {try container.encode(self.poLogicalName, forKey: .poLogicalName)}
+    if self.resourceType != nil { try container.encode(self.resourceType, forKey: .resourceType) }
+    if self.resourceId != nil { try container.encode(self.resourceId, forKey: .resourceId) }
+    if self.poLogicalName != nil { try container.encode(self.poLogicalName, forKey: .poLogicalName) }
   }
 }
 

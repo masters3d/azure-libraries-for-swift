@@ -18,7 +18,7 @@ internal struct JobRecurrenceData : JobRecurrenceProtocol {
         case schedule = "schedule"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -38,7 +38,7 @@ internal struct JobRecurrenceData : JobRecurrenceProtocol {
     if container.contains(.schedule) {
         self.schedule = try container.decode(JobRecurrenceScheduleData?.self, forKey: .schedule)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -48,13 +48,13 @@ internal struct JobRecurrenceData : JobRecurrenceProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.frequency != nil {try container.encode(self.frequency, forKey: .frequency)}
-    if self.interval != nil {try container.encode(self.interval, forKey: .interval)}
-    if self.count != nil {try container.encode(self.count, forKey: .count)}
+    if self.frequency != nil { try container.encode(self.frequency, forKey: .frequency) }
+    if self.interval != nil { try container.encode(self.interval, forKey: .interval) }
+    if self.count != nil { try container.encode(self.count, forKey: .count) }
     if self.endTime != nil {
         try container.encode(DateConverter.toString(date: self.endTime!, format: .dateTime), forKey: .endTime)
     }
-    if self.schedule != nil {try container.encode(self.schedule as! JobRecurrenceScheduleData?, forKey: .schedule)}
+    if self.schedule != nil { try container.encode(self.schedule as! JobRecurrenceScheduleData?, forKey: .schedule) }
   }
 }
 

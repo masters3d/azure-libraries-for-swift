@@ -22,7 +22,7 @@ internal struct MaintenanceRedeployStatusData : MaintenanceRedeployStatusProtoco
         case lastOperationMessage = "lastOperationMessage"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -48,7 +48,7 @@ internal struct MaintenanceRedeployStatusData : MaintenanceRedeployStatusProtoco
     if container.contains(.lastOperationMessage) {
         self.lastOperationMessage = try container.decode(String?.self, forKey: .lastOperationMessage)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -58,7 +58,7 @@ internal struct MaintenanceRedeployStatusData : MaintenanceRedeployStatusProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.isCustomerInitiatedMaintenanceAllowed != nil {try container.encode(self.isCustomerInitiatedMaintenanceAllowed, forKey: .isCustomerInitiatedMaintenanceAllowed)}
+    if self.isCustomerInitiatedMaintenanceAllowed != nil { try container.encode(self.isCustomerInitiatedMaintenanceAllowed, forKey: .isCustomerInitiatedMaintenanceAllowed) }
     if self.preMaintenanceWindowStartTime != nil {
         try container.encode(DateConverter.toString(date: self.preMaintenanceWindowStartTime!, format: .dateTime), forKey: .preMaintenanceWindowStartTime)
     }
@@ -71,8 +71,8 @@ internal struct MaintenanceRedeployStatusData : MaintenanceRedeployStatusProtoco
     if self.maintenanceWindowEndTime != nil {
         try container.encode(DateConverter.toString(date: self.maintenanceWindowEndTime!, format: .dateTime), forKey: .maintenanceWindowEndTime)
     }
-    if self.lastOperationResultCode != nil {try container.encode(self.lastOperationResultCode, forKey: .lastOperationResultCode)}
-    if self.lastOperationMessage != nil {try container.encode(self.lastOperationMessage, forKey: .lastOperationMessage)}
+    if self.lastOperationResultCode != nil { try container.encode(self.lastOperationResultCode, forKey: .lastOperationResultCode) }
+    if self.lastOperationMessage != nil { try container.encode(self.lastOperationMessage, forKey: .lastOperationMessage) }
   }
 }
 

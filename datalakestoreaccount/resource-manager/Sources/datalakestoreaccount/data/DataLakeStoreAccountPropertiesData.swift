@@ -42,7 +42,7 @@ internal struct DataLakeStoreAccountPropertiesData : DataLakeStoreAccountPropert
         case currentTier = "currentTier"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,7 +98,7 @@ internal struct DataLakeStoreAccountPropertiesData : DataLakeStoreAccountPropert
     if container.contains(.currentTier) {
         self.currentTier = try container.decode(TierTypeEnum?.self, forKey: .currentTier)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -108,27 +108,27 @@ internal struct DataLakeStoreAccountPropertiesData : DataLakeStoreAccountPropert
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.accountId != nil {try container.encode(self.accountId, forKey: .accountId)}
-    if self.provisioningState != nil {try container.encode(self.provisioningState, forKey: .provisioningState)}
-    if self.state != nil {try container.encode(self.state, forKey: .state)}
+    if self.accountId != nil { try container.encode(self.accountId, forKey: .accountId) }
+    if self.provisioningState != nil { try container.encode(self.provisioningState, forKey: .provisioningState) }
+    if self.state != nil { try container.encode(self.state, forKey: .state) }
     if self.creationTime != nil {
         try container.encode(DateConverter.toString(date: self.creationTime!, format: .dateTime), forKey: .creationTime)
     }
     if self.lastModifiedTime != nil {
         try container.encode(DateConverter.toString(date: self.lastModifiedTime!, format: .dateTime), forKey: .lastModifiedTime)
     }
-    if self.endpoint != nil {try container.encode(self.endpoint, forKey: .endpoint)}
-    if self.defaultGroup != nil {try container.encode(self.defaultGroup, forKey: .defaultGroup)}
-    if self.encryptionConfig != nil {try container.encode(self.encryptionConfig as! EncryptionConfigData?, forKey: .encryptionConfig)}
-    if self.encryptionState != nil {try container.encode(self.encryptionState, forKey: .encryptionState)}
-    if self.encryptionProvisioningState != nil {try container.encode(self.encryptionProvisioningState, forKey: .encryptionProvisioningState)}
-    if self.firewallRules != nil {try container.encode(self.firewallRules as! [FirewallRuleData?]?, forKey: .firewallRules)}
-    if self.firewallState != nil {try container.encode(self.firewallState, forKey: .firewallState)}
-    if self.firewallAllowAzureIps != nil {try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps)}
-    if self.trustedIdProviders != nil {try container.encode(self.trustedIdProviders as! [TrustedIdProviderData?]?, forKey: .trustedIdProviders)}
-    if self.trustedIdProviderState != nil {try container.encode(self.trustedIdProviderState, forKey: .trustedIdProviderState)}
-    if self.newTier != nil {try container.encode(self.newTier, forKey: .newTier)}
-    if self.currentTier != nil {try container.encode(self.currentTier, forKey: .currentTier)}
+    if self.endpoint != nil { try container.encode(self.endpoint, forKey: .endpoint) }
+    if self.defaultGroup != nil { try container.encode(self.defaultGroup, forKey: .defaultGroup) }
+    if self.encryptionConfig != nil { try container.encode(self.encryptionConfig as! EncryptionConfigData?, forKey: .encryptionConfig) }
+    if self.encryptionState != nil { try container.encode(self.encryptionState, forKey: .encryptionState) }
+    if self.encryptionProvisioningState != nil { try container.encode(self.encryptionProvisioningState, forKey: .encryptionProvisioningState) }
+    if self.firewallRules != nil { try container.encode(self.firewallRules as! [FirewallRuleData?]?, forKey: .firewallRules) }
+    if self.firewallState != nil { try container.encode(self.firewallState, forKey: .firewallState) }
+    if self.firewallAllowAzureIps != nil { try container.encode(self.firewallAllowAzureIps, forKey: .firewallAllowAzureIps) }
+    if self.trustedIdProviders != nil { try container.encode(self.trustedIdProviders as! [TrustedIdProviderData?]?, forKey: .trustedIdProviders) }
+    if self.trustedIdProviderState != nil { try container.encode(self.trustedIdProviderState, forKey: .trustedIdProviderState) }
+    if self.newTier != nil { try container.encode(self.newTier, forKey: .newTier) }
+    if self.currentTier != nil { try container.encode(self.currentTier, forKey: .currentTier) }
   }
 }
 

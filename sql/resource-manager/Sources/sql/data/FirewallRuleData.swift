@@ -20,7 +20,7 @@ internal struct FirewallRuleData : FirewallRuleProtocol, ProxyResourceProtocol, 
         case properties = "properties"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ internal struct FirewallRuleData : FirewallRuleProtocol, ProxyResourceProtocol, 
     if container.contains(.properties) {
         self.properties = try container.decode(FirewallRulePropertiesData?.self, forKey: .properties)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -53,12 +53,12 @@ internal struct FirewallRuleData : FirewallRuleProtocol, ProxyResourceProtocol, 
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.id != nil {try container.encode(self.id, forKey: .id)}
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
-    if self.kind != nil {try container.encode(self.kind, forKey: .kind)}
-    if self.location != nil {try container.encode(self.location, forKey: .location)}
-    if self.properties != nil {try container.encode(self.properties as! FirewallRulePropertiesData?, forKey: .properties)}
+    if self.id != nil { try container.encode(self.id, forKey: .id) }
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
+    if self.kind != nil { try container.encode(self.kind, forKey: .kind) }
+    if self.location != nil { try container.encode(self.location, forKey: .location) }
+    if self.properties != nil { try container.encode(self.properties as! FirewallRulePropertiesData?, forKey: .properties) }
   }
 }
 

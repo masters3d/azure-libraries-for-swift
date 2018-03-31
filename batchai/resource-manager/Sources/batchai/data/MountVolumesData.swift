@@ -16,7 +16,7 @@ internal struct MountVolumesData : MountVolumesProtocol {
         case unmanagedFileSystems = "unmanagedFileSystems"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -33,7 +33,7 @@ internal struct MountVolumesData : MountVolumesProtocol {
     if container.contains(.unmanagedFileSystems) {
         self.unmanagedFileSystems = try container.decode([UnmanagedFileSystemReferenceData?]?.self, forKey: .unmanagedFileSystems)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -43,10 +43,10 @@ internal struct MountVolumesData : MountVolumesProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.azureFileShares != nil {try container.encode(self.azureFileShares as! [AzureFileShareReferenceData?]?, forKey: .azureFileShares)}
-    if self.azureBlobFileSystems != nil {try container.encode(self.azureBlobFileSystems as! [AzureBlobFileSystemReferenceData?]?, forKey: .azureBlobFileSystems)}
-    if self.fileServers != nil {try container.encode(self.fileServers as! [FileServerReferenceData?]?, forKey: .fileServers)}
-    if self.unmanagedFileSystems != nil {try container.encode(self.unmanagedFileSystems as! [UnmanagedFileSystemReferenceData?]?, forKey: .unmanagedFileSystems)}
+    if self.azureFileShares != nil { try container.encode(self.azureFileShares as! [AzureFileShareReferenceData?]?, forKey: .azureFileShares) }
+    if self.azureBlobFileSystems != nil { try container.encode(self.azureBlobFileSystems as! [AzureBlobFileSystemReferenceData?]?, forKey: .azureBlobFileSystems) }
+    if self.fileServers != nil { try container.encode(self.fileServers as! [FileServerReferenceData?]?, forKey: .fileServers) }
+    if self.unmanagedFileSystems != nil { try container.encode(self.unmanagedFileSystems as! [UnmanagedFileSystemReferenceData?]?, forKey: .unmanagedFileSystems) }
   }
 }
 

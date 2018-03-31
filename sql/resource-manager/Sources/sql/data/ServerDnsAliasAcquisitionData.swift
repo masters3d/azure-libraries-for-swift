@@ -10,7 +10,7 @@ internal struct ServerDnsAliasAcquisitionData : ServerDnsAliasAcquisitionProtoco
         enum CodingKeys: String, CodingKey {case oldServerDnsAliasId = "oldServerDnsAliasId"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ internal struct ServerDnsAliasAcquisitionData : ServerDnsAliasAcquisitionProtoco
       if container.contains(.oldServerDnsAliasId) {
         self.oldServerDnsAliasId = try container.decode(String?.self, forKey: .oldServerDnsAliasId)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -28,7 +28,7 @@ internal struct ServerDnsAliasAcquisitionData : ServerDnsAliasAcquisitionProtoco
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.oldServerDnsAliasId != nil {try container.encode(self.oldServerDnsAliasId, forKey: .oldServerDnsAliasId)}
+    if self.oldServerDnsAliasId != nil { try container.encode(self.oldServerDnsAliasId, forKey: .oldServerDnsAliasId) }
   }
 }
 

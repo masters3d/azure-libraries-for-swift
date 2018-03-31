@@ -14,7 +14,7 @@ internal struct ConnStringInfoData : ConnStringInfoProtocol {
         case type = "type"
         }
 
-  public init()  {
+  public init() {
   }
 
   public init(from decoder: Decoder) throws {
@@ -28,7 +28,7 @@ internal struct ConnStringInfoData : ConnStringInfoProtocol {
     if container.contains(.type) {
         self.type = try container.decode(ConnectionStringTypeEnum?.self, forKey: .type)
     }
-    if var pageDecoder = decoder as? PageDecoder  {
+    if var pageDecoder = decoder as? PageDecoder {
       if pageDecoder.isPagedData,
         let nextLinkName = pageDecoder.nextLinkName {
           pageDecoder.nextLink = try UnknownCodingKey.decodeStringForKey(decoder: decoder, keyForDecode: nextLinkName)
@@ -38,9 +38,9 @@ internal struct ConnStringInfoData : ConnStringInfoProtocol {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    if self.name != nil {try container.encode(self.name, forKey: .name)}
-    if self.connectionString != nil {try container.encode(self.connectionString, forKey: .connectionString)}
-    if self.type != nil {try container.encode(self.type, forKey: .type)}
+    if self.name != nil { try container.encode(self.name, forKey: .name) }
+    if self.connectionString != nil { try container.encode(self.connectionString, forKey: .connectionString) }
+    if self.type != nil { try container.encode(self.type, forKey: .type) }
   }
 }
 
